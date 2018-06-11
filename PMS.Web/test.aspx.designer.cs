@@ -10,7 +10,7 @@
 namespace PMS.Web {
     
     
-    public partial class login {
+    public partial class test {
         
         /// <summary>
         /// form1 控件。
