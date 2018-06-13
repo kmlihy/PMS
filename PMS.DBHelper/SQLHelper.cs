@@ -53,7 +53,7 @@ namespace PMS.DBHelper
         /// <param name="param">参数数组</param>
         /// <param name="values">参数值数组</param>
         /// <returns></returns>
-        private SqlCommand CreateCommand(string cmdText, string[] param, object [] values)
+        public SqlCommand CreateCommand(string cmdText, string[] param, object [] values)
         {
             SqlCommand myCmd = new SqlCommand(cmdText,sqlConn);
             for (int i = 0; i < param.Length; i++)
