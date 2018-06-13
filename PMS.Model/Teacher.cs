@@ -5,7 +5,7 @@ namespace PMS.Model
 
     /// <summary>T_Teacher</summary>
     [Serializable()]
-    public class T_Teacher
+    public class Teacher
     {
         /// <summary>教师管理员账号</summary>
         public string teaAccount { get; set; }
@@ -31,7 +31,7 @@ namespace PMS.Model
         /// <summary>角色身份类型(教师1,管理员2,超级管理员3)</summary>
         public int teaType { get; set; }
 
-        public T_Teacher() { }
+        public Teacher() { }
 
     }
 }

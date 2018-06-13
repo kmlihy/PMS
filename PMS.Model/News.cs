@@ -4,7 +4,7 @@ namespace PMS.Model
 {
     /// <summary>TNews(公告表实体类)</summary>
     [Serializable()]
-    public class T_News
+    public class News
     {
 
         /// <summary>公告id</summary>
@@ -22,7 +22,7 @@ namespace PMS.Model
         /// <summary>公告发布人(外键教师信息表)</summary>
         public string teaAccount { get; set; }
 
-        public T_News() { }
+        public News() { }
         
     }
 }
