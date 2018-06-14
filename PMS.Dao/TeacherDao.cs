@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using PMS.DBHelper;
 using PMS.Model;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace PMS.Dao
 {
@@ -13,6 +15,21 @@ namespace PMS.Dao
     public class TeacherDao
     {
         private SQLHelper db = new SQLHelper();
+
+        /// <summary>
+        /// 管理员或教师登录
+        /// </summary>
+        /// <param name="teaAccount">账号</param>
+        /// <param name="pwd">密码</param>
+        /// <returns></returns>
+        public DataSet Select(string teaAccount, string pwd)
+        {
+            string cmdText = "select * from T_Teacher where teaAccount = @teaAccount and teaPwd = @teaPwd";
+            string[] param = { "@teaAccount","@teaPwd" };
+            object[] values = { teaAccount, pwd };
+            DataSet date = db.FillDataSet(cmdText, param, values);            
+            return date;
+        }
 
         /// <summary>
         /// 向数据库中新增教师记录
