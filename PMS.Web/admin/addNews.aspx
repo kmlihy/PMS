@@ -7,6 +7,7 @@
     <title>发布公告</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../kindeditor/themes/default/default.css" />
     <script src="../kindeditor/kindeditor-all.js"></script>
     <script src="../kindeditor/lang/zh-CN.js"></script>
@@ -64,7 +65,7 @@
     var editor;
     KindEditor.ready(function (K) {
         editor = K.create('textarea[name="content"]', {
-            width: '80%',
+            width: '75%',
             items: [
                 'source', '|', 'undo', 'redo', '|', 'fontname', 'fontsize', 'formatblock',
                 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', '|', 'justifyleft',
