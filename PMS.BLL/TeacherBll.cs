@@ -20,14 +20,20 @@ namespace PMS.BLL
         /// <param name="teaAccount"></param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public int Login(string teaAccount, string pwd)
+        public Teacher Login(string teaAccount, string pwd)
         {
-            DataSet data = dao.Select(teaAccount, pwd);
-            if(data.Tables[0].Rows.Count > 0)
+            DataSet ds = dao.Select(teaAccount, pwd);
+            if(ds!=null && ds.Tables[0].Rows.Count == 1)
             {
-                return 1;
+                DataRow row = ds.Tables[0].Rows[0];
+                if(row["teaAccount"].ToString() == teaAccount && row["teaPwd"].ToString() == pwd)
+                {
+                    Teacher teacher = new Teacher();
+                    //填充属性
+                    return teacher;
+                }
             }
-            return 0;
+            return null;
         }
 
         public Result Add(Teacher teacher)

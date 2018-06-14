@@ -5,7 +5,6 @@ using System.Text;
 using PMS.DBHelper;
 using PMS.Model;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace PMS.Dao
 {
@@ -17,7 +16,7 @@ namespace PMS.Dao
         private SQLHelper db = new SQLHelper();
 
         /// <summary>
-        /// 管理员或教师登录
+        /// 根据账号与密码获取教师信息
         /// </summary>
         /// <param name="teaAccount">账号</param>
         /// <param name="pwd">密码</param>
@@ -27,8 +26,17 @@ namespace PMS.Dao
             string cmdText = "select * from T_Teacher where teaAccount = @teaAccount and teaPwd = @teaPwd";
             string[] param = { "@teaAccount","@teaPwd" };
             object[] values = { teaAccount, pwd };
-            DataSet date = db.FillDataSet(cmdText, param, values);            
-            return date;
+            DataSet ds = db.FillDataSet(cmdText, param, values);            
+            return ds;
+        }
+        /// <summary>
+        /// 根据用户类型获取教师信息
+        /// </summary>
+        /// <param name="userType">1：教师 0：管理员</param>
+        /// <returns></returns>
+        public DataSet Select(int userType)
+        {
+            return null;
         }
 
         /// <summary>
