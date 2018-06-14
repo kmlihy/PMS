@@ -1,2 +1,20 @@
-﻿body {
+﻿/* 
+body {
+} */
+/* news.aspx */
+#underline{
+    height: 2px;
+    border-top: 2px solid #031A58;
+}
+#contentBox{
+    background-color:gray;
+    border: 1px solid black;
+    height: 100%;
+}
+#panelBox{
+    border: 1px solid red;
+}
+/*newsList.aspx*/
+#school-word{
+    margin-top: auto;
 }
