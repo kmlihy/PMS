@@ -8,57 +8,67 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>公告列表页面</title>
     </head>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ml.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <body>
-        <div class="container-fluid table-bordered">
+        <div class="container-fluid">
             <div class="container-fluid table-bordered img-rounded" id="school">
-                <div class="container col-lg-4 col-md-4 col-sm-12 text-center" id="school-word">
+                <div class="container-fluid" id="school-word">
                     <label for="title" class="h4 text-info">学校公告</label>
+                    <a href="allNews.aspx">查看更多>></a>
                 </div>
-                <div class="container col-lg-8 col-md-4 col-sm-12 table-bordered" id="school-list">
+                <div class="container-fluid" id="school-list">
                     <ul class="list-unstyled">
-                        <table class="table">
+                        <table class="table" id="newsList-table">
                             <tr>
-                                <td>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于2018年端午节放假通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于表彰第25期入党积极分子及2018年 上半年发展对象培训班优秀学员的通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
                                     <li>
                                         <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">weqe</a>
-                                    </li>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
+                                <td class="col-lg-11">
                                     <li>
-                                        <a href="news.aspx">qweq</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">qeqwe</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">adfrw</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">查看更多>></a>
+                                        <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
@@ -66,52 +76,61 @@
                     </ul>
                 </div>
             </div>
-            <div class="container-fluid table-bordered img-rounded" id="institute">
-                <div class="container col-lg-4 col-md-4 col-sm-12 text-center" id="institute-word">
-                    <label for="title" class="h4 text-info">学院公告</label>
+            <div class="container-fluid table-bordered img-rounded" id="school">
+                <div class="container-fluid" id="school-word">
+                    <label for="title" class="h4 text-info">学校公告</label>
+                    <a href="allNews.aspx">查看更多>></a>
                 </div>
-                <div class="container col-lg-8 col-md-4 col-sm-12 table-bordered" id="institute-list">
+                <div class="container-fluid" id="school-list">
                     <ul class="list-unstyled">
-                        <table class="table">
+                        <table class="table" id="newsList-table">
                             <tr>
-                                <td>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于2018年端午节放假通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于表彰第25期入党积极分子及2018年 上半年发展对象培训班优秀学员的通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
                                     <li>
                                         <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">weqe</a>
-                                    </li>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
+                                <td class="col-lg-11">
                                     <li>
-                                        <a href="news.aspx">qweq</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">qeqwe</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">adfrw</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">查看更多>></a>
+                                        <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
@@ -119,52 +138,61 @@
                     </ul>
                 </div>
             </div>
-            <div class="container-fluid table-bordered img-rounded" id="Mine">
-                <div class="container col-lg-4 col-md-4 col-sm-12 text-center" id="Mine-word">
-                    <label for="title" class="h4 text-info">学院公告</label>
+            <div class="container-fluid table-bordered img-rounded" id="school">
+                <div class="container-fluid" id="school-word">
+                    <label for="title" class="h4 text-info">学校公告</label>
+                    <a href="allNews.aspx">查看更多>></a>
                 </div>
-                <div class="container col-lg-8 col-md-4 col-sm-12 table-bordered" id="Mine-list">
+                <div class="container-fluid" id="school-list">
                     <ul class="list-unstyled">
-                        <table class="table">
+                        <table class="table" id="newsList-table">
                             <tr>
-                                <td>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于2018年端午节放假通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
+                                    <li>
+                                        <a href="news.aspx">关于表彰第25期入党积极分子及2018年 上半年发展对象培训班优秀学员的通知</a>
+                                    </li>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
+                                </td>
+                                <td class="col-lg-11">
                                     <li>
                                         <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">weqe</a>
-                                    </li>
+                                <td class="col-lg-1">
+                                    <span>[2018/6/14]</span>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
+                                <td class="col-lg-11">
                                     <li>
-                                        <a href="news.aspx">qweq</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">qeqwe</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">adfrw</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <li>
-                                        <a href="news.aspx">查看更多>></a>
+                                        <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
@@ -174,7 +202,7 @@
             </div>
         </div>
     </body>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../kindeditor/themes/default/default.css">
+    <script charset="UTF-8" src="../kindeditor/kindeditor-all-min.js"></script>
+    <script charset="UTF-8" src="../kindeditor/lang/zh-CN.js"></script>
+</head>
+
+<body>
+    <textarea id="mul_input" name="content" style="width:700px;height:200px;visibility:hidden;display: block;">KindEditor</textarea>
+
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('textarea[name="content"]', {
+                resizeType: 1,
+                allowImageUpload: true,
+                items: [
+                    'source', '|', 'undo', 'redo', '|', 'fontname', 'fontsize', 'formatblock',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', '|', 'justifyleft',
+                    'justifycenter', 'justifyright', 'justifyfull', '|', 'selectall', 'cut',
+                    'copy', 'strikethrough', 'lineheight', 'removeformat', 'insertorderedlist',
+                    'insertunorderedlist', 'outdent', '|', 'preview', 'print', 'code', '|',
+                    'paste', 'plainpaste', 'wordpaste', 'clearhtml', 'quickformat',
+                    'fullscreen', 'image', 'multiimage',
+                    'media', 'insertfile', 'table', 'hr',
+                    'baidumap', 'pagebreak', 'anchor', 'link',
+                    'unlink', 'about'
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>

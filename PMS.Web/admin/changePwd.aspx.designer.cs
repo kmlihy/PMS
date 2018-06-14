@@ -10,6 +10,6 @@
 namespace PMS.Web.admin {
     
     
-    public partial class addNews {
+    public partial class changePwd {
     }
 }

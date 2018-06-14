@@ -1,2 +1,71 @@
-﻿body {
+﻿body {}
+
+
+/*发布公告样式表*/
+
+.tablediv {
+    position: relative;
+    margin-left: 0%;
+    margin-top: 30px;
+    border: #DDD 1.2px solid;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.titleTable>tbody>tr>td {
+    border: 0px;
+    width: 30%;
+}
+
+#titleTable {
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.inputdiv {
+    padding: 0px;
+}
+
+#InputAmount {
+    position: relative;
+    margin-top: -6px;
+}
+
+.title {
+    color: black;
+    font-size: 16px;
+}
+
+.btn-title {
+    margin-top: 10px;
+}
+
+.titlemain {
+    width: 100%;
+    height: 400px;
+    visibility: hidden;
+}
+
+
+/*密码修改界面样式表*/
+
+.changepwdmain {
+    margin-top: 20px;
+    border: 1px solid rgb(158, 157, 157);
+    border-radius: 5px 5px 5px 5px
+}
+
+.changePwdtable {
+    margin-top: 20px;
+}
+
+.changePwdtable>tbody>tr>td {
+    border: 0px;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    width: 50%;
+}
+
+.changnum {
+    padding-right: 5%;
+    padding-top: 5px;
 }

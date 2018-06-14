@@ -8,8 +8,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>公告查看</title>
     </head>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ml.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <body>
         <div class="container-fluid col-lg-6 col-lg-offset-3" id="contentBox">
@@ -57,6 +58,6 @@
             </div>
         </div>
     </body>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     </html>
