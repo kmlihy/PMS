@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/zwh.css" />
     </head>
 
     <body class="body">
@@ -19,31 +19,26 @@
             </div>
             <hr />
             <div class="panel-body">
-                <form class="form-horizontal" action="login.aspx" method="post" role="form">
+                <form class="form-horizontal" id="adminloginfrom" action="login.aspx" method="post" role="form">
 
                     <div class="input-group" id="content">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
-                        <input type="text" class="form-control" name="userName" id="txtBox" placeholder="用户名" />
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名" />
+                        <span></span>
                     </div>
 
                     <div class="input-group" id="content">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-lock"></span>
                         </span>
-                        <input type="password" class="form-control" name="pwd" id="txtBox" placeholder="密码" />
+                        <input type="password" class="form-control" name="pwd" id="pwd" placeholder="密码" />
                     </div>
 
-                    <div class="input-group" id="content">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-briefcase"></span>
-                        </span>
-                        <input type="password" class="form-control txtBox" id="validateBox" placeholder="验证码" />
-                    </div>
                     <div class="form-group">
                         <div id="btn">
-                            <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2">重置</button>
+                            <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
                             <button type="submit" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-3 col-sm-push-3 col-md-push-3 col-lg-push-3">登录</button>
                         </div>
                     </div>
@@ -53,5 +48,6 @@
     </body>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/messages_zh.js"></script>
     </html>
