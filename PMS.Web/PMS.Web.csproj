@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,85 +62,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
-    <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
+    <Content Include="allNews.aspx" />
+    <Content Include="news.aspx" />
+    <Content Include="newsList.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\lgd.css" />
+    <Content Include="css\ml.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\zgz.css" />
+    <Content Include="css\zwh.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="images\logo.png" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
-    <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
-    <Content Include="kindeditor\asp.net\demo.aspx" />
-    <Content Include="kindeditor\asp.net\README.txt" />
-    <Content Include="kindeditor\index.html" />
-    <Content Include="kindeditor\kindeditor-all-min.js" />
-    <Content Include="kindeditor\kindeditor-all.js" />
-    <Content Include="kindeditor\lang\ar.js" />
-    <Content Include="kindeditor\lang\en.js" />
-    <Content Include="kindeditor\lang\ko.js" />
-    <Content Include="kindeditor\lang\ru.js" />
-    <Content Include="kindeditor\lang\zh-CN.js" />
-    <Content Include="kindeditor\lang\zh-TW.js" />
-    <Content Include="kindeditor\license.txt" />
-    <Content Include="kindeditor\plugins\anchor\anchor.js" />
-    <Content Include="kindeditor\plugins\autoheight\autoheight.js" />
-    <Content Include="kindeditor\plugins\baidumap\baidumap.js" />
-    <Content Include="kindeditor\plugins\baidumap\index.html" />
-    <Content Include="kindeditor\plugins\baidumap\map.html" />
-    <Content Include="kindeditor\plugins\clearhtml\clearhtml.js" />
-    <Content Include="kindeditor\plugins\code\code.js" />
-    <Content Include="kindeditor\plugins\code\prettify.css" />
-    <Content Include="kindeditor\plugins\code\prettify.js" />
-    <Content Include="kindeditor\plugins\filemanager\filemanager.js" />
-    <Content Include="kindeditor\plugins\filemanager\images\file-16.gif" />
-    <Content Include="kindeditor\plugins\filemanager\images\file-64.gif" />
-    <Content Include="kindeditor\plugins\filemanager\images\folder-16.gif" />
-    <Content Include="kindeditor\plugins\filemanager\images\folder-64.gif" />
-    <Content Include="kindeditor\plugins\filemanager\images\go-up.gif" />
-    <Content Include="kindeditor\plugins\fixtoolbar\fixtoolbar.js" />
-    <Content Include="kindeditor\plugins\flash\flash.js" />
-    <Content Include="kindeditor\plugins\image\image.js" />
-    <Content Include="kindeditor\plugins\image\images\align_left.gif" />
-    <Content Include="kindeditor\plugins\image\images\align_right.gif" />
-    <Content Include="kindeditor\plugins\image\images\align_top.gif" />
-    <Content Include="kindeditor\plugins\image\images\refresh.png" />
-    <Content Include="kindeditor\plugins\insertfile\insertfile.js" />
-    <Content Include="kindeditor\plugins\lineheight\lineheight.js" />
-    <Content Include="kindeditor\plugins\link\link.js" />
-    <Content Include="kindeditor\plugins\map\map.html" />
-    <Content Include="kindeditor\plugins\map\map.js" />
-    <Content Include="kindeditor\plugins\media\media.js" />
-    <Content Include="kindeditor\plugins\multiimage\images\image.png" />
-    <Content Include="kindeditor\plugins\multiimage\images\select-files-en.png" />
-    <Content Include="kindeditor\plugins\multiimage\images\select-files-zh-CN.png" />
-    <Content Include="kindeditor\plugins\multiimage\images\swfupload.swf" />
-    <Content Include="kindeditor\plugins\multiimage\multiimage.js" />
-    <Content Include="kindeditor\plugins\pagebreak\pagebreak.js" />
-    <Content Include="kindeditor\plugins\plainpaste\plainpaste.js" />
-    <Content Include="kindeditor\plugins\preview\preview.js" />
-    <Content Include="kindeditor\plugins\quickformat\quickformat.js" />
-    <Content Include="kindeditor\plugins\table\table.js" />
-    <Content Include="kindeditor\plugins\template\html\1.html" />
-    <Content Include="kindeditor\plugins\template\html\2.html" />
-    <Content Include="kindeditor\plugins\template\html\3.html" />
-    <Content Include="kindeditor\plugins\template\template.js" />
-    <Content Include="kindeditor\plugins\wordpaste\wordpaste.js" />
-    <Content Include="kindeditor\themes\common\anchor.gif" />
-    <Content Include="kindeditor\themes\common\blank.gif" />
-    <Content Include="kindeditor\themes\common\flash.gif" />
-    <Content Include="kindeditor\themes\common\loading.gif" />
-    <Content Include="kindeditor\themes\common\media.gif" />
-    <Content Include="kindeditor\themes\common\rm.gif" />
-    <Content Include="kindeditor\themes\default\background.png" />
-    <Content Include="kindeditor\themes\default\default.css" />
-    <Content Include="kindeditor\themes\default\default.png" />
-    <Content Include="kindeditor\themes\qq\editor.gif" />
-    <Content Include="kindeditor\themes\qq\qq.css" />
-    <Content Include="kindeditor\themes\simple\simple.css" />
     <Content Include="login.aspx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
@@ -151,13 +91,6 @@
     </Compile>
     <Compile Include="admin\addNews.aspx.designer.cs">
       <DependentUpon>addNews.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\changePwd.aspx.cs">
-      <DependentUpon>changePwd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\changePwd.aspx.designer.cs">
-      <DependentUpon>changePwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -172,6 +105,27 @@
     </Compile>
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="allNews.aspx.cs">
+      <DependentUpon>allNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="allNews.aspx.designer.cs">
+      <DependentUpon>allNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="news.aspx.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="news.aspx.designer.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="newsList.aspx.cs">
+      <DependentUpon>newsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="newsList.aspx.designer.cs">
+      <DependentUpon>newsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -198,8 +152,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="kindeditor\asp.net\file_manager_json.ashx" />
-    <Content Include="kindeditor\asp.net\upload_json.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,12 +169,7 @@
       <Name>PMS.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-    <Folder Include="kindeditor\asp\" />
-    <Folder Include="kindeditor\jsp\" />
-    <Folder Include="kindeditor\php\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>

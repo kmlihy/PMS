@@ -10,6 +10,6 @@
 namespace PMS.Web.admin {
     
     
-    public partial class login {
+    public partial class news {
     }
 }

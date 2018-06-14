@@ -1,14 +1,79 @@
-锘縰sing System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using System;
+using System.Data;
 namespace PMS.Model
 {
-    /// <summary>
-    /// 鏁欏笀绠＄悊鍛樺疄浣撶被
-    /// </summary>
+
+    /// <summary>T_Teacher</summary>
+    [Serializable()]
     public class Teacher
     {
+        /// <summary>
+        /// 教师管理员账号
+        /// </summary>
+        public string TeaAccount { get; set; }
+
+        /// <summary>
+        /// 教师管理员密码
+        /// </summary>
+        public string TeaPwd { get; set; }
+        
+        /// <summary>
+        /// 教师管理员姓名
+        /// </summary>
+        public string TeaName { get; set; }
+       
+        /// <summary>
+        /// 教师管理员性别
+        /// </summary>
+        public string Sex { get; set; }
+        
+        /// <summary>
+        /// 教师管理员联系电话
+        /// </summary>
+        public string Phone { get; set; }
+        
+        /// <summary>
+        /// 教师管理员邮箱
+        /// </summary>
+        public string Email { get; set; }
+        
+        /// <summary>
+        /// 分院id(外键分院表)
+        /// </summary>
+        public College college { get; set; }
+        
+        /// <summary>
+        /// 角色身份类型(教师1,管理员2,超级管理员3)
+        /// </summary>
+        public int TeaType { get; set; }
+        /// <summary>
+        /// 无参构造函数
+        /// </summary>
+        public Teacher() { }
+
+       /// <summary>
+       /// 有参构造函数
+       /// </summary>
+       /// <param name="teaAccount"></param>
+       /// <param name="teaPwd"></param>
+       /// <param name="teaName"></param>
+       /// <param name="sex"></param>
+       /// <param name="phone"></param>
+       /// <param name="email"></param>
+       /// <param name="college"></param>
+       /// <param name="teaType"></param>
+        public Teacher(string teaAccount, string teaPwd, string teaName, string sex, string phone, string email, College college, int teaType)
+        {
+            TeaAccount = teaAccount;
+            TeaPwd = teaPwd;
+            TeaName = teaName;
+            Sex = sex;
+            Phone = phone;
+            Email = email;
+            this.college = college;
+            TeaType = teaType;
+        }
+
+
     }
 }
