@@ -64,6 +64,7 @@
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
+    <Content Include="admin\stuLIst.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="news.aspx" />
     <Content Include="newsList.aspx" />
@@ -105,6 +106,13 @@
     </Compile>
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\stuLIst.aspx.cs">
+      <DependentUpon>stuLIst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\stuLIst.aspx.designer.cs">
+      <DependentUpon>stuLIst.aspx</DependentUpon>
     </Compile>
     <Compile Include="allNews.aspx.cs">
       <DependentUpon>allNews.aspx</DependentUpon>
