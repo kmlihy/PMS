@@ -62,10 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
+    <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
     <Content Include="admin\stuLIst.aspx" />
     <Content Include="allNews.aspx" />
+    <Content Include="js\jquery.validate.min.js" />
+    <Content Include="js\messages_zh.min.js" />
     <Content Include="news.aspx" />
     <Content Include="newsList.aspx" />
     <Content Include="css\bootstrap-theme.css" />
@@ -92,6 +95,13 @@
     </Compile>
     <Compile Include="admin\addNews.aspx.designer.cs">
       <DependentUpon>addNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\changePwd.aspx.cs">
+      <DependentUpon>changePwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\changePwd.aspx.designer.cs">
+      <DependentUpon>changePwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
