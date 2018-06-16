@@ -30,23 +30,99 @@ namespace PMS.Dao
             return ds;
         }
         /// <summary>
-        /// 根据用户类型获取教师信息
+        /// 向数据库添加一条教师数据
         /// </summary>
-        /// <param name="userType">1：教师 0：管理员</param>
-        /// <returns></returns>
-        public DataSet Select(int userType)
+        /// <param name="student">教师实体</param>
+        /// <returns>受影响行数</returns>
+        public int Insert(Teacher teacher)
         {
-            return null;
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("insert into T_Teacher(");
+            strSql.Append("teaAccount,teaPwd,teaName,sex,phone,Email,collegeId,teaType");
+            strSql.Append(") values (");
+            strSql.Append("@teaAccount,@teaPwd,@teaName,@sex,@phone,@Email,@collegeId,@teaType)");
+            String[] param = { "@teaAccount", "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId，@teaType" };
+            String[] values = { teacher.TeaAccount, teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString() };
+            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+        }
+        /// <summary>
+        /// 删除教师数据
+        /// </summary>
+        /// <param name="TeaAccount">教师主键</param>
+        /// <returns>受影响行数</returns>
+        public int delete(int TeaAccount)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete T_Teacher");
+            strSql.Append(" where teaAccount=@teaAccount");
+            String[] param = { "@teaAccount" };
+            String[] values = { TeaAccount.ToString() };
+            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+        }
+        /// <summary>
+        /// 更新教师数据
+        /// </summary>
+        /// <param name="teacher">教师实体</param>
+        /// <returns>受影响行数</returns>
+        public int Updata(Teacher teacher)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update T_Teacher set ");
+            strSql.Append("teaPwd=@teaPwd,");
+            strSql.Append("teaName=@teaName,");
+            strSql.Append("sex=@sex,");
+            strSql.Append("phone=@phone,");
+            strSql.Append("Email=@Email,");
+            strSql.Append("collegeId=@collegeId");
+            strSql.Append("teaType=@teaType,");
+            strSql.Append(" where teaAccount=@teaAccount");
+            String[] param = { "@teaAccount", "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId，@teaType", "@teaAccount" };
+            String[] values = { teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString(), teacher.TeaAccount };
+            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+        }
+        /// <summary>
+        /// 根据条件查询教师
+        /// </summary>
+        /// <param name="search">搜索条件</param>
+        /// <returns>DataSet</returns>
+        public DataSet Select(String search)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * from  T_Teacher ");
+            strSql.Append(" where @search");
+            String[] param = { "@search" };
+            String[] values = { search };
+            return db.FillDataSet(strSql.ToString(), param, values);
         }
 
         /// <summary>
-        /// 向数据库中新增教师记录
+        /// 根据老师的账号取得实体对象
         /// </summary>
-        /// <param name="teacher">教师对象</param>
-        /// <returns>返回受影响的行数</returns>
-        public int Insert(Teacher teacher)
+        /// <param name="TeaAccount">老师账号</param>
+        /// <returns>Teacher</returns>
+        public Teacher GetModel(int TeaAccount)
         {
-            return 0;
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * from T_Teacher ");
+            strSql.Append(" where teaAccount=@teaAccount");
+            String[] param = { "@teaAccount" };
+            String[] values = { TeaAccount.ToString() };
+            DataSet ds = db.FillDataSet(strSql.ToString(), param, values);
+            Teacher teacher = new Teacher();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                teacher.TeaPwd = ds.Tables[0].Rows[0]["teaPwd"].ToString();
+                teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                //并未完成
+            }
+            else
+            {
+            }
+            return teacher;
         }
     }
 }
