@@ -67,6 +67,7 @@
     <Content Include="admin\main.aspx" />
     <Content Include="admin\stuLIst.aspx" />
     <Content Include="allNews.aspx" />
+    <Content Include="js\additional-methods.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\messages_zh.min.js" />
     <Content Include="news.aspx" />
