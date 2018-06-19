@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="newsList.aspx.cs" Inherits="PMS.Web.admin.newsList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="newsList.aspx.cs" Inherits="PMS.Web.newsList" %>
 
     <!DOCTYPE html>
 
@@ -15,7 +15,7 @@
     <body>
         <div class="container-fluid">
             <div class="container-fluid table-bordered img-rounded" id="school">
-                <div class="container-fluid" id="school-word">
+                <div class="container-fluid" id="">
                     <label for="title" class="h4 text-info">学校公告</label>
                     <a href="allNews.aspx">查看更多>></a>
                 </div>
@@ -76,14 +76,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="container-fluid table-bordered img-rounded" id="school">
-                <div class="container-fluid" id="school-word">
-                    <label for="title" class="h4 text-info">学校公告</label>
+            <div class="container-fluid table-bordered img-rounded" id="institute">
+                <div class="container-fluid" id="institute-word">
+                    <label for="title" class="h4 text-info">学院公告</label>
                     <a href="allNews.aspx">查看更多>></a>
                 </div>
-                <div class="container-fluid" id="school-list">
+                <div class="container-fluid" id="institute-list">
                     <ul class="list-unstyled">
-                        <table class="table" id="newsList-table">
+                        <table class="table" id="newsListtable">
                             <tr>
                                 <td class="col-lg-1">
                                     <span>[2018/6/14]</span>
@@ -138,14 +138,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="container-fluid table-bordered img-rounded" id="school">
-                <div class="container-fluid" id="school-word">
+            <div class="container-fluid table-bordered img-rounded" id="Mine">
+                <div class="container-fluid" id="Mine-word">
                     <label for="title" class="h4 text-info">学校公告</label>
                     <a href="allNews.aspx">查看更多>></a>
                 </div>
-                <div class="container-fluid" id="school-list">
+                <div class="container-fluid" id="Mine-list">
                     <ul class="list-unstyled">
-                        <table class="table" id="newsList-table">
+                        <table class="table">
                             <tr>
                                 <td class="col-lg-1">
                                     <span>[2018/6/14]</span>
@@ -204,5 +204,4 @@
     </body>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
     </html>
