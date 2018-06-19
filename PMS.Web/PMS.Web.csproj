@@ -65,6 +65,7 @@
     <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
+    <Content Include="admin\stuLIst.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\messages_zh.min.js" />
@@ -84,6 +85,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="reg.aspx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -116,6 +118,13 @@
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\stuLIst.aspx.cs">
+      <DependentUpon>stuLIst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\stuLIst.aspx.designer.cs">
+      <DependentUpon>stuLIst.aspx</DependentUpon>
+    </Compile>
     <Compile Include="allNews.aspx.cs">
       <DependentUpon>allNews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -145,6 +154,13 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="reg.aspx.cs">
+      <DependentUpon>reg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reg.aspx.designer.cs">
+      <DependentUpon>reg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

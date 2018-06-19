@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace PMS.Web.admin
+namespace PMS.Web
 {
     public partial class news : System.Web.UI.Page
     {

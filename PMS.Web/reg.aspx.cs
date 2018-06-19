@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class newsList : System.Web.UI.Page
+    public partial class reg : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
