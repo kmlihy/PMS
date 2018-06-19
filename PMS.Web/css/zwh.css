@@ -42,27 +42,43 @@ hr {
 
 #userName {
     height: 35px;
-    width: 278px;
+    width: 276px;
 }
 
 #pwd {
     height: 35px;
-    width: 278px;
+    width: 276px;
 }
-
-#content {
-    margin-top: 30px;
+#captcha {
+    width: 145px;
+}
+#code {
+    height: 33px;
+    width: 130px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+#Acontent {
+    margin-top: 25px;
     margin-left: 60px;
 }
-
+#content {
+    margin-bottom: 15px;
+    margin-left: 65px;
+}
+.radio {
+    font-size: 16px;
+    margin-left: 80px;
+}
 .retrievePwd {
     margin-left: 308px;
     margin-top: 15px;
     font-size: 16px;
 }
-
+#retrievePwd {
+    margin-left: 132px;
+}
 #btn {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .error {
