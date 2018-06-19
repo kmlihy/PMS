@@ -12,16 +12,19 @@ namespace PMS.Web.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try {
-                string teaAccount = Request.QueryString["userName"].ToString();
-                string pwd = Request.QueryString["pwd"].ToString();
-                TeacherBll bll = new TeacherBll();
-                int row = bll.Login(teaAccount, pwd);
-                Response.Write("<script>alert(" + row + ");</script>");
-            } catch {
+            //try
+            //{
+            //    string teaAccount = Request.QueryString["userName"].ToString();
+            //    string pwd = Request.QueryString["pwd"].ToString();
+            //    TeacherBll bll = new TeacherBll();
+            //    int row = bll.Login(teaAccount, pwd);
+            //    Response.Write("<script>alert(" + row + ");</script>");
+            //}
+            //catch
+            //{
 
-            }
-           
+            //}
+
         }
     }
 }
