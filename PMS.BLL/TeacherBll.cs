@@ -28,7 +28,7 @@ namespace PMS.BLL
                 DataRow row = ds.Tables[0].Rows[0];
                 if(row["teaAccount"].ToString() == teaAccount && row["teaPwd"].ToString() == pwd)
                 {
-                    Teacher teacher = new Teacher();
+                    Teacher teacher = dao.GetTeacher(row["teaAccount"].ToString());
                     //填充属性
                     return teacher;
                 }
@@ -58,7 +58,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="TeaAccount">教师主键</param>
         /// <returns></returns>
-        public Enums.OpResult delete(int TeaAccount)
+        public Enums.OpResult delete(String TeaAccount)
         {
             int count = dao.delete(TeaAccount);
             if (count > 0)
@@ -94,15 +94,7 @@ namespace PMS.BLL
         /// <returns>DataSet</returns>
         public DataSet Select(String search)
         {
-            DataSet ds = dao.Select(search);
-            if (ds == null || ds.Tables[0].Rows.Count <= 0)
-            {
-                return null;
-            }
-            else
-            {
-                return ds;
-            }
+            return null;
         }
 
         /// <summary>
@@ -110,9 +102,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="TeaAccount">教师账号</param>
         /// <returns>教师实体</returns>
-        public Teacher GetModel(int TeaAccount)
+        public Teacher GetModel(String TeaAccount)
         {
-            return dao.GetModel(TeaAccount);
+            return dao.GetTeacher(TeaAccount);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="StuAccount">学生主键</param>
         /// <returns></returns>
-        public Enums.OpResult delete(int StuAccount)
+        public Enums.OpResult delete(String StuAccount)
         {
             int count = dao.delete(StuAccount);
             if (count > 0)
@@ -85,9 +85,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="TeaAccount">学生账号</param>
         /// <returns>学生实体</returns>
-        public Student GetModel(int stuAccount)
+        public Student GetModel(String stuAccount)
         {
-            return dao.GetModel(stuAccount);
+            return dao.GetStudent(stuAccount);
         }
 
     }

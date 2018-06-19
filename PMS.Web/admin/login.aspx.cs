@@ -16,8 +16,8 @@ namespace PMS.Web.admin
                 string teaAccount = Request.QueryString["userName"].ToString();
                 string pwd = Request.QueryString["pwd"].ToString();
                 TeacherBll bll = new TeacherBll();
-                int row = bll.Login(teaAccount, pwd);
-                Response.Write("<script>alert(" + row + ");</script>");
+                //int row = bll.Login(teaAccount, pwd);
+               // Response.Write("<script>alert(" + row + ");</script>");
             } catch {
 
             }
