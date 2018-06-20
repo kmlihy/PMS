@@ -60,5 +60,7 @@ namespace PMS.Model
         public Teacher teacher { get; set; }
         /// <summary>(题目所属专业)</summary>
         public Profession profession { get; set; }
+        /// <summary>(分院)</summary>
+        public College college { get; set; }
     }
 }

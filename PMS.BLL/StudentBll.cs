@@ -62,23 +62,6 @@ namespace PMS.BLL
                 return Enums.OpResult.删除失败;
             }
         }
-        /// <summary>
-        /// 根据条件查询学生
-        /// </summary>
-        /// <param name="search">搜索条件</param>
-        /// <returns>DataSet</returns>
-        public DataSet Select(String search)
-        {
-            DataSet ds = dao.Select(search);
-            if (ds == null || ds.Tables[0].Rows.Count <= 0)
-            {
-                return null;
-            }
-            else
-            {
-                return ds;
-            }
-        }
 
         /// <summary>
         /// 得到学生实体对象

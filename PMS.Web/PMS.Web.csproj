@@ -192,6 +192,7 @@
     <Content Include="square\_all.css" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
+    <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\addNews.aspx.cs">
@@ -300,6 +301,13 @@
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaperDtailStu.aspx.cs">
+      <DependentUpon>PaperDtailStu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaperDtailStu.aspx.designer.cs">
+      <DependentUpon>PaperDtailStu.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap-theme.css.map" />
@@ -323,6 +331,10 @@
     <ProjectReference Include="..\PMS.BLL\PMS.BLL.csproj">
       <Project>{7d2c3017-4194-4e97-9428-d1568640f141}</Project>
       <Name>PMS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.Dao\PMS.Dao.csproj">
+      <Project>{059ed7ac-c417-492a-8fcc-f8b5aa44b9e5}</Project>
+      <Name>PMS.Dao</Name>
     </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{38d0b912-0a10-4f76-9aaf-c476210f20a2}</Project>
