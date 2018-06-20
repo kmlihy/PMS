@@ -222,6 +222,10 @@
       <Project>{7d2c3017-4194-4e97-9428-d1568640f141}</Project>
       <Name>PMS.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.Dao\PMS.Dao.csproj">
+      <Project>{059ed7ac-c417-492a-8fcc-f8b5aa44b9e5}</Project>
+      <Name>PMS.Dao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{38d0b912-0a10-4f76-9aaf-c476210f20a2}</Project>
       <Name>PMS.Model</Name>

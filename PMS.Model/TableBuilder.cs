@@ -131,5 +131,9 @@ namespace PMS.Model
             this.intPageNum = intPageNum;
             this.strWhere = strWhere;
         }
+
+        public TableBuilder()
+        {
+        }
     }
 }

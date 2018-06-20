@@ -1,4 +1,5 @@
-﻿using PMS.Model;
+﻿using PMS.DBHelper;
+using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ namespace PMS.Dao
 {
     public class PublicProcedure
     {
-        DBHelper.SQLHelper db = new DBHelper.SQLHelper();
+        private SQLHelper db = new SQLHelper();
 
         public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount)
         {
