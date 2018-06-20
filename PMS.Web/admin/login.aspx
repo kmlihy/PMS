@@ -21,7 +21,7 @@
             <div class="panel-body">
                 <form class="form-horizontal" id="adminloginfrom" action="login.aspx" method="post" role="form" onsubmit="return checkForm()">
 
-                    <div class="input-group" id="content">
+                    <div class="input-group" id="Acontent">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
@@ -29,7 +29,7 @@
                         <span></span>
                     </div>
 
-                    <div class="input-group" id="content">
+                    <div class="input-group" id="Acontent">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-lock"></span>
                         </span>

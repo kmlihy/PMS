@@ -5,6 +5,7 @@ using System.Text;
 using PMS.DBHelper;
 using PMS.Model;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace PMS.Dao
 {
@@ -41,7 +42,7 @@ namespace PMS.Dao
             strSql.Append("teaAccount,teaPwd,teaName,sex,phone,Email,collegeId,teaType");
             strSql.Append(") values (");
             strSql.Append("@teaAccount,@teaPwd,@teaName,@sex,@phone,@Email,@collegeId,@teaType)");
-            String[] param = { "@teaAccount", "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId，@teaType" };
+            String[] param = { "@teaAccount", "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId","@teaType" };
             String[] values = { teacher.TeaAccount, teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString() };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
@@ -50,7 +51,7 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="TeaAccount">教师主键</param>
         /// <returns>受影响行数</returns>
-        public int delete(int TeaAccount)
+        public int delete(String TeaAccount)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("delete T_Teacher");
@@ -73,26 +74,42 @@ namespace PMS.Dao
             strSql.Append("sex=@sex,");
             strSql.Append("phone=@phone,");
             strSql.Append("Email=@Email,");
-            strSql.Append("collegeId=@collegeId");
-            strSql.Append("teaType=@teaType,");
+            strSql.Append("collegeId=@collegeId,");
+            strSql.Append("teaType=@teaType");
             strSql.Append(" where teaAccount=@teaAccount");
-            String[] param = { "@teaAccount", "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId，@teaType", "@teaAccount" };
+            String[] param = { "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId","@teaType", "@teaAccount" };
             String[] values = { teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString(), teacher.TeaAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
-        /// <summary>
-        /// 根据条件查询教师
-        /// </summary>
-        /// <param name="search">搜索条件</param>
-        /// <returns>DataSet</returns>
-        public DataSet Select(String search)
+        
+        public DataSet SelectBypage(String strTable,String strColumn,int intColType,int intOrder,String strColumnlist,int intPageSize,int intPageNum
+            ,String strWhere, out int intPageCount)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * from  T_Teacher ");
-            strSql.Append(" where @search");
-            String[] param = { "@search" };
-            String[] values = { search };
-            return db.FillDataSet(strSql.ToString(), param, values);
+            strSql.Append("exec sp_page @strTable , @strColumn , @intColType,@intOrder ,@strColumnlist,@intPageSize ,@intPageNum , @strWhere,@intPageCount");
+            SqlParameter[] values = {
+                new SqlParameter("@strTable", SqlDbType.VarChar),
+                new SqlParameter("@strColumn", SqlDbType.VarChar),
+                 new SqlParameter("@intColType", SqlDbType.Int),
+                new SqlParameter("@intOrder", SqlDbType.Int),
+                 new SqlParameter("@strColumnlist", SqlDbType.VarChar),
+                new SqlParameter("@intPageSize", SqlDbType.Int),
+                 new SqlParameter("@intPageNum", SqlDbType.Int),
+                new SqlParameter("@strWhere", SqlDbType.VarChar),
+                 new SqlParameter("@intPageCount", SqlDbType.Int),
+            };
+            values[0].Value = strTable;
+            values[1].Value = strColumn;
+            values[2].Value = intColType;
+            values[3].Value = intOrder;
+            values[4].Value = strColumnlist;
+            values[5].Value = intPageSize;
+            values[6].Value = intPageNum;
+            values[7].Value = strWhere;
+            values[8].Direction = ParameterDirection.Output;
+            DataSet ds = db.FillDataSetBySP(strSql.ToString(),values);
+            intPageCount= Convert.ToInt32(values[8].Value);
+            return ds;
         }
 
         /// <summary>
@@ -100,29 +117,68 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="TeaAccount">老师账号</param>
         /// <returns>Teacher</returns>
-        public Teacher GetModel(int TeaAccount)
+        public Teacher GetTeacher(String TeaAccount)
         {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * from T_Teacher ");
-            strSql.Append(" where teaAccount=@teaAccount");
-            String[] param = { "@teaAccount" };
-            String[] values = { TeaAccount.ToString() };
-            DataSet ds = db.FillDataSet(strSql.ToString(), param, values);
-            Teacher teacher = new Teacher();
-            if (ds.Tables[0].Rows.Count > 0)
+            try
             {
-                teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
-                teacher.TeaPwd = ds.Tables[0].Rows[0]["teaPwd"].ToString();
-                teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
-                teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
-                teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
-                teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
-                //并未完成
+                StringBuilder strSql = new StringBuilder();
+                strSql.Append("select * from V_Teacher ");
+                strSql.Append(" where teaAccount=@teaAccount");
+                String[] param = { "@teaAccount" };
+                String[] values = { TeaAccount.ToString() };
+                DataSet ds = db.FillDataSet(strSql.ToString(), param, values);
+                Teacher teacher = new Teacher();
+                College college = new College();
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                    {
+                        teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["teaPwd"].ToString() != "")
+                    {
+                        teacher.TeaPwd = ds.Tables[0].Rows[0]["teaPwd"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                    {
+                        teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                    {
+                        teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                    {
+                        teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                    {
+                        teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                    {
+                        college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+
+                    }
+                    if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                    {
+                        college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                    }
+                    if (college != null)
+                    {
+                        teacher.college = college;
+                    }
+                }
+                else
+                {
+                }
+                return teacher;
             }
-            else
+            catch (Exception)
             {
+
+                throw;
             }
-            return teacher;
         }
     }
 }

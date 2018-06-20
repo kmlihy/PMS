@@ -46,6 +46,12 @@ namespace PMS.Model
         public Profession profession { get; set; }
 
         /// <summary>
+        /// 学生所属学院
+        /// </summary>
+        public College college { get; set; }
+
+
+        /// <summary>
         /// 无参构造函数
         /// </summary>
         public Student() { }
@@ -60,7 +66,8 @@ namespace PMS.Model
         /// <param name="phone">联系电话</param>
         /// <param name="email">邮箱</param>
         /// <param name="profession">学生所属专业</param>
-        public Student(string stuAccount, string stuPwd, string realName, string sex, string phone, string email, Profession profession)
+        /// <param name="college">学生所属学院</param>
+        public Student(string stuAccount, string stuPwd, string realName, string sex, string phone, string email, Profession profession,College college)
         {
             StuAccount = stuAccount;
             StuPwd = stuPwd;
@@ -69,6 +76,7 @@ namespace PMS.Model
             Phone = phone;
             Email = email;
             this.profession = profession;
+            this.college = college;
         }
     }
 }
