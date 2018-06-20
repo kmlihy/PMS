@@ -30,6 +30,7 @@ namespace PMS.Web
             }
             #endregion
             //存储验证码的值，以便于调用
+            //this.Response.Cookies["code"]["code"] = chkCode;
             this.Session["code"] = chkCode;
             //验证码图片大小
             Bitmap bmp = new Bitmap(100, 40);
