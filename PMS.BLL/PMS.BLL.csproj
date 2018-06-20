@@ -43,6 +43,7 @@
     <Compile Include="NewsBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />
+    <Compile Include="StudentBll.cs" />
     <Compile Include="TeacherBll.cs" />
     <Compile Include="TitleBll.cs" />
   </ItemGroup>
