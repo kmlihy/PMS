@@ -87,6 +87,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="reg.aspx" />
     <Content Include="test.aspx" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paperDetail.aspx.cs">
+      <DependentUpon>paperDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paperDetail.aspx.designer.cs">
+      <DependentUpon>paperDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="paperList.aspx.cs">
       <DependentUpon>paperList.aspx</DependentUpon>
