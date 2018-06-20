@@ -7,7 +7,14 @@ a:hover{
     color: rgb(12, 161, 241);
     text-decoration: none;
 }
+/*newsList.aspx*/
 #school-list{
+    border-top: 2px solid #013A58;
+}
+#institute-list{
+    border-top: 2px solid #013A58;
+}
+#Mine-list{
     border-top: 2px solid #013A58;
 }
 #newsList-table tr td{
@@ -19,4 +26,29 @@ a:hover{
 #school-word a{
     float: right;
     margin-top: 20px;
+}
+.a-word{
+    float: right;
+    margin-top: 20px;
+}
+
+/*stuList*/
+#addInfo{
+    margin-top: 5px;
+    float: left;
+}
+#last-controlIcon{
+    padding-top: 25px;
+}
+#stuList-header{
+    background-color: rgb(233, 232, 232)
+}
+#change-sex{
+    margin-top: 20px;
+}
+#btn-search{
+    margin-top: 7px;
+}
+#btn-Add{
+    margin-top: 7px;
 }
