@@ -63,9 +63,11 @@
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
+    <Content Include="admin\batchList.aspx" />
     <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
+    <Content Include="admin\proList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="checkCode.aspx" />
@@ -140,6 +142,13 @@
     <Compile Include="admin\addPaper.aspx.designer.cs">
       <DependentUpon>addPaper.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\batchList.aspx.cs">
+      <DependentUpon>batchList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\batchList.aspx.designer.cs">
+      <DependentUpon>batchList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\changePwd.aspx.cs">
       <DependentUpon>changePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,6 +169,13 @@
     </Compile>
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\proList.aspx.cs">
+      <DependentUpon>proList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\proList.aspx.designer.cs">
+      <DependentUpon>proList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\stuLIst.aspx.cs">
       <DependentUpon>stuLIst.aspx</DependentUpon>
