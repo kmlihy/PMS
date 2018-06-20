@@ -92,3 +92,21 @@
 #telverify {
     width: 60%;
 }
+
+
+/*题目列表样式*/
+
+.paperpagination-div {
+    margin-right: 10px;
+}
+
+
+/*
+.paperlistbox {
+    margin-top: 20px !important;
+}
+*/
+
+.paperlisttable {
+    margin-top: 30px;
+}
