@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollegeDao.cs" />
     <Compile Include="NewsDao.cs" />
+    <Compile Include="PlanDao.cs" />
+    <Compile Include="ProfessionDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicProcedure.cs" />
     <Compile Include="StudentDao.cs" />
