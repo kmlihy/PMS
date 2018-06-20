@@ -88,16 +88,6 @@ namespace PMS.BLL
             }
         }
         /// <summary>
-        /// 根据条件查询教师
-        /// </summary>
-        /// <param name="search">搜索条件</param>
-        /// <returns>DataSet</returns>
-        public DataSet Select(String search)
-        {
-            return null;
-        }
-
-        /// <summary>
         /// 得到教师实体对象
         /// </summary>
         /// <param name="TeaAccount">教师账号</param>

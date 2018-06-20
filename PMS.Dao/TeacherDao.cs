@@ -82,36 +82,6 @@ namespace PMS.Dao
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
         
-        public DataSet SelectBypage(String strTable,String strColumn,int intColType,int intOrder,String strColumnlist,int intPageSize,int intPageNum
-            ,String strWhere, out int intPageCount)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("exec sp_page @strTable , @strColumn , @intColType,@intOrder ,@strColumnlist,@intPageSize ,@intPageNum , @strWhere,@intPageCount");
-            SqlParameter[] values = {
-                new SqlParameter("@strTable", SqlDbType.VarChar),
-                new SqlParameter("@strColumn", SqlDbType.VarChar),
-                 new SqlParameter("@intColType", SqlDbType.Int),
-                new SqlParameter("@intOrder", SqlDbType.Int),
-                 new SqlParameter("@strColumnlist", SqlDbType.VarChar),
-                new SqlParameter("@intPageSize", SqlDbType.Int),
-                 new SqlParameter("@intPageNum", SqlDbType.Int),
-                new SqlParameter("@strWhere", SqlDbType.VarChar),
-                 new SqlParameter("@intPageCount", SqlDbType.Int),
-            };
-            values[0].Value = strTable;
-            values[1].Value = strColumn;
-            values[2].Value = intColType;
-            values[3].Value = intOrder;
-            values[4].Value = strColumnlist;
-            values[5].Value = intPageSize;
-            values[6].Value = intPageNum;
-            values[7].Value = strWhere;
-            values[8].Direction = ParameterDirection.Output;
-            DataSet ds = db.FillDataSetBySP(strSql.ToString(),values);
-            intPageCount= Convert.ToInt32(values[8].Value);
-            return ds;
-        }
-
         /// <summary>
         /// 根据老师的账号取得实体对象
         /// </summary>
