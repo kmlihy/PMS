@@ -19,17 +19,23 @@
                 <div class="container-fluid">
                     <div>
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <div class="form-group" style="margin-top: 7px">
+                            <li class="active col-sm-4  ">
+                                <div class="input-group" style="margin-top: 7px">
                                     <input type="text" class="form-control" placeholder="请输入查询条件">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            查询
+                                        </button>
+                                    </span>
                                 </div>
                             </li>
-                            <li class="active">
+                            <!-- <li class="active">
                                 <button class="btn btn-info" id="btn-search">
                                     <span class="glyphicon glyphicon-search"></span>
                                     查询
                                 </button>
-                            </li>
+                            </li> -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     性别

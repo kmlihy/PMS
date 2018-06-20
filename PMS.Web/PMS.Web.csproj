@@ -90,8 +90,40 @@
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="reg.aspx" />
+    <Content Include="square\aero%402x.png" />
+    <Content Include="square\aero.css" />
+    <Content Include="square\aero.png" />
+    <Content Include="square\blue%402x.png" />
+    <Content Include="square\blue.css" />
+    <Content Include="square\blue.png" />
+    <Content Include="square\green%402x.png" />
+    <Content Include="square\green.css" />
+    <Content Include="square\green.png" />
+    <Content Include="square\grey%402x.png" />
+    <Content Include="square\grey.css" />
+    <Content Include="square\grey.png" />
+    <Content Include="square\orange%402x.png" />
+    <Content Include="square\orange.css" />
+    <Content Include="square\orange.png" />
+    <Content Include="square\pink%402x.png" />
+    <Content Include="square\pink.css" />
+    <Content Include="square\pink.png" />
+    <Content Include="square\purple%402x.png" />
+    <Content Include="square\purple.css" />
+    <Content Include="square\purple.png" />
+    <Content Include="square\red%402x.png" />
+    <Content Include="square\red.css" />
+    <Content Include="square\red.png" />
+    <Content Include="square\square%402x.png" />
+    <Content Include="square\square.css" />
+    <Content Include="square\square.png" />
+    <Content Include="square\yellow%402x.png" />
+    <Content Include="square\yellow.css" />
+    <Content Include="square\yellow.png" />
+    <Content Include="square\_all.css" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
+    <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\addNews.aspx.cs">
@@ -199,6 +231,13 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaperDtailStu.aspx.cs">
+      <DependentUpon>PaperDtailStu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaperDtailStu.aspx.designer.cs">
+      <DependentUpon>PaperDtailStu.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
