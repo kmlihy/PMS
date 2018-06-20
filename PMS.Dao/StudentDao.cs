@@ -62,20 +62,6 @@ namespace PMS.Dao
             String[] values = { student.StuPwd, student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString(), student.StuAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
-        /// <summary>
-        /// 根据条件查询学生
-        /// </summary>
-        /// <param name="search">搜索条件</param>
-        /// <returns>DataSet</returns>
-        public DataSet Select(String search)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * from  T_Student ");
-            strSql.Append(" where @search");
-            String[] param = { "@search" };
-            String[] values = { search };
-            return db.FillDataSet(strSql.ToString(), param, values);
-        }
 
         /// <summary>
         /// 根据学生的账号取得实体对象
