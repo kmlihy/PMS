@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewsDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicProcedure.cs" />
     <Compile Include="StudentDao.cs" />
     <Compile Include="TeacherDao.cs" />
+    <Compile Include="TitleDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.DBHelper\PMS.DBHelper.csproj">

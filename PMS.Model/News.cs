@@ -34,6 +34,11 @@ namespace PMS.Model
         public Teacher teacher { get; set; }
 
         /// <summary>
+        /// 分院信息（外键分院表）
+        /// </summary>
+        public College college { get; set; }
+
+        /// <summary>
         /// 无参构造函数
         /// </summary>
         public News() { }

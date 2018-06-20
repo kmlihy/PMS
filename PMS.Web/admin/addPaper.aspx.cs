@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace PMS.Web
+namespace PMS.Web.admin
 {
-    public partial class login : System.Web.UI.Page
+    public partial class addPaper : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
