@@ -62,12 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
+    <Content Include="admin\addPaper.aspx" />
     <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
     <Content Include="admin\stuLIst.aspx" />
     <Content Include="allNews.aspx" />
-    <Content Include="js\icheck.min.js" />
+    <Content Include="checkCode.aspx" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\messages_zh.min.js" />
     <Content Include="news.aspx" />
@@ -86,38 +87,9 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="paperDetail.aspx" />
+    <Content Include="paperList.aspx" />
     <Content Include="reg.aspx" />
-    <Content Include="square\aero%402x.png" />
-    <Content Include="square\aero.css" />
-    <Content Include="square\aero.png" />
-    <Content Include="square\blue%402x.png" />
-    <Content Include="square\blue.css" />
-    <Content Include="square\blue.png" />
-    <Content Include="square\green%402x.png" />
-    <Content Include="square\green.css" />
-    <Content Include="square\green.png" />
-    <Content Include="square\grey%402x.png" />
-    <Content Include="square\grey.css" />
-    <Content Include="square\grey.png" />
-    <Content Include="square\orange%402x.png" />
-    <Content Include="square\orange.css" />
-    <Content Include="square\orange.png" />
-    <Content Include="square\pink%402x.png" />
-    <Content Include="square\pink.css" />
-    <Content Include="square\pink.png" />
-    <Content Include="square\purple%402x.png" />
-    <Content Include="square\purple.css" />
-    <Content Include="square\purple.png" />
-    <Content Include="square\red%402x.png" />
-    <Content Include="square\red.css" />
-    <Content Include="square\red.png" />
-    <Content Include="square\square%402x.png" />
-    <Content Include="square\square.css" />
-    <Content Include="square\square.png" />
-    <Content Include="square\yellow%402x.png" />
-    <Content Include="square\yellow.css" />
-    <Content Include="square\yellow.png" />
-    <Content Include="square\_all.css" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -128,6 +100,13 @@
     </Compile>
     <Compile Include="admin\addNews.aspx.designer.cs">
       <DependentUpon>addNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\addPaper.aspx.cs">
+      <DependentUpon>addPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\addPaper.aspx.designer.cs">
+      <DependentUpon>addPaper.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\changePwd.aspx.cs">
       <DependentUpon>changePwd.aspx</DependentUpon>
@@ -164,6 +143,13 @@
     <Compile Include="allNews.aspx.designer.cs">
       <DependentUpon>allNews.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkCode.aspx.cs">
+      <DependentUpon>checkCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkCode.aspx.designer.cs">
+      <DependentUpon>checkCode.aspx</DependentUpon>
+    </Compile>
     <Compile Include="news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +170,20 @@
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paperDetail.aspx.cs">
+      <DependentUpon>paperDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paperDetail.aspx.designer.cs">
+      <DependentUpon>paperDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="paperList.aspx.cs">
+      <DependentUpon>paperList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="paperList.aspx.designer.cs">
+      <DependentUpon>paperList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="reg.aspx.cs">
