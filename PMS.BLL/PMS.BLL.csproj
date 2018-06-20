@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollegeBll.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="PlanBll.cs" />
+    <Compile Include="ProfessionBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="StudentBll.cs" />
