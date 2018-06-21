@@ -18,24 +18,42 @@
             </div>
             <div class="container-fluid" id="regmain">
                 <div class="container container-style">
-                    <form class="form-horizontal changeform" role="form" id="regform" method="POST">
+                    <form class="form-horizontal" role="form" id="regform" method="POST">
                         <div class="form-group">
-                            <label for="firstname" class="col-sm-2  col-sm-offset-3 control-label">账号:</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control input-sm" id="usercount" name="usercount" placeholder="账号">
+                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">学院:</label>
+                            <div class="col-sm-3" style="padding-right:0px;">
+                                <select class="form-control input-sm select-drop">
+                                    <option value="">--请选择学院--</option>
+                                    <option value="">...</option>
+                                    <option value="">...</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">密码:</label>
+                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">专业:</label>
+                            <div class="col-sm-3" style="padding-right:0px;">
+                                <select class="form-control input-sm select-drop">
+                                    <option value="">--请选择专业--</option>
+                                    <option value="">...</option>
+                                    <option value="">...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">学历:</label>
                             <div class="col-sm-3">
-                                <input type="password" class="form-control input-sm" id="pwd" name="pwd" placeholder="请输入密码" />
+                                <select class="form-control input-sm">
+                                        <option value="">--请选择--</option>
+                                        <option value="">本科</option>
+                                        <option value="">专科</option>
+                                    </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">确认密码:</label>
+                            <label for="firstname" class="col-sm-2  col-sm-offset-3 control-label">账号:</label>
                             <div class="col-sm-3">
-                                <input type="password" class="form-control input-sm" id="confirmPwd" name="confirmPwd" placeholder="请再次输入密码" />
+                                <input type="text" class="form-control input-sm" id="usercount" name="usercount" placeholder="账号">
                             </div>
                         </div>
                         <div class="form-group">
@@ -49,14 +67,27 @@
                             <div class="col-sm-3">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="sex" value="" checked="checked">
-                                        男
+                                            <input type="radio" name="sex" value="" checked="checked">
+                                            男
                                     </label>
                                     <label>
-                                        <input type="radio" name="sex" value="" checked="checked">
-                                        女
+                                            <input type="radio" name="sex" value="" checked="checked">
+                                            女
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">密码:</label>
+                            <div class="col-sm-3">
+                                <input type="password" class="form-control input-sm" id="pwd" name="pwd" placeholder="请输入密码" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">确认密码:</label>
+                            <div class="col-sm-3">
+                                <input type="password" class="form-control input-sm" id="confirmPwd" name="confirmPwd" placeholder="请再次输入密码" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,34 +107,8 @@
                             <div class="input-group  col-sm-3 teldiv">
                                 <input type="text" class="form-control input-sm  col-sm-2" id="telverify" name="telverify" placeholder="请输入验证码" />
                                 <div class="input-group-btn col-sm-pull-2">
+                                    <button class="btn btn-default btn-sm" type="button" id="gettelverif">获取验证码</button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">学历:</label>
-                            <div class="col-sm-3">
-                                <select class="form-control input-sm">
-                                    <option value="">--请选择--</option>
-                                    <option value="">本科</option>
-                                    <option value="">专科</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">专业:</label>
-                            <div class="col-sm-2">
-                                <select class="form-control input-sm">
-                                    <option value="">--请选择学院--</option>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-2">
-                                <select class="form-control input-sm">
-                                        <option value="">--请选择专业--</option>
-                                        <option value="">...</option>
-                                        <option value="">...</option>
-                                    </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -124,10 +129,13 @@
     <script>
         function refresImg() {
             var code = document.getElementById("code");
-            code.src = "yanz.aspx?id=" + Math.random();
+            code.src = "checkCode.aspx?id=" + Math.random();
         }
         $(document).ready(function() {
             $("#regform").validate({
+                errorPlacement: function(error, element) {
+                    error.appendTo(element.parent().parent());
+                },
                 rules: {
                     usercount: {
                         required: true,
@@ -152,7 +160,7 @@
                     usertel: {
                         required: true,
                         isMobile: true
-                    }
+                    },
                 },
                 messages: {
                     usercount: {
@@ -174,7 +182,7 @@
                     usertel: {
                         required: "请输入电话",
                         isMobile: "请输入有效的电话号码"
-                    }
+                    },
                 }
             });
         });

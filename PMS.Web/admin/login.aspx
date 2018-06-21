@@ -53,6 +53,7 @@
         function formReset() {
             $("#adminloginfrom")[0].reset()
         }
+        // 提示框
         function Msg() {
             var my_toast_plug_name = "mytoast";
             $[my_toast_plug_name] = function(options) {
@@ -82,6 +83,7 @@
                 type: "notice"
             });
         }
+        // 判断是否提交表单
         function checkForm() {
             if ($("#userName").val() != "" && $("#pwd").val() != "") {
                 return true;
