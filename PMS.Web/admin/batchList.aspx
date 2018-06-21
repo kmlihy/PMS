@@ -97,29 +97,36 @@
                                 <input type="checkbox"/>
                             </td>
                             <td class="text-center">
-                                <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
-                            </td>
-                            <td class="text-center">
-                                <%= plands.Tables[0].Rows[i]["planName"].ToString() %>
-                            </td>
-                            <td class="text-center">
-                                <%= plands.Tables[0].Rows[i]["startTime"].ToString() %>
-                            </td>
-                            <td class="text-center">
-                                <%= plands.Tables[0].Rows[i]["endTime"].ToString() %>
-                            </td>
-                            <td class="text-center">
-                                <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-info">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
                                 <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["startTime"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <!-- <button class="btn btn-default btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button> -->
+                                <button class="btn btn-default btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                                <button class="btn btn-default btn-sm btn-warning">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <!-- <button class="btn btn-default btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button> -->
+                                <button class="btn btn-default btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>
