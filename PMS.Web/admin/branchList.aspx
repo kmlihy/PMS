@@ -21,9 +21,9 @@
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
                                 <div class="input-group" style="margin-top: 7px">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件">
+                                    <input type="text" id="txtQuery" class="form-control" placeholder="请输入查询条件">
                                     <span class="input-group-btn">
-                                    <button class="btn btn-info" type="button">
+                                    <button class="btn btn-info" id="btnQuery" type="button">
                                         <span class="glyphicon glyphicon-search"></span>查询
                                     </button>
                                     </span>
@@ -62,57 +62,30 @@
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                                <button class="btn btn-default btn-sm btn-warning">
+                        <% 
+                            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            {
+                        %>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="text-center">
+                                    <%=i+1 %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-default btn-sm btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
+                                    <button class="btn btn-default btn-sm btn-danger">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                            <%  }%>
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
@@ -149,6 +122,14 @@
     <script src="../js/icheck.min.js"></script>
 
     <script>
+        $("#btnQuery").click(function() {
+            var txtQuery = $("#txtQuery").val();
+            if (txtQuery == "") {
+
+            } else {
+
+            }
+        })
         var $checkboxAll = $(".js-checkbox-all"),
             $checkbox = $("tbody").find("[type='checkbox']"),
             length = $checkbox.length,

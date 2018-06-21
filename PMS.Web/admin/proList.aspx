@@ -106,11 +106,11 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
                                 <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button class="btn btn-default btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>
@@ -125,11 +125,11 @@
                                 <!-- <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
                                 <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button class="btn btn-default btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>
@@ -144,11 +144,11 @@
                                 <!-- <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
                                 <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button class="btn btn-default btn-sm btn-danger">
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>
