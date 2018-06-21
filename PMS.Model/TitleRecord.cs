@@ -25,16 +25,22 @@ namespace PMS.Model
         /// <param name="student">学生表</param>
         /// <param name="title">题目表</param>
         /// <param name="defeseTeamId">答辩小组</param>
-        public TitleRecord(int titleRecordId, Student student, Title title, int defeseTeamId)
+        public TitleRecord(int titleRecordId, Student student, Title title, int defeseTeamId, Profession profession, Plan plan)
         {
             this.TitleRecordId = titleRecordId;
             this.student = student;
             this.title = title;
             this.DefeseTeamId = defeseTeamId;
+            this.profession = profession;
+            this.plan = plan;
         }
 
         /// <summary>选题记录id</summary>
         public int TitleRecordId { get;set;}
+        /// <summary>(外键专业表)</summary>
+        public Profession profession { get; set; }
+        /// <summary>(外键批次表)</summary>
+        public Plan plan { get; set; }
         /// <summary>(外键学生表)</summary>
         public Student student{ get; set; }
         /// <summary>(外键题目表)</summary>

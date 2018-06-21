@@ -84,24 +84,6 @@ namespace PMS.Dao
             return db.FillDataSet(strBuilder.ToString(), param, values);
         }
 
-       /// <summary>
-       /// 根据题目的名称和所属专业名称进行模糊查询
-       /// </summary>
-       /// <param name="likeStrwhere">查询条件</param>
-       /// <returns>返回结果集</returns>
-       public DataSet Select(string likeStrwhere)
-        {
-            StringBuilder strBuilder = new StringBuilder();
-            strBuilder.Append("select * from V_Title");
-            strBuilder.Append("where title like");
-            strBuilder.Append("%@likeStrwhere% and");
-            strBuilder.Append("proName like");
-            strBuilder.Append("@likeStrwhere");
-            string[] param = { "@likeStrwhere" };
-            string[] values = {likeStrwhere };
-            return db.FillDataSet(strBuilder.ToString(), param, values);
-        }
-
         public Title GetTitle(int titleId)
         {
             StringBuilder strBuilder = new StringBuilder();

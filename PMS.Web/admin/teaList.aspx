@@ -121,22 +121,23 @@
                         <th class="text-center">职称</th>
                         <th class="text-center">联系电话</th>
                         <th class="text-center">邮箱</th>
-                        <th class="text-center">可指导专业</th>
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
+                        <%
+                            for (int i=0;i<ds.Tables[0].Rows.Count;i++) { 
+                        %>
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox">
                             </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["teaType"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["phone"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["Email"].ToString() %></td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-search"></span>
@@ -149,54 +150,9 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </td>
-                        </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
@@ -231,38 +187,6 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
-
-    <script>
-        var $checkboxAll = $(".js-checkbox-all"),
-            $checkbox = $("tbody").find("[type='checkbox']"),
-            length = $checkbox.length,
-            i = 0;
-
-        //启动icheck
-        $(("[type='checkbox']")).iCheck({
-            checkboxClass: 'icheckbox_square-orange',
-        });
-
-        //全选checkbox
-        $checkboxAll.on("ifClicked", function (event) {
-            if (event.target.checked) {
-                $checkbox.iCheck('uncheck');
-                i = 1;
-            } else {
-                $checkbox.iCheck('check');
-                i = length;
-            }
-        });
-
-        //监听计数
-        $checkbox.on('ifClicked', function (event) {
-            event.target.checked ? i-- : i++;
-            if (i == length + 1) {
-                $checkboxAll.iCheck('check');
-            } else {
-                $checkboxAll.iCheck('uncheck');
-            }
-        });
-    </script>
+    <script src="../js/ml.js"></script>
 
     </html>

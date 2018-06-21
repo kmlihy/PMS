@@ -8,10 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>学生信息表</title>
     </head>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/ml.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../square/_all.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/ml.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../square/_all.css">
 
     <body>
         <div class="container-fluid big-box">
@@ -24,7 +24,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
                                 <div class="input-group" style="margin-top: 7px">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件" />
+                                    <input type="text" class="form-control" placeholder="请输入查询条件">
                                     <span class="input-group-btn">
                                         <button class="btn btn-info" type="button">
                                             <span class="glyphicon glyphicon-search"></span>
@@ -53,15 +53,12 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <% for (int i = 0; i < studs.Tables[0].Rows.Count; i++)
+                                        { %>
                                     <li>
-                                        <a href="#">计算机科学与技术</a>
+                                        <a href="#"><%= studs.Tables[0].Rows[i]["proName"].ToString() %></a>
                                     </li>
-                                    <li>
-                                        <a href="#">软件工程</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">网络工程</a>
-                                    </li>
+                                    <% } %>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -70,29 +67,12 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <% for (int i = 0; i < studs.Tables[0].Rows.Count; i++)
+                                        { %>
                                     <li>
-                                        <a href="#">信息工程学院</a>
+                                        <a href="#"><%= studs.Tables[0].Rows[i]["collegeName"].ToString() %></a>
                                     </li>
-                                    <li>
-                                        <a href="#">会计学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">人文学院</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    学历
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">本科</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">XXX</a>
-                                    </li>
+                                    <% } %>
                                 </ul>
                             </li>
                             <li class="active">
@@ -115,31 +95,31 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all"/>
+                            <input type="checkbox" class="js-checkbox-all">
                         </th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
                         <th class="text-center">性别</th>
                         <th class="text-center">专业</th>
                         <th class="text-center">院系</th>
-                        <th class="text-center">学历</th>
                         <th class="text-center">联系电话</th>
                         <th class="text-center">邮箱</th>
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
+                        <% for (int i = 0; i < studs.Tables[0].Rows.Count; i++)
+                            { %>
                         <tr>
                             <td class="text-center">
-                                <input type="checkbox"/>
+                                <input type="checkbox">
                             </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["realName"].ToString() %></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["sex"].ToString() %></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["proName"].ToString() %></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["phone"].ToString() %></td>
+                            <td class="text-center"><%= studs.Tables[0].Rows[i]["Email"].ToString() %></td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-search"></span>
@@ -152,74 +132,18 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox" />
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox"/>
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </td>
-                        </tr>
+                        <% } %>
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
                     <ul class="pagination pagination-lg">
                         <li>
                             <a href="">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="glyphicon glyphicon-chevron-left" id="pageDown" onclick="value()"></span>
                             </a>
                         </li>
                         <li>
                             <a href="">1</a>
-                        </li>
-                        <li>
-                            <a href="">2</a>
-                        </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">...</a>
                         </li>
                         <li>
                             <a href="">
@@ -234,38 +158,6 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
-
-    <script>
-        var $checkboxAll = $(".js-checkbox-all"),
-            $checkbox = $("tbody").find("[type='checkbox']"),
-            length = $checkbox.length,
-            i = 0;
-
-        //启动icheck
-        $(("[type='checkbox']")).iCheck({
-            checkboxClass: 'icheckbox_square-orange',
-        });
-
-        //全选checkbox
-        $checkboxAll.on("ifClicked", function (event) {
-            if (event.target.checked) {
-                $checkbox.iCheck('uncheck');
-                i = 1;
-            } else {
-                $checkbox.iCheck('check');
-                i = length;
-            }
-        });
-
-        //监听计数
-        $checkbox.on('ifClicked', function (event) {
-            event.target.checked ? i-- : i++;
-            if (i == length + 1) {
-                $checkboxAll.iCheck('check');
-            } else {
-                $checkboxAll.iCheck('uncheck');
-            }
-        });
-    </script>
+    <script src="../js/ml.js"></script>
 
     </html>
