@@ -63,6 +63,8 @@
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
+    <Content Include="admin\adminList.aspx" />
+    <Content Include="admin\branchList.aspx" />
     <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
@@ -208,6 +210,20 @@
     </Compile>
     <Compile Include="admin\addPaper.aspx.designer.cs">
       <DependentUpon>addPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminList.aspx.cs">
+      <DependentUpon>adminList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminList.aspx.designer.cs">
+      <DependentUpon>adminList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\branchList.aspx.cs">
+      <DependentUpon>branchList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\branchList.aspx.designer.cs">
+      <DependentUpon>branchList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\changePwd.aspx.cs">
       <DependentUpon>changePwd.aspx</DependentUpon>
