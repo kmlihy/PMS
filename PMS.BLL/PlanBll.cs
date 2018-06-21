@@ -66,7 +66,7 @@ namespace PMS.BLL
         /// <param name="tab">参数实体</param>
         /// <param name="intPageCount">总页数（输出参数）</param>
         /// <returns>类型为DataSet的分页学院信息列表集</returns>
-        public DataSet Select(TableBuilder tab, out int intPageCount)
+        public DataSet SelectBypage(TableBuilder tab, out int intPageCount)
         {
             DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
             if (ds != null && ds.Tables[0].Rows.Count > 0)
