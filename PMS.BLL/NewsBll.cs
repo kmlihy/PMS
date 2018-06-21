@@ -12,6 +12,7 @@ namespace PMS.BLL
     public class NewsBll
     {
         private NewsDao dao = new NewsDao();
+        private PublicProcedure pdao = new PublicProcedure();
 
         /// <summary>
         /// 添加公告
@@ -81,14 +82,15 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据公告名称进行模糊查询
+        /// 分页查询方法
         /// </summary>
-        /// <param name="newsTitle">公告名称</param>
-        /// <returns>返回查询结果</returns>
-        public DataSet Select(string newsTitle)
+        /// <param name="tablebuilder">参数实体</param>
+        /// <param name="intPageCount">输出参数，总页数</param>
+        /// <returns>返回分页结果数据</returns>
+        public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount)
         {
-            DataSet ds = dao.Select(newsTitle);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            DataSet ds = pdao.SelectBypage(tablebuilder, out intPageCount);
+            if (ds!=null && ds.Tables[0].Rows.Count > 0)
             {
                 return ds;
             }

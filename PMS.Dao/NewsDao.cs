@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using PMS.DBHelper;
@@ -72,31 +73,14 @@ namespace PMS.Dao
         public DataSet Select(int newsId)
         {
             StringBuilder strBuilder = new StringBuilder();
-            strBuilder.Append("slect * from V_News");
-            strBuilder.Append("where newsId=@newsId");
+            strBuilder.Append("select * from V_News where ");
+            strBuilder.Append("newsId=@newsId");
             string[] param = { "newsId" };
             string[] values = { newsId.ToString() };
             return db.FillDataSet(strBuilder.ToString(), param, values);
         }
 
-        /// <summary>
-        /// 根据公告名称进行模糊查询
-        /// </summary>
-        /// <param name="newsTitle">公告名称</param>
-        /// <returns>查询结果</returns>
-        public DataSet Select(string newsTitle)
-        {
-            StringBuilder strBuilder = new StringBuilder();
-            strBuilder.Append("select * from V_News");
-            strBuilder.Append("where newsTitle like");
-            strBuilder.Append("%@newsTitle%");
-            string[] param = { "@newsTitle" };
-            string[] values = { newsTitle };
-            DataSet ds = db.FillDataSet(strBuilder.ToString(), param, values);
-            return ds;
-        }
-
-        public News GetNews(int newsId)
+    public News GetNews(int newsId)
         {
             try
             {

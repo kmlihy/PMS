@@ -12,6 +12,7 @@ namespace PMS.BLL
     public class TitleBll
     {
         private TitleDao dao = new TitleDao();
+        private PublicProcedure pdao = new PublicProcedure();
 
         /// <summary>
         /// 添加题目
@@ -81,14 +82,15 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据题目的名称和所属专业名称进行模糊查询
+        /// 分页查询方法
         /// </summary>
-        /// <param name="likeStrwhere">查询条件</param>
-        /// <returns>返回查询结果</returns>
-        public DataSet Select(string likeStrwhere)
+        /// <param name="tablebuilder">参数实体</param>
+        /// <param name="intPageCount">输出参数，总页数</param>
+        /// <returns>返回分页结果数据</returns>
+        public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount)
         {
-            DataSet ds = dao.Select(likeStrwhere);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            DataSet ds = pdao.SelectBypage(tablebuilder, out intPageCount);
+            if (ds!=null && ds.Tables[0].Rows.Count > 0)
             {
                 return ds;
             }
