@@ -15,6 +15,7 @@ namespace PMS.BLL
     public class PlanBll
     {
         private PlanDao dao = new PlanDao();
+        private PublicProcedure pubpro = new PublicProcedure();
 
         /// <summary>
         /// 添加一条批次信息
@@ -60,16 +61,32 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据条间分页查询所有学员信息
+        /// </summary>
+        /// <param name="tab">参数实体</param>
+        /// <param name="intPageCount">总页数（输出参数）</param>
+        /// <returns>类型为DataSet的分页学院信息列表集</returns>
+        public DataSet Select(TableBuilder tab, out int intPageCount)
+        {
+            DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                return ds;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 根据ID查询批次信息
         /// </summary>
         /// <param name="planId">要查询的批次ID</param>
-        /// <returns>类型为DataSet的批次信息列表</returns>
-        public DataSet Select(int planId)
+        /// <returns>类型为Plan的批次对象</returns>
+        public Plan Select(int planId)
         {
-            DataSet ds = dao.Select(planId);
-            if(ds != null && ds.Tables[0].Rows.Count > 0)
+            Plan plan = dao.GetPlan(planId);
+            if(plan != null)
             {
-                return ds;
+                return plan;
             }
             return null;
         }

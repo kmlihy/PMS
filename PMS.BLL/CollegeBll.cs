@@ -15,6 +15,7 @@ namespace PMS.BLL
     public class CollegeBll
     {
         private CollegeDao dao = new CollegeDao();
+        private PublicProcedure pubpro = new PublicProcedure();
 
         /// <summary>
         /// 添加学院信息业务方法
@@ -61,16 +62,32 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据ID查询所有学院信息
+        /// 根据条间分页查询所有学员信息
         /// </summary>
-        /// <param name="collId">要查询的学院ID</param>
-        /// <returns>类型为DataSet的学院信息列表</returns>
-        public DataSet Select(int collId)
+        /// <param name="tab">参数实体</param>
+        /// <param name="intPageCount">总页数（输出参数）</param>
+        /// <returns>类型为DataSet的分页学院信息列表集</returns>
+        public DataSet Select(TableBuilder tab,out int intPageCount)
         {
-            DataSet ds = dao.Select(collId);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
+            if(ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 return ds;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 根据ID查询学院信息
+        /// </summary>
+        /// <param name="collId">要查询的学院ID</param>
+        /// <returns>类型为College的学院对象</returns>
+        public College Select(int collId)
+        {
+            College coll = dao.GetCollege(collId);
+            if(coll != null)
+            {
+                return coll;
             }
             return null;
         }

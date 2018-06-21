@@ -15,6 +15,7 @@ namespace PMS.BLL
     public class ProfessionBll
     {
         private ProfessionDao dao = new ProfessionDao();
+        private PublicProcedure pubpro = new PublicProcedure();
 
         /// <summary>
         /// 添加一个专业信息
@@ -61,16 +62,32 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据条间分页查询所有学员信息
+        /// </summary>
+        /// <param name="tab">参数实体</param>
+        /// <param name="intPageCount">总页数（输出参数）</param>
+        /// <returns>类型为DataSet的分页学院信息列表集</returns>
+        public DataSet Select(TableBuilder tab, out int intPageCount)
+        {
+            DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                return ds;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 根据ID查询专业信息
         /// </summary>
         /// <param name="proId">要查询的专业ID</param>
         /// <returns>类型为DataSet的专业信息列表</returns>
-        public DataSet Select(int proId)
+        public Profession Select(int proId)
         {
-            DataSet ds = dao.Select(proId);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            Profession pro = dao.GetProfession(proId);
+            if (pro != null)
             {
-                return ds;
+                return pro;
             }
             return null;
         }
