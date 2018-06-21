@@ -30,27 +30,18 @@
                                     </span>
                                 </div>
                             </li>
-                            <!-- <li class="active">
-                                <button class="btn btn-info" id="btn-search">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    查询
-                                </button>
-                            </li> -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     专业
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <% for (int j = 0; j < prods.Tables[0].Rows.Count; j++)
+                                        { %>
                                     <li>
-                                        <a href="#">计算机科学与技术</a>
+                                        <a href="#"><%= prods.Tables[0].Rows[j]["proName"].ToString() %></a>
                                     </li>
-                                    <li>
-                                        <a href="#">软件工程</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">网络工程</a>
-                                    </li>
+                                    <%} %>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -59,15 +50,12 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <% for (int j = 0; j < colds.Tables[0].Rows.Count; j++)
+                                        { %>
                                     <li>
-                                        <a href="#">信息工程学院</a>
+                                        <a href="#"><%= colds.Tables[0].Rows[j]["collegeName"].ToString() %></a>
                                     </li>
-                                    <li>
-                                        <a href="#">会计学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">人文学院</a>
-                                    </li>
+                                    <%} %>
                                 </ul>
                             </li>
                             <li class="active">
@@ -100,66 +88,44 @@
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
+                        <%
+                            for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                            {
+                        %>
                         <tr>
                             <td class="text-center">
-                                <input type="checkbox">
+                                <input type="checkbox"/>
                             </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["planName"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["startTime"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["endTime"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-default btn-sm btn-info">
+                                    <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
                                 <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </td>
-                        </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
