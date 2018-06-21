@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="selectTopicList.aspx.cs" Inherits="PMS.Web.admin.selectTopicList" %>
 
     <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>学生信息表</title>
+        <title>选题管理列表</title>
     </head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/ml.css">
@@ -17,9 +17,6 @@
         <div class="container-fluid big-box">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
-                    <!-- <div class="navbar-header">
-                        <a class="navbar-brand" href="#">学生信息</a>
-                    </div> -->
                     <div>
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
@@ -35,63 +32,29 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    性别
+                                    所属专业
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">男</a>
+                                        <a href="#">XXXX</a>
                                     </li>
                                     <li>
-                                        <a href="#">女</a>
+                                        <a href="#">XXXXX</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    专业
+                                    所属批次
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">计算机科学与技术</a>
+                                        <a href="#">XXXX</a>
                                     </li>
                                     <li>
-                                        <a href="#">软件工程</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">网络工程</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    院系
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">信息工程学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">会计学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">人文学院</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    学历
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">本科</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">XXX</a>
+                                        <a href="#">XXXXX</a>
                                     </li>
                                 </ul>
                             </li>
@@ -117,14 +80,13 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all">
                         </th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">性别</th>
-                        <th class="text-center">专业</th>
-                        <th class="text-center">院系</th>
-                        <th class="text-center">学历</th>
-                        <th class="text-center">联系电话</th>
-                        <th class="text-center">邮箱</th>
+                        <th class="text-center">题目</th>
+                        <th class="text-center">出题教师</th>
+                        <th class="text-center">选题学生学号</th>
+                        <th class="text-center">选题学生姓名</th>
+                        <th class="text-center">选题时间</th>
+                        <th class="text-center">所属专业</th>
+                        <th class="text-center">所属批次</th>
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
@@ -139,16 +101,15 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>
@@ -163,16 +124,15 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>
@@ -187,16 +147,15 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                                 <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
                         </tr>

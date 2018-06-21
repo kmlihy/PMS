@@ -66,7 +66,9 @@
     <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
+    <Content Include="admin\selectTopicList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
+    <Content Include="admin\teaList.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="checkCode.aspx" />
     <Content Include="js\jquery.validate.min.js" />
@@ -161,12 +163,26 @@
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\selectTopicList.aspx.cs">
+      <DependentUpon>selectTopicList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\selectTopicList.aspx.designer.cs">
+      <DependentUpon>selectTopicList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\stuLIst.aspx.cs">
       <DependentUpon>stuLIst.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\stuLIst.aspx.designer.cs">
       <DependentUpon>stuLIst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\teaList.aspx.cs">
+      <DependentUpon>teaList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\teaList.aspx.designer.cs">
+      <DependentUpon>teaList.aspx</DependentUpon>
     </Compile>
     <Compile Include="allNews.aspx.cs">
       <DependentUpon>allNews.aspx</DependentUpon>

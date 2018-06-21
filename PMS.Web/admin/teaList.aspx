@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="teaList.aspx.cs" Inherits="PMS.Web.admin.teaList" %>
 
     <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>学生信息表</title>
+        <title>教师信息表</title>
     </head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/ml.css">
@@ -17,9 +17,6 @@
         <div class="container-fluid big-box">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
-                    <!-- <div class="navbar-header">
-                        <a class="navbar-brand" href="#">学生信息</a>
-                    </div> -->
                     <div>
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
@@ -83,15 +80,15 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    学历
+                                    职称
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">本科</a>
+                                        <a href="#">教授</a>
                                     </li>
                                     <li>
-                                        <a href="#">XXX</a>
+                                        <a href="#">副教授</a>
                                     </li>
                                 </ul>
                             </li>
@@ -117,14 +114,14 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all">
                         </th>
-                        <th class="text-center">学号</th>
+                        <th class="text-center">工号</th>
                         <th class="text-center">姓名</th>
                         <th class="text-center">性别</th>
-                        <th class="text-center">专业</th>
                         <th class="text-center">院系</th>
-                        <th class="text-center">学历</th>
+                        <th class="text-center">职称</th>
                         <th class="text-center">联系电话</th>
                         <th class="text-center">邮箱</th>
+                        <th class="text-center">可指导专业</th>
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
