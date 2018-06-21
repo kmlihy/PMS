@@ -72,6 +72,9 @@
     <script>
         $(document).ready(function() {
             $("#changePwdForm").validate({
+                errorPlacement: function(error, element) {
+                    error.appendTo(element.parent().parent());
+                },
                 rules: {
                     phone: {
                         required: true,
@@ -85,7 +88,7 @@
                         required: true,
                         minlength: 6,
                         equalTo: "#newpwd"
-                    }
+                    },
                 },
                 messages: {
                     phone: {
@@ -100,16 +103,10 @@
                         required: "请输入密码",
                         minlength: "密码长度不能小于5个字母",
                         equalTo: "两次密码输入不一致"
-                    }
-
+                    },
                 }
             })
         })
     </script>
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
 
     </html>

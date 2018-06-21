@@ -7,6 +7,9 @@ a:hover{
     color: rgb(12, 161, 241);
     text-decoration: none;
 }
+.big-box{
+    margin-top:30px !important;
+}
 /*newsList.aspx*/
 #school-list{
     border-top: 2px solid #013A58;
@@ -17,10 +20,7 @@ a:hover{
 #Mine-list{
     border-top: 2px solid #013A58;
 }
-#newsList-table tr td{
-    border-top:none;
-}
-#newsList-table span{
+#school-table span{
     color: #013A58;
 }
 #school-word a{
@@ -30,7 +30,7 @@ a:hover{
 .a-word{
     float: right;
     margin-top: 20px;
-}
+} 
 
 /*stuList*/
 #addInfo{

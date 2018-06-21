@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="proList.aspx.cs" Inherits="PMS.Web.admin.proList" %>
 
     <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>学生信息表</title>
+        <title></title>
     </head>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/ml.css">
@@ -17,9 +17,6 @@
         <div class="container-fluid big-box">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
-                    <!-- <div class="navbar-header">
-                        <a class="navbar-brand" href="#">学生信息</a>
-                    </div> -->
                     <div>
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
@@ -27,26 +24,18 @@
                                     <input type="text" class="form-control" placeholder="请输入查询条件">
                                     <span class="input-group-btn">
                                         <button class="btn btn-info" type="button">
-                                            <span class="glyphicon glyphicon-search"></span>
+                                                <span class="glyphicon glyphicon-search"></span>
                                             查询
                                         </button>
                                     </span>
                                 </div>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    性别
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">男</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">女</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            <!-- <li class="active">
+                                <button class="btn btn-info" id="btn-search">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    查询
+                                </button>
+                            </li> -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     专业
@@ -81,20 +70,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    学历
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">本科</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">XXX</a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="active">
                                 <button class="btn btn-success" id="btn-Add">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
@@ -117,14 +92,9 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all">
                         </th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">性别</th>
-                        <th class="text-center">专业</th>
-                        <th class="text-center">院系</th>
-                        <th class="text-center">学历</th>
-                        <th class="text-center">联系电话</th>
-                        <th class="text-center">邮箱</th>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">专业名称</th>
+                        <th class="text-center">所属分院</th>
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
@@ -135,15 +105,7 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
                                 <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
@@ -159,15 +121,10 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
+                                <!-- <button class="btn btn-default btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button> -->
                                 <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
@@ -183,15 +140,10 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
                             <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
+                                <!-- <button class="btn btn-default btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button> -->
                                 <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
@@ -237,35 +189,35 @@
 
     <script>
         var $checkboxAll = $(".js-checkbox-all"),
-            $checkbox = $("tbody").find("[type='checkbox']"),
-            length = $checkbox.length,
-            i = 0;
+        $checkbox = $("tbody").find("[type='checkbox']"),
+        length = $checkbox.length,
+        i=0;
 
         //启动icheck
         $(("[type='checkbox']")).iCheck({
-            checkboxClass: 'icheckbox_square-orange',
+            checkboxClass:'icheckbox_square-orange',
         });
 
         //全选checkbox
-        $checkboxAll.on("ifClicked", function (event) {
-            if (event.target.checked) {
+        $checkboxAll.on("ifClicked",function(event){
+            if(event.target.checked){
                 $checkbox.iCheck('uncheck');
-                i = 1;
-            } else {
+                i=1;
+            }else{
                 $checkbox.iCheck('check');
-                i = length;
+                i=length;
             }
         });
 
         //监听计数
-        $checkbox.on('ifClicked', function (event) {
+        $checkbox.on('ifClicked',function(event){
             event.target.checked ? i-- : i++;
-            if (i == length + 1) {
+            if(i==length+1){
                 $checkboxAll.iCheck('check');
-            } else {
+            }else{
                 $checkboxAll.iCheck('uncheck');
             }
         });
     </script>
-
     </html>
+</html>

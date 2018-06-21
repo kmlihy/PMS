@@ -21,7 +21,7 @@
                 </div>
                 <div class="container-fluid" id="school-list">
                     <ul class="list-unstyled">
-                        <table class="table" id="newsList-table">
+                        <table class="table" id="school-table">
                             <tr>
                                 <td class="col-lg-1">
                                     <span>[2018/6/14]</span>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="container-fluid" id="Mine-list">
                     <ul class="list-unstyled">
-                        <table class="table">
+                        <table class="table" id="Mine-table">
                             <tr>
                                 <td class="col-lg-1">
                                     <span>[2018/6/14]</span>

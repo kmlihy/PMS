@@ -69,10 +69,12 @@
         function formReset() {
             $("#from")[0].reset()
         }
+        // 点击切换验证码
         function refreshCode() {
             var code = document.getElementById("code");
             code.src = "checkCode.aspx?id=" + Math.random();
         }
+        // 提示框
         function Msg() {
             var my_toast_plug_name = "mytoast";
             $[my_toast_plug_name] = function(options) {
@@ -106,6 +108,7 @@
                 type: "notice"
             });
         }
+        // 判断是否提交表单
         function checkForm() {
             if ($("#userName").val() != "" && $("#pwd").val() != "" && $("#captcha").val() != "") {
                 return true;

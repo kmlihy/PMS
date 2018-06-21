@@ -10,6 +10,6 @@
 namespace PMS.Web {
     
     
-    public partial class paperList {
+    public partial class WebForm1 {
     }
 }
