@@ -7,13 +7,37 @@ namespace PMS.Model
 {
     public class TableBuilder
     {
+        /// <summary>
+        /// 表名 
+        /// </summary>
         String strTable;
+        /// <summary>
+        /// 按该列来进行分页 
+        /// </summary>
         String strColumn;
+        /// <summary>
+        /// strColumn列的类型,0-数字类型,1-字符类型,2-日期时间类型 
+        /// </summary>
         int intColType;
+        /// <summary>
+        /// 排序,0-顺序,1-倒序 
+        /// </summary>
         int intOrder;
+        /// <summary>
+        /// 要查询出的字段列表,*表示全部字段 
+        /// </summary>
         String strColumnlist;
+        /// <summary>
+        /// 每页记录数 
+        /// </summary>
         int intPageSize;
+        /// <summary>
+        /// 指定页 
+        /// </summary>
         int intPageNum ;
+        /// <summary>
+        /// 查询条件 
+        /// </summary>
         String strWhere;
 
         public string StrTable
