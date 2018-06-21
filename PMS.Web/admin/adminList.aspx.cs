@@ -11,12 +11,8 @@ namespace PMS.Web.admin
 {
     public partial class adminList : System.Web.UI.Page
     {
-        protected DataSet ds = null;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            TeacherBll teabll = new TeacherBll();
-            //ds = teabll.Select();
         }
     }
 }
