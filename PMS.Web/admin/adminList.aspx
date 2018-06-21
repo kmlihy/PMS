@@ -95,7 +95,31 @@
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
+                            <% 
+                            for (int i = 0; i <ds.Tables.Count;i++)
+                            {%>
                         <tr>
+                            <td class="text-center">
+                                <input type="checkbox">
+                            </td>
+                            <%--<td class="text-center"><%= ds.Tables[0].Rows[i]["teaAccount"].ToString() %></td>
+                            <td class="text-center"><%= ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
+                            <td class="text-center"><%= ds.Tables[0].Rows[i]["sex"].ToString() %></td>
+                            <td class="text-center"><%= ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                            <td class="text-center"><%= ds.Tables[0].Rows[i]["phone"].ToString() %></td>
+                            <td class="text-center"><%= ds.Tables[0].Rows[i]["Email"].ToString() %></td>--%>
+                            <td class="text-center">
+                                <button class="btn btn-default btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                                <button class="btn btn-default btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            </td>
+                        </tr>
+                        <% }%>
+
+                        <%--<tr>
                             <td class="text-center">
                                 <input type="checkbox">
                             </td>
@@ -106,6 +130,9 @@
                             <td class="text-center"></td>
                             <td class="text-center"></td>
                             <td class="text-center">
+                                <!-- <button class="btn btn-default btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button> -->
                                 <button class="btn btn-default btn-sm btn-danger">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
@@ -135,29 +162,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            </td>
-                        </tr>
+                        </tr>--%>
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
