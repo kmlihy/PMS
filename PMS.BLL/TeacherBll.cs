@@ -13,6 +13,7 @@ namespace PMS.BLL
     public class TeacherBll
     {
         private TeacherDao dao = new TeacherDao();
+        private PublicProcedure pdao = new PublicProcedure();
 
         /// <summary>
         /// 
@@ -95,6 +96,19 @@ namespace PMS.BLL
         public Teacher GetModel(String TeaAccount)
         {
             return dao.GetTeacher(TeaAccount);
+        }
+
+        /// <summary>
+        /// 根据TableBuilder实体返回DataSet数据
+        /// </summary>
+        /// <param name="tablebuilder"></param>
+        /// <param name="intPageCount"></param>
+        /// <returns></returns>
+        public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount) {
+            int pagecount;
+            DataSet ds= pdao.SelectBypage(tablebuilder, out pagecount);
+            intPageCount = pagecount;
+            return ds;
         }
     }
 }

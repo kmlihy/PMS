@@ -11,6 +11,8 @@ namespace PMS.BLL
     public class StudentBll
     {
         StudentDao dao = new StudentDao();
+
+        private PublicProcedure pdao = new PublicProcedure();
         /// <summary>
         /// 添加学生
         /// </summary>
@@ -73,5 +75,18 @@ namespace PMS.BLL
             return dao.GetStudent(stuAccount);
         }
 
+        /// <summary>
+        /// 根据TableBuilder实体返回DataSet数据
+        /// </summary>
+        /// <param name="tablebuilder"></param>
+        /// <param name="intPageCount"></param>
+        /// <returns></returns>
+        public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount)
+        {
+            int pagecount;
+            DataSet ds = pdao.SelectBypage(tablebuilder, out pagecount);
+            intPageCount = pagecount;
+            return ds;
+        }
     }
 }
