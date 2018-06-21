@@ -170,3 +170,25 @@ input.error {
     margin-top: 100px;
     height: 50px;
 }
+/*个人中心*/
+.box {
+    margin-top: 100px;
+}
+
+.center td {
+    height: 40px;
+    font-size: 14px;
+}
+
+.center .lable {
+    text-align: right
+}
+
+#okMessage {
+    width: 82px;
+}
+
+input {
+    width: 135px;
+    height: 23px;
+}

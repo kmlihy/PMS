@@ -18,6 +18,7 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div>
+
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
                                 <div class="input-group" style="margin-top: 7px">
@@ -120,8 +121,8 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
-
-    <script>
+    <script src="../js/ml.js"></script>
+    <%--<script>
         $("#btnQuery").click(function() {
             var txtQuery = $("#txtQuery").val();
             if (txtQuery == "") {
@@ -160,6 +161,6 @@
                 $checkboxAll.iCheck('uncheck');
             }
         });
-    </script>
+    </script>--%>
 
     </html>

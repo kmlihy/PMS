@@ -80,7 +80,6 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all">
                         </th>
-                        <th class="text-center">序号</th>
                         <th class="text-center">批次名</th>
                         <th class="text-center">开始时间</th>
                         <th class="text-center">结束时间</th>
@@ -96,37 +95,30 @@
                             <td class="text-center">
                                 <input type="checkbox"/>
                             </td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
+                            <td class="text-center
+                                <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
                             </td>
                             <td class="text-center">
-                                <%= plands.Tables[0].Rows[i]["startTime"].ToString() %>
+                                <%= plands.Tables[0].Rows[i]["planName"].ToString() %>
                             </td>
                             <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
+                                 <%= plands.Tables[0].Rows[i]["startTime"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["endTime"].ToString() %>
                             </td>
                             <td class="text-center">
                                 <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
                             </td>
                             <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
+                                <button class="btn btn-default btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button> 
                                 <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                                <button class="btn btn-default btn-sm btn-warning">
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                             </td>
                         </tr>

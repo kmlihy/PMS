@@ -63,6 +63,7 @@
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
+    <Content Include="admin\adminCenter.aspx" />
     <Content Include="admin\adminList.aspx" />
     <Content Include="admin\batchList.aspx" />
     <Content Include="admin\branchList.aspx" />
@@ -72,6 +73,7 @@
     <Content Include="admin\proList.aspx" />
     <Content Include="admin\selectTopicList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
+    <Content Include="admin\teaCenter.aspx" />
     <Content Include="admin\teaList.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="checkCode.aspx" />
@@ -79,6 +81,7 @@
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\messages_zh.min.js" />
+    <Content Include="js\zwh.js" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
     <Content Include="kindeditor\asp.net\README.txt" />
@@ -197,6 +200,7 @@
     <Content Include="square\yellow.css" />
     <Content Include="square\yellow.png" />
     <Content Include="square\_all.css" />
+    <Content Include="stuCenter.aspx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
@@ -215,6 +219,13 @@
     </Compile>
     <Compile Include="admin\addPaper.aspx.designer.cs">
       <DependentUpon>addPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminCenter.aspx.cs">
+      <DependentUpon>adminCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminCenter.aspx.designer.cs">
+      <DependentUpon>adminCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\adminList.aspx.cs">
       <DependentUpon>adminList.aspx</DependentUpon>
@@ -279,6 +290,13 @@
     <Compile Include="admin\stuLIst.aspx.designer.cs">
       <DependentUpon>stuLIst.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\teaCenter.aspx.cs">
+      <DependentUpon>teaCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\teaCenter.aspx.designer.cs">
+      <DependentUpon>teaCenter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\teaList.aspx.cs">
       <DependentUpon>teaList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -342,6 +360,13 @@
     </Compile>
     <Compile Include="reg.aspx.designer.cs">
       <DependentUpon>reg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="stuCenter.aspx.cs">
+      <DependentUpon>stuCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stuCenter.aspx.designer.cs">
+      <DependentUpon>stuCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
