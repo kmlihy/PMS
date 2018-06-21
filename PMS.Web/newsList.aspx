@@ -32,46 +32,6 @@
                                     </li>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">关于2018年端午节放假通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">关于表彰第25期入党积极分子及2018年 上半年发展对象培训班优秀学员的通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">qw</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">qw</a>
-                                    </li>
-                                </td>
-                            </tr>
                         </table>
                     </ul>
                 </div>
@@ -94,53 +54,13 @@
                                     </li>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">关于2018年端午节放假通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">关于表彰第25期入党积极分子及2018年 上半年发展对象培训班优秀学员的通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">qw</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">qw</a>
-                                    </li>
-                                </td>
-                            </tr>
                         </table>
                     </ul>
                 </div>
             </div>
             <div class="container-fluid table-bordered img-rounded" id="Mine">
                 <div class="container-fluid" id="Mine-word">
-                    <label for="title" class="h4 text-info">学校公告</label>
+                    <label for="title" class="h4 text-info">学生公告</label>
                     <a href="allNews.aspx" class="a-word">查看更多>></a>
                 </div>
                 <div class="container-fluid" id="Mine-list">
@@ -153,46 +73,6 @@
                                 <td class="col-lg-11">
                                     <li>
                                         <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">关于2018年端午节放假通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">关于表彰第25期入党积极分子及2018年 上半年发展对象培训班优秀学员的通知</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">qw</a>
-                                    </li>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
-                                </td>
-                                <td class="col-lg-11">
-                                    <li>
-                                        <a href="news.aspx">qw</a>
                                     </li>
                                 </td>
                             </tr>
