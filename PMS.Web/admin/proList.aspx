@@ -42,15 +42,12 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                        {  %>
                                     <li>
-                                        <a href="#">计算机科学与技术</a>
+                                        <a href="#"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></a>
                                     </li>
-                                    <li>
-                                        <a href="#">软件工程</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">网络工程</a>
-                                    </li>
+                                    <%} %>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -59,15 +56,12 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                        {  %>
                                     <li>
-                                        <a href="#">信息工程学院</a>
+                                        <a href="#"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></a>
                                     </li>
-                                    <li>
-                                        <a href="#">会计学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">人文学院</a>
-                                    </li>
+                                    <%} %>
                                 </ul>
                             </li>
                             <li class="active">
@@ -98,13 +92,15 @@
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
+                        <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            { %>
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox">
                             </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["proId"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
+                            <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
@@ -114,6 +110,7 @@
                                 </button>
                             </td>
                         </tr>
+                        <%} %>
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox">
