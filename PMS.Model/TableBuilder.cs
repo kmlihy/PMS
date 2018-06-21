@@ -144,6 +144,17 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strTable">表名 </param>
+        /// <param name="strColumn">按该列来进行分页 </param>
+        /// <param name="intColType">strColumn列的类型,0-数字类型,1-字符类型,2-日期时间类型 </param>
+        /// <param name="intOrder">排序,0-顺序,1-倒序 </param>
+        /// <param name="strColumnlist">要查询出的字段列表,*表示全部字段 </param>
+        /// <param name="intPageSize">每页记录数</param>
+        /// <param name="intPageNum">指定页 </param>
+        /// <param name="strWhere">查询条件 </param>
         public TableBuilder(string strTable, string strColumn, int intColType, int intOrder, string strColumnlist, int intPageSize, int intPageNum, string strWhere)
         {
             this.strTable = strTable;
