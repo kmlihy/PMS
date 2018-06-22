@@ -1,1 +1,138 @@
-﻿
+﻿article,
+aside,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+    display: block;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.moddle {
+    width: 100%;
+    background-color: rgb(241, 248, 252);
+}
+
+    .moddle span {
+        margin-left: 5px;
+    }
+
+.page-top {
+    background-color: #003a59;
+    height: 70px;
+    line-height: 70px;
+}
+
+    .page-top b {
+        color: #ffffff;
+    }
+
+.brand span {
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.brand img {
+    margin-top: 10px;
+}
+
+.dropdown-menu b,
+i {
+    color: #000;
+    font-size: 12px;
+}
+
+.dropdown-menu a {
+    text-align: center;
+}
+
+.dropdown-menu span {
+    margin-left: 10px;
+}
+
+#dropdownMenu1 {
+    background-color: #003a59;
+}
+
+    #dropdownMenu1:hover,
+    .container-fluid > button:hover {
+        background-color: #204d74;
+    }
+
+.container-fluid > button {
+    background-color: #003a59;
+    margin-right: 0px;
+    margin-top: 19px;
+    margin-left: 10px;
+}
+
+    .container-fluid > button span {
+        background-color: #ffffff;
+        border-radius: 4px;
+    }
+
+.page-left-nav {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border-right: 1px solid #e9e9e9;
+}
+
+    .page-left-nav nav ul li a i,
+    b {
+        color: rgb(0, 0, 0);
+        font-size: 12px;
+    }
+
+        .page-left-nav nav ul li a i:last-child {
+            display: inline-block;
+            transform: rotate(7deg);
+            -ms-transform: rotate(7deg);
+            /* IE 9 */
+            -moz-transform: rotate(7deg);
+            /* Firefox */
+            -webkit-transform: rotate(7deg);
+            /* Safari 和 Chrome */
+            -o-transform: rotate(7deg);
+            /* Opera */
+        }
+
+    .page-left-nav nav ul li a {
+        line-height: 20px;
+    }
+
+        .page-left-nav nav ul li a span {
+            color: rgb(82, 82, 82);
+            font-size: 13px;
+        }
+
+        .page-left-nav nav ul li a:hover {
+            background-color: rgb(240, 240, 240);
+        }
+
+    .page-left-nav nav ul li a {
+        border-bottom: 1px solid #e9e9e9;
+    }
+
+    .page-left-nav nav ul li ul li a {
+        background-color: rgb(245, 245, 245);
+        text-align: center;
+        color: #000;
+        line-height: 15px;
+    }
+
+        .page-left-nav nav ul li ul li a span {
+            font-size: 11px;
+        }

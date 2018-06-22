@@ -120,7 +120,7 @@ namespace PMS.Dao
                 Title title = new Title();
                 Plan plan = new Plan();
                 Profession prodession = new Profession();
-
+                Teacher teacher = new Teacher();
                 if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
                     if (ds.Tables[0].Rows[0]["titleRecordId"].ToString() != "" && ds.Tables[0].Rows[0]["titleRecordId"].ToString() == recordId.ToString())
@@ -194,13 +194,21 @@ namespace PMS.Dao
                         {
                             plan.PlanName = ds.Tables[0].Rows[0]["planName"].ToString();
                         }
-                        if(student != null && title != null && plan != null && prodession != null)
+                        if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                        {
+                            teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                        {
+                            teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                        }
+                        if (student != null && title != null && plan != null && prodession != null && teacher != null)
                         {
                             titleRecord.student = student;
                             titleRecord.title = title;
                             titleRecord.plan = plan;
                             titleRecord.profession = prodession;
-
+                            titleRecord.teacher = teacher;
                             return titleRecord;
                         }
                     }                    
