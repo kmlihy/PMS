@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,8 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            getTeacher("teacher");
+            teacher = (Teacher)Session["user"];
+            getTeacher(teacher.TeaAccount);
         }
 
         public void getTeacher(string Account) {

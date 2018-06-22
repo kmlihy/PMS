@@ -87,6 +87,7 @@
     <Content Include="bin\PMS.Web.dll" />
     <Content Include="bin\PMS.Web.pdb" />
     <Content Include="checkCode.aspx" />
+    <Content Include="css\iconfont.css" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jquery.validate.min.js" />
