@@ -1,7 +1,6 @@
 ﻿/* 登录页面  */
 
 .body {
-    height: 500px;
     background: -webkit-linear-gradient(rgb(32, 67, 128), lightsteelblue, rgb(32, 67, 128));
     /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(rgb(32, 67, 128), lightsteelblue, rgb(32, 67, 128));
@@ -131,7 +130,10 @@ input.error {
 
 /*教师出题页面*/
 
-.table > tbody > tr > td {
+.addPaper {
+    border: 1px solid #cbcbcb;
+}
+.table>tbody>tr>td {
     border: 0px;
 }
 
@@ -170,17 +172,25 @@ input.error {
     margin-top: 100px;
     height: 50px;
 }
+
+
 /*个人中心*/
+
 .box {
     margin-top: 100px;
 }
 
-.center td {
+.center {
+    border: 1px solid #cbcbcb;
+}
+
+.box td {
+    width: 320px;
     height: 40px;
     font-size: 14px;
 }
 
-.center .lable {
+.centerLable {
     text-align: right
 }
 
@@ -188,7 +198,8 @@ input.error {
     width: 82px;
 }
 
-input {
+.email,
+.telNum {
     width: 135px;
     height: 23px;
 }

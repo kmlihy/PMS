@@ -1,36 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuCenter.aspx.cs" Inherits="PMS.Web.stuCenter" %>
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>个人中心</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <%--<link rel="stylesheet" href="../css/zwh.css" />--%>
-        <style>
-            .box {
-                margin-top: 100px;
-            }
+    <html xmlns="http://www.w3.org/1999/xhtml">
 
-            .center td {
-                height: 40px;
-                font-size: 14px;
-            }
-
-            .center .lable {
-                text-align: right
-            }
-
-            #okMessage {
-                width: 82px;
-            }
-
-            input {
-                width: 135px;
-                height: 23px;
-            }
-        </style>
+    <head runat="server">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>个人中心</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../css/zwh.css" />
     </head>
 
     <body>
@@ -40,52 +18,52 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
-                                <td class="lable">账号：</td>
+                                <td class="centerLable">账号：</td>
                                 <td></td>
                                 <td id="ID">166122001</td>
                             </tr>
                             <tr>
-                                <td class="lable">姓名：</td>
+                                <td class="centerLable">姓名：</td>
                                 <td></td>
                                 <td>刘备</td>
                             </tr>
                             <tr>
-                                <td class="lable">性别：</td>
+                                <td class="centerLable">性别：</td>
                                 <td></td>
                                 <td id="gender">男</td>
                             </tr>
                             <tr>
-                                <td class="lable">年级：</td>
+                                <td class="centerLable">年级：</td>
                                 <td></td>
                                 <td id="grade">2016级</td>
                             </tr>
                             <tr>
-                                <td class="lable">学历：</td>
+                                <td class="centerLable">学历：</td>
                                 <td></td>
                                 <td id="education">本科</td>
                             </tr>
                             <tr>
-                                <td class="lable">学院：</td>
+                                <td class="centerLable">学院：</td>
                                 <td></td>
                                 <td id="college">信息工程学院</td>
                             </tr>
                             <tr>
-                                <td class="lable">专业：</td>
+                                <td class="centerLable">专业：</td>
                                 <td></td>
                                 <td id="profession">计算机科学与技术</td>
                             </tr>
                             <tr>
-                                <td class="lable">联系电话：</td>
+                                <td class="centerLable">联系电话：</td>
                                 <td></td>
                                 <td id="telNum">8008208820</td>
                             </tr>
                             <tr>
-                                <td class="lable">电子邮箱：</td>
+                                <td class="centerLable">电子邮箱：</td>
                                 <td></td>
                                 <td id="email">123456789@qq.com</td>
                             </tr>
                             <tr>
-                                <td class="lable">
+                                <td class="centerLable">
                                     <button type="button" class="btn btn-info" id="editMessage" onclick="edit()">编辑信息</button>
                                     <button type="button" class="btn btn-info" id="okMessage" onclick="ok()">确定</button>
                                 </td>
@@ -103,4 +81,5 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/zwh.js"></script>
-</html>
+
+    </html>
