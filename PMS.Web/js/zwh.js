@@ -1,17 +1,20 @@
-﻿// 管理员页面重置
+﻿$(function() {
+    $("#okMessage").hide();
+    $(".body").height($(window).height());
+})
+
+// 页面重置
 function formReset() {
     $("#form")[0].reset()
 }
+
 // 点击切换验证码
 function refreshCode() {
     var code = document.getElementById("code");
     code.src = "checkCode.aspx?id=" + Math.random();
 }
 
-$(function () {
-    $("#okMessage").hide();
-})
-
+// 个人中心页面
 function edit() {
     var telNum = $.trim($("#telNum").text());
     $("#telNum").text("")
