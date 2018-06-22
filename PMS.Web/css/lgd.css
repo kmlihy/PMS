@@ -1,8 +1,11 @@
-﻿/**学生注册页面*/
+﻿body {
+background-color:;
+}
+/**学生注册页面*/
 
 #regmain {
     margin-top: 30px;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px 5px 5px 5px;
 }
 
@@ -12,7 +15,7 @@
 }
 
 .select-drop {
-    width: 95%;
+    width: 100%;
 }
 
 #select-drop-pro {

@@ -12,13 +12,27 @@ namespace PMS.Web.admin
 {
     public partial class proList : System.Web.UI.Page
     {
+        //列表
        protected DataSet ds = null;
+        //专业
+        protected DataSet prods = null;
+        protected ProfessionBll probll = new ProfessionBll();
+        //学院
+        protected DataSet bads = null;
+        protected CollegeBll colbll = new CollegeBll();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProfessionBll probll = new ProfessionBll();
-            ds = probll.Select();
-            TableBuilder tb = new TableBuilder();
-            
+            getPage("", 2);
+            prods = probll.Select();
+            bads = colbll.Select();
+
+        }
+        public void getPage(string strWhere,int pageNum)
+        {
+            TableBuilder tbuilder = new TableBuilder("V_Profession","proId",0,0,"*",2, pageNum, strWhere);
+            int pageCount;
+            ds = probll.SelectBypage(tbuilder,out pageCount);
         }
     }
 }
