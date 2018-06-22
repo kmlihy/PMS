@@ -48,6 +48,7 @@
     <Compile Include="StudentDao.cs" />
     <Compile Include="TeacherDao.cs" />
     <Compile Include="TitleDao.cs" />
+    <Compile Include="TitleRecordDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.DBHelper\PMS.DBHelper.csproj">

@@ -13,21 +13,16 @@ namespace PMS.Web.admin
     public partial class batchList : System.Web.UI.Page
     {
         protected DataSet plands = null;
-        protected DataSet prods = null;
-        protected DataSet colds = null;
+        int intPageCount;
+        PlanBll planBll = new PlanBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //专业数据填充
-            ProfessionBll proBll = new ProfessionBll();
-            prods = proBll.Select();
-            //院系数据填充
-            CollegeBll colBll = new CollegeBll();
-            colds = colBll.Select();
-
-            //批次数据填充
-            PlanBll planBll = new PlanBll();
-            
-            plands = planBll.Select();
+            getpage("", 1);
+        }
+        public void getpage(string strWhere,int pageNum)
+        {
+            TableBuilder tBuilder = new TableBuilder("V_Plan", "planId", 0, 0, "*", 1, pageNum, strWhere);
+            plands = planBll.SelectBypage(tBuilder, out intPageCount);
         }
     }
 }

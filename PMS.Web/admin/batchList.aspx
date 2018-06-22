@@ -32,30 +32,16 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    专业
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <% for (int j = 0; j < prods.Tables[0].Rows.Count; j++)
-                                        { %>
-                                    <li>
-                                        <a href="#"><%= prods.Tables[0].Rows[j]["proName"].ToString() %></a>
-                                    </li>
-                                    <%} %>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     院系
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <% for (int j = 0; j < colds.Tables[0].Rows.Count; j++)
+<%--                                    <% for (int j = 0; j<plands.Tables[0].Rows.Count; j++)
                                         { %>
                                     <li>
-                                        <a href="#"><%= colds.Tables[0].Rows[j]["collegeName"].ToString() %></a>
+                                        <a href="#"><%= plands.Tables[0].Rows[j]["collegeName"].ToString() %></a>
                                     </li>
-                                    <%} %>
+                                    <%} %>--%>
                                 </ul>
                             </li>
                             <li class="active">
@@ -65,7 +51,7 @@
                                 </button>
                             </li>
                             <li class="active">
-                                <button class="btn btn-danger" id="btn-Add">
+                                <button class="btn btn-danger" id="btn-delete">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     批量删除
                                 </button>
@@ -81,16 +67,15 @@
                             <input type="checkbox" class="js-checkbox-all">
                         </th>
                         <th class="text-center">序号</th>
-                        <th class="text-center">批次名</th>
-                        <th class="text-center">开始时间</th>
+                        <th class="text-center">批次名</th><th class="text-center">开始时间</th>
                         <th class="text-center">结束时间</th>
                         <th class="text-center">所属学院</th>
+                        <th class="text-center">激活状态</th>
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
                         <%
-                            for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
-                            {
+                            for(int i=0; i < plands.Tables[0].Rows.Count; i++) { 
                         %>
                         <tr>
                             <td class="text-center">
@@ -107,6 +92,9 @@
                             </td>
                             <td class="text-center">
                                 <%= plands.Tables[0].Rows[i]["endTime"].ToString() %>
+                            </td>
+                            <td class="text-center">
+                                <%= plands.Tables[0].Rows[i]["state"].ToString() %>
                             </td>
                             <td class="text-center">
                                 <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
@@ -160,38 +148,6 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
-
-    <script>
-        var $checkboxAll = $(".js-checkbox-all"),
-        $checkbox = $("tbody").find("[type='checkbox']"),
-        length = $checkbox.length,
-        i=0;
-
-        //启动icheck
-        $(("[type='checkbox']")).iCheck({
-            checkboxClass:'icheckbox_square-orange',
-        });
-
-        //全选checkbox
-        $checkboxAll.on("ifClicked",function(event){
-            if(event.target.checked){
-                $checkbox.iCheck('uncheck');
-                i=1;
-            }else{
-                $checkbox.iCheck('check');
-                i=length;
-            }
-        });
-
-        //监听计数
-        $checkbox.on('ifClicked',function(event){
-            event.target.checked ? i-- : i++;
-            if(i==length+1){
-                $checkboxAll.iCheck('check');
-            }else{
-                $checkboxAll.iCheck('uncheck');
-            }
-        });
-    </script>
+    <script src="../js/ml.js"></script>
     </html>
 </html>

@@ -49,6 +49,7 @@
     <Compile Include="StudentBll.cs" />
     <Compile Include="TeacherBll.cs" />
     <Compile Include="TitleBll.cs" />
+    <Compile Include="TitleRecordBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PMS.Dao\PMS.Dao.csproj">

@@ -41,9 +41,9 @@ namespace PMS.Model
         /// 分院id(外键分院表)
         /// </summary>
         public College college { get; set; }
-        
+
         /// <summary>
-        /// 角色身份类型(教师1,管理员2,超级管理员3)
+        /// 角色身份类型(超级管理员0,教师1,管理员2)
         /// </summary>
         public int TeaType { get; set; }
         /// <summary>

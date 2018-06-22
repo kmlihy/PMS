@@ -63,6 +63,7 @@
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
+    <Content Include="admin\adminCenter.aspx" />
     <Content Include="admin\adminList.aspx" />
     <Content Include="admin\batchList.aspx" />
     <Content Include="admin\branchList.aspx" />
@@ -72,14 +73,28 @@
     <Content Include="admin\proList.aspx" />
     <Content Include="admin\selectTopicList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
+    <Content Include="admin\teaCenter.aspx" />
     <Content Include="admin\teaList.aspx" />
     <Content Include="allNews.aspx" />
+    <Content Include="bin\PMS.BLL.dll" />
+    <Content Include="bin\PMS.BLL.pdb" />
+    <Content Include="bin\PMS.Dao.dll" />
+    <Content Include="bin\PMS.Dao.pdb" />
+    <Content Include="bin\PMS.DBHelper.dll" />
+    <Content Include="bin\PMS.DBHelper.pdb" />
+    <Content Include="bin\PMS.Model.dll" />
+    <Content Include="bin\PMS.Model.pdb" />
+    <Content Include="bin\PMS.Web.dll" />
+    <Content Include="bin\PMS.Web.pdb" />
     <Content Include="checkCode.aspx" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\lgd.js" />
     <Content Include="js\messages_zh.min.js" />
+    <Content Include="js\ml.js" />
+    <Content Include="js\test.js" />
+    <Content Include="js\zwh.js" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
     <Content Include="kindeditor\asp.net\README.txt" />
@@ -164,6 +179,9 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="obj\Debug\PMS.Web.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PMS.Web.dll" />
+    <Content Include="obj\Debug\PMS.Web.pdb" />
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="reg.aspx" />
@@ -198,6 +216,7 @@
     <Content Include="square\yellow.css" />
     <Content Include="square\yellow.png" />
     <Content Include="square\_all.css" />
+    <Content Include="stuCenter.aspx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
@@ -216,6 +235,13 @@
     </Compile>
     <Compile Include="admin\addPaper.aspx.designer.cs">
       <DependentUpon>addPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminCenter.aspx.cs">
+      <DependentUpon>adminCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminCenter.aspx.designer.cs">
+      <DependentUpon>adminCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\adminList.aspx.cs">
       <DependentUpon>adminList.aspx</DependentUpon>
@@ -279,6 +305,13 @@
     </Compile>
     <Compile Include="admin\stuLIst.aspx.designer.cs">
       <DependentUpon>stuLIst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\teaCenter.aspx.cs">
+      <DependentUpon>teaCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\teaCenter.aspx.designer.cs">
+      <DependentUpon>teaCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\teaList.aspx.cs">
       <DependentUpon>teaList.aspx</DependentUpon>
@@ -344,6 +377,13 @@
     <Compile Include="reg.aspx.designer.cs">
       <DependentUpon>reg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="stuCenter.aspx.cs">
+      <DependentUpon>stuCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stuCenter.aspx.designer.cs">
+      <DependentUpon>stuCenter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -370,6 +410,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="kindeditor\asp.net\file_manager_json.ashx" />
     <Content Include="kindeditor\asp.net\upload_json.ashx" />
+    <None Include="bin\PMS.Web.dll.config" />
+    <Content Include="obj\Debug\PMS.Web.csproj.CopyComplete" />
+    <Content Include="obj\Debug\PMS.Web.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\PMS.Web.csprojAssemblyReference.cache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -382,6 +426,10 @@
       <Project>{7d2c3017-4194-4e97-9428-d1568640f141}</Project>
       <Name>PMS.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.Dao\PMS.Dao.csproj">
+      <Project>{059ed7ac-c417-492a-8fcc-f8b5aa44b9e5}</Project>
+      <Name>PMS.Dao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{38d0b912-0a10-4f76-9aaf-c476210f20a2}</Project>
       <Name>PMS.Model</Name>
@@ -391,6 +439,7 @@
     <Folder Include="kindeditor\asp\" />
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
