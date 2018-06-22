@@ -249,8 +249,8 @@
                                 <tr>
                                     <td class="teaLable">职称</td>
                                     <td><select type="text">
-                                <option>信息工程学院</option>
-                                <option>人文学院</option>
+                                <option>教授</option>
+                                <option>副教授</option>
                                 </select>
                                     </td>
                                 </tr>
