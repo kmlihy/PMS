@@ -63,6 +63,7 @@
   <ItemGroup>
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
+    <Content Include="admin\adminCenter.aspx" />
     <Content Include="admin\adminList.aspx" />
     <Content Include="admin\batchList.aspx" />
     <Content Include="admin\branchList.aspx" />
@@ -72,6 +73,7 @@
     <Content Include="admin\proList.aspx" />
     <Content Include="admin\selectTopicList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
+    <Content Include="admin\teaCenter.aspx" />
     <Content Include="admin\teaList.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="checkCode.aspx" />
@@ -217,6 +219,13 @@
     <Compile Include="admin\addPaper.aspx.designer.cs">
       <DependentUpon>addPaper.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\adminCenter.aspx.cs">
+      <DependentUpon>adminCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminCenter.aspx.designer.cs">
+      <DependentUpon>adminCenter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\adminList.aspx.cs">
       <DependentUpon>adminList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -279,6 +288,13 @@
     </Compile>
     <Compile Include="admin\stuLIst.aspx.designer.cs">
       <DependentUpon>stuLIst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\teaCenter.aspx.cs">
+      <DependentUpon>teaCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\teaCenter.aspx.designer.cs">
+      <DependentUpon>teaCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\teaList.aspx.cs">
       <DependentUpon>teaList.aspx</DependentUpon>

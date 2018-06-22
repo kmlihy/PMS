@@ -42,32 +42,32 @@
                             <tr>
                                 <td class="lable">账号：</td>
                                 <td></td>
-                                <td id="ID">166122001</td>
+                                <td id="ID"><%=teacher.TeaAccount %></td>
                             </tr>
                             <tr>
                                 <td class="lable">姓名：</td>
                                 <td></td>
-                                <td id="userName">刘备</td>
+                                <td id="userName"><%=teacher.TeaName %></td>
                             </tr>
                             <tr>
                                 <td class="lable">性别：</td>
                                 <td></td>
-                                <td id="gender">男</td>
+                                <td id="gender"><%=teacher.Sex %></td>
                             </tr>
                             <tr>
                                 <td class="lable">学院：</td>
                                 <td></td>
-                                <td id="college">信息工程学院</td>
+                                <td id="college"><%=teacher.college.ColName %></td>
                             </tr>
                             <tr>
                                 <td class="lable">联系电话：</td>
                                 <td></td>
-                                <td id="telNum">8008208820</td>
+                                <td id="telNum"><%=teacher.Phone %></td>
                             </tr>
                             <tr>
                                 <td class="lable">电子邮箱：</td>
                                 <td></td>
-                                <td id="email">123456789@qq.com</td>
+                                <td id="email"><%=teacher.Email %></td>
                             </tr>
                             <tr>
                                 <td class="lable">
