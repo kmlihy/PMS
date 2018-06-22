@@ -14,6 +14,8 @@
 
     <body>
         <div class="container-fluid">
+
+
             <div class="container-fluid table-bordered img-rounded" id="school">
                 <div class="container-fluid" id="">
                     <label for="title" class="h4 text-info">学校公告</label>
@@ -22,20 +24,27 @@
                 <div class="container-fluid" id="school-list">
                     <ul class="list-unstyled">
                         <table class="table" id="school-table">
+                             <%for (int i = 0; i < dsSadmin.Tables[0].Rows.Count; i++)
+                                 {
+                                       DateTime dt =DateTime.Parse(dsSadmin.Tables[0].Rows[i]["createTime"].ToString());
+                            %>
                             <tr>
                                 <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
+                                    <span>[<%=string.Format("{0:d}",dt) %>]</span>
                                 </td>
                                 <td class="col-lg-11">
                                     <li>
-                                        <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                        <a href="news.aspx"><%=dsSadmin.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
                                     </li>
                                 </td>
                             </tr>
+                            <%} %>
                         </table>
                     </ul>
                 </div>
             </div>
+
+
             <div class="container-fluid table-bordered img-rounded" id="institute">
                 <div class="container-fluid" id="institute-word">
                     <label for="title" class="h4 text-info">学院公告</label>
@@ -44,20 +53,27 @@
                 <div class="container-fluid" id="institute-list">
                     <ul class="list-unstyled">
                         <table class="table" id="newsListtable">
+                            <%for (int i = 0; i < dsAdmin.Tables[0].Rows.Count; i++)
+                                {
+                                    DateTime dt =DateTime.Parse(dsAdmin.Tables[0].Rows[i]["createTime"].ToString());
+                            %>
                             <tr>
                                 <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
+                                    <span>[<%= string.Format("{0:d}",dt) %>]</span>
                                 </td>
                                 <td class="col-lg-11">
                                     <li>
-                                        <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                        <a href="news.aspx"><%=dsAdmin.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
                                     </li>
                                 </td>
                             </tr>
+                            <%} %>
                         </table>
                     </ul>
                 </div>
             </div>
+
+
             <div class="container-fluid table-bordered img-rounded" id="Mine">
                 <div class="container-fluid" id="Mine-word">
                     <label for="title" class="h4 text-info">学生公告</label>
@@ -66,16 +82,21 @@
                 <div class="container-fluid" id="Mine-list">
                     <ul class="list-unstyled">
                         <table class="table" id="Mine-table">
+                            <%for (int i = 0; i < dsTea.Tables[0].Rows.Count; i++)
+                                 {
+                                    DateTime dt =DateTime.Parse(dsTea.Tables[0].Rows[i]["createTime"].ToString());
+                            %>
                             <tr>
                                 <td class="col-lg-1">
-                                    <span>[2018/6/14]</span>
+                                    <span>[<%=string.Format("{0:d}",dt) %>]</span>
                                 </td>
                                 <td class="col-lg-11">
                                     <li>
-                                        <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                        <a href="news.aspx"><%=dsTea.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
                                     </li>
                                 </td>
                             </tr>
+                            <%} %>
                         </table>
                     </ul>
                 </div>
