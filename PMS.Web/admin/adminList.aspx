@@ -53,15 +53,15 @@
                                     <b class="caret"></b>
                             </a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">信息工程学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">会计学院</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">人文学院</a>
-                                    </li>
+                                    <%for(int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                      {
+                                    %>
+                                        <li>
+                                            <a href="#">
+                                                <%= dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                            </a>
+                                        </li>
+                                        <%} %>
                                 </ul>
                             </li>
                             <li class="active">
@@ -95,74 +95,41 @@
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
-                            <% 
-                            for (int i = 0; i <ds.Tables.Count;i++)
+                        <% 
+                            for (int i = 0; i <ds.Tables[0].Rows.Count;i++)
                             {%>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <%--<td class="text-center"><%= ds.Tables[0].Rows[i]["teaAccount"].ToString() %></td>
-                            <td class="text-center"><%= ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
-                            <td class="text-center"><%= ds.Tables[0].Rows[i]["sex"].ToString() %></td>
-                            <td class="text-center"><%= ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
-                            <td class="text-center"><%= ds.Tables[0].Rows[i]["phone"].ToString() %></td>
-                            <td class="text-center"><%= ds.Tables[0].Rows[i]["Email"].ToString() %></td>--%>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-danger">
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["teaAccount"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["teaName"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-default btn-sm btn-danger">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                                <button class="btn btn-default btn-sm btn-warning">
+                                    <button class="btn btn-default btn-sm btn-warning">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            </td>
-                        </tr>
-                        <% }%>
-
-                        <%--<tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center"></td>
-                            <td class="text-center">
-                                <!-- <button class="btn btn-default btn-sm btn-success">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button> -->
-                                <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                                <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            </td>
-                        </tr>--%>
+                                </td>
+                            </tr>
+                            <% }%>
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
@@ -197,8 +164,8 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
-
-    <script>
+    <script src="../js/ml.js"></script>
+    <%--<script>
         var $checkboxAll = $(".js-checkbox-all"),
             $checkbox = $("tbody").find("[type='checkbox']"),
             length = $checkbox.length,
@@ -229,6 +196,6 @@
                 $checkboxAll.iCheck('uncheck');
             }
         });
-    </script>
+    </script>--%>
 
     </html>
