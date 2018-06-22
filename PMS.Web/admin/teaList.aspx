@@ -99,6 +99,12 @@
                                 </button>
                             </li>
                             <li class="active">
+                                <button class="btn btn-success" id="btn-Add">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    批量添加
+                                </button>
+                            </li>
+                            <li class="active">
                                 <button class="btn btn-danger" id="btn-Add">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     批量删除

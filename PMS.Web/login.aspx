@@ -79,7 +79,7 @@
                     content = "密码不能为空！";
                 } else if ($("#captcha").val() == "") {
                     content = "验证码不能为空！";
-                } else if ($("#captcha").val() != "") {
+                } else if ($("#captcha").val().toLowerCase != "<%=code%>") {
                     content = "验证码错误！";
                 } else {
                     return;

@@ -18,14 +18,17 @@
             </div>
             <div class="container-fluid" id="regmain">
                 <div class="container container-style">
-                    <form class="form-horizontal" role="form" id="regform" method="POST">
+                    <form class="form-horizontal" action="reg.aspx" role="form" id="regform" method="POST">
                         <div class="form-group">
                             <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">学院:</label>
                             <div class="col-sm-3" style="padding-right:0px;">
                                 <select class="form-control input-sm select-drop">
                                     <option value="">--请选择学院--</option>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
+                                    <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                      {
+                                    %>
+                                    <option value=""><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                    <% }%>
                                 </select>
                             </div>
                         </div>
@@ -34,22 +37,14 @@
                             <div class="col-sm-3" style="padding-right:0px;">
                                 <select class="form-control input-sm select-drop">
                                     <option value="">--请选择专业--</option>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
+                                    <%for (int i = 0; i < dsPro.Tables[0].Rows.Count; i++)
+                                      {
+                                    %>
+                                    <option value=""><%=dsPro.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                    <% }%>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">学历:</label>
-                            <div class="col-sm-3">
-                                <select class="form-control input-sm">
-                                        <option value="">--请选择--</option>
-                                        <option value="">本科</option>
-                                        <option value="">专科</option>
-                                    </select>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label for="firstname" class="col-sm-2  col-sm-offset-3 control-label">账号:</label>
                             <div class="col-sm-3">
@@ -67,11 +62,11 @@
                             <div class="col-sm-3">
                                 <div class="radio">
                                     <label>
-                                            <input type="radio" name="sex" value="" checked="checked">
+                                            <input type="radio" name="sex" value="man" checked="checked">
                                             男
                                     </label>
                                     <label>
-                                            <input type="radio" name="sex" value="" checked="checked">
+                                            <input type="radio" name="sex" value="women" checked="checked">
                                             女
                                     </label>
                                 </div>

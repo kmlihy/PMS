@@ -57,9 +57,7 @@
                                       {
                                     %>
                                         <li>
-                                            <a href="#">
-                                                <%= dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                            </a>
+                                            <%= dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>
                                         </li>
                                         <%} %>
                                 </ul>
@@ -86,7 +84,8 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all">
                         </th>
-                        <th class="text-center">学号/工号</th>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">工号</th>
                         <th class="text-center">姓名</th>
                         <th class="text-center">性别</th>
                         <th class="text-center">院系</th>
@@ -101,6 +100,9 @@
                             <tr>
                                 <td class="text-center">
                                     <input type="checkbox">
+                                </td>
+                                <td class="text-center">
+                                    <%= i+1 %>
                                 </td>
                                 <td class="text-center">
                                     <%= ds.Tables[0].Rows[i]["teaAccount"].ToString() %>
@@ -140,18 +142,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">1</a>
-                        </li>
-                        <li>
-                            <a href="">2</a>
-                        </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">...</a>
-                        </li>
-                        <li>
                             <a href="">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
@@ -165,37 +155,5 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
-    <%--<script>
-        var $checkboxAll = $(".js-checkbox-all"),
-            $checkbox = $("tbody").find("[type='checkbox']"),
-            length = $checkbox.length,
-            i = 0;
-
-        //启动icheck
-        $(("[type='checkbox']")).iCheck({
-            checkboxClass: 'icheckbox_square-orange',
-        });
-
-        //全选checkbox
-        $checkboxAll.on("ifClicked", function(event) {
-            if (event.target.checked) {
-                $checkbox.iCheck('uncheck');
-                i = 1;
-            } else {
-                $checkbox.iCheck('check');
-                i = length;
-            }
-        });
-
-        //监听计数
-        $checkbox.on('ifClicked', function(event) {
-            event.target.checked ? i-- : i++;
-            if (i == length + 1) {
-                $checkboxAll.iCheck('check');
-            } else {
-                $checkboxAll.iCheck('uncheck');
-            }
-        });
-    </script>--%>
 
     </html>
