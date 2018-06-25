@@ -24,9 +24,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_TitleRecord(stuAccount, titleId, defeseTeamId) values(@stuAccount,@titleId,@defeseTeamId)";
-                string[] param = { "@stuAccount", "@titleId", "@defeseTeamId" };
-                object[] values = { record.student.StuAccount, record.title.TitleId, record.DefeseTeamId };
+                string cmdText = "insert into T_TitleRecord(stuAccount, titleId, defeseTeamId, recordCreateTime) values(@stuAccount,@titleId,@defeseTeamId,@recordCreateTime)";
+                string[] param = { "@stuAccount", "@titleId", "@defeseTeamId", "@recordCreateTime" };
+                object[] values = { record.student.StuAccount, record.title.TitleId, record.DefeseTeamId, record.recordCreateTime };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -46,10 +46,10 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_TitleRecord set stuAccount = @stuAccount, titleId = @titleId, defeseTeamId = @defeseTeamId, "
+                string cmdText = "update T_TitleRecord set stuAccount = @stuAccount, titleId = @titleId, defeseTeamId = @defeseTeamId, recordCreateTime = @recordCreateTime "
                                 + " where titleRecordId = @titleRecordId";
-                string[] param = { "@stuAccount", "@titleId", "@defeseTeamId", "@titleRecordId" };
-                object[] values = { record.student.StuAccount, record.title.TitleId, record.DefeseTeamId, record.TitleRecordId };
+                string[] param = { "@stuAccount", "@titleId", "@defeseTeamId", "@titleRecordId", "@recordCreateTime" };
+                object[] values = { record.student.StuAccount, record.title.TitleId, record.DefeseTeamId, record.TitleRecordId, record.recordCreateTime };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -121,6 +121,7 @@ namespace PMS.Dao
                 Plan plan = new Plan();
                 Profession prodession = new Profession();
                 Teacher teacher = new Teacher();
+                College college = new College();
                 if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
                     if (ds.Tables[0].Rows[0]["titleRecordId"].ToString() != "" && ds.Tables[0].Rows[0]["titleRecordId"].ToString() == recordId.ToString())
@@ -201,6 +202,18 @@ namespace PMS.Dao
                         if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
                         {
                             teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["recordCreateTime"].ToString() != "")
+                        {
+                            titleRecord.recordCreateTime = DateTime.Parse(ds.Tables[0].Rows[0]["recordCreateTime"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                        {
+                            college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                        {
+                            college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
                         }
                         if (student != null && title != null && plan != null && prodession != null && teacher != null)
                         {
