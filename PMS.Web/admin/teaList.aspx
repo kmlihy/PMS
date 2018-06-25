@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="../css/ml.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../square/_all.css">
+    <style>
+        .teaLable {
+            text-align: right;
+        }
+    </style>
 
     <body>
         <div class="container-fluid big-box">
@@ -24,9 +29,8 @@
                                     <input type="text" class="form-control" placeholder="请输入查询条件">
                                     <span class="input-group-btn">
                                         <button class="btn btn-info" type="button">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                            查询
-                                        </button>
+                                            <span class="glyphicon glyphicon-search"></span> 查询
+                                    </button>
                                     </span>
                                 </div>
                             </li>
@@ -93,9 +97,15 @@
                                 </ul>
                             </li>
                             <li class="active">
-                                <button class="btn btn-success" id="btn-Add">
+                                <button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
                                     新增
+                                </button>
+                            </li>
+                            <li class="active">
+                                <button class="btn btn-success" id="btn-Add">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    批量添加
                                 </button>
                             </li>
                             <li class="active">
@@ -127,30 +137,44 @@
                         <%
                             for (int i=0;i<ds.Tables[0].Rows.Count;i++) { 
                         %>
-                        <tr>
-                            <td class="text-center">
-                                <input type="checkbox">
-                            </td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["teaType"].ToString() %></td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["phone"].ToString() %></td>
-                            <td class="text-center"><%=ds.Tables[0].Rows[i]["Email"].ToString() %></td>
-                            <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-success">
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["teaName"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["sex"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["teaType"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["phone"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%=ds.Tables[0].Rows[i]["Email"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-default btn-sm btn-success">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
-                                <button class="btn btn-default btn-sm btn-danger">
+                                    <button class="btn btn-default btn-sm btn-danger">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
-                                <button class="btn btn-default btn-sm btn-warning">
+                                    <button class="btn btn-default btn-sm btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
-                            </td>
-                        </tr>
-                        <%
+                                </td>
+                            </tr>
+                            <%
                             }
                         %>
                     </tbody>
@@ -180,6 +204,71 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 添加教师弹框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            添加教师
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td class="teaLable">工号</td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">姓名</td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">性别</td>
+                                    <td><select type="text">
+                                <option>男</option>
+                                <option>女</option>
+                                </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">院系</td>
+                                    <td><select type="text">
+                                <option>信息工程学院</option>
+                                <option>人文学院</option>
+                                </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">职称</td>
+                                    <td><select type="text">
+                                <option>教授</option>
+                                <option>副教授</option>
+                                </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">邮箱</td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">联系电话</td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary">提交更改</button>
+                    </div>
                 </div>
             </div>
         </div>

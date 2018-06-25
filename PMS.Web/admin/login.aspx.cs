@@ -13,12 +13,14 @@ namespace PMS.Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             try {
-                string teaAccount = Request.QueryString["userName"].ToString();
-                string pwd = Request.QueryString["pwd"].ToString();
+                string teaAccount = Request.Form["userName"].ToString();
+                string pwd = Request.Form["pwd"].ToString();
                 TeacherBll bll = new TeacherBll();
-                //int row = bll.Login(teaAccount, pwd);
-               // Response.Write("<script>alert(" + row + ");</script>");
-            } catch {
+                Model.Teacher teacher = bll.Login(teaAccount, pwd);
+                Session["user"] = teacher;
+                Response.Write("<script>alert(" + teacher + ");</script>");
+            }
+            catch {
 
             }
            

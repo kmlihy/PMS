@@ -5,14 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace PMS.Web
+namespace PMS.Web.admin
 {
-    public partial class login : System.Web.UI.Page
+    public partial class teaCenter : System.Web.UI.Page
     {
-        public string code;
         protected void Page_Load(object sender, EventArgs e)
         {
-            code = Session["code"].ToString().ToLower();
+
         }
     }
 }

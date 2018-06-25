@@ -24,17 +24,11 @@
                                     <input type="text" id="txtQuery" class="form-control" placeholder="请输入查询条件">
                                     <span class="input-group-btn">
                                     <button class="btn btn-info" id="btnQuery" type="button">
-                                        <span class="glyphicon glyphicon-search"></span>查询
+                                        <span id="query" class="glyphicon glyphicon-search"></span>查询
                                     </button>
                                     </span>
                                 </div>
                             </li>
-                            <!-- <li class="active">
-                                <button class="btn btn-info" id="btn-search">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    查询
-                                </button>
-                            </li> -->
                             <li class="active">
                                 <button class="btn btn-success" id="btn-Add">
                                 <span class="glyphicon glyphicon-plus-sign"></span>
@@ -91,26 +85,10 @@
                 <div class="container-fluid text-right">
                     <ul class="pagination pagination-lg">
                         <li>
-                            <a href="">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
+                            <span id="upPage" class="glyphicon glyphicon-chevron-left"></span>
                         </li>
                         <li>
-                            <a href="">1</a>
-                        </li>
-                        <li>
-                            <a href="">2</a>
-                        </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">...</a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                            <span id="downPage" class="glyphicon glyphicon-chevron-right"></span>
                         </li>
                     </ul>
                 </div>
@@ -121,5 +99,14 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
+    <script>
+        $(function () {
+            
+            if (
+                <%=pageNum%> == 1) {
+                $("#upPage").hide();
+            }
+        })
+    </script>
 
     </html>

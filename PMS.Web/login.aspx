@@ -1,14 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="PMS.Web.login" %>
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/zwh.css" />
-</head>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head runat="server">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>登录界面</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../css/zwh.css" />
+    </head>
+
     <body class="body">
         <div class="container" id="login">
             <div class="panel-heading" id="heading">
@@ -17,7 +19,7 @@
             </div>
             <hr />
             <div class="panel-body">
-                <form class="form-horizontal" id="from" action="login.aspx" method="post" role="form" onsubmit="return checkForm()">
+                <form class="form-horizontal" id="form" action="login.aspx" method="post" role="form" onsubmit="return stucheckForm()">
 
                     <div class="input-group" id="content">
                         <span class="input-group-addon">
@@ -55,7 +57,7 @@
                         </div>
                         <div id="btn">
                             <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
-                            <button type="submit" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="Msg()">登录</button>
+                            <button type="submit" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="stuMsg()">登录</button>
                         </div>
                     </div>
                 </form>
@@ -64,18 +66,10 @@
     </body>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/zwh.js"></script>
     <script>
-        // 重置
-        function formReset() {
-            $("#from")[0].reset()
-        }
-        // 点击切换验证码
-        function refreshCode() {
-            var code = document.getElementById("code");
-            code.src = "checkCode.aspx?id=" + Math.random();
-        }
-        // 提示框
-        function Msg() {
+        // 学生登录界面提示框
+        function stuMsg() {
             var my_toast_plug_name = "mytoast";
             $[my_toast_plug_name] = function(options) {
                 var content;
@@ -85,7 +79,7 @@
                     content = "密码不能为空！";
                 } else if ($("#captcha").val() == "") {
                     content = "验证码不能为空！";
-                } else if ($("#captcha").val() != "<%#Session["code"].ToString() %>") {
+                } else if ($("#captcha").val().toLowerCase != "<%=code%>") {
                     content = "验证码错误！";
                 } else {
                     return;
@@ -98,7 +92,10 @@
                 jq_text.width(w);
                 var l = -jq_toast.outerWidth() / 2;
                 var t = -jq_toast.outerHeight() / 2;
-                jq_toast.css({ "margin-left": l + "px", "margin-top": t + "px" });
+                jq_toast.css({
+                    "margin-left": l + "px",
+                    "margin-top": t - 50 + "px"
+                });
                 var _jq_toast = jq_toast;
                 setTimeout(function() {
                     _jq_toast.remove();
@@ -108,8 +105,8 @@
                 type: "notice"
             });
         }
-        // 判断是否提交表单
-        function checkForm() {
+        // 学生登录界面判断是否提交表单
+        function stucheckForm() {
             if ($("#userName").val() != "" && $("#pwd").val() != "" && $("#captcha").val() != "") {
                 return true;
             } else {
@@ -118,4 +115,4 @@
         }
     </script>
 
-</html>
+    </html>

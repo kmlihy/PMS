@@ -47,6 +47,9 @@ namespace PMS.Model
         public Title title{ get; set; }
         /// <summary>答辩小组id(暂无)</summary>
         public int DefeseTeamId { get; set; }
-
+        /// <summary>
+        /// (外键教师表)
+        /// </summary>
+        public Teacher teacher { get; set; }
     }
 }
