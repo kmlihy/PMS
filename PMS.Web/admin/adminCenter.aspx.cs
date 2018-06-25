@@ -14,8 +14,9 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            teacher = (Teacher)Session["user"];
-            getTeacher(teacher.TeaAccount);
+            //TODO 改成从session里获取值
+            //teacher = (Teacher)Session["user"];
+            getTeacher("teacher");
         }
 
         public void getTeacher(string Account) {
