@@ -7,10 +7,10 @@
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/ml.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../square/_all.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/ml.css"/>
+        <link rel="stylesheet" href="../css/style.css"/>
+        <link rel="stylesheet" href="../square/_all.css"/>
     </head>
 
     <body>
@@ -21,7 +21,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
                                 <div class="input-group" style="margin-top: 7px">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件">
+                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
                                     <span class="input-group-btn">
                                     <button class="btn btn-info" type="button">
                                         <span class="glyphicon glyphicon-search"></span> 查询
@@ -82,7 +82,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all">
+                            <input type="checkbox" class="js-checkbox-all"/>
                         </th>
                         <th class="text-center">序号</th>
                         <th class="text-center">工号</th>
@@ -99,7 +99,7 @@
                             {%>
                             <tr>
                                 <td class="text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox"/>
                                 </td>
                                 <td class="text-center">
                                     <%= i+1 %>
