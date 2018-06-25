@@ -21,7 +21,7 @@ namespace PMS.Web.admin
         }
         public void getpage(string strWhere, int pageNum)
         {
-            TableBuilder tBuilder = new TableBuilder("V_Student", "stuAccount", 0, 0, "*", 2, pageNum,strWhere);
+            TableBuilder tBuilder = new TableBuilder("V_Student", "stuAccount", 0, 0, "*", 3, pageNum,strWhere);
             studs = stuBll.SelectBypage(tBuilder, out intPageCount);
         }
     }
