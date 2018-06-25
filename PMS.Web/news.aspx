@@ -7,18 +7,17 @@
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>公告查看</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/ml.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
     </head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/ml.css">
-    <link rel="stylesheet" href="css/style.css">
-
     <body>
         <div class="container-fluid col-lg-6 col-lg-offset-3" id="contentBox">
             <div class="panel table-bordered" id="panelBox">
                  <div class="panel-heading">
                     <span class="h3 text-info">通知公告</span>
                     <span class="glyphicon glyphicon-volume-up btn-lg"></span>
-                    <hr id="underline">
+                    <hr id="underline" />
                 </div>
                 <div class="panel-body container-fluid" id="panelBody">
                     <div class="container col-lg-12">
@@ -32,7 +31,7 @@
                                 <tr>
                                     <td class="text-right">
                                         <span class="table">
-                                            发布时间:
+                                            发布时间:<%=DateTime.Now %>
                                             <label id="time"></label>
                                         </span>
                                     </td>
