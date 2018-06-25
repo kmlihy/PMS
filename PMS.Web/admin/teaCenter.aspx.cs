@@ -9,9 +9,18 @@ namespace PMS.Web.admin
 {
     public partial class teaCenter : System.Web.UI.Page
     {
+        protected Model.Teacher teacher = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //TODO 改成从session里获取值
+            //teacher = (Teacher)Session["user"];
+            getTeacher("teacher");
+        }
+        public void getTeacher(string Account)
+        {
+            BLL.TeacherBll tbll = new BLL.TeacherBll();
+            teacher = tbll.GetModel(Account);
         }
     }
 }

@@ -20,37 +20,32 @@
                             <tr>
                                 <td class="centerLable">账号：</td>
                                 <td></td>
-                                <td id="ID">166122001</td>
+                                <td id="ID"><%=teacher.TeaAccount %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">姓名：</td>
                                 <td></td>
-                                <td id="userName">刘备</td>
+                                <td id="userName"><%=teacher.TeaName %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">性别：</td>
                                 <td></td>
-                                <td id="gender">男</td>
-                            </tr>
-                            <tr>
-                                <td class="centerLable">职称：</td>
-                                <td></td>
-                                <td id="ProfTitles">教授</td>
+                                <td id="gender"><%=teacher.Sex %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">学院：</td>
                                 <td></td>
-                                <td id="college">信息工程学院</td>
+                                <td id="college"><%=teacher.college.ColName %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">联系电话：</td>
                                 <td></td>
-                                <td id="telNum">8008208820</td>
+                                <td id="telNum"><%=teacher.Phone %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">电子邮箱：</td>
                                 <td></td>
-                                <td id="email">123456789@qq.com</td>
+                                <td id="email"><%=teacher.Email %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">

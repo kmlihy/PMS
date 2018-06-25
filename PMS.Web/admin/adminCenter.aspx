@@ -53,7 +53,7 @@
                                     <button type="button" class="btn btn-info" id="okMessage" onclick="ok()">确定</button>
                                 </td>
                                 <td></td>
-                                <td id="email">
+                                <td id="">
                                     <a href="#"><button type="button" class="btn btn-info">修改密码</button></a>
                                 </td>
                             </tr>
