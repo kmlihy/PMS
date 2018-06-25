@@ -22,7 +22,7 @@ namespace PMS.Web.admin
         public void getdata(String strWhere, int IntPageNum)
         {
             BLL.TeacherBll sdao = new TeacherBll();
-            Dao.PublicProcedure pro = new Dao.PublicProcedure();
+            TeacherBll pro = new TeacherBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Teacher",

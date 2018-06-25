@@ -7,11 +7,11 @@
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/ml.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../square/_all.css"/>
     </head>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/ml.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../square/_all.css">
 
     <body>
         <div class="container-fluid big-box">
@@ -19,41 +19,50 @@
                 <div class="container-fluid">
                     <div>
                         <ul class="nav navbar-nav">
-                            <li class="active col-sm-4  ">
-                                <div class="input-group" style="margin-top: 7px">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-info" type="button">
-                                                <span class="glyphicon glyphicon-search"></span>
-                                            查询
-                                        </button>
-                                    </span>
+                            <li class="active">
+                                <div class="input-group" id="search-stu">
+                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
                                 </div>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    院系
-                                    <b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">
-<%--                                    <% for (int j = 0; j<plands.Tables[0].Rows.Count; j++)
-                                        { %>
-                                    <li>
-                                        <a href="#"><%= plands.Tables[0].Rows[j]["collegeName"].ToString() %></a>
-                                    </li>
-                                    <%} %>--%>
-                                </ul>
+                            <li class="active">
+                                <div class="form-group checkbox-stu">
+                                    <select class="form-control">
+                                        <option value="">-请选择分院-</option>
+                                        <% for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                                            { %>
+                                            <option value="">
+                                                <%= plands.Tables[0].Rows[i]["collegeName"] %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                </div>
                             </li>
                             <li class="active">
-                                <button class="btn btn-success" id="btn-Add">
-                                    <span class="glyphicon glyphicon-plus-sign"></span>
-                                    新增
+                                <div class="form-group checkbox-stu">
+                                    <select class="form-control">
+                                        <option value="">-请选择专业-</option>
+                                        <% for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                                            { %>
+                                            <option value="">
+                                                <%= plands.Tables[0].Rows[i]["planName"] %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <button type="button" class="btn-success btn checkbox-stu">
+                                    <span class="glyphicon glyphicon-search">查询</span>
                                 </button>
                             </li>
                             <li class="active">
-                                <button class="btn btn-danger" id="btn-delete">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    批量删除
+                                <button type="button" class="btn-info btn checkbox-stu">
+                                    <span class="glyphicon glyphicon-search">新增</span>
+                                </button>
+                            </li>
+                            <li class="active">
+                                <button type="button" class="btn-danger btn checkbox-stu">
+                                    <span class="glyphicon glyphicon-trash">批量删除</span>
                                 </button>
                             </li>
                         </ul>
@@ -64,7 +73,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all">
+                            <input type="checkbox" class="js-checkbox-all"/>
                         </th>
                         <th class="text-center">序号</th>
                         <th class="text-center">批次名</th><th class="text-center">开始时间</th>

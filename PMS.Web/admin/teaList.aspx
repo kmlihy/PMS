@@ -8,10 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>教师信息表</title>
     </head>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/ml.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../square/_all.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/ml.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../square/_all.css" />
     <style>
         .teaLable {
             text-align: right;
