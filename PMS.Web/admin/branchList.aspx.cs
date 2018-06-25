@@ -12,19 +12,22 @@ namespace PMS.Web.admin
 {
     public partial class branchList : System.Web.UI.Page
     {
+        //获取数据
         int count = 1;
-        public string where ="";
-        public int pageNum = 1;
-        public int pageSize = 5;
+        protected string where ="";
+        protected int pageNum = 1;
+        protected int pageSize = 5;
         protected DataSet ds = null;
         CollegeBll collbll = new CollegeBll();
-
+        //分页
         protected string getName = "";
         protected int getCurrentPage = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //获取数据
             getdata(where, pageNum, pageSize);
+            //分页
             string name = Request["name"];
             string currentPage = Request["currentPage"];
             string op = Request["op"];
@@ -43,6 +46,7 @@ namespace PMS.Web.admin
                 //getCurrentPage = int.Parse(currentPage);
             }
         }
+        //获取数据
         public void getdata(string strWhere,int pageNum, int pageSize)
         {
             TableBuilder tbd = new TableBuilder()

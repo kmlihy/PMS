@@ -29,50 +29,34 @@
                                     </span>
                                 </div>
                             </li>
-                            <!-- <li class="active">
-                                <button class="btn btn-info" id="btn-search">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    查询
-                                </button>
-                            </li> -->
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">性别
-                                    <b class="caret"></b>
-                            </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">男</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">女</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">院系
-                                    <b class="caret"></b>
-                            </a>
-                                <ul class="dropdown-menu">
-                                    <%for(int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                      {
-                                    %>
-                                        <li>
+                            <li class="active">
+                                <div class="form-group checkbox-stu">
+                                    <select class="form-control">
+                                        <option value="">-请选择分院-</option>
+                                        <%for(int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                          {
+                                        %>
+                                            <option value="">
                                             <%= dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                        </li>
+                                            </option>
                                         <%} %>
-                                </ul>
+                                    </select>
+                                </div>
                             </li>
                             <li class="active">
-                                <button class="btn btn-success" id="btn-Add">
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                新增
-                            </button>
+                                <button type="button" class="btn-success btn checkbox-stu">
+                                    <span class="glyphicon glyphicon-search">查询</span>
+                                </button>
                             </li>
-                            <li class="active container-fluid">
-                                <button class="btn btn-danger" id="btn-Add">
-                                <span class="glyphicon glyphicon-trash"></span>
-                                批量删除
-                            </button>
+                            <li class="active">
+                                <button type="button" class="btn-info btn checkbox-stu">
+                                    <span class="glyphicon glyphicon-search">新增</span>
+                                </button>
+                            </li>
+                            <li class="active">
+                                <button type="button" class="btn-danger btn checkbox-stu">
+                                    <span class="glyphicon glyphicon-trash">批量删除</span>
+                                </button>
                             </li>
                         </ul>
                     </div>
