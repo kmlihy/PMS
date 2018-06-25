@@ -12,7 +12,7 @@ namespace PMS.Web.admin
 {
     public partial class stuLIst : System.Web.UI.Page
     {
-        protected DataSet studs = null;
+        protected DataSet ds = null;
         public int intPageCount;
         StudentBll stuBll = new StudentBll();
         public void Page_Load(object sender, EventArgs e)
@@ -22,7 +22,7 @@ namespace PMS.Web.admin
         public void getpage(string strWhere, int pageNum)
         {
             TableBuilder tBuilder = new TableBuilder("V_Student", "stuAccount", 0, 0, "*", 3, pageNum,strWhere);
-            studs = stuBll.SelectBypage(tBuilder, out intPageCount);
+            ds = stuBll.SelectBypage(tBuilder, out intPageCount);
         }
     }
 }

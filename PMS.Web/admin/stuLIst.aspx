@@ -7,11 +7,11 @@
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>学生信息表</title>
-    </head>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/ml.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../square/_all.css">
+    </head>
 
     <body>
         <div class="container-fluid big-box">
@@ -21,17 +21,17 @@
                         <ul class="nav navbar-nav">
                             <li class="active">
                                 <div class="input-group" id="search-stu">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件">
+                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
                                 </div>
                             </li>
                             <li class="active">
                                 <div class="form-group checkbox-stu">
                                     <select class="form-control">
                                         <option value="">-请选择分院-</option>
-                                        <% for (int i = 0; i < studs.Tables[0].Rows.Count; i++)
+                                        <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                                             { %>
                                             <option value="">
-                                                <%= studs.Tables[0].Rows[i]["collegeName"] %>
+                                                <%= ds.Tables[0].Rows[i]["collegeName"] %>
                                             </option>
                                             <% } %>
                                     </select>
@@ -41,10 +41,10 @@
                                 <div class="form-group checkbox-stu">
                                     <select class="form-control">
                                         <option value="">-请选择专业-</option>
-                                        <% for (int i = 0; i < studs.Tables[0].Rows.Count; i++)
+                                        <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                                             { %>
                                             <option value="">
-                                                <%= studs.Tables[0].Rows[i]["proName"] %>
+                                                <%= ds.Tables[0].Rows[i]["proName"] %>
                                             </option>
                                             <% } %>
                                     </select>
@@ -73,7 +73,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all">
+                            <input type="checkbox" class="js-checkbox-all"/>
                         </th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
@@ -85,32 +85,32 @@
                         <th class="text-center">操作</th>
                     </thead>
                     <tbody>
-                        <% for (int i = 0; i < studs.Tables[0].Rows.Count; i++)
+                        <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             { %>
                             <tr>
                                 <td class="text-center">
                                     <input type="checkbox" />
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["stuAccount"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["stuAccount"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["realName"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["realName"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["sex"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["proName"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["proName"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["phone"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <%= studs.Tables[0].Rows[i]["Email"].ToString() %>
+                                    <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-default btn-sm btn-success">
@@ -151,5 +151,4 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
-
     </html>
