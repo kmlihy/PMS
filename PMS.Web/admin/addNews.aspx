@@ -21,6 +21,7 @@
         </div>
 
         <div class="container-fluid tablediv">
+           <form runat="server" action="addNews.aspx" method="post">
             <table class="table titleTable" id="titleTable">
                 <tbody>
                     <tr>
@@ -31,7 +32,7 @@
                         </td>
                         <td>
                             <div class="col-xs-3 col-sm-3 col-md-3 inputdiv">
-                                <input type="text" class="form-control" id="InputAmount" placeholder="请输入标题" />
+                                <input type="text" class="form-control" id="newsTitle" name="newsTitle" placeholder="请输入标题" />
                             </div>
                         </td>
                     </tr>
@@ -57,6 +58,7 @@
                     </tr>
                 </tbody>
             </table>
+         </form>
         </div>
     </div>
 </body>
