@@ -15,6 +15,7 @@ namespace PMS.Web
         protected DataSet dsSadmin = null;
         protected DataSet dsAdmin = null;
         protected DataSet dsTea = null;
+        int intPageCount;
         protected void Page_Load(object sender, EventArgs e)
         {
             NewsBll bll = new NewsBll();
@@ -29,7 +30,7 @@ namespace PMS.Web
             tableBuilder.IntPageSize = 5;
             tableBuilder.IntPageNum = 1;
             tableBuilder.StrWhere = "teaType = 0";
-            dsSadmin = bll.SelectBypage(tableBuilder, out int intPageCount);
+            dsSadmin = bll.SelectBypage(tableBuilder, out intPageCount);
 
             //查询管理员的公告信息
             TableBuilder tableBuilder1 = new TableBuilder();
@@ -41,7 +42,7 @@ namespace PMS.Web
             tableBuilder1.IntPageSize = 5;
             tableBuilder1.IntPageNum = 1;
             tableBuilder1.StrWhere = "teaType = 2";
-            dsAdmin = bll.SelectBypage(tableBuilder1, out int intPageCount1);
+            dsAdmin = bll.SelectBypage(tableBuilder1, out intPageCount);
 
             //查询教师的公告信息
             TableBuilder tableBuilder2 = new TableBuilder();
@@ -53,7 +54,7 @@ namespace PMS.Web
             tableBuilder2.IntPageSize = 5;
             tableBuilder2.IntPageNum = 1;
             tableBuilder2.StrWhere = "teaType = 1";
-            dsTea = bll.SelectBypage(tableBuilder2, out int intPageCount2);
+            dsTea = bll.SelectBypage(tableBuilder2, out intPageCount);
         }
     }
 }
