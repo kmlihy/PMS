@@ -28,6 +28,11 @@ namespace PMS.Web.admin
             bads = colbll.Select();
 
         }
+        /// <summary>
+        /// 列表加载
+        /// </summary>
+        /// <param name="strWhere"> 查询条件</param>
+        /// <param name="pageNum">当前加载页数</param>
         public void getPage(string strWhere,int pageNum)
         {
             TableBuilder tbuilder = new TableBuilder("V_Profession","proId",0,0,"*",2, pageNum, strWhere);

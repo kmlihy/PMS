@@ -13,10 +13,16 @@ namespace PMS.Web.admin
     public partial class teaList : System.Web.UI.Page
     {
         protected DataSet ds=null;
+        protected int getCurrentPage = 1;
+        protected int count;
+        protected int pagesize=1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             getdata("", 1);
+            changepage();
+            getdata("", getCurrentPage);    
         }
 
         public void getdata(String strWhere, int IntPageNum)
@@ -30,12 +36,31 @@ namespace PMS.Web.admin
                 IntColType = 0,
                 IntOrder = 0,
                 IntPageNum = IntPageNum,
-                IntPageSize = 2,
+                IntPageSize = pagesize,
                 StrColumn = "teaAccount",
                 StrColumnlist = "*"
             };
-            int count;
             ds = pro.SelectBypage(tabuilder, out count);
+            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
+        }
+
+        public void changepage() {
+            try
+            {
+                string currentPage = Request.QueryString["currentPage"];
+                getCurrentPage = int.Parse(currentPage);
+            }
+            catch { }
+            if (getCurrentPage < 1)
+            {
+                getCurrentPage = 1;
+            }
+            else if (getCurrentPage > count)
+            {
+                getCurrentPage = count;
+            }
+            ViewState["page"] = getCurrentPage;
+
         }
     }
 }
