@@ -1,43 +1,60 @@
 ﻿body {
 }
-a{
+
+a {
     color: black;
 }
-a:hover{
-    color: rgb(12, 161, 241);
-    text-decoration: none;
+
+    a:hover {
+        color: rgb(12, 161, 241);
+        text-decoration: none;
+    }
+
+.big-box {
+    margin-top: 30px !important;
 }
 /*newsList.aspx*/
-#school-list{
+#school-list {
     border-top: 2px solid #013A58;
 }
-#institute-list{
+
+#institute-list {
     border-top: 2px solid #013A58;
 }
-#Mine-list{
+
+#Mine-list {
     border-top: 2px solid #013A58;
 }
-#school-table span{
+
+#school-table span {
     color: #013A58;
 }
-#school-word a{
+
+#school-word a {
     float: right;
     margin-top: 20px;
 }
-.a-word{
+
+.a-word {
     float: right;
     margin-top: 20px;
-} 
+}
 
 /*stuList*/
-.checkbox-stu{
+.checkbox-stu {
     margin-top: 15px;
     margin-left: 15px;
 }
-#search-stu{
+
+#search-stu {
     margin-top: 15px;
 }
 /*去td上边框*/
 .modal-body .table tbody tr td {
-    border:none !important;
+    border: none !important;
+}
+
+#inputsearch {
+    width: 150px;
+    float: none;
 }
