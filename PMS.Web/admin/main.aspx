@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main.aspx.cs" Inherits="PMS.Web.admin.main" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
