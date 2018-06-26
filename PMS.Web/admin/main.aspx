@@ -1,14 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main.aspx.cs" Inherits="PMS.Web.admin.main" %>
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>论文管理系统</title>
-    <link rel="stylesheet" href="../css/style.css"/>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/iconfont.css"/>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/iconfont.css">
 </head>
+
 <body>
     <div class="box">
         <!-- 页面头部 -->
@@ -23,7 +26,7 @@
                         </button>
 
                         <a class="brand pull-left" href="#">
-                            <img src="../images/logo.png" alt="云南工商学院" class="hidden-xs col-sm-7"/>
+                            <img src="../images/logo.png" alt="云南工商学院" class="hidden-xs col-sm-7">
                             <span class="col-sm-5">论文管理系统</span>
                         </a>
                         <div class="dropdown pull-right">
@@ -67,7 +70,7 @@
         <!-- 中间区域 -->
         <div class="moddle" id="moddle">
             <!-- 左侧导航栏 -->
-            <aside class="page-left-nav col-xs-12 col-sm-2 col-md-2 col-lg-1 collapse in" id="nav-menu">
+            <div class="page-left-nav col-xs-12 col-sm-2 col-md-2 col-lg-1 collapse in" id="nav-menu">
                 <nav role="navigation" class="row">
                     <ul class="nav nav-list nav-stacked">
                         <li role="presentation">
@@ -77,7 +80,7 @@
                                 <span>公告管理</span>
                             </a>
                         </li>
-                        <li role="presentation" onclick="rotate()">
+                        <li role="presentation" id="focus" onclick="xuanz()">
                             <a href="#datasetting" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-jifen"></i>
                                 <span>数据管理</span>
@@ -96,7 +99,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" id="focus">
                             <a href="#">
                                 <i class="iconfont icon-set"></i>
                                 <span>网站配置</span>
@@ -121,7 +124,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li role="presentation">
+                        <li role="presentation" id="focus">
                             <a href="#">
                                 <i class="iconfont icon-edit"></i>
                                 <span>批次管理</span>
@@ -130,24 +133,23 @@
                     </ul>
                 </nav>
 
-            </aside>
+            </div>
 
             <!-- 右侧内容区 -->
-            <main class="page-right-content col-xs-12 col-sm-10 col-md-10 col-lg-11">
+            <div class="page-right-content col-xs-12 col-sm-10 col-md-10 col-lg-11">
                 <article class="">
                     <header class="">
                         <p>这是内容区</p>
                     </header>
 
                 </article>
-            </main>
+            </div>
         </div>
 
         <!-- 页面尾部 -->
         <footer class="page-bottom">
         </footer>
     </div>
-
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script>
@@ -180,15 +182,16 @@
         window.onresize = autodivheight; //浏览器窗口发生变化时同时变化DIV高度//
 
         //TODO 只有第一个>符号可以旋转，另一个未完成
-        function rotate(){
+        function xuanz() {
             x = document.getElementById("trans");
-            if(x.style.transform == ""){
+            if (x.style.transform == "") {
                 x.style.transform = "rotate(90deg)";
             }
-            else{
+            else {
                 x.style.transform = "";
             }
         }
     </script>
 </body>
+
 </html>
