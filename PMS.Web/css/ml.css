@@ -7,9 +7,6 @@ a:hover{
     color: rgb(12, 161, 241);
     text-decoration: none;
 }
-.big-box{
-    margin-top:30px !important;
-}
 /*newsList.aspx*/
 #school-list{
     border-top: 2px solid #013A58;
