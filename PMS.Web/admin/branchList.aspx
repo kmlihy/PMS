@@ -92,20 +92,20 @@
                                 <span id="upPage" class="glyphicon glyphicon-chevron-left"></span>
                             </a>
                         </li>
-                        <%--//TODO 绑定当前页数--%>
+                        <!-- 绑定当前页数 -->
                         <li>
-                            <a href="#">1</a>
+                            <a href="#"><%=pageNum %></a>
                         </li>
                         <li>
                             <a href="#">/</a>
                         </li>
-                        <%--//TODO 绑定总页数--%>
+                        <!-- 绑定总页数 -->
                         <li>
-                            <a href="#">10</a>
+                            <a href="#"><%=countPage %></a>
                         </li>
                         <li>
                             <a href="#" onclick="nextPage()">
-                                <span id="downPage" class="glyphicon glyphicon-chevron-right" onclick="nextPage()"></span>
+                                <span id="downPage" class="glyphicon glyphicon-chevron-right"></span>
                             </a>
                         </li>
                     </ul>
@@ -118,6 +118,7 @@
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
     <script>
+        //分页
         $(document).ready(function() {
             if (!window.localStorage) {
                 alert("浏览器支持localstorage");
@@ -126,15 +127,21 @@
                 //alert("ok");
                 var storage = window.localStorage;
                 storage.clear();
-                //存入总页数
-                sessionStorage.setItem("countPage", 10);
-                //存入当前页
-                sessionStorage.setItem("currentPage", 1);
+                dsCount = ds.Tables[0].Rows.Count;
+                if (dsCount / <%=pageSize%> == 0) {
+                    allPageNum = dsCount / <%=pageSize%>;
+                } else {
+                    allPageNum = dsCount / <%=pageSize%> + 1;
+                }
+                //TODE:存入总页数
+                sessionStorage.setItem("countPage", allPageNum);
+                pageNum = <%=pageNum%>;
+                //TODE:存入当前页
+                sessionStorage.setItem("currentPage", pageNum);
             }
         });
         //上一页
         function previousPage() {
-            //alert("上一页")
             var data = {
                 currentPage: sessionStorage.getItem("currentPage"),
                 op: 1
@@ -146,12 +153,14 @@
                     data: data
                 });
                 var x = parseInt(sessionStorage.getItem("currentPage")) - 1;
+                if (x <= 1) {
+                    x = 1;
+                }
                 sessionStorage.setItem("currentPage", x);
             }
         }
         //下一页
         function nextPage() {
-            //alert("下一页")
             var data = {
                 currentPage: sessionStorage.getItem("currentPage"),
                 op: 2
@@ -163,12 +172,14 @@
                     data: data
                 });
                 var x = parseInt(sessionStorage.getItem("currentPage")) + 1;
+                if (x >= allPageNum) {
+                    x = allPageNum;
+                }
                 sessionStorage.setItem("currentPage", x);
             }
         }
         //查询条件
         function queryChange() {
-
             var strQuery = $("#strQuery").text();
             var storage = window.localStorage;
             var data = {

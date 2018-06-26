@@ -21,9 +21,9 @@
                         <ul class="nav navbar-nav">
                             <li class="active col-sm-4  ">
                                 <div class="input-group" style="margin-top: 7px">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
+                                    <input type="text" id="strQuery" name="strQuery" class="form-control" placeholder="请输入查询条件"/>
                                     <span class="input-group-btn">
-                                    <button class="btn btn-info" type="button">
+                                    <button class="btn btn-info" type="button" onclick="queryChange()">
                                         <span class="glyphicon glyphicon-search"></span> 查询
                                     </button>
                                     </span>
@@ -121,13 +121,24 @@
                 <div class="container-fluid text-right">
                     <ul class="pagination pagination-lg">
                         <li>
-                            <a href="">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            <a href="#" onclick="previousPage()">
+                                <span id="upPage" class="glyphicon glyphicon-chevron-left"></span>
                             </a>
                         </li>
+                        <%--//TODO 绑定当前页数--%>
                         <li>
-                            <a href="">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">/</a>
+                        </li>
+                        <%--//TODO 绑定总页数--%>
+                        <li>
+                            <a href="#">10</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="nextPage()">
+                                <span id="downPage" class="glyphicon glyphicon-chevron-right" onclick="nextPage()"></span>
                             </a>
                         </li>
                     </ul>
@@ -139,5 +150,82 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
+    <script>
+        $(document).ready(function() {
+            if (!window.localStorage) {
+                alert("浏览器支持localstorage");
+                return false;
+            } else {
+                //alert("ok");
+                var storage = window.localStorage;
+                storage.clear();
+                dsCount = ds.Tables[0].Rows.Count;
+                if (dsCount / <%=pageSize%> == 0) {
+                    allPageNum = dsCount / <%=pageSize%>;
+                } else {
+                    allPageNum = dsCount / <%=pageSize%> + 1;
+                }
+                //TODE:存入总页数
+                sessionStorage.setItem("countPage", allPageNum);
+                pageNum = <%=pageNum%>;
+                //TODE:存入当前页
+                sessionStorage.setItem("currentPage", pageNum);
+            }
+        });
+        //上一页
+        function previousPage() {
+            //alert("上一页")
+            var data = {
+                currentPage: sessionStorage.getItem("currentPage"),
+                op: 1
+            }
+            if (sessionStorage.getItem("currentPage") != 1) {
+                $.ajax({
+                    type: "Post",
+                    url: "adminList.aspx",
+                    data: data
+                });
+                var x = parseInt(sessionStorage.getItem("currentPage")) - 1;
+                if (x <= 1) {
+                    x = 1;
+                }
+                sessionStorage.setItem("currentPage", x);
+            }
+        }
+        //下一页
+        function nextPage() {
+            //alert("下一页")
+            var data = {
+                currentPage: sessionStorage.getItem("currentPage"),
+                op: 2
+            }
+            if (sessionStorage.getItem("currentPage") != sessionStorage.getItem("countPage")) {
+                $.ajax({
+                    type: "Post",
+                    url: "adminList.aspx",
+                    data: data
+                });
+                var x = parseInt(sessionStorage.getItem("currentPage")) + 1;
+                if (x >= allPageNum) {
+                    x = allPageNum;
+                }
+                sessionStorage.setItem("currentPage", x);
+            }
+        }
+        //查询条件
+        function queryChange() {
 
+            var strQuery = $("#strQuery").text();
+            var storage = window.localStorage;
+            var data = {
+                name: strQuery,
+                currentPage: storage.currentPage
+            }
+            $.ajax({
+                type: "Post",
+                url: "adminList.aspx",
+                data: data
+            });
+        }
+    </script>
     </html>

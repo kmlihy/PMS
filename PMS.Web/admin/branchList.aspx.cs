@@ -21,12 +21,12 @@ namespace PMS.Web.admin
         CollegeBll collbll = new CollegeBll();
         //分页
         protected string getName = "";
+        protected int currentPage = 0;
         protected int getCurrentPage = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //获取数据
-            getdata(where, pageNum, pageSize);
+            GetData(where, pageNum, pageSize);
             //分页
             string name = Request["name"];
             string currentPage = Request["currentPage"];
@@ -47,7 +47,7 @@ namespace PMS.Web.admin
             }
         }
         //获取数据
-        public void getdata(string strWhere,int pageNum, int pageSize)
+        public void GetData(string strWhere,int pageNum, int pageSize)
         {
             TableBuilder tbd = new TableBuilder()
             {
@@ -61,6 +61,7 @@ namespace PMS.Web.admin
                 StrWhere = strWhere
             };
             ds = collbll.SelectBypage(tbd,out count);
+            pageSize = ds.Tables[0].Rows.Count;
         }
     }
 }

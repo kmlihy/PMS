@@ -35,13 +35,13 @@ function edit() {
 function ok() {
     var telNum = $(".telNum").val();
     if (telNum === "") {
-        $("#telNum").remove();
+        $("#telNum").closest("td").text("");
     } else {
         $("#telNum").closest("td").text(telNum);
     }
     var email = $(".email").val();
     if (email === "") {
-        $("#email").remove();
+        $("#email").closest("td").text("");
     } else {
         $("#email").closest("td").text(email);
     }
