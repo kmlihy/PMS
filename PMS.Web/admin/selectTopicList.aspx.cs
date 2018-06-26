@@ -20,9 +20,16 @@ namespace PMS.Web.admin
         //学院
         protected DataSet bads = null;
         protected CollegeBll colbll = new CollegeBll();
+        protected int getCurrentPage = 1;
+        protected int count;
+        protected int pagesize = 1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            getPage("", 1);
+            string test = Request["collegeselect"];
+            //selectChange("select * from V_Profession");
+            getData("", getCurrentPage);
+            changepage();
             bads = colbll.Select();
             prods = probll.Select();
         }
@@ -32,11 +39,40 @@ namespace PMS.Web.admin
         /// </summary>
         /// <param name="strWhere"> 查询条件</param>
         /// <param name="pageNum">当前加载页数</param>
-        public void getPage(string strWhere, int pageNum)
+        public void getData(string strWhere, int IntPageNum)
         {
-            TableBuilder tbuilder = new TableBuilder("V_TitleRecord", "titleRecordId", 0, 0, "*", 2, pageNum, strWhere);
-            int pageCount;
-            ds = probll.SelectBypage(tbuilder, out pageCount);
+            TableBuilder tabuilder = new TableBuilder("V_TitleRecord", "titleRecordId", 0, 0, "*", 2, IntPageNum, strWhere);
+            ds = probll.SelectBypage(tabuilder, out count);
+            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
+        }
+        public void changepage()
+        {
+            try
+            {
+                string currentPage = Request.QueryString["currentPage"];
+                getCurrentPage = int.Parse(currentPage);
+            }
+            catch { }
+            if (getCurrentPage < 1)
+            {
+                getCurrentPage = 1;
+            }
+            else if (getCurrentPage > count)
+            {
+                getCurrentPage = count;
+            }
+            ViewState["page"] = getCurrentPage;
+        }
+        /// <summary>
+        /// 学院与专业的联动
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
+        ///
+        public void selectChange(string strWhere)
+        {
+            TableBuilder tabuilder = new TableBuilder("V_Profession", "proId", 0, 0, "*", 2, 1, strWhere);
+            ds = probll.SelectBypage(tabuilder, out count);
+            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
     }
 }

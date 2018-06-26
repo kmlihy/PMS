@@ -7,68 +7,34 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/ml.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../square/_all.css" />
+    <link rel="stylesheet" href="../css/bootstrap-select.css" />
 </head>
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../css/ml.css" />
-<link rel="stylesheet" href="../css/style.css" />
-<link rel="stylesheet" href="../square/_all.css" />
-
 <body>
     <div class="container-fluid big-box">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div>
-                    <ul class="nav navbar-nav">
-                            <li class="active">
-                                <div class="form-group checkbox-stu">
-                                    <select class="form-control">
-                                        <option value="">-请选择分院-</option>
-                                        <%for (int i = 0; i < bads.Tables[0].Rows.Count; i++)
-                                            {%>
-                                            <option value=""><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <%} %>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <div class="form-group checkbox-stu">
-                                    <select class="form-control">
-                                        <option value="">-请选择专业-</option>
-                                            <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                                            {%>
-                                            <option value=""><%=prods.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <%} %>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="active col-sm-4 checkbox-stu">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-info" type="button">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                            查询
-                                        </button>
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <button class="btn btn-success checkbox-stu" id="btn-Add">
-                                    <span class="glyphicon glyphicon-plus-sign"></span>
-                                    新增
-                                </button>
-                            </li>
-                            <li class="active">
-                                <button class="btn btn-danger checkbox-stu" id="btn-Del">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    批量删除
-                                </button>
-                            </li>
-                            
-                        </ul>
+        <div class="panel panel-default">
+            <div class="input-group col-sm-6">
+                <input type="text" class="form-control" placeholder="请输入查询条件" style="margin-top:12px;" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button">
+                        <span class="glyphicon glyphicon-search">查询</span>
+                    </button>
+                </span>
+                <div class="input-group">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        新增
+                    </button>
+                    <button class="btn btn-danger" id="btn-Del">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        批量删除
+                    </button>
                 </div>
             </div>
-        </nav>
+        </div>
         <div class="">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -105,28 +71,55 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        <a href="#" class="jump" id="prev">上一页
                         </a>
                     </li>
                     <li>
-                        <a href="">1</a>
+                        <a href="#" class="jump"><%=getCurrentPage %></a>
                     </li>
                     <li>
-                        <a href="">2</a>
+                        <a href="#">/</a>
                     </li>
                     <li>
-                        <a href="">3</a>
+                        <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="">...</a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        <a href="#" id="next" class="jump">下一页
                         </a>
                     </li>
                 </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--添加专业弹窗-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">添加专业
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="height: 100px;">
+                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">姓名:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-sm" placeholder="请输入姓名" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">姓名:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-sm" placeholder="请输入姓名" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
             </div>
         </div>
     </div>
@@ -135,4 +128,28 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
+<script src="../js/bootstrap-select.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".jump").click(function () {
+            switch ($.trim($(this).html())) {
+                case ("上一页"):
+                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
+                    break;
+                case ("下一页"):
+                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
+                    break;
+                case ("1"):
+                    jump(1);
+                    break;
+                case ("<%=count %>"):
+                    jump(<%=count %>);
+                    break;
+            }
+        });
+        function jump(cur) {
+            window.location.href = "proList.aspx?currentPage=" + cur;
+        }
+    })
+</script>
 </html>

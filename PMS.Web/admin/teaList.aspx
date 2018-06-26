@@ -14,61 +14,33 @@
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
 </head>
 <style>
-        .teaLable {
-            text-align: right;
-        }
-    </style>
+    .teaLable {
+        text-align: right;
+    }
+</style>
 
 <body>
     <div class="container-fluid big-box">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <div class="form-group checkbox-stu">
-                                <select class="selectpicker" data-width="auto">
-                                    <option value="">-请选择院系-</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <div class="form-group col-sm-3 checkbox-stu">
-                                <select class="selectpicker" data-width="auto">
-                                    <option value="">-请选择性别-</option>
-                                    <option value="">男</option>
-                                    <option value="">女</option>
-                                </select>
-                            </div>
-                        </li>
-                        <li class="active col-sm-4 checkbox-stu">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="请输入查询条件" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info" type="button">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        查询
-                                    </button>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="active">
-                            <button class="btn btn-success checkbox-stu" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                新增
-                            </button>
-                        </li>
-                        <li class="active">
-                            <button class="btn btn-danger checkbox-stu" id="btn-Del">
-                                <span class="glyphicon glyphicon-trash"></span>
-                                批量删除
-                            </button>
-                        </li>
-                    </ul>
+        <div class="input-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="请输入查询条件" style="width: 150px; float: none;" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button">
+                        <span class="glyphicon glyphicon-search">查询</span>
+                    </button>
+                </span>
+                <div class="input-group">
+                    <button class="btn btn-danger" type="button">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        批量删除
+                    </button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                        <span class="glyphicon glyphicon-plus-sign">新增</span>
+                    </button>
                 </div>
             </div>
-        </nav>
+
+        </div>
         <div class="">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -171,49 +143,49 @@
                             <tr>
                                 <td class="teaLable">工号</td>
                                 <td>
-                                    <input type="text" /></td>
+                                    <input class="form-control" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">姓名</td>
                                 <td>
-                                    <input type="text" /></td>
+                                    <input class="form-control" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">性别</td>
                                 <td>
-                                    <select type="text">
-                                        <option>男</option>
-                                        <option>女</option>
+                                    <select class="selectpicker" data-width="auto">
+                                        <option value="">男</option>
+                                        <option value="">女</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">院系</td>
                                 <td>
-                                    <select type="text">
-                                        <option>信息工程学院</option>
-                                        <option>人文学院</option>
+                                    <select class="selectpicker" data-width="auto">
+                                        <option value="">请选择院系</option>
+                                        <option value="">信息工程学院</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">职称</td>
                                 <td>
-                                    <select type="text">
-                                        <option>教授</option>
-                                        <option>副教授</option>
+                                    <select class="selectpicker" data-width="auto">
+                                        <option value="">教授</option>
+                                        <option value="">副教授</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">邮箱</td>
                                 <td>
-                                    <input type="text" /></td>
+                                    <input class="form-control" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">联系电话</td>
                                 <td>
-                                    <input type="text" /></td>
+                                    <input class="form-control" type="text" /></td>
                             </tr>
                         </tbody>
                     </table>

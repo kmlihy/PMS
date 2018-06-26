@@ -20,11 +20,16 @@ namespace PMS.Web.admin
         //学院
         protected DataSet bads = null;
         protected CollegeBll colbll = new CollegeBll();
-        
+        protected int getCurrentPage = 1;
+        protected int count;
+        protected int pagesize = 1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            getPage("", 2);
+            getPage("", 1);
             prods = probll.Select();
+            changepage();
+            getPage("", getCurrentPage);
             bads = colbll.Select();
 
         }
@@ -35,9 +40,27 @@ namespace PMS.Web.admin
         /// <param name="pageNum">当前加载页数</param>
         public void getPage(string strWhere,int pageNum)
         {
-            TableBuilder tbuilder = new TableBuilder("V_Profession","proId",0,0,"*",2, pageNum, strWhere);
-            int pageCount;
-            ds = probll.SelectBypage(tbuilder,out pageCount);
+            TableBuilder tabuilder = new TableBuilder("V_Profession","proId",0,0,"*",1, pageNum, strWhere);
+            ds = probll.SelectBypage(tabuilder, out count);
+            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
+        }
+        public void changepage()
+        {
+            try
+            {
+                string currentPage = Request.QueryString["currentPage"];
+                getCurrentPage = int.Parse(currentPage);
+            }
+            catch { }
+            if (getCurrentPage < 1)
+            {
+                getCurrentPage = 1;
+            }
+            else if (getCurrentPage > count)
+            {
+                getCurrentPage = count;
+            }
+            ViewState["page"] = getCurrentPage;
         }
     }
 }
