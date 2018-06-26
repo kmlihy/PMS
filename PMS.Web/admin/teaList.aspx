@@ -128,7 +128,7 @@
                         <th class="text-center">姓名</th>
                         <th class="text-center">性别</th>
                         <th class="text-center">院系</th>
-                        <th class="text-center">职称</th>
+                        <th class="text-center">教师类别</th>
                         <th class="text-center">联系电话</th>
                         <th class="text-center">邮箱</th>
                         <th class="text-center">操作</th>
@@ -180,30 +180,27 @@
                     </tbody>
                 </table>
                 <div class="container-fluid text-right">
-                    <ul class="pagination pagination-lg">
-                        <li>
-                            <a href="">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">1</a>
-                        </li>
-                        <li>
-                            <a href="">2</a>
-                        </li>
-                        <li>
-                            <a href="">3</a>
-                        </li>
-                        <li>
-                            <a href="">...</a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </li>
-                    </ul>
+                   <ul class="pagination pagination-lg">
+            <li>
+                <a href="#" class="jump" id="prev">
+                    上一页
+                </a>
+            </li>
+            <li>
+                <a href="#" class="jump">1</a>
+            </li>
+            <li>
+                <a href="#">/</a>
+            </li>
+            <li>
+                <a href="#" class="jump"><%=count %></a>
+            </li>
+            <li>
+                <a href="#" id="next" class="jump">
+                    下一页
+                </a>
+            </li>
+        </ul>
                 </div>
             </div>
         </div>
@@ -277,5 +274,28 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
-
+        <script>
+            $(document).ready(function () {
+                $(".jump").click(function () {
+                    // alert($.trim($(this).html()));
+                    switch($.trim($(this).html())){
+                        case ("上一页"):
+                           jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
+                            break;
+                        case ("下一页"):
+                           jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
+                            break;
+                        case ("1"):
+                            jump(1);
+                            break;
+                        case ("<%=count %>"):
+                            jump(<%=count %>);
+                            break;
+                    }
+                 });
+                function jump(cur){
+                    window.location.href = "teaList.aspx?currentPage="+cur;
+                }
+            }) 
+    </script>
     </html>
