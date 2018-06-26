@@ -20,47 +20,37 @@
                             <tr>
                                 <td class="centerLable">账号：</td>
                                 <td></td>
-                                <td id="ID">166122001</td>
+                                <td id="ID"><%= student.StuAccount %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">姓名：</td>
                                 <td></td>
-                                <td>刘备</td>
+                                <td><%= student.RealName %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">性别：</td>
                                 <td></td>
-                                <td id="gender">男</td>
-                            </tr>
-                            <tr>
-                                <td class="centerLable">年级：</td>
-                                <td></td>
-                                <td id="grade">2016级</td>
-                            </tr>
-                            <tr>
-                                <td class="centerLable">学历：</td>
-                                <td></td>
-                                <td id="education">本科</td>
+                                <td id="gender"><%= student.Sex %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">学院：</td>
                                 <td></td>
-                                <td id="college">信息工程学院</td>
+                                <td id="college"><%= student.college.ColName %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">专业：</td>
                                 <td></td>
-                                <td id="profession">计算机科学与技术</td>
+                                <td id="profession"><%= student.profession.ProName %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">联系电话：</td>
                                 <td></td>
-                                <td id="telNum">8008208820</td>
+                                <td id="telNum"><%= student.Phone %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">电子邮箱：</td>
                                 <td></td>
-                                <td id="email">123456789@qq.com</td>
+                                <td id="email"><%= student.Email %></td>
                             </tr>
                             <tr>
                                 <td class="centerLable">

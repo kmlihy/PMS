@@ -19,62 +19,53 @@
             <div class="container-fluid">
                 <div>
                     <ul class="nav navbar-nav">
-                        <li class="active col-sm-4  ">
-                            <div class="input-group" style="margin-top: 7px">
-                                <input type="text" class="form-control" placeholder="请输入查询条件" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-info" type="button">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                        查询
-                                    </button>
-                                </span>
-                            </div>
-                        </li>
-                        <!-- <li class="active">
-                                <button class="btn btn-info" id="btn-search">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    查询
+                            <li class="active">
+                                <div class="form-group checkbox-stu">
+                                    <select class="form-control">
+                                        <option value="">-请选择分院-</option>
+                                        <%for (int i = 0; i < bads.Tables[0].Rows.Count; i++)
+                                            {%>
+                                            <option value=""><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} %>
+                                    </select>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <div class="form-group checkbox-stu">
+                                    <select class="form-control">
+                                        <option value="">-请选择专业-</option>
+                                            <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                            {%>
+                                            <option value=""><%=prods.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} %>
+                                    </select>
+                                </div>
+                            </li>
+                            <li class="active col-sm-4 checkbox-stu">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                            查询
+                                        </button>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="active">
+                                <button class="btn btn-success checkbox-stu" id="btn-Add">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    新增
                                 </button>
-                            </li> -->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">专业
-                                    <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                                    {  %>
-                                <li>
-                                    <a href="#"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></a>
-                                </li>
-                                <%} %>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">院系
-                                    <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <%for (int i = 0; i < bads.Tables[0].Rows.Count; i++)
-                                    {  %>
-                                <li>
-                                    <a href="#"><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></a>
-                                </li>
-                                <%} %>
-                            </ul>
-                        </li>
-                        <li class="active">
-                            <button class="btn btn-success" id="btn-Add">
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                新增
-                            </button>
-                        </li>
-                        <li class="active">
-                            <button class="btn btn-danger" id="btn-Del">
-                                <span class="glyphicon glyphicon-trash"></span>
-                                批量删除
-                            </button>
-                        </li>
-                    </ul>
+                            </li>
+                            <li class="active">
+                                <button class="btn btn-danger checkbox-stu" id="btn-Del">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    批量删除
+                                </button>
+                            </li>
+                            
+                        </ul>
                 </div>
             </div>
         </nav>

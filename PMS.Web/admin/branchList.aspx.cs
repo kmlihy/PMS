@@ -12,17 +12,42 @@ namespace PMS.Web.admin
 {
     public partial class branchList : System.Web.UI.Page
     {
+        //获取数据
         int count = 1;
-        public string where ="";
-        public int pageNum = 1;
-        public int pageSize = 5;
+        protected string where ="";
+        protected int pageNum = 1;
+        protected int pageSize = 5;
         protected DataSet ds = null;
         CollegeBll collbll = new CollegeBll();
+        //分页
+        protected string getName = "";
+        protected int currentPage = 0;
+        protected int getCurrentPage = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            getdata(where, pageNum,pageSize);
+            //获取数据
+            GetData(where, pageNum, pageSize);
+            //分页
+            string name = Request["name"];
+            string currentPage = Request["currentPage"];
+            string op = Request["op"];
+            if (op == "1")
+            {
+                getCurrentPage = int.Parse(currentPage) - 1;
+                System.Diagnostics.Debug.WriteLine("op1当前页为：" + getCurrentPage);
+            }
+            else if (op == "2")
+            {
+                getCurrentPage = int.Parse(currentPage) + 1;
+                System.Diagnostics.Debug.WriteLine("op2当前页为：" + getCurrentPage);
+            }
+            else
+            {
+                //getCurrentPage = int.Parse(currentPage);
+            }
         }
-        public void getdata(string strWhere,int pageNum, int pageSize)
+        //获取数据
+        public void GetData(string strWhere,int pageNum, int pageSize)
         {
             TableBuilder tbd = new TableBuilder()
             {
@@ -36,6 +61,7 @@ namespace PMS.Web.admin
                 StrWhere = strWhere
             };
             ds = collbll.SelectBypage(tbd,out count);
+            pageSize = ds.Tables[0].Rows.Count;
         }
     }
 }
