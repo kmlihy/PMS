@@ -4,14 +4,9 @@
 a {
     color: black;
 }
-
-    a:hover {
-        color: rgb(12, 161, 241);
-        text-decoration: none;
-    }
-
-.big-box {
-    margin-top: 30px !important;
+a:hover{
+    color: rgb(12, 161, 241);
+    text-decoration: none;
 }
 /*newsList.aspx*/
 #school-list {
@@ -41,14 +36,19 @@ a {
 }
 
 /*stuList*/
-.checkbox-stu {
-    margin-top: 15px;
-    margin-left: 15px;
+.box{
+    margin-top: 10px;
+}
+.box-1{
+    margin-bottom: 10px;
+}
+#btn-Add{
+    margin-left: 5px;
+}
+#btn-delete{
+    margin-left: 5px;
 }
 
-#search-stu {
-    margin-top: 15px;
-}
 /*去td上边框*/
 .modal-body .table tbody tr td {
     border: none !important;
@@ -57,4 +57,5 @@ a {
 #inputsearch {
     width: 150px;
     float: none;
+    margin-left: 5px;
 }
