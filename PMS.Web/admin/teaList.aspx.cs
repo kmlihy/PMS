@@ -20,14 +20,21 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             Search();
-            getdata(Search(), 1);
-            changepage();
-            getdata(Search(), getCurrentPage);    
+            //getdata(Search());
+            //changepage();
+            getdata(Search());
+                
         }
 
-        public void getdata(String strWhere, int IntPageNum)
+        public void getdata(String strWhere)
         {
+            string currentPage = Request.QueryString["currentPage"];
+            if(currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
             BLL.TeacherBll sdao = new TeacherBll();
             TeacherBll pro = new TeacherBll();
             TableBuilder tabuilder = new TableBuilder()
@@ -36,31 +43,19 @@ namespace PMS.Web.admin
                 StrWhere = strWhere==null ? "": strWhere,
                 IntColType = 0,
                 IntOrder = 0,
-                IntPageNum = IntPageNum,
+                IntPageNum = int.Parse(currentPage),
                 IntPageSize = pagesize,
                 StrColumn = "teaAccount",
                 StrColumnlist = "*"
             };
+            getCurrentPage = int.Parse(currentPage);
             ds = pro.SelectBypage(tabuilder, out count);
         }
 
-        public void changepage() {
-            try
-            {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
-            }
-            catch { }
-            if (getCurrentPage < 1)
-            {
-                getCurrentPage = 1;
-            }
-            else if (getCurrentPage > (count == 0 ? 1 : count))
-            {
-                getCurrentPage = count == 0  ?  1 : count;
-            }
-            ViewState["page"] = getCurrentPage;
-        }
+        //public void changepage() {
+        //    string currentPage = Request.QueryString["currentPage"];
+        //    getCurrentPage = int.Parse(currentPage);           
+        //}
 
         public string Search() {
             try
@@ -68,6 +63,9 @@ namespace PMS.Web.admin
                 search = Request.QueryString["search"];
                 if (search.Length == 0)
                 {
+                    search = "";
+                }
+                else if (search==null) {
                     search = "";
                 }
                 else

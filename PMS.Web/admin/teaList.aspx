@@ -112,6 +112,7 @@
                         <a href="#">/</a>
                     </li>
                     <li>
+                        <% if (count == 0) { count = 1; } %>
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
@@ -200,22 +201,38 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script>
+    sessionStorage.setItem("page", <%=getCurrentPage %>);
+    sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
-        alert(sessionStorage.getItem("strWhere"));
+        alert(sessionStorage.getItem("page"));
         $(".jump").click(function () {
-            // alert($.trim($(this).html()));
+            // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
                 case ("上一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                    break;
+                    if (parseInt(sessionStorage.getItem("page")) > 1) {
+                        jump(parseInt(sessionStorage.getItem("page")) - 1);
+                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
+                        break;
+                    }
+                    else {
+                        jump(1);
+                        break;
+                    }
                 case ("下一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
+                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                        jump(parseInt(sessionStorage.getItem("page")) + 1);
+                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
+                        break;
+                    }
+                    else {
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
                 case ("1"):
                     jump(1);
                     break;
-                case ("<%=count %>"):
-                    jump(<%=count %>);
+                case (sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
         });
@@ -228,7 +245,12 @@
         });
 
         function jump(cur) {
-            window.location.href = "teaList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            if (sessionStorage.getItem("strWhere") == null) {
+                window.location.href = "teaList.aspx?currentPage=" + cur
+            }
+            else {
+                window.location.href = "teaList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            }          
         }
     })
 </script>
