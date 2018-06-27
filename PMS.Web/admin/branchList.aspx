@@ -6,40 +6,36 @@
 
     <head runat="server">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
+        <title>分院信息表</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../css/ml.css" />
         <link rel="stylesheet" href="../css/lgd.css" />
         <link rel="stylesheet" href="../css/style.css" />
         <link rel="stylesheet" href="../square/_all.css" />
     </head>
-    <style>
-        .teaLable {
-            text-align: right;
-        }
-    </style>
 
     <body>
         <div class="container-fluid big-box">
-            <div class="input-group">
-                <div class="input-group">
+            <div class="panel panel-default" id="teapanelbox">
+            <div class="pane input-group" id="panel-head">
+                <div class="input-group" id="inputgroups">
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">
-                        <span class="glyphicon glyphicon-search">查询</span>
-                    </button>
+                        <button class="btn btn-info" type="button" id="btn-search">
+                            <span class="glyphicon glyphicon-search" >查询</span>
+                        </button>
                     </span>
                     <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                    <span class="glyphicon glyphicon-plus-sign">新增</span>
-                    </button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                            <span class="glyphicon glyphicon-plus-sign">新增</span>
+                        </button>
                     </span>
-                    <button class="btn btn-danger" type="button">
-                    <span class="glyphicon glyphicon-trash"></span>
-                    批量删除
-                </button>
+                    <button class="btn btn-danger" type="button" id="btn-Del">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        批量删除
+                    </button>
                 </div>
             </div>
+        </div>
         </div>
         <div class="">
             <table class="table table-bordered table-hover">
@@ -52,10 +48,9 @@
                     <th class="text-center">操作</th>
                 </thead>
                 <tbody>
-                    <% 
-                            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                            {
-                        %>
+                    <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                       {
+                    %>
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox" />
@@ -68,14 +63,14 @@
                             </td>
                             <td class="text-center">
                                 <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
                                 <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                             </td>
                         </tr>
-                        <%  }%>
+                        <% }%>
                 </tbody>
             </table>
             <div class="container-fluid text-right">
@@ -104,6 +99,34 @@
                 </ul>
             </div>
         </div>
+        <!-- 添加教师弹框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                        <h4 class="modal-title" id="myModalLabel">添加教师
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td class="teaLable">学院名称</td>
+                                    <td>
+                                        <input class="form-control" type="text" id="collName" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="btnInsert">提交更改</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -133,6 +156,16 @@
             function jump(cur) {
                 window.location.href = "branchList.aspx?currentPage=" + cur;
             }
+            //查询
+            $("#btnQuery").click(function () {
+                var strQuery = $("#inputsearch").val();
+                alert(strQuery);
+                window.location.href = "branchList.aspx?strQuery=" + strQuery;
+            })
+            $("#btnInsert").click(function () {
+                var collName = $("#collName").val();
+                window.location.href += "collName=" + collName;
+            })
         })
     </script>
 

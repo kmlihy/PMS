@@ -13,11 +13,14 @@ namespace PMS.Web.admin
     public partial class branchList : System.Web.UI.Page
     {
         //获取数据
+        CollegeBll collbll = new CollegeBll();
         protected DataSet ds = null;
         protected int count;
         protected int pageSize = 1;
         //分页
         protected int getCurrentPage = 1;
+        //查询
+        protected string strWhere = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             //首次获取数据
@@ -30,20 +33,23 @@ namespace PMS.Web.admin
         //获取数据
         public void getdata(string strWhere,int pageNum)
         {
-            CollegeBll collbll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "T_College",
                 StrColumn = "collegeId",
                 IntColType = 0,
                 IntOrder = 0,
-                StrColumnlist = "collegeName",
+                StrColumnlist = "*",
                 IntPageSize = pageSize,
                 IntPageNum = pageNum,
                 StrWhere = strWhere
             };
             ds = collbll.SelectBypage(tbd,out count);
             count = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+        }
+        //按条件查询
+        public void query()
+        {
         }
         //分页
         public void changepage()
@@ -63,6 +69,13 @@ namespace PMS.Web.admin
                 getCurrentPage = count;
             }
             ViewState["page"] = getCurrentPage;
+        }
+        protected void insert()
+        {
+            string collName = Request.QueryString["collName"];
+            College coll = new College();
+            coll.ColName = collName;
+            collbll.Insert(coll);
         }
     }
 }

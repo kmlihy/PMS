@@ -13,7 +13,7 @@ namespace PMS.Web.admin
     public partial class adminList : System.Web.UI.Page
     {
         //获取数据
-        protected DataSet ds = null;
+        protected DataSet ds = null, dsColl = null;
         protected int count;
         protected int pageSize = 1;
         //分页
@@ -42,6 +42,7 @@ namespace PMS.Web.admin
             }
             //获取数据
             TeacherBll teabll = new TeacherBll();
+            CollegeBll coll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "V_Teacher",
@@ -55,6 +56,8 @@ namespace PMS.Web.admin
             };
             ds = teabll.SelectBypage(tbd, out count);
             count = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+            //获取学院所有信息
+            dsColl = coll.Select();
         }
         //分页
         public void changepage()
