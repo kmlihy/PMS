@@ -18,18 +18,22 @@ namespace PMS.Web.admin
         protected int pageSize = 1;
         //分页
         protected int getCurrentPage = 1;
+        //查询
+        protected String search = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             //获取数据
-            getdata("", 1);
-            //分页
-            changepage();
-            //根据分页条件获取数据
-            getdata("", getCurrentPage);
+            Search();
+            getdata(Search());
         }
         //获取数据
-        public void getdata(string strWhere, int pageNum)
+        public void getdata(string strWhere)
         {
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
             //判断身份是否是管理员
             string strTeaType = "";
             if (strWhere == "")
@@ -51,32 +55,37 @@ namespace PMS.Web.admin
                 IntOrder = 0,
                 StrColumnlist = "teaAccount,teaName,sex,collegeName,phone,Email",
                 IntPageSize = pageSize,
-                IntPageNum = pageNum,
-                StrWhere = strTeaType + strWhere
+                IntPageNum = int.Parse(currentPage),
+                StrWhere = strTeaType + strWhere == null ? "" : strWhere
             };
+            getCurrentPage = int.Parse(currentPage);
             ds = teabll.SelectBypage(tbd, out count);
-            count = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
             //获取学院所有信息
             dsColl = coll.Select();
         }
         //分页
-        public void changepage()
+        public string Search()
         {
             try
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                }
             }
-            catch { }
-            if (getCurrentPage <= 1)
+            catch
             {
-                getCurrentPage = 1;
             }
-            else if (getCurrentPage >= count)
-            {
-                getCurrentPage = count;
-            }
-            ViewState["page"] = getCurrentPage;
+            return search;
         }
     }
 }

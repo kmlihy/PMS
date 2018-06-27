@@ -8,40 +8,44 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>分院信息表</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../css/lgd.css" />
+        <link rel="stylesheet" href="../css/ml.css" />
         <link rel="stylesheet" href="../css/style.css" />
         <link rel="stylesheet" href="../square/_all.css" />
+        <link rel="stylesheet" href="../css/bootstrap-select.css" />
     </head>
+    <style>
+        .teaLable {
+            text-align: right;
+        }
+    </style>
 
     <body>
         <div class="container-fluid big-box">
-            <div class="panel panel-default" id="teapanelbox">
-            <div class="pane input-group" id="panel-head">
-                <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search" >查询</span>
-                        </button>
-                    </span>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                            <span class="glyphicon glyphicon-plus-sign">新增</span>
-                        </button>
-                    </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del">
+        <div class="input-group">
+            <div class="input-group">
+                <input type="text" class="form-control search" id="inputsearch" placeholder="请输入查询条件" style="width: 150px; float: none;" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button" id="btn-search">
+                        <span class="glyphicon glyphicon-search">查询</span>
+                    </button>
+                </span>
+                <div class="input-group">
+                    <button class="btn btn-danger" type="button">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                        <span class="glyphicon glyphicon-plus-sign">新增</span>
+                    </button>
                 </div>
             </div>
-        </div>
+
         </div>
         <div class="">
             <table class="table table-bordered table-hover">
                 <thead>
                     <th class="text-center">
-                        <input type="checkbox" class="js-checkbox-all" />
+                        <input type="checkbox" class="js-checkbox-all">
                     </th>
                     <th class="text-center">序号</th>
                     <th class="text-center">名称</th>
@@ -62,10 +66,10 @@
                                 <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-default btn-sm btn-warning">
+                                <button class="btn btn-default btn-sm btn-warning" onclick="pagingMsg()">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                                <button class="btn btn-default btn-sm btn-danger">
+                                <button class="btn btn-default btn-sm btn-danger" onclick="pagingMsg()">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                             </td>
@@ -76,7 +80,7 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="prev">上一页
+                        <a href="#" class="jump" id="prev"><span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                     </li>
                     <li>
@@ -88,12 +92,14 @@
                         <a href="#">/</a>
                     </li>
                     <li>
+                        <% if (count == 0) { count = 1; } %>
                         <a href="#" class="jump">
                             <%=count %>
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump">下一页
+                        <a href="#" id="next" class="jump">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </li>
                 </ul>
@@ -107,7 +113,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                        <h4 class="modal-title" id="myModalLabel">添加教师
+                        <h4 class="modal-title" id="myModalLabel">添加学院
                         </h4>
                     </div>
                     <div class="modal-body">
@@ -123,7 +129,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="btnInsert">提交更改</button>
+                        <button type="button" class="btn btn-primary" id="btnInsert" data-dismiss="modal">添加</button>
                     </div>
                 </div>
             </div>
@@ -133,39 +139,62 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
+    <script src="../js/zwh.js"></script>
     <script>
         //分页
-        $(document).ready(function() {
-            $(".jump").click(function() {
+        //存储当前页数
+        sessionStorage.setItem("page", <%=getCurrentPage %>);
+        //存储总页数
+        sessionStorage.setItem("countPage",<%=count %>);
+        $(document).ready(function () {
+            //alert(sessionStorage.getItem("page"));
+            $(".jump").click(function () {
+                // alert($.trim($(this).html()));          
                 switch ($.trim($(this).html())) {
-                    case ("上一页"):
-                        jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                        break;
-                    case ("下一页"):
-                        jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                        break;
+                    case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+                        if (parseInt(sessionStorage.getItem("page")) > 1) {
+                            jump(parseInt(sessionStorage.getItem("page")) - 1);
+                            sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
+                            break;
+                        }
+                        else {
+                            jump(1);
+                            break;
+                        }
+                    case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+                        if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                            jump(parseInt(sessionStorage.getItem("page")) + 1);
+                            sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
+                            break;
+                        }
+                        else {
+                            jump(parseInt(sessionStorage.getItem("countPage")));
+                            break;
+                        }
                     case ("1"):
                         jump(1);
                         break;
-                    case ("<%=count %>"):
-                        jump(<%=count %>);
+                    case (sessionStorage.getItem("countPage")):
+                        jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                 }
             });
 
+            $("#btn-search").click(function () {
+                var strWhere = $("#inputsearch").val();
+                sessionStorage.setItem("strWhere",strWhere);
+                //window.location.href = "teaList.aspx?search=" + strWhere;
+                jump(1);
+            });
+
             function jump(cur) {
-                window.location.href = "branchList.aspx?currentPage=" + cur;
+                if (sessionStorage.getItem("strWhere") == null) {
+                    window.location.href = "branchList.aspx?currentPage=" + cur
+                }
+                else {
+                    window.location.href = "branchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+                }          
             }
-            //查询
-            $("#btnQuery").click(function () {
-                var strQuery = $("#inputsearch").val();
-                alert(strQuery);
-                window.location.href = "branchList.aspx?strQuery=" + strQuery;
-            })
-            $("#btnInsert").click(function () {
-                var collName = $("#collName").val();
-                window.location.href += "collName=" + collName;
-            })
         })
     </script>
 
