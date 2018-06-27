@@ -9,30 +9,33 @@
     <title>批次表</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
+    <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
 </head>
 
 <body>
-    <div class="container-fluid panel " style="margin-top: 10px;">
-        <div class="input-group box">
-            <div class="input-group box-1">
-                <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
-                <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">
-                        <span class="glyphicon glyphicon-search">查询</span>
+    <div class="container-fluid panel ">
+        <div class="panel panel-default" id="teapanelbox">
+            <div class="pane input-group" id="panel-head">
+                <div class="input-group" id="inputgroups">
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" id="btn-search">
+                            <span class="glyphicon glyphicon-search" >查询</span>
+                        </button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                            <span class="glyphicon glyphicon-plus-sign">新增</span>
+                        </button>
+                    </span>
+                    <button class="btn btn-danger" type="button" id="btn-Del">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        批量删除
                     </button>
-                </span>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                        <span class="glyphicon glyphicon-plus-sign">新增</span>
-                    </button>
-                </span>
-                <button class="btn btn-danger" type="button" id="btn-delete">
-                    <span class="glyphicon glyphicon-trash"></span>
-                    批量删除
-                </button>
+                </div>
             </div>
         </div>
         <div class="">
@@ -118,7 +121,7 @@
             </div>
         </div>
     </div>
-    <!-- 添加学生弹框（Modal） -->
+    <!-- 添加批次弹框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -127,40 +130,35 @@
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">添加批次
-                    </h4>
+                    </h4
                 </div>
                 <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table">
                         <tbody>
                             <tr>
-                                <td class="teaLable">批次名称</td>
+                                <td class="teaLable text-center"><label class="text-span">批次名称</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text"/></td>
                             </tr>
                             <tr>
-                                <td class="teaLable">开始时间</td>
+                                <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable">结束时间</td>
+                                <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable">激活状态</td>
+                                <td class="teaLable"><label class="text-span">激活状态</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
-
                             <tr>
-                                <td class="teaLable">院系</td>
+                                <td class="teaLable"><label class="text-span">所属院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
-                                        <option value="">请选择院系</option>
-                                        <option value="">信息工程学院</option>
-                                    </select>
-                                </td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                         </tbody>
                     </table>
