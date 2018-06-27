@@ -1,5 +1,5 @@
 ﻿body {
-background-color:;
+    background-color:;
 }
 /**学生注册页面*/
 
@@ -41,7 +41,7 @@ background-color:;
     border-radius: 10px 10px 10px 10px;
 }
 
-.titleTable>tbody>tr>td {
+.titleTable > tbody > tr > td {
     border: 0px;
 }
 
@@ -112,4 +112,79 @@ background-color:;
 
 .paperlisttable {
     margin-top: 30px;
+}
+/*列表头部样式*/
+.big-box {
+    margin-top: 30px;
+}
+/*去td上边框*/
+.modal-body .table tbody tr td {
+    border: none !important;
+}
+
+#inputsearch {
+    width: 150px;
+    float: none;
+}
+
+.inputsearch {
+    margin-left: 6px;
+}
+
+#btn-search {
+    margin-left: -5px;
+}
+
+.teaAddinput {
+    width: 200px;
+}
+
+.text-span {
+    margin-top: 5px;
+}
+
+.teaLable {
+    text-align: right;
+}
+
+.modal-body .table {
+    margin-left: 80px;
+    width: 80%;
+}
+
+#panel-head {
+    height: 50px;
+}
+
+#inputgroups {
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+#btn-Add {
+    margin-left: 5px;
+}
+
+#btn-Del {
+    margin-left: 5px;
+}
+
+#teapanelbox {
+    min-width: 554px;
+}
+
+#propanelbox {
+    min-width: 413px;
+}
+
+#protab {
+    min-width: 413px;
+}
+
+#selectToppanelbox {
+    min-width: 480px;
+}
+
+#selectToptab {
+    min-width: 480px;
 }
