@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="teaList.aspx.cs" Inherits="PMS.Web.admin.teaList" %>
-
+<%=""%>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,10 +23,10 @@
     <div class="container-fluid big-box">
         <div class="input-group">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="请输入查询条件" style="width: 150px; float: none;" />
+                <input type="text" class="form-control search" id="searchinfo" placeholder="请输入查询条件" style="width: 150px; float: none;" />
                 <span class="input-group-btn">
                     <button class="btn btn-info" type="button">
-                        <span class="glyphicon glyphicon-search">查询</span>
+                        <span class="glyphicon glyphicon-search" id="search">查询</span>
                     </button>
                 </span>
                 <div class="input-group">
@@ -51,7 +51,6 @@
                     <th class="text-center">姓名</th>
                     <th class="text-center">性别</th>
                     <th class="text-center">院系</th>
-                    <th class="text-center">教师类别</th>
                     <th class="text-center">联系电话</th>
                     <th class="text-center">邮箱</th>
                     <th class="text-center">操作</th>
@@ -76,9 +75,6 @@
                         </td>
                         <td class="text-center">
                             <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                        </td>
-                        <td class="text-center">
-                            <%=ds.Tables[0].Rows[i]["teaType"].ToString() %>
                         </td>
                         <td class="text-center">
                             <%=ds.Tables[0].Rows[i]["phone"].ToString() %>
@@ -205,6 +201,7 @@
 <script src="../js/bootstrap-select.js"></script>
 <script>
     $(document).ready(function () {
+        alert(sessionStorage.getItem("strWhere"));
         $(".jump").click(function () {
             // alert($.trim($(this).html()));
             switch ($.trim($(this).html())) {
@@ -222,8 +219,16 @@
                     break;
             }
         });
+
+        $("#search").click(function () {
+            var strWhere = $("#searchinfo").val();
+            sessionStorage.setItem("strWhere",strWhere);
+            //window.location.href = "teaList.aspx?search=" + strWhere;
+            jump(1);
+        });
+
         function jump(cur) {
-            window.location.href = "teaList.aspx?currentPage=" + cur;
+            window.location.href = "teaList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
     })
 </script>

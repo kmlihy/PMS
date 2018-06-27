@@ -16,13 +16,14 @@ namespace PMS.Web.admin
         protected int getCurrentPage = 1;
         protected int count;
         protected int pagesize=1;
+        protected String search = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            getdata("", 1);
+            Search();
+            getdata(Search(), 1);
             changepage();
-            getdata("", getCurrentPage);    
+            getdata(Search(), getCurrentPage);    
         }
 
         public void getdata(String strWhere, int IntPageNum)
@@ -32,7 +33,7 @@ namespace PMS.Web.admin
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Teacher",
-                StrWhere = strWhere,
+                StrWhere = strWhere==null ? "": strWhere,
                 IntColType = 0,
                 IntOrder = 0,
                 IntPageNum = IntPageNum,
@@ -41,7 +42,6 @@ namespace PMS.Web.admin
                 StrColumnlist = "*"
             };
             ds = pro.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
 
         public void changepage() {
@@ -55,12 +55,29 @@ namespace PMS.Web.admin
             {
                 getCurrentPage = 1;
             }
-            else if (getCurrentPage > count)
+            else if (getCurrentPage > (count == 0 ? 1 : count))
             {
-                getCurrentPage = count;
+                getCurrentPage = count == 0  ?  1 : count;
             }
             ViewState["page"] = getCurrentPage;
+        }
 
+        public string Search() {
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                }   
+            }
+            catch {
+            }
+            return search;
         }
     }
 }
