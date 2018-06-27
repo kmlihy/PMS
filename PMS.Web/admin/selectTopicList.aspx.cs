@@ -26,8 +26,6 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string test = Request["collegeselect"];
-            //selectChange("select * from V_Profession");
             getData("", getCurrentPage);
             changepage();
             bads = colbll.Select();
@@ -43,7 +41,6 @@ namespace PMS.Web.admin
         {
             TableBuilder tabuilder = new TableBuilder("V_TitleRecord", "titleRecordId", 0, 0, "*", 2, IntPageNum, strWhere);
             ds = probll.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
         public void changepage()
         {
@@ -62,17 +59,6 @@ namespace PMS.Web.admin
                 getCurrentPage = count;
             }
             ViewState["page"] = getCurrentPage;
-        }
-        /// <summary>
-        /// 学院与专业的联动
-        /// </summary>
-        /// <param name="strWhere">查询条件</param>
-        ///
-        public void selectChange(string strWhere)
-        {
-            TableBuilder tabuilder = new TableBuilder("V_Profession", "proId", 0, 0, "*", 2, 1, strWhere);
-            ds = probll.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
     }
 }
