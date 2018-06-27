@@ -8,72 +8,44 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>学生信息表</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/ml.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../square/_all.css">
+        <link rel="stylesheet" href="../css/ml.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../square/_all.css">
+        <link rel="stylesheet" href="../css/bootstrap-select.css">
     </head>
 
     <body>
-        <div class="container-fluid big-box">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <div class="input-group" id="search-stu">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <div class="form-group checkbox-stu">
-                                    <select class="form-control">
-                                        <option value="">-请选择分院-</option>
-                                        <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                                            { %>
-                                            <option value="">
-                                                <%= ds.Tables[0].Rows[i]["collegeName"] %>
-                                            </option>
-                                            <% } %>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <div class="form-group checkbox-stu">
-                                    <select class="form-control">
-                                        <option value="">-请选择专业-</option>
-                                        <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                                            { %>
-                                            <option value="">
-                                                <%= ds.Tables[0].Rows[i]["proName"] %>
-                                            </option>
-                                            <% } %>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <button type="button" class="btn-success btn checkbox-stu">
-                                    <span class="glyphicon glyphicon-search">查询</span>
-                                </button>
-                            </li>
-                            <li class="active">
-                                <button type="button" class="btn-info btn checkbox-stu">
-                                    <span class="glyphicon glyphicon-search">新增</span>
-                                </button>
-                            </li>
-                            <li class="active">
-                                <button type="button" class="btn-danger btn checkbox-stu">
-                                    <span class="glyphicon glyphicon-trash">批量删除</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="container-fluid" style="margin-top: 10px;">
+            <div class="input-group" style="margin-bottom: 10px;">
+                <div class="input-group" style="position: relative;">
+                    <select name="" id="" class="selectpicker">
+                        <option value="select">請選擇查詢的專業</option>
+                        <option value="1">1</option>
+                    </select>
+                    <span class="input-group" style="position: relative; width: 300px;margin-left: 5px;">
+                        <input type="text" name="" id="" class="form-control" placeholder="請輸入查詢條件">
+                        <span class="btn input-group-addon">
+                            <i class="glyphicon glyphicon-search"></i>
+                            查詢
+                        </span>
+                    </span>
                 </div>
-            </nav>
+                <div class="input-group" style="position: absolute;margin-top: -34px;margin-left: 460px;">
+                    <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        新增
+                    </button>
+                    <button class="btn btn-danger" style="position: absolute; margin-left: 5px;">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        批量刪除
+                    </button>
+                </div>
+            </div>
             <div class="">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all"/>
+                            <input type="checkbox" class="js-checkbox-all" />
                         </th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
@@ -151,4 +123,6 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
     <script src="../js/ml.js"></script>
+    <script src="../js/bootstrap-select.js"></script>
+
     </html>

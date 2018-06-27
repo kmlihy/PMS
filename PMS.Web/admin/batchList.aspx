@@ -14,61 +14,28 @@
     </head>
 
     <body>
-        <div class="container-fluid big-box">
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="container-fluid">
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <div class="input-group" id="search-stu">
-                                    <input type="text" class="form-control" placeholder="请输入查询条件"/>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <div class="form-group checkbox-stu">
-                                    <select class="form-control">
-                                        <option value="">-请选择分院-</option>
-                                        <% for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
-                                            { %>
-                                            <option value="">
-                                                <%= plands.Tables[0].Rows[i]["collegeName"] %>
-                                            </option>
-                                            <% } %>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <div class="form-group checkbox-stu">
-                                    <select class="form-control">
-                                        <option value="">-请选择专业-</option>
-                                        <% for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
-                                            { %>
-                                            <option value="">
-                                                <%= plands.Tables[0].Rows[i]["planName"] %>
-                                            </option>
-                                            <% } %>
-                                    </select>
-                                </div>
-                            </li>
-                            <li class="active">
-                                <button type="button" class="btn-success btn checkbox-stu">
-                                    <span class="glyphicon glyphicon-search">查询</span>
-                                </button>
-                            </li>
-                            <li class="active">
-                                <button type="button" class="btn-info btn checkbox-stu">
-                                    <span class="glyphicon glyphicon-search">新增</span>
-                                </button>
-                            </li>
-                            <li class="active">
-                                <button type="button" class="btn-danger btn checkbox-stu">
-                                    <span class="glyphicon glyphicon-trash">批量删除</span>
-                                </button>
-                            </li>
-                        </ul>
+        <div class="container-fluid panel " style="margin-top: 10px;">
+                <div class="input-group" style="margin-bottom: 10px;">
+                        <div class="input-group" style="position: relative;">
+                            <span class="input-group" style="position: relative; width: 300px;margin-left: 5px;">
+                                <input type="text" name="" id="" class="form-control" placeholder="請輸入查詢條件">
+                                <span class="btn input-group-addon">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    查詢
+                                </span>
+                            </span>
+                        </div>
+                        <div class="input-group" style="position: absolute;margin-top: -34px;margin-left: 310px;">
+                            <button class="btn btn-success">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                新增
+                            </button>
+                            <button class="btn btn-danger" style="position: absolute; margin-left: 5px;">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                批量刪除
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </nav>
             <div class="">
                 <table class="table table-bordered table-hover">
                     <thead>
