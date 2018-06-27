@@ -15,7 +15,7 @@ namespace PMS.Web.admin
         //列表
        protected DataSet ds = null;
         //专业
-        protected DataSet prods = null;
+        //protected DataSet prods = null;
         protected ProfessionBll probll = new ProfessionBll();
         //学院
         protected DataSet bads = null;
@@ -27,7 +27,7 @@ namespace PMS.Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             getPage("", 1);
-            prods = probll.Select();
+           // prods = probll.Select();
             changepage();
             getPage("", getCurrentPage);
             bads = colbll.Select();
@@ -42,7 +42,6 @@ namespace PMS.Web.admin
         {
             TableBuilder tabuilder = new TableBuilder("V_Profession","proId",0,0,"*",1, pageNum, strWhere);
             ds = probll.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
         public void changepage()
         {
