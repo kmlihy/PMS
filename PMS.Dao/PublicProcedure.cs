@@ -37,6 +37,7 @@ namespace PMS.Dao
             values[6].Value = tablebuilder.IntPageNum;
             values[7].Value = tablebuilder.StrWhere;
             values[8].Direction = ParameterDirection.Output;
+
             DataSet ds = db.FillDataSetBySP(strSql.ToString(), values);
             intPageCount = Convert.ToInt32(values[8].Value);
             return ds;
