@@ -105,7 +105,7 @@
                 </ul>
             </div>
         </div>
-        <!-- 添加教师弹框（Modal） -->
+        <!-- 添加分院弹框-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

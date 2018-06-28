@@ -36,7 +36,7 @@ namespace PMS.Web.admin
             }
             //判断身份是否是管理员
             string strTeaType = "";
-            if (strWhere == "")
+            if (strWhere == null || strWhere == "")
             {
                 strTeaType = "teaType=2";
             }
@@ -56,7 +56,7 @@ namespace PMS.Web.admin
                 StrColumnlist = "teaAccount,teaName,sex,collegeName,phone,Email",
                 IntPageSize = pageSize,
                 IntPageNum = int.Parse(currentPage),
-                StrWhere = strTeaType + strWhere == null ? "" : strWhere
+                StrWhere = strTeaType + strWhere
             };
             getCurrentPage = int.Parse(currentPage);
             ds = teabll.SelectBypage(tbd, out count);
