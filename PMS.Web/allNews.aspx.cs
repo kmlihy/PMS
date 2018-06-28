@@ -73,13 +73,13 @@ namespace PMS.Web
             if (getCurrentPage < 1)
             {
                 getCurrentPage = 1;
-                
             }
             else if (getCurrentPage > count)
             {
                 getCurrentPage = count;
             }
             ViewState["page"] = getCurrentPage;
+            //Session["page"] = getCurrentPage;
         }
     }
 }

@@ -68,34 +68,37 @@
                 </div>--%>
             </li>
             <div class="container-fluid text-right">
-                    <ul class="pagination pagination-lg">
-                        <li>
-                            <a href="#" class="jump" id="prev">上一页
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">1</a>
-                        </li>
-                        <li>
-                            <a href="#">/</a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump"><%=count %></a>
-                        </li>
-                        <li>
-                            <a href="#" id="next" class="jump">下一页
-                            </a>
-                        </li>
-                    </ul>
-             </div>
+                <ul class="pagination pagination-lg">
+                    <li onclick="pageMsg()">
+                        <a href="#" class="jump" id="prev">上一页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump">1</a>
+                    </li>
+                    <li>
+                        <a href="#">/</a>
+                    </li>
+                    <li>
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump"><%=count %></a>
+                    </li>
+                    <li onclick="pageMsg()">
+                        <a href="#" id="next" class="jump">下一页
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </ul>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
+    sessionStorage.setItem("page", <%=getCurrentPage %>);//当前页
+    sessionStorage.setItem("countPage",<%=count %>);//总页数
     $(document).ready(function () {
-        $(".jump").click(function () {
+        <%--$(".jump").click(function () {
             // alert($.trim($(this).html()));
             switch ($.trim($(this).html())) {
                 case ("上一页"):
@@ -111,10 +114,82 @@
                     jump(<%=count %>);
                     break;
             }
+        });--%>
+        alert(sessionStorage.getItem("page"));//获取当前页
+        alert(sessionStorage.getItem("countPage"));//获取总页数
+        
+        $(".jump").click(function () {
+            // alert($.trim($(this).html()));          
+            switch ($.trim($(this).html())) {
+                case ("上一页"):
+                    if (parseInt(sessionStorage.getItem("page")) > 1) {
+                        jump(parseInt(sessionStorage.getItem("page")) - 1);
+                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
+                        break;
+                    }
+                    else {
+                        jump(1);
+                        break;
+                    }
+                case ("下一页"):
+                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                        jump(parseInt(sessionStorage.getItem("page")) + 1);
+                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
+                        break;
+                    }
+                    else {
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case ("1"):
+                    jump(1);
+                    break;
+                case (sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
+                    break;
+            }
         });
         function jump(cur) {
             window.location.href = "allNews.aspx?newid=<%=newid %>&currentPage=" + cur;
         }
     })
+
+    function pageMsg() {
+        alert("click");
+    }
+
+    //分页提示
+    //function pageMsg() {
+    //    var my_toast_plug_name = "mytoast";
+    //    $[my_toast_plug_name] = function (options) {
+    //        var content;
+    //        if (parseInt(sessionStorage.getItem("page")) < 1) {
+    //            content = "前无古人";
+    //        } else if (parseInt(sessionStorage.getItem("page")) > parseInt(sessionStorage.getItem("countPage")) {
+    //            content = "后无来者";
+    //        } else {
+    //            return;
+    //        }
+    //        var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
+    //        var jq_text = jq_toast.find(".my-toast-text");
+    //        jq_text.html(content);
+    //        jq_toast.appendTo($("body")).stop().fadeIn(500).delay(3000).fadeOut(500);
+    //        var w = jq_toast.width() - 10;
+    //        jq_text.width(w);
+    //        var l = -jq_toast.outerWidth() / 2;
+    //        var t = -jq_toast.outerHeight() / 2;
+    //        jq_toast.css({
+    //            "margin-left": l + "px",
+    //            "margin-top": t - 50 + "px"
+    //        });
+    //        var _jq_toast = jq_toast;
+    //        setTimeout(function () {
+    //            _jq_toast.remove();
+    //        }, 3 * 1000);
+    //    };
+    //    $.mytoast({
+    //        type: "notice"
+    //    });
+    //}
 </script>
 </html>

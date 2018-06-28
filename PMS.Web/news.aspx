@@ -22,36 +22,33 @@
                 <div class="panel-body container-fluid" id="panelBody">
                     <div class="container col-lg-12">
                         <table class="table">
-                            <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                            { %>
                             <thead>
                                 <th colspan="2" class="text-center">
-                                    <label for="title" class="h4"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></label>
+                                    <label for="title" class="h4"><%=newsId.NewsTitle %></label>
                                 </th>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="text-right">
                                         <span class="table">
-                                            发布时间:<%=ds.Tables[0].Rows[i]["createTime"].ToString() %>
+                                            发布时间:<%=newsId.CreateTime %>
                                             <label id="time"></label>
                                         </span>
                                     </td>
                                     <td class="text-left">
                                         <span class="table">
-                                            发布人：<%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %>
+                                            发布人：<%=newsId.teacher.TeaName %>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="">
                                         <label for="text">
-                                            <%=ds.Tables[0].Rows[i]["newsContent"].ToString() %>
+                                            <%=newsId.NewsContent %>
                                         </label>
                                     </td>
                                 </tr>
                             </tbody>
-                            <%} %>
                         </table>
                     </div>
                 </div>
