@@ -6,59 +6,56 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PMS.BLL;
-using PMS.Model;
 
 namespace PMS.Web.admin
 {
     public partial class adminCenter : System.Web.UI.Page
     {
         protected Teacher teacher = null;
-        protected Teacher teacher1 = null;
         protected Enums.OpResult enums;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
+            
                 teacher = (Teacher)Session["user"];
-            }
-            else
+            
+           string op = Request.QueryString["op"];
+           if (op=="update")
             {
-                try
-                {
-                    teacher = (Teacher)Session["user"];
-                    string phone = Context.Request["phone"].ToString();
-                    string Email = Context.Request["email"].ToString();
-                    teacher.Phone = phone;
-                    teacher.Email = Email;
-                }
-                catch (Exception)
-                {
+                string phone = Context.Request["phone"].ToString();
+                string Email = Context.Request["Email"].ToString();
+                Teacher newTea = new Teacher();
+                College college = new College();
 
-                }
-                abc(teacher);
-            }
-
+                newTea.TeaAccount = teacher.TeaAccount;
+                newTea.TeaName = teacher.TeaName;
+                newTea.TeaPwd = teacher.TeaPwd;
+                newTea.Sex = teacher.Sex;
+                college.ColID = teacher.college.ColID;
+                college.ColName = teacher.college.ColName;
+                newTea.college = college;
+                newTea.TeaType = teacher.TeaType;
+                newTea.Phone = phone;
+                newTea.Email = Email;
+                updata(newTea);
+            }         
         }
 
-        public void abc(Teacher teacher)
+        public void updata(Teacher teacher)
         {
             TeacherBll bll = new TeacherBll();
             Enums.OpResult enums = bll.Updata(teacher);
             if (enums.Equals(Enums.OpResult.更新成功))
             {
-                Response.Write("<script>alert('修改成功')</script>");
+                Response.Write("修改成功");
+                Session["user"] = teacher;
+                Response.End();
             }
             else
             {
-                Response.Write("<script>alert(" + enums + ")</script>");
+                Response.Write("修改失败");
+                Response.End();
             }
         }
-
-        //public void getTeacher(string Account)
-        //{
-         //   BLL.TeacherBll tbll = new BLL.TeacherBll();
-          //  teacher = tbll.GetModel(Account);
-       // }
 
     }
 }

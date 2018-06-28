@@ -126,12 +126,19 @@ function ok() {
     var telNum = $(".telNum").val();
     var email = $(".email").val();
     $.ajax({
-        type: 'post',
-        url: 'adminCenter.aspx',
+        type: 'get',
+        url: 'adminCenter.aspx?op=update',
+        datatype:'text',
         data: {
             phone: telNum,
-            Email: email
+            Email: email,
         },
+        success: function (data) {
+            alert(data);
+        },
+        error: function () {
+            
+        }
     });
     if (telNum === "") {
         $("#telNum").closest("td").text("");
