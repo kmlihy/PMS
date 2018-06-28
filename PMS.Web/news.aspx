@@ -35,7 +35,7 @@
                                         </span>
                                         <span>&nbsp|&nbsp</span>
                                         <span class="table">
-                                            <span>发布时间：</span><%=newsId.CreateTime %>
+                                            <span>发布时间：</span><%=newsId.CreateTime.GetDateTimeFormats('f')[0] %>
                                         </span>
                                     </td>
                                 </tr>
