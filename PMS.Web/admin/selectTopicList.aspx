@@ -9,157 +9,208 @@
     <title>选题管理列表</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/ml.css" />
+    <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <style>
+        .alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 200px;
+            margin-left: -100px;
+            z-index: 99999;
+            padding: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+
+        .alert-warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container-fluid big-box">
-        <div class="input-group">
-            <select class="selectpicker" data-width="auto">
-                <option value="">-请选择专业-</option>
-                <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                    {%>
-                <option value=""><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                <%} %>
-            </select>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
-                <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">
-                        <span class="glyphicon glyphicon-search">查询</span>
-                    </button>
-                </span>
-                 <span class="input-group-btn">
-                    <button class="btn btn-danger" type="button">
+        <div class="panel panel-default" id="selectToppanelbox">
+            <div class="pane input-group" id="panel-head">
+                <div class="input-group" id="inputgroups">
+                    <select class="selectpicker" data-width="auto">
+                        <option value="">-请选择专业-</option>
+                        <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                            {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <%} %>
+                    </select>
+                    <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" id="btn-search">
+                            <span class="glyphicon glyphicon-search">查询</span>
+                        </button>
+                    </span>
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
-                </span>
-                <div class="input-group">
-                    
                 </div>
             </div>
-
         </div>
-    </div>
-    <div class="">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <th class="text-center">
-                    <input type="checkbox" class="js-checkbox-all" />
-                </th>
-                <th class="text-center">序号</th>
-                <th class="text-center">题目</th>
-                <th class="text-center">出题教师</th>
-                <th class="text-center">选题学生</th>
-                <th class="text-center">所属批次</th>
-                <th class="text-center">所属专业</th>
-                <th class="text-center">已选人数</th>
-                <th class="text-center">人数上限</th>
-                <th class="text-center">选题时间</th>
-                <th class="text-center">所属分院</th>
-                <th class="text-center">操作</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        {%>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                    <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
-                    <td class="text-center">
-                        <button class="btn btn-default btn-sm btn-success">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        <button class="btn btn-default btn-sm btn-danger">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                        <button class="btn btn-default btn-sm btn-warning">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-                    <%} %>
-                </tr>
-            </tbody>
-        </table>
-        <div class="text-right">
-            <ul class="pagination pagination-lg">
-                <li>
-                    <a href="#" class="jump" id="prev">上一页
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="jump">1</a>
-                </li>
-                <li>
-                    <a href="#">/</a>
-                </li>
-                <li>
-                    <a href="#" class="jump"><%=count %></a>
-                </li>
-                <li>
-                    <a href="#" id="next" class="jump">下一页
-                    </a>
-                </li>
-            </ul>
+
+        <div id="selectToptab">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <th class="text-center">
+                        <input type="checkbox" class="js-checkbox-all" />
+                    </th>
+                    <th class="text-center">序号</th>
+                    <th class="text-center">题目</th>
+                    <th class="text-center">出题教师</th>
+                    <th class="text-center">选题学生</th>
+                    <th class="text-center">所属批次</th>
+                    <th class="text-center">所属专业</th>
+                    <th class="text-center">已选人数</th>
+                    <th class="text-center">人数上限</th>
+                    <th class="text-center">选题时间</th>
+                    <th class="text-center">所属分院</th>
+                    <th class="text-center">操作</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            {%>
+                        <td class="text-center">
+                            <input type="checkbox" />
+                        </td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                        <td class="text-center">
+                            <button class="btn btn-default btn-sm btn-success">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                            <button class="btn btn-default btn-sm btn-danger">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button class="btn btn-default btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                        <%} %>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <ul class="pagination pagination-lg">
+                    <li>
+                        <a href="#" class="jump" id="prev">上一页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="fristPage"><%=getCurrentPage %></a>
+                    </li>
+                    <li>
+                        <a href="#">/</a>
+                    </li>
+                    <li>
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump" id="lastPage"><%=count %></a>
+                    </li>
+                    <li>
+                        <a href="#" id="next" class="jump">下一页
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
-<script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/lgd.js"></script>
 <script>
-    function change() {
-        //获取选中的值
-        var college = $("#select").find("option:selected").text();
-        //alert(college);
-        sessionStorage.setItem["collegeselect", college];
-        var storage = window.localStorage;
-        var data = {
-            currentPage: storage.collegeselect
-        }
-        $.ajax({
-            type: "Post",
-            url: "selectTopicList.aspx",
-            data: data
-        });
-    }
+    //当前页数
+    sessionStorage.setItem("Page",<%=getCurrentPage%>);
+    //总页
+    sessionStorage.setItem("countPage",<%=count%>);
     $(document).ready(function () {
-        $(".jump").click(function () {
-            switch ($.trim($(this).html())) {
-                case ("上一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
+        $(".jump").click(function(){
+            switch($.trim($(this).html())){
+                case("上一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))>1){
+                        jump(parseInt(sessionStorage.getItem("Page"))-1);
+                        break;
+                    }
+                    else{
+                        jump(1);
+                        break;
+                    }
+                    
+                case("下一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
+                        jump(parseInt(sessionStorage.getItem("Page"))+1);
+                        break;
+                    }
+                    else{
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case("1"):
                     break;
-                case ("下一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
-                case ("1"):
-                    jump(1);
-                    break;
-                case ("<%=count %>"):
-                    jump(<%=count %>);
+                case(sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
         });
+        $("#btn-search").click(function(){
+            var strWhere =$("#inputsearch").val();
+            sessionStorage.setItem("strWhere",strWhere);
+            jump(1);
+        });
         function jump(cur) {
-            window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-        }
-    })
+            if(sessionStorage.getItem("strWhere")==null){
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
+            }else{
+                window.location.href ="selectTopicList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
+            }
+        };
+    });
+    $(document).ready(function () {
+        $("#next").click(function () {
+            $('<div>').appendTo('body').addClass('alert alert-success').html('操作成功').show().delay(1500).fadeOut();
+        })
+    }) 
 </script>
 </html>

@@ -41,20 +41,15 @@ a {
 }
 
 /*stuList*/
-.checkbox-stu {
-    margin-top: 15px;
-    margin-left: 15px;
+.box{
+    margin-top:10px;
 }
-
-#search-stu {
-    margin-top: 15px;
+.box-1{
+    margin-bottom:10px;
 }
-/*去td上边框*/
-.modal-body .table tbody tr td {
-    border: none !important;
+#inputsearch{
+    margin-left:5px;
 }
-
-#inputsearch {
-    width: 150px;
-    float: none;
+#btn-delete{
+    margin-left:5px;
 }

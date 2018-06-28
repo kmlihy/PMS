@@ -13,55 +13,62 @@ namespace PMS.Web.admin
     public partial class branchList : System.Web.UI.Page
     {
         //获取数据
-        int count = 1;
-        protected string where ="";
-        protected int pageNum = 1;
-        protected int pageSize = 5;
         protected DataSet ds = null;
-        CollegeBll collbll = new CollegeBll();
-        //分页
-        protected string getName = "";
-        protected int currentPage = 0;
-        protected int getCurrentPage = 0;
+        protected int getCurrentPage = 1;
+        protected int count;
+        protected int pagesize = 1;
+        protected String search = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //获取数据
-            GetData(where, pageNum, pageSize);
-            //分页
-            string name = Request["name"];
-            string currentPage = Request["currentPage"];
-            string op = Request["op"];
-            if (op == "1")
-            {
-                getCurrentPage = int.Parse(currentPage) - 1;
-                System.Diagnostics.Debug.WriteLine("op1当前页为：" + getCurrentPage);
-            }
-            else if (op == "2")
-            {
-                getCurrentPage = int.Parse(currentPage) + 1;
-                System.Diagnostics.Debug.WriteLine("op2当前页为：" + getCurrentPage);
-            }
-            else
-            {
-                //getCurrentPage = int.Parse(currentPage);
-            }
+            Search();
+            getdata(Search());
         }
-        //获取数据
-        public void GetData(string strWhere,int pageNum, int pageSize)
+        public void getdata(String strWhere)
         {
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
+            CollegeBll coll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "T_College",
-                StrColumn = "collegeId",
-                IntColType = 1,
+                StrWhere = strWhere == null ? "" : strWhere,
+                IntColType = 0,
                 IntOrder = 0,
-                StrColumnlist = "collegeName",
-                IntPageSize = pageSize,
-                IntPageNum = pageNum,
-                StrWhere = strWhere
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "collegeId",
+                StrColumnlist = "*"
             };
-            ds = collbll.SelectBypage(tbd,out count);
-            pageSize = ds.Tables[0].Rows.Count;
+            getCurrentPage = int.Parse(currentPage);
+            ds = coll.SelectBypage(tbd, out count);
+        }
+        
+        public string Search()
+        {
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format("collegeName={0}", "'" + search + "'");
+                }
+            }
+            catch
+            {
+            }
+            return search;
         }
     }
 }

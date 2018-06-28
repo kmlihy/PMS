@@ -12,7 +12,7 @@ namespace PMS.Web
         public string code;
         protected void Page_Load(object sender, EventArgs e)
         {
-            code = Session["code"].ToString().ToLower();
+            //code = Session["code"].ToString().ToLower();
         }
     }
 }

@@ -23,56 +23,60 @@ namespace PMS.Web.admin
         protected int getCurrentPage = 1;
         protected int count;
         protected int pagesize = 1;
+        protected String search = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string test = Request["collegeselect"];
-            //selectChange("select * from V_Profession");
-            getData("", getCurrentPage);
-            changepage();
+            Search();
+            getPage(Search());
             bads = colbll.Select();
             prods = probll.Select();
         }
 
-        /// <summary>
-        /// 列表加载
-        /// </summary>
-        /// <param name="strWhere"> 查询条件</param>
-        /// <param name="pageNum">当前加载页数</param>
-        public void getData(string strWhere, int IntPageNum)
+        public void getPage(String strWhere)
         {
-            TableBuilder tabuilder = new TableBuilder("V_TitleRecord", "titleRecordId", 0, 0, "*", 2, IntPageNum, strWhere);
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
+            TableBuilder tabuilder = new TableBuilder()
+            {
+                StrTable = "V_TitleRecord",
+                StrWhere = strWhere == null ? "" : strWhere,
+                IntColType = 0,
+                IntOrder = 0,
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "titleRecordId",
+                StrColumnlist = "*"
+            };
+            getCurrentPage = int.Parse(currentPage);
             ds = probll.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
-        public void changepage()
+        public string Search()
         {
             try
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" teaName={0} or realName={0} or planName={0} or proName={0} or collegeName={0}", "'" + search + "'");
+                }
             }
-            catch { }
-            if (getCurrentPage < 1)
+            catch
             {
-                getCurrentPage = 1;
+
             }
-            else if (getCurrentPage > count)
-            {
-                getCurrentPage = count;
-            }
-            ViewState["page"] = getCurrentPage;
-        }
-        /// <summary>
-        /// 学院与专业的联动
-        /// </summary>
-        /// <param name="strWhere">查询条件</param>
-        ///
-        public void selectChange(string strWhere)
-        {
-            TableBuilder tabuilder = new TableBuilder("V_Profession", "proId", 0, 0, "*", 2, 1, strWhere);
-            ds = probll.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
+            return search;
         }
     }
 }

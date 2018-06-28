@@ -16,51 +16,66 @@ namespace PMS.Web.admin
         protected int getCurrentPage = 1;
         protected int count;
         protected int pagesize=1;
+        protected String search = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            getdata("", 1);
-            changepage();
-            getdata("", getCurrentPage);    
+            
+            Search();
+            //getdata(Search());
+            //changepage();
+            getdata(Search());
+                
         }
 
-        public void getdata(String strWhere, int IntPageNum)
+        public void getdata(String strWhere)
         {
+            string currentPage = Request.QueryString["currentPage"];
+            if(currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
             BLL.TeacherBll sdao = new TeacherBll();
             TeacherBll pro = new TeacherBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Teacher",
-                StrWhere = strWhere,
+                StrWhere = strWhere==null ? "": strWhere,
                 IntColType = 0,
                 IntOrder = 0,
-                IntPageNum = IntPageNum,
+                IntPageNum = int.Parse(currentPage),
                 IntPageSize = pagesize,
                 StrColumn = "teaAccount",
                 StrColumnlist = "*"
             };
+            getCurrentPage = int.Parse(currentPage);
             ds = pro.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
         }
 
-        public void changepage() {
+        //public void changepage() {
+        //    string currentPage = Request.QueryString["currentPage"];
+        //    getCurrentPage = int.Parse(currentPage);           
+        //}
+
+        public string Search() {
             try
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search==null) {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                }   
             }
-            catch { }
-            if (getCurrentPage < 1)
-            {
-                getCurrentPage = 1;
+            catch {
             }
-            else if (getCurrentPage > count)
-            {
-                getCurrentPage = count;
-            }
-            ViewState["page"] = getCurrentPage;
-
+            return search;
         }
     }
 }

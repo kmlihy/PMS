@@ -8,34 +8,35 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/ml.css" />
+    <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
 </head>
 <body>
     <div class="container-fluid big-box">
-        <div class="panel panel-default">
-            <div class="input-group col-sm-6">
-                <input type="text" class="form-control" placeholder="请输入查询条件" style="margin-top:12px;" />
-                <span class="input-group-btn">
-                    <button class="btn btn-info" type="button">
-                        <span class="glyphicon glyphicon-search">查询</span>
-                    </button>
-                </span>
-                <div class="input-group">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                        新增
-                    </button>
-                    <button class="btn btn-danger" id="btn-Del">
+        <div class="panel panel-default" id="propanelbox">
+            <div class="pane input-group" id="panel-head">
+                <div class="input-group" id="inputgroups">
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" id="btn-search">
+                            <span class="glyphicon glyphicon-search">查询</span>
+                        </button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                            <span class="glyphicon glyphicon-plus-sign">新增</span>
+                        </button>
+                    </span>
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
                 </div>
             </div>
         </div>
-        <div class="">
+        <div class="" id="protab">
             <table class="table table-bordered table-hover">
                 <thead>
                     <th class="text-center">
@@ -81,6 +82,7 @@
                         <a href="#">/</a>
                     </li>
                     <li>
+                        <% if (count == 0) { count = 1; } %>
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
@@ -89,7 +91,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
     <!--添加专业弹窗-->
@@ -103,17 +104,30 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group" style="height: 100px;">
-                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">姓名:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control input-sm" placeholder="请输入姓名" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">姓名:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control input-sm" placeholder="请输入姓名" />
-                        </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="teaLable text-center">
+                                        <label class="text-span">所属院系</label></td>
+                                    <td>
+                                        <select class="selectpicker" data-width="auto">
+                                            <option value="">-请选择院系-</option>
+                                            <%for (int i = 0; i < bads.Tables[0].Rows.Count; i++)
+                                                {%>
+                                            <option value="<%=bads.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%} %>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">专业名称</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -130,26 +144,52 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script>
+    //当前页数
+    sessionStorage.setItem("Page",<%=getCurrentPage%>);
+    //总页
+    sessionStorage.setItem("countPage",<%=count%>);
     $(document).ready(function () {
-        $(".jump").click(function () {
-            switch ($.trim($(this).html())) {
-                case ("上一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                    break;
-                case ("下一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
-                case ("1"):
+        $(".jump").click(function(){
+            switch($.trim($(this).html())){
+                case("上一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))>1){
+                        jump(parseInt(sessionStorage.getItem("Page"))-1);
+                        break;
+                    }
+                    else{
+                        jump(1);
+                        break;
+                    }
+                    
+                case("下一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
+                        jump(parseInt(sessionStorage.getItem("Page"))+1);
+                        break;
+                    }
+                    else{
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case("1"):
                     jump(1);
                     break;
-                case ("<%=count %>"):
-                    jump(<%=count %>);
+                case(sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
         });
+        $("#btn-search").click(function(){
+            var strWhere =$("#inputsearch").val();
+            sessionStorage.setItem("strWhere",strWhere);
+            jump(1);
+        });
         function jump(cur) {
-            window.location.href = "proList.aspx?currentPage=" + cur;
-        }
+            if(sessionStorage.getItem("strWhere")==null){
+                window.location.href = "proList.aspx?currentPage=" + cur;
+            }else{
+                window.location.href ="proList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
+            }
+        };
     })
 </script>
 </html>

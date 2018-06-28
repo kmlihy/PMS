@@ -14,64 +14,78 @@ namespace PMS.Web.admin
     {
         //获取数据
         protected DataSet ds = null, dsColl = null;
-        TeacherBll teabll = new TeacherBll();
-        CollegeBll collbll = new CollegeBll();
-        int count = 1;
-        protected string where = "";
-        protected int pageNum = 1;
-        protected int pageSize = 5;
+        protected int count;
+        protected int pageSize = 1;
         //分页
-        protected string getName = "";
-        protected int getCurrentPage = 0;
+        protected int getCurrentPage = 1;
+        //查询
+        protected String search = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             //获取数据
-            GetData("", pageNum, pageSize);
-            //分页
-            string name = Request["name"];
-            string currentPage = Request["currentPage"];
-            string op = Request["op"];
-            if (op == "1")
-            {
-                getCurrentPage = int.Parse(currentPage) - 1;
-                System.Diagnostics.Debug.WriteLine("op1当前页为：" + getCurrentPage);
-            }
-            else if (op == "2")
-            {
-                getCurrentPage = int.Parse(currentPage) + 1;
-                System.Diagnostics.Debug.WriteLine("op2当前页为：" + getCurrentPage);
-            }
-            else
-            {
-                //getCurrentPage = int.Parse(currentPage);
-            }
+            Search();
+            getdata(Search());
         }
         //获取数据
-        public void GetData(string strWhere, int pageNum,int pageSize)
+        public void getdata(string strWhere)
         {
-            string strTeaType = "";
-            if (strWhere == "")
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
             {
-                strTeaType = "teaType=0";
+                currentPage = "1";
+            }
+            //判断身份是否是管理员
+            string strTeaType = "";
+            if (strWhere == null || strWhere == "")
+            {
+                strTeaType = "teaType=2";
             }
             else
             {
-                strTeaType = "teaType=0 and ";
+                strTeaType = "teaType=2 and ";
             }
+            //获取数据
+            TeacherBll teabll = new TeacherBll();
+            CollegeBll coll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "V_Teacher",
-                StrColumn = "teaType",
+                StrColumn = "teaAccount",
                 IntColType = 0,
                 IntOrder = 0,
                 StrColumnlist = "teaAccount,teaName,sex,collegeName,phone,Email",
                 IntPageSize = pageSize,
-                IntPageNum = pageNum,
+                IntPageNum = int.Parse(currentPage),
                 StrWhere = strTeaType + strWhere
             };
+            getCurrentPage = int.Parse(currentPage);
             ds = teabll.SelectBypage(tbd, out count);
-            // 绑定筛选条件中的学院信息
-            dsColl = collbll.Select();
+            //获取学院所有信息
+            dsColl = coll.Select();
+        }
+        //分页
+        public string Search()
+        {
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                }
+            }
+            catch
+            {
+            }
+            return search;
         }
     }
 }
