@@ -18,155 +18,103 @@
             <table class="table table-hover">
                 <thead>
                     <th>
-                        <label for="title">XX公告</label></th>
+                        <label for="title"><%=newsType %></label></th>
                     <th>发布时间</th>
                 </thead>
                 <tbody>
+                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        { %>
                     <tr>
                         <td>
                             <li>
-                                <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
+                                <a href="news.aspx"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
                             </li>
                         </td>
                         <td>
-                            <li>2018/6/14</li>
+                            <li><%=ds.Tables[0].Rows[i]["createTime"].ToString() %></li>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx"></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx">关于召开云南工商学院第二届第二次教代会暨工代会的通知</a>
-                            </li>
-                        </td>
-                        <td>
-                            <li>2018/6/14</li>
-                        </td>
-                    </tr>
+                    <%} %>
                 </tbody>
             </table>
             <li>
-                <div class="container-fluid text-center">
+                <%--<div class="container-fluid text-center">
                     <ul class="pagination pagination-sm">
                         <li>
-                            <a href="">首页</a>
+                            <a href="#">首页</a>
                         </li>
                         <li>
-                            <a href="">上一页</a>
+                            <a href="#" class="jump" id="prev">上一页</a>
                         </li>
                         <li>
-                            <a href="">1</a>
+                            <a href="#" class="jump">1</a>
                         </li>
                         <li>
-                            <a href="">2</a>
+                            <a href="#" class="jump">2</a>
                         </li>
                         <li>
-                            <a href="">3</a>
+                            <a href="#" class="jump">3</a>
                         </li>
                         <li>
-                            <a href="">...</a>
+                            <a href="#"><%=count %></a>
                         </li>
                         <li>
-                            <a href="">下一页</a>
+                            <a href="#" class="jump">下一页</a>
                         </li>
                         <li>
-                            <a href="">尾页</a>
+                            <a href="#" class="jump">尾页</a>
                         </li>
                     </ul>
-                </div>
+                </div>--%>
             </li>
+            <div class="container-fluid text-right">
+                    <ul class="pagination pagination-lg">
+                        <li>
+                            <a href="#" class="jump" id="prev">上一页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="jump">1</a>
+                        </li>
+                        <li>
+                            <a href="#">/</a>
+                        </li>
+                        <li>
+                            <a href="#" class="jump"><%=count %></a>
+                        </li>
+                        <li>
+                            <a href="#" id="next" class="jump">下一页
+                            </a>
+                        </li>
+                    </ul>
+             </div>
         </ul>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".jump").click(function () {
+            // alert($.trim($(this).html()));
+            switch ($.trim($(this).html())) {
+                case ("上一页"):
+                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
+                    break;
+                case ("下一页"):
+                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
+                    break;
+                case ("1"):
+                    jump(1);
+                    break;
+                case ("<%=count %>"):
+                    jump(<%=count %>);
+                    break;
+            }
+        });
+        function jump(cur) {
+            window.location.href = "allNews.aspx?newid=<%=newid %>&currentPage=" + cur;
+        }
+    })
+</script>
 </html>

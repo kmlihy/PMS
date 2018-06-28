@@ -131,6 +131,10 @@ i {
             font-size: 11px;
         }
 
+    .page-left-nav nav ul > li + li {
+        margin-top: 0px;
+    }
+
 /* 页面中部右侧区域样式 */
 .page-right-content {
 }
