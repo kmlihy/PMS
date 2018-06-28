@@ -25,7 +25,7 @@
                         <option value="">-请选择专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {%>
-                        <option value=""><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <%} %>
                     </select>
                     <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" />
@@ -75,7 +75,7 @@
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-success">
@@ -99,12 +99,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="jump">1</a>
+                        <a href="#" class="jump"><%=getCurrentPage %></a>
                     </li>
                     <li>
                         <a href="#">/</a>
                     </li>
                     <li>
+                        <% if (count == 0) { count = 1; } %>
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
@@ -122,41 +123,51 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script>
-    function change() {
-        //获取选中的值
-        var college = $("#select").find("option:selected").text();
-        //alert(college);
-        sessionStorage.setItem["collegeselect", college];
-        var storage = window.localStorage;
-        var data = {
-            currentPage: storage.collegeselect
-        }
-        $.ajax({
-            type: "Post",
-            url: "selectTopicList.aspx",
-            data: data
-        });
-    }
+    //当前页数
+    sessionStorage.setItem("Page",<%=getCurrentPage%>);
+    //总页
+    sessionStorage.setItem("countPage",<%=count%>);
     $(document).ready(function () {
-        $(".jump").click(function () {
-            switch ($.trim($(this).html())) {
-                case ("上一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
+        $(".jump").click(function(){
+            switch($.trim($(this).html())){
+                case("上一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))>1){
+                        jump(parseInt(sessionStorage.getItem("Page"))-1);
+                        break;
+                    }
+                    else{
+                        jump(1);
+                        break;
+                    }
+                    
+                case("下一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
+                        jump(parseInt(sessionStorage.getItem("Page"))+1);
+                        break;
+                    }
+                    else{
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case("1"):
                     break;
-                case ("下一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
-                case ("1"):
-                    jump(1);
-                    break;
-                case ("<%=count %>"):
-                    jump(<%=count %>);
+                case(sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
         });
+        $("#btn-search").click(function(){
+            var strWhere =$("#inputsearch").val();
+            sessionStorage.setItem("strWhere",strWhere);
+            jump(1);
+        });
         function jump(cur) {
-            window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-        }
+            if(sessionStorage.getItem("strWhere")==null){
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
+            }else{
+                window.location.href ="selectTopicList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
+            }
+        };
     })
 </script>
 </html>

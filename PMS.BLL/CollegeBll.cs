@@ -54,11 +54,7 @@ namespace PMS.BLL
         public DataSet Select()
         {
             DataSet ds = dao.Select();
-            if(ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            return null;
+            return ds;
         }
 
         /// <summary>
@@ -69,12 +65,10 @@ namespace PMS.BLL
         /// <returns>类型为DataSet的分页学院信息列表集</returns>
         public DataSet SelectBypage(TableBuilder tab,out int intPageCount)
         {
-            DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
-            if(ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            return null;
+            int pagecount;
+            DataSet ds = pubpro.SelectBypage(tab, out pagecount);
+            intPageCount = pagecount;
+            return ds;
         }
 
         /// <summary>
@@ -82,7 +76,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="collId">要查询的学院ID</param>
         /// <returns>类型为College的学院对象</returns>
-        public College Select(int collId)
+        public College getSelect(int collId)
         {
             College coll = dao.GetCollege(collId);
             if(coll != null)

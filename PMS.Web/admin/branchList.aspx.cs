@@ -13,69 +13,62 @@ namespace PMS.Web.admin
     public partial class branchList : System.Web.UI.Page
     {
         //获取数据
-        CollegeBll collbll = new CollegeBll();
         protected DataSet ds = null;
-        protected int count;
-        protected int pageSize = 1;
-        //分页
         protected int getCurrentPage = 1;
-        //查询
-        protected string strWhere = "";
+        protected int count;
+        protected int pagesize = 1;
+        protected String search = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //首次获取数据
-            getdata("", 1);
-            //分页
-            changepage();
-            //根据分页条件获取数据
-            getdata("", getCurrentPage);
+            Search();
+            getdata(Search());
         }
-        //获取数据
-        public void getdata(string strWhere,int pageNum)
+        public void getdata(String strWhere)
         {
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
+            CollegeBll coll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "T_College",
-                StrColumn = "collegeId",
+                StrWhere = strWhere == null ? "" : strWhere,
                 IntColType = 0,
                 IntOrder = 0,
-                StrColumnlist = "*",
-                IntPageSize = pageSize,
-                IntPageNum = pageNum,
-                StrWhere = strWhere
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "collegeId",
+                StrColumnlist = "*"
             };
-            ds = collbll.SelectBypage(tbd,out count);
-            count = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
+            getCurrentPage = int.Parse(currentPage);
+            ds = coll.SelectBypage(tbd, out count);
         }
-        //按条件查询
-        public void query()
-        {
-        }
-        //分页
-        public void changepage()
+        
+        public string Search()
         {
             try
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format("collegeName={0}", "'" + search + "'");
+                }
             }
-            catch { }
-            if (getCurrentPage <= 1)
+            catch
             {
-                getCurrentPage = 1;
             }
-            else if (getCurrentPage >= count)
-            {
-                getCurrentPage = count;
-            }
-            ViewState["page"] = getCurrentPage;
-        }
-        protected void insert()
-        {
-            string collName = Request.QueryString["collName"];
-            College coll = new College();
-            coll.ColName = collName;
-            collbll.Insert(coll);
+            return search;
         }
     }
 }

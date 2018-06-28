@@ -8,14 +8,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>分院管理员信息表</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../css/lgd.css" />
+        <link rel="stylesheet" href="../css/ml.css" />
+        <link rel="stylesheet" href="../css/lgd.css">
         <link rel="stylesheet" href="../css/style.css" />
         <link rel="stylesheet" href="../square/_all.css" />
+        <link rel="stylesheet" href="../css/bootstrap-select.css" />
     </head>
 
     <body>
-        <div class="container-fluid big-box">
-            <div class="panel panel-default" id="teapanelbox">
+        <div class="container-fluid ">
+        <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
@@ -35,7 +37,6 @@
                     </button>
                 </div>
             </div>
-        </div>
         </div>
         <div class="">
             <table class="table table-bordered table-hover">
@@ -96,24 +97,39 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="prev">上一页</a>
+                        <a href="#" class="jump" id="first">首页</a>
                     </li>
                     <li>
-                        <a href="#" class="jump"><%=getCurrentPage %></a>
+                        <a href="#" class="jump" id="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump">
+                            <%=getCurrentPage %>
+                        </a>
                     </li>
                     <li>
                         <a href="#">/</a>
                     </li>
                     <li>
-                        <a href="#" class="jump"><%=count %></a>
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump">
+                            <%=count %>
+                        </a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump">下一页</a>
+                        <a href="#" id="next" class="jump">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="last">尾页</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <!-- 添加教师弹框（Modal） -->
+        <!-- 添加分院管理员弹框-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -121,53 +137,53 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">添加教师
+                    <h4 class="modal-title" id="myModalLabel">添加分院管理员
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table">
                         <tbody>
                             <tr>
-                                <td class="teaLable">工号</td>
+                                <td class="teaLable text-center"><label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text"/></td>
                             </tr>
                             <tr>
-                                <td class="teaLable">姓名</td>
+                                <td class="teaLable"><label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable">性别</td>
+                                <td class="teaLable"><label class="text-span">性别</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="">男</option>
-                                        <option value="">女</option>
+                                        <option>请选择性别</option>
+                                        <option>男</option>
+                                        <option>女</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable">院系</td>
+                                <td class="teaLable"><label class="text-span">院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="">-请选择院系-</option>
-                                        <% for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                           {
-                                        %>
-                                        <option value=""><%= dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <% }%>
+                                        <option value="">请选择院系</option>
+                                        <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                          { %>
+                                        <option value=""><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable">邮箱</td>
+                                <td class="teaLable"><label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable">联系电话</td>
+                                <td class="teaLable"><label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -180,32 +196,71 @@
         </div>
     </div>
     </body>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/icheck.min.js"></script>
-    <script src="../js/ml.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/icheck.min.js"></script>
+<script src="../js/ml.js"></script>
+<script src="../js/bootstrap-select.js"></script>
     <script>
-        //分页
-        $(document).ready(function() {
-            $(".jump").click(function() {
+        <!-- 分页 -->
+        //存储当前页数
+        sessionStorage.setItem("page", <%=getCurrentPage %>);
+        //存储总页数
+        sessionStorage.setItem("countPage",<%=count %>);
+        $(document).ready(function () {
+            $(".jump").click(function () {
                 switch ($.trim($(this).html())) {
-                    case ("上一页"):
-                        jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                        break;
-                    case ("下一页"):
-                        jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                        break;
-                    case ("1"):
+                    //点击上一页按钮时
+                    case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+                        if (parseInt(sessionStorage.getItem("page")) > 1) {
+                            jump(parseInt(sessionStorage.getItem("page")) - 1);
+                            sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
+                            break;
+                        }
+                        else {
+                            jump(1);
+                            break;
+                        }
+                    //点击下一页按钮时
+                    case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+                        if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                            jump(parseInt(sessionStorage.getItem("page")) + 1);
+                            sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
+                            break;
+                        }
+                        else {
+                            jump(parseInt(sessionStorage.getItem("countPage")));
+                            break;
+                        }
+                    //点击首页按钮时
+                    case ("首页"):
                         jump(1);
                         break;
-                    case ("<%=count %>"):
-                        jump(<%=count %>);
+                    //点击尾页按钮时
+                    case ("尾页"):
+                        jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                 }
             });
+            //点击查询按钮时
+            $("#btn-search").click(function () {
+                var strWhere = $("#inputsearch").val();
+                sessionStorage.setItem("strWhere",strWhere);
+                jump(1);
+            });
 
             function jump(cur) {
-                window.location.href = "adminList.aspx?currentPage=" + cur;
+                if (sessionStorage.getItem("strWhere") == null) {
+                    window.location.href = "adminList.aspx?currentPage=" + cur
+                }
+                else {
+                    window.location.href = "adminList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+                }          
+            }
+            //当总页数为1时，首页与尾页按钮隐藏
+            if (sessionStorage.getItem("countPage") == "1") {
+                $("#first").hide();
+                $("#last").hide();
             }
         })
     </script>

@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search" >查询</span>
+                            <span class="glyphicon glyphicon-search" id="search" >查询</span>
                         </button>
                     </span>
                     <span class="input-group-btn">
@@ -48,8 +48,8 @@
                     <th class="text-center">批次名</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>
-                    <th class="text-center">所属学院</th>
                     <th class="text-center">激活状态</th>
+                    <th class="text-center">所属学院</th>
                     <th class="text-center">操作</th>
                 </thead>
                 <tbody>
@@ -99,22 +99,22 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump">
-                            <span class="glyphicon glyphicon-chevron-left" id="pageDown" onclick="value()"></span>
+                        <a href="#" class="jump" id="prev">上一页
                         </a>
                     </li>
                     <li>
+                        <% if (getCurrentPage == 0) { getCurrentPage = 1; } %>
                         <a href="#" class="jump"><%=getCurrentPage %></a>
                     </li>
                     <li>
                         <a href="#">/</a>
                     </li>
                     <li>
-                        <a href="#" class="jump"><%=intPageCount %></a>
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" class="jump">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        <a href="#" id="next" class="jump">下一页
                         </a>
                     </li>
                 </ul>
@@ -153,12 +153,24 @@
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <select class="selectpicker" data-width="auto">
+                                        <option value="">请选择性别</option>
+                                        <option value="">是</option>
+                                        <option value="">否</option>
+                                    </select>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">所属院系</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <select class="selectpicker" data-width="auto">
+                                        <option value="">请选择院系</option>
+                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="">
+                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                        </option>
+                                        <% } %>
+                                    </select>
                             </tr>
                         </tbody>
                     </table>
@@ -177,25 +189,55 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script>
+    sessionStorage.setItem("page", <%=getCurrentPage %>);
+    sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
         $(".jump").click(function () {
+            // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
-                case ('<span class="glyphicon glyphicon-chevron-left" id="pageDown" onclick="value()"></span>'):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                    break;
-                case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
-                case ("<%=getCurrentPage %>"):
+                case ("上一页"):
+                    if (parseInt(sessionStorage.getItem("page")) > 1) {
+                        jump(parseInt(sessionStorage.getItem("page")) - 1);
+                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
+                        break;
+                    }
+                    else {
+                        jump(1);
+                        break;
+                    }
+                case ("下一页"):
+                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                        jump(parseInt(sessionStorage.getItem("page")) + 1);
+                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
+                        break;
+                    }
+                    else {
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case ("1"):
                     jump(1);
                     break;
-                case ("<%=intPageCount %>"):
-                    jump(<%=intPageCount %>);
+                case (sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
         });
+
+        $("#search").click(function () {
+            var strWhere = $("#inputsearch").val();
+            sessionStorage.setItem("strWhere",strWhere);
+            //window.location.href = "teaList.aspx?search=" + strWhere;
+            jump(1);
+        });
+
         function jump(cur) {
-            window.location.href = "batchList.aspx?currentPage=" + cur;
+            if (sessionStorage.getItem("strWhere") == null) {
+                window.location.href = "batchList.aspx?currentPage=" + cur
+            }
+            else {
+                window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            }          
         }
     })
 </script>
