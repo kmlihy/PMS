@@ -29,66 +29,42 @@
                 </tr>
             </thead>
             <tbody>
+                <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {  %>
                 <tr>
                     <td>
-                        <a>QAQ图书馆管理系统
-                        </a>
+                        <a href="paperDetail.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>"><%=ds.Tables[0].Rows[i]["title"].ToString()%></a>
                     </td>
-
-                    <td>10/20
+                    <td><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
                     </td>
                     <td>
-                        <button class="btn btn-primary" type="button">选题</button>
+                       <a class="btn btn-primary" href="PaperDtailStu.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>网吧计费管理系统
-                    </td>
-                    <td>10/20
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" type="button">选题</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>校园二手管理系统
-                    </td>
-                    <td>9/20
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" type="button">选题</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>课程选题系统
-                    </td>
-                    <td>10/20
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" type="button">选题</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>酒店管理系统
-                    </td>
-                    <td>10/20
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" type="button">选题</button>
-                    </td>
-                </tr>
+                <%} %>
             </tbody>
         </table>
 
         <div class="container text-right paperpagination-div ">
             <ul class="pagination pagination-lg">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">&raquo;</a></li>
+                <li>
+                        <a href="#" class="jump" id="prev">上一页
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump"><%=getCurrentPage %></a>
+                    </li>
+                    <li>
+                        <a href="#">/</a>
+                    </li>
+                    <li>
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump"><%=count %></a>
+                    </li>
+                    <li>
+                        <a href="#" id="next" class="jump">下一页
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>
@@ -96,5 +72,48 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="../js/lgd.js"></script>
-
+<script>
+    //当前页数
+    sessionStorage.setItem("Page",<%=getCurrentPage%>);
+    //总页
+    sessionStorage.setItem("countPage",<%=count%>);
+    $(document).ready(function () {
+        $(".jump").click(function(){
+            switch($.trim($(this).html())){
+                case("上一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))>1){
+                        jump(parseInt(sessionStorage.getItem("Page"))-1);
+                        break;
+                    }
+                    else{
+                        jump(1);
+                        break;
+                    }
+                    
+                case("下一页"):
+                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
+                        jump(parseInt(sessionStorage.getItem("Page"))+1);
+                        break;
+                    }
+                    else{
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case("1"):
+                    jump(1);
+                    break;
+                case(sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
+                    break;
+            }
+        });
+        function jump(cur) {
+            if(sessionStorage.getItem("strWhere")==null){
+                window.location.href = "paperList.aspx?currentPage=" + cur;
+            }else{
+                window.location.href ="paperList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
+            }
+        };
+    })
+</script>
 </html>

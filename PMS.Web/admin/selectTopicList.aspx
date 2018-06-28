@@ -14,6 +14,44 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <style>
+        .alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 200px;
+            margin-left: -100px;
+            z-index: 99999;
+            padding: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+
+        .alert-warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    </style>
 </head>
 
 <body>
@@ -99,14 +137,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="jump"><%=getCurrentPage %></a>
+                        <a href="#" class="jump" id="fristPage"><%=getCurrentPage %></a>
                     </li>
                     <li>
                         <a href="#">/</a>
                     </li>
                     <li>
                         <% if (count == 0) { count = 1; } %>
-                        <a href="#" class="jump"><%=count %></a>
+                        <a href="#" class="jump" id="lastPage"><%=count %></a>
                     </li>
                     <li>
                         <a href="#" id="next" class="jump">下一页
@@ -120,8 +158,8 @@
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
-<script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/lgd.js"></script>
 <script>
     //当前页数
     sessionStorage.setItem("Page",<%=getCurrentPage%>);
@@ -168,6 +206,11 @@
                 window.location.href ="selectTopicList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
             }
         };
-    })
+    });
+    $(document).ready(function () {
+        $("#next").click(function () {
+            $('<div>').appendTo('body').addClass('alert alert-success').html('操作成功').show().delay(1500).fadeOut();
+        })
+    }) 
 </script>
 </html>
