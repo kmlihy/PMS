@@ -12,7 +12,7 @@
     </head>
 
     <body>
-        <form id="form1">
+        <form id="form1" runat="server" action="adminCenter.aspx" method="post">
             <div class="box">
                 <div class="center col-xs-8 col-xm-5 col-md-6 col-lg-4 col-xs-push-2 col-sm-push-2 col-md-push-3 col-lg-push-4">
                     <table class="table table-hover">
@@ -50,7 +50,7 @@
                             <tr>
                                 <td class="centerLable">
                                     <button type="button" class="btn btn-info" id="editMessage" onclick="edit()">编辑信息</button>
-                                    <button type="button" class="btn btn-info" id="okMessage" onclick="ok()">确定</button>
+                                    <button type="submit" class="btn btn-info" id="okMessage" onclick="ok()">确定</button>
                                 </td>
                                 <td></td>
                                 <td id="">

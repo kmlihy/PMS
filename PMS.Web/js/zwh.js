@@ -34,12 +34,20 @@ function edit() {
 
 function ok() {
     var telNum = $(".telNum").val();
+    var email = $(".email").val();
+    $.ajax({
+        type: 'post',
+        url: 'adminCenter.aspx',
+        data: {
+            phone: telNum,
+            Email: email
+        },
+    });
     if (telNum === "") {
         $("#telNum").closest("td").text("");
     } else {
         $("#telNum").closest("td").text(telNum);
     }
-    var email = $(".email").val();
     if (email === "") {
         $("#email").closest("td").text("");
     } else {
