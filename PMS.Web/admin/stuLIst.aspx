@@ -13,6 +13,45 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../square/_all.css">
     <link rel="stylesheet" href="../css/bootstrap-select.css">
+
+    <style>
+        .alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 200px;
+            margin-left: -100px;
+            z-index: 99999;
+            padding: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+
+        .alert-warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,7 +79,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del">
+                    <button class="btn btn-danger" type="button" id="btn-Del" onclick="pagingMsg()">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
@@ -108,8 +147,7 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="prev">
-                            上一页
+                        <a href="#" class="jump" id="prev">上一页
                         </a>
                     </li>
                     <li>
@@ -123,8 +161,7 @@
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump" onclick="pagingMsg()">
-                            下一页
+                        <a href="#" id="next" class="jump" onclick="Alert('houwulaizhe')">下一页
                         </a>
                     </li>
                 </ul>
@@ -278,37 +315,17 @@
     })
 
     //分页的首页和尾页显示
-    function pagingMsg() {
-        var my_toast_plug_name = "mytoast";
-        $[my_toast_plug_name] = function (options) {
-            var content;
-            if (parseInt(sessionStorage.getItem("page")) <= 1) {
-                content = "前无古人！";
-            } else if (parseInt(sessionStorage.getItem("page")) >= parseInt(sessionStorage.getItem("countPage"))) {
-                content = "后无来者！";
-            } else {
-                return;
-            }
-            var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
-            var jq_text = jq_toast.find(".my-toast-text");
-            jq_text.html(content);
-            jq_toast.appendTo($("body")).stop().fadeIn(500).delay(3000).fadeOut(500);
-            var w = jq_toast.width() - 10;
-            jq_text.width(w);
-            var l = -jq_toast.outerWidth() / 2;
-            var t = -jq_toast.outerHeight() / 2;
-            jq_toast.css({
-                "margin-left": l + "px",
-                "margin-top": t - 50 + "px"
-            });
-            var _jq_toast = jq_toast;
-            setTimeout(function () {
-                _jq_toast.remove();
-            }, 3 * 1000);
-        };
-        $.mytoast({
-            type: "notice"
-        });
-    }
+    //$(document).ready(function(){
+    //    $("#next").click(function(){
+    //        if(parseInt(sessionStorage.getItem("page"))>= sessionStorage.getItem("countPage")){
+    //            $('<div>').appendTo('body').addClass('alert alert-success').html('啊打发').show().delay(5000).fadeOut();
+    //        }
+    //    })
+    //    $("#prev").click(function(){
+    //        if(parseInt(sessionStorage.getItem("page"))<=1){
+    //            alert("前无古人")
+    //        }
+    //    })
+    //})
 </script>
 </html>
