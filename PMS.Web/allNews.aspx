@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/iconfont.css" />
 </head>
 
 <body>
@@ -27,7 +28,7 @@
                     <tr>
                         <td>
                             <li>
-                                <a href="news.aspx"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
+                                <a href="news.aspx?newid=<%=ds.Tables[0].Rows[i]["newsId"].ToString()  %>"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
                             </li>
                         </td>
                         <td>
@@ -38,43 +39,42 @@
                 </tbody>
             </table>
             <li>
-                <%--<div class="container-fluid text-center">
+                <div class="container-fluid text-center">
                     <ul class="pagination pagination-sm">
                         <li>
-                            <a href="#">首页</a>
+                            <a href="#" class="jump">首页</a>
                         </li>
                         <li>
-                            <a href="#" class="jump" id="prev">上一页</a>
+                            <a href="#" class="jump">
+                                <span class="iconfont icon-back" style="font-size:11px;"></span>
+                            </a>
                         </li>
                         <li>
-                            <a href="#" class="jump">1</a>
+                            <a href="#" class="jump">第 <%=getCurrentPage %> 页</a>
                         </li>
                         <li>
-                            <a href="#" class="jump">2</a>
+                            <% if (count == 0) { count = 1; } %>
+                            <a href="#">总共：<%=count %> 页</a>
                         </li>
                         <li>
-                            <a href="#" class="jump">3</a>
-                        </li>
-                        <li>
-                            <a href="#"><%=count %></a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">下一页</a>
+                            <a href="#" class="jump">
+                                <span class="iconfont icon-more" style="font-size:11px;"></span>
+                            </a>
                         </li>
                         <li>
                             <a href="#" class="jump">尾页</a>
                         </li>
                     </ul>
-                </div>--%>
+                </div>
             </li>
-            <div class="container-fluid text-right">
+            <%--<div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
-                    <li onclick="pageMsg()">
+                    <li>
                         <a href="#" class="jump" id="prev">上一页
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="jump">1</a>
+                        <a href="#" class="jump"><%=getCurrentPage %></a>
                     </li>
                     <li>
                         <a href="#">/</a>
@@ -83,12 +83,12 @@
                         <% if (count == 0) { count = 1; } %>
                         <a href="#" class="jump"><%=count %></a>
                     </li>
-                    <li onclick="pageMsg()">
+                    <li>
                         <a href="#" id="next" class="jump">下一页
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div>--%>
         </ul>
     </div>
 </body>
@@ -98,11 +98,11 @@
     sessionStorage.setItem("page", <%=getCurrentPage %>);
     sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
-        alert(sessionStorage.getItem("page"));
+        //alert(sessionStorage.getItem("page"));
         $(".jump").click(function () {
             // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
-                case ("上一页"):
+                case ('<span class="iconfont icon-back" style="font-size:11px;"></span>'):
                     if (parseInt(sessionStorage.getItem("page")) > 1) {
                         jump(parseInt(sessionStorage.getItem("page")) - 1);
                         sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
@@ -112,7 +112,7 @@
                         jump(1);
                         break;
                     }
-                case ("下一页"):
+                case ('<span class="iconfont icon-more" style="font-size:11px;"></span>'):
                     if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                         jump(parseInt(sessionStorage.getItem("page")) + 1);
                         sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
@@ -122,10 +122,10 @@
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                     }
-                case ("1"):
+                case ("首页"):
                     jump(1);
                     break;
-                case (sessionStorage.getItem("countPage")):
+                case ("尾页"):
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
