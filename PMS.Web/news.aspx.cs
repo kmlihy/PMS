@@ -16,7 +16,7 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             string newid = Request["newid"].ToString();
-            System.Diagnostics.Debug.WriteLine(newid);
+            //System.Diagnostics.Debug.WriteLine(newid);
             NewsBll nb = new NewsBll();
             newsId = nb.GetNews(int.Parse(newid));
         }

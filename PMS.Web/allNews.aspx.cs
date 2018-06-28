@@ -18,34 +18,38 @@ namespace PMS.Web
         protected int pagesize = 1;
         string strteaType = "";
         private string strWhere = "";
-        protected string newid;
+        protected string roleId;
         protected string newsType;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
             strWhere = "";
-            newid = Request.QueryString["newid"];
-                if (newid == "0")
+            roleId = Request.QueryString["roleId"];
+                if (roleId == "0")
                 {
                     strteaType = "teaType=0";
                     newsType = "学校公告";
                 }
-                else if (newid == "1")
+                else if (roleId == "1")
                 {
                     strteaType = "teaType=1";
                     newsType = "学生公告";
             }
-                else if (newid == "2")
+                else if (roleId == "2")
                 {
                     strteaType = "teaType=2";
                     newsType = "学院公告";
             }
-            getdata("", 1);
-            changepage();
-            getdata(strteaType, getCurrentPage);
+            getdata(strteaType);
         }
-        public void getdata(String strWhere, int IntPageNum)
+        public void getdata(String strWhere)
         {
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
             NewsBll nb = new NewsBll();
             TableBuilder tabuilder = new TableBuilder()
             {
@@ -53,33 +57,13 @@ namespace PMS.Web
                 StrWhere = strteaType,
                 IntColType = 0,
                 IntOrder = 0,
-                IntPageNum = IntPageNum,
+                IntPageNum = int.Parse(currentPage),
                 IntPageSize = pagesize,
                 StrColumn = "newsId",
                 StrColumnlist = "*"
             };
+            getCurrentPage = int.Parse(currentPage);
             ds = nb.SelectBypage(tabuilder, out count);
-            count = count % pagesize == 0 ? count / pagesize : count / pagesize + 1;
-        }
-
-        public void changepage()
-        {
-            try
-            {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
-            }
-            catch { }
-            if (getCurrentPage < 1)
-            {
-                getCurrentPage = 1;
-            }
-            else if (getCurrentPage > count)
-            {
-                getCurrentPage = count;
-            }
-            ViewState["page"] = getCurrentPage;
-            //Session["page"] = getCurrentPage;
         }
     }
 }

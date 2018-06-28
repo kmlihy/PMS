@@ -95,29 +95,10 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
-    sessionStorage.setItem("page", <%=getCurrentPage %>);//当前页
-    sessionStorage.setItem("countPage",<%=count %>);//总页数
+    sessionStorage.setItem("page", <%=getCurrentPage %>);
+    sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
-        <%--$(".jump").click(function () {
-            // alert($.trim($(this).html()));
-            switch ($.trim($(this).html())) {
-                case ("上一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                    break;
-                case ("下一页"):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
-                case ("1"):
-                    jump(1);
-                    break;
-                case ("<%=count %>"):
-                    jump(<%=count %>);
-                    break;
-            }
-        });--%>
-        alert(sessionStorage.getItem("page"));//获取当前页
-        alert(sessionStorage.getItem("countPage"));//获取总页数
-        
+        alert(sessionStorage.getItem("page"));
         $(".jump").click(function () {
             // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
@@ -150,46 +131,9 @@
             }
         });
         function jump(cur) {
-            window.location.href = "allNews.aspx?newid=<%=newid %>&currentPage=" + cur;
+            window.location.href = "allNews.aspx?roleId=<%=roleId %>&currentPage=" + cur;
         }
     })
-
-    function pageMsg() {
-        alert("click");
-    }
-
-    //分页提示
-    //function pageMsg() {
-    //    var my_toast_plug_name = "mytoast";
-    //    $[my_toast_plug_name] = function (options) {
-    //        var content;
-    //        if (parseInt(sessionStorage.getItem("page")) < 1) {
-    //            content = "前无古人";
-    //        } else if (parseInt(sessionStorage.getItem("page")) > parseInt(sessionStorage.getItem("countPage")) {
-    //            content = "后无来者";
-    //        } else {
-    //            return;
-    //        }
-    //        var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
-    //        var jq_text = jq_toast.find(".my-toast-text");
-    //        jq_text.html(content);
-    //        jq_toast.appendTo($("body")).stop().fadeIn(500).delay(3000).fadeOut(500);
-    //        var w = jq_toast.width() - 10;
-    //        jq_text.width(w);
-    //        var l = -jq_toast.outerWidth() / 2;
-    //        var t = -jq_toast.outerHeight() / 2;
-    //        jq_toast.css({
-    //            "margin-left": l + "px",
-    //            "margin-top": t - 50 + "px"
-    //        });
-    //        var _jq_toast = jq_toast;
-    //        setTimeout(function () {
-    //            _jq_toast.remove();
-    //        }, 3 * 1000);
-    //    };
-    //    $.mytoast({
-    //        type: "notice"
-    //    });
-    //}
+    
 </script>
 </html>

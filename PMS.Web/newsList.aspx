@@ -19,7 +19,7 @@
             <div class="container-fluid table-bordered img-rounded" id="school">
                 <div class="container-fluid" id="">
                     <label for="title" class="h4 text-info">学校公告</label>
-                    <a href="allNews.aspx?newid=0" class="a-word">查看更多>></a>
+                    <a href="allNews.aspx?roleId=0" class="a-word">查看更多>></a>
                 </div>
                 <div class="container-fluid" id="school-list">
                     <ul class="list-unstyled">
@@ -48,7 +48,7 @@
             <div class="container-fluid table-bordered img-rounded" id="institute">
                 <div class="container-fluid" id="institute-word">
                     <label for="title" class="h4 text-info">学院公告</label>
-                    <a href="allNews.aspx?newid=2" class="a-word">查看更多>></a>
+                    <a href="allNews.aspx?roleId=2" class="a-word">查看更多>></a>
                 </div>
                 <div class="container-fluid" id="institute-list">
                     <ul class="list-unstyled">
@@ -77,7 +77,7 @@
             <div class="container-fluid table-bordered img-rounded" id="Mine">
                 <div class="container-fluid" id="Mine-word">
                     <label for="title" class="h4 text-info">学生公告</label>
-                    <a href="allNews.aspx?newid=1" class="a-word">查看更多>></a>
+                    <a href="allNews.aspx?roleId=1" class="a-word">查看更多>></a>
                 </div>
                 <div class="container-fluid" id="Mine-list">
                     <ul class="list-unstyled">
