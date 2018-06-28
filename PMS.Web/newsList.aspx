@@ -44,7 +44,6 @@
                 </div>
             </div>
 
-
             <div class="container-fluid table-bordered img-rounded" id="institute">
                 <div class="container-fluid" id="institute-word">
                     <label for="title" class="h4 text-info">学院公告</label>
@@ -83,8 +82,8 @@
                     <ul class="list-unstyled">
                         <table class="table" id="Mine-table">
                             <%for (int i = 0; i < dsTea.Tables[0].Rows.Count; i++)
-                                 {
-                                    DateTime dt =DateTime.Parse(dsTea.Tables[0].Rows[i]["createTime"].ToString());
+                              {
+                                DateTime dt =DateTime.Parse(dsTea.Tables[0].Rows[i]["createTime"].ToString());
                             %>
                             <tr>
                                 <td class="col-lg-1">
