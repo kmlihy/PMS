@@ -9,43 +9,40 @@
         <title>分院管理员信息表</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
         <link rel="stylesheet" href="../css/ml.css" />
+        <link rel="stylesheet" href="../css/lgd.css">
         <link rel="stylesheet" href="../css/style.css" />
         <link rel="stylesheet" href="../square/_all.css" />
         <link rel="stylesheet" href="../css/bootstrap-select.css" />
     </head>
-    <style>
-        .teaLable {
-            text-align: right;
-        }
-    </style>
 
     <body>
-        <div class="container-fluid big-box">
-        <div class="input-group">
-            <div class="input-group">
-                <input type="text" class="form-control search" id="inputsearch" placeholder="请输入查询条件" style="width: 150px; float: none;" />
-                <span class="input-group-btn">
-                    <button class="btn btn-info" type="button" id="btn-search">
-                        <span class="glyphicon glyphicon-search">查询</span>
-                    </button>
-                </span>
-                <div class="input-group">
-                    <button class="btn btn-danger" type="button">
+        <div class="container-fluid ">
+        <div class="panel panel-default" id="teapanelbox">
+            <div class="pane input-group" id="panel-head">
+                <div class="input-group" id="inputgroups">
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" id="btn-search">
+                            <span class="glyphicon glyphicon-search" >查询</span>
+                        </button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                            <span class="glyphicon glyphicon-plus-sign">新增</span>
+                        </button>
+                    </span>
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                        <span class="glyphicon glyphicon-plus-sign">新增</span>
-                    </button>
                 </div>
             </div>
-
         </div>
         <div class="">
             <table class="table table-bordered table-hover">
                 <thead>
                     <th class="text-center">
-                        <input type="checkbox" class="js-checkbox-all">
+                        <input type="checkbox" class="js-checkbox-all" />
                     </th>
                     <th class="text-center">序号</th>
                     <th class="text-center">工号</th>
@@ -100,7 +97,11 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="prev"><span class="glyphicon glyphicon-chevron-left"></span>
+                        <a href="#" class="jump" id="first">首页</a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                     </li>
                     <li>
@@ -122,92 +123,94 @@
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" class="jump" id="last">尾页</a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <!-- 添加管理员弹框-->
+        <!-- 添加分院管理员弹框-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">添加专业
+                    <h4 class="modal-title" id="myModalLabel">添加分院管理员
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="modal-body">
-                        <table class="table">
-                            <tbody>
+                    <table class="table">
+                        <tbody>
                             <tr>
-                                <td class="teaLable"><label class="text-span">工号</label></td>
+                                <td class="teaLable text-center"><label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="teaAccount" /></td>
+                                    <input class="form-control teaAddinput" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="teaName" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">性别</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="man">男</option>
-                                        <option value="woman">女</option>
+                                        <option>请选择性别</option>
+                                        <option>男</option>
+                                        <option>女</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable text-center">
-                                        <label class="text-span">所属院系</label></td>
+                                <td class="teaLable"><label class="text-span">院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <% for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                           {
-                                        %>
-                                        <option value=""><%= dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <% }%>
+                                        <option value="">请选择院系</option>
+                                        <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                          { %>
+                                        <option value=""><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="email" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="telNum" /></td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="btnInsert" data-dismiss="modal">添加</button>
+                    <button type="button" class="btn btn-primary">提交更改</button>
                 </div>
             </div>
         </div>
-            </div>
     </div>
     </body>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/icheck.min.js"></script>
-    <script src="../js/ml.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/icheck.min.js"></script>
+<script src="../js/ml.js"></script>
+<script src="../js/bootstrap-select.js"></script>
     <script>
-        //分页
+        <!-- 分页 -->
         //存储当前页数
         sessionStorage.setItem("page", <%=getCurrentPage %>);
         //存储总页数
         sessionStorage.setItem("countPage",<%=count %>);
         $(document).ready(function () {
-            //alert(sessionStorage.getItem("page"));
             $(".jump").click(function () {
-                // alert($.trim($(this).html()));          
                 switch ($.trim($(this).html())) {
+                    //点击上一页按钮时
                     case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
                         if (parseInt(sessionStorage.getItem("page")) > 1) {
                             jump(parseInt(sessionStorage.getItem("page")) - 1);
@@ -218,6 +221,7 @@
                             jump(1);
                             break;
                         }
+                    //点击下一页按钮时
                     case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
                         if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                             jump(parseInt(sessionStorage.getItem("page")) + 1);
@@ -228,19 +232,20 @@
                             jump(parseInt(sessionStorage.getItem("countPage")));
                             break;
                         }
-                    case ("1"):
+                    //点击首页按钮时
+                    case ("首页"):
                         jump(1);
                         break;
-                    case (sessionStorage.getItem("countPage")):
+                    //点击尾页按钮时
+                    case ("尾页"):
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                 }
             });
-
+            //点击查询按钮时
             $("#btn-search").click(function () {
                 var strWhere = $("#inputsearch").val();
                 sessionStorage.setItem("strWhere",strWhere);
-                //window.location.href = "teaList.aspx?search=" + strWhere;
                 jump(1);
             });
 
@@ -251,6 +256,11 @@
                 else {
                     window.location.href = "adminList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
                 }          
+            }
+            //当总页数为1时，首页与尾页按钮隐藏
+            if (sessionStorage.getItem("countPage") == "1") {
+                $("#first").hide();
+                $("#last").hide();
             }
         })
     </script>

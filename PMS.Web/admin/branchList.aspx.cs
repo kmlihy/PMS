@@ -13,42 +13,40 @@ namespace PMS.Web.admin
     public partial class branchList : System.Web.UI.Page
     {
         //获取数据
-        CollegeBll collbll = new CollegeBll();
         protected DataSet ds = null;
-        protected int count;
-        protected int pageSize = 1;
-        //分页
         protected int getCurrentPage = 1;
-        //查询
+        protected int count;
+        protected int pagesize = 1;
         protected String search = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Search();
             getdata(Search());
         }
-        //获取数据
-        public void getdata(string strWhere)
+        public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
                 currentPage = "1";
             }
+            CollegeBll coll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "T_College",
-                StrColumn = "collegeId",
+                StrWhere = strWhere == null ? "" : strWhere,
                 IntColType = 0,
                 IntOrder = 0,
-                StrColumnlist = "*",
-                IntPageSize = pageSize,
                 IntPageNum = int.Parse(currentPage),
-                StrWhere = strWhere == null ? "" : strWhere
+                IntPageSize = pagesize,
+                StrColumn = "collegeId",
+                StrColumnlist = "*"
             };
             getCurrentPage = int.Parse(currentPage);
-            ds = collbll.SelectBypage(tbd,out count);
+            ds = coll.SelectBypage(tbd, out count);
         }
-        //分页
+        
         public string Search()
         {
             try
@@ -64,7 +62,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" collegeName={0}", "'" + search + "'");
+                    search = String.Format("collegeName={0}", "'" + search + "'");
                 }
             }
             catch

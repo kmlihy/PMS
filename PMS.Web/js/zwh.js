@@ -19,9 +19,9 @@ function adminMsg() {
     var my_toast_plug_name = "mytoast";
     $[my_toast_plug_name] = function (options) {
         var content;
-        if ($("#userName").val() == "") {
+        if ($("#userName").val() === "") {
             content = "用户名不能为空！";
-        } else if ($("#pwd").val() == "") {
+        } else if ($("#pwd").val() === "") {
             content = "密码不能为空！";
         } else {
             return;
@@ -50,7 +50,7 @@ function adminMsg() {
 
 // 管理员登录界面判断是否提交表单
 function admincheckForm() {
-    if ($("#userName").val() != "" && $("#pwd").val() != "") {
+    if ($("#userName").val() !== "" && $("#pwd").val() !== "") {
         return true;
     } else {
         return false;
@@ -62,13 +62,13 @@ function stuMsg() {
     var my_toast_plug_name = "mytoast";
     $[my_toast_plug_name] = function (options) {
         var content;
-        if ($("#userName").val() == "") {
+        if ($("#userName").val() === "") {
             content = "用户名不能为空！";
-        } else if ($("#pwd").val() == "") {
+        } else if ($("#pwd").val() === "") {
             content = "密码不能为空！";
-        } else if ($("#captcha").val() == "") {
+        } else if ($("#captcha").val() === "") {
             content = "验证码不能为空！";
-        } else if ($("#captcha").val().toLowerCase != "<%=code%>") {
+        } else if ($("#captcha").val().toLowerCase !== "<%=code%>") {
             content = "验证码错误！";
         } else {
             return;
@@ -97,7 +97,7 @@ function stuMsg() {
 
 // 学生登录界面判断是否提交表单
 function stucheckForm() {
-    if ($("#userName").val() != "" && $("#pwd").val() != "" && $("#captcha").val() != "") {
+    if ($("#userName").val() !== "" && $("#pwd").val() !== "" && $("#captcha").val() !== "") {
         return true;
     } else {
         return false;
@@ -139,7 +139,7 @@ function ok() {
     $("#editMessage").show();
 }
 
-//分院首页、尾页提示
+//分页首页、尾页提示
 function pagingMsg() {
     var my_toast_plug_name = "mytoast";
     $[my_toast_plug_name] = function (options) {
