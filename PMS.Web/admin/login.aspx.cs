@@ -10,10 +10,11 @@ namespace PMS.Web.admin
 {
     public partial class login : System.Web.UI.Page
     {
+        protected string teaAccount;
         protected void Page_Load(object sender, EventArgs e)
         {
             try {
-                string teaAccount = Request.Form["userName"].ToString();
+                teaAccount = Request.Form["userName"].ToString();
                 string pwd = Request.Form["pwd"].ToString();
                 TeacherBll bll = new TeacherBll();
                 Model.Teacher teacher = bll.Login(teaAccount, pwd);

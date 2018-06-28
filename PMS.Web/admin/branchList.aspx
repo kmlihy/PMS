@@ -64,15 +64,12 @@
                                     <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-default btn-sm btn-success">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                                    <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                                    <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
+                                <button class="btn btn-default btn-sm btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                                <button class="btn btn-default btn-sm btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                                 </td>
                             </tr>
                             <%
@@ -158,7 +155,8 @@
         sessionStorage.setItem("page", <%=getCurrentPage %>);
         //存储总页数
         sessionStorage.setItem("countPage", <%=count %>);
-        $(document).ready(function() {
+            $(document).ready(function () {
+            //sessionStorage.setItem("strWhere", "");
             $(".jump").click(function() {
                 switch ($.trim($(this).html())) {
                     //点击上一页按钮时
@@ -203,6 +201,7 @@
                     window.location.href = "branchList.aspx?currentPage=" + cur
                 } else {
                     window.location.href = "branchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+                    //sessionStorage.setItem("strWhere", null);
                 }
             }
             //当总页数为1时，首页与尾页按钮隐藏

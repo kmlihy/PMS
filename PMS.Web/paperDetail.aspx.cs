@@ -18,7 +18,6 @@ namespace PMS.Web
             titleid = Request["titleId"].ToString();
             TitleBll nb = new TitleBll();
             titleId = nb.GetTitle(int.Parse(titleid));
-
         }
     }
 }

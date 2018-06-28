@@ -16,7 +16,7 @@ namespace PMS.Web.admin
         protected DataSet ds = null;
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 1;
+        protected int pagesize = 5;
         protected String search = "";
 
         protected void Page_Load(object sender, EventArgs e)
