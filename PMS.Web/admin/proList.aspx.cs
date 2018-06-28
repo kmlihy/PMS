@@ -13,7 +13,7 @@ namespace PMS.Web.admin
     public partial class proList : System.Web.UI.Page
     {
         //列表
-       protected DataSet ds = null;
+        protected DataSet ds = null;
         //专业
         //protected DataSet prods = null;
         protected ProfessionBll probll = new ProfessionBll();
@@ -22,44 +22,60 @@ namespace PMS.Web.admin
         protected CollegeBll colbll = new CollegeBll();
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 1;
+        protected int pagesize = 2;
+        protected String search = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            getPage("", 1);
-           // prods = probll.Select();
-            changepage();
-            getPage("", getCurrentPage);
+            Search();
+            // prods = probll.Select();
+            getPage(Search());
             bads = colbll.Select();
-
         }
-        /// <summary>
-        /// 列表加载
-        /// </summary>
-        /// <param name="strWhere"> 查询条件</param>
-        /// <param name="pageNum">当前加载页数</param>
-        public void getPage(string strWhere,int pageNum)
+        public void getPage(String strWhere)
         {
-            TableBuilder tabuilder = new TableBuilder("V_Profession","proId",0,0,"*",1, pageNum, strWhere);
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
+            TableBuilder tabuilder = new TableBuilder()
+            {
+                StrTable = "V_Profession",
+                StrWhere = strWhere == null ? "" : strWhere,
+                IntColType = 0,
+                IntOrder = 0,
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "proId",
+                StrColumnlist = "*"
+            };
+            getCurrentPage = int.Parse(currentPage);
             ds = probll.SelectBypage(tabuilder, out count);
         }
-        public void changepage()
+        public string Search()
         {
             try
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" proName={0} or collegeName={0} ", "'" + search + "'");
+                }
             }
-            catch { }
-            if (getCurrentPage < 1)
+            catch
             {
-                getCurrentPage = 1;
+
             }
-            else if (getCurrentPage > count)
-            {
-                getCurrentPage = count;
-            }
-            ViewState["page"] = getCurrentPage;
+            return search;
         }
     }
 }

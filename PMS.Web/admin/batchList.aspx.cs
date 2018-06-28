@@ -12,38 +12,63 @@ namespace PMS.Web.admin
 {
     public partial class batchList : System.Web.UI.Page
     {
-        protected DataSet plands = null;
-        protected int intPageCount;
+        protected DataSet plands = null;//批次
+        protected DataSet colds = null;//院系
+        protected int count;
         protected int getCurrentPage = 1;
+        protected int pagesize = 1;
+        protected String search = "";
         PlanBll planBll = new PlanBll();
+        CollegeBll colBll = new CollegeBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            getpage("", 1);
-            changePage();
-            getpage("", getCurrentPage);
+            colds = colBll.Select();
+            Search();
+            getdata(Search());
         }
-        public void getpage(string strWhere,int pageNum)
+        public void getdata(string strWhere)
         {
-            TableBuilder tBuilder = new TableBuilder("V_Plan", "planId", 0, 0, "*", 1, pageNum, strWhere);
-            plands = planBll.SelectBypage(tBuilder, out intPageCount);
-        }
-        public void changePage()
-        {
-            try
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                currentPage = "1";
+            }
+            BLL.TeacherBll sdao = new TeacherBll();
+            TeacherBll pro = new TeacherBll();
+            TableBuilder tabuilder = new TableBuilder()
+            {
+                StrTable = "V_Plan",
+                StrWhere = strWhere == null ? "" : strWhere,
+                IntColType = 0,
+                IntOrder = 0,
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "planId",
+                StrColumnlist = "*"
+            };
+            getCurrentPage = int.Parse(currentPage);
+            plands = pro.SelectBypage(tabuilder, out count);
+        }
+
+        public string Search()
+        {
+            try {
+                search = Request.QueryString["search"];
+                if(search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format("planName={0} or collegeName={0}", "'" + search + "'");
+                }
             }
             catch { }
-            if (getCurrentPage < 1)
-            {
-                getCurrentPage = 1;
-            }
-            else if (getCurrentPage > intPageCount)
-            {
-                getCurrentPage = intPageCount;
-            }
-            ViewState["page"] = getCurrentPage;
+            return search;
         }
     }
 }
