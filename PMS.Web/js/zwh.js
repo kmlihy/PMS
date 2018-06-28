@@ -139,7 +139,7 @@ function ok() {
     $("#editMessage").show();
 }
 
-//分页首页、尾页提示
+
 function pagingMsg() {
     var my_toast_plug_name = "mytoast";
     $[my_toast_plug_name] = function (options) {
