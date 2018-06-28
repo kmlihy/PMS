@@ -21,19 +21,17 @@
         </nav>
         <div class="panel">
             <div class="panel-heading text-center">
-                <label for="title">论文题目</label>
+                <label for="title"><%=titleId.title.ToString() %></label>
             </div>
             <div class="panel-body">
                 <span>
-                    为推动高等学校依法自主办学负面清单管理改革，教育部拟对高校办学过程中涉及的政府管理事项进行全面清理。请各单位细致梳理需要政府及其有关部门审批、备案、年审、年检、数量指标控制、限制性规定等事项，并注明其法律或文件依据、设立部门，填写《高等学校负面清单管理摸底核查表》（附件通过OA通知公告栏转发）
-                    为推动高等学校依法自主办学负面清单管理改革，教育部拟对高校办学过程中涉及的政府管理事项进行全面清理。请各单位细致梳理需要政府及其有关部门审批、备案、年审、年检、数量指标控制、限制性规定等事项，并注明其法律或文件依据、设立部门，填写《高等学校负面清单管理摸底核查表》（附件通过OA通知公告栏转发）
-                    为推动高等学校依法自主办学负面清单管理改革，教育部拟对高校办学过程中涉及的政府管理事项进行全面清理。请各单位细致梳理需要政府及其有关部门审批、备案、年审、年检、数量指标控制、限制性规定等事项，并注明其法律或文件依据、设立部门，填写《高等学校负面清单管理摸底核查表》（附件通过OA通知公告栏转发）
+                    <%=titleId.TitleContent.ToString() %>
                 </span>
             </div>
             <div class="panel-footer">
                 <ul class="list-group list-inline">
                     <li class="list-group-item">
-                        <a href="#">指导教师:CCCC</a>
+                        <a href="#">指导教师:<%=titleId.teacher.TeaName.ToString() %></a>
                     </li>
                     <li class="list-group-item">
                         <a href="#">交叉指导老师：XX</a>

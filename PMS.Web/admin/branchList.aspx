@@ -130,7 +130,7 @@
                                 <tr>
                                     <td class="teaLable text-center"><label class="text-span">学院名称</label></td>
                                     <td>
-                                        <input class="form-control teaAddinput" type="text" />
+                                        <input class="form-control teaAddinput" type="text" id="collegeName" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -138,7 +138,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">提交更改</button>
+                        <button type="button" class="btn btn-primary" id="saveCollgeg">提交更改</button>
                     </div>
                 </div>
             </div>
@@ -209,7 +209,28 @@
                 $("#first").hide();
                 $("#last").hide();
             }
+
+            $("#saveCollgeg").click(function(){
+                var collegeName = $("#collegeName").val();
+                if(collegeName == ""){
+                    alert("请输入分院名称");
+                }
+                else{
+                    alert("ajax");
+                    $.ajax({
+                        type: 'Post',
+                        url: 'branchList.aspx',
+                        data: {collegeName: collegeName, op: "add"},
+                        dataType:'text',
+                        success:function(succ){
+                            alert(succ);
+                            jump(1);
+                        }
+                    });
+                }
+            })
         })
+        
     </script>
 
     </html>

@@ -24,25 +24,23 @@
                         <table class="table">
                             <thead>
                                 <th colspan="2" class="text-center">
-                                    <label for="title" class="h4"><%=newsId.NewsTitle %></label>
+                                    <label for="title" class="h3"><%=newsId.NewsTitle %></label>
                                 </th>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="text-right">
                                         <span class="table">
-                                            发布时间:<%=newsId.CreateTime %>
-                                            <label id="time"></label>
+                                            <span>发布人：</span><%=newsId.teacher.TeaName %>
                                         </span>
-                                    </td>
-                                    <td class="text-left">
+                                        <span>&nbsp|&nbsp</span>
                                         <span class="table">
-                                            发布人：<%=newsId.teacher.TeaName %>
+                                            <span>发布时间：</span><%=newsId.CreateTime.GetDateTimeFormats('f')[0] %>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="">
+                                    <td colspan="2" class="newsContent">
                                         <label for="text">
                                             <%=newsId.NewsContent %>
                                         </label>

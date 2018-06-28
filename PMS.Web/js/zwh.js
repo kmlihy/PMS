@@ -124,12 +124,27 @@ function edit() {
 
 function ok() {
     var telNum = $(".telNum").val();
+    var email = $(".email").val();
+    $.ajax({
+        type: 'get',
+        url: 'adminCenter.aspx?op=update',
+        datatype:'text',
+        data: {
+            phone: telNum,
+            Email: email,
+        },
+        success: function (data) {
+            alert(data);
+        },
+        error: function () {
+            
+        }
+    });
     if (telNum === "") {
         $("#telNum").closest("td").text("");
     } else {
         $("#telNum").closest("td").text(telNum);
     }
-    var email = $(".email").val();
     if (email === "") {
         $("#email").closest("td").text("");
     } else {

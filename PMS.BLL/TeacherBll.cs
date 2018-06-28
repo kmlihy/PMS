@@ -81,11 +81,11 @@ namespace PMS.BLL
             int count = dao.Updata(teacher);
             if (count > 0)
             {
-                return Enums.OpResult.删除成功;
+                return Enums.OpResult.更新成功;
             }
             else
             {
-                return Enums.OpResult.删除失败;
+                return Enums.OpResult.更新失败;
             }
         }
         /// <summary>

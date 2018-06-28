@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web.admin
 {
+    using Result = Enums.OpResult;
+
     public partial class branchList : System.Web.UI.Page
     {
         //获取数据
@@ -21,9 +23,39 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Search();
-            getdata(Search());
+            string op = Context.Request["op"];
+            if (op == "add")
+            {
+                saveCollege();
+                Search();
+                getdata(Search());                
+            }
+            if (!Page.IsPostBack)
+            {
+                Search();
+                getdata(Search());
+            }     
         }
+
+        public void saveCollege()
+        {
+            string collegeName = Context.Request["collegeName"].ToString();
+            College college = new College();
+            college.ColName = collegeName;
+            CollegeBll coll = new CollegeBll();
+            Result result = coll.Insert(college);
+            if (result == Result.添加成功)
+            {
+                Response.Write("添加成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("添加失败");
+                Response.End();
+            }
+        }
+
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
