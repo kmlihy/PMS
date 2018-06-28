@@ -19,6 +19,7 @@ namespace PMS.Web
         string strteaType = "";
         private string strWhere = "";
         protected string roleId;
+        protected string newsid;
         protected string newsType;
         
 

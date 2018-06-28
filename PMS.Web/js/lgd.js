@@ -94,3 +94,68 @@ $(document).ready(function () {
         }
     })
 })
+//分页界限提示
+function adminMsg() {
+    alert("123");
+    var my_toast_plug_name = "mytoast";
+    $[my_toast_plug_name] = function (options) {
+        var content;
+        if ($("#fristPage").val() == "1") {
+            content = "已经是第一页！";
+        } else if ($("#fristPage").val() == $("#lastPage").val()) {
+            content = "最后一页！";
+        } else {
+            return;
+        }
+        var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
+        var jq_text = jq_toast.find(".my-toast-text");
+        jq_text.html(content);
+        jq_toast.appendTo($("body")).stop().fadeIn(500).delay(3000).fadeOut(500);
+        var w = jq_toast.width() - 10;
+        jq_text.width(w);
+        var l = -jq_toast.outerWidth() / 2;
+        var t = -jq_toast.outerHeight() / 2;
+        jq_toast.css({
+            "margin-left": l + "px",
+            "margin-top": t - 50 + "px"
+        });
+        var _jq_toast = jq_toast;
+        setTimeout(function () {
+            _jq_toast.remove();
+        }, 2 * 1000);
+    };
+    $.mytoast({
+        type: "notice"
+    });
+}
+//全选框
+var $checkboxAll = $(".js-checkbox-all"),
+    $checkbox = $("tbody").find("[type='checkbox']"),
+    length = $checkbox.length,
+    i = 0;
+
+//启动icheck
+$(("[type='checkbox']")).iCheck({
+    checkboxClass: 'icheckbox_square-orange',
+});
+
+//全选checkbox
+$checkboxAll.on("ifClicked", function (event) {
+    if (event.target.checked) {
+        $checkbox.iCheck('uncheck');
+        i = 1;
+    } else {
+        $checkbox.iCheck('check');
+        i = length;
+    }
+});
+
+//监听计数
+$checkbox.on('ifClicked', function (event) {
+    event.target.checked ? i-- : i++;
+    if (i == length + 1) {
+        $checkboxAll.iCheck('check');
+    } else {
+        $checkboxAll.iCheck('uncheck');
+    }
+});

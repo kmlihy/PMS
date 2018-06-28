@@ -21,25 +21,21 @@
                     </div>
                     <div style="float: right">
                         <button type="button" class="btn btn-primary navbar-btn">
-                            选定题目
+                            <a href="PaperDtailStu.aspx?titleid=<%=titleid %>" >选定题目</a>
                         </button>
                     </div>
                 </div>
             </nav>
             <div class="panel">
                 <div class="panel-heading text-center">
-                    <label for="title">论文题目</label>
+                    <label for="title"><%=titleId.title %></label>
                 </div>
                 <div class="panel-body">
-                    <span>
-                        为推动高等学校依法自主办学负面清单管理改革，教育部拟对高校办学过程中涉及的政府管理事项进行全面清理。请各单位细致梳理需要政府及其有关部门审批、备案、年审、年检、数量指标控制、限制性规定等事项，并注明其法律或文件依据、设立部门，填写《高等学校负面清单管理摸底核查表》（附件通过OA通知公告栏转发）
-                        为推动高等学校依法自主办学负面清单管理改革，教育部拟对高校办学过程中涉及的政府管理事项进行全面清理。请各单位细致梳理需要政府及其有关部门审批、备案、年审、年检、数量指标控制、限制性规定等事项，并注明其法律或文件依据、设立部门，填写《高等学校负面清单管理摸底核查表》（附件通过OA通知公告栏转发）
-                        为推动高等学校依法自主办学负面清单管理改革，教育部拟对高校办学过程中涉及的政府管理事项进行全面清理。请各单位细致梳理需要政府及其有关部门审批、备案、年审、年检、数量指标控制、限制性规定等事项，并注明其法律或文件依据、设立部门，填写《高等学校负面清单管理摸底核查表》（附件通过OA通知公告栏转发）
-                    </span>
+                    <span><%=titleId.TitleContent %></span>
                 </div>
                 <div class="panel-footer">
-                    <label for="text">选题人数上限：50</label>
-                    <label for="text" style="float: right">已选人数：40</label>
+                    <label for="text">选题人数上限：<%=titleId.Limit %></label>
+                    <label for="text" style="float: right">已选人数：<%=titleId.Selected %></label>
                 </div>
             </div>
         </div>
