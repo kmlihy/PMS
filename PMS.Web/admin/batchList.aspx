@@ -144,46 +144,48 @@
                             <tr>
                                 <td class="teaLable text-center"><label class="text-span">批次名称</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text"/></td>
+                                    <input class="form-control teaAddinput" type="text" id="planName"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="startTime" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="endTime" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <select class="selectpicker" data-width="auto" id="state">
                                         <option value="">是否激活</option>
                                         <option value="1">是</option>
-                                        <option value="2">否</option>
+                                        <option value="0">否</option>
                                     </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">所属院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <select class="selectpicker" data-width="auto" id="collegeId">
                                         <option value="">请选择院系</option>
                                         <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
-                                        <option value="">
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
                                             <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                         </option>
                                         <% } %>
                                     </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="button" class="btn btn-primary" id="savePlan">提交更改</button>
                 </div>
             </div>
         </div>
@@ -225,6 +227,7 @@
                                         <option value="">是</option>
                                         <option value="">否</option>
                                     </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">所属院系</label></td>
@@ -238,6 +241,7 @@
                                         </option>
                                         <% } %>
                                     </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -310,6 +314,37 @@
                 window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
             }          
         }
+
+        $("#savePlan").click(function(){
+            var planName = $("#planName").val(),
+                startTime = $("#startTime").val(),
+                endTime = $("#endTime").val(),
+                state = $("#state").find("option:selected").val(),
+                college = $("#collegeId").find("option:selected").val();
+            if(planName == ""){
+                alert("不能为空")
+            }
+            else{
+                alert("ajax");
+                $.ajax({
+                    type:'Post',
+                    url:'batchList.aspx',
+                    data:{
+                        planName:planName,
+                        startTime:startTime,
+                        endTime:endTime,
+                        state:state,
+                        college:college,
+                        op:"add"
+                    },
+                    dateType:'text',
+                    success:function(succ){
+                        alert(succ);
+                        jump(1);
+                    }
+                })
+            }
+        })
     })
 </script>
 </html>
