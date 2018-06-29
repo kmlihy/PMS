@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
-
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -328,6 +328,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
 <script>
 
     //分页及查询
@@ -392,8 +393,8 @@
                 pro = $("#pro").find("option:selected").val(),
                 phone = $("#phone").val(),
                 email = $("#email").val();
-            if(stuAccount==""){
-                alert("学号不能为空！");
+            if(stuAccount==""||pwd==""||realName==""||sex==""||pro==""||phone==""||email==""){
+                alert("不能出现未填项！");
             }
             else{
                 alert("ajax");

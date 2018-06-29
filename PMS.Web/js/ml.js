@@ -28,3 +28,51 @@ $checkbox.on('ifClicked', function (event) {
         $checkboxAll.iCheck('uncheck');
     }
 });
+
+//批次添加框输入框验证
+//$(document).ready(function () {
+//    $("#myEditor").validate({
+//        onfocusout: function (element) { $(element).valid(); },
+//        errorPlacement: function (error, element) {
+//            error.appendTo(element.parent().parent());
+//        },
+//        rules: {
+//            planName: {
+//                required: true,
+//            },
+//            startTime: {
+//                required: true,
+//                dateISO: true,
+//            },
+//            endTime: {
+//                required: true,
+//                dateISO:tru,
+//            },
+//            state: {
+//                required:true,
+//            },
+//            collegeId: {
+//                reqiured:true,
+//            },
+//        },
+//        messages: {
+//            planName: {
+//                required:"*"
+//            },
+//            startTime: {
+//                required: "*",
+//                dateISO:"请输入正确的日期格式！",
+//            },
+//            endTime: {
+//                required: "*",
+//                dateISO: "请输入正确的日期格式！",
+//            },
+//            state: {
+//                required: "*"
+//            },
+//            collegeId: {
+//                required: "*"
+//            },
+//        }
+//    })
+//})
