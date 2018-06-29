@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static PMS.BLL.Enums;
 
 namespace PMS.Web.admin
 {
@@ -17,15 +18,57 @@ namespace PMS.Web.admin
         protected int count;
         protected int pagesize=1;
         protected String search = "";
+        //分院
+        protected DataSet colds = null;
+        protected CollegeBll colbll = new CollegeBll();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            string op = Context.Request["op"];
+            if (op=="add")
+            {
+                saveTeacher();
+            }
             Search();
             //getdata(Search());
             //changepage();
             getdata(Search());
+            colds = colbll.Select();
                 
+        }
+        public void saveTeacher()
+        {
+            College college = new College();
+            int  collegeId =Convert.ToInt32(Context.Request["CollegeId"]);
+            int teaType = Convert.ToInt32(Context.Request["TeaType"]);
+            string teaAccount = Context.Request["TeaAccount"].ToString();
+            string pwd = Context.Request["Pwd"].ToString();
+            string teaName = Context.Request["TeaName"].ToString();
+            string sex = Context.Request["Sex"].ToString();
+            string email = Context.Request["Email"].ToString();
+            string tel = Context.Request["Tel"].ToString();
+            Teacher tea = new Teacher();
+            tea.college = college;
+            college.ColID = collegeId;
+            tea.TeaType = teaType;
+            tea.TeaAccount = teaAccount;
+            tea.TeaPwd = pwd;
+            tea.TeaName = teaName;
+            tea.Sex = sex;
+            tea.Email = email;
+            tea.Phone = tel;
+            TeacherBll teabll = new TeacherBll();
+            OpResult result = teabll.Insert(tea);
+            if (result == OpResult.添加成功)
+            {
+                Response.Write("添加成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("添加失败");
+                Response.End();
+            }
         }
 
         public void getdata(String strWhere)
