@@ -7,43 +7,128 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PMS.BLL;
 using PMS.Model;
+using System.Globalization;
 
 namespace PMS.Web.admin
 {
+    using Result = Enums.OpResult;
     public partial class batchList : System.Web.UI.Page
     {
-        protected DataSet plands = null;
-        protected int intPageCount;
+        protected DataSet plands = null;//批次
+        protected DataSet colds = null;//院系
+        protected int count;
         protected int getCurrentPage = 1;
+        protected int pagesize = 1;
+        protected String search = "";
         PlanBll planBll = new PlanBll();
+        CollegeBll colBll = new CollegeBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            getpage("", 1);
-            changePage();
-            getpage("", getCurrentPage);
-        }
-        public void getpage(string strWhere,int pageNum)
-        {
-            TableBuilder tBuilder = new TableBuilder("V_Plan", "planId", 0, 0, "*", 1, pageNum, strWhere);
-            plands = planBll.SelectBypage(tBuilder, out intPageCount);
-        }
-        public void changePage()
-        {
-            try
+            //colds = colBll.Select();
+            //Search();
+            //getdata(Search());
+            //savePlan();
+            string op = Context.Request["op"];
+            if(op == "add")
             {
-                string currentPage = Request.QueryString["currentPage"];
-                getCurrentPage = int.Parse(currentPage);
+                savePlan();
+                Search();
+                getdata(Search());
+                colds = colBll.Select();
+            }
+            if (!Page.IsPostBack)
+            {
+                Search();
+                getdata(Search());
+                colds = colBll.Select();
+            }
+        }
+        //添加
+        public void savePlan()
+        {
+            //获取参数
+            string planName = Context.Request["planName"].ToString(),
+                   startTiem = Context.Request["startTime"].ToString(),
+                   endTime = Context.Request["endTime"].ToString();
+            int state = int.Parse(Context.Request["state"].ToString()),
+                collegeId = int.Parse(Context.Request["college"].ToString());
+            //字符串转日期
+            DateTime startdt;
+            DateTime enddt;
+            DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
+            dtFormat.ShortDatePattern = "yyyy/MM/dd";
+            startdt = Convert.ToDateTime(startTiem, dtFormat);
+            enddt = Convert.ToDateTime(endTime, dtFormat);
+            //实例化参数
+            College coll = new College()
+            {
+                ColID = collegeId
+            };
+            Plan plan = new Plan()
+            {
+                PlanName = planName,
+                StartTime = startdt,
+                EndTime = enddt,
+                State = state,
+                college = coll
+            };
+            PlanBll pBll = new PlanBll();
+            Result result = pBll.Insert(plan);
+            if(result == Result.添加成功)
+            {
+                Response.Write("添加成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("添加失败");
+                Response.End();
+            }
+        }
+        //分页
+        public void getdata(string strWhere)
+        {
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
+            BLL.TeacherBll sdao = new TeacherBll();
+            TeacherBll pro = new TeacherBll();
+            TableBuilder tabuilder = new TableBuilder()
+            {
+                StrTable = "V_Plan",
+                StrWhere = strWhere == null ? "" : strWhere,
+                IntColType = 0,
+                IntOrder = 0,
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "planId",
+                StrColumnlist = "*"
+            };
+            getCurrentPage = int.Parse(currentPage);
+            plands = pro.SelectBypage(tabuilder, out count);
+        }
+        //查询
+        public string Search()
+        {
+            try {
+                search = Request.QueryString["search"];
+                if(search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format("planName={0} or collegeName={0}", "'" + search + "'");
+                }
             }
             catch { }
-            if (getCurrentPage < 1)
-            {
-                getCurrentPage = 1;
-            }
-            else if (getCurrentPage > intPageCount)
-            {
-                getCurrentPage = intPageCount;
-            }
-            ViewState["page"] = getCurrentPage;
+            return search;
         }
     }
 }

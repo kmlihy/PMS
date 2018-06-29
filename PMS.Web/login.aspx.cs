@@ -10,8 +10,10 @@ namespace PMS.Web
     public partial class login : System.Web.UI.Page
     {
         public string code;
+        protected string account;
         protected void Page_Load(object sender, EventArgs e)
         {
+            account = Request.Form["userName"].ToString();
             //code = Session["code"].ToString().ToLower();
         }
     }

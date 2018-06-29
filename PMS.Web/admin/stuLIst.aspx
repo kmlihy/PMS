@@ -7,12 +7,12 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>学生信息表</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/ml.css">
-    <link rel="stylesheet" href="../css/lgd.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../square/_all.css">
-    <link rel="stylesheet" href="../css/bootstrap-select.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/ml.css"/>
+    <link rel="stylesheet" href="../css/lgd.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../square/_all.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-select.css"/>
 </head>
 
 <body>
@@ -21,18 +21,18 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker">
-                        <option>请选择查询专业</option>
+                        <option>请选择专业</option>
                         <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             { %>
-                        <option>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
                             <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
                         </option>
                         <%} %>
-                    </selec>
+                    </select>
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search" >查询</span>
+                            <span class="glyphicon glyphicon-search" id="search">查询</span>
                         </button>
                     </span>
                     <span class="input-group-btn">
@@ -40,7 +40,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del">
+                    <button class="btn btn-danger" type="button" id="btn-Del" onclick="pagingMsg()">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
@@ -91,14 +91,11 @@
                             <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-success">
-                                <span class="glyphicon glyphicon-search"></span>
+                            <button class="btn btn-default btn-sm btn-warning" data-toggle="modal" data-target="#myEditor">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                             <button class="btn btn-default btn-sm btn-danger">
                                 <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                            <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </td>
                     </tr>
@@ -108,8 +105,11 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump">
-                            <span class="glyphicon glyphicon-chevron-left" id="pageDown" onclick="value()"></span>
+                        <a href="#" class="jump">首页</a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                     </li>
                     <li>
@@ -119,12 +119,16 @@
                         <a href="#">/</a>
                     </li>
                     <li>
-                        <a href="#" class="jump"><%=intPageCount %></a>
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" class="jump">
+                        <a href="#" id="next" class="jump" onclick="Alert('houwulaizhe')">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump">尾页</a>
                     </li>
                 </ul>
             </div>
@@ -145,50 +149,164 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="teaLable text-center"><label class="text-span">学号</label></td>
+                                <td class="teaLable text-center">
+                                    <label class="text-span">学号</label>
+                                </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text"/></td>
+                                    <input class="form-control teaAddinput" type="text" id="stuAccount" />
+                                </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">姓名</label></td>
+                                <td class="teaLable text-center">
+                                    <label class="text-span">初始密码</label>
+                                </td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="pwd" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">姓名</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="realName" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">性别</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="sex">
+                                        <option value="">请选择性别</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </td>
+                            </tr>
+<%--                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">院系</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="college">
+                                        <option value="">请选择院系</option>
+                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                        </option>
+                                        <% } %>
+                                    </select>
+                                </td>
+                            </tr>--%>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">专业</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="pro">
+                                        <option>请选择专业</option>
+                                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                        </option>
+                                        <%} %>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">邮箱</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="email" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">联系电话</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="phone" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="saveSutdent">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--编辑按钮弹框-->
+    <div class="modal fade" id="myEditor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myEditorLabel">
+                        编辑学生
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable text-center">
+                                    <label class="text-span">学号</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">性别</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">姓名</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">性别</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="">请选择性别</option>
                                         <option value="">男</option>
                                         <option value="">女</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">院系</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="">请选择院系</option>
-                                        <option value=""></option>
+                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="">
+                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                        </option>
+                                        <% } %>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">专业</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">专业</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="">请选择专业</option>
-                                        <option value=""></option>
+                                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                        </option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">邮箱</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">邮箱</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">联系电话</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">联系电话</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" /></td>
                             </tr>
@@ -202,6 +320,8 @@
             </div>
         </div>
     </div>
+
+
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -209,26 +329,95 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script>
+
+    //分页及查询
+    sessionStorage.setItem("page", <%=getCurrentPage %>);
+    sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
+        //分页
         $(".jump").click(function () {
             switch ($.trim($(this).html())) {
-                case ('<span class="glyphicon glyphicon-chevron-left" id="pageDown" onclick="value()"></span>'):
-                    jump(<%=int.Parse( ViewState["page"].ToString())-1%>);
-                    break;
+                case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+                    if (parseInt(sessionStorage.getItem("page")) > 1) {
+                        jump(parseInt(sessionStorage.getItem("page")) - 1);
+                        //sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
+                        break;
+                    }
+                    else {
+                        jump(1);
+                        break;
+                    }
                 case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
-                    jump(<%=int.Parse( ViewState["page"].ToString())+1%>);
-                    break;
-                case ("<%=getCurrentPage %>"):
+                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                        jump(parseInt(sessionStorage.getItem("page")) + 1);
+                        //sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
+                        break;
+                    }
+                    else {
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                case ("首页"):
                     jump(1);
                     break;
-                case ("<%=intPageCount %>"):
-                    jump(<%=intPageCount %>);
+                case (sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
+                    break;
+                case ("尾页"):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
         });
-    function jump(cur) {
-        window.location.href = "stuLIst.aspx?currentPage=" + cur;
-    }
-})
+        //查询
+        $("#search").click(function () {
+            var strWhere = $("#inputsearch").val();
+            sessionStorage.setItem("strWhere",strWhere);
+            jump(1);
+        });
+        //地址栏显示信息
+        function jump(cur) {
+            if (sessionStorage.getItem("strWhere") == null) {
+                window.location.href = "stuLIst.aspx?currentPage=" + cur
+            }
+            else {
+                window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            }          
+        }
+        //添加学生
+        $("#saveSutdent").click(function(){
+            var stuAccount = $("#stuAccount").val(),
+                pwd = $("#pwd").val(),
+                realName = $("#realName").val(),
+                sex = $("#sex").find("option:selected").val(),
+                pro = $("#pro").find("option:selected").val(),
+                phone = $("#phone").val(),
+                email = $("#email").val();
+            if(stuAccount==""){
+                alert("学号不能为空！");
+            }
+            else{
+                alert("ajax");
+                $.ajax({
+                    type:'Post',
+                    url:'stuLIst.aspx',
+                    data:{
+                        stuAccount:stuAccount,
+                        pwd:pwd,
+                        realName:realName,
+                        sex:sex,
+                        pro:pro,
+                        phone:phone,
+                        email:email,
+                        op:"add"
+                    },
+                    dateType:'text',
+                    success:function(succ){
+                        alert(succ);
+                        jump(1);
+                    }
+                })
+            }
+        })
+    })
 </script>
 </html>

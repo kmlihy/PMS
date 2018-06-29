@@ -53,3 +53,25 @@ a {
 #btn-delete{
     margin-left:5px;
 }
+
+/*
+    公告表格样式二次修改
+    news.aspx
+*/
+.panel .panel-body {
+    margin-top: -40px;
+}
+
+.text-right span{
+    font-family:"仿宋";
+}
+
+.table > thead > tr > th{
+    border-bottom:1px solid #ddd;
+}
+
+.newsContent label{
+    font-family: "华文仿宋";
+    font-weight:500;
+    font-size:20px;
+}
