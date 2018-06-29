@@ -80,14 +80,11 @@
                             <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-info">
-                                <span class="glyphicon glyphicon-search"></span>
+                            <button class="btn btn-default btn-sm btn-warning" data-toggle="modal" data-target="#myEditor">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                             <button class="btn btn-default btn-sm btn-danger">
                                 <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                            <button class="btn btn-default btn-sm btn-warning">
-                                <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </td>
                     </tr>
@@ -99,7 +96,11 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="prev">上一页
+                        <a href="#" class="jump">首页</a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                     </li>
                     <li>
@@ -114,8 +115,12 @@
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump">下一页
+                        <a href="#" class="jump" id="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump">尾页</a>
                     </li>
                 </ul>
             </div>
@@ -129,8 +134,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">添加批次
-                    </h4
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加批次
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <table class="table">
@@ -154,7 +160,68 @@
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto">
-                                        <option value="">请选择性别</option>
+                                        <option value="">是否激活</option>
+                                        <option value="1">是</option>
+                                        <option value="2">否</option>
+                                    </select>
+                            </tr>
+                            <tr>
+                                <td class="teaLable"><label class="text-span">所属院系</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto">
+                                        <option value="">请选择院系</option>
+                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="">
+                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                        </option>
+                                        <% } %>
+                                    </select>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--编辑批次弹框-->
+    <div class="modal fade" id="myEditor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myEditorLabel">
+                        编辑批次
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable text-center"><label class="text-span">批次名称</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text"/></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable"><label class="text-span">开始时间</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable"><label class="text-span">结束时间</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable"><label class="text-span">激活状态</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto">
                                         <option value="">是</option>
                                         <option value="">否</option>
                                     </select>
@@ -189,13 +256,14 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script>
+    //分页及查询
     sessionStorage.setItem("page", <%=getCurrentPage %>);
     sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
         $(".jump").click(function () {
             // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
-                case ("上一页"):
+                case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
                     if (parseInt(sessionStorage.getItem("page")) > 1) {
                         jump(parseInt(sessionStorage.getItem("page")) - 1);
                         sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
@@ -205,7 +273,7 @@
                         jump(1);
                         break;
                     }
-                case ("下一页"):
+                case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
                     if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                         jump(parseInt(sessionStorage.getItem("page")) + 1);
                         sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
@@ -215,10 +283,13 @@
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                     }
-                case ("1"):
+                case ("首页"):
                     jump(1);
                     break;
                 case (sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
+                    break;
+                case ("尾页"):
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
