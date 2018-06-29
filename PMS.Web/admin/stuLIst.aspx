@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
-
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -150,47 +150,57 @@
                         <tbody>
                             <tr>
                                 <td class="teaLable text-center">
-                                    <label class="text-span">学号</label></td>
+                                    <label class="text-span">学号</label>
+                                </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="stuAccount" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable text-center">
+                                    <label class="text-span">初始密码</label>
+                                </td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="pwd" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="realName" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <select class="selectpicker" data-width="auto" id="sex">
                                         <option value="">请选择性别</option>
-                                        <option value="">男</option>
-                                        <option value="">女</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
+<%--                            <tr>
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <select class="selectpicker" data-width="auto" id="college">
                                         <option value="">请选择院系</option>
                                         <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
-                                        <option value="">
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
                                             <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                         </option>
                                         <% } %>
                                     </select>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">专业</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <select class="selectpicker" data-width="auto" id="pro">
                                         <option>请选择专业</option>
                                         <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                                             { %>
@@ -205,20 +215,20 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="email" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="phone" /></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="button" class="btn btn-primary" id="saveSutdent">提交更改</button>
                 </div>
             </div>
         </div>
@@ -318,12 +328,14 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
 <script>
 
     //分页及查询
     sessionStorage.setItem("page", <%=getCurrentPage %>);
     sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
+        //分页
         $(".jump").click(function () {
             switch ($.trim($(this).html())) {
                 case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
@@ -357,13 +369,13 @@
                     break;
             }
         });
-
+        //查询
         $("#search").click(function () {
             var strWhere = $("#inputsearch").val();
             sessionStorage.setItem("strWhere",strWhere);
             jump(1);
         });
-
+        //地址栏显示信息
         function jump(cur) {
             if (sessionStorage.getItem("strWhere") == null) {
                 window.location.href = "stuLIst.aspx?currentPage=" + cur
@@ -372,7 +384,41 @@
                 window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
             }          
         }
+        //添加学生
+        $("#saveSutdent").click(function(){
+            var stuAccount = $("#stuAccount").val(),
+                pwd = $("#pwd").val(),
+                realName = $("#realName").val(),
+                sex = $("#sex").find("option:selected").val(),
+                pro = $("#pro").find("option:selected").val(),
+                phone = $("#phone").val(),
+                email = $("#email").val();
+            if(stuAccount==""||pwd==""||realName==""||sex==""||pro==""||phone==""||email==""){
+                alert("不能出现未填项！");
+            }
+            else{
+                alert("ajax");
+                $.ajax({
+                    type:'Post',
+                    url:'stuLIst.aspx',
+                    data:{
+                        stuAccount:stuAccount,
+                        pwd:pwd,
+                        realName:realName,
+                        sex:sex,
+                        pro:pro,
+                        phone:phone,
+                        email:email,
+                        op:"add"
+                    },
+                    dateType:'text',
+                    success:function(succ){
+                        alert(succ);
+                        jump(1);
+                    }
+                })
+            }
+        })
     })
-
 </script>
 </html>
