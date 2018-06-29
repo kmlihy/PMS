@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="batchList.aspx.cs" Inherits="PMS.Web.admin.batchList" %>
-
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -144,7 +144,9 @@
                             <tr>
                                 <td class="teaLable text-center"><label class="text-span">批次名称</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="planName"/></td>
+                                    <input class="form-control teaAddinput" type="text" id="planName"/>
+                                    <span id="tip"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
@@ -213,12 +215,12 @@
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
@@ -259,6 +261,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
 <script>
     //分页及查询
     sessionStorage.setItem("page", <%=getCurrentPage %>);
@@ -315,13 +318,14 @@
             }          
         }
 
+        //添加批次
         $("#savePlan").click(function(){
             var planName = $("#planName").val(),
                 startTime = $("#startTime").val(),
                 endTime = $("#endTime").val(),
                 state = $("#state").find("option:selected").val(),
                 college = $("#collegeId").find("option:selected").val();
-            if(planName == ""){
+            if(planName==""||state == ""||startTime=="" || endTime==""||state==""||college=="" ){
                 alert("不能为空")
             }
             else{
