@@ -62,5 +62,27 @@ namespace PMS.Dao
             DataSet ds = db.FillDataSetBySP(strSql.ToString(), values);
             return ds;
         }
+
+        /// <summary>
+        /// 判断在另外一张表中是否有数据
+        /// </summary>
+        /// <param name="table">表名</param>
+        /// <param name="primarykeyname">主键列</param>
+        /// <param name="primarykey">主键参数</param>
+        /// <returns></returns>
+        public int isDelete(string table,string primarykeyname, string primarykey) {
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.Append("select count(*) as count from @table where @primarykeyname=@primarykey");
+            string[] param = { "@table", "@primarykeyname", "@primarykey"};
+            object[] values = {table,primarykey,primarykeyname};
+            DataSet ds =db.FillDataSet(strBuilder.ToString(),param,values);
+            if (int.Parse(ds.Tables[0].Rows[0]["count"].ToString()) > 0)
+            {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
     }
 }
