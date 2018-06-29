@@ -65,16 +65,10 @@ namespace PMS.BLL
         /// <returns>类型为DataSet的分页学院信息列表集</returns>
         public DataSet SelectBypage(TableBuilder tab, out int intPageCount)
         {
-
+            int pagecount = 0;
             DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            else
-            {
-                return null;
-            }
+            intPageCount = pagecount;
+            return ds;
         }
 
         /// <summary>
