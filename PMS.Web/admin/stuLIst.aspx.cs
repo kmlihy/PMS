@@ -10,15 +10,11 @@ using System.Data;
 
 namespace PMS.Web.admin
 {
+    using Result = Enums.OpResult;
     public partial class stuLIst : System.Web.UI.Page
     {
         protected DataSet prods = null;//专业
         protected DataSet colds = null;//院系
-
-        //protected int count;//总页数
-        //protected int pagesize = 1;//每页显示个数
-        //protected int getCurrentPage = 1;//获取当前页
-        //protected String search = "";
 
         protected DataSet ds = null;
         protected int getCurrentPage = 1;
@@ -31,11 +27,68 @@ namespace PMS.Web.admin
 
         public void Page_Load(object sender, EventArgs e)
         {
-            prods = proBll.Select();
-            colds = colBll.Select();
-            Search();
-            getdata(Search());
+            //prods = proBll.Select();
+            //colds = colBll.Select();
+            //Search();
+            //getdata(Search());
+            string op = Context.Request["op"];
+            if (op == "add")
+            {
+                saveStudent();
+                Search();
+                getdata(Search());
+                colds = colBll.Select();
+                prods = proBll.Select();
+            }
+            if (!Page.IsPostBack)
+            {
+                Search();
+                getdata(Search());
+                colds = colBll.Select();
+                prods = proBll.Select();
+            }
         }
+        //添加学生
+        public void saveStudent()
+        {
+            try
+            {
+                string stuAccount = Context.Request["stuAccount"].ToString(),
+                    pwd = Context.Request["pwd"].ToString(),
+                    realName = Context.Request["realName"].ToString(),
+                    sex = Context.Request["sex"].ToString(),
+                    phone = Context.Request["phone"].ToString(),
+                    email = Context.Request["email"].ToString();
+                int proId = int.Parse(Context.Request["pro"].ToString());
+                Profession prof = new Profession()
+                {
+                    ProId = proId
+                };
+                Student stu = new Student() {
+                    StuAccount = stuAccount,
+                    StuPwd = pwd,
+                    RealName = realName,
+                    Sex = sex,
+                    Phone = phone,
+                    Email = email,
+                    profession = prof
+                };
+                StudentBll stuBll = new StudentBll();
+                Result result = stuBll.Insert(stu);
+                if(result == Result.添加成功)
+                {
+                    Response.Write("添加成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("添加失败");
+                    Response.End();
+                }
+            }
+            catch { }
+        }
+        //分页
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -59,7 +112,7 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             ds = pro.SelectBypage(tabuilder, out count);
         }
-
+        //查询
         public string Search()
         {
             try

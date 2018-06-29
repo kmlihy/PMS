@@ -315,6 +315,7 @@
             }          
         }
 
+        //添加批次
         $("#savePlan").click(function(){
             var planName = $("#planName").val(),
                 startTime = $("#startTime").val(),
