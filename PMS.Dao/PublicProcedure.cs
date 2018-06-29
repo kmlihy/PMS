@@ -42,5 +42,25 @@ namespace PMS.Dao
             intPageCount = Convert.ToInt32(values[8].Value);
             return ds;
         }
+        /// <summary>
+        /// 添加选题记录使题目的选题人数加1
+        /// </summary>
+        /// <param name="titlerecord">选题记录实体</param>
+        /// <returns></returns>
+        public DataSet AddTitlerecord(TitleRecord titlerecord)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("AddTitlerecord");
+            SqlParameter[] values = {
+                new SqlParameter("@stuAccount", SqlDbType.VarChar),
+                new SqlParameter("@titleId", SqlDbType.Int),
+                new SqlParameter("@defeseTeamId", SqlDbType.Int),
+            };
+            values[0].Value = titlerecord.title;
+            values[1].Value = titlerecord.student;
+            values[2].Value = titlerecord.DefeseTeamId;
+            DataSet ds = db.FillDataSetBySP(strSql.ToString(), values);
+            return ds;
+        }
     }
 }
