@@ -23,9 +23,9 @@ namespace PMS.Web
             //查询超级管理员管理员的公告信息
             TableBuilder tableBuilder = new TableBuilder();
             tableBuilder.StrTable = "V_News";
-            tableBuilder.StrColumn = "newsId";
-            tableBuilder.IntColType = 0;
-            tableBuilder.IntOrder = 0;
+            tableBuilder.StrColumn = "createTime";
+            tableBuilder.IntColType = 2;
+            tableBuilder.IntOrder = 1;
             tableBuilder.StrColumnlist = "*";
             tableBuilder.IntPageSize = 5;
             tableBuilder.IntPageNum = 1;
