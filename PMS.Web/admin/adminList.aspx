@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminList.aspx.cs" Inherits="PMS.Web.admin.adminList" %>
-
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,7 +9,7 @@
     <title>分院管理员信息表</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
-    <link rel="stylesheet" href="../css/lgd.css">
+    <link rel="stylesheet" href="../css/lgd.css"/>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
@@ -176,7 +176,7 @@
                                         <option value="">请选择院系</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             { %>
-                                        <option value=""><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                         <%} %>
                                     </select>
                                 </td>
@@ -204,6 +204,7 @@
         </div>
     </div>
     <!-- 编辑分院管理员弹框 -->
+    <form runat="server" id="editform" action="adminList.aspx">
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -218,22 +219,22 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Account" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Account" name="Account"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Name" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Name" name="Name"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Sex">
+                                    <select class="selectpicker" data-width="auto" id="Sex" name="Sex">
                                         <option>请选择性别</option>
-                                        <option>男</option>
-                                        <option>女</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
                                     </select>
                                 </td>
                             </tr>
@@ -241,11 +242,12 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="CollegeName">
+                                    <select class="selectpicker" data-width="auto" id="CollegeName" name="CollegeName">
                                         <option value="">请选择院系</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             { %>
-                                        <option value=""><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+
                                         <%} %>
                                     </select>
                                 </td>
@@ -254,24 +256,25 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Email" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Email" name="Email"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Phone" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Phone" name="Phone"/></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="submit" class="btn btn-primary">提交更改</button>
                 </div>
             </div>
         </div>
     </div>
+</form>
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -346,13 +349,19 @@
             $("#Name").val(teaName);
             var sex = $(this).parent().parent().find("#sex").text().trim();
             $("#Sex").val(sex);
+            
             var collegeName = $(this).parent().parent().find("#collegeName").text().trim();
             $("#CollegeName").val(collegeName);
+            
             var phone = $(this).parent().parent().find("#phone").text().trim();
             $("#Phone").val(phone);
             var Email = $(this).parent().parent().find("#email").text().trim();
             $("#Email").val(Email);
         })
+        
+        //编辑提交按钮点击
+
+       
         //$("#prev").click(function () {
         //    if (parseInt(sessionStorage.getItem("page")) <= 1) {
         //        alert("111");

@@ -25,6 +25,22 @@ namespace PMS.Web.admin
             //获取数据
             Search();
             getdata(Search());
+
+            // string op = Request.QueryString["op"];
+            //if (op=="update")
+            //{
+            if (Request.Form["Account"]!=null)
+            {
+                string Account = Request.Form["Account"].ToString();
+                string Name = Request.Form["Name"].ToString();
+                string Sex = Request.Form["Sex"].ToString();
+                string CollegeName = Request.Form["CollegeName"].ToString();
+                string Email = Request.Form["Email"].ToString();
+                string Phone = Request.Form["Phone"].ToString();
+            }
+                
+               
+           // }
         }
         //获取数据
         public void getdata(string strWhere)
