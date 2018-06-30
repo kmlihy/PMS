@@ -14,44 +14,6 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
-    <style>
-        .alert {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 200px;
-            margin-left: -100px;
-            z-index: 99999;
-            padding: 15px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-
-        .alert-info {
-            color: #31708f;
-            background-color: #d9edf7;
-            border-color: #bce8f1;
-        }
-
-        .alert-warning {
-            color: #8a6d3b;
-            background-color: #fcf8e3;
-            border-color: #faebcc;
-        }
-
-        .alert-danger {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-    </style>
 </head>
 
 <body>
@@ -116,13 +78,10 @@
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-success">
+                            <button class="btn btn-default btn-sm btn-success" data-toggle="modal" data-target="#myModal">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                             <button class="btn btn-default btn-sm btn-danger">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            <button class="btn btn-default btn-sm btn-warning">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -151,6 +110,91 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 查看选题记录弹框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">详细信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">所属院系</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="selectcol">
+                                        <option value="">请选择院系</option>
+                                        <option value="1">信息工程学院</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">类型</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="teaType">
+                                        <option value="1">教师</option>
+                                        <option value="2">管理员</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">工号</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="teaAccount" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">密码</label></td>
+                                <td>
+                                    <input class="form-control" type="password" id="pwd" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">姓名</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="teaName" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">性别</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="sex">
+                                        <option value="">男</option>
+                                        <option value="">女</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">邮箱</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="email" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">联系电话</label></td>
+                                <td>
+                                    <input class="form-control" type="text" id="tel" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnAdd">添加</button>
+                </div>
             </div>
         </div>
     </div>

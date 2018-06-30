@@ -26,11 +26,11 @@ namespace PMS.Web
         public String search = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            getPage("");
+            getPage(search);
         }
         //列表
-        public void getPage(String strWhere) {
+        public void getPage(String strWhere)
+        {
 
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
@@ -51,6 +51,29 @@ namespace PMS.Web
             getCurrentPage = int.Parse(currentPage);
             ds = titbll.SelectBypage(tabuilder, out count);
         }
-        //添加
+        public string Search()
+        {
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format(" proName={0} or collegeName={0} ", "'" + search + "'");
+                }
+            }
+            catch
+            {
+
+            }
+            return search;
+        }
     }
 }
