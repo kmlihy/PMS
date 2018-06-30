@@ -9,37 +9,34 @@ using PMS.Model;
 
 namespace PMS.Web.admin
 {
+    using Result = Enums.OpResult;
     public partial class addNews : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-
-            }
-            else
+            string op = Context.Request["op"];
+            if (op == "add")
             {
                 string newsTitle = Request.Form["newsTitle"].ToString();
                 string content = Request.Form["content"].ToString();
                 //TODO将从登录的Session中取到公告发布对象
                 //Teacher teacher = (Teacher)Session["user"];
-                if (newsTitle != null && content != null)
+                NewsBll bll = new NewsBll();
+                News news = new News();
+                news.NewsTitle = newsTitle;
+                news.NewsContent = content;
+                news.teacher = new Teacher { TeaAccount = "admin" };
+                news.CreateTime = DateTime.Now;
+                Result result = bll.Insert(news);
+                if (result == Result.添加成功)
                 {
-                    NewsBll bll = new NewsBll();
-                    News news = new News();
-                    news.NewsTitle = newsTitle;
-                    news.NewsContent = content;
-                    news.teacher = new Teacher { TeaAccount = "admin" };
-                    news.CreateTime = DateTime.Now;
-                    Enums.OpResult enums = bll.Insert(news);
-                    if (enums.Equals(Enums.OpResult.添加成功))
-                    {
-                        Response.Write("<script>alert('发布成功')</script>");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('发布失败')</script>");
-                    }
+                    Response.Write("添加成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("添加失败");
+                    Response.End();
                 }
             }
       
