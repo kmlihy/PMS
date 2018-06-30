@@ -90,7 +90,7 @@
     <Content Include="css\bootstrap-select.css" />
     <Content Include="css\iconfont.css" />
     <Content Include="js\additional-methods.js" />
-    <Content Include="js\adminList.js" />
+    <Content Include="js\addNews.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jquery.validate.min.js" />

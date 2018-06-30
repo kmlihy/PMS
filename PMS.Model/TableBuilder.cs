@@ -5,6 +5,9 @@ using System.Text;
 
 namespace PMS.Model
 {
+    /// <summary>
+    /// 分页实体类
+    /// </summary>
     public class TableBuilder
     {
         /// <summary>
@@ -40,6 +43,9 @@ namespace PMS.Model
         /// </summary>
         String strWhere;
 
+        /// <summary>
+        /// 表名
+        /// </summary>
         public string StrTable
         {
             get
@@ -53,6 +59,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 按该列来进行分页 
+        /// </summary>
         public string StrColumn
         {
             get
@@ -66,6 +75,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// strColumn列的类型,0-数字类型,1-字符类型,2-日期时间类型 
+        /// </summary>
         public int IntColType
         {
             get
@@ -79,6 +91,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 排序,0-顺序,1-倒序 
+        /// </summary>
         public int IntOrder
         {
             get
@@ -92,6 +107,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 每页记录数 
+        /// </summary>
         public string StrColumnlist
         {
             get
@@ -105,6 +123,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 每页记录数 
+        /// </summary>
         public int IntPageSize
         {
             get
@@ -118,6 +139,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 指定页 
+        /// </summary>
         public int IntPageNum
         {
             get
@@ -131,6 +155,9 @@ namespace PMS.Model
             }
         }
 
+        /// <summary>
+        /// 查询条件
+        /// </summary>
         public string StrWhere
         {
             get

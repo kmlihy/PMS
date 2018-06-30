@@ -71,11 +71,10 @@ namespace PMS.Dao
         /// <param name="primarykey">主键参数</param>
         /// <returns></returns>
         public int isDelete(string table,string primarykeyname, string primarykey) {
-            StringBuilder strBuilder = new StringBuilder();
-            strBuilder.Append("select count(*) as count from @table where @primarykeyname=@primarykey");
-            string[] param = { "@table", "@primarykeyname", "@primarykey"};
-            object[] values = {table,primarykey,primarykeyname};
-            DataSet ds =db.FillDataSet(strBuilder.ToString(),param,values);
+            String cmdText = string.Format(" select count(*) as count from {0} where {1} = {2}", table, primarykeyname, primarykey);
+            string[] param = {};
+            object[] values = {};
+            DataSet ds =db.FillDataSet(cmdText, param,values);
             if (int.Parse(ds.Tables[0].Rows[0]["count"].ToString()) > 0)
             {
                 return 1;

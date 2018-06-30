@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addNews.aspx.cs" Inherits="PMS.Web.admin.addNews" %>
-
+<%= "" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -47,13 +47,15 @@
                     <tr>
                         <td></td>
                         <td>
-                            <textarea name="content" class="titlemain">KindEditor</textarea>
+                            <textarea name="content" class="titlemain" id="content"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <button class="btn btn-primary btn-title" type="submit">发布公告</button>
+                            <button class="btn btn-primary btn-title" type="button" id="release">
+                                发布公告
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -63,27 +65,8 @@
     </div>
 </body>
 <script src="../kindeditor/kindeditor-all.js"></script>
-<script src="../kindeditor/lang/zh-CN.js"></script>
-<script>
-    var editor;
-    KindEditor.ready(function (K) {
-        editor = K.create('textarea[name="content"]', {
-            width: '75%',
-            items: [
-                'source', '|', 'undo', 'redo', '|', 'fontname', 'fontsize', 'formatblock',
-                'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', '|', 'justifyleft',
-                'justifycenter', 'justifyright', 'justifyfull', '|', 'selectall', 'cut',
-                'copy', 'paste', 'plainpaste', 'wordpaste', 'strikethrough', 'lineheight',
-                'removeformat', 'insertorderedlist', 'insertunorderedlist',
-                'outdent', '|', 'preview', 'print', 'code', '|',
-                'clearhtml', 'quickformat',
-                'fullscreen', 'image', 'multiimage',
-                'media', 'insertfile', 'table', 'hr',
-                'baidumap', 'pagebreak', 'anchor', 'link',
-                'unlink', 'about'
-            ]
-        });
-    });
-</script>
+<script src="../kindeditor/asp.net/lang/zh-CN.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/addNews.js"></script>
 
 </html>
