@@ -69,32 +69,32 @@
                         <td class="text-center">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuNO">
                             <%= ds.Tables[0].Rows[i]["stuAccount"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuName">
                             <%= ds.Tables[0].Rows[i]["realName"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuSex">
                             <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuPro" id="<%= ds.Tables[0].Rows[i]["proId"].ToString() %>">
                             <%= ds.Tables[0].Rows[i]["proName"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuCollege" id="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>">
                             <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuPhone">
                             <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center stuEmail">
                             <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-warning" data-toggle="modal" data-target="#myEditor">
+                            <button class="btn btn-default btn-sm btn-warning Editor" data-toggle="modal" data-target="#myEditor">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger">
+                            <button class="btn btn-default btn-sm btn-danger" id="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -252,70 +252,66 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">学号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput editorStuNO" type="text" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput editorStuName" type="text" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
-                                        <option value="">男</option>
-                                        <option value="">女</option>
-                                    </select>
+                                    <input class="form-control teaAddinput editorStuSex" type="text" />
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <input class="form-control teaAddinput editorCollege" type="text" />
+<%--                                    <select class="selectpicker " data-width="auto" id="editorCollege">
+                                        <option value="">请选择院系</option>
                                         <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
-                                        <option value="">
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>">
                                             <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                         </option>
                                         <% } %>
-                                    </select>
+                                    </select>--%>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">专业</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
-                                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                                            { %>
-                                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                                        </option>
-                                        <%} %>
-                                    </select>
+                                    <input class="form-control teaAddinput editorPro" type="text" />
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput editorEmail" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" /></td>
+                                    <input class="form-control teaAddinput editorPhone" type="text" /></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <span class="stuCollegeId"></span>
+                    <span class="stuProId"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="button" class="btn btn-primary" id="saveChange">提交更改</button>
                 </div>
             </div>
         </div>
@@ -330,7 +326,61 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <script>
-
+    //编辑框获取学生数据
+    $(document).ready(function(){
+        $(".Editor").click(function(){
+            var stuNO = $(this).parent().parent().find(".stuNO").text().trim(),
+                stuName = $(this).parent().parent().find(".stuName").text().trim(),
+                stuSex = $(this).parent().parent().find(".stuSex").text().trim(),
+                stuPro = $(this).parent().parent().find(".stuPro").text().trim(),
+                stuProId = $(this).parent().parent().children("td").get(4).id,//专业Id
+                stuCollege = $(this).parent().parent().find(".stuCollege").text().trim(),
+                stuColId = $(this).parent().parent().children("td").get(5).id;//学院ID
+                stuPhone = $(this).parent().parent().find(".stuPhone").text().trim(),
+                stuEmail = $(this).parent().parent().find(".stuEmail").text().trim();
+            $(".editorStuNO").val(stuNO);
+            $(".editorStuName").val(stuName);
+            $(".editorStuSex").val(stuSex);
+            $(".editorCollege").val(stuCollege);
+            $(".editorPro").val(stuPro);
+            $(".editorEmail").val(stuEmail);
+            $(".editorPhone").val(stuPhone);
+            $(".stuCollegeId").text(stuColId);
+            $(".stuProId").text(stuProId);
+        });
+        $(".stuCollegeId").hide();
+        $(".stuProId").hide();
+        $("#saveChange").click(function(){
+            var stuNO = $(".editorStuNO").val(),
+                stuName = $(".editorStuName").val(),
+                stuSex = $(".editorStuSex").val(),
+                stuCollege = $(".stuCollegeId").text(),
+                stuPro = $(".stuProId").text(),
+                stuEmail = $(".editorEmail").val(),
+                stuPhone = $(".editorPhone").val();
+            //alert(stuNO+stuPro+stuEmail);
+            alert("ajax");
+            $.ajax({
+                type:'Post',
+                url:'stuLIst.aspx',
+                data:{
+                    stuNO:stuNO,
+                    stuName:stuName,
+                    stuSex:stuSex,
+                    stuCollege:stuCollege,
+                    stuPro:stuPro,
+                    stuEmail:stuEmail,
+                    stuPhone:stuPhone,
+                    editorOp:"editor"
+                },
+                dataType:'text',
+                success:function(succ){
+                    alert(succ);
+                    jump(1);
+                }
+            })
+        })
+    })
     //分页及查询
     sessionStorage.setItem("page", <%=getCurrentPage %>);
     sessionStorage.setItem("countPage",<%=count %>);

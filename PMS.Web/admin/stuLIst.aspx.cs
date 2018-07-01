@@ -19,7 +19,7 @@ namespace PMS.Web.admin
         protected DataSet ds = null;
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 2;
+        protected int pagesize = 8;
         protected String search = "";
 
         ProfessionBll proBll = new ProfessionBll();
@@ -32,9 +32,11 @@ namespace PMS.Web.admin
             //Search();
             //getdata(Search());
             string op = Context.Request["op"];
-            if (op == "add")
+            string editorOp = Context.Request["editorOp"];
+            if (op == "add"||editorOp== "editor")
             {
                 saveStudent();
+                editorStu();
                 Search();
                 getdata(Search());
                 colds = colBll.Select();
@@ -46,6 +48,46 @@ namespace PMS.Web.admin
                 getdata(Search());
                 colds = colBll.Select();
                 prods = proBll.Select();
+            }
+        }
+        //编辑学生
+        public void editorStu()
+        {
+            string stuNO = Context.Request["stuNO"].ToString(),
+                   stuName = Context.Request["stuName"].ToString(),
+                   stuSex = Context.Request["stuSex"].ToString(),
+                   stuEmail = Context.Request["stuEmail"].ToString(),
+                   stuPhone = Context.Request["stuPhone"].ToString(),
+                   stuPwd = "123456";
+            int stuCollege = int.Parse(Context.Request["stuCollege"].ToString()),
+                stuPro = int.Parse(Context.Request["stuPro"].ToString());
+            College stuCol = new College()
+            {
+                ColID = stuCollege
+            };
+            Profession stup = new Profession() { ProId = stuPro};
+            Student EditorStu = new Student()
+            {
+                StuAccount = stuNO,
+                RealName = stuName,
+                Sex = stuSex,
+                Email = stuEmail,
+                Phone = stuPhone,
+                StuPwd = stuPwd,
+                college = stuCol,
+                profession = stup
+            };
+            StudentBll editorStuBll = new StudentBll();
+            Result editorResult = editorStuBll.Updata(EditorStu);
+            if (editorResult == Result.更新成功)
+            {
+                Response.Write("更新成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("更新失败");
+                Response.End();
             }
         }
         //添加学生

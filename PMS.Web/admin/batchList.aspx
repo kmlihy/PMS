@@ -76,11 +76,11 @@
                         <td class="text-center">
                             <%= plands.Tables[0].Rows[i]["state"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="<%= plands.Tables[0].Rows[i]["collegeId"].ToString() %>">
                             <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-warning" data-toggle="modal" data-target="#myEditor">
+                            <button class="btn btn-default btn-sm btn-warning planEditor" data-toggle="modal" data-target="#myEditor">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                             <button class="btn btn-default btn-sm btn-danger">
@@ -208,33 +208,37 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="teaLable text-center"><label class="text-span">批次名称</label></td>
+                                <td class="teaLable text-center">
+                                    <label class="text-span">批次名称</label>
+
+                                </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text"/></td>
+                                    <input class="form-control teaAddinput editorPlanName" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text"/></td>
+                                    <input class="form-control teaAddinput editorStartTime" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text"/></td>
+                                    <input class="form-control teaAddinput editorEndTime" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <input class="form-control teaAddinput editorState" type="text"/>
+                                    <%--<select class="selectpicker" data-width="auto">
                                         <option value="">是</option>
                                         <option value="">否</option>
-                                    </select>
+                                    </select>--%>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">所属院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto">
+                                    <%--<select class="selectpicker" data-width="auto">
                                         <option value="">请选择院系</option>
                                         <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
@@ -242,15 +246,17 @@
                                             <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                         </option>
                                         <% } %>
-                                    </select>
+                                    </select>--%>
+                                    <input class="form-control teaAddinput editorCollege" type="text"/>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <span class="planCollegeId"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="button" class="btn btn-primary saveEditor">提交更改</button>
                 </div>
             </div>
         </div>
@@ -263,10 +269,55 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <script>
+
+    //编辑批次
+    $(document).ready(function(){
+        $(".planEditor").click(function(){
+            var editorName = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").text().trim(),
+                editorStart = $(this).parent().prev("td").prev("td").prev("td").prev("td").text().trim(),
+                editorEnd = $(this).parent().prev("td").prev("td").prev("td").text().trim(),
+                editorState = $(this).parent().prev("td").prev("td").text().trim(),
+                editorCollege = $(this).parent().prev("td").text().trim();
+            var planCollegeId = $(this).parent().parent().children("td").get(6).id;
+            $(".editorPlanName").val(editorName);
+            $(".editorStartTime").val(editorStart);
+            $(".editorEndTime").val(editorEnd);
+            $(".editorState").val(editorState);
+            $(".editorCollege").val(editorCollege);
+            $(".planCollegeId").text(planCollegeId);
+        });
+        $(".planCollegeId").hide();
+        $(".saveEditor").click(function(){
+            var editorPlanName = $(".editorPlanName").val(),
+                editorStartTime = $(".editorStartTime").val(),
+                editorEndTime = $(".editorEndTime").val(),
+                editorState = $(".editorState").val(),
+                planCollegeId = $(".planCollegeId").text();
+            alert("ajax");
+            $.ajax({
+                type:'Post',
+                url:'batchList.aspx',
+                data:{
+                    editorPlanName:editorPlanName,
+                    editorStartTime:editorStartTime,
+                    editorEndTime:editorEndTime,
+                    editorState:editorState,
+                    planCollegeId:planCollegeId,
+                    editorOp:"editor"
+                },
+                dataType:'text',
+                success:function(succ){
+                    alert(succ);
+                    jump(1);
+                }
+            })
+        })
+    })
     //分页及查询
     sessionStorage.setItem("page", <%=getCurrentPage %>);
     sessionStorage.setItem("countPage",<%=count %>);
     $(document).ready(function () {
+        //分页
         $(".jump").click(function () {
             // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
@@ -301,14 +352,14 @@
                     break;
             }
         });
-
+        //查询
         $("#search").click(function () {
             var strWhere = $("#inputsearch").val();
             sessionStorage.setItem("strWhere",strWhere);
             //window.location.href = "teaList.aspx?search=" + strWhere;
             jump(1);
         });
-
+        //地址栏显示信息
         function jump(cur) {
             if (sessionStorage.getItem("strWhere") == null) {
                 window.location.href = "batchList.aspx?currentPage=" + cur
