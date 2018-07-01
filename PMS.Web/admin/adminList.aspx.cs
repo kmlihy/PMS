@@ -16,7 +16,7 @@ namespace PMS.Web.admin
         //获取数据
         protected DataSet ds = null, dsColl = null;
         protected int count;
-        protected int pageSize = 1;
+        protected int pageSize = 5;
         //分页
         protected int getCurrentPage = 1;
         //查询
@@ -26,14 +26,16 @@ namespace PMS.Web.admin
             string op = Context.Request["op"];
             if (op == "add")
             {
-                saveCollege();
+                saveAdmin();
                 Search();
                 getdata(Search());
             }
-            //if(op == "get")
-            //{
-            //    getSex();
-            //}
+            if (op == "edit")
+            {
+                editAdmin();
+                Search();
+                getdata(Search());
+            }
             if (!Page.IsPostBack)
             {
                 Search();
@@ -67,7 +69,7 @@ namespace PMS.Web.admin
                 StrColumn = "teaAccount",
                 IntColType = 0,
                 IntOrder = 0,
-                StrColumnlist = "teaAccount,teaName,sex,collegeName,phone,Email",
+                StrColumnlist = "*",
                 IntPageSize = pageSize,
                 IntPageNum = int.Parse(currentPage),
                 StrWhere = strTeaType + strWhere
@@ -102,7 +104,7 @@ namespace PMS.Web.admin
             return search;
         }
         //添加学院管理员
-        public void saveCollege()
+        public void saveAdmin()
         {
             string account = Context.Request["account"].ToString();
             string name = Context.Request["name"].ToString();
@@ -120,8 +122,8 @@ namespace PMS.Web.admin
             tea.college = coll;
             tea.Email = email;
             tea.Phone = phone;
-            tea.TeaType = 2;
             tea.TeaPwd = "123456";
+            tea.TeaType = 2;
             TeacherBll teaBll = new TeacherBll();
             Result result = teaBll.Insert(tea);
             if (result == Result.添加成功)
@@ -135,14 +137,40 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //public string Esex;
-        //public string Ecollege;
-        //public void getSex()
-        //{
-        //    Esex = Context.Request["Esex"].ToString();
-        //    Ecollege = Context.Request["Ecollege"].ToString();
-        //    //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-            
-        //}
+        //编辑学院管理员
+        public void editAdmin()
+        {
+            string account = Context.Request["Account"].ToString();
+            string name = Context.Request["Name"].ToString();
+            string pwd = Context.Request["Pwd"].ToString();
+            string sex = Context.Request["Sex"].ToString();
+            string college = Context.Request["College"].ToString();
+            string email = Context.Request["Email"].ToString();
+            string phone = Context.Request["Phone"].ToString();
+            //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
+            Teacher tea = new Teacher();
+            College coll = new College();
+            coll.ColID = int.Parse(college);
+            tea.TeaAccount = account;
+            tea.TeaName = name;
+            tea.TeaPwd = pwd;
+            tea.Sex = sex;
+            tea.college = coll;
+            tea.Email = email;
+            tea.Phone = phone;
+            tea.TeaType = 2;
+            TeacherBll teaBll = new TeacherBll();
+            Result result = teaBll.Updata(tea);
+            if (result == Result.更新成功)
+            {
+                Response.Write("更新成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("更新失败");
+                Response.End();
+            }
+        }
     }
 }

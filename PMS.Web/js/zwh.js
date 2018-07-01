@@ -153,37 +153,3 @@ function ok() {
     $("#okMessage").hide();
     $("#editMessage").show();
 }
-
-
-function pagingMsg() {
-    var my_toast_plug_name = "mytoast";
-    $[my_toast_plug_name] = function (options) {
-        var content;
-        if (parseInt(sessionStorage.getItem("page")) <= 1) {
-            content = "前无古人！";
-        } else if (parseInt(sessionStorage.getItem("page")) >= parseInt(sessionStorage.getItem("countPage"))) {
-            content = "后无来者！";
-        } else {
-            return;
-        }
-        var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
-        var jq_text = jq_toast.find(".my-toast-text");
-        jq_text.html(content);
-        jq_toast.appendTo($("body")).stop().fadeIn(500).delay(3000).fadeOut(500);
-        var w = jq_toast.width() - 10;
-        jq_text.width(w);
-        var l = -jq_toast.outerWidth() / 2;
-        var t = -jq_toast.outerHeight() / 2;
-        jq_toast.css({
-            "margin-left": l + "px",
-            "margin-top": t - 50 + "px"
-        });
-        var _jq_toast = jq_toast;
-        setTimeout(function () {
-            _jq_toast.remove();
-        }, 3 * 1000);
-    };
-    $.mytoast({
-        type: "notice"
-    });
-}
