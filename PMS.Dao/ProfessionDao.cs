@@ -60,6 +60,28 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 根据ID删除一个专业信息
+        /// </summary>
+        /// <param name="proId">专业ID</param>
+        /// <returns>返回受影响行数</returns>
+        public int Delete(int proId)
+        {
+            try
+            {
+                string cmdText = "delete T_Profession where proId = @proId";
+                string[] param = { "@proId" };
+                object[] values = { proId };
+                int row = db.ExecuteNoneQuery(cmdText, param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// 查询所有的专业信息
         /// </summary>
         /// <returns>类型为DataSet的专业信息列表</returns>

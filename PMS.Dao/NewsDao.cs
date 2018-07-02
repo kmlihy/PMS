@@ -80,7 +80,12 @@ namespace PMS.Dao
             return db.FillDataSet(strBuilder.ToString(), param, values);
         }
 
-    public News GetNews(int newsId)
+        /// <summary>
+        /// 根据ID得到一个公告对象实体
+        /// </summary>
+        /// <param name="newsId">公告ID</param>
+        /// <returns>公告对象</returns>
+        public News GetNews(int newsId)
         {
             try
             {

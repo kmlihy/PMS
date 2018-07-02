@@ -82,6 +82,7 @@
                     </td>
                     <td class="text-center" id="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>">
                         <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                        <input type="hidden" value="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>" id="collegeId" />
                     </td>
                     <td class="text-center" id="phone">
                         <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
@@ -255,11 +256,13 @@
                                     <select class="selectpicker" data-width="auto" id="Ecoll">
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             {
-                                                //if (dsColl.Tables[0].Rows[i]["collegeId"].ToString() == )
-                                                //{
-                                        %>
+                                                if (dsColl.Tables[0].Rows[i]["collegeId"].ToString() == )
+                                                {%>
+                                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%}else{ %>
                                         <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                         <%}
+                                            }
                                         %>
                                     </select>
                                 </td>
@@ -286,6 +289,8 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -293,11 +298,5 @@
 <script src="../js/ml.js"></script>
 <script src="../js/adminList.js"></script>
 <script src="../js/bootstrap-select.js"></script>
-<script>
-    //存储当前页数
-    sessionStorage.setItem("page", <%=getCurrentPage %>);
-    //存储总页数
-    sessionStorage.setItem("countPage", <%=count %>);
-</script>
 
 </html>

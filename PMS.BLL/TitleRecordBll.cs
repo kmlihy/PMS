@@ -47,6 +47,19 @@ namespace PMS.BLL
             return Result.更新失败;
         }
 
+        public Result delete(int titleRecordId)
+        {
+            int row = dao.delete(titleRecordId);
+            if (row>0)
+            {
+                return Result.删除成功;
+            }
+            else
+            {
+                return Result.删除失败;
+            }
+        }
+
         /// <summary>
         /// 根据条间分页查询所有选题记录信息
         /// </summary>
@@ -56,11 +69,7 @@ namespace PMS.BLL
         public DataSet SelectBypage(TableBuilder tab, out int intPageCount)
         {
             DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            return null;
+            return ds;
         }
 
         /// <summary>

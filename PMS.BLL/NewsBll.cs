@@ -90,14 +90,7 @@ namespace PMS.BLL
         public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount)
         {
             DataSet ds = pdao.SelectBypage(tablebuilder, out intPageCount);
-            if (ds!=null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            else
-            {
-                return null;
-            }
+            return ds;
         }
 
         /// <summary>
