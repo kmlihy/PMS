@@ -22,7 +22,7 @@ namespace PMS.Web.admin
         protected CollegeBll colbll = new CollegeBll();
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 1;
+        protected int pagesize = 2;
         protected String search = "";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -40,6 +40,8 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
+
+            TitleRecordBll titlerd = new TitleRecordBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_TitleRecord",
@@ -52,7 +54,7 @@ namespace PMS.Web.admin
                 StrColumnlist = "*"
             };
             getCurrentPage = int.Parse(currentPage);
-            ds = probll.SelectBypage(tabuilder, out count);
+            ds = titlerd.SelectBypage(tabuilder, out count);
         }
         public string Search()
         {
