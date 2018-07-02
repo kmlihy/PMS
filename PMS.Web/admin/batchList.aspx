@@ -48,7 +48,7 @@
                     <th class="text-center">批次名</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>
-                    <th class="text-center">激活状态</th>
+                    <th class="text-center">激活状态<span>(0未激活，1激活)</span></th>
                     <th class="text-center">所属学院</th>
                     <th class="text-center">操作</th>
                 </thead>
@@ -56,25 +56,27 @@
                     <%
                         for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
                         {
+                             DateTime startTime =DateTime.Parse(plands.Tables[0].Rows[i]["startTime"].ToString());
+                             DateTime endTime =DateTime.Parse(plands.Tables[0].Rows[i]["endTime"].ToString());
                     %>
                     <tr>
                         <td class="text-center">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>">
                             <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
                         </td>
                         <td class="text-center">
                             <%= plands.Tables[0].Rows[i]["planName"].ToString() %>
                         </td>
                         <td class="text-center">
-                            <%= plands.Tables[0].Rows[i]["startTime"].ToString() %>
+                            <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}",startTime) %>
                         </td>
                         <td class="text-center">
-                            <%= plands.Tables[0].Rows[i]["endTime"].ToString() %>
+                            <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}",endTime) %>
                         </td>
                         <td class="text-center">
-                            <%= plands.Tables[0].Rows[i]["state"].ToString() %>
+                            <span class="stateData"><%= plands.Tables[0].Rows[i]["state"].ToString() %></span>
                         </td>
                         <td class="text-center" id="<%= plands.Tables[0].Rows[i]["collegeId"].ToString() %>">
                             <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
@@ -255,6 +257,7 @@
                 </div>
                 <div class="modal-footer">
                     <span class="planCollegeId"></span>
+                    <span class="planId"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary saveEditor">提交更改</button>
                 </div>
@@ -276,8 +279,9 @@
             var editorName = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").text().trim(),
                 editorStart = $(this).parent().prev("td").prev("td").prev("td").prev("td").text().trim(),
                 editorEnd = $(this).parent().prev("td").prev("td").prev("td").text().trim(),
-                editorState = $(this).parent().prev("td").prev("td").text().trim(),
-                editorCollege = $(this).parent().prev("td").text().trim();
+                editorState = $(this).parent().prev("td").prev("td").find(".stateData").text().trim(),
+                editorCollege = $(this).parent().prev("td").text().trim(),
+                editorPlanId = $(this).parent().parent().children("td").get(1).id;
             var planCollegeId = $(this).parent().parent().children("td").get(6).id;
             $(".editorPlanName").val(editorName);
             $(".editorStartTime").val(editorStart);
@@ -285,10 +289,13 @@
             $(".editorState").val(editorState);
             $(".editorCollege").val(editorCollege);
             $(".planCollegeId").text(planCollegeId);
+            $(".planId").text(editorPlanId);
         });
         $(".planCollegeId").hide();
+        $(".planId").hide();
         $(".saveEditor").click(function(){
-            var editorPlanName = $(".editorPlanName").val(),
+            var editorPlanId = $(".planId").text(),
+                editorPlanName = $(".editorPlanName").val(),
                 editorStartTime = $(".editorStartTime").val(),
                 editorEndTime = $(".editorEndTime").val(),
                 editorState = $(".editorState").val(),
@@ -298,6 +305,7 @@
                 type:'Post',
                 url:'batchList.aspx',
                 data:{
+                    editorPlanId:editorPlanId,
                     editorPlanName:editorPlanName,
                     editorStartTime:editorStartTime,
                     editorEndTime:editorEndTime,
