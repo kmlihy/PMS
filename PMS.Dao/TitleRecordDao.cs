@@ -59,6 +59,21 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 根据选题记录id删除一条选题记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns>受影响行数</returns>
+        public int delete(int titleRecordId)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("delete T_TitleRecord");
+            stringBuilder.Append(" where titleRecordId = @titleRecordId");
+            string[] param = { "@titleRecordId" };
+            object[] value = { titleRecordId };
+            int row = db.ExecuteNoneQuery(stringBuilder.ToString(), param, value);
+            return row;
+        }
 
         /// <summary>
         /// 查询所有的选题记录信息

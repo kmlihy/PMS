@@ -89,15 +89,8 @@ namespace PMS.BLL
         /// <returns>返回分页结果数据</returns>
         public DataSet SelectBypage(TableBuilder tablebuilder, out int intPageCount)
         {
-            DataSet ds = pdao.SelectBypage(tablebuilder, out intPageCount);
-            if (ds!=null && ds.Tables[0].Rows.Count > 0)
-            {
+            DataSet ds = pdao.SelectBypage(tablebuilder, out intPageCount);         
                 return ds;
-            }
-            else
-            {
-                return null;
-            }
         }
         /// <summary>
         /// 获得题目实体对象

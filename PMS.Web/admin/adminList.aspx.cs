@@ -23,6 +23,7 @@ namespace PMS.Web.admin
         protected String search = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            string college = Request["collegeId"];
             string op = Context.Request["op"];
             if (op == "add")
             {

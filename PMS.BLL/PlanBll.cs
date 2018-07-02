@@ -48,6 +48,24 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据ID删除一个批次信息
+        /// </summary>
+        /// <param name="planId">批次ID</param>
+        /// <returns>成功返回Result.删除成功，失败返回Result.删除失败</returns>
+        public Result Delete(int planId)
+        {
+            int row = dao.Delete(planId);
+            if(row > 0)
+            {
+                return Result.删除成功;
+            }
+            else
+            {
+                return Result.删除失败;
+            }
+        }
+
+        /// <summary>
         /// 查询所有批次信息
         /// </summary>
         /// <returns>类型为DataSet的批次信息列表</returns>
