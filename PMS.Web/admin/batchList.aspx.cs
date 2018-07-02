@@ -18,20 +18,18 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
         protected int count;
         protected int getCurrentPage = 1;
-        protected int pagesize = 1;
+        protected int pagesize = 6;
         protected String search = "";
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //colds = colBll.Select();
-            //Search();
-            //getdata(Search());
-            //savePlan();
             string op = Context.Request["op"];
-            if(op == "add")
+            string editorOp = Context.Request["editorOp"];
+            if (op == "add" || editorOp == "editor")
             {
                 savePlan();
+                EditorPlan();
                 Search();
                 getdata(Search());
                 colds = colBll.Select();
@@ -41,6 +39,47 @@ namespace PMS.Web.admin
                 Search();
                 getdata(Search());
                 colds = colBll.Select();
+            }
+        }
+        //编辑
+        public void EditorPlan()
+        {
+            string editorPlanName = Context.Request["editorPlanName"].ToString(),
+                   editorStartTime = Context.Request["editorStartTime"].ToString(),
+                   editorEndTime = Context.Request["editorEndTime"].ToString();
+            int planCollegeId = int.Parse(Context.Request["planCollegeId"].ToString()),
+                editorState = int.Parse(Context.Request["editorState"].ToString());
+            //数据类型转换（字符串转日期）
+            DateTime startdt;
+            DateTime enddt;
+            DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
+            dtFormat.ShortDatePattern = "yyyy/MM/dd";
+            startdt = Convert.ToDateTime(editorStartTime, dtFormat);
+            enddt = Convert.ToDateTime(editorEndTime, dtFormat);
+
+            College planColEditor = new College()
+            {
+                ColID = planCollegeId
+            };
+            Plan editorPlan = new Plan()
+            {
+                PlanName = editorPlanName,
+                StartTime = startdt,
+                EndTime = enddt,
+                State = editorState,
+                college = planColEditor
+            };
+            PlanBll editorPlanBll = new PlanBll();
+            Result editorResult = editorPlanBll.Update(editorPlan);
+            if (editorResult == Result.更新成功)
+            {
+                Response.Write("更新成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("更新失败");
+                Response.End();
             }
         }
         //添加

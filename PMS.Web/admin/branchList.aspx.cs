@@ -24,11 +24,19 @@ namespace PMS.Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request["op"];
+            //添加学院
             if (op == "add")
             {
                 saveCollege();
                 Search();
                 getdata(Search());                
+            }
+            //编辑学院信息
+            if (op == "edit")
+            {
+                editCollege();
+                Search();
+                getdata(Search());
             }
             if (!Page.IsPostBack)
             {
@@ -36,7 +44,7 @@ namespace PMS.Web.admin
                 getdata(Search());
             }     
         }
-
+        //添加分院信息
         public void saveCollege()
         {
             string collegeName = Context.Request["collegeName"].ToString();
@@ -55,7 +63,29 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-
+        //编辑分院信息
+        public void editCollege()
+        {
+            int collegeId = int.Parse(Context.Request["id"].ToString());
+            string collegeName = Context.Request["name"].ToString();
+            College college = new College();
+            college.ColID = collegeId;
+            college.ColName = collegeName;
+            //Response.Write(collegeName);
+            CollegeBll coll = new CollegeBll();
+            Result result = coll.Update(college);
+            if (result == Result.更新成功)
+            {
+                Response.Write("更新成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("更新失败");
+                Response.End();
+            }
+        }
+        //获取数据
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -78,7 +108,7 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             ds = coll.SelectBypage(tbd, out count);
         }
-        
+        //查询
         public string Search()
         {
             try
