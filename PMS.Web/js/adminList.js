@@ -3,7 +3,7 @@
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             //点击上一页按钮时
-            case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+            case ('<b><span class="iconfont icon-back"></span></b>'):
                 if (parseInt(sessionStorage.getItem("page")) > 1) {
                     jump(parseInt(sessionStorage.getItem("page")) - 1);
                     sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
@@ -13,7 +13,7 @@
                     break;
                 }
             //点击下一页按钮时
-            case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+            case ('<span class="iconfont icon-back"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);

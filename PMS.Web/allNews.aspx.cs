@@ -15,7 +15,7 @@ namespace PMS.Web
         protected DataSet ds = null;
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 1;
+        protected int pagesize = 5;
         string strteaType = "";
         private string strWhere = "";
         protected string roleId;
@@ -56,11 +56,11 @@ namespace PMS.Web
             {
                 StrTable = "V_News",
                 StrWhere = strteaType,
-                IntColType = 0,
-                IntOrder = 0,
+                IntColType = 2,
+                IntOrder = 1,
                 IntPageNum = int.Parse(currentPage),
                 IntPageSize = pagesize,
-                StrColumn = "newsId",
+                StrColumn = "createTime",
                 StrColumnlist = "*"
             };
             getCurrentPage = int.Parse(currentPage);

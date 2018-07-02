@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/iconfont.css"/>
 </head>
 
 <body>
@@ -100,7 +101,7 @@
                     </li>
                     <li>
                         <a href="#" class="jump" id="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="iconfont icon-back"></span>
                         </a>
                     </li>
                     <li>
@@ -116,7 +117,7 @@
                     </li>
                     <li>
                         <a href="#" class="jump" id="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="iconfont icon-more"></span>
                         </a>
                     </li>
                     <li>
@@ -321,7 +322,7 @@
         $(".jump").click(function () {
             // alert($.trim($(this).html()));          
             switch ($.trim($(this).html())) {
-                case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+                case ('<span class="iconfont icon-back"></span>'):
                     if (parseInt(sessionStorage.getItem("page")) > 1) {
                         jump(parseInt(sessionStorage.getItem("page")) - 1);
                         sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
@@ -331,7 +332,7 @@
                         jump(1);
                         break;
                     }
-                case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+                case ('<span class="iconfont icon-more"></span>'):
                     if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                         jump(parseInt(sessionStorage.getItem("page")) + 1);
                         sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
