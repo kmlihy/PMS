@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 
 <body>
@@ -109,7 +110,7 @@
                 </li>
                 <li>
                     <a href="#" class="jump" id="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="iconfont icon-back"></span>
                     </a>
                 </li>
                 <li>
@@ -128,7 +129,7 @@
                 </li>
                 <li>
                     <a href="#" id="next" class="jump">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="iconfont icon-more"></span>
                     </a>
                 </li>
                 <li>
