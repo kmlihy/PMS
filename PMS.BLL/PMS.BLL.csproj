@@ -45,6 +45,7 @@
     <Compile Include="PlanBll.cs" />
     <Compile Include="ProfessionBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicProcedureBll.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="StudentBll.cs" />
     <Compile Include="TeacherBll.cs" />

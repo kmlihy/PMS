@@ -1,6 +1,7 @@
 ﻿using PMS.DBHelper;
 using PMS.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -42,12 +43,13 @@ namespace PMS.Dao
             intPageCount = Convert.ToInt32(values[8].Value);
             return ds;
         }
+
         /// <summary>
         /// 添加选题记录使题目的选题人数加1
         /// </summary>
         /// <param name="titlerecord">选题记录实体</param>
         /// <returns></returns>
-        public DataSet AddTitlerecord(TitleRecord titlerecord)
+        public DataSet AddTitlerecord(TitleRecord titlerecord,out int isSuccess)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("AddTitlerecord");
@@ -55,11 +57,14 @@ namespace PMS.Dao
                 new SqlParameter("@stuAccount", SqlDbType.VarChar),
                 new SqlParameter("@titleId", SqlDbType.Int),
                 new SqlParameter("@defeseTeamId", SqlDbType.Int),
+                new SqlParameter("@return", SqlDbType.Int)
             };
             values[0].Value = titlerecord.title;
             values[1].Value = titlerecord.student;
             values[2].Value = titlerecord.DefeseTeamId;
+            values[3].Direction = ParameterDirection.Output;
             DataSet ds = db.FillDataSetBySP(strSql.ToString(), values);
+            isSuccess = Convert.ToInt32(values[3].Value);
             return ds;
         }
 

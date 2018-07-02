@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 
 <body>
@@ -79,8 +80,9 @@
                     <td class="text-center" id="sex">
                         <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                     </td>
-                    <td class="text-center" id="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                    <td class="text-center" id="collegeName">
                         <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                        <input type="hidden" value="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>" id="collegeId" />
                     </td>
                     <td class="text-center" id="phone">
                         <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
@@ -92,7 +94,7 @@
                         <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#editModal">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button class="btn btn-default btn-sm btn-danger">
+                        <button class="btn btn-default btn-sm btn-danger btnDelete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
@@ -108,7 +110,7 @@
                 </li>
                 <li>
                     <a href="#" class="jump" id="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="iconfont icon-back"></span>
                     </a>
                 </li>
                 <li>
@@ -127,7 +129,7 @@
                 </li>
                 <li>
                     <a href="#" id="next" class="jump">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="iconfont icon-more"></span>
                     </a>
                 </li>
                 <li>
@@ -223,7 +225,7 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Eaccount" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Eaccount" readonly="true" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -251,16 +253,21 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Ecoll">
-                                        <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                            {
-                                                //if (dsColl.Tables[0].Rows[i]["collegeId"].ToString() == )
-                                                //{
-                                        %>
-                                        <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <%}
-                                        %>
-                                    </select>
+                                    <div id="input">
+                                        <input class="form-control teaAddinput" type="text" id="EintColl" readonly="true" />
+                                    </div>
+                                    <div id="select">
+                                        <select class="selectpicker" data-width="auto" id="EselColl">
+                                            <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                                {
+                                            %>
+                                            <option value="<%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%}
+                                            %>
+                                        </select>
+                                    </div>
+                                    <button type="button" id="btnEditColl">编辑</button>
+                                    <button type="button" id="btnCollOk">确定</button>
                                 </td>
                             </tr>
                             <tr>
@@ -285,6 +292,8 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -292,11 +301,5 @@
 <script src="../js/ml.js"></script>
 <script src="../js/adminList.js"></script>
 <script src="../js/bootstrap-select.js"></script>
-<script>
-    //存储当前页数
-    sessionStorage.setItem("page", <%=getCurrentPage %>);
-    //存储总页数
-    sessionStorage.setItem("countPage", <%=count %>);
-</script>
 
 </html>

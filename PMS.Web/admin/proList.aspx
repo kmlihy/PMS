@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 <body>
     <div class="container-fluid big-box">
@@ -76,7 +77,7 @@
                     </li>
                     <li>
                         <a href="#" class="jump" id="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="iconfont icon-back"></span>
                         </a>
                     </li>
                     <li>
@@ -95,7 +96,7 @@
                     </li>
                     <li>
                         <a href="#" id="next" class="jump">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="iconfont icon-more"></span>
                         </a>
                     </li>
                     <li>
@@ -206,7 +207,7 @@
     $(document).ready(function () {
         $(".jump").click(function(){
             switch($.trim($(this).html())){
-                case('<span class="glyphicon glyphicon-chevron-left"></span>'):
+                case ('<span class="iconfont icon-back"></span>'):
                     if(parseInt(sessionStorage.getItem("Page"))>1){
                         jump(parseInt(sessionStorage.getItem("Page"))-1);
                         break;
@@ -216,7 +217,7 @@
                         break;
                     }
                     
-                case('<span class="glyphicon glyphicon-chevron-right"></span>'):
+                case ('<span class="iconfont icon-more"></span>'):
                     if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
                         jump(parseInt(sessionStorage.getItem("Page"))+1);
                         break;
