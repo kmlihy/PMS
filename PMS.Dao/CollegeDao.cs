@@ -118,6 +118,28 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 根据ID删除一个学院信息
+        /// </summary>
+        /// <param name="collId">学院ID</param>
+        /// <returns>受影响行数</returns>
+        public int Delete(int collId)
+        {
+            try
+            {
+                string cmdText = "delete T_College where collegeId = @collId";
+                string[] param = { "@collId" };
+                object[] values = { collId };
+                int row = db.ExecuteNoneQuery(cmdText, param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// 根据ID得到一个学院对象
         /// </summary>
         /// <param name="collId">学院ID</param>

@@ -48,6 +48,24 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据ID删除专业信息
+        /// </summary>
+        /// <param name="proId">专业ID</param>
+        /// <returns>成功返回Result.删除成功，失败返回Result.删除失败</returns>
+        public Result Delete(int proId)
+        {
+            int row = dao.Delete(proId);
+            if(row > 0)
+            {
+                return Result.删除成功;
+            }
+            else
+            {
+                return Result.删除失败;
+            }
+        }
+
+        /// <summary>
         /// 查询所有专业信息
         /// </summary>
         /// <returns>类型为DataSet的专业信息列表</returns>
@@ -65,16 +83,8 @@ namespace PMS.BLL
         /// <returns>类型为DataSet的分页学院信息列表集</returns>
         public DataSet SelectBypage(TableBuilder tab, out int intPageCount)
         {
-
             DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            else
-            {
-                return null;
-            }
+            return ds;
         }
 
         /// <summary>

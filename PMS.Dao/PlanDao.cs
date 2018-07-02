@@ -61,6 +61,28 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 根据ID删除一个批次信息
+        /// </summary>
+        /// <param name="planId">批次ID</param>
+        /// <returns>返回受影响行数</returns>
+        public int Delete(int planId)
+        {
+            try
+            {
+                string cmdText = "delete T_Plan where planId = @planId";
+                string[] param = { "@planId" };
+                object[] values = { planId };
+                int row = db.ExecuteNoneQuery(cmdText, param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// 查询所有的批次信息
         /// </summary>
         /// <returns>类型为DataSet的批次信息列表</returns>
