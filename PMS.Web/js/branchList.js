@@ -4,7 +4,6 @@ sessionStorage.setItem("page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
-
 $(document).ready(function () {
     //点击翻页按钮
     $(".jump").click(function () {
@@ -29,7 +28,7 @@ $(document).ready(function () {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
-                点击首页按钮时
+            //点击首页按钮时
             case ("首页"):
                 jump(1);
                 break;
@@ -45,12 +44,13 @@ $(document).ready(function () {
         sessionStorage.setItem("strWhere", strWhere);
         jump(1);
     });
-    //翻页时获取当前页数
+    //翻页时获取当前页码
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null) {
-            window.location.href = "adminList.aspx?currentPage=" + cur
+            window.location.href = "branchList.aspx?currentPage=" + cur
         } else {
-            window.location.href = "adminList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            window.location.href = "branchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            //sessionStorage.setItem("strWhere", null);
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
@@ -59,27 +59,16 @@ $(document).ready(function () {
         $("#last").hide();
     }
     //添加分院对象
-    $("#btnInsert").click(function () {
-        var account = $("#Iaccount").val(),
-            name = $("#Iname").val(),
-            sex = $("#Isex").val(),
-            college = $("#Icoll").val(),
-            email = $("#Iemail").val(),
-            phone = $("#Iphone").val();
-        //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-        if (account == "") {
-            alert("请输入工号");
+    $("#saveCollege").click(function () {
+        var collegeName = $("#insertColl").val();
+        if (collegeName == "") {
+            alert("请输入分院名称");
         } else {
             $.ajax({
                 type: 'Post',
-                url: 'adminList.aspx',
+                url: 'branchList.aspx',
                 data: {
-                    account: account,
-                    name: name,
-                    sex: sex,
-                    college: college,
-                    email: email,
-                    phone: phone,
+                    collegeName: collegeName,
                     op: "add"
                 },
                 dataType: 'text',
@@ -90,47 +79,26 @@ $(document).ready(function () {
             });
         }
     })
-    //点击编辑按钮，编辑弹框绑定数据
+    //编辑分院弹框绑定分院信息
     $(".btnEdit").click(function () {
-        var Eaccount = $(this).parent().parent().find("#teaAccount").text().trim();
-        $("#Eaccount").val(Eaccount);
-        var Ename = $(this).parent().parent().find("#teaName").text().trim();
-        $("#Ename").val(Ename);
-        var Epwd = $(this).parent().parent().find("#teaPwd").text().trim();
-        $("#Epwd").val(Epwd);
-        var Esex = $(this).parent().parent().find("#sex").text().trim();
-        $("#Esex").val(Esex);
-        var Ecoll = $(this).parent().parent().find("#collegeName").text().trim();
-        $("#Ecoll").val(Ecoll);
-        var Ephone = $(this).parent().parent().find("#phone").text().trim();
-        $("#Ephone").val(Ephone);
-        var Eemail = $(this).parent().parent().find("#email").text().trim();
-        $("#Eemail").val(Eemail);
+        var collegeId = $(this).parent().parent().find("#collegeName").prev().text().trim();
+        var collegeName = $(this).parent().parent().find("#collegeName").text().trim();
+        sessionStorage.setItem("collegeId", collegeId);
+        $("#editColl").val(collegeName);
     })
-    //点击提交编辑
+    //编辑分院信息
     $("#saveEdit").click(function () {
-        var Account = $("#Eaccount").val();
-        var Name = $("#Ename").val();
-        var Pwd = $("#Epwd").val();
-        var Sex = $("#Esex").val();
-        var College = $("#Ecoll").val();
-        var Phone = $("#Ephone").val();
-        var Email = $("#Eemail").val();
-        //alert(Account+":"+Name+":"+Pwd+":"+Sex+":"+College+":"+Phone+":"+Email)
-        if (Account == "") {
-            alert("请输入工号");
+        var name = $("#editColl").val();
+        var id = sessionStorage.getItem("collegeId");
+        if (name == "") {
+            alert("请输入分院名称");
         } else {
             $.ajax({
                 type: 'Post',
-                url: 'adminList.aspx',
+                url: 'branchList.aspx',
                 data: {
-                    Account: Account,
-                    Name: Name,
-                    Pwd: Pwd,
-                    Sex: Sex,
-                    College: College,
-                    Email: Email,
-                    Phone: Phone,
+                    id: id,
+                    name: name,
                     op: "edit"
                 },
                 dataType: 'text',
@@ -141,4 +109,4 @@ $(document).ready(function () {
             });
         }
     })
-});
+})
