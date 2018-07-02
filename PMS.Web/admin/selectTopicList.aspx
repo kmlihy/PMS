@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 
 <body>
@@ -92,7 +93,11 @@
             <div class="text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="prev">上一页
+                        <a href="#" class="jump" id="first">首页</a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="prev">
+                            <span class="iconfont icon-back"></span>
                         </a>
                     </li>
                     <li>
@@ -106,8 +111,12 @@
                         <a href="#" class="jump" id="lastPage"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump">下一页
+                        <a href="#" id="next" class="jump">
+                            <span class="iconfont icon-more"></span>
                         </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="last">尾页</a>
                     </li>
                 </ul>
             </div>
@@ -211,8 +220,11 @@
     sessionStorage.setItem("countPage",<%=count%>);
     $(document).ready(function () {
         $(".jump").click(function(){
-            switch($.trim($(this).html())){
-                case("上一页"):
+            switch ($.trim($(this).html())) {
+                case ("首页"):
+                    jump(1);
+                    break;
+                case ('<span class="iconfont icon-back"></span>'):
                     if(parseInt(sessionStorage.getItem("Page"))>1){
                         jump(parseInt(sessionStorage.getItem("Page"))-1);
                         break;
@@ -222,7 +234,7 @@
                         break;
                     }
                     
-                case("下一页"):
+                case ('<span class="iconfont icon-more"></span>'):
                     if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
                         jump(parseInt(sessionStorage.getItem("Page"))+1);
                         break;
@@ -234,6 +246,9 @@
                 case("1"):
                     break;
                 case(sessionStorage.getItem("countPage")):
+                    jump(parseInt(sessionStorage.getItem("countPage")));
+                    break;
+                case ("尾页"):
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }

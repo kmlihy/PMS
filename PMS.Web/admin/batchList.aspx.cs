@@ -26,17 +26,20 @@ namespace PMS.Web.admin
         {
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
-            if (op == "add" || editorOp == "editor")
+            if (op == "add")
             {
                 savePlan();
+                getdata(Search());
+                colds = colBll.Select();
+            }
+            if(editorOp == "editor")
+            {
                 EditorPlan();
-                Search();
                 getdata(Search());
                 colds = colBll.Select();
             }
             if (!Page.IsPostBack)
             {
-                Search();
                 getdata(Search());
                 colds = colBll.Select();
             }
@@ -44,43 +47,41 @@ namespace PMS.Web.admin
         //编辑
         public void EditorPlan()
         {
-            string editorPlanName = Context.Request["editorPlanName"].ToString(),
-                   editorStartTime = Context.Request["editorStartTime"].ToString(),
-                   editorEndTime = Context.Request["editorEndTime"].ToString();
-            int planCollegeId = int.Parse(Context.Request["planCollegeId"].ToString()),
-                editorState = int.Parse(Context.Request["editorState"].ToString());
-            //数据类型转换（字符串转日期）
-            DateTime startdt;
-            DateTime enddt;
-            DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-            dtFormat.ShortDatePattern = "yyyy/MM/dd";
-            startdt = Convert.ToDateTime(editorStartTime, dtFormat);
-            enddt = Convert.ToDateTime(editorEndTime, dtFormat);
-
-            College planColEditor = new College()
+            string planName = Context.Request["editorPlanName"].ToString();
+            DateTime startTiem = Convert.ToDateTime(Context.Request["editorStartTime"].ToString()),
+                   endTime = Convert.ToDateTime(Context.Request["editorEndTime"].ToString());
+            int state = int.Parse(Context.Request["editorState"].ToString()),
+                planId = int.Parse(Context.Request["editorPlanId"].ToString()),
+                collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
+            College coll = new College()
             {
-                ColID = planCollegeId
+                ColID = collegeId
             };
-            Plan editorPlan = new Plan()
+            Plan plan = new Plan()
             {
-                PlanName = editorPlanName,
-                StartTime = startdt,
-                EndTime = enddt,
-                State = editorState,
-                college = planColEditor
+                PlanId = planId,
+                PlanName = planName,
+                StartTime = startTiem,
+                EndTime = endTime,
+                State = state,
+                college = coll
             };
-            PlanBll editorPlanBll = new PlanBll();
-            Result editorResult = editorPlanBll.Update(editorPlan);
-            if (editorResult == Result.更新成功)
+            try
             {
-                Response.Write("更新成功");
-                Response.End();
+                PlanBll pBll = new PlanBll();
+                Result EditorResult = pBll.Update(plan);
+                if (EditorResult == Result.更新成功)
+                {
+                    Response.Write("更新成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
+                }
             }
-            else
-            {
-                Response.Write("更新失败");
-                Response.End();
-            }
+            catch(Exception ex) { Response.Write(ex.Message); }
         }
         //添加
         public void savePlan()

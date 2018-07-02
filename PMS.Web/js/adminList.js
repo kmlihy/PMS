@@ -10,7 +10,7 @@ $(document).ready(function () {
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             //点击上一页按钮时
-            case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+            case ('<b><span class="iconfont icon-back"></span></b>'):
                 if (parseInt(sessionStorage.getItem("page")) > 1) {
                     jump(parseInt(sessionStorage.getItem("page")) - 1);
                     sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
@@ -20,7 +20,7 @@ $(document).ready(function () {
                     break;
                 }
             //点击下一页按钮时
-            case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+            case ('<span class="iconfont icon-back"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
@@ -47,14 +47,14 @@ $(document).ready(function () {
     });
     //翻页时获取当前页数
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
+        if (sessionStorage.getItem("strWhere") === null) {
             window.location.href = "adminList.aspx?currentPage=" + cur
         } else {
             window.location.href = "adminList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
-    if (sessionStorage.getItem("countPage") == "1") {
+    if (sessionStorage.getItem("countPage") ==== "1") {
         $("#first").hide();
         $("#last").hide();
     }
@@ -67,7 +67,7 @@ $(document).ready(function () {
             email = $("#Iemail").val(),
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-        if (account == "") {
+        if (account === "") {
             alert("请输入工号");
         } else {
             $.ajax({
@@ -100,12 +100,31 @@ $(document).ready(function () {
         $("#Epwd").val(Epwd);
         var Esex = $(this).parent().parent().find("#sex").text().trim();
         $("#Esex").val(Esex);
-        var Ecoll = $(this).parent().parent().find("#collegeName").text().trim();
-        $("#Ecoll").val(Ecoll);
+        var EintColl = $(this).parent().parent().find("#collegeName").text().trim();
+        $("#EintColl").val(EintColl);
         var Ephone = $(this).parent().parent().find("#phone").text().trim();
         $("#Ephone").val(Ephone);
         var Eemail = $(this).parent().parent().find("#email").text().trim();
         $("#Eemail").val(Eemail);
+    })
+    //编辑学院
+    $("#select").hide();
+    $("#btnCollOk").hide();
+    //编辑学院-编辑
+    $("#btnEditColl").click(function () {
+        $("#select").show();
+        $("#input").hide();
+        $("#btnCollOk").show();
+        $(this).hide();
+    })
+    //编辑学院-确定
+    $("#btnCollOk").click(function () {
+        var collName = $("#EselColl").val();
+        $("#input").show();
+        $("#EintColl").val(collName);
+        $("#select").hide();
+        $("#btnEditColl").show();
+        $(this).hide();
     })
     //点击提交编辑
     $("#saveEdit").click(function () {
@@ -113,11 +132,12 @@ $(document).ready(function () {
         var Name = $("#Ename").val();
         var Pwd = $("#Epwd").val();
         var Sex = $("#Esex").val();
-        var College = $("#Ecoll").val();
+        var College = $("#EintColl").val();
+        alert(College);
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
         //alert(Account+":"+Name+":"+Pwd+":"+Sex+":"+College+":"+Phone+":"+Email)
-        if (Account == "") {
+        if (Account === "") {
             alert("请输入工号");
         } else {
             $.ajax({
@@ -140,5 +160,27 @@ $(document).ready(function () {
                 }
             });
         }
+})
+    //删除分院信息
+    $(".btnDelete").click(function () {
+        //alert("删除")
+        $(".btnDlete").click(function () {
+            //alert("删除")
+            var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
+            //alert(collegeId);
+            $.ajax({
+                type: 'Post',
+                url: 'branchList.aspx',
+                data: {
+                    Daccount: Daccount,
+                    op: "dele"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    alert(succ);
+                    jump(parseInt(sessionStorage.getItem("page")));
+                }
+            });
+        })
     })
 });
