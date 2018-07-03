@@ -47,7 +47,7 @@ namespace PMS.Web.admin
             }
             if (!IsPostBack)
             {
-                getPage(search);
+                getPage(Search());
                 colds = colbll.Select();
             }
         }

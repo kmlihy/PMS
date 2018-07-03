@@ -99,6 +99,9 @@
     <Content Include="js\lgd.js" />
     <Content Include="js\messages_zh.min.js" />
     <Content Include="js\ml.js" />
+    <Content Include="js\proList.js" />
+    <Content Include="js\selectTopicList.js" />
+    <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
     <Content Include="js\zwh.js" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />

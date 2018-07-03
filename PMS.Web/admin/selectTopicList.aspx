@@ -21,7 +21,7 @@
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker" data-width="auto">
+                    <select class="selectpicker" data-width="auto" id="selectdrop" onchange="">
                         <option value="">-请选择专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {%>
@@ -237,76 +237,14 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
+
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/lgd.js"></script>
-<script>
-    //当前页数
-    sessionStorage.setItem("Page",<%=getCurrentPage%>);
-    //总页
-    sessionStorage.setItem("countPage",<%=count%>);
-    $(document).ready(function () {
-        $(".jump").click(function(){
-            switch($.trim($(this).html())){
-                case('<span class="glyphicon glyphicon-chevron-left"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))>1){
-                        jump(parseInt(sessionStorage.getItem("Page"))-1);
-                        break;
-                    }
-                    else{
-                        jump(1);
-                        break;
-                    }
-                    
-                case('<span class="glyphicon glyphicon-chevron-right"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
-                        jump(parseInt(sessionStorage.getItem("Page"))+1);
-                        break;
-                    }
-                    else{
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case("首页"):
-                    jump(1);
-                    break;
-                case("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        $("#btn-search").click(function(){
-            var strWhere =$("#inputsearch").val();
-            sessionStorage.setItem("strWhere",strWhere);
-            jump(1);
-        });
-        function jump(cur) {
-            if(sessionStorage.getItem("strWhere")==null){
-                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-            }else{
-                window.location.href ="selectTopicList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
-            }
-        };
-        $(".btnSearch").click(function(){
-            //查看数据填充
-            $("#TeaAccount").text(($(this).parent().parent().find("#teacount").text().trim()));
-            $("#StuSex").text(($(this).parent().parent().find("#stusex").text().trim()));
-            $("#StuAccount").text(($(this).parent().parent().find("#stuaccount").text().trim()));
-            $("#StuTel").text(($(this).parent().parent().find("#phone").text().trim()));
-            $("#StuEmail").text(($(this).parent().parent().find("#email").text().trim()));
-            $("#RecordId").text(($(this).parent().parent().find("#recordid").text().trim()));
-            $("#PlanName").text(($(this).parent().parent().find("#planname").text().trim()));
-            $("#Title").text(($(this).parent().parent().find("#title").text().trim()));
-            $("#TeaName").text(($(this).parent().parent().find("#teaname").text().trim()));
-            $("#StuName").text(($(this).parent().parent().find("#realname").text().trim()));
-            $("#ProName").text(($(this).parent().parent().find("#proname").text().trim()));
-            $("#CollegeName").text(($(this).parent().parent().find("#collegename").text().trim()));
-            $("#RecordTime").text(($(this).parent().parent().find("#recordtime").text().trim()));
-            
-        });
-    });
-</script>
+<script src="../js/selectTopicList.js"></script>
 </html>
