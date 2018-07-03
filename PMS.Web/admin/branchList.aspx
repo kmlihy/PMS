@@ -60,10 +60,10 @@
                     <td class="text-center">
                         <input type="checkbox" />
                     </td>
-                    <td class="text-center" id="collegeId">
+                    <td class="text-center collegeId">
                         <%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>
                     </td>
-                    <td class="text-center" id="collegeName">
+                    <td class="text-center collegeName">
                         <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                     </td>
                     <td class="text-center">

@@ -55,11 +55,11 @@
                         <td class="text-center">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["proId"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                        <td class="text-center" id="tdproId"><%=ds.Tables[0].Rows[i]["proId"].ToString() %></td>
+                        <td class="text-center" id="tdproName"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
+                        <td class="text-center" id="tdcollegeName"><span style="display:none" id="collegeId"><%=ds.Tables[0].Rows[i]["collegeId"].ToString() %></span><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-warning" data-toggle="modal" data-target="#myModa2">
+                            <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                             <button class="btn btn-default btn-sm btn-danger" id="del">
@@ -167,14 +167,20 @@
                                     <td class="teaLable text-center">
                                         <label class="text-span">所属院系</label></td>
                                     <td>
-                                        <p contenteditable="true" class="text-span teaAddinput">所属院系</p>
+                                        <select class="selectpicker" data-width="auto" id="collegeSelect">
+                                            <option value="">-请选择院系-</option>
+                                            <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                                {%>
+                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%} %>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">专业名称</label></td>
                                     <td>
-                                        <input class="form-control teaAddinput" type="text" /></td>
+                                        <p contenteditable="false" class="text-span teaAddinput" id="p_proName"></p></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -182,7 +188,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="btnSave">提交</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">保存</button>
                 </div>
             </div>
         </div>
@@ -263,6 +269,31 @@
                     }
                 });
             }
+        })
+        $(".changebtn").click(function (){
+            var proId= $(this).parent().parent().find("#tdproId").text();
+            $("#p_proName").text($(this).parent().parent().find("#tdproName").text());
+            $("#btnSave").click(function(){
+                
+                var proName= $("#p_proName").text(),
+                    collegeId=$("#collegeSelect").find("option:selected").val();
+                if(proName==""){
+                    alert("不能为空")
+                }
+                else{
+                    alert("ajax");
+                    $.ajax({
+                        type:'Post',
+                        url:'proList.aspx',
+                        data:{ProId:proId,ProName:proName,CollegeId:collegeId,op:"change"},
+                        dataType:'text',
+                        success:function(succ){
+                            alert(succ);
+                            jump(1);
+                        }
+                    });
+                }
+            })
         })
     });
 </script>

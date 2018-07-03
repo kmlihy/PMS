@@ -81,8 +81,8 @@ $(document).ready(function () {
     })
     //编辑分院弹框绑定分院信息
     $(".btnEdit").click(function () {
-        var collegeId = $(this).parent().parent().find("#collegeId").text().trim();
-        var collegeName = $(this).parent().parent().find("#collegeName").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        var collegeName = $(this).parent().parent().find(".collegeName").text().trim();
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
     })
@@ -112,7 +112,7 @@ $(document).ready(function () {
     //删除分院信息
     $(".btnDlete").click(function () {
         //alert("删除")
-        var collegeId = $(this).parent().parent().find("#collegeId").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
         //alert(collegeId);
         $.ajax({
             type: 'Post',

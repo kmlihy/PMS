@@ -29,7 +29,7 @@ $(document).ready(function () {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
-                点击首页按钮时
+                //点击首页按钮时
             case ("首页"):
                 jump(1);
                 break;
@@ -54,7 +54,7 @@ $(document).ready(function () {
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
-    if (sessionStorage.getItem("countPage") ==== "1") {
+    if (sessionStorage.getItem("countPage") === "1") {
         $("#first").hide();
         $("#last").hide();
     }
@@ -160,27 +160,24 @@ $(document).ready(function () {
                 }
             });
         }
-})
+    })
     //删除分院信息
     $(".btnDelete").click(function () {
         //alert("删除")
-        $(".btnDlete").click(function () {
-            //alert("删除")
-            var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
-            //alert(collegeId);
-            $.ajax({
-                type: 'Post',
-                url: 'branchList.aspx',
-                data: {
-                    Daccount: Daccount,
-                    op: "dele"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    alert(succ);
-                    jump(parseInt(sessionStorage.getItem("page")));
-                }
-            });
-        })
+        var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
+        //alert(Daccount);
+        $.ajax({
+            type: 'Post',
+            url: 'adminList.aspx',
+            data: {
+                Daccount: Daccount,
+                op: "dele"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                alert(succ);
+                jump(parseInt(sessionStorage.getItem("page")));
+            }
+        });
     })
-});
+})
