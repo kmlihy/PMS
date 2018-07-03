@@ -40,7 +40,7 @@
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-briefcase"></span>
                         </span>
-                        <input type="text" class="form-control" id="captcha" placeholder="验证码" />
+                        <input type="text" class="form-control" name="captcha" id="captcha" placeholder="验证码" />
                         <img src="checkCode.aspx" id="code" onclick="refreshCode()" />
                     </div>
                     <div class="form-group">
@@ -58,7 +58,7 @@
                         <div id="btn">
                             <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
                             <button type="submit" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="stuMsg()">
-                                <a href="admin/main.aspx?user=<%=account %>">登录</a>
+                                登录
                             </button>
                         </div>
                     </div>

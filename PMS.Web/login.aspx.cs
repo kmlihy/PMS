@@ -9,12 +9,102 @@ namespace PMS.Web
 {
     public partial class login : System.Web.UI.Page
     {
-        public string code;
-        protected string account;
+        protected string userName;
+        protected string pwd;
+        protected string captcha;
+        protected string usertype;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            account = Request.Form["userName"].ToString();
-            //code = Session["code"].ToString().ToLower();
+         try {
+                userName = Request.Form["userName"];
+                pwd = Request.Form["pwd"];
+                captcha = Request.Form["captcha"];
+                usertype = Request.Form["user"];
+            if (vildata().Length == 0)
+            {
+                int loginstate = 0;
+                switch (usertype) {
+                    case "teacher":
+                        BLL.TeacherBll tdao = new BLL.TeacherBll();
+                        Model.Teacher tea = tdao.Login(userName, pwd);
+                        if (tea == null)
+                        {
+                            loginstate = 0;
+                        }
+                        else {
+                            loginstate = 1;
+                            Session["teacher"] = tea;
+                        }
+                        break;
+                    case "student":
+                        BLL.StudentBll sdao = new BLL.StudentBll();
+                        Model.Student stu = sdao.Login(userName, pwd);
+                        if (stu == null)
+                        {
+                            loginstate = 0;
+                        }
+                        else
+                        {
+                            loginstate = 1;
+                            Session["student"] = stu;
+                        }
+                        break;
+                }
+                    if (loginstate == 0)
+                    {
+                        Response.Write("<script>alert('登录失败');</script>");
+                    }
+                    else if (loginstate == 1)
+                    {
+                        Response.Redirect("admin/main.aspx");
+                    }
+                    else {
+                        Response.Write("<script>alert('登录失败');</script>");
+                    }
+                 }
+                else
+                {
+                    Response.Write("<script>alert(" + vildata() + ");</script>");
+                }
+             }
+            catch
+            {
+
+            }
+    }
+  
+
+        /// <summary>
+        /// 验证前台页面的数据
+        /// </summary>
+        /// <returns></returns>
+        public string vildata() {
+            string alertmsg = "";
+            if (userName == null) {
+                alertmsg = "用户名不能为空";
+            }
+            else if (pwd==null) {
+                alertmsg = "密码不能为空";
+            }
+            else if (captcha == null)
+            {
+                alertmsg = "验证码不能为空";
+            }
+            else if (usertype == null)
+            {
+                alertmsg = "用户类型不能为空"; 
+            }
+            else if (captcha != null)
+            {
+                if (captcha == Session["code"].ToString().ToLower())
+                {
+                }
+                else {
+                    alertmsg = "验证码不正确";
+                }
+            }
+            return alertmsg;
         }
     }
 }
