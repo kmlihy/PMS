@@ -127,7 +127,7 @@ input.error {
 /*教师出题页面*/
 
 .addPaper {
-    border: 1px solid #cbcbcb;
+    width:auto;
 }
 .table>tbody>tr>td {
     border: 0px;
@@ -155,7 +155,7 @@ input.error {
 }
 
 .content {
-    width: 90%;
+    /*width: 80%;*/
     height: 400px;
 }
 
