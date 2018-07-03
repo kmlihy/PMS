@@ -244,7 +244,7 @@
                                     <label class="text-span">性别</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="Esex">
-                                        <option value="男">男</option>
+                                        <%--<option value="男">男</option>--%>
                                         <option value="女">女</option>
                                     </select>
                                 </td>

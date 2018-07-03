@@ -41,7 +41,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del" onclick="pagingMsg()">
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
@@ -111,6 +111,7 @@
                     <li>
                         <a href="#" class="jump" id="prev">
                             <span class="iconfont icon-back"></span>
+                            <%--上一页--%>
                         </a>
                     </li>
                     <li>
@@ -126,6 +127,7 @@
                     <li>
                         <a href="#" id="next" class="jump" onclick="Alert('houwulaizhe')">
                             <span class="iconfont icon-more"></span>
+                            <%--下一页--%>
                         </a>
                     </li>
                     <li>
@@ -317,8 +319,8 @@
             </div>
         </div>
     </div>
-
-
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -326,150 +328,5 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
-<script>
-    //编辑框获取学生数据
-    $(document).ready(function(){
-        $(".Editor").click(function(){
-            var stuNO = $(this).parent().parent().find(".stuNO").text().trim(),
-                stuName = $(this).parent().parent().find(".stuName").text().trim(),
-                stuSex = $(this).parent().parent().find(".stuSex").text().trim(),
-                stuPro = $(this).parent().parent().find(".stuPro").text().trim(),
-                stuProId = $(this).parent().parent().children("td").get(4).id,//专业Id
-                stuCollege = $(this).parent().parent().find(".stuCollege").text().trim(),
-                stuColId = $(this).parent().parent().children("td").get(5).id;//学院ID
-                stuPhone = $(this).parent().parent().find(".stuPhone").text().trim(),
-                stuEmail = $(this).parent().parent().find(".stuEmail").text().trim();
-            $(".editorStuNO").val(stuNO);
-            $(".editorStuName").val(stuName);
-            $(".editorStuSex").val(stuSex);
-            $(".editorCollege").val(stuCollege);
-            $(".editorPro").val(stuPro);
-            $(".editorEmail").val(stuEmail);
-            $(".editorPhone").val(stuPhone);
-            $(".stuCollegeId").text(stuColId);
-            $(".stuProId").text(stuProId);
-        });
-        $(".stuCollegeId").hide();
-        $(".stuProId").hide();
-        $("#saveChange").click(function(){
-            var stuNO = $(".editorStuNO").val(),
-                stuName = $(".editorStuName").val(),
-                stuSex = $(".editorStuSex").val(),
-                stuCollege = $(".stuCollegeId").text(),
-                stuPro = $(".stuProId").text(),
-                stuEmail = $(".editorEmail").val(),
-                stuPhone = $(".editorPhone").val();
-            //alert(stuNO+stuPro+stuEmail);
-            alert("ajax");
-            $.ajax({
-                type:'Post',
-                url:'stuLIst.aspx',
-                data:{
-                    stuNO:stuNO,
-                    stuName:stuName,
-                    stuSex:stuSex,
-                    stuCollege:stuCollege,
-                    stuPro:stuPro,
-                    stuEmail:stuEmail,
-                    stuPhone:stuPhone,
-                    editorOp:"editor"
-                },
-                dataType:'text',
-                success:function(succ){
-                    alert(succ);
-                    jump(1);
-                }
-            })
-        })
-    })
-    //分页及查询
-    sessionStorage.setItem("page", <%=getCurrentPage %>);
-    sessionStorage.setItem("countPage",<%=count %>);
-    $(document).ready(function () {
-        //分页
-        $(".jump").click(function () {
-            switch ($.trim($(this).html())) {
-                case ('<span class="iconfont icon-back"></span>'):
-                    if (parseInt(sessionStorage.getItem("page")) > 1) {
-                        jump(parseInt(sessionStorage.getItem("page")) - 1);
-                        //sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
-                        break;
-                    }
-                    else {
-                        jump(1);
-                        break;
-                    }
-                case ('<span class="iconfont icon-more"></span>"></span>'):
-                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                        jump(parseInt(sessionStorage.getItem("page")) + 1);
-                        //sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
-                        break;
-                    }
-                    else {
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case ("首页"):
-                    jump(1);
-                    break;
-                case (sessionStorage.getItem("countPage")):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-                case ("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        //查询
-        $("#search").click(function () {
-            var strWhere = $("#inputsearch").val();
-            sessionStorage.setItem("strWhere",strWhere);
-            jump(1);
-        });
-        //地址栏显示信息
-        function jump(cur) {
-            if (sessionStorage.getItem("strWhere") == null) {
-                window.location.href = "stuLIst.aspx?currentPage=" + cur
-            }
-            else {
-                window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
-            }          
-        }
-        //添加学生
-        $("#saveSutdent").click(function(){
-            var stuAccount = $("#stuAccount").val(),
-                pwd = $("#pwd").val(),
-                realName = $("#realName").val(),
-                sex = $("#sex").find("option:selected").val(),
-                pro = $("#pro").find("option:selected").val(),
-                phone = $("#phone").val(),
-                email = $("#email").val();
-            if(stuAccount==""||pwd==""||realName==""||sex==""||pro==""||phone==""||email==""){
-                alert("不能出现未填项！");
-            }
-            else{
-                alert("ajax");
-                $.ajax({
-                    type:'Post',
-                    url:'stuLIst.aspx',
-                    data:{
-                        stuAccount:stuAccount,
-                        pwd:pwd,
-                        realName:realName,
-                        sex:sex,
-                        pro:pro,
-                        phone:phone,
-                        email:email,
-                        op:"add"
-                    },
-                    dateType:'text',
-                    success:function(succ){
-                        alert(succ);
-                        jump(1);
-                    }
-                })
-            }
-        })
-    })
-</script>
+<script src="../js/stuLIst.js"></script>
 </html>
