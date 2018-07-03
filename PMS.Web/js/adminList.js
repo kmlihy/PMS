@@ -29,7 +29,7 @@ $(document).ready(function () {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
-                点击首页按钮时
+                //点击首页按钮时
             case ("首页"):
                 jump(1);
                 break;
@@ -47,18 +47,18 @@ $(document).ready(function () {
     });
     //翻页时获取当前页数
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
+        if (sessionStorage.getItem("strWhere") === null) {
             window.location.href = "adminList.aspx?currentPage=" + cur
         } else {
             window.location.href = "adminList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
-    if (sessionStorage.getItem("countPage") == "1") {
+    if (sessionStorage.getItem("countPage") === "1") {
         $("#first").hide();
         $("#last").hide();
     }
-    //添加分院对象
+    //添加分院管理员对象
     $("#btnInsert").click(function () {
         var account = $("#Iaccount").val(),
             name = $("#Iname").val(),
@@ -67,7 +67,7 @@ $(document).ready(function () {
             email = $("#Iemail").val(),
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-        if (account == "") {
+        if (account === "") {
             alert("请输入工号");
         } else {
             $.ajax({
@@ -100,12 +100,31 @@ $(document).ready(function () {
         $("#Epwd").val(Epwd);
         var Esex = $(this).parent().parent().find("#sex").text().trim();
         $("#Esex").val(Esex);
-        var Ecoll = $(this).parent().parent().find("#collegeName").text().trim();
-        $("#Ecoll").val(Ecoll);
+        var EintColl = $(this).parent().parent().find("#collegeName").text().trim();
+        $("#EintColl").val(EintColl);
         var Ephone = $(this).parent().parent().find("#phone").text().trim();
         $("#Ephone").val(Ephone);
         var Eemail = $(this).parent().parent().find("#email").text().trim();
         $("#Eemail").val(Eemail);
+    })
+    //编辑学院
+    $("#select").hide();
+    $("#btnCollOk").hide();
+    //编辑学院-编辑
+    $("#btnEditColl").click(function () {
+        $("#select").show();
+        $("#input").hide();
+        $("#btnCollOk").show();
+        $(this).hide();
+    })
+    //编辑学院-确定
+    $("#btnCollOk").click(function () {
+        var collName = $("#EselColl").val();
+        $("#input").show();
+        $("#EintColl").val(collName);
+        $("#select").hide();
+        $("#btnEditColl").show();
+        $(this).hide();
     })
     //点击提交编辑
     $("#saveEdit").click(function () {
@@ -113,11 +132,12 @@ $(document).ready(function () {
         var Name = $("#Ename").val();
         var Pwd = $("#Epwd").val();
         var Sex = $("#Esex").val();
-        var College = $("#Ecoll").val();
+        var College = $("#EintColl").val();
+        alert(College);
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
         //alert(Account+":"+Name+":"+Pwd+":"+Sex+":"+College+":"+Phone+":"+Email)
-        if (Account == "") {
+        if (Account === "") {
             alert("请输入工号");
         } else {
             $.ajax({
@@ -141,4 +161,23 @@ $(document).ready(function () {
             });
         }
     })
-});
+    //删除分院信息
+    $(".btnDelete").click(function () {
+        //alert("删除")
+        var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
+        //alert(Daccount);
+        $.ajax({
+            type: 'Post',
+            url: 'adminList.aspx',
+            data: {
+                Daccount: Daccount,
+                op: "dele"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                alert(succ);
+                jump(parseInt(sessionStorage.getItem("page")));
+            }
+        });
+    })
+})

@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
-    <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 <body>
     <div class="container-fluid big-box">
@@ -42,12 +41,13 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <th class="text-center">
-                        <input type="checkbox" class="js-checkbox-all"/>
+                        <input type="checkbox" class="js-checkbox-all" />
                     </th>
                     <th class="text-center">工号</th>
                     <th class="text-center">姓名</th>
                     <th class="text-center">性别</th>
                     <th class="text-center">院系</th>
+                    <th class="text-center">教师类型</th>
                     <th class="text-center">联系电话</th>
                     <th class="text-center">邮箱</th>
                     <th class="text-center">操作</th>
@@ -59,33 +59,36 @@
                     %>
                     <tr>
                         <td class="text-center">
-                            <input type="checkbox"/>
+                            <input type="checkbox" />
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="tdteaAccount">
                             <%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="tdteaName">
                             <%=ds.Tables[0].Rows[i]["teaName"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="tdteaSex">
                             <%=ds.Tables[0].Rows[i]["sex"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="tdteacoll">
                             <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="tdteatype">
+                            <%=ds.Tables[0].Rows[i]["teaType"].ToString() %>
+                        </td>
+                        <td class="text-center" id="tdteaTel">
                             <%=ds.Tables[0].Rows[i]["phone"].ToString() %>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" id="tdteaEmail">
                             <%=ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-warning" data-toggle="modal" data-target="#myModa2">
+                            <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger">
+                            <button class="btn btn-default btn-sm btn-danger isdelete">
                                 <span class="glyphicon glyphicon-trash"></span>
-                            </button>  
+                            </button>
                         </td>
                     </tr>
                     <%
@@ -100,7 +103,7 @@
                     </li>
                     <li>
                         <a href="#" class="jump" id="prev">
-                            <span class="iconfont icon-back"></span>
+                            <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                     </li>
                     <li>
@@ -113,11 +116,13 @@
                     </li>
                     <li>
                         <% if (count == 0) { count = 1; } %>
-                        <a href="#" class="jump"><%=count %></a>
+                        <a href="#" class="jump">
+                            <%=count %>
+                        </a>
                     </li>
                     <li>
                         <a href="#" id="next" class="jump">
-                            <span class="iconfont icon-more"></span>
+                            <span class="glyphicon glyphicon-chevron-right"></span>
                         </a>
                     </li>
                     <li>
@@ -146,8 +151,11 @@
                                     <label class="text-span">所属院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="selectcol">
-                                        <option value="">请选择院系</option>
-                                        <option value="1">信息工程学院</option>
+                                        <option value="">-请选择院系-</option>
+                                        <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>
@@ -231,8 +239,11 @@
                                     <label class="text-span">所属院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="chselectcol">
-                                        <option value="">请选择院系</option>
-                                        <option value="1">信息工程学院</option>
+                                        <option value="">-请选择院系-</option>
+                                        <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>
@@ -292,7 +303,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="chbtn">添加</button>
+                    <button type="button" class="btn btn-primary" id="chbtn">保存更改</button>
                 </div>
             </div>
         </div>
@@ -309,31 +320,31 @@
     //总页
     sessionStorage.setItem("countPage",<%=count%>);
     $(document).ready(function () {
-        $(".jump").click(function () {
-            switch ($.trim($(this).html())) {
-                case ('<span class="iconfont icon-back"></span>'):
-                    if (parseInt(sessionStorage.getItem("Page")) > 1) {
-                        jump(parseInt(sessionStorage.getItem("Page")) - 1);
+        $(".jump").click(function(){
+            switch($.trim($(this).html())){
+                case('<span class="glyphicon glyphicon-chevron-left"></span>'):
+                    if(parseInt(sessionStorage.getItem("Page"))>1){
+                        jump(parseInt(sessionStorage.getItem("Page"))-1);
                         break;
                     }
-                    else {
+                    else{
                         jump(1);
                         break;
                     }
-
-                case ('<span class="iconfont icon-more"></span>'):
-                    if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                        jump(parseInt(sessionStorage.getItem("Page")) + 1);
+                    
+                case('<span class="glyphicon glyphicon-chevron-right"></span>'):
+                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
+                        jump(parseInt(sessionStorage.getItem("Page"))+1);
                         break;
                     }
-                    else {
+                    else{
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                     }
-                case ("首页"):
+                case("首页"):
                     jump(1);
                     break;
-                case ("尾页"):
+                case("尾页"):
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
@@ -390,6 +401,59 @@
                 });
             }
         })
+        $(".changebtn").click(function (){
+            $("#chteaAccount").val( $(this).parent().parent().find("#tdteaAccount").text().trim());
+            $("#chpwd").val("");
+            $("#chteaName").val($(this).parent().parent().find("#tdteaName").text().trim());
+            $("#chemail").val($(this).parent().parent().find("#tdteaEmail").text().trim());
+            $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim())
+            
+            //$(this).parent().parent().find("#sex").text();
+            //$(this).parent().parent().find("#collegeName").text();
+            //$(this).parent().parent().find("#teaType").text();
+            $("#chbtn").click(function(){
+                
+                var teaAccount= $("#chteaAccount").val(),
+                    teaName= $("#chteaAccount").val(),
+                    teaEmail= $("#chteaAccount").val(),
+                    teaPhone= $("#chteaAccount").val(),
+                    pwd=$("#chpwd").val(),
+                    collegeId=$("#chselectcol").find("option:selected").val(),
+                    sex=$("#chsex").find("option:selected").text(),
+                    teaType=$("#chteaType").find("option:selected").val();
+                   
+                if(teaAccount ==""){
+                    alert("不能为空");
+                }
+                else{
+                    alert("ajax");
+                    $.ajax({
+                        type:'Post',
+                        url:'teaList.aspx',
+                        data:{
+                            TeaAccount:teaAccount,
+                            TeaName:teaName,
+                            TeaEmail:teaEmail,
+                            TeaPhone:teaPhone,
+                            Pwd:pwd,
+                            CollegeId:collegeId,
+                            Sex:sex,
+                            TeaType:teaType,
+                            op:"change"
+                        },
+                        dataType:'text',
+                        success:function(succ){
+                            alert(succ);
+                            jump(1);
+                        }
+                    });
+                }
+            })
+        });
+        $(".isdelete").click(function(){
+        
+        });
+
     });
 </script>
 </html>

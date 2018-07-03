@@ -46,7 +46,7 @@ $(document).ready(function () {
     });
     //翻页时获取当前页码
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
+        if (sessionStorage.getItem("strWhere") === null) {
             window.location.href = "branchList.aspx?currentPage=" + cur
         } else {
             window.location.href = "branchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
@@ -54,14 +54,14 @@ $(document).ready(function () {
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
-    if (sessionStorage.getItem("countPage") == "1") {
+    if (sessionStorage.getItem("countPage") === "1") {
         $("#first").hide();
         $("#last").hide();
     }
     //添加分院对象
     $("#saveCollege").click(function () {
         var collegeName = $("#insertColl").val();
-        if (collegeName == "") {
+        if (collegeName === "") {
             alert("请输入分院名称");
         } else {
             $.ajax({
@@ -74,15 +74,15 @@ $(document).ready(function () {
                 dataType: 'text',
                 success: function (succ) {
                     alert(succ);
-                    jump(1);
+                    jump(parseInt(sessionStorage.getItem("page")));
                 }
             });
         }
     })
     //编辑分院弹框绑定分院信息
     $(".btnEdit").click(function () {
-        var collegeId = $(this).parent().parent().find("#collegeName").prev().text().trim();
-        var collegeName = $(this).parent().parent().find("#collegeName").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        var collegeName = $(this).parent().parent().find(".collegeName").text().trim();
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
     })
@@ -90,7 +90,7 @@ $(document).ready(function () {
     $("#saveEdit").click(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
-        if (name == "") {
+        if (name === "") {
             alert("请输入分院名称");
         } else {
             $.ajax({
@@ -104,9 +104,28 @@ $(document).ready(function () {
                 dataType: 'text',
                 success: function (succ) {
                     alert(succ);
-                    jump(1);
+                    jump(parseInt(sessionStorage.getItem("page")));
                 }
             });
         }
+    })
+    //删除分院信息
+    $(".btnDlete").click(function () {
+        //alert("删除")
+        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        //alert(collegeId);
+        $.ajax({
+            type: 'Post',
+            url: 'branchList.aspx',
+            data: {
+                collegeid: collegeId,
+                op: "dele"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                alert(succ);
+                jump(parseInt(sessionStorage.getItem("page")));
+            }
+        });
     })
 })

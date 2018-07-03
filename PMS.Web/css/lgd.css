@@ -1,7 +1,4 @@
-﻿body {
-    background-color:;
-}
-/**学生注册页面*/
+﻿/**学生注册页面*/
 
 #regmain {
     margin-top: 30px;
@@ -122,6 +119,10 @@
     border: none !important;
 }
 
+.modal-body .table .tablebody tr td {
+    border: 1px solid #ddd !important;
+}
+
 #inputsearch {
     width: 150px;
     float: none;
@@ -150,6 +151,11 @@
 .modal-body .table {
     margin-left: 80px;
     width: 80%;
+}
+
+.modal-body #selecttab {
+    margin-left: 0;
+    width: 100%;
 }
 
 #panel-head {
@@ -187,4 +193,8 @@
 
 #selectToptab {
     min-width: 480px;
+}
+/*选题记录*/
+.hidemsg {
+    display: none;
 }

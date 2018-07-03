@@ -26,7 +26,7 @@ namespace PMS.Web.admin
         //总页
         protected int count;
         //每页的行数
-        protected int pagesize = 1;
+        protected int pagesize = 3;
         //查询条件
         public String search = "";
         protected void Page_Load(object sender, EventArgs e)
@@ -36,6 +36,12 @@ namespace PMS.Web.admin
             if (op == "add")
             {
                 saveProfession();
+                Search();
+                getPage(Search());
+            }
+            if (op == "change")
+            {
+                saveChange();
                 Search();
                 getPage(Search());
             }
@@ -65,6 +71,30 @@ namespace PMS.Web.admin
             else
             {
                 Response.Write("添加失败");
+                Response.End();
+            }
+        }
+        //修改
+        public void saveChange() {
+            College college = new College();
+            string proName = Context.Request["proName"].ToString();
+            int proId = Convert.ToInt32(Context.Request["ProId"]);
+            int collegeId = Convert.ToInt32(Context.Request["collegeId"]);
+            Profession pro = new Profession();
+            college.ColID = collegeId;
+            pro.college = college;
+            pro.ProId = proId;
+            pro.ProName = proName;
+            ProfessionBll probll = new ProfessionBll();
+            OpResult result = probll.Update(pro);
+            if (result == OpResult.更新成功)
+            {
+                Response.Write("修改成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("修改失败");
                 Response.End();
             }
         }

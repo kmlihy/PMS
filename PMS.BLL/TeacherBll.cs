@@ -54,12 +54,33 @@ namespace PMS.BLL
                 return Enums.OpResult.添加失败;
             }
         }
+
+        /// <summary>
+        /// 判断在另外一张表中是否有数据
+        /// </summary>
+        ///<param name = "table" > 表名 </ param >
+        /// <param name="primarykeyname">主键列</param>
+        /// <param name="primarykey">主键参数</param>
+        /// <returns>管理引用代表数据存在不可删除，记录不存在表示可以删除</returns>
+        public Enums.OpResult IsDelete(string table, string primarykeyname, string primarykey)
+        {
+            int row = pdao.isDelete(table, primarykeyname, primarykey);
+            if (row > 0)
+            {
+                return Enums.OpResult.关联引用;
+            }
+            else
+            {
+                return Enums.OpResult.记录不存在;
+            }
+        }
+
         /// <summary>
         /// 删除教师
         /// </summary>
         /// <param name="TeaAccount">教师主键</param>
         /// <returns></returns>
-        public Enums.OpResult delete(String TeaAccount)
+        public Enums.OpResult Delete(String TeaAccount)
         {
             int count = dao.delete(TeaAccount);
             if (count > 0)

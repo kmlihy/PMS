@@ -58,19 +58,19 @@
                 %>
                 <tr>
                     <td class="text-center">
-                        <input type="checkbox">
+                        <input type="checkbox" />
                     </td>
-                    <td class="text-center">
+                    <td class="text-center collegeId">
                         <%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>
                     </td>
-                    <td class="text-center" id="collegeName">
+                    <td class="text-center collegeName">
                         <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                     </td>
                     <td class="text-center">
                         <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#editModal">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button class="btn btn-default btn-sm btn-danger">
+                        <button class="btn btn-default btn-sm btn-danger btnDlete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>

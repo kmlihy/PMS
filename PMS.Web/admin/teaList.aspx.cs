@@ -16,7 +16,7 @@ namespace PMS.Web.admin
         protected DataSet ds = null;
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 1;
+        protected int pagesize = 3;
         protected String search = "";
         //分院
         protected DataSet colds = null;
@@ -29,6 +29,10 @@ namespace PMS.Web.admin
             {
                 saveTeacher();
             }
+            if (op== "change")
+            {
+                saveChange();
+            }
             Search();
             //getdata(Search());
             //changepage();
@@ -36,6 +40,7 @@ namespace PMS.Web.admin
             colds = colbll.Select();
 
         }
+        //添加教师
         public void saveTeacher()
         {
             College college = new College();
@@ -70,7 +75,43 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
+        //修改
+        public void saveChange()
+        {
+            College college = new College();
+            string teaName = Context.Request["TeaName"].ToString();
+            string teaAccount = Context.Request["TeaAccount"].ToString();
+            string teaEmal = Context.Request["TeaEmail"].ToString();
+            string teaPhone = Context.Request["TeaPhone"].ToString();
+            string pwd = Context.Request["Pwd"].ToString();
+            string sex = Context.Request["Sex"].ToString();
+            int  collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+            int teaType = Convert.ToInt32(Context.Request["TeaType"]);
 
+            college.ColID = collegeId;
+            Teacher tea = new Teacher();
+            tea.college = college;
+            tea.TeaAccount = teaAccount;
+            tea.TeaPwd = pwd;
+            tea.TeaName = teaName;
+            tea.Phone = teaPhone;
+            tea.Email = teaEmal;
+            tea.Sex = sex;
+            tea.TeaType = teaType;
+            TeacherBll teabll = new TeacherBll();
+            OpResult result = teabll.Updata(tea);
+            if (result == OpResult.更新成功)
+            {
+                Response.Write("修改成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("修改失败");
+                Response.End();
+            }
+
+        }
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -78,7 +119,6 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
-            BLL.TeacherBll sdao = new TeacherBll();
             TeacherBll pro = new TeacherBll();
             TableBuilder tabuilder = new TableBuilder()
             {
