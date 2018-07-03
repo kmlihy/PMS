@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css"/>
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" />
 </head>
 
 <body>
@@ -64,7 +65,7 @@
                         <td class="text-center">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center" id="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>">
+                        <td class="text-center planId" id="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>">
                             <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
                         </td>
                         <td class="text-center">
@@ -86,7 +87,7 @@
                             <button class="btn btn-default btn-sm btn-warning planEditor" data-toggle="modal" data-target="#myEditor">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger">
+                            <button class="btn btn-default btn-sm btn-danger planDelete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -96,6 +97,7 @@
                     %>
                 </tbody>
             </table>
+           <%-- 翻页--%>
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
@@ -104,10 +106,10 @@
                     <li>
                         <a href="#" class="jump" id="prev">
                             <span class="iconfont icon-back"></span>
+                            <%--上一页--%>
                         </a>
                     </li>
                     <li>
-                        <% if (getCurrentPage == 0) { getCurrentPage = 1; } %>
                         <a href="#" class="jump"><%=getCurrentPage %></a>
                     </li>
                     <li>
@@ -118,8 +120,9 @@
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" class="jump" id="next">
+                        <a href="#" id="next" class="jump" onclick="Alert('houwulaizhe')">
                             <span class="iconfont icon-more"></span>
+                            <%--下一页--%>
                         </a>
                     </li>
                     <li>
@@ -154,12 +157,14 @@
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="startTime" /></td>
+                                    <input class="form-control teaAddinput datetimepicker" type="text" id="startTime" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="endTime" /></td>
+                                    <input class="form-control teaAddinput datetimepicker" type="text" id="endTime" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
@@ -221,12 +226,12 @@
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorStartTime" type="text"/></td>
+                                    <input class="form-control teaAddinput editorStartTime datetimepicker" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorEndTime" type="text"/></td>
+                                    <input class="form-control teaAddinput editorEndTime datetimepicker" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
@@ -265,6 +270,8 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -272,143 +279,6 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
-<script>
-
-    //编辑批次
-    $(document).ready(function(){
-        $(".planEditor").click(function(){
-            var editorName = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").text().trim(),
-                editorStart = $(this).parent().prev("td").prev("td").prev("td").prev("td").text().trim(),
-                editorEnd = $(this).parent().prev("td").prev("td").prev("td").text().trim(),
-                editorState = $(this).parent().prev("td").prev("td").find(".stateData").text().trim(),
-                editorCollege = $(this).parent().prev("td").text().trim(),
-                editorPlanId = $(this).parent().parent().children("td").get(1).id;
-            var planCollegeId = $(this).parent().parent().children("td").get(6).id;
-            $(".editorPlanName").val(editorName);
-            $(".editorStartTime").val(editorStart);
-            $(".editorEndTime").val(editorEnd);
-            $(".editorState").val(editorState);
-            $(".editorCollege").val(editorCollege);
-            $(".planCollegeId").text(planCollegeId);
-            $(".planId").text(editorPlanId);
-        });
-        $(".planCollegeId").hide();
-        $(".planId").hide();
-        $(".saveEditor").click(function(){
-            var editorPlanId = $(".planId").text(),
-                editorPlanName = $(".editorPlanName").val(),
-                editorStartTime = $(".editorStartTime").val(),
-                editorEndTime = $(".editorEndTime").val(),
-                editorState = $(".editorState").val(),
-                planCollegeId = $(".planCollegeId").text();
-            alert("ajax");
-            $.ajax({
-                type:'Post',
-                url:'batchList.aspx',
-                data:{
-                    editorPlanId:editorPlanId,
-                    editorPlanName:editorPlanName,
-                    editorStartTime:editorStartTime,
-                    editorEndTime:editorEndTime,
-                    editorState:editorState,
-                    planCollegeId:planCollegeId,
-                    editorOp:"editor"
-                },
-                dataType:'text',
-                success:function(succ){
-                    alert(succ);
-                    jump(1);
-                }
-            })
-        })
-    })
-    //分页及查询
-    sessionStorage.setItem("page", <%=getCurrentPage %>);
-    sessionStorage.setItem("countPage",<%=count %>);
-    $(document).ready(function () {
-        //分页
-        $(".jump").click(function () {
-            // alert($.trim($(this).html()));          
-            switch ($.trim($(this).html())) {
-                case ('<span class="iconfont icon-back"></span>'):
-                    if (parseInt(sessionStorage.getItem("page")) > 1) {
-                        jump(parseInt(sessionStorage.getItem("page")) - 1);
-                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
-                        break;
-                    }
-                    else {
-                        jump(1);
-                        break;
-                    }
-                case ('<span class="iconfont icon-more"></span>'):
-                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                        jump(parseInt(sessionStorage.getItem("page")) + 1);
-                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
-                        break;
-                    }
-                    else {
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case ("首页"):
-                    jump(1);
-                    break;
-                case (sessionStorage.getItem("countPage")):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-                case ("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        //查询
-        $("#search").click(function () {
-            var strWhere = $("#inputsearch").val();
-            sessionStorage.setItem("strWhere",strWhere);
-            //window.location.href = "teaList.aspx?search=" + strWhere;
-            jump(1);
-        });
-        //地址栏显示信息
-        function jump(cur) {
-            if (sessionStorage.getItem("strWhere") == null) {
-                window.location.href = "batchList.aspx?currentPage=" + cur
-            }
-            else {
-                window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
-            }          
-        }
-
-        //添加批次
-        $("#savePlan").click(function(){
-            var planName = $("#planName").val(),
-                startTime = $("#startTime").val(),
-                endTime = $("#endTime").val(),
-                state = $("#state").find("option:selected").val(),
-                college = $("#collegeId").find("option:selected").val();
-            if(planName==""||state == ""||startTime=="" || endTime==""||state==""||college=="" ){
-                alert("不能为空")
-            }
-            else{
-                alert("ajax");
-                $.ajax({
-                    type:'Post',
-                    url:'batchList.aspx',
-                    data:{
-                        planName:planName,
-                        startTime:startTime,
-                        endTime:endTime,
-                        state:state,
-                        college:college,
-                        op:"add"
-                    },
-                    dateType:'text',
-                    success:function(succ){
-                        alert(succ);
-                        jump(1);
-                    }
-                })
-            }
-        })
-    })
-</script>
+<script src="../js/batchList.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
 </html>

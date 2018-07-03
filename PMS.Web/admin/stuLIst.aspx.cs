@@ -17,9 +17,9 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
 
         protected DataSet ds = null;
-        protected int getCurrentPage = 1;
+        protected int getCurrentPage = 2;
         protected int count;
-        protected int pagesize = 8;
+        protected int pagesize = 3;
         protected String search = "";
 
         ProfessionBll proBll = new ProfessionBll();
@@ -27,10 +27,6 @@ namespace PMS.Web.admin
 
         public void Page_Load(object sender, EventArgs e)
         {
-            //prods = proBll.Select();
-            //colds = colBll.Select();
-            //Search();
-            //getdata(Search());
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
             if (op == "add"||editorOp== "editor")
