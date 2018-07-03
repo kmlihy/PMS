@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css"/>
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" />
 </head>
 
 <body>
@@ -154,12 +155,14 @@
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="startTime" /></td>
+                                    <input class="form-control teaAddinput datetimepicker" type="text" id="startTime" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="endTime" /></td>
+                                    <input class="form-control teaAddinput datetimepicker" type="text" id="endTime" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
@@ -221,12 +224,12 @@
                             <tr>
                                 <td class="teaLable"><label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorStartTime" type="text"/></td>
+                                    <input class="form-control teaAddinput editorStartTime datetimepicker" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorEndTime" type="text"/></td>
+                                    <input class="form-control teaAddinput editorEndTime datetimepicker" type="text"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable"><label class="text-span">激活状态</label></td>
@@ -272,6 +275,8 @@
 <script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
+<script src="../js/batchList.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
 <script>
 
     //编辑批次
