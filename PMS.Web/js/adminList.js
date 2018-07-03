@@ -58,7 +58,7 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
-    //添加分院对象
+    //添加分院管理员对象
     $("#btnInsert").click(function () {
         var account = $("#Iaccount").val(),
             name = $("#Iname").val(),

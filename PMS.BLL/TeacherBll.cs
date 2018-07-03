@@ -80,7 +80,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="TeaAccount">教师主键</param>
         /// <returns></returns>
-        public Enums.OpResult delete(String TeaAccount)
+        public Enums.OpResult Delete(String TeaAccount)
         {
             int count = dao.delete(TeaAccount);
             if (count > 0)
