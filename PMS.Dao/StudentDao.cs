@@ -13,6 +13,21 @@ namespace PMS.Dao
         private SQLHelper db = new SQLHelper();
 
         /// <summary>
+        /// 根据账号与密码获取学生信息
+        /// </summary>
+        /// <param name="stuAccount">账号</param>
+        /// <param name="pwd">密码</param>
+        /// <returns></returns>
+        public DataSet Select(string stuAccount, string pwd)
+        {
+            string cmdText = "select * from T_Student where stuAccount = @stuAccount and stuPwd = @stuPwd";
+            string[] param = { "@stuAccount", "@stuPwd" };
+            object[] values = { stuAccount, pwd };
+            DataSet ds = db.FillDataSet(cmdText, param, values);
+            return ds;
+        }
+
+        /// <summary>
         /// 添加学生
         /// </summary>
         /// <param name="student">学生实体</param>

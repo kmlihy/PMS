@@ -54,7 +54,7 @@ namespace PMS.BLL
         /// <param name="primarykeyname">主键列</param>
         /// <param name="primarykey">主键参数</param>
         /// <returns>管理引用代表数据存在不可删除，记录不存在表示可以删除</returns>
-        public Enums.OpResult isDelete(string table, string primarykeyname, string primarykey)
+        public Enums.OpResult IsDelete(string table, string primarykeyname, string primarykey)
         {
             int row = pubpro.isDelete(table, primarykeyname, primarykey);
             if (row > 0)
