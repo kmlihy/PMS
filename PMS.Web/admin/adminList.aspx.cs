@@ -157,10 +157,22 @@ namespace PMS.Web.admin
             string college = Context.Request["College"].ToString();
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
+            TableBuilder tbd = new TableBuilder()
+            {
+                StrTable = "T_College",
+                StrColumn = "collegeId",
+                IntColType = 0,
+                IntOrder = 0,
+                StrColumnlist = "collegeId",
+                IntPageSize = 1,
+                IntPageNum = 1,
+                StrWhere = "collegeName = '" + college + "'"
+            };
+            dsColl = collBll.SelectBypage(tbd, out count);
             //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
             Teacher tea = new Teacher();
             College coll = new College();
-            coll.ColName = college;
+            coll.ColID = int.Parse(dsColl.Tables[0].Rows[0]["collegeId"].ToString());
             tea.TeaAccount = account;
             tea.TeaName = name;
             tea.TeaPwd = pwd;
@@ -204,7 +216,7 @@ namespace PMS.Web.admin
             Result row = IsdeleteCollege();
             if (row == Result.记录不存在)
             {
-                Result result = teabll.delete(account);
+                Result result = teabll.Delete(account);
 
                 if (result == Result.删除成功)
                 {
