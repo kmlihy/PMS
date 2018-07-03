@@ -59,8 +59,8 @@ namespace PMS.Dao
                 new SqlParameter("@defeseTeamId", SqlDbType.Int),
                 new SqlParameter("@return", SqlDbType.Int)
             };
-            values[0].Value = titlerecord.title;
-            values[1].Value = titlerecord.student;
+            values[0].Value = titlerecord.student.StuAccount;
+            values[1].Value = titlerecord.title.TitleId;
             values[2].Value = titlerecord.DefeseTeamId;
             values[3].Direction = ParameterDirection.Output;
             DataSet ds = db.FillDataSetBySP(strSql.ToString(), values);

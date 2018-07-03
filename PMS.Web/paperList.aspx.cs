@@ -21,13 +21,46 @@ namespace PMS.Web
         //总页
         protected int count;
         //每页的行数
-        protected int pagesize = 1;
+        protected int pagesize = 8;
         //查询条件
         public String search = "";
+
+        PublicProcedureBll pbll = new PublicProcedureBll();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            getPage(search);
+            string op = Context.Request.QueryString["op"];
+            string titleid = Context.Request.QueryString["titleId"];
+            if (!Page.IsPostBack)
+            {
+                getPage(search);
+            }
+            if(op == "selectTitle")
+            {
+                TitleRecord titleRecord = new TitleRecord();
+                //TODO 后期从session里获取学生对象
+                //Student student =  (Student)Session["user"];               
+                Student student = new Student();
+                student.StuAccount = "2121008";
+                titleRecord.student = student;
+                Title title = new Title();
+                title.TitleId = int.Parse(titleid);
+                titleRecord.title = title;
+
+                int row = pbll.AddTitlerecord(titleRecord);
+                if(row > 0)
+                {
+                    Response.Write("选题成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("选题失败");
+                    Response.End();
+                }
+            }
         }
+
         //列表
         public void getPage(String strWhere)
         {
