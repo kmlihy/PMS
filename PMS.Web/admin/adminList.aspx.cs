@@ -199,11 +199,11 @@ namespace PMS.Web.admin
         {
             string account = Context.Request["Daccount"].ToString();
             Result row = Result.记录不存在;
-            if (teabll.isDelete("T_News", "teaAccount", account) == Result.关联引用)
+            if (teabll.IsDelete("T_News", "teaAccount", account) == Result.关联引用)
             {
                 row = Result.关联引用;
             }
-            if (teabll.isDelete("T_Title", "teaAccount", account) == Result.关联引用)
+            if (teabll.IsDelete("T_Title", "teaAccount", account) == Result.关联引用)
             {
                 row = Result.关联引用;
             }

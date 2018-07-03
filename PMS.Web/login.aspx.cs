@@ -17,11 +17,12 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
          try {
-                userName = Request.Form["userName"];
-                pwd = Request.Form["pwd"];
-                captcha = Request.Form["captcha"];
-                usertype = Request.Form["user"];
-            if (vildata().Length == 0)
+                userName = Request.Form["userName"].Trim();
+                pwd = Request.Form["pwd"].Trim();
+                captcha = Request.Form["captcha"].ToLower();
+                usertype = Request.Form["user"].Trim();
+                string Verification = vildata();
+            if (Verification.Length == 0)
             {
                 int loginstate = 0;
                 switch (usertype) {
@@ -34,7 +35,7 @@ namespace PMS.Web
                         }
                         else {
                             loginstate = 1;
-                            Session["teacher"] = tea;
+                            Session["loginuser"] = tea;
                         }
                         break;
                     case "student":
@@ -47,7 +48,7 @@ namespace PMS.Web
                         else
                         {
                             loginstate = 1;
-                            Session["student"] = stu;
+                            Session["loginuser"] = stu;
                         }
                         break;
                 }
@@ -65,7 +66,7 @@ namespace PMS.Web
                  }
                 else
                 {
-                    Response.Write("<script>alert(" + vildata() + ");</script>");
+                    Response.Write("<script>alert('" + Verification + "');</script>");
                 }
              }
             catch
