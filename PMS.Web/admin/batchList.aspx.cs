@@ -18,7 +18,7 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
         protected int count;
         protected int getCurrentPage = 1;
-        protected int pagesize = 6;
+        protected int pagesize = 3;
         protected String search = "";
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
@@ -44,7 +44,7 @@ namespace PMS.Web.admin
                 colds = colBll.Select();
             }
         }
-        //编辑
+        //编辑批次
         public void EditorPlan()
         {
             string planName = Context.Request["editorPlanName"].ToString();
@@ -126,15 +126,15 @@ namespace PMS.Web.admin
             }
         }
         //分页
-        public void getdata(string strWhere)
+        public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
                 currentPage = "1";
             }
-            BLL.TeacherBll sdao = new TeacherBll();
-            TeacherBll pro = new TeacherBll();
+            BLL.StudentBll sdao = new StudentBll();
+            StudentBll pro = new StudentBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Plan",
@@ -169,6 +169,13 @@ namespace PMS.Web.admin
             }
             catch { }
             return search;
+        }
+        //判断是否能删除批次
+        public void isDeletePlan()
+        {
+            string planId = Context.Request["deletePlanId"].ToString();
+            Result delResult = Result.记录不存在;
+            if(planBll.)
         }
     }
 }
