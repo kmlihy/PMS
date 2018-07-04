@@ -11,6 +11,7 @@ using static PMS.BLL.Enums;
 
 namespace PMS.Web.admin
 {
+    using Result = Enums.OpResult;
     public partial class teaList : System.Web.UI.Page
     {
         protected DataSet ds = null;
@@ -18,6 +19,7 @@ namespace PMS.Web.admin
         protected int count;
         protected int pagesize = 3;
         protected String search = "";
+        TeacherBll teabll = new TeacherBll();
         //分院
         protected DataSet colds = null;
         protected CollegeBll colbll = new CollegeBll();
@@ -29,16 +31,65 @@ namespace PMS.Web.admin
             {
                 saveTeacher();
             }
-            if (op== "change")
+            if (op == "change")
             {
                 saveChange();
             }
-            Search();
-            //getdata(Search());
-            //changepage();
-            getdata(Search());
-            colds = colbll.Select();
+            //删除教师
+            if (op == "del")
+            {
+                delTeal();
+                Search();
+                getdata(Search());
+            }
+            if (!IsPostBack)
+            {
+                Search();
+                getdata(Search());
+                colds = colbll.Select();
+            }
 
+        }
+        //判断是否能删除
+        public Result IsdeleteCollege()
+        {
+            string delteaAccount = Context.Request["TeaAccount"].ToString();
+            Result row = Result.记录不存在;
+            if (teabll.IsDelete("T_News", "teaAccount", delteaAccount) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            if (teabll.IsDelete("T_Title", "teaAccount", delteaAccount) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            return row;
+        }
+        //删除
+        public void delTeal()
+        {
+            string delteaAccount = Context.Request["TeaAccount"].ToString();
+            Result row = IsdeleteCollege();
+            if (row == Result.记录不存在)
+            {
+                Result result = teabll.Delete(delteaAccount);
+
+                if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
         }
         //添加教师
         public void saveTeacher()
@@ -85,7 +136,7 @@ namespace PMS.Web.admin
             string teaPhone = Context.Request["TeaPhone"].ToString();
             string pwd = Context.Request["Pwd"].ToString();
             string sex = Context.Request["Sex"].ToString();
-            int  collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+            int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
             int teaType = Convert.ToInt32(Context.Request["TeaType"]);
 
             college.ColID = collegeId;
