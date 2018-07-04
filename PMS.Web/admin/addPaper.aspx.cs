@@ -38,6 +38,7 @@ namespace PMS.Web.admin
                 string paperTitle = Request["paperTitle"].ToString();
                 string profession = Request["profession"].ToString();
                 string plans = Request["plan"].ToString();
+                string numMax = Request["numMax"].ToString();
                 string paperContent = Request["paperContent"].ToString();
                 TitleBll titlebll = new TitleBll();
                 Title title = new Title();
@@ -45,7 +46,7 @@ namespace PMS.Web.admin
                 title.TitleContent = paperContent;
                 title.CreateTime = DateTime.Now;
                 title.Selected = 32;
-                title.Limit = 50;
+                title.Limit = int.Parse(numMax);
                 title.teacher = tea;
                 title.plan = new Plan { PlanId = 1 };
                 title.profession = new Profession { ProId = 1 };
