@@ -21,7 +21,7 @@
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker" data-width="auto" id="selectdrop" onchange="">
+                    <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
                         <option value="">-请选择专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {%>

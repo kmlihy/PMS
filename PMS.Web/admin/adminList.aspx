@@ -15,15 +15,16 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
-    <div class="container-fluid ">
+    <div class="container-fluid  big-box">
         <!-- 编辑区-->
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=strSearch %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -34,7 +35,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del" onclick="mizhu.toast('前无古人！', 4000);">
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
@@ -168,7 +169,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Isex">
+                                    <select class="selectpicker select" data-width="auto" id="Isex">
                                         <option>请选择性别</option>
                                         <option value="男">男</option>
                                         <option value="女">女</option>
@@ -179,7 +180,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Icoll">
+                                    <select class="selectpicker select" data-width="auto" id="Icoll">
                                         <option value="">请选择院系</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             { %>
@@ -243,10 +244,11 @@
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Esex">
-                                        <%--<option value="男">男</option>--%>
+                                    <input type="text" readonly="true" class="form-control teaAddinput" id="Esex" />
+                                    <%--<select class="selectpicker" data-width="auto" id="Esex">
+                                        <option value="男">男</option>
                                         <option value="女">女</option>
-                                    </select>
+                                    </select>--%>
                                 </td>
                             </tr>
                             <tr>
@@ -266,21 +268,20 @@
                                             %>
                                         </select>
                                     </div>
-                                    <button type="button" id="btnEditColl">编辑</button>
-                                    <button type="button" id="btnCollOk">确定</button>
+                                    <button type="button" class="btn btn-info" id="btnEditColl">编辑</button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">邮箱</label></td>
-                                <td>
-                                    <input class="form-control teaAddinput" type="text" id="Eemail" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="Ephone" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">邮箱</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="Eemail" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -300,6 +301,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/adminList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 
 </html>

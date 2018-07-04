@@ -12,8 +12,10 @@ using static PMS.BLL.Enums;
 
 namespace PMS.Web.admin
 {
+    using Result = Enums.OpResult;
     public partial class proList : System.Web.UI.Page
     {
+
         //列表
         protected DataSet ds = null;
         //专业
@@ -31,7 +33,7 @@ namespace PMS.Web.admin
         public String search = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //添加专业
             string op = Context.Request.Form["op"];
             if (op == "add")
             {
@@ -39,9 +41,17 @@ namespace PMS.Web.admin
                 Search();
                 getPage(Search());
             }
+            //修改专业
             if (op == "change")
             {
                 saveChange();
+                Search();
+                getPage(Search());
+            }
+            //删除专业
+            if (op == "del")
+            {
+                delPro();
                 Search();
                 getPage(Search());
             }
@@ -74,8 +84,50 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
+        //判断是否能删除
+        public Result IsdeleteCollege()
+        {
+            string delproId = Context.Request["DelProId"].ToString();
+            Result row = Result.记录不存在;
+            if (probll2.IsDelete("T_Student", "proId", delproId) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            if (probll2.IsDelete("T_Title", "proId", delproId) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            return row;
+        }
+        //删除
+        public void delPro()
+        {
+            int proId = int.Parse(Context.Request["DelProId"].ToString());
+            Result row = IsdeleteCollege();
+            if (row == Result.记录不存在)
+            {
+                Result result = probll2.Delete(proId);
+
+                if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
+        }
         //修改
-        public void saveChange() {
+        public void saveChange()
+        {
             College college = new College();
             string proName = Context.Request["proName"].ToString();
             int proId = Convert.ToInt32(Context.Request["ProId"]);
@@ -98,7 +150,7 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //列表
+        //列表数据获取
         public void getPage(String strWhere)
         {
 
@@ -136,7 +188,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" proName={0} or collegeName={0} ", "'" + search + "'");
+                    search = String.Format(" proName {0} or collegeName {0}", "like '%" + search + "%'");
                 }
             }
             catch

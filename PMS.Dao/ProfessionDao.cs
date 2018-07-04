@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -191,5 +192,23 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 批量导入专业信息
+        /// </summary>
+        /// <param name="dt">专业信息列表</param>
+        /// <returns>row大于0代表失败，row小于0代表成功</returns>
+        public int upload(DataTable dt)
+        {
+            string tableName = "T_Profession";
+            List<SqlBulkCopyColumnMapping> list = new List<SqlBulkCopyColumnMapping>();
+
+            list.Add(new SqlBulkCopyColumnMapping("专业名称", "proName"));
+            list.Add(new SqlBulkCopyColumnMapping("学院编号", "collegeId"));
+            
+            int row = db.BulkInsert(dt, tableName, list);
+            return row;
+        }
+
     }
 }
