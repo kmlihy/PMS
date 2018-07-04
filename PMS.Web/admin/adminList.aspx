@@ -35,7 +35,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del" onclick="mizhu.toast('前无古人！', 4000);">
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
@@ -169,7 +169,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Isex">
+                                    <select class="selectpicker select" data-width="auto" id="Isex">
                                         <option>请选择性别</option>
                                         <option value="男">男</option>
                                         <option value="女">女</option>
@@ -180,7 +180,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Icoll">
+                                    <select class="selectpicker select" data-width="auto" id="Icoll">
                                         <option value="">请选择院系</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             { %>
@@ -268,20 +268,20 @@
                                             %>
                                         </select>
                                     </div>
-                                    <button type="button" id="btnEditColl">编辑</button>
+                                    <button type="button" class="btn btn-info" id="btnEditColl">编辑</button>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">邮箱</label></td>
-                                <td>
-                                    <input class="form-control teaAddinput" type="text" id="Eemail" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="Ephone" /></td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">邮箱</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="Eemail" /></td>
                             </tr>
                         </tbody>
                     </table>
