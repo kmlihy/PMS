@@ -11,6 +11,7 @@ using PMS.Model;
 
 namespace PMS.Web
 {
+    using Result = Enums.OpResult;
     public partial class test : System.Web.UI.Page
     {
         protected string getName = "";
@@ -25,7 +26,7 @@ namespace PMS.Web
                 {
                     //"C:\\Users\\潘江涛\\Desktop\\新建 XLS 工作表.xls"
                    
-                    Teacher user =(Teacher)Session["user"];//取得登录用户用账号作为文件夹名称
+                    //Teacher user =(Teacher)Session["user"];//取得登录用户用账号作为文件夹名称
                     string x = path.Replace('\\', '*');
                     string[] path1 = x.Split('*');
                     string fileName = "";
@@ -41,7 +42,7 @@ namespace PMS.Web
                         dir= new DirectoryInfo(savePath);
                         dir.Create();
 
-                        savePath = Server.MapPath("~/upload/学院信息导入Excel文件存储/" + user.TeaAccount+"");
+                        savePath = Server.MapPath("~/upload/学院信息导入Excel文件存储/");
                         dir = new DirectoryInfo(savePath);
                         dir.Create();
 
@@ -57,9 +58,10 @@ namespace PMS.Web
 
                         var dt = ExcelHelper.GetDataTable(savePath);//从服务器路径读取数据成DataTable
 
-                        CollegeBll bll = new CollegeBll();
-                        int row = bll.upload(dt);
-                        if (row > 0)
+                        //CollegeBll bll = new CollegeBll();
+                        ProfessionBll bll = new ProfessionBll();
+                        Result row = bll.upload(dt);
+                        if (row == Result.添加失败)
                         {
                             Response.Write("导入失败");
                         }
