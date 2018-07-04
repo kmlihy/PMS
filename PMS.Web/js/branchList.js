@@ -109,9 +109,15 @@ $(document).ready(function () {
             });
         }
     })
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+    })
     //删除分院信息
     $(".btnDlete").click(function () {
-        //alert("删除")
+        confirm("是否删除?")
         var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
         //alert(collegeId);
         $.ajax({
@@ -127,5 +133,19 @@ $(document).ready(function () {
                 jump(parseInt(sessionStorage.getItem("page")));
             }
         });
+    })
+    //批量删除
+    $("#btn-Del").click(function (){
+        var strgetSelectValue;
+        var getSelectValueMenbers = $(".check:checked").each(function (j) {
+            if (j >= 0) {
+                strgetSelectValue = $(this).val() + ",";
+                strgetSelectValue += $(this).parent().find("#collegeId").val() + ",";
+            }
+            else {
+                alert("请选择至少一个");
+            }
+        });
+            alert(strgetSelectValue);
     })
 })

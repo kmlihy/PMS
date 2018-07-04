@@ -109,21 +109,12 @@ $(document).ready(function () {
     })
     //编辑学院
     $("#select").hide();
-    $("#btnCollOk").hide();
     //编辑学院-编辑
+    sessionStorage.setItem("flag", "false");
     $("#btnEditColl").click(function () {
         $("#select").show();
         $("#input").hide();
-        $("#btnCollOk").show();
-        $(this).hide();
-    })
-    //编辑学院-确定
-    $("#btnCollOk").click(function () {
-        var collName = $("#EselColl").val();
-        $("#input").show();
-        $("#EintColl").val(collName);
-        $("#select").hide();
-        $("#btnEditColl").show();
+        sessionStorage.setItem("flag", "true");
         $(this).hide();
     })
     //点击提交编辑
@@ -132,11 +123,14 @@ $(document).ready(function () {
         var Name = $("#Ename").val();
         var Pwd = $("#Epwd").val();
         var Sex = $("#Esex").val();
-        var College = $("#EintColl").val();
-        alert(College);
+        var flag = sessionStorage.getItem("flag");
+        if (flag == "false") {
+            var College = $("#EintColl").val();
+        } else {
+            var College = $("#EselColl").val();
+        }
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
-        //alert(Account+":"+Name+":"+Pwd+":"+Sex+":"+College+":"+Phone+":"+Email)
         if (Account === "") {
             alert("请输入工号");
         } else {
@@ -161,9 +155,17 @@ $(document).ready(function () {
             });
         }
     })
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+    })
     //删除分院信息
     $(".btnDelete").click(function () {
-        //alert("删除")
+        //Confirm弹窗
+        var txt = "是否删除？";
+        window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning);
         var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
         //alert(Daccount);
         $.ajax({

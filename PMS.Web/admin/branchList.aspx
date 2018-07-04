@@ -23,7 +23,7 @@
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=strSearch %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -45,7 +45,7 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <th class="text-center">
-                    <input type="checkbox" class="js-checkbox-all" />
+                    <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                 </th>
                 <th class="text-center">工号</th>
                 <th class="text-center">学院名称</th>
@@ -58,7 +58,8 @@
                 %>
                 <tr>
                     <td class="text-center">
-                        <input type="checkbox" />
+                        <input type="checkbox" name="checkbox" class="check" value="123" />
+                        <input type="hidden" value="<%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>" id="collegeId" />
                     </td>
                     <td class="text-center collegeId">
                         <%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>
@@ -184,5 +185,4 @@
 <script src="../js/ml.js"></script>
 <script src="../js/branchList.js"></script>
 <script src="../js/bootstrap-select.js"></script>
-
 </html>

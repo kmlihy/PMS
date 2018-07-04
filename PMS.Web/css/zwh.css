@@ -155,7 +155,6 @@ input.error {
 }
 
 .content {
-    /*width: 80%;*/
     height: 400px;
     position:relative;
     left:30px;
@@ -164,15 +163,13 @@ input.error {
 
 #box {
     margin-bottom: 30px;
-    /*position:relative;
-    left:50px;*/
 }
 
 #btnOK {
     font-size: 14px;
     height: 40px;
     width:150px;
-    margin-top:600px;
+    margin-top:450px;
 }
 
 /*个人中心*/

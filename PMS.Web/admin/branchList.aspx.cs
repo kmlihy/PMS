@@ -22,6 +22,7 @@ namespace PMS.Web.admin
         protected int count;
         protected int pagesize = 5;
         protected String search = "";
+        protected String strSearch = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -120,6 +121,7 @@ namespace PMS.Web.admin
             try
             {
                 search = Request.QueryString["search"];
+                strSearch = Request.QueryString["search"];
                 if (search.Length == 0)
                 {
                     search = "";
@@ -130,7 +132,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format("collegeName={0}", "'" + search + "'");
+                    search = String.Format("collegeName {0}", "like '%" + search + "%'");
                 }
             }
             catch

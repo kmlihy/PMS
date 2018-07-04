@@ -25,6 +25,7 @@ namespace PMS.Web.admin
         protected int getCurrentPage = 1;
         //查询
         protected String search = "";
+        protected String strSearch = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             string college = Request["collegeId"];
@@ -97,6 +98,7 @@ namespace PMS.Web.admin
             try
             {
                 search = Request.QueryString["search"];
+                strSearch = Request.QueryString["search"];
                 if (search.Length == 0)
                 {
                     search = "";
@@ -107,7 +109,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                    search = String.Format(" teaAccount {0} or teaName {0} or collegeName {0} or sex {0} or phone {0} or Email {0} ", "like '%" + search + "%'");
                 }
             }
             catch
