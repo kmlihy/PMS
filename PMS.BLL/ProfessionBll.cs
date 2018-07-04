@@ -121,5 +121,23 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public Result upload(DataTable dt)
+        {
+            int row = dao.upload(dt);
+            if(row > 0)
+            {
+                return Result.添加失败;
+            }
+            else
+            {
+                return Result.添加成功;
+            }
+        }
     }
 }

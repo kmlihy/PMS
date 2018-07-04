@@ -31,10 +31,6 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal" >
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                        批量导入
-                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -57,7 +53,7 @@
                     <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         { %>
                     <tr>
-                        <td class="text-center td-check">
+                        <td class="text-center">
                             <input type="checkbox" />
                         </td>
                         <td class="text-center" id="tdproId"><%=ds.Tables[0].Rows[i]["proId"].ToString() %></td>
@@ -67,7 +63,7 @@
                             <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger btnDel" id="del">
+                            <button class="btn btn-default btn-sm btn-danger" id="del">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -111,39 +107,8 @@
             </div>
         </div>
     </div>
-    <!-- 批量导入弹框 -->
-    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="teaLable text-center">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--添加专业弹窗-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -160,7 +125,7 @@
                                     <td class="teaLable text-center">
                                         <label class="text-span">所属院系:</label></td>
                                     <td>
-                                        <select class="selectpicker changeSearch" data-width="auto" id="selectcol">
+                                        <select class="selectpicker" data-width="auto" id="selectcol">
                                             <option value="">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 {%>
@@ -186,7 +151,7 @@
         </div>
     </div>
     <!--编辑弹窗-->
-    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" aria-hidden="true">
+    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -210,15 +175,14 @@
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                             <%} %>
                                         </select>
-                                        <input class="form-control col-sm-3" data-width="auto"  type="text" id="colname" readonly="true" />
+                                        <p class="text-span teaAddinput" id="collegeName"></p>
                                     </td>
                                 </tr>
-                                
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">专业名称:</label></td>
                                     <td>
-                                        <input class="form-control col-sm-3" data-width="auto"  type="text" id="p_proName" readonly="true"/>
+                                        <p class="text-span teaAddinput" id="p_proName"></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -226,9 +190,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="closeModel">关闭</button>
-                    <button type="button" class="btn btn-default" id="btnch">编辑</button>
-                    <button type="button" class="btn btn-primary" id="btnSave">保存修改</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModel">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">编辑</button>
                 </div>
             </div>
         </div>
@@ -239,7 +202,7 @@
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
-<script src="../js/bootstrap-select.js"></script>
 <script src="../js/lgd.js"></script>
+<script src="../js/bootstrap-select.js"></script>
 <script src="../js/proList.js"></script>
 </html>
