@@ -1,6 +1,6 @@
 ﻿$(function() {
     $("#okMessage").hide();
-    $(".body").height($(window).height());
+    $("html").height($(window).height());
 })
 
 // 页面重置

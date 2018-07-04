@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container-fluid ">
+    <div class="container-fluid big-box">
         <!-- 编辑区-->
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
@@ -34,6 +34,10 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal" >
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        批量导入
+                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -144,6 +148,37 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary" id="saveCollege">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 批量导入弹框 -->
+    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable text-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>

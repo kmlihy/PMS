@@ -160,6 +160,7 @@ $(document).ready(function () {
         $("#select").hide();
         $("#input").show();
         $("#btnEditColl").show();
+        sessionStorage.setItem("flag", "false");
     })
     //删除分院信息
     $(".btnDelete").click(function () {

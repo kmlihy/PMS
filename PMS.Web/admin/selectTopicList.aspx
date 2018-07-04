@@ -21,7 +21,7 @@
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker" data-width="auto" id="selectdrop" onchange="">
+                    <select class="selectpicker" data-width="auto" id="selectdrop" onchange="sss()">
                         <option value="">-请选择专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {%>
@@ -64,7 +64,7 @@
                     <tr>
                         <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {%>
-                        <td class="text-center" id="msg">
+                        <td class="text-center td-check" id="msg">
                             <input type="checkbox" />
                             <p class="hidemsg" id="teacount"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></p>
                             <p class="hidemsg" id="stuaccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></p>
@@ -86,7 +86,7 @@
                             <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger">
+                            <button class="btn btn-default btn-sm btn-danger btnDel">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
