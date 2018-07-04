@@ -21,7 +21,7 @@ namespace PMS.Web
         //总页
         protected int count;
         //每页的行数
-        protected int pagesize = 1;
+        protected int pagesize = 5;
         //查询条件
         public String search = "";
         protected void Page_Load(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace PMS.Web
                 StrTable = "V_Title",
                 StrWhere = strWhere == null ? "" : strWhere,
                 IntColType = 0,
-                IntOrder = 0,
+                IntOrder = 1,
                 IntPageNum = int.Parse(currentPage),
                 IntPageSize = pagesize,
                 StrColumn = "titleId",
