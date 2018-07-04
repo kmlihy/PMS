@@ -49,7 +49,8 @@ namespace PMS.Web.admin
                 getPage(Search());
             }
             //删除专业
-            if (op == "del") {
+            if (op == "del")
+            {
                 delPro();
                 Search();
                 getPage(Search());
@@ -125,7 +126,8 @@ namespace PMS.Web.admin
             }
         }
         //修改
-        public void saveChange() {
+        public void saveChange()
+        {
             College college = new College();
             string proName = Context.Request["proName"].ToString();
             int proId = Convert.ToInt32(Context.Request["ProId"]);
@@ -186,7 +188,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" proName {0} or collegeName {0}","like '%" + search + "%'");
+                    search = String.Format(" proName {0} or collegeName {0}", "like '%" + search + "%'");
                 }
             }
             catch

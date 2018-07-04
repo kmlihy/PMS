@@ -206,7 +206,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                    search = String.Format(" teaAccount {0} or teaName {0} or collegeName {0} or phone {0} or Email {0} ", "like %'" + search + "%'");
                 }
             }
             catch

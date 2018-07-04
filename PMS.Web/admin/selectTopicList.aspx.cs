@@ -30,16 +30,17 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             string op = Context.Request.Form["op"];
-            if (op=="del")
+            if (op == "del")
             {
                 IsdeleteCollege();
                 delPro();
 
 
             }
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 Search();
                 getPage(Search());
                 bads = colbll.Select();
@@ -90,13 +91,13 @@ namespace PMS.Web.admin
         //获取数据
         public void getPage(String strWhere)
         {
-          
-             string currentPage = Request.QueryString["currentPage"];
-                if (currentPage == null || currentPage.Length <= 0)
-                {
-                    currentPage = "1";
-                }
-         
+
+            string currentPage = Request.QueryString["currentPage"];
+            if (currentPage == null || currentPage.Length <= 0)
+            {
+                currentPage = "1";
+            }
+
 
             TitleRecordBll titlerd = new TitleRecordBll();
             TableBuilder tabuilder = new TableBuilder()
@@ -129,7 +130,8 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" teaName={0} or realName={0} or planName={0} or proName={0} or collegeName={0}", "'" + search + "'");
+                    search = String.Format(" teaName {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + search + "%'");
+                    
                 }
             }
             catch
