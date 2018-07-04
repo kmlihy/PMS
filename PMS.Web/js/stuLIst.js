@@ -85,6 +85,62 @@ $(document).ready(function () {
     $("#btnSure2").hide();
     $("#btnSure3").hide();
 
+    //点击性别编辑按钮
+    $("#btnEditor1").click(function () {
+        $(this).hide();
+        $("#btnSure1").show();
+        $(".selectSex").show();
+        $(".editorStuSex").hide();
+    })
+    //点击确定按钮
+    $("#btnSure1").click(function () {
+        var sex = $(".selectStuSex").find("option:selected").val();
+        $(".editorStuSex").val(sex);
+        $(this).hide();
+        $("#btnEditor1").show();
+        $(".editorStuSex").show();
+        $(".selectSex").hide();
+    })
+
+    //点击学院编辑按钮
+    $("#btnEditor2").click(function () {
+        $(this).hide();
+        $("#btnSure2").show();
+        $(".selectCollege").show();
+        $(".editorCollege").hide();
+    })
+    //点击确定按钮
+    $("#btnSure2").click(function () {
+        var college = $(".selectStuCollege").find("option:selected").val();
+        $(".stuCollegeId").text(college);
+        var collegeName = $(".selectStuCollege").find("option:selected").text().trim();
+        $(".editorCollege").val(collegeName);
+        alert($(".stuCollegeId").text()+collegeName);
+        $(this).hide();
+        $("#btnEditor2").show();
+        $(".editorCollege").show();
+        $(".selectCollege").hide();
+    })
+
+    //点击专业编辑按钮
+    $("#btnEditor3").click(function () {
+        $(this).hide();
+        $("#btnSure3").show();
+        $(".selectPro").show();
+        $(".editorPro").hide();
+    })
+    //点击确定按钮
+    $("#btnSure3").click(function () {
+        var pro = $(".selectStuPro").find("option:selected").text().trim(),
+            proId = $(".selectStuPro").find("option:selected").val();
+        $(".stuProId").text(proId);
+        $(".editorPro").val(pro);
+        $(this).hide();
+        $("#btnEditor3").show();
+        $(".editorPro").show();
+        $(".selectPro").hide();
+    })
+
     //点击提交按钮,完成编辑
     $("#saveChange").click(function () {
         var stuNO = $(".editorStuNO").val(),
@@ -94,7 +150,7 @@ $(document).ready(function () {
             stuPro = $(".stuProId").text(),
             stuEmail = $(".editorEmail").val(),
             stuPhone = $(".editorPhone").val();
-        //alert(stuNO+stuPro+stuEmail);
+        alert(stuCollege);
         alert("ajax");
         $.ajax({
             type: 'Post',

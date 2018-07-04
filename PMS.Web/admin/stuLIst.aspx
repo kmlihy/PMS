@@ -66,7 +66,10 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        { %>
+                        {
+
+                            string x = ds.Tables[0].Rows[i]["collegeName"].ToString();
+                            %>
                     <tr>
                         <td class="text-center">
                             <input type="checkbox" />
@@ -271,7 +274,7 @@
                                 <td>
                                     <input class="form-control teaAddinput editorStuSex" type="text" />
                                     <div class="selectSex">
-                                        <select class="selectpicker selectCollege" data-width="auto">
+                                        <select class="selectpicker selectStuSex" data-width="auto">
                                             <option value="男">男</option>
                                             <option value="女">女</option>
                                         </select>
@@ -286,7 +289,7 @@
                                 <td>
                                     <input class="form-control teaAddinput editorCollege" type="text" />
                                     <div class="selectCollege">
-                                        <select class="selectpicker selectCollege" data-width="auto">
+                                        <select class="selectpicker selectStuCollege" data-width="auto">
                                             <option value="">请选择学院</option>
                                             <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 { %>
@@ -306,12 +309,12 @@
                                 <td>
                                     <input class="form-control teaAddinput editorPro" type="text" />
                                     <div class="selectPro">
-                                        <select class="selectpicker selectCollege" data-width="auto">
-                                            <option value="">请选择学院</option>
-                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                        <select class="selectpicker selectStuPro" data-width="auto">
+                                            <option value="">请选择专业</option>
+                                            <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                                                 { %>
-                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
-                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                                                <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
                                             </option>
                                             <% } %>
                                         </select>

@@ -35,19 +35,19 @@ namespace PMS.Web.admin
             {
                 getdata(Search());
                 colds = colBll.Select();
-                prods = proBll.Select();
-                if (op == "add")//添加
-                {
-                    saveStudent();
-                }
-                if (editorOp == "editor")//编辑
-                {
-                    editorStu();
-                }
-                if (del == "delete")//删除
-                {
-                    deleteStu();
-                }
+                prods = proBll.Select();                
+            }
+            if (op == "add")//添加
+            {
+                saveStudent();
+            }
+            if (editorOp == "editor")//编辑
+            {
+                editorStu();
+            }
+            if (del == "delete")//删除
+            {
+                deleteStu();
             }
         }
         //编辑学生
@@ -170,7 +170,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format("stuAccount {0} or realName {0} or collegeName {0} or phone {0} or Email {0} ", "like " + "'%" + search + "%'");
+                    search = String.Format("stuAccount {0} or sex {0} or realName {0} or collegeName {0} or phone {0} or Email {0} or proName {0} ", "like " + "'%" + search + "%'");
                 }
             }
             catch
