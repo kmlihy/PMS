@@ -244,10 +244,11 @@
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Esex">
-                                        <%--<option value="男">男</option>--%>
+                                    <input type="text" readonly="true" class="form-control teaAddinput" id="Esex" />
+                                    <%--<select class="selectpicker" data-width="auto" id="Esex">
+                                        <option value="男">男</option>
                                         <option value="女">女</option>
-                                    </select>
+                                    </select>--%>
                                 </td>
                             </tr>
                             <tr>
