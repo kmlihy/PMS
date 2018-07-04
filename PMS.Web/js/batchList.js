@@ -157,10 +157,10 @@ $(document).ready(function () {
         //alert(deletePlanId);
         $.ajax({
             type: 'Post',
-            url: 'adminList.aspx',
+            url: 'batchList.aspx',
             data: {
                 deletePlanId: deletePlanId,
-                op: "dele"
+                delOp: "del"
             },
             dataType: 'text',
             success: function (succ) {

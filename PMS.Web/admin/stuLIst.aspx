@@ -95,7 +95,7 @@
                             <button class="btn btn-default btn-sm btn-warning Editor" data-toggle="modal" data-target="#myEditor">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger" id="Delete">
+                            <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -276,8 +276,8 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorCollege" type="text" />
-<%--                                    <select class="selectpicker " data-width="auto" id="editorCollege">
+<%--                                    <input class="form-control teaAddinput editorCollege" type="text" />--%>
+                                    <select class="selectpicker editorCollege" data-width="auto">
                                         <option value="">请选择院系</option>
                                         <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
@@ -285,7 +285,7 @@
                                             <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
                                         </option>
                                         <% } %>
-                                    </select>--%>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>

@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container-fluid panel ">
+    <div class="container-fluid panel bacthBox">
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
@@ -50,7 +50,7 @@
                     <th class="text-center">批次名</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>
-                    <th class="text-center">激活状态<span>(0未激活，1激活)</span></th>
+                    <th class="text-center">激活状态、</th>
                     <th class="text-center">所属学院</th>
                     <th class="text-center">操作</th>
                 </thead>
@@ -65,7 +65,7 @@
                         <td class="text-center">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center planId" id="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>">
+                        <td class="text-center planNO" id="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>">
                             <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
                         </td>
                         <td class="text-center">

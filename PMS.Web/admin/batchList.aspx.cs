@@ -26,22 +26,23 @@ namespace PMS.Web.admin
         {
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
-            if (op == "add")
-            {
-                savePlan();
-                getdata(Search());
-                colds = colBll.Select();
-            }
-            if(editorOp == "editor")
-            {
-                EditorPlan();
-                getdata(Search());
-                colds = colBll.Select();
-            }
+            string delOp = Context.Request["delOp"];
             if (!Page.IsPostBack)
             {
                 getdata(Search());
                 colds = colBll.Select();
+                if (op == "add")//添加
+                {
+                    savePlan();
+                }
+                if (editorOp == "editor")//编辑
+                {
+                    EditorPlan();
+                }
+                if (delOp == "del")//删除
+                {
+                    deletePlan();
+                }
             }
         }
         //编辑批次
@@ -171,11 +172,40 @@ namespace PMS.Web.admin
             return search;
         }
         //判断是否能删除批次
-        public void isDeletePlan()
+        public Result isDeletePlan()
         {
             string planId = Context.Request["deletePlanId"].ToString();
             Result delResult = Result.记录不存在;
-            if(planBll.)
+            if (planBll.IsDelete("T_Title", "planId", planId) == Result.关联引用)
+            {
+                delResult = Result.关联引用;
+            }
+            return delResult;
+        }
+        //删除批次
+        public void deletePlan()
+        {
+            int planId = int.Parse(Context.Request["deletePlanId"].ToString());
+            Result row = isDeletePlan();
+            if (row == Result.记录不存在)
+            {
+                Result result = planBll.Delete(planId);
+                if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
         }
     }
 }

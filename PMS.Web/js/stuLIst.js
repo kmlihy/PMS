@@ -143,4 +143,26 @@ $(document).ready(function () {
             })
         }
     })
+
+    //删除学生
+    $(".deleteStudent").click(function () {
+        var stuId = $(this).parent().parent().find(".stuNO").text().trim();
+        $.ajax({
+            type: 'Post',
+            url: 'stuLIst.aspx',
+            data: {
+                stuId: stuId,
+                op: "delete"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                alert(succ);
+                jump(parseInt(sessionStorage.getItem("page")));
+            }
+        })
+    })
+    //下拉框设置默认选项
+    $(".editorCollege").click(function () {
+
+    })
 })
