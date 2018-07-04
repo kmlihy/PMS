@@ -24,7 +24,7 @@ hr {
     width: 500px;
     height: 350px;
     background-color: rgba(255, 255, 255, 0.25);
-    margin-top: 130px;
+    margin-top: 120px;
     border-top: 1px solid rgba(255, 255, 255, 0.60);
     border-bottom: 1px solid rgba(255, 255, 255, 0.60);
     border-radius: 10px;
@@ -155,7 +155,6 @@ input.error {
 }
 
 .content {
-    /*width: 80%;*/
     height: 400px;
     position:relative;
     left:30px;
@@ -164,15 +163,13 @@ input.error {
 
 #box {
     margin-bottom: 30px;
-    /*position:relative;
-    left:50px;*/
 }
 
 #btnOK {
     font-size: 14px;
     height: 40px;
     width:150px;
-    margin-top:600px;
+    margin-top:450px;
 }
 
 /*个人中心*/

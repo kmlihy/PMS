@@ -19,14 +19,17 @@
             <h1 class="col-sm-3  col-sm-offset-5">选题列表
             </h1>
         </div>
-        <table class="table table-striped paperlisttable">
+        <table class="table table-striped paperlisttable text-center">
             <thead>
                 <tr>
-                    <th>论文题目
+                    <th class="text-center">
+                        论文题目
                     </th>
-                    <th>已选人数/人数上限
+                    <th class="text-center">
+                        已选人数/人数上限
                     </th>
-                    <th>状态
+                    <th class="text-center">
+                        状态
                     </th>
                 </tr>
             </thead>
