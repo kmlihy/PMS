@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
@@ -23,7 +24,7 @@
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=strSearch %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -80,7 +81,7 @@
                     <td class="text-center" id="sex">
                         <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                     </td>
-                    <td class="text-center" id="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                    <td class="text-center" id="collegeName">
                         <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                         <input type="hidden" value="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>" id="collegeId" />
                     </td>
@@ -94,7 +95,7 @@
                         <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#editModal">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button class="btn btn-default btn-sm btn-danger">
+                        <button class="btn btn-default btn-sm btn-danger btnDelete">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
@@ -225,7 +226,7 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Eaccount" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Eaccount" readonly="true" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -244,7 +245,7 @@
                                     <label class="text-span">性别</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="Esex">
-                                        <option value="男">男</option>
+                                        <%--<option value="男">男</option>--%>
                                         <option value="女">女</option>
                                     </select>
                                 </td>
@@ -253,18 +254,20 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Ecoll">
-                                        <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                            {
-                                                if (dsColl.Tables[0].Rows[i]["collegeId"].ToString() == )
-                                                {%>
-                                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <%}else{ %>
-                                        <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <%}
-                                            }
-                                        %>
-                                    </select>
+                                    <div id="input">
+                                        <input class="form-control teaAddinput" type="text" id="EintColl" readonly="true" />
+                                    </div>
+                                    <div id="select">
+                                        <select class="selectpicker" data-width="auto" id="EselColl">
+                                            <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                                {
+                                            %>
+                                            <option value="<%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%}
+                                            %>
+                                        </select>
+                                    </div>
+                                    <button type="button" id="btnEditColl">编辑</button>
                                 </td>
                             </tr>
                             <tr>
@@ -297,6 +300,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/adminList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 
 </html>

@@ -47,6 +47,30 @@ namespace PMS.BLL
             return Result.更新失败;
         }
 
+        /// <summary>
+        /// 判断在另外一张表中是否有数据
+        /// </summary>
+        ///<param name = "table" > 表名 </ param >
+        /// <param name="primarykeyname">主键列</param>
+        /// <param name="primarykey">主键参数</param>
+        /// <returns>管理引用代表数据存在不可删除，记录不存在表示可以删除</returns>
+        public Enums.OpResult IsDelete(string table, string primarykeyname, string primarykey)
+        {
+            int row = pubpro.isDelete(table, primarykeyname, primarykey);
+            if (row > 0)
+            {
+                return Enums.OpResult.关联引用;
+            }
+            else
+            {
+                return Enums.OpResult.记录不存在;
+            }
+        }
+        /// <summary>
+        /// 根据id删除一条记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns>返回结果</returns>
         public Result delete(int titleRecordId)
         {
             int row = dao.delete(titleRecordId);

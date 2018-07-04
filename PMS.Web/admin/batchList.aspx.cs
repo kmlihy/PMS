@@ -18,7 +18,7 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
         protected int count;
         protected int getCurrentPage = 1;
-        protected int pagesize = 6;
+        protected int pagesize = 3;
         protected String search = "";
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
@@ -26,61 +26,63 @@ namespace PMS.Web.admin
         {
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
-            if (op == "add" || editorOp == "editor")
-            {
-                savePlan();
-                EditorPlan();
-                Search();
-                getdata(Search());
-                colds = colBll.Select();
-            }
+            string delOp = Context.Request["delOp"];
             if (!Page.IsPostBack)
             {
-                Search();
                 getdata(Search());
                 colds = colBll.Select();
+                if (op == "add")//添加
+                {
+                    savePlan();
+                }
+                if (editorOp == "editor")//编辑
+                {
+                    EditorPlan();
+                }
+                if (delOp == "del")//删除
+                {
+                    deletePlan();
+                }
             }
         }
-        //编辑
+        //编辑批次
         public void EditorPlan()
         {
-            string editorPlanName = Context.Request["editorPlanName"].ToString(),
-                   editorStartTime = Context.Request["editorStartTime"].ToString(),
-                   editorEndTime = Context.Request["editorEndTime"].ToString();
-            int planCollegeId = int.Parse(Context.Request["planCollegeId"].ToString()),
-                editorState = int.Parse(Context.Request["editorState"].ToString());
-            //数据类型转换（字符串转日期）
-            DateTime startdt;
-            DateTime enddt;
-            DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-            dtFormat.ShortDatePattern = "yyyy/MM/dd";
-            startdt = Convert.ToDateTime(editorStartTime, dtFormat);
-            enddt = Convert.ToDateTime(editorEndTime, dtFormat);
-
-            College planColEditor = new College()
+            string planName = Context.Request["editorPlanName"].ToString();
+            DateTime startTiem = Convert.ToDateTime(Context.Request["editorStartTime"].ToString()),
+                   endTime = Convert.ToDateTime(Context.Request["editorEndTime"].ToString());
+            int state = int.Parse(Context.Request["editorState"].ToString()),
+                planId = int.Parse(Context.Request["editorPlanId"].ToString()),
+                collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
+            College coll = new College()
             {
-                ColID = planCollegeId
+                ColID = collegeId
             };
-            Plan editorPlan = new Plan()
+            Plan plan = new Plan()
             {
-                PlanName = editorPlanName,
-                StartTime = startdt,
-                EndTime = enddt,
-                State = editorState,
-                college = planColEditor
+                PlanId = planId,
+                PlanName = planName,
+                StartTime = startTiem,
+                EndTime = endTime,
+                State = state,
+                college = coll
             };
-            PlanBll editorPlanBll = new PlanBll();
-            Result editorResult = editorPlanBll.Update(editorPlan);
-            if (editorResult == Result.更新成功)
+            try
             {
-                Response.Write("更新成功");
-                Response.End();
+                PlanBll pBll = new PlanBll();
+                Result EditorResult = pBll.Update(plan);
+                if (EditorResult == Result.更新成功)
+                {
+                    Response.Write("更新成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
+                }
             }
-            else
-            {
-                Response.Write("更新失败");
-                Response.End();
-            }
+            catch(Exception ex) { Response.Write(ex.Message); }
         }
         //添加
         public void savePlan()
@@ -125,15 +127,15 @@ namespace PMS.Web.admin
             }
         }
         //分页
-        public void getdata(string strWhere)
+        public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
                 currentPage = "1";
             }
-            BLL.TeacherBll sdao = new TeacherBll();
-            TeacherBll pro = new TeacherBll();
+            BLL.StudentBll sdao = new StudentBll();
+            StudentBll pro = new StudentBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Plan",
@@ -168,6 +170,42 @@ namespace PMS.Web.admin
             }
             catch { }
             return search;
+        }
+        //判断是否能删除批次
+        public Result isDeletePlan()
+        {
+            string planId = Context.Request["deletePlanId"].ToString();
+            Result delResult = Result.记录不存在;
+            if (planBll.IsDelete("T_Title", "planId", planId) == Result.关联引用)
+            {
+                delResult = Result.关联引用;
+            }
+            return delResult;
+        }
+        //删除批次
+        public void deletePlan()
+        {
+            int planId = int.Parse(Context.Request["deletePlanId"].ToString());
+            Result row = isDeletePlan();
+            if (row == Result.记录不存在)
+            {
+                Result result = planBll.Delete(planId);
+                if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
         }
     }
 }

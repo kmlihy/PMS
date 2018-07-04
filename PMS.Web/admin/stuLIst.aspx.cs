@@ -17,37 +17,61 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
 
         protected DataSet ds = null;
-        protected int getCurrentPage = 1;
+        protected int getCurrentPage = 2;
         protected int count;
-        protected int pagesize = 8;
+        protected int pagesize = 3;
         protected String search = "";
 
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
+        StudentBll stuBll = new StudentBll();
 
         public void Page_Load(object sender, EventArgs e)
         {
-            //prods = proBll.Select();
-            //colds = colBll.Select();
-            //Search();
-            //getdata(Search());
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
-            if (op == "add"||editorOp== "editor")
-            {
-                saveStudent();
-                editorStu();
-                Search();
-                getdata(Search());
-                colds = colBll.Select();
-                prods = proBll.Select();
-            }
+            string del = Context.Request["op"];
+            //添加学生
+            //if (op == "add")
+            //{
+            //    saveStudent();
+            //    getdata(Search());
+            //    colds = colBll.Select();
+            //    prods = proBll.Select();
+            //}
+            ////编辑学生
+            //if (editorOp == "editor")
+            //{
+            //    editorStu();
+            //    getdata(Search());
+            //    colds = colBll.Select();
+            //    prods = proBll.Select();
+            //}
+            ////删除学生
+            //if(del== "delete")
+            //{
+            //    deleteStu();
+            //    getdata(Search());
+            //    colds = colBll.Select();
+            //    prods = proBll.Select();
+            //}
             if (!Page.IsPostBack)
             {
-                Search();
                 getdata(Search());
                 colds = colBll.Select();
                 prods = proBll.Select();
+                if (op == "add")
+                {
+                    saveStudent();
+                }
+                if (editorOp == "editor")
+                {
+                    editorStu();
+                }
+                if (del == "delete")
+                {
+                    deleteStu();
+                }
             }
         }
         //编辑学生
@@ -177,6 +201,43 @@ namespace PMS.Web.admin
             {
             }
             return search;
+        }
+
+        //判断是否能删除学生
+        public Result isDeleteStu()
+        {
+            string stuId = Context.Request["stuId"].ToString();
+            Result row = Result.记录不存在;
+            if (stuBll.IsDelete("T_TitleRecord", "stuAccount", stuId) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            return row;
+        }
+        //删除学生
+        public void deleteStu()
+        {
+            string stuId = Context.Request["stuId"].ToString();
+            Result row = isDeleteStu();
+            if(row == Result.记录不存在)
+            {
+                Result delResult = stuBll.delete(stuId);
+                if(delResult == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("该学生在其他表中有关联，不能删除！");
+                Response.End();
+            }
         }
     }
 }

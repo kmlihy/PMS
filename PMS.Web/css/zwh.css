@@ -127,7 +127,7 @@ input.error {
 /*教师出题页面*/
 
 .addPaper {
-    border: 1px solid #cbcbcb;
+    width:auto;
 }
 .table>tbody>tr>td {
     border: 0px;
@@ -155,8 +155,10 @@ input.error {
 }
 
 .content {
-    width: 90%;
     height: 400px;
+    position:relative;
+    left:30px;
+    bottom:30px;
 }
 
 #box {
@@ -165,10 +167,10 @@ input.error {
 
 #btnOK {
     font-size: 14px;
-    margin-left: 30px;
-    height: 50px;
+    height: 40px;
+    width:150px;
+    margin-top:450px;
 }
-
 
 /*个人中心*/
 

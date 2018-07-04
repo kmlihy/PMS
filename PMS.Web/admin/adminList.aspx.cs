@@ -13,6 +13,10 @@ namespace PMS.Web.admin
     using Result = Enums.OpResult;
     public partial class adminList : System.Web.UI.Page
     {
+        TeacherBll teabll = new TeacherBll();
+        CollegeBll collBll = new CollegeBll();
+        Teacher tea = new Teacher();
+        College coll = new College();
         //获取数据
         protected DataSet ds = null, dsColl = null;
         protected int count;
@@ -21,19 +25,29 @@ namespace PMS.Web.admin
         protected int getCurrentPage = 1;
         //查询
         protected String search = "";
+        protected String strSearch = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             string college = Request["collegeId"];
             string op = Context.Request["op"];
+            //添加管理员
             if (op == "add")
             {
                 saveAdmin();
                 Search();
                 getdata(Search());
             }
+            //编辑管理员
             if (op == "edit")
             {
                 editAdmin();
+                Search();
+                getdata(Search());
+            }
+            //删除管理员
+            else if (op == "dele")
+            {
+                deleteCollege();
                 Search();
                 getdata(Search());
             }
@@ -62,8 +76,6 @@ namespace PMS.Web.admin
                 strTeaType = "teaType=2 and ";
             }
             //获取数据
-            TeacherBll teabll = new TeacherBll();
-            CollegeBll coll = new CollegeBll();
             TableBuilder tbd = new TableBuilder()
             {
                 StrTable = "V_Teacher",
@@ -78,14 +90,15 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             ds = teabll.SelectBypage(tbd, out count);
             //获取学院所有信息
-            dsColl = coll.Select();
+            dsColl = collBll.Select();
         }
-        //分页
+        //查询
         public string Search()
         {
             try
             {
                 search = Request.QueryString["search"];
+                strSearch = Request.QueryString["search"];
                 if (search.Length == 0)
                 {
                     search = "";
@@ -96,7 +109,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" teaAccount={0} or teaName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                    search = String.Format(" teaAccount {0} or teaName {0} or collegeName {0} or sex {0} or phone {0} or Email {0} ", "like '%" + search + "%'");
                 }
             }
             catch
@@ -114,8 +127,6 @@ namespace PMS.Web.admin
             string email = Context.Request["email"].ToString();
             string phone = Context.Request["phone"].ToString();
             //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-            Teacher tea = new Teacher();
-            College coll = new College();
             coll.ColID = int.Parse(college);
             tea.TeaAccount = account;
             tea.TeaName = name;
@@ -148,10 +159,22 @@ namespace PMS.Web.admin
             string college = Context.Request["College"].ToString();
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
+            TableBuilder tbd = new TableBuilder()
+            {
+                StrTable = "T_College",
+                StrColumn = "collegeId",
+                IntColType = 0,
+                IntOrder = 0,
+                StrColumnlist = "collegeId",
+                IntPageSize = 1,
+                IntPageNum = 1,
+                StrWhere = "collegeName = '" + college + "'"
+            };
+            dsColl = collBll.SelectBypage(tbd, out count);
             //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
             Teacher tea = new Teacher();
             College coll = new College();
-            coll.ColID = int.Parse(college);
+            coll.ColID = int.Parse(dsColl.Tables[0].Rows[0]["collegeId"].ToString());
             tea.TeaAccount = account;
             tea.TeaName = name;
             tea.TeaPwd = pwd;
@@ -170,6 +193,47 @@ namespace PMS.Web.admin
             else
             {
                 Response.Write("更新失败");
+                Response.End();
+            }
+        }
+        //判断是否能删除
+        public Result IsdeleteCollege()
+        {
+            string account = Context.Request["Daccount"].ToString();
+            Result row = Result.记录不存在;
+            if (teabll.IsDelete("T_News", "teaAccount", account) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            if (teabll.IsDelete("T_Title", "teaAccount", account) == Result.关联引用)
+            {
+                row = Result.关联引用;
+            }
+            return row;
+        }
+        //删除
+        public void deleteCollege()
+        {
+            string account = Context.Request["Daccount"].ToString();
+            Result row = IsdeleteCollege();
+            if (row == Result.记录不存在)
+            {
+                Result result = teabll.Delete(account);
+
+                if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
                 Response.End();
             }
         }
