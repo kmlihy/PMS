@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container-fluid ">
+    <div class="container-fluid big-box">
         <!-- 编辑区-->
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
