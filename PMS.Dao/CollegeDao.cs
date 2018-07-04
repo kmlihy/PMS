@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -171,6 +172,19 @@ namespace PMS.Dao
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// 批量导入学院信息
+        /// </summary>
+        /// <param name="dt">学院信息列表</param>
+        /// <returns>row大于0代表失败，row小于0代表成功</returns>
+        public int upload(DataTable dt)
+        {
+            string tableName = "T_College";
+            List<SqlBulkCopyColumnMapping> list = new List<SqlBulkCopyColumnMapping>() { new SqlBulkCopyColumnMapping("学院名称", "collegeName") };
+            int row = db.BulkInsert(dt, tableName, list);
+            return row;
         }
     }
 }
