@@ -123,5 +123,11 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        public int upload(DataTable dt)
+        {
+            int row = dao.upload(dt);
+            return row;
+        }
     }
 }
