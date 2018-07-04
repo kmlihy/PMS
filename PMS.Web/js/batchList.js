@@ -13,9 +13,9 @@ sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
 $(document).ready(function () {
-    $("#btn-Del").click(function () {
-        alert(sessionStorage.getItem("page") + sessionStorage.getItem("countPage"));
-    })
+    //$("#btn-Del").click(function () {
+    //    alert(sessionStorage.getItem("page") + sessionStorage.getItem("countPage"));
+    //})
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -110,9 +110,10 @@ $(document).ready(function () {
             editorStart = $(this).parent().prev("td").prev("td").prev("td").prev("td").text().trim(),
             editorEnd = $(this).parent().prev("td").prev("td").prev("td").text().trim(),
             editorState = $(this).parent().prev("td").prev("td").find(".stateData").text().trim(),
+            editorStateId = $(this).parent().prev("td").prev("td").find(".stateData").get(0).id,
             editorCollege = $(this).parent().prev("td").text().trim(),
             editorPlanId = $(this).parent().parent().children("td").get(1).id;
-        var planCollegeId = $(this).parent().parent().children("td").get(6).id;
+            var planCollegeId = $(this).parent().parent().children("td").get(6).id;
         $(".editorPlanName").val(editorName);
         $(".editorStartTime").val(editorStart);
         $(".editorEndTime").val(editorEnd);
@@ -120,15 +121,62 @@ $(document).ready(function () {
         $(".editorCollege").val(editorCollege);
         $(".planCollegeId").text(planCollegeId);
         $(".planId").text(editorPlanId);
+        $(".editorStateId").text(editorStateId);
     });
+    //按钮隐藏
+    //下拉框隐藏
+    $(".editorStateId").hide();
     $(".planCollegeId").hide();
     $(".planId").hide();
+    //编辑按钮
+    $(".batchState").hide();
+    $(".batchCollege").hide();
+    //确定按钮
+    $("#btnSure1").hide();
+    $("#btnSure2").hide();
+    //激活状态编辑按钮
+    $("#btnEditor1").click(function () {
+        $(".batchState").show();
+        $(".editorState").hide();
+        $("#btnSure1").show();
+        $(this).hide();
+    })
+    //激活状态确认按钮
+    $("#btnSure1").click(function () {
+        var state = $(".batchState").find("option:selected").val();
+        $(".editorStateId").text(state);
+        $(".batchState").hide();
+        $(".editorState").val($(".editorStateId").text() == "1" ? "已激活" : "未激活");
+        $(".editorState").show();
+        $("#btnEditor1").show();
+        $(this).hide();
+    })
+    //学院编辑按钮
+    $("#btnEditor2").click(function () {
+        $(".batchCollege").show();
+        $(".editorCollege").hide();
+        $("#btnSure2").show();
+        $(this).hide();
+    })
+    //学院确认按钮
+    $("#btnSure2").click(function () {
+        var college = $(".selectCollege").find("option:selected").val();
+        $(".planCollegeId").text(college);
+        var collegeName = $(".selectCollege").find("option:selected").text().trim();
+        $(".editorCollege").val(collegeName);
+        //按钮隐藏和显示
+        $(".batchCollege").hide();
+        $(".editorCollege").show();
+        $("#btnEditor2").show();
+        $(this).hide();
+    })
+    //提交编辑
     $(".saveEditor").click(function () {
         var editorPlanId = $(".planId").text(),
             editorPlanName = $(".editorPlanName").val(),
             editorStartTime = $(".editorStartTime").val(),
             editorEndTime = $(".editorEndTime").val(),
-            editorState = $(".editorState").val(),
+            editorState = $(".editorStateId").text(),
             planCollegeId = $(".planCollegeId").text();
         alert("ajax");
         $.ajax({

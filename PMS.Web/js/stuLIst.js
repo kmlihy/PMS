@@ -56,28 +56,36 @@ $(document).ready(function () {
     //编辑学生
     //获取学生信息到编辑框
     $(".Editor").click(function () {
-        var stuNO = $(this).parent().parent().find(".stuNO").text().trim(),
-            stuName = $(this).parent().parent().find(".stuName").text().trim(),
-            stuSex = $(this).parent().parent().find(".stuSex").text().trim(),
-            stuPro = $(this).parent().parent().find(".stuPro").text().trim(),
-            stuProId = $(this).parent().parent().children("td").get(4).id,//专业Id
-            stuCollege = $(this).parent().parent().find(".stuCollege").text().trim(),
-            stuColId = $(this).parent().parent().children("td").get(5).id;//学院ID
-        stuPhone = $(this).parent().parent().find(".stuPhone").text().trim(),
-        stuEmail = $(this).parent().parent().find(".stuEmail").text().trim();
-        $(".editorStuNO").val(stuNO);
-        $(".editorStuName").val(stuName);
-        $(".editorStuSex").val(stuSex);
-        $(".editorCollege").val(stuCollege);
-        $(".editorPro").val(stuPro);
-        $(".editorEmail").val(stuEmail);
-        $(".editorPhone").val(stuPhone);
-        $(".stuCollegeId").text(stuColId);
-        $(".stuProId").text(stuProId);
+        var stuNO = $(this).parent().parent().find(".stuNO").text().trim();
+        $(".editorStuNO").val(stuNO);//学号框获取学号
+        var stuName = $(this).parent().parent().find(".stuName").text().trim();
+        $(".editorStuName").val(stuName);//姓名框获取姓名
+        var stuSex = $(this).parent().parent().find(".stuSex").text().trim();
+        $(".editorStuSex").val(stuSex);//性别框获取性别
+        var stuPro = $(this).parent().parent().find(".stuPro").text().trim();
+        $(".editorPro").val(stuPro);//专业框获取专业
+        var stuProId = $(this).parent().parent().children("td").get(4).id;//专业Id
+        $(".stuProId").text(stuProId);//专业ID框获取专业ID
+        var stuCollege = $(this).parent().parent().find(".stuCollege").text().trim();
+        $(".editorCollege").val(stuCollege);//学院框获取学院
+        var stuColId = $(this).parent().parent().children("td").get(5).id;//学院ID
+        $(".stuCollegeId").text(stuColId);//学院ID框获取学院ID
+        var stuPhone = $(this).parent().parent().find(".stuPhone").text().trim();
+        $(".editorPhone").val(stuPhone);//电话框获取电话
+        var stuEmail = $(this).parent().parent().find(".stuEmail").text().trim();
+        $(".editorEmail").val(stuEmail);//邮箱框获取邮箱
     });
-    $(".stuCollegeId").hide();
-    $(".stuProId").hide();
-    //点击提交按钮
+    //按钮隐藏
+    $(".selectCollege").hide();//院系选择下拉框
+    $(".stuCollegeId").hide();//存储学院ID
+    $(".stuProId").hide();//存储专业ID
+    $(".selectSex").hide();//性别选择下拉框
+    $(".selectPro").hide();//专业选择下拉框
+    $("#btnSure1").hide();
+    $("#btnSure2").hide();
+    $("#btnSure3").hide();
+
+    //点击提交按钮,完成编辑
     $("#saveChange").click(function () {
         var stuNO = $(".editorStuNO").val(),
             stuName = $(".editorStuName").val(),
@@ -160,9 +168,5 @@ $(document).ready(function () {
                 jump(parseInt(sessionStorage.getItem("page")));
             }
         })
-    })
-    //下拉框设置默认选项
-    $(".editorCollege").click(function () {
-
     })
 })

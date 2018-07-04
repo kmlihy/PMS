@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
+
 <%="" %>
 <!DOCTYPE html>
 
@@ -7,12 +8,12 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>学生信息表</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/ml.css"/>
-    <link rel="stylesheet" href="../css/lgd.css"/>
-    <link rel="stylesheet" href="../css/style.css"/>
-    <link rel="stylesheet" href="../square/_all.css"/>
-    <link rel="stylesheet" href="../css/bootstrap-select.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/ml.css" />
+    <link rel="stylesheet" href="../css/lgd.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../square/_all.css" />
+    <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 
@@ -125,7 +126,7 @@
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump" onclick="Alert('houwulaizhe')">
+                        <a href="#" id="next" class="jump">
                             <span class="iconfont icon-more"></span>
                             <%--下一页--%>
                         </a>
@@ -184,7 +185,7 @@
                                     </select>
                                 </td>
                             </tr>
-<%--                            <tr>
+                            <%--                            <tr>
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
@@ -244,8 +245,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myEditorLabel">
-                        编辑学生
+                    <h4 class="modal-title" id="myEditorLabel">编辑学生
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -270,22 +270,34 @@
                                     <label class="text-span">性别</label></td>
                                 <td>
                                     <input class="form-control teaAddinput editorStuSex" type="text" />
+                                    <div class="selectSex">
+                                        <select class="selectpicker selectCollege" data-width="auto">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnEditor1">编辑</button>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnSure1">确定</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-<%--                                    <input class="form-control teaAddinput editorCollege" type="text" />--%>
-                                    <select class="selectpicker editorCollege" data-width="auto">
-                                        <option value="">请选择院系</option>
-                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                            { %>
-                                        <option value="<%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>">
-                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                        </option>
-                                        <% } %>
-                                    </select>
+                                    <input class="form-control teaAddinput editorCollege" type="text" />
+                                    <div class="selectCollege">
+                                        <select class="selectpicker selectCollege" data-width="auto">
+                                            <option value="">请选择学院</option>
+                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                                { %>
+                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                            </option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnEditor2">编辑</button>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnSure2">确定</button>
                                 </td>
                             </tr>
                             <tr>
@@ -293,6 +305,19 @@
                                     <label class="text-span">专业</label></td>
                                 <td>
                                     <input class="form-control teaAddinput editorPro" type="text" />
+                                    <div class="selectPro">
+                                        <select class="selectpicker selectCollege" data-width="auto">
+                                            <option value="">请选择学院</option>
+                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                                { %>
+                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                            </option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnEditor3">编辑</button>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnSure3">确定</button>
                                 </td>
                             </tr>
                             <tr>
@@ -313,7 +338,7 @@
                 <div class="modal-footer">
                     <span class="stuCollegeId"></span>
                     <span class="stuProId"></span>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btn-close">关闭</button>
                     <button type="button" class="btn btn-primary" id="saveChange">提交更改</button>
                 </div>
             </div>

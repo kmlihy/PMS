@@ -31,44 +31,20 @@ namespace PMS.Web.admin
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
             string del = Context.Request["op"];
-            //添加学生
-            //if (op == "add")
-            //{
-            //    saveStudent();
-            //    getdata(Search());
-            //    colds = colBll.Select();
-            //    prods = proBll.Select();
-            //}
-            ////编辑学生
-            //if (editorOp == "editor")
-            //{
-            //    editorStu();
-            //    getdata(Search());
-            //    colds = colBll.Select();
-            //    prods = proBll.Select();
-            //}
-            ////删除学生
-            //if(del== "delete")
-            //{
-            //    deleteStu();
-            //    getdata(Search());
-            //    colds = colBll.Select();
-            //    prods = proBll.Select();
-            //}
             if (!Page.IsPostBack)
             {
                 getdata(Search());
                 colds = colBll.Select();
                 prods = proBll.Select();
-                if (op == "add")
+                if (op == "add")//添加
                 {
                     saveStudent();
                 }
-                if (editorOp == "editor")
+                if (editorOp == "editor")//编辑
                 {
                     editorStu();
                 }
-                if (del == "delete")
+                if (del == "delete")//删除
                 {
                     deleteStu();
                 }
@@ -194,7 +170,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" stuAccount={0} or realName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                    search = String.Format("stuAccount {0} or realName {0} or collegeName {0} or phone {0} or Email {0} ", "like " + "'%" + search + "%'");
                 }
             }
             catch
