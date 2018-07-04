@@ -6,7 +6,6 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
-    //翻页实现
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="iconfont icon-back"></span>'):
@@ -36,7 +35,6 @@ $(document).ready(function () {
                 break;
         }
     });
-    //查询按钮点击事件
     $("#btn-search").click(function () {
         var strWhere = $("#inputsearch").val();
         sessionStorage.setItem("strWhere", strWhere);
@@ -53,8 +51,6 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
-    //添加按钮
-
     $("#btnAdd").click(function () {
         var collegeId = $("#selectcol").find("option:selected").val(),
             proName = $("#proName").val();
@@ -62,6 +58,7 @@ $(document).ready(function () {
             alert("不能为空")
         }
         else {
+            alert("ajax");
             $.ajax({
                 type: 'Post',
                 url: 'proList.aspx',
@@ -74,73 +71,47 @@ $(document).ready(function () {
             });
         }
     })
-
-    //专业信息查看
     $(".changebtn").click(function () {
-        $("#btnSave").hide();
-        $("#btnch").show();
-        var proId = $(this).parent().parent().find("#tdproId").text();
+        var btnState = 1;
+        $("#closeModel").click(function () {
+           
+            $("#btnSave").text("编辑");
+        });
+        $("#collegeName").show();
         $(".bootstrap-select").hide();
-        $("#colname").val($(this).parent().parent().find("#tdcollegeName").text());
-        $("#colname").css("max-width", "140px");
-        $("#p_proName").val($(this).parent().parent().find("#tdproName").text());
-        $("#p_proName").css("max-width", "140px");
-        //点击关闭清除ID
-        $(".chID").click(function () {
-            proId = "";
-            $("#colname").show();
-            $(".bootstrap-select").hide();
-            $("#p_proName").attr("readonly", true);
-        })
-        //编辑按钮点击事件
-        $("#btnch").click(function () {
-            $(".bootstrap-select").show();
-            $("#colname").hide();
-            $("#p_proName").attr("readonly", false);
-            $("#btnch").hide();
-            $("#btnSave").show();
-        })
-        //保存更改事件
-        $("#btnSave").click(function () {
-            var proName = $("#p_proName").val(),
-              collegeId = $("#collegeSelect").find("option:selected").val();
-            if (proName == "" || collegeId == "") {
-                alert("不能含有空项");
-            }
-            else {
-                $.ajax({
-                    type: 'Post',
-                    url: 'proList.aspx',
-                    data: { ProId: proId, ProName: proName, CollegeId: collegeId, op: "change" },
-                    dataType: 'text',
-                    success: function (succ) {
-                        alert(succ);
-                        jump(1);
-                    }
-                });
-            }
-        })
-    })
-    //删除事件
-    $(".btnDel").click(function () {
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            var delproId = $(this).parent().parent().find("#tdproId").text().trim();
-            $.ajax({
-                type: 'Post',
-                url: 'proList.aspx',
-                data: {
-                    DelProId: delproId,
-                    op: "del"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    alert(succ);
-                    jump(parseInt(sessionStorage.getItem("Page")))
-                }
-            })
-        } else {
+        $("#collegeName").text($(this).parent().parent().find("#tdcollegeName").text())
 
-        }
+        var proId = $(this).parent().parent().find("#tdproId").text();
+        $("#p_proName").text($(this).parent().parent().find("#tdproName").text());
+        $("#btnSave").click(function () {
+            switch (btnState) {
+                case (0):
+                    var proName = $("#p_proName").text(),
+                      collegeId = $("#collegeSelect").find("option:selected").val();
+                    if (proName == "" || collegeId == "") {
+                        alert("不能含有空项");
+                    }
+                    else {
+                        $.ajax({
+                            type: 'Post',
+                            url: 'proList.aspx',
+                            data: { ProId: proId, ProName: proName, CollegeId: collegeId, op: "change" },
+                            dataType: 'text',
+                            success: function (succ) {
+                                alert(succ);
+                                jump(1);
+                            }
+                        });
+                    }
+                    btnState = 1;
+                    break;
+                case (1):
+                    $("#collegeName").hide();
+                    $(".bootstrap-select").show();
+                    $(this).text("保存");
+                    btnState = 0;
+                    break;
+            }
+        })
     })
 });

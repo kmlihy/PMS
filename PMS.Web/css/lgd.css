@@ -27,6 +27,7 @@
     color: red;
 }
 
+
 /*发布公告样式表*/
 
 .tablediv {
@@ -72,9 +73,7 @@
 
 
 /*密码修改界面样式表*/
-.td-check {
-    width:50px;
-}
+
 .changepwd {
     margin-top: 20px;
     border: 1px solid rgb(158, 157, 157);
@@ -198,7 +197,4 @@
 /*选题记录*/
 .hidemsg {
     display: none;
-}
-#btn-Adds {
-margin-left:5px;
 }
