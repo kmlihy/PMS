@@ -155,7 +155,7 @@
                                     <label class="text-span">批次名称</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="planName" />
-                                    <span id="tip"></span>
+                                    <span class="validate" id="p_name"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -163,6 +163,7 @@
                                     <label class="text-span">开始时间</label></td>
                                 <td>
                                     <input class="form-control teaAddinput datetimepicker" type="text" id="startTime" />
+                                    <span class="validate" id="p_start"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -170,6 +171,7 @@
                                     <label class="text-span">结束时间</label></td>
                                 <td>
                                     <input class="form-control teaAddinput datetimepicker" type="text" id="endTime" />
+                                    <span class="validate" id="p_end"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -181,6 +183,7 @@
                                         <option value="1">是</option>
                                         <option value="0">否</option>
                                     </select>
+                                    <span class="validate" id="p_state"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -196,6 +199,7 @@
                                         </option>
                                         <% } %>
                                     </select>
+                                    <span class="validate" id="p_college"></span>
                                 </td>
                             </tr>
                         </tbody>

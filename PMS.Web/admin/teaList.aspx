@@ -175,7 +175,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <button type="button" class="close addclose" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">添加教师
@@ -189,7 +189,7 @@
                                     <label class="text-span">所属院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="selectcol">
-                                        <option value="">-请选择院系-</option>
+                                        <option value="-1">-请选择院系-</option>
                                         <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -211,7 +211,9 @@
                                 <td class="teaLable">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="teaAccount" /></td>
+                                    <input class="form-control" type="text" id="teaAccount" />
+                                    <span id="validateAccount"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -223,7 +225,9 @@
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="teaName" /></td>
+                                    <input class="form-control" type="text" id="teaName" />
+                                    <span id="validateName"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -240,19 +244,23 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="email" /></td>
+                                    <input class="form-control" type="text" id="email" />
+                                    <span id="validateEmal"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="tel" /></td>
+                                    <input class="form-control" type="text" id="tel" />
+                                    <span id="validateTel"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default addclose" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary" id="btnAdd">添加</button>
                 </div>
             </div>
@@ -274,7 +282,7 @@
                                     <label class="text-span">所属院系:</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="chselectcol">
-                                        <option value="">-请选择院系-</option>
+                                        <option value="-1">-请选择院系-</option>
                                         <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -298,7 +306,8 @@
                                 <td class="teaLable">
                                     <label class="text-span">工号:</label></td>
                                 <td>
-                                    <input class="form-control chteaAccount" type="text" id="chteaAccount" readonly="true" />
+                                    <input class="form-control chteaAccount" type="text" id="chteaAccount" />
+                                    <span id="chValitateAccount"></span>
                                 </td>
                             </tr>
                             <tr id="tr-pwd">
@@ -311,7 +320,8 @@
                                 <td class="teaLable">
                                     <label class="text-span">姓名:</label></td>
                                 <td>
-                                    <input class="form-control chteaName" type="text" id="chteaName" readonly="true"/>
+                                    <input class="form-control chteaName" type="text" id="chteaName"/>
+                                    <span id="chValitateteaName"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -330,14 +340,16 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱:</label></td>
                                 <td>
-                                    <input class="form-control chemail" type="text" id="chemail" readonly="true"/>
+                                    <input class="form-control chemail" type="text" id="chemail"/>
+                                    <span id="chValitateteaemail"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话:</label></td>
                                 <td>
-                                    <input class="form-control chtel" type="text" id="chtel" readonly="true"/>
+                                    <input class="form-control chtel" type="text" id="chtel"/>
+                                    <span id="chValitateteatel"></span>
                                 </td>
                             </tr>
                         </tbody>
