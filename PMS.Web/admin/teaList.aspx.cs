@@ -65,7 +65,7 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除
+        //删除执行
         public void delTeal()
         {
             string delteaAccount = Context.Request["TeaAccount"].ToString();
