@@ -30,6 +30,10 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        批量导入
+                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -53,13 +57,12 @@
                     <th class="text-center">操作</th>
                 </thead>
                 <tbody>
-                    <h1>1</h1>
                     <%
                         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
                     %>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center td-check">
                             <input type="checkbox" />
                         </td>
                         <td class="text-center" id="tdteaAccount">
@@ -83,11 +86,14 @@
                         <td class="text-center" id="tdteaEmail">
                             <%=ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
+                        <td class="text-center cstdteaPwd" id="tdteaPwd">
+                            <%=ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
+                        </td>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger isdelete">
+                            <button class="btn btn-default btn-sm btn-danger btnDel">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -133,8 +139,39 @@
             </div>
         </div>
     </div>
+    <!-- 批量导入弹框 -->
+    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable text-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- 添加教师弹框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -222,7 +259,7 @@
         </div>
     </div>
     <!-- 编辑教师弹框（Modal） -->
-    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -261,22 +298,20 @@
                                 <td class="teaLable">
                                     <label class="text-span">工号:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chteaAccount" />
-                                    <p class="text-span" id="p-chteaAccount"></p>
+                                    <input class="form-control chteaAccount" type="text" id="chteaAccount" readonly="true" />
                                 </td>
                             </tr>
                             <tr id="tr-pwd">
                                 <td class="teaLable">
                                     <label class="text-span">密码:</label></td>
                                 <td>
-                                    <input class="form-control" type="password" id="chpwd" /></td>
+                                    <input class="form-control chpwd" type="password" id="chpwd"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chteaName" />
-                                    <p class="text-span" id="p-chteaName"></p>
+                                    <input class="form-control chteaName" type="text" id="chteaName" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -284,11 +319,10 @@
                                     <label class="text-span">性别:</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="chsex">
-                                        <option value="">-请选择性别-</option>
                                         <option value="">男</option>
                                         <option value="">女</option>
                                     </select>
-                                    <p class="text-span teaAddinput" id="p-chsex"></p>
+                                    <p class="text-span" id="p-chsex"></p>
                                 </td>
                             </tr>
 
@@ -296,24 +330,23 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chemail" />
-                                    <p class="text-span" id="p-chemail"></p>
+                                    <input class="form-control chemail" type="text" id="chemail" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chtel" />
-                                    <p class="text-span" id="p-chtel"></p>
+                                    <input class="form-control chtel" type="text" id="chtel" readonly="true"/>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModel">关闭</button>
-                    <button type="button" class="btn btn-primary" id="chbtn">编辑</button>
+                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="closeModel">关闭</button>
+                    <button type="button" class="btn btn-default btnch">编辑</button>
+                    <button type="button" class="btn btn-primary" id="chbtn">保存更改</button>
                 </div>
             </div>
         </div>
@@ -324,7 +357,7 @@
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
-<script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/ml.js"></script>
 <script src="../js/teaList.js"></script>
 </html>

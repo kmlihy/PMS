@@ -21,7 +21,7 @@
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker" data-width="auto" id="selectdrop" onchange="">
+                    <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
                         <option value="">-请选择专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {%>
@@ -86,11 +86,10 @@
                             <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger">
+                            <button class="btn btn-default btn-sm btn-danger btnDel">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
-
                     </tr>
                     <%} %>
                 </tbody>

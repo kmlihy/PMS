@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="batchList.aspx.cs" Inherits="PMS.Web.admin.batchList" %>
+
 <%="" %>
 <!DOCTYPE html>
 
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
-    <link rel="stylesheet" href="../css/iconfont.css"/>
+    <link rel="stylesheet" href="../css/iconfont.css" />
     <link rel="stylesheet" href="../css/jquery-ui.min.css" />
 </head>
 
@@ -25,7 +26,7 @@
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search" id="search" >查询</span>
+                            <span class="glyphicon glyphicon-search" id="search">查询</span>
                         </button>
                     </span>
                     <span class="input-group-btn">
@@ -58,8 +59,8 @@
                     <%
                         for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
                         {
-                             DateTime startTime =DateTime.Parse(plands.Tables[0].Rows[i]["startTime"].ToString());
-                             DateTime endTime =DateTime.Parse(plands.Tables[0].Rows[i]["endTime"].ToString());
+                            DateTime startTime = DateTime.Parse(plands.Tables[0].Rows[i]["startTime"].ToString());
+                            DateTime endTime = DateTime.Parse(plands.Tables[0].Rows[i]["endTime"].ToString());
                     %>
                     <tr>
                         <td class="text-center">
@@ -78,7 +79,10 @@
                             <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}",endTime) %>
                         </td>
                         <td class="text-center">
-                            <span class="stateData"><%= plands.Tables[0].Rows[i]["state"].ToString() %></span>
+                            <span class="stateData" id="<%=plands.Tables[0].Rows[i]["state"].ToString() %>">
+                                <%= ((plands.Tables[0].Rows[i]["state"].ToString()=="1")?"已激活":"未激活") %>
+
+                            </span>
                         </td>
                         <td class="text-center" id="<%= plands.Tables[0].Rows[i]["collegeId"].ToString() %>">
                             <%= plands.Tables[0].Rows[i]["collegeName"].ToString() %>
@@ -97,7 +101,7 @@
                     %>
                 </tbody>
             </table>
-           <%-- 翻页--%>
+            <%-- 翻页--%>
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
@@ -120,7 +124,7 @@
                         <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
-                        <a href="#" id="next" class="jump" onclick="Alert('houwulaizhe')">
+                        <a href="#" id="next" class="jump">
                             <span class="iconfont icon-more"></span>
                             <%--下一页--%>
                         </a>
@@ -140,34 +144,37 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        添加批次
+                    <h4 class="modal-title" id="myModalLabel">添加批次
                     </h4>
                 </div>
                 <div class="modal-body">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="teaLable text-center"><label class="text-span">批次名称</label></td>
+                                <td class="teaLable text-center">
+                                    <label class="text-span">批次名称</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="planName"/>
-                                    <span id="tip"></span>
+                                    <input class="form-control teaAddinput" type="text" id="planName" />
+                                    <span id="tip"></span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">开始时间</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">开始时间</label></td>
                                 <td>
                                     <input class="form-control teaAddinput datetimepicker" type="text" id="startTime" />
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">结束时间</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">结束时间</label></td>
                                 <td>
                                     <input class="form-control teaAddinput datetimepicker" type="text" id="endTime" />
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">激活状态</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">激活状态</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="state">
                                         <option value="">是否激活</option>
@@ -177,7 +184,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">所属院系</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">所属院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="collegeId">
                                         <option value="">请选择院系</option>
@@ -208,8 +216,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myEditorLabel">
-                        编辑批次
+                    <h4 class="modal-title" id="myEditorLabel">编辑批次
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -221,47 +228,60 @@
 
                                 </td>
                                 <td>
-                                    <input class="form-control teaAddinput editorPlanName" type="text"/></td>
+                                    <input class="form-control teaAddinput editorPlanName" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">开始时间</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorStartTime datetimepicker" type="text"/></td>
+                                    <input class="form-control teaAddinput editorStartTime datetimepicker" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">结束时间</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorEndTime datetimepicker" type="text"/></td>
+                                    <input class="form-control teaAddinput editorEndTime datetimepicker" type="text" /></td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">激活状态</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">激活状态</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorState" type="text"/>
-                                    <%--<select class="selectpicker" data-width="auto">
-                                        <option value="">是</option>
-                                        <option value="">否</option>
-                                    </select>--%>
+                                    <input class="form-control teaAddinput editorState" type="text" />
+                                    <div class="batchState">
+                                        <select class="selectpicker" data-width="auto">
+                                            <option value="1">是</option>
+                                            <option value="0">否</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnEditor1">编辑</button>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnSure1">确定</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="teaLable"><label class="text-span">所属院系</label></td>
+                                <td class="teaLable">
+                                    <label class="text-span">所属院系</label></td>
                                 <td>
-                                    <%--<select class="selectpicker" data-width="auto">
-                                        <option value="">请选择院系</option>
-                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                            { %>
-                                        <option value="">
-                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                        </option>
-                                        <% } %>
-                                    </select>--%>
-                                    <input class="form-control teaAddinput editorCollege" type="text"/>
+                                    <input class="form-control teaAddinput editorCollege" type="text" />
+                                    <div class="batchCollege">
+                                        <select class="selectpicker selectCollege" data-width="auto">
+                                            <option value="">请选择院系</option>
+                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                                { %>
+                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                            </option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnEditor2">编辑</button>
+                                    <button type="button" class="btn btn-default btnEditor" id="btnSure2">确定</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
+                    <span class="editorStateId"></span>
                     <span class="planCollegeId"></span>
                     <span class="planId"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

@@ -31,47 +31,23 @@ namespace PMS.Web.admin
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
             string del = Context.Request["op"];
-            //添加学生
-            //if (op == "add")
-            //{
-            //    saveStudent();
-            //    getdata(Search());
-            //    colds = colBll.Select();
-            //    prods = proBll.Select();
-            //}
-            ////编辑学生
-            //if (editorOp == "editor")
-            //{
-            //    editorStu();
-            //    getdata(Search());
-            //    colds = colBll.Select();
-            //    prods = proBll.Select();
-            //}
-            ////删除学生
-            //if(del== "delete")
-            //{
-            //    deleteStu();
-            //    getdata(Search());
-            //    colds = colBll.Select();
-            //    prods = proBll.Select();
-            //}
             if (!Page.IsPostBack)
             {
                 getdata(Search());
                 colds = colBll.Select();
-                prods = proBll.Select();
-                if (op == "add")
-                {
-                    saveStudent();
-                }
-                if (editorOp == "editor")
-                {
-                    editorStu();
-                }
-                if (del == "delete")
-                {
-                    deleteStu();
-                }
+                prods = proBll.Select();                
+            }
+            if (op == "add")//添加
+            {
+                saveStudent();
+            }
+            if (editorOp == "editor")//编辑
+            {
+                editorStu();
+            }
+            if (del == "delete")//删除
+            {
+                deleteStu();
             }
         }
         //编辑学生
@@ -82,7 +58,7 @@ namespace PMS.Web.admin
                    stuSex = Context.Request["stuSex"].ToString(),
                    stuEmail = Context.Request["stuEmail"].ToString(),
                    stuPhone = Context.Request["stuPhone"].ToString(),
-                   stuPwd = "123456";
+                   stuPwd = Context.Request["stuPwd"].ToString();
             int stuCollege = int.Parse(Context.Request["stuCollege"].ToString()),
                 stuPro = int.Parse(Context.Request["stuPro"].ToString());
             College stuCol = new College()
@@ -194,7 +170,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" stuAccount={0} or realName={0} or collegeName={0} or phone={0} or Email={0} ", "'" + search + "'");
+                    search = String.Format("stuAccount {0} or sex {0} or realName {0} or collegeName {0} or phone {0} or Email {0} or proName {0} ", "like " + "'%" + search + "%'");
                 }
             }
             catch
