@@ -158,13 +158,17 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" name="account" type="text" id="Iaccount" /></td>
+                                    <input class="form-control teaAddinput" name="account" type="text" id="Iaccount" />
+                                    <span id="validateAcoount"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" name="username" type="text" id="Iname" /></td>
+                                    <input class="form-control teaAddinput" name="username" type="text" id="Iname" />
+                                    <span id="validateName"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -175,6 +179,7 @@
                                         <option value="男">男</option>
                                         <option value="女">女</option>
                                     </select>
+                                    <span id="validateSex"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -188,19 +193,24 @@
                                         <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                         <%} %>
                                     </select>
+                                    <span id="validateColl"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" name="email" id="Iemail" /></td>
+                                    <input class="form-control teaAddinput" type="text" name="email" id="Iemail" />
+                                    <span id="validateEmail"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" name="telNum" id="Iphone" /></td>
+                                    <input class="form-control teaAddinput" type="text" name="telNum" id="Iphone" />
+                                    <span id="validateTel"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -233,13 +243,17 @@
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Ename" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Ename" />
+                                    <span id="validateNameE"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">密码</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Epwd" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Epwd" />
+                                    <span id="validatePwd"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -274,20 +288,24 @@
                                             %>
                                         </select>
                                     </div>
-                                    <button type="button" class="btn btn-info" id="btnEditColl">编辑</button>
+                                    <button type="button" class="btn btn-info btnEditor" id="btnEditColl">编辑</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Ephone" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Ephone" />
+                                    <span id="validateTelE"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Eemail" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Eemail" />
+                                    <span id="validateEmailE"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
