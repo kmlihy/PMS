@@ -53,6 +53,58 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
+    //添加教师验证
+    //账号验证
+    $("#teaAccount").blur(function () {
+        teaAccount = $("#teaAccount").val();
+        var pattern = /[a-zA-Z0-9_]{6,10}/;
+        if(!pattern.test(teaAccount)){
+            $("#validateAccount").html("请输入6位以上的字母或数字").css("color", "red")
+        }
+    })
+    $("#teaAccount").focus(function () {
+        $("#validateAccount").html("");
+    })
+    //姓名验证
+    $("#teaName").blur(function () {
+        teaAccount = $("#teaName").val();
+        var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
+        if (!pattern.test(teaAccount)) {
+            $("#validateName").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
+        }
+    })
+    $("#teaName").focus(function () {
+        $("#validateName").html("");
+    })
+    //邮箱验证
+    $("#email").blur(function () {
+        teaAccount = $("#email").val();
+        var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!pattern.test(teaAccount)) {
+            $("#validateEmal").html("邮箱格式不正确").css("color", "red")
+        }
+    })
+    $("#email").focus(function () {
+        $("#validateEmal").html("");
+    })
+    //电话验证
+    $("#tel").blur(function () {
+        teaAccount = $("#tel").val();
+        var pattern = /^1[34578]\d{9}$/;
+        if (!pattern.test(teaAccount)) {
+            $("#validateTel").html("请输入正确的手机号码").css("color", "red")
+        }
+    })
+    $("#tel").focus(function () {
+        $("#validateTel").html("");
+    })
+    //关闭清除提示
+    $(".addclose").click(function () {
+        $("#validateAccount").html("");
+        $("#validateTel").html("");
+        $("#validateName").html("");
+        $("#validateEmal").html("");
+    })
     //教师添加函数
     $("#btnAdd").click(function () {
         var collegeId = $("#selectcol").find("option:selected").val(),
@@ -90,7 +142,53 @@ $(document).ready(function () {
             });
         }
     })
+    //密码框默认隐藏
     $(".cstdteaPwd").hide();
+    //编辑验证
+    //账号验证
+    $("#chteaAccount").blur(function () {
+        teaAccount = $("#chteaAccount").val();
+        var pattern = /[a-zA-Z0-9_]{6,10}/;
+        if (!pattern.test(teaAccount)) {
+            $("#chValitateAccount").html("请输入6位以上的字母或数字").css("color", "red")
+        }
+    })
+    $("#chteaAccount").focus(function () {
+        $("#chValitateAccount").html("");
+    })
+    //姓名验证
+    $("#chteaName").blur(function () {
+        teaAccount = $("#chteaName").val();
+        var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
+        if (!pattern.test(teaAccount)) {
+            $("#chValitateteaName").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
+        }
+    })
+    $("#chteaName").focus(function () {
+        $("#chValitateteaName").html("");
+    })
+    //邮箱验证
+    $("#chemail").blur(function () {
+        teaAccount = $("#chemail").val();
+        var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!pattern.test(teaAccount)) {
+            $("#chValitateteaemail").html("邮箱格式不正确").css("color", "red")
+        }
+    })
+    $("#chemail").focus(function () {
+        $("#chValitateteaemail").html("");
+    })
+    //电话验证
+    $("#chtel").blur(function () {
+        teaAccount = $("#chtel").val();
+        var pattern = /^1[34578]\d{9}$/;
+        if (!pattern.test(teaAccount)) {
+            $("#chValitateteatel").html("请输入正确的手机号码").css("color", "red")
+        }
+    })
+    $("#chtel").focus(function () {
+        $("#chValitateteatel").html("");
+    })
     //查看教师信息点击事件
     $(".changebtn").click(function () {
         $(".bootstrap-select").hide();
@@ -128,10 +226,10 @@ $(document).ready(function () {
     //编辑按钮点击事件
     $(".btnch").click(function () {
         //点击编辑按钮控件可输入
-        $("#chemail").attr("readonly", false);
-        $("#chtel").attr("readonly", false);
-        $("#chteaName").attr("readonly", false);
-        $("#chteaAccount").attr("readonly", false);
+        $("#chemail").attr("disabled", Enable);
+        $("#chtel").attr("disabled", Enable);
+        $("#chteaName").attr("disabled", Enable);
+        $("#chteaAccount").attr("disabled", Enable);
         //隐藏
         $("#p-collegeName").hide();
         $("#p-chteaType").hide();
@@ -189,6 +287,11 @@ $(document).ready(function () {
         $("#chtel").attr("readonly", true);
         $("#chteaName").attr("readonly", true);
         $("#chteaAccount").attr("readonly", true);
+        //清除提示
+        $("#chValitateAccount").html("");
+        $("#chValitateteaName").html("");
+        $("#chValitateteaemail").html("");
+        $("#chValitateteatel").html("");
     })
     //删除事件
     $(".btnDel").click(function () {

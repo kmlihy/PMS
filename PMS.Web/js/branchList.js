@@ -91,7 +91,14 @@ $(document).ready(function () {
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
     })
-    //编辑分院信息
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+        sessionStorage.setItem("flag", "false");
+    })
+    //提交编辑分院信息
     $("#saveEdit").click(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
@@ -114,31 +121,30 @@ $(document).ready(function () {
             });
         }
     })
-    //每一次打开编辑弹窗时
-    $(".btnEdit").click(function () {
-        $("#select").hide();
-        $("#input").show();
-        $("#btnEditColl").show();
-        sessionStorage.setItem("flag", "false");
-    })
     //删除分院信息
     $(".btnDlete").click(function () {
-        confirm("是否删除?")
         var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
-        //alert(collegeId);
-        $.ajax({
-            type: 'Post',
-            url: 'branchList.aspx',
-            data: {
-                collegeid: collegeId,
-                op: "dele"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                alert(succ);
-                jump(parseInt(sessionStorage.getItem("page")));
+        var txt = "确定要删除吗？";
+        var option = {
+            title: "删除警告",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'branchList.aspx',
+                    data: {
+                        collegeid: collegeId,
+                        op: "dele"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        alert(succ);
+                        jump(parseInt(sessionStorage.getItem("page")));
+                    }
+                });
             }
-        });
+        }
+        window.wxc.xcConfirm(txt, "custom", option);
     })
     //批量删除
     $("#btn-Del").click(function (){

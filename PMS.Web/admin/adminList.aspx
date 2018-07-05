@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
+    <%--<link rel="stylesheet" href="../css/zwh.css" />--%>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
@@ -157,20 +158,20 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iaccount" /></td>
+                                    <input class="form-control teaAddinput" name="account" type="text" id="Iaccount" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iname" /></td>
+                                    <input class="form-control teaAddinput" name="username" type="text" id="Iname" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker select" data-width="auto" id="Isex">
-                                        <option>请选择性别</option>
+                                    <select class="selectpicker select" data-width="auto" name="sex" id="Isex">
+                                        <option value="">请选择性别</option>
                                         <option value="男">男</option>
                                         <option value="女">女</option>
                                     </select>
@@ -180,7 +181,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker select" data-width="auto" id="Icoll">
+                                    <select class="selectpicker select" data-width="auto" name="college" id="Icoll">
                                         <option value="">请选择院系</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             { %>
@@ -193,13 +194,13 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iemail" /></td>
+                                    <input class="form-control teaAddinput" type="text" name="email" id="Iemail" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iphone" /></td>
+                                    <input class="form-control teaAddinput" type="text" name="telNum" id="Iphone" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -244,11 +245,16 @@
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <input type="text" readonly="true" class="form-control teaAddinput" id="Esex" />
-                                    <%--<select class="selectpicker" data-width="auto" id="Esex">
-                                        <option value="男">男</option>
-                                        <option value="女">女</option>
-                                    </select>--%>
+                                    <div id="inputSex">
+                                        <input type="text" readonly="true" class="form-control teaAddinput" id="EintSex" />
+                                    </div>
+                                    <div id="selectSex">
+                                        <select class="selectpicker" data-width="auto" id="EselSex">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-info btnEditor" id="btnEditSex">编辑</button>
                                 </td>
                             </tr>
                             <tr>
