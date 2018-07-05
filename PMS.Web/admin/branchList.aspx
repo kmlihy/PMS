@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 
@@ -221,5 +222,6 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/branchList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 </html>
