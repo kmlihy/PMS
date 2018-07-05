@@ -22,7 +22,7 @@
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker">
+                    <select class="selectpicker" id="chooseStuPro">
                         <option>请选择专业</option>
                         <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             { %>
@@ -58,8 +58,10 @@
                     <th class="text-center">学号</th>
                     <th class="text-center">姓名</th>
                     <th class="text-center">性别</th>
-                    <th class="text-center">专业</th>
-                    <th class="text-center">院系</th>
+                    <th class="text-center">专业编号</th>
+                    <th class="text-center">专业名称</th>
+                    <th class="text-center">学院编号</th>
+                    <th class="text-center">学院名称</th>
                     <th class="text-center">联系电话</th>
                     <th class="text-center">邮箱</th>
                     <th class="text-center">操作</th>
@@ -83,16 +85,22 @@
                         <td class="text-center stuSex">
                             <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                         </td>
-                        <td class="text-center stuPro" id="<%= ds.Tables[0].Rows[i]["proId"].ToString() %>">
+                        <td class="text-center stuPro">
+                            <%= ds.Tables[0].Rows[i]["proId"].ToString() %>
+                        </td>
+                        <td class="text-center">
                             <%= ds.Tables[0].Rows[i]["proName"].ToString() %>
                         </td>
-                        <td class="text-center stuCollege" id="<%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                        <td class="text-center stuCollege">
+                            <%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>
+                        </td>
+                        <td class="text-center">
                             <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
                         <td class="text-center stuPhone">
                             <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
                         </td>
-                        <td class="text-center stuEmail">
+                        <td class="text-center">
                             <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
                         <td class="text-center">
@@ -102,6 +110,9 @@
                             <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
+                        </td>
+                        <td class="text-center stuPwd">
+                            <input type="password" value="<%= ds.Tables[0].Rows[i]["stuPwd"].ToString() %>" disabled="disabled" />
                         </td>
                     </tr>
                     <% } %>
@@ -270,6 +281,13 @@
                             </tr>
                             <tr>
                                 <td class="teaLable">
+                                    <label class="text-span">密码</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput editorStuPwd" type="text"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
                                     <input class="form-control teaAddinput editorStuSex" type="text" />
@@ -281,26 +299,6 @@
                                     </div>
                                     <button type="button" class="btn btn-default btnEditor" id="btnEditor1">编辑</button>
                                     <button type="button" class="btn btn-default btnEditor" id="btnSure1">确定</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">院系</label></td>
-                                <td>
-                                    <input class="form-control teaAddinput editorCollege" type="text" />
-                                    <div class="selectCollege">
-                                        <select class="selectpicker selectStuCollege" data-width="auto">
-                                            <option value="">请选择学院</option>
-                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                                { %>
-                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
-                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                            </option>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                    <button type="button" class="btn btn-default btnEditor" id="btnEditor2">编辑</button>
-                                    <button type="button" class="btn btn-default btnEditor" id="btnSure2">确定</button>
                                 </td>
                             </tr>
                             <tr>
@@ -321,6 +319,24 @@
                                     </div>
                                     <button type="button" class="btn btn-default btnEditor" id="btnEditor3">编辑</button>
                                     <button type="button" class="btn btn-default btnEditor" id="btnSure3">确定</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">院系</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput editorCollege" type="text" />
+<%--                                    <div class="selectCollege">
+                                        <select class="selectpicker selectStuCollege" data-width="auto">
+                                            <option value="">请选择学院</option>
+                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                                { %>
+                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                            </option>
+                                            <% } %>
+                                        </select>
+                                    </div>--%>
                                 </td>
                             </tr>
                             <tr>

@@ -62,18 +62,20 @@ $(document).ready(function () {
         $(".editorStuName").val(stuName);//姓名框获取姓名
         var stuSex = $(this).parent().parent().find(".stuSex").text().trim();
         $(".editorStuSex").val(stuSex);//性别框获取性别
-        var stuPro = $(this).parent().parent().find(".stuPro").text().trim();
+        var stuPro = $(this).parent().parent().find(".stuPro").next().text().trim();
         $(".editorPro").val(stuPro);//专业框获取专业
-        var stuProId = $(this).parent().parent().children("td").get(4).id;//专业Id
+        var stuProId = $(this).parent().parent().find(".stuPro").text().trim();//专业Id
         $(".stuProId").text(stuProId);//专业ID框获取专业ID
-        var stuCollege = $(this).parent().parent().find(".stuCollege").text().trim();
+        var stuCollege = $(this).parent().parent().find(".stuCollege").next().text().trim();
         $(".editorCollege").val(stuCollege);//学院框获取学院
-        var stuColId = $(this).parent().parent().children("td").get(5).id;//学院ID
+        var stuColId = $(this).parent().parent().find(".stuCollege").text().trim();//学院ID
         $(".stuCollegeId").text(stuColId);//学院ID框获取学院ID
         var stuPhone = $(this).parent().parent().find(".stuPhone").text().trim();
         $(".editorPhone").val(stuPhone);//电话框获取电话
-        var stuEmail = $(this).parent().parent().find(".stuEmail").text().trim();
+        var stuEmail = $(this).parent().parent().find(".stuPhone").next().text().trim();
         $(".editorEmail").val(stuEmail);//邮箱框获取邮箱
+        var stuPwd = $(this).parent().next().find("input").val();
+        $(".editorStuPwd").val(stuPwd);
     });
     //按钮隐藏
     $(".selectCollege").hide();//院系选择下拉框
@@ -103,24 +105,24 @@ $(document).ready(function () {
     })
 
     //点击学院编辑按钮
-    $("#btnEditor2").click(function () {
-        $(this).hide();
-        $("#btnSure2").show();
-        $(".selectCollege").show();
-        $(".editorCollege").hide();
-    })
-    //点击确定按钮
-    $("#btnSure2").click(function () {
-        var college = $(".selectStuCollege").find("option:selected").val();
-        $(".stuCollegeId").text(college);
-        var collegeName = $(".selectStuCollege").find("option:selected").text().trim();
-        $(".editorCollege").val(collegeName);
-        alert($(".stuCollegeId").text()+collegeName);
-        $(this).hide();
-        $("#btnEditor2").show();
-        $(".editorCollege").show();
-        $(".selectCollege").hide();
-    })
+    //$("#btnEditor2").click(function () {
+    //    $(this).hide();
+    //    $("#btnSure2").show();
+    //    $(".selectCollege").show();
+    //    $(".editorCollege").hide();
+    //})
+    ////点击确定按钮
+    //$("#btnSure2").click(function () {
+    //    var college = $(".selectStuCollege").find("option:selected").val();
+    //    $(".stuCollegeId").text(college);
+    //    var collegeName = $(".selectStuCollege").find("option:selected").text().trim();
+    //    $(".editorCollege").val(collegeName);
+    //    alert($(".stuCollegeId").text()+collegeName);
+    //    $(this).hide();
+    //    $("#btnEditor2").show();
+    //    $(".editorCollege").show();
+    //    $(".selectCollege").hide();
+    //})
 
     //点击专业编辑按钮
     $("#btnEditor3").click(function () {
@@ -149,8 +151,8 @@ $(document).ready(function () {
             stuCollege = $(".stuCollegeId").text(),
             stuPro = $(".stuProId").text(),
             stuEmail = $(".editorEmail").val(),
-            stuPhone = $(".editorPhone").val();
-        alert(stuCollege);
+            stuPhone = $(".editorPhone").val(),
+            stuPwd = $(".editorStuPwd").val();
         alert("ajax");
         $.ajax({
             type: 'Post',
@@ -163,6 +165,7 @@ $(document).ready(function () {
                 stuPro: stuPro,
                 stuEmail: stuEmail,
                 stuPhone: stuPhone,
+                stuPwd: stuPwd,
                 editorOp: "editor"
             },
             dataType: 'text',
@@ -225,4 +228,12 @@ $(document).ready(function () {
             }
         })
     })
+    //下拉选项查询
+    $("#chooseStuPro").change(function () {
+        var strWhere = $(this).find("option:selected").text().trim();
+        sessionStorage.setItem("strWhere", strWhere);
+        jump(1);
+    })
+    //密码表格隐藏
+    $(".stuPwd").hide();
 })
