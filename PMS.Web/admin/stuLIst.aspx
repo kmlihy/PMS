@@ -172,7 +172,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="stuAccount" />
-                                    <span id="stu_NO">ad</span>
+                                    <span id="stu_NO"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -181,13 +181,16 @@
                                 </td>
                                 <td>
                                     <input class="form-control teaAddinput" type="password" id="pwd" value="000000" />
+                                    <span id="stu_pwd"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="realName" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="realName" />
+                                    <span id="stu_name"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -219,13 +222,17 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="email" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="email" />
+                                    <span id="stu_email"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="phone" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="phone" />
+                                    <span id="stu_phone"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -248,19 +248,21 @@ $(document).ready(function () {
     //删除批次
     $(".planDelete").click(function () {
         var deletePlanId = $(this).parent().parent().children("td").get(1).id;
-        //alert(deletePlanId);
-        $.ajax({
-            type: 'Post',
-            url: 'batchList.aspx',
-            data: {
-                deletePlanId: deletePlanId,
-                delOp: "del"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                alert(succ);
-                jump(parseInt(sessionStorage.getItem("page")));
-            }
-        })
+        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
+        if (result == true) {
+            $.ajax({
+                type: 'Post',
+                url: 'batchList.aspx',
+                data: {
+                    deletePlanId: deletePlanId,
+                    delOp: "del"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    alert(succ);
+                    jump(parseInt(sessionStorage.getItem("page")));
+                }
+            })
+        }
     })
 })
