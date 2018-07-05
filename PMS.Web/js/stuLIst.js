@@ -3,9 +3,6 @@ sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
 $(document).ready(function () {
-    $("#btn-Del").click(function () {
-        alert(sessionStorage.getItem("page") + sessionStorage.getItem("countPage"));
-    })
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -104,26 +101,6 @@ $(document).ready(function () {
         $(".selectSex").hide();
     })
 
-    //点击学院编辑按钮
-    //$("#btnEditor2").click(function () {
-    //    $(this).hide();
-    //    $("#btnSure2").show();
-    //    $(".selectCollege").show();
-    //    $(".editorCollege").hide();
-    //})
-    ////点击确定按钮
-    //$("#btnSure2").click(function () {
-    //    var college = $(".selectStuCollege").find("option:selected").val();
-    //    $(".stuCollegeId").text(college);
-    //    var collegeName = $(".selectStuCollege").find("option:selected").text().trim();
-    //    $(".editorCollege").val(collegeName);
-    //    alert($(".stuCollegeId").text()+collegeName);
-    //    $(this).hide();
-    //    $("#btnEditor2").show();
-    //    $(".editorCollege").show();
-    //    $(".selectCollege").hide();
-    //})
-
     //点击专业编辑按钮
     $("#btnEditor3").click(function () {
         $(this).hide();
@@ -153,7 +130,7 @@ $(document).ready(function () {
             stuEmail = $(".editorEmail").val(),
             stuPhone = $(".editorPhone").val(),
             stuPwd = $(".editorStuPwd").val();
-        alert("ajax");
+        //alert("ajax");
         $.ajax({
             type: 'Post',
             url: 'stuLIst.aspx',
@@ -174,6 +151,52 @@ $(document).ready(function () {
                 jump(1);
             }
         })
+    })
+
+    //添加模态框验证
+    //学号验证
+    var pattern = /[a-zA-Z0-9_]{6,10}/;
+    $("#stuAccount").blur(function () {
+        var stuAccount = $("#stuAccount").val();
+        if (!pattern.test(stuAccount)) {
+            $("#stu_NO").html("学号只能为数字").css("color", "red");
+        }
+    })
+    $("#stuAccount").focus(function () {
+        $("#stu_NO").html("");
+    })
+    //姓名验证
+    $("#realName").blur(function () {
+        name = $(this).val();
+        var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
+        if (!pattern.test(name)) {
+            $("#stu_name").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
+        }
+    })
+    $("#realName").focus(function () {
+        $("#stu_name").html("");
+    })
+    //邮箱验证
+    $("#email").blur(function () {
+        teaAccount = $("#email").val();
+        var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        if (!pattern.test(teaAccount)) {
+            $("#stu_email").html("邮箱格式不正确").css("color", "red")
+        }
+    })
+    $("#email").focus(function () {
+        $("#stu_email").html("");
+    })
+    //电话验证
+    $("#phone").blur(function () {
+        teaAccount = $("#tel").val();
+        var pattern = /^1[34578]\d{9}$/;
+        if (!pattern.test(teaAccount)) {
+            $("#stu_phone").html("请输入正确的手机号码").css("color", "red")
+        }
+    })
+    $("#phone").focus(function () {
+        $("#stu_phone").html("");
     })
     //添加学生
     $("#saveSutdent").click(function () {
@@ -214,19 +237,22 @@ $(document).ready(function () {
     //删除学生
     $(".deleteStudent").click(function () {
         var stuId = $(this).parent().parent().find(".stuNO").text().trim();
-        $.ajax({
-            type: 'Post',
-            url: 'stuLIst.aspx',
-            data: {
-                stuId: stuId,
-                op: "delete"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                alert(succ);
-                jump(parseInt(sessionStorage.getItem("page")));
-            }
-        })
+        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
+        if (result == true) {
+            $.ajax({
+                type: 'Post',
+                url: 'stuLIst.aspx',
+                data: {
+                    stuId: stuId,
+                    op: "delete"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    alert(succ);
+                    jump(parseInt(sessionStorage.getItem("page")));
+                }
+            })
+        }
     })
     //下拉选项查询
     $("#chooseStuPro").change(function () {
