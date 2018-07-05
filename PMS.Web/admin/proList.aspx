@@ -161,7 +161,7 @@
                                         <label class="text-span">所属院系:</label></td>
                                     <td>
                                         <select class="selectpicker changeSearch" data-width="auto" id="selectcol">
-                                            <option value="">-请选择院系-</option>
+                                            <option value="-1">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 {%>
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -172,7 +172,9 @@
                                     <td class="teaLable">
                                         <label class="text-span">专业名称:</label></td>
                                     <td>
-                                        <input class="form-control teaAddinput" type="text" id="proName" /></td>
+                                        <input class="form-control teaAddinput" type="text" id="proName"/>
+                                        <span id="validata"></span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -204,7 +206,7 @@
                                         <label class="text-span">所属院系:</label></td>
                                     <td>
                                         <select class="selectpicker" data-width="auto" id="collegeSelect">
-                                            <option value="">-请选择院系-</option>
+                                            <option value="-1">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 {%>
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -219,6 +221,7 @@
                                         <label class="text-span">专业名称:</label></td>
                                     <td>
                                         <input class="form-control col-sm-3" data-width="auto"  type="text" id="p_proName" readonly="true"/>
+                                        <span id="validate"></span>
                                     </td>
                                 </tr>
                             </tbody>

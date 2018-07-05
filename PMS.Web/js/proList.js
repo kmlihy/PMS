@@ -53,13 +53,25 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
-    //添加按钮
-
+    //专业输入验证
+    $("#proName").blur(function () {
+        proName = $("#proName").val();
+        var pattern = /^[\u4E00-\u9FA5A-Za-z0-9_]+$/;
+        if (proName == "") {
+            $("#validata").html("专业名称不能为空").css("color", "red");
+        } else if (!pattern.test(proName)) {
+            $("#validata").html("专业名称不能包含特殊字符").css("color", "red");
+        }
+    })
+    $("#proName").focus(function () {
+        $("#validata").text("");
+    })
+    //添加按钮事件
     $("#btnAdd").click(function () {
         var collegeId = $("#selectcol").find("option:selected").val(),
             proName = $("#proName").val();
-        if (proName == "") {
-            alert("不能为空")
+        if (collegeId == "-1" || proName=="") {
+            alert("含有未填项，请检查！");
         }
         else {
             $.ajax({
@@ -74,7 +86,19 @@ $(document).ready(function () {
             });
         }
     })
-
+    //添加验证
+    $("#p_proName").blur(function () {
+        proName = $("#p_proName").val();
+        var pattern = /^[\u4E00-\u9FA5A-Za-z0-9_]+$/;
+        if (proName == "") {
+            $("#validate").html("专业名称不能为空").css("color", "red");
+        } else if (!pattern.test(proName)) {
+            $("#validate").html("专业名称不能包含特殊字符").css("color", "red");
+        }
+    })
+    $("#p_proName").focus(function () {
+        $("#validate").text("");
+    })
     //专业信息查看
     $(".changebtn").click(function () {
         $("#btnSave").hide();
@@ -91,6 +115,7 @@ $(document).ready(function () {
             $("#colname").show();
             $(".bootstrap-select").hide();
             $("#p_proName").attr("readonly", true);
+            $("#validate").text("");
         })
         //编辑按钮点击事件
         $("#btnch").click(function () {
@@ -104,8 +129,8 @@ $(document).ready(function () {
         $("#btnSave").click(function () {
             var proName = $("#p_proName").val(),
               collegeId = $("#collegeSelect").find("option:selected").val();
-            if (proName == "" || collegeId == "") {
-                alert("不能含有空项");
+            if (collegeId == "-1") {
+                alert("请选择院系");
             }
             else {
                 $.ajax({
