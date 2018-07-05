@@ -15,7 +15,7 @@ namespace PMS.BLL
         private PublicProcedure pdao = new PublicProcedure();
 
         /// <summary>
-        /// 
+        /// 登录操作
         /// </summary>
         /// <param name="stuAccount"></param>
         /// <param name="pwd"></param>

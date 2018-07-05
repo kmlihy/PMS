@@ -311,11 +311,12 @@ namespace PMS.DBHelper
         /// <param name="dt">要批量导入的数据表</param>
         /// <param name="destTableName">目标表名</param>
         /// <param name="columnMappings">列映射集合</param>
-        public void BulkInsert(DataTable dt, string destTableName, List<SqlBulkCopyColumnMapping> columnMappings)
+        public int BulkInsert(DataTable dt, string destTableName, List<SqlBulkCopyColumnMapping> columnMappings)
         {
             SqlBulkCopy bulkCopy = new SqlBulkCopy(this.sqlConn);
             bulkCopy.DestinationTableName = destTableName;
             bulkCopy.BatchSize = dt.Rows.Count;
+            int count = 0;
             foreach (SqlBulkCopyColumnMapping map in columnMappings)
             {
                 bulkCopy.ColumnMappings.Add(map);
@@ -327,13 +328,16 @@ namespace PMS.DBHelper
             }
             catch (Exception ex)
             {
+                count += 1;
                 throw ex;
             }
             finally
             {
                 this.CloseConn();
                 bulkCopy.Close();
+
             }
+            return count;
         }
         #endregion
     }

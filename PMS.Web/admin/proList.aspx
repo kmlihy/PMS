@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="proList.aspx.cs" Inherits="PMS.Web.admin.proList" %>
+
 <%="" %>
 <!DOCTYPE html>
 
@@ -30,6 +31,10 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal" >
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        批量导入
+                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -52,17 +57,17 @@
                     <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         { %>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center td-check">
                             <input type="checkbox" />
                         </td>
                         <td class="text-center" id="tdproId"><%=ds.Tables[0].Rows[i]["proId"].ToString() %></td>
                         <td class="text-center" id="tdproName"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                        <td class="text-center" id="tdcollegeName"><span style="display:none" id="collegeId"><%=ds.Tables[0].Rows[i]["collegeId"].ToString() %></span><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                        <td class="text-center" id="tdcollegeName"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger" id="del">
+                            <button class="btn btn-default btn-sm btn-danger btnDel" id="del">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -106,8 +111,39 @@
             </div>
         </div>
     </div>
+    <!-- 批量导入弹框 -->
+    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable text-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--添加专业弹窗-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,10 +158,10 @@
                             <tbody>
                                 <tr>
                                     <td class="teaLable text-center">
-                                        <label class="text-span">所属院系</label></td>
+                                        <label class="text-span">所属院系:</label></td>
                                     <td>
-                                        <select class="selectpicker" data-width="auto" id="selectcol">
-                                            <option value="">-请选择院系-</option>
+                                        <select class="selectpicker changeSearch" data-width="auto" id="selectcol">
+                                            <option value="-1">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 {%>
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -134,9 +170,11 @@
                                 </tr>
                                 <tr>
                                     <td class="teaLable">
-                                        <label class="text-span">专业名称</label></td>
+                                        <label class="text-span">专业名称:</label></td>
                                     <td>
-                                        <input class="form-control teaAddinput" type="text" id="proName" /></td>
+                                        <input class="form-control teaAddinput" type="text" id="proName"/>
+                                        <span id="validata"></span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -150,13 +188,13 @@
         </div>
     </div>
     <!--编辑弹窗-->
-    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     </button>
-                    <h4 class="modal-title" id="">专业信息
+                    <h4 class="modal-title" id="">专业信息修改
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -165,136 +203,46 @@
                             <tbody>
                                 <tr>
                                     <td class="teaLable text-center">
-                                        <label class="text-span">所属院系</label></td>
+                                        <label class="text-span">所属院系:</label></td>
                                     <td>
                                         <select class="selectpicker" data-width="auto" id="collegeSelect">
-                                            <option value="">-请选择院系-</option>
+                                            <option value="-1">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 {%>
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                             <%} %>
                                         </select>
+                                        <input class="form-control col-sm-3" data-width="auto"  type="text" id="colname" readonly="true" />
                                     </td>
                                 </tr>
+                                
                                 <tr>
                                     <td class="teaLable">
-                                        <label class="text-span">专业名称</label></td>
+                                        <label class="text-span">专业名称:</label></td>
                                     <td>
-                                        <p contenteditable="false" class="text-span teaAddinput" id="p_proName"></p></td>
+                                        <input class="form-control col-sm-3" data-width="auto"  type="text" id="p_proName" readonly="true"/>
+                                        <span id="validate"></span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="btnSave">保存</button>
+                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="closeModel">关闭</button>
+                    <button type="button" class="btn btn-default" id="btnch">编辑</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">保存修改</button>
                 </div>
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
-<script src="../js/lgd.js"></script>
 <script src="../js/bootstrap-select.js"></script>
-<script>
-    //当前页数
-    sessionStorage.setItem("Page",<%=getCurrentPage%>);
-    //总页
-    sessionStorage.setItem("countPage",<%=count%>);
-    $(document).ready(function () {
-        $(".jump").click(function(){
-            switch($.trim($(this).html())){
-                case ('<span class="iconfont icon-back"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))>1){
-                        jump(parseInt(sessionStorage.getItem("Page"))-1);
-                        break;
-                    }
-                    else{
-                        jump(1);
-                        break;
-                    }
-                    
-                case ('<span class="iconfont icon-more"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
-                        jump(parseInt(sessionStorage.getItem("Page"))+1);
-                        break;
-                    }
-                    else{
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case("首页"):
-                    jump(1);
-                    break;
-                case("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        $("#btn-search").click(function(){
-            var strWhere =$("#inputsearch").val();
-            sessionStorage.setItem("strWhere",strWhere);
-            jump(1);
-        });
-        function jump(cur) {
-            if(sessionStorage.getItem("strWhere")==null){
-                window.location.href = "proList.aspx?currentPage=" + cur;
-            }else{
-                window.location.href ="proList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
-            }
-        };
-        if (sessionStorage.getItem("countPage") == "1") {
-            $("#first").hide();
-            $("#last").hide();
-        }
-        $("#btnAdd").click(function(){
-            var collegeId=$("#selectcol").find("option:selected").val(),
-                proName=$("#proName").val();
-            if(proName==""){
-                alert("不能为空")
-            }
-            else{
-                alert("ajax");
-                $.ajax({
-                    type:'Post',
-                    url:'proList.aspx',
-                    data:{collegeId:collegeId,proName:proName,op:"add"},
-                    dataType:'text',
-                    success:function(succ){
-                        alert(succ);
-                        jump(1);
-                    }
-                });
-            }
-        })
-        $(".changebtn").click(function (){
-            var proId= $(this).parent().parent().find("#tdproId").text();
-            $("#p_proName").text($(this).parent().parent().find("#tdproName").text());
-            $("#btnSave").click(function(){
-                
-                var proName= $("#p_proName").text(),
-                    collegeId=$("#collegeSelect").find("option:selected").val();
-                if(proName==""){
-                    alert("不能为空")
-                }
-                else{
-                    alert("ajax");
-                    $.ajax({
-                        type:'Post',
-                        url:'proList.aspx',
-                        data:{ProId:proId,ProName:proName,CollegeId:collegeId,op:"change"},
-                        dataType:'text',
-                        success:function(succ){
-                            alert(succ);
-                            jump(1);
-                        }
-                    });
-                }
-            })
-        })
-    });
-</script>
+<script src="../js/lgd.js"></script>
+<script src="../js/proList.js"></script>
 </html>

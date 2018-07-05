@@ -66,6 +66,26 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 判断在另外一张表中是否有数据
+        /// </summary>
+        /// <param name="table">表名</param>
+        /// <param name="primarykeyname">主键列</param>
+        /// <param name="primarykey">主键参数</param>
+        /// <returns>1代表该记录被引用过不能删除，0代表没被引用过可以删除</returns>
+        public Result IsDelete(string table, string primarykeyname, string primarykey)
+        {
+            int row = pubpro.isDelete(table, primarykeyname, primarykey);
+            if (row > 0)
+            {
+                return Result.关联引用;
+            }
+            else
+            {
+                return Result.记录不存在;
+            }
+        }
+
+        /// <summary>
         /// 查询所有专业信息
         /// </summary>
         /// <returns>类型为DataSet的专业信息列表</returns>
@@ -100,6 +120,24 @@ namespace PMS.BLL
                 return pro;
             }
             return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public Result upload(DataTable dt)
+        {
+            int row = dao.upload(dt);
+            if(row > 0)
+            {
+                return Result.添加失败;
+            }
+            else
+            {
+                return Result.添加成功;
+            }
         }
     }
 }

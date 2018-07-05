@@ -6,11 +6,17 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
+    //正则表达式
+    var txtAccount = /^[0-9]*$/; //数字的正则表达式
+    var txtName = /^[a-zA-Z\u4e00-\u9fa5]+$/; //汉字、英文的正则表达式
+    var txtEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/; //邮箱的正则表达式
+    var TelNum = /^1[3,5,4,7,8]\d{9}$/; //联系电话的正则表达式
+    var txtPwd = /^[0-9a-zA-Z_]{1,}$/; //数字、英文、下划线的正则表达式
     //点击翻页按钮
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             //点击上一页按钮时
-            case ('<b><span class="iconfont icon-back"></span></b>'):
+            case ('<span class="iconfont icon-back"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) > 1) {
                     jump(parseInt(sessionStorage.getItem("page")) - 1);
                     sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
@@ -20,7 +26,7 @@ $(document).ready(function () {
                     break;
                 }
             //点击下一页按钮时
-            case ('<span class="iconfont icon-back"></span>'):
+            case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
@@ -58,6 +64,22 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
+    //每一次点击新增按钮时弹框清空所有的值
+    $("#btn-Add").click(function () {
+        $("#Iaccount").val("");
+        $("#Iname").val("");
+        $("#Isex").val("");
+        $("#Icoll").val("");
+        $("#Iemail").val("");
+        $("#Iphone").val("");
+        $("#validateAcoount").html("");
+        $("#validateName").html("");
+        $("#validateSex").html("");
+        $("#validateColl").html("");
+        $("#validateEmail").html("");
+        $("#validateTel").html("");
+
+    })
     //添加分院管理员对象
     $("#btnInsert").click(function () {
         var account = $("#Iaccount").val(),
@@ -67,9 +89,33 @@ $(document).ready(function () {
             email = $("#Iemail").val(),
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-        if (account === "") {
-            alert("请输入工号");
-        } else {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        }else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        }else if (name == "") {
+            $("#validateAcoount").html("")
+            $("#validateName").html("姓名不能为空！").css("color", "red");
+        } else if (!txtName.test(name)) {
+            $("#validateName").html("姓名只能包括汉子/英文字符！").css("color", "red");
+        } else if (sex == "") {
+            $("#validateName").html("")
+            $("#validateSex").html("请选择性别！").css("color", "red");
+        } else if (college == "") {
+            $("#validateSex").html("")
+            $("#validateColl").html("请选择学院！").css("color", "red");
+        } else if (email == "") {
+            $("#validateColl").html("")
+            $("#validateEmail").html("邮箱不能为空！").css("color", "red");
+        } else if (!txtEmail.test(email)) {
+            $("#validateEmail").html("邮箱地址不合法").css("color", "red");
+        } else if (phone == "") {
+            $("#validateEmail").html("")
+            $("#validateTel").html("联系电话不能为空！").css("color", "red");
+        } else if (!TelNum.test(phone)) {
+            $("#validateTel").html("联系电话不合法！").css("color", "red");
+        }
+        else {
             $.ajax({
                 type: 'Post',
                 url: 'adminList.aspx',
@@ -84,7 +130,8 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
+                    //alert(succ);
+                    window.wxc.xcConfirm("succ", window.wxc.xcConfirm.typeEnum.success);
                     jump(1);
                 }
             });
@@ -98,8 +145,8 @@ $(document).ready(function () {
         $("#Ename").val(Ename);
         var Epwd = $(this).parent().parent().find("#teaPwd").text().trim();
         $("#Epwd").val(Epwd);
-        var Esex = $(this).parent().parent().find("#sex").text().trim();
-        $("#Esex").val(Esex);
+        var EintSex = $(this).parent().parent().find("#sex").text().trim();
+        $("#EintSex").val(EintSex);
         var EintColl = $(this).parent().parent().find("#collegeName").text().trim();
         $("#EintColl").val(EintColl);
         var Ephone = $(this).parent().parent().find("#phone").text().trim();
@@ -109,36 +156,65 @@ $(document).ready(function () {
     })
     //编辑学院
     $("#select").hide();
-    $("#btnCollOk").hide();
     //编辑学院-编辑
+    sessionStorage.setItem("flag", "false");
     $("#btnEditColl").click(function () {
         $("#select").show();
         $("#input").hide();
-        $("#btnCollOk").show();
+        sessionStorage.setItem("flag", "true");
         $(this).hide();
     })
-    //编辑学院-确定
-    $("#btnCollOk").click(function () {
-        var collName = $("#EselColl").val();
-        $("#input").show();
-        $("#EintColl").val(collName);
-        $("#select").hide();
-        $("#btnEditColl").show();
+    //编辑性别-编辑
+    $("#btnEditSex").click(function () {
+        $("#selectSex").show();
+        $("#inputSex").hide();
+        sessionStorage.setItem("flag", "true");
         $(this).hide();
+    })
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+        $("#selectSex").hide();
+        $("#inputSex").show();
+        $("#btnEditSex").show();
+        sessionStorage.setItem("flag", "false");
     })
     //点击提交编辑
     $("#saveEdit").click(function () {
         var Account = $("#Eaccount").val();
         var Name = $("#Ename").val();
         var Pwd = $("#Epwd").val();
-        var Sex = $("#Esex").val();
-        var College = $("#EintColl").val();
-        alert(College);
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
-        //alert(Account+":"+Name+":"+Pwd+":"+Sex+":"+College+":"+Phone+":"+Email)
-        if (Account === "") {
-            alert("请输入工号");
+        var flag = sessionStorage.getItem("flag");
+        if (flag == "false") {
+            var College = $("#EintColl").val();
+            var Sex = $("#EintSex").val();
+        } else {
+            var College = $("#EselColl").val();
+            var Sex = $("#EselSex").val();
+        }
+        if (Name == "") {
+            $("#validateNameE").html("姓名不能为空！").css("color", "red");
+        } else if (!txtName.test(Name)) {
+            $("#validateNameE").html("姓名只能包括汉子、英文字符！").css("color", "red");
+        } else if (Pwd == "") {
+            $("#validateNameE").html("")
+            $("#validatePwd").html("密码为空！").css("color", "red");
+        } else if (!txtPwd.test(Pwd)) {
+            $("#validatePwd").html("密码不合法").css("color", "red");
+        } else if (Phone == "") {
+            $("#validatePwd").html("")
+            $("#validateTelE").html("联系电话不能为空！").css("color", "red");
+        } else if (!TelNum.test(Phone)) {
+            $("#validateTelE").html("联系电话不合法！").css("color", "red");
+        } else if (Email == "") {
+            $("#validateTelE").html("")
+            $("#validateEmailE").html("邮箱不能为空！").css("color", "red");
+        } else if (!txtEmail.test(Email)) {
+            $("#validateEmailE").html("邮箱地址不合法").css("color", "red");
         } else {
             $.ajax({
                 type: 'Post',
@@ -161,23 +237,31 @@ $(document).ready(function () {
             });
         }
     })
-    //删除分院信息
+    //删除管理员信息
     $(".btnDelete").click(function () {
-        //alert("删除")
         var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
-        //alert(Daccount);
-        $.ajax({
-            type: 'Post',
-            url: 'adminList.aspx',
-            data: {
-                Daccount: Daccount,
-                op: "dele"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                alert(succ);
-                jump(parseInt(sessionStorage.getItem("page")));
+        //Confirm弹窗
+        var txt = "确定要删除吗？";
+        var option = {
+            title: "删除警告",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                //alert(Daccount);
+                $.ajax({
+                    type: 'Post',
+                    url: 'adminList.aspx',
+                    data: {
+                        Daccount: Daccount,
+                        op: "dele"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        alert(succ);
+                        jump(parseInt(sessionStorage.getItem("page")));
+                    }
+                });
             }
-        });
+        }
+        window.wxc.xcConfirm(txt, "custom", option);
     })
 })

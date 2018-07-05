@@ -18,7 +18,7 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
         protected int count;
         protected int getCurrentPage = 1;
-        protected int pagesize = 6;
+        protected int pagesize = 3;
         protected String search = "";
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
@@ -26,25 +26,26 @@ namespace PMS.Web.admin
         {
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
-            if (op == "add")
-            {
-                savePlan();
-                getdata(Search());
-                colds = colBll.Select();
-            }
-            if(editorOp == "editor")
-            {
-                EditorPlan();
-                getdata(Search());
-                colds = colBll.Select();
-            }
+            string delOp = Context.Request["delOp"];
             if (!Page.IsPostBack)
             {
                 getdata(Search());
                 colds = colBll.Select();
+                if (op == "add")//添加
+                {
+                    savePlan();
+                }
+                if (editorOp == "editor")//编辑
+                {
+                    EditorPlan();
+                }
+                if (delOp == "del")//删除
+                {
+                    deletePlan();
+                }
             }
         }
-        //编辑
+        //编辑批次
         public void EditorPlan()
         {
             string planName = Context.Request["editorPlanName"].ToString();
@@ -126,15 +127,15 @@ namespace PMS.Web.admin
             }
         }
         //分页
-        public void getdata(string strWhere)
+        public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
                 currentPage = "1";
             }
-            BLL.TeacherBll sdao = new TeacherBll();
-            TeacherBll pro = new TeacherBll();
+            BLL.StudentBll sdao = new StudentBll();
+            StudentBll pro = new StudentBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Plan",
@@ -164,11 +165,47 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format("planName={0} or collegeName={0}", "'" + search + "'");
+                    search = String.Format("state {0} or planName {0} or collegeName {0}", "like " + "'%" + search + "%'");
                 }
             }
             catch { }
             return search;
+        }
+        //判断是否能删除批次
+        public Result isDeletePlan()
+        {
+            string planId = Context.Request["deletePlanId"].ToString();
+            Result delResult = Result.记录不存在;
+            if (planBll.IsDelete("T_Title", "planId", planId) == Result.关联引用)
+            {
+                delResult = Result.关联引用;
+            }
+            return delResult;
+        }
+        //删除批次
+        public void deletePlan()
+        {
+            int planId = int.Parse(Context.Request["deletePlanId"].ToString());
+            Result row = isDeletePlan();
+            if (row == Result.记录不存在)
+            {
+                Result result = planBll.Delete(planId);
+                if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
         }
     }
 }

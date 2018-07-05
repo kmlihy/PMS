@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="paperList.aspx.cs" Inherits="PMS.Web.paperList" %>
+<%= "" %>
 
 <!DOCTYPE html>
 
@@ -18,14 +19,17 @@
             <h1 class="col-sm-3  col-sm-offset-5">选题列表
             </h1>
         </div>
-        <table class="table table-striped paperlisttable">
+        <table class="table table-striped paperlisttable text-center">
             <thead>
                 <tr>
-                    <th>论文题目
+                    <th class="text-center">
+                        论文题目
                     </th>
-                    <th>已选人数/人数上限
+                    <th class="text-center">
+                        已选人数/人数上限
                     </th>
-                    <th>状态
+                    <th class="text-center">
+                        状态
                     </th>
                 </tr>
             </thead>
@@ -39,7 +43,7 @@
                     <td><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="PaperDtailStu.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>
+                        <a class="btn btn-primary selectTitle" id="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>
                     </td>
                 </tr>
                 <%} %>
@@ -137,5 +141,22 @@
             $("#last").hide();
         }
     });
+    $(".selectTitle").click(function(){
+        var titleid = $(this).attr("id");
+        $.ajax({
+            type: 'Post',
+            url: 'paperList.aspx?titleId=' + titleid + "&op=selectTitle",
+            success: function(succ) {                           
+                if(succ == "选题成功"){
+                    alert(succ);
+                    //jump(parseInt(sessionStorage.getItem("page")));
+                }
+                else{
+                    alert("选题成功")
+                    //jump(parseInt(sessionStorage.getItem("page")));
+                }                            
+            }
+        });
+    })
 </script>
 </html>

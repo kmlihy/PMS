@@ -76,6 +76,10 @@
     <Content Include="admin\teaCenter.aspx" />
     <Content Include="admin\teaList.aspx" />
     <Content Include="allNews.aspx" />
+    <Content Include="bin\NPOI.dll" />
+    <Content Include="bin\NPOI.OOXML.dll" />
+    <Content Include="bin\NPOI.OpenXml4Net.dll" />
+    <Content Include="bin\NPOI.OpenXmlFormats.dll" />
     <Content Include="bin\PMS.BLL.dll" />
     <Content Include="bin\PMS.BLL.pdb" />
     <Content Include="bin\PMS.Dao.dll" />
@@ -88,18 +92,31 @@
     <Content Include="bin\PMS.Web.pdb" />
     <Content Include="checkCode.aspx" />
     <Content Include="css\bootstrap-select.css" />
+    <Content Include="css\bootstrapValidator.min.css" />
     <Content Include="css\iconfont.css" />
+    <Content Include="css\jquery-ui.min.css" />
+    <Content Include="css\xcConfirm.css" />
+    <Content Include="images\icons.png" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\addNews.js" />
     <Content Include="js\adminList.js" />
+    <Content Include="js\ajaxfileupload.js" />
+    <Content Include="js\batchList.js" />
     <Content Include="js\bootstrap-select.js" />
+    <Content Include="js\bootstrapValidator.min.js" />
     <Content Include="js\branchList.js" />
     <Content Include="js\icheck.min.js" />
+    <Content Include="js\jquery-ui.min.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\lgd.js" />
     <Content Include="js\messages_zh.min.js" />
     <Content Include="js\ml.js" />
+    <Content Include="js\proList.js" />
+    <Content Include="js\selectTopicList.js" />
+    <Content Include="js\stuLIst.js" />
+    <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
+    <Content Include="js\xcConfirm.js" />
     <Content Include="js\zwh.js" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
@@ -432,6 +449,10 @@
       <Project>{7d2c3017-4194-4e97-9428-d1568640f141}</Project>
       <Name>PMS.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PMS.DBHelper\PMS.DBHelper.csproj">
+      <Project>{109367fb-981a-43f2-bc92-013b088a2e0e}</Project>
+      <Name>PMS.DBHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMS.Model\PMS.Model.csproj">
       <Project>{38d0b912-0a10-4f76-9aaf-c476210f20a2}</Project>
       <Name>PMS.Model</Name>
@@ -442,6 +463,7 @@
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="upload\信息模板下载\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

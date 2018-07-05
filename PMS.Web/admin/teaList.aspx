@@ -30,6 +30,10 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        批量导入
+                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -58,7 +62,7 @@
                         {
                     %>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center td-check">
                             <input type="checkbox" />
                         </td>
                         <td class="text-center" id="tdteaAccount">
@@ -74,7 +78,7 @@
                             <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
                         <td class="text-center" id="tdteatype">
-                            <%=ds.Tables[0].Rows[i]["teaType"].ToString() %>
+                            <%=((ds.Tables[0].Rows[i]["teaType"].ToString()=="1")?"教师":"分院管理员")%>
                         </td>
                         <td class="text-center" id="tdteaTel">
                             <%=ds.Tables[0].Rows[i]["phone"].ToString() %>
@@ -82,11 +86,14 @@
                         <td class="text-center" id="tdteaEmail">
                             <%=ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
+                        <td class="text-center cstdteaPwd" id="tdteaPwd">
+                            <%=ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
+                        </td>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger isdelete">
+                            <button class="btn btn-default btn-sm btn-danger btnDel">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
@@ -132,12 +139,43 @@
             </div>
         </div>
     </div>
-    <!-- 添加教师弹框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- 批量导入弹框 -->
+    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="teaLable text-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加教师弹框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close addclose" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">添加教师
@@ -151,7 +189,7 @@
                                     <label class="text-span">所属院系</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="selectcol">
-                                        <option value="">-请选择院系-</option>
+                                        <option value="-1">-请选择院系-</option>
                                         <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -173,7 +211,9 @@
                                 <td class="teaLable">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="teaAccount" /></td>
+                                    <input class="form-control" type="text" id="teaAccount" />
+                                    <span id="validateAccount"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -185,7 +225,9 @@
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="teaName" /></td>
+                                    <input class="form-control" type="text" id="teaName" />
+                                    <span id="validateName"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -202,258 +244,132 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="email" /></td>
+                                    <input class="form-control" type="text" id="email" />
+                                    <span id="validateEmal"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="tel" /></td>
+                                    <input class="form-control" type="text" id="tel" />
+                                    <span id="validateTel"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default addclose" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary" id="btnAdd">添加</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- 编辑教师弹框（Modal） -->
-    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModal2">添加教师
+                    <h4 class="modal-title" id="myModal2">教师信息修改
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table">
                         <tbody>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">所属院系</label></td>
+                                    <label class="text-span">所属院系:</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="chselectcol">
-                                        <option value="">-请选择院系-</option>
+                                        <option value="-1">-请选择院系-</option>
                                         <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                         <%} %>
                                     </select>
+                                    <p class="text-span" id="p-collegeName"></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">类型</label></td>
+                                    <label class="text-span">类型:</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="chteaType">
                                         <option value="1">教师</option>
                                         <option value="2">管理员</option>
                                     </select>
+                                    <p class="text-span" id="p-chteaType"></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">工号</label></td>
+                                    <label class="text-span">工号:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chteaAccount" /></td>
+                                    <input class="form-control chteaAccount" type="text" id="chteaAccount" />
+                                    <span id="chValitateAccount"></span>
+                                </td>
+                            </tr>
+                            <tr id="tr-pwd">
+                                <td class="teaLable">
+                                    <label class="text-span">密码:</label></td>
+                                <td>
+                                    <input class="form-control chpwd" type="password" id="chpwd"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">密码</label></td>
+                                    <label class="text-span">姓名:</label></td>
                                 <td>
-                                    <input class="form-control" type="password" id="chpwd" /></td>
+                                    <input class="form-control chteaName" type="text" id="chteaName"/>
+                                    <span id="chValitateteaName"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">姓名</label></td>
-                                <td>
-                                    <input class="form-control" type="text" id="chteaName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">性别</label></td>
+                                    <label class="text-span">性别:</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="chsex">
                                         <option value="">男</option>
                                         <option value="">女</option>
                                     </select>
+                                    <p class="text-span" id="p-chsex"></p>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">邮箱</label></td>
+                                    <label class="text-span">邮箱:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chemail" /></td>
+                                    <input class="form-control chemail" type="text" id="chemail"/>
+                                    <span id="chValitateteaemail"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">联系电话</label></td>
+                                    <label class="text-span">联系电话:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chtel" /></td>
+                                    <input class="form-control chtel" type="text" id="chtel"/>
+                                    <span id="chValitateteatel"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="closeModel">关闭</button>
+                    <button type="button" class="btn btn-default btnch">编辑</button>
                     <button type="button" class="btn btn-primary" id="chbtn">保存更改</button>
                 </div>
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/icheck.min.js"></script>
-<script src="../js/ml.js"></script>
 <script src="../js/bootstrap-select.js"></script>
-<script>
-    //当前页数
-    sessionStorage.setItem("Page",<%=getCurrentPage%>);
-    //总页
-    sessionStorage.setItem("countPage",<%=count%>);
-    $(document).ready(function () {
-        $(".jump").click(function(){
-            switch($.trim($(this).html())){
-                case('<span class="glyphicon glyphicon-chevron-left"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))>1){
-                        jump(parseInt(sessionStorage.getItem("Page"))-1);
-                        break;
-                    }
-                    else{
-                        jump(1);
-                        break;
-                    }
-                    
-                case('<span class="glyphicon glyphicon-chevron-right"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
-                        jump(parseInt(sessionStorage.getItem("Page"))+1);
-                        break;
-                    }
-                    else{
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case("首页"):
-                    jump(1);
-                    break;
-                case("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        $("#btn-search").click(function(){
-            var strWhere =$("#inputsearch").val();
-            sessionStorage.setItem("strWhere",strWhere);
-            jump(1);
-        });
-        function jump(cur) {
-            if(sessionStorage.getItem("strWhere")==null){
-                window.location.href = "teaList.aspx?currentPage=" + cur;
-            }else{
-                window.location.href ="teaList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
-            }
-        };
-        if (sessionStorage.getItem("countPage") == "1") {
-            $("#first").hide();
-            $("#last").hide();
-        }
-        $("#btnAdd").click(function(){
-            var collegeId=$("#selectcol").find("option:selected").val(),
-                teaType=$("#teaType").find("option:selected").val(),
-                teaAccount=$("#teaAccount").val(),
-                pwd=$("#pwd").val(),
-                teaName=$("#teaName").val(),
-                sex=$("#sex").find("option:selected").text(),
-                email=$("#email").val(),
-                tel=$("#tel").val();
-            if(collegeId==""){
-                alert("不能为空")
-            }
-            else{
-                alert("ajax");
-                $.ajax({
-                    type:'Post',
-                    url:'teaList.aspx',
-                    data:{
-                        CollegeId:collegeId,
-                        TeaType:teaType,
-                        TeaAccount:teaAccount,
-                        Pwd:pwd,
-                        TeaName:teaName,
-                        Sex:sex,
-                        Email:email,
-                        Tel:tel,
-                        op:"add"
-                    },
-                    dataType:'text',
-                    success:function(succ){
-                        alert(succ);
-                        jump(1);
-                    }
-                });
-            }
-        })
-        $(".changebtn").click(function (){
-            $("#chteaAccount").val( $(this).parent().parent().find("#tdteaAccount").text().trim());
-            $("#chpwd").val("");
-            $("#chteaName").val($(this).parent().parent().find("#tdteaName").text().trim());
-            $("#chemail").val($(this).parent().parent().find("#tdteaEmail").text().trim());
-            $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim())
-            
-            //$(this).parent().parent().find("#sex").text();
-            //$(this).parent().parent().find("#collegeName").text();
-            //$(this).parent().parent().find("#teaType").text();
-            $("#chbtn").click(function(){
-                
-                var teaAccount= $("#chteaAccount").val(),
-                    teaName= $("#chteaAccount").val(),
-                    teaEmail= $("#chteaAccount").val(),
-                    teaPhone= $("#chteaAccount").val(),
-                    pwd=$("#chpwd").val(),
-                    collegeId=$("#chselectcol").find("option:selected").val(),
-                    sex=$("#chsex").find("option:selected").text(),
-                    teaType=$("#chteaType").find("option:selected").val();
-                   
-                if(teaAccount ==""){
-                    alert("不能为空");
-                }
-                else{
-                    alert("ajax");
-                    $.ajax({
-                        type:'Post',
-                        url:'teaList.aspx',
-                        data:{
-                            TeaAccount:teaAccount,
-                            TeaName:teaName,
-                            TeaEmail:teaEmail,
-                            TeaPhone:teaPhone,
-                            Pwd:pwd,
-                            CollegeId:collegeId,
-                            Sex:sex,
-                            TeaType:teaType,
-                            op:"change"
-                        },
-                        dataType:'text',
-                        success:function(succ){
-                            alert(succ);
-                            jump(1);
-                        }
-                    });
-                }
-            })
-        });
-        $(".isdelete").click(function(){
-        
-        });
-
-    });
-</script>
+<script src="../js/ml.js"></script>
+<script src="../js/teaList.js"></script>
 </html>

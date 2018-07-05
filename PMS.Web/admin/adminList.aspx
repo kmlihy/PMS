@@ -11,19 +11,21 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
+    <%--<link rel="stylesheet" href="../css/zwh.css" />--%>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
-    <div class="container-fluid ">
+    <div class="container-fluid  big-box">
         <!-- 编辑区-->
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=strSearch %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -34,7 +36,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del" onclick="mizhu.toast('前无古人！', 4000);">
+                    <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
                     </button>
@@ -156,49 +158,59 @@
                                 <td class="teaLable text-center">
                                     <label class="text-span">工号</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iaccount" /></td>
+                                    <input class="form-control teaAddinput" name="account" type="text" id="Iaccount" />
+                                    <span id="validateAcoount"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iname" /></td>
+                                    <input class="form-control teaAddinput" name="username" type="text" id="Iname" />
+                                    <span id="validateName"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Isex">
-                                        <option>请选择性别</option>
+                                    <select class="selectpicker select" data-width="auto" name="sex" id="Isex">
+                                        <option value="">请选择性别</option>
                                         <option value="男">男</option>
                                         <option value="女">女</option>
                                     </select>
+                                    <span id="validateSex"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Icoll">
+                                    <select class="selectpicker select" data-width="auto" name="college" id="Icoll">
                                         <option value="">请选择院系</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                         <%} %>
                                     </select>
+                                    <span id="validateColl"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iemail" /></td>
+                                    <input class="form-control teaAddinput" type="text" name="email" id="Iemail" />
+                                    <span id="validateEmail"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Iphone" /></td>
+                                    <input class="form-control teaAddinput" type="text" name="telNum" id="Iphone" />
+                                    <span id="validateTel"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -231,22 +243,32 @@
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Ename" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Ename" />
+                                    <span id="validateNameE"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">密码</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Epwd" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Epwd" />
+                                    <span id="validatePwd"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="Esex">
-                                        <option value="男">男</option>
-                                        <option value="女">女</option>
-                                    </select>
+                                    <div id="inputSex">
+                                        <input type="text" readonly="true" class="form-control teaAddinput" id="EintSex" />
+                                    </div>
+                                    <div id="selectSex">
+                                        <select class="selectpicker" data-width="auto" id="EselSex">
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-info btnEditor" id="btnEditSex">编辑</button>
                                 </td>
                             </tr>
                             <tr>
@@ -266,21 +288,24 @@
                                             %>
                                         </select>
                                     </div>
-                                    <button type="button" id="btnEditColl">编辑</button>
-                                    <button type="button" id="btnCollOk">确定</button>
+                                    <button type="button" class="btn btn-info btnEditor" id="btnEditColl">编辑</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">联系电话</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput" type="text" id="Ephone" />
+                                    <span id="validateTelE"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">邮箱</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="Eemail" /></td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">联系电话</label></td>
-                                <td>
-                                    <input class="form-control teaAddinput" type="text" id="Ephone" /></td>
+                                    <input class="form-control teaAddinput" type="text" id="Eemail" />
+                                    <span id="validateEmailE"></span>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -300,6 +325,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/adminList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 
 </html>

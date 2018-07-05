@@ -61,9 +61,14 @@ $(document).ready(function () {
     //添加分院对象
     $("#saveCollege").click(function () {
         var collegeName = $("#insertColl").val();
+        var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
         if (collegeName === "") {
-            alert("请输入分院名称");
-        } else {
+            $("#validate").html("学院名不能为空").css("color", "red");
+        }
+        else if (!pattern_chin.test(collegeName)) {
+            $("#validate").html("学院名必须为汉字").css("color", "red");
+        } 
+        else {
             $.ajax({
                 type: 'Post',
                 url: 'branchList.aspx',
@@ -86,7 +91,14 @@ $(document).ready(function () {
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
     })
-    //编辑分院信息
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+        sessionStorage.setItem("flag", "false");
+    })
+    //提交编辑分院信息
     $("#saveEdit").click(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
@@ -111,21 +123,41 @@ $(document).ready(function () {
     })
     //删除分院信息
     $(".btnDlete").click(function () {
-        //alert("删除")
         var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
-        //alert(collegeId);
-        $.ajax({
-            type: 'Post',
-            url: 'branchList.aspx',
-            data: {
-                collegeid: collegeId,
-                op: "dele"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                alert(succ);
-                jump(parseInt(sessionStorage.getItem("page")));
+        var txt = "确定要删除吗？";
+        var option = {
+            title: "删除警告",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'branchList.aspx',
+                    data: {
+                        collegeid: collegeId,
+                        op: "dele"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        alert(succ);
+                        jump(parseInt(sessionStorage.getItem("page")));
+                    }
+                });
+            }
+        }
+        window.wxc.xcConfirm(txt, "custom", option);
+    })
+    //批量删除
+    $("#btn-Del").click(function (){
+        var strgetSelectValue;
+        var getSelectValueMenbers = $(".check:checked").each(function (j) {
+            if (j >= 0) {
+                strgetSelectValue = $(this).val() + ",";
+                strgetSelectValue += $(this).parent().find("#collegeId").val() + ",";
+            }
+            else {
+                alert("请选择至少一个");
             }
         });
+            alert(strgetSelectValue);
     })
 })
