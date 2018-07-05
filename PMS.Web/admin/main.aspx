@@ -83,7 +83,7 @@
                             </a>
                             <ul class="collapse nav nav-list sidebarclick" id="ccccc">
                                 <li role="presentation">
-                                    <a href="../newsList.aspx">
+                                    <a href="../newsList.aspx" class="sidebarclick" >
                                         <span>公告信息</span>
                                     </a>
                                 </li>
@@ -98,12 +98,12 @@
                             </a>
                             <ul class="collapse nav nav-list" id="setting">
                                 <li role="presentation">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../paperList.aspx" class="sidebarclick" >
                                         <span>我要选题</span>
                                     </a>
                                 </li>
                                  <li role="presentation">
-                                    <a href="PaperDtailStu.aspx" class="sidebarclick" >
+                                    <a href="../PaperDtailStu.aspx" class="sidebarclick" >
                                         <span>我的选题</span>
                                     </a>
                                 </li>
@@ -122,7 +122,7 @@
                             </a>
                             <ul class="collapse nav nav-list sidebarclick" id="teagonggao">
                                 <li role="presentation">
-                                    <a href="allNews.aspx">
+                                    <a href="../allNews.aspx" class="sidebarclick" >
                                         <span>公告信息</span>
                                     </a>
                                 </li>
@@ -137,7 +137,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="timuguanli">
                                 <li role="presentation">
-                                    <a href="adminList.aspx" class="sidebarclick" >
+                                    <a href="../paperList.aspx" class="sidebarclick" >
                                         <span>题目信息</span>
                                     </a>
                                 </li>
@@ -152,7 +152,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="question">
                                 <li role="presentation">
-                                    <a href="adminList.aspx" class="sidebarclick" >
+                                    <a href="selectTopicList.aspx" class="sidebarclick" >
                                         <span>我的学生</span>
                                     </a>
                                 </li>
@@ -169,7 +169,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="glygonggao">
                                 <li role="presentation">
-                                    <a href="allNews.aspx" class="sidebarclick" >
+                                    <a href="../allNews.aspx" class="sidebarclick" >
                                         <span>公告列表</span>
                                     </a>
                                 </li>
@@ -179,7 +179,7 @@
                         <li role="presentation">
                             <a href="#role" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
-                                <span>人员管理</span>
+                                <span>基本信息管理</span>
                                 <i class="iconfont icon-more"></i>
                             </a>
                             <ul class="collapse nav nav-list" id="role">
@@ -193,6 +193,11 @@
                                         <span>学生信息</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="branchList.aspx" class="sidebarclick" >
+                                        <span>学院信息</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -204,7 +209,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="xuanti">
                                 <li role="presentation">
-                                    <a href="adminList.aspx" class="sidebarclick" >
+                                    <a href="../paperList.aspx" class="sidebarclick" >
                                         <span>题目信息</span>
                                     </a>
                                 </li>
