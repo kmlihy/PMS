@@ -58,7 +58,7 @@ $(document).ready(function () {
     $("#teaAccount").blur(function () {
         teaAccount = $("#teaAccount").val();
         var pattern = /[a-zA-Z0-9_]{6,10}/;
-        if(!pattern.test(teaAccount)){
+        if (!pattern.test(teaAccount)) {
             $("#validateAccount").html("请输入6位以上的字母或数字").css("color", "red")
         }
     })
@@ -115,8 +115,8 @@ $(document).ready(function () {
             sex = $("#sex").find("option:selected").text(),
             email = $("#email").val(),
             tel = $("#tel").val();
-        if (collegeId == "") {
-            alert("不能为空")
+        if (collegeId == "" || teaAccount == "" || pwd == "" || teaName == "" || email == "" || tel == "") {
+            alert("不能含有空项")
         }
         else {
             alert("ajax");
@@ -201,21 +201,17 @@ $(document).ready(function () {
         $("#p-collegeName").show();
         $("#p-chteaType").show();
         $("#p-chsex").show();
-        //$("#p-chteaAccount").show();
-        //$("#p-chteaName").show();
-        //$("#p-chemail").show();
-        // $("#p-chtel").show();
+        //控件不可编辑
+        $("#chemail").attr("disabled", "disabled");//改成disabled
+        $("#chtel").attr("disabled", "disabled");//改成disabled
+        $("#chteaName").attr("disabled", "disabled");//改成disabled
+        $("#chteaAccount").attr("disabled", "disabled");//改成disabled
+
 
         $("#p-chteaType").text($(this).parent().parent().find("#tdteatype").text());
         $("#p-chsex").text($(this).parent().parent().find("#tdteaSex").text());
         $("#p-collegeName").text($(this).parent().parent().find("#tdteacoll").text());
-        //$("#p-chteaAccount").text($(this).parent().parent().find("#tdteaAccount").text());
-        //$("#p-chteaName").text($(this).parent().parent().find("#tdteaName").text());
-        //$("#p-chemail").text($(this).parent().parent().find("#tdteaEmail").text());
-        //$("#p-chtel").text($(this).parent().parent().find("#tdteaTel").text());
 
-        //var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
-        //alert(teaAccount)
         //获得基础信息
         $("#chteaAccount").val($(this).parent().parent().find("#tdteaAccount").text().trim());
         $("#chpwd").val($(this).parent().parent().find("#tdteaPwd").text().trim());
@@ -223,13 +219,28 @@ $(document).ready(function () {
         $("#chemail").val($(this).parent().parent().find("#tdteaEmail").text().trim());
         $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim())
     });
+    //关闭按钮事件
+    $(".chID").click(function () {
+        $(".btnch").show();
+
+        //控件状态改变
+        $("#chemail").attr("disabled", "disabled");//改成disabled
+        $("#chtel").attr("disabled", "disabled");//改成disabled
+        $("#chteaName").attr("disabled", "disabled");//改成disabled
+        $("#chteaAccount").attr("disabled", "disabled");//改成disabled
+        //清除提示
+        $("#chValitateAccount").html("");
+        $("#chValitateteaName").html("");
+        $("#chValitateteaemail").html("");
+        $("#chValitateteatel").html("");
+    })
     //编辑按钮点击事件
     $(".btnch").click(function () {
         //点击编辑按钮控件可输入
-        $("#chemail").attr("disabled", Enable);
-        $("#chtel").attr("disabled", Enable);
-        $("#chteaName").attr("disabled", Enable);
-        $("#chteaAccount").attr("disabled", Enable);
+        $("#chemail").removeAttr("disabled");
+        $("#chtel").removeAttr("disabled");
+        $("#chteaName").removeAttr("disabled");
+        $("#chteaAccount").removeAttr("disabled");
         //隐藏
         $("#p-collegeName").hide();
         $("#p-chteaType").hide();
@@ -252,7 +263,7 @@ $(document).ready(function () {
         collegeId = $("#chselectcol").find("option:selected").val(),
         sex = $("#chsex").find("option:selected").text(),
         teaType = $("#chteaType").find("option:selected").val();
-        if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == 0) {
+        if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == "-1") {
             alert("不能含有未填项");
         }
         else {
@@ -279,20 +290,7 @@ $(document).ready(function () {
             $(".btnch").show();
         }
     })
-    //关闭按钮事件
-    $(".chID").click(function () {
-        //teaAccount = "";
-        $(".btnch").show();
-        $("#chemail").attr("readonly", true);
-        $("#chtel").attr("readonly", true);
-        $("#chteaName").attr("readonly", true);
-        $("#chteaAccount").attr("readonly", true);
-        //清除提示
-        $("#chValitateAccount").html("");
-        $("#chValitateteaName").html("");
-        $("#chValitateteaemail").html("");
-        $("#chValitateteatel").html("");
-    })
+
     //删除事件
     $(".btnDel").click(function () {
         var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
