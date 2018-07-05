@@ -86,7 +86,14 @@ $(document).ready(function () {
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
     })
-    //编辑分院信息
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+        sessionStorage.setItem("flag", "false");
+    })
+    //提交编辑分院信息
     $("#saveEdit").click(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
@@ -108,13 +115,6 @@ $(document).ready(function () {
                 }
             });
         }
-    })
-    //每一次打开编辑弹窗时
-    $(".btnEdit").click(function () {
-        $("#select").hide();
-        $("#input").show();
-        $("#btnEditColl").show();
-        sessionStorage.setItem("flag", "false");
     })
     //删除分院信息
     $(".btnDlete").click(function () {

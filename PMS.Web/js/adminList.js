@@ -67,9 +67,20 @@ $(document).ready(function () {
             email = $("#Iemail").val(),
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-        if (account === "") {
-            alert("请输入工号");
-        } else {
+        if (account == "") {
+            window.wxc.xcConfirm("账号不能为空！", window.wxc.xcConfirm.typeEnum.error);
+        } else if (name == "") {
+            window.wxc.xcConfirm("姓名不能为空！", window.wxc.xcConfirm.typeEnum.error);
+        } else if (sex == "") {
+            window.wxc.xcConfirm("请选择性别！", window.wxc.xcConfirm.typeEnum.error);
+        } else if (college == "") {
+            window.wxc.xcConfirm("请选择学院！", window.wxc.xcConfirm.typeEnum.error);
+        } else if (email == "") {
+            window.wxc.xcConfirm("邮箱不能为空！", window.wxc.xcConfirm.typeEnum.error);
+        } else if (phone == "") {
+            window.wxc.xcConfirm("联系电话不能为空！", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else {
             $.ajax({
                 type: 'Post',
                 url: 'adminList.aspx',
@@ -84,7 +95,8 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
+                    //alert(succ);
+                    window.wxc.xcConfirm("succ", window.wxc.xcConfirm.typeEnum.success);
                     jump(1);
                 }
             });
@@ -98,8 +110,8 @@ $(document).ready(function () {
         $("#Ename").val(Ename);
         var Epwd = $(this).parent().parent().find("#teaPwd").text().trim();
         $("#Epwd").val(Epwd);
-        var Esex = $(this).parent().parent().find("#sex").text().trim();
-        $("#Esex").val(Esex);
+        var EintSex = $(this).parent().parent().find("#sex").text().trim();
+        $("#EintSex").val(EintSex);
         var EintColl = $(this).parent().parent().find("#collegeName").text().trim();
         $("#EintColl").val(EintColl);
         var Ephone = $(this).parent().parent().find("#phone").text().trim();
@@ -117,22 +129,41 @@ $(document).ready(function () {
         sessionStorage.setItem("flag", "true");
         $(this).hide();
     })
+    //编辑性别-编辑
+    $("#btnEditSex").click(function () {
+        $("#selectSex").show();
+        $("#inputSex").hide();
+        sessionStorage.setItem("flag", "true");
+        $(this).hide();
+    })
+    //每一次打开编辑弹窗时
+    $(".btnEdit").click(function () {
+        $("#select").hide();
+        $("#input").show();
+        $("#btnEditColl").show();
+        $("#selectSex").hide();
+        $("#inputSex").show();
+        $("#btnEditSex").show();
+        sessionStorage.setItem("flag", "false");
+    })
     //点击提交编辑
     $("#saveEdit").click(function () {
         var Account = $("#Eaccount").val();
         var Name = $("#Ename").val();
         var Pwd = $("#Epwd").val();
-        var Sex = $("#Esex").val();
         var flag = sessionStorage.getItem("flag");
         if (flag == "false") {
             var College = $("#EintColl").val();
+            var Sex = $("#EintSex").val();
         } else {
             var College = $("#EselColl").val();
+            var Sex = $("#EselSex").val();
         }
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
-        if (Account === "") {
-            alert("请输入工号");
+        if (Name === "") {
+            //alert("工号不能为空！");
+            window.wxc.xcConfirm("姓名不能为空！", window.wxc.xcConfirm.typeEnum.error);
         } else {
             $.ajax({
                 type: 'Post',
@@ -155,32 +186,31 @@ $(document).ready(function () {
             });
         }
     })
-    //每一次打开编辑弹窗时
-    $(".btnEdit").click(function () {
-        $("#select").hide();
-        $("#input").show();
-        $("#btnEditColl").show();
-        sessionStorage.setItem("flag", "false");
-    })
-    //删除分院信息
+    //删除管理员信息
     $(".btnDelete").click(function () {
-        //Confirm弹窗
-        var txt = "是否删除？";
-        window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning);
         var Daccount = $(this).parent().parent().find("#teaAccount").text().trim();
-        //alert(Daccount);
-        $.ajax({
-            type: 'Post',
-            url: 'adminList.aspx',
-            data: {
-                Daccount: Daccount,
-                op: "dele"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                alert(succ);
-                jump(parseInt(sessionStorage.getItem("page")));
+        //Confirm弹窗
+        var txt = "确定要删除吗？";
+        var option = {
+            title: "删除警告",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                //alert(Daccount);
+                $.ajax({
+                    type: 'Post',
+                    url: 'adminList.aspx',
+                    data: {
+                        Daccount: Daccount,
+                        op: "dele"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        alert(succ);
+                        jump(parseInt(sessionStorage.getItem("page")));
+                    }
+                });
             }
-        });
+        }
+        window.wxc.xcConfirm(txt, "custom", option);
     })
 })
