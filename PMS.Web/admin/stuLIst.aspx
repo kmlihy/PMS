@@ -172,6 +172,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="stuAccount" />
+                                    <span id="stu_NO">ad</span>
                                 </td>
                             </tr>
                             <tr>
@@ -179,7 +180,7 @@
                                     <label class="text-span">初始密码</label>
                                 </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="pwd" />
+                                    <input class="form-control teaAddinput" type="password" id="pwd" value="000000" />
                                 </td>
                             </tr>
                             <tr>
@@ -199,21 +200,6 @@
                                     </select>
                                 </td>
                             </tr>
-                            <%--                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">院系</label></td>
-                                <td>
-                                    <select class="selectpicker" data-width="auto" id="college">
-                                        <option value="">请选择院系</option>
-                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                            { %>
-                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
-                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                        </option>
-                                        <% } %>
-                                    </select>
-                                </td>
-                            </tr>--%>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">专业</label></td>
@@ -325,7 +311,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">院系</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorCollege" type="text" />
+                                    <input class="form-control teaAddinput editorCollege" type="text" disabled="disabled" />
 <%--                                    <div class="selectCollege">
                                         <select class="selectpicker selectStuCollege" data-width="auto">
                                             <option value="">请选择学院</option>

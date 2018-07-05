@@ -72,7 +72,50 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
-
+    //新增模态框验证
+    var pattern_chin = /[\u4e00-\u9fa5]/g;//汉字的正则表达式
+    var pattern_time = /\d{4}-\d{1,2}-\d{1,2}/; //日期格式
+    //批次输入框验证
+    $("#planName").blur(function () {
+        var planName = $(this).val();
+        //alert(planName);
+        if (planName !== "") {
+            $("#p_name").hide();
+            var matchResult = planName.match(pattern_chin);
+            if (matchResult == null) {
+                $("#p_name").show();
+                $("#p_name").html("请输入中文").css("color", "red");
+            }
+            else {
+                $("#p_name").hide();
+            }
+        }
+        else {
+            $("#p_name").html("批次名称不能为空").css("color","red");
+        }
+    })
+    //开始时间输入框验证
+    $("#startTime").blur(function () {
+        var startTime = $(this).val();
+        if (startTime == null) {
+            $("#p_start").hide();
+        }
+        else {
+            $("#p_start").show();
+            $("#p_start").html("开始时间不能空！").css("color", "red");
+        }
+    })
+    //结束时间框验证
+    $("#endTime").blur(function () {
+        var endTime = $(this).val();
+        if (endTime == null) {
+            $("#p_end").hide();
+        }
+        else {
+            $("#p_end").show();
+            $("#p_end").html("结束时间不能空！").css("color", "red");
+        }
+    })
     //添加批次
     $("#savePlan").click(function () {
         var planName = $("#planName").val(),
@@ -80,11 +123,14 @@ $(document).ready(function () {
             endTime = $("#endTime").val(),
             state = $("#state").find("option:selected").val(),
             college = $("#collegeId").find("option:selected").val();
-        if (planName == "" || state == "" || startTime == "" || endTime == "" || state == "" || college == "") {
-            alert("不能为空")
+        if (startTime == null) {
+            $("#p_start").html("开始时间不能空！").css("color", "red");
+        }
+        else if (endTime == null) {
+            $("#p_end").html("结束时间不能空！").css("color", "red");
         }
         else {
-            alert("ajax");
+            $("#p_start").hide(); $("#p_end").hide();
             $.ajax({
                 type: 'Post',
                 url: 'batchList.aspx',
@@ -178,7 +224,7 @@ $(document).ready(function () {
             editorEndTime = $(".editorEndTime").val(),
             editorState = $(".editorStateId").text(),
             planCollegeId = $(".planCollegeId").text();
-        alert("ajax");
+        //alert("ajax");
         $.ajax({
             type: 'Post',
             url: 'batchList.aspx',

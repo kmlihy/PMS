@@ -3,9 +3,6 @@ sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
 $(document).ready(function () {
-    $("#btn-Del").click(function () {
-        alert(sessionStorage.getItem("page") + sessionStorage.getItem("countPage"));
-    })
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -104,26 +101,6 @@ $(document).ready(function () {
         $(".selectSex").hide();
     })
 
-    //点击学院编辑按钮
-    //$("#btnEditor2").click(function () {
-    //    $(this).hide();
-    //    $("#btnSure2").show();
-    //    $(".selectCollege").show();
-    //    $(".editorCollege").hide();
-    //})
-    ////点击确定按钮
-    //$("#btnSure2").click(function () {
-    //    var college = $(".selectStuCollege").find("option:selected").val();
-    //    $(".stuCollegeId").text(college);
-    //    var collegeName = $(".selectStuCollege").find("option:selected").text().trim();
-    //    $(".editorCollege").val(collegeName);
-    //    alert($(".stuCollegeId").text()+collegeName);
-    //    $(this).hide();
-    //    $("#btnEditor2").show();
-    //    $(".editorCollege").show();
-    //    $(".selectCollege").hide();
-    //})
-
     //点击专业编辑按钮
     $("#btnEditor3").click(function () {
         $(this).hide();
@@ -153,7 +130,7 @@ $(document).ready(function () {
             stuEmail = $(".editorEmail").val(),
             stuPhone = $(".editorPhone").val(),
             stuPwd = $(".editorStuPwd").val();
-        alert("ajax");
+        //alert("ajax");
         $.ajax({
             type: 'Post',
             url: 'stuLIst.aspx',
@@ -174,6 +151,13 @@ $(document).ready(function () {
                 jump(1);
             }
         })
+    })
+
+    //添加模态框验证
+    //学号
+    $("#stuAccount").blur(function () {
+        var stuAccount = $("#stuAccount").val();
+        var pattern = /[a-zA-Z0-9_]/
     })
     //添加学生
     $("#saveSutdent").click(function () {
