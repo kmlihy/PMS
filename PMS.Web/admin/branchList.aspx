@@ -137,9 +137,11 @@
                         <tbody>
                             <tr>
                                 <td class="teaLable text-center">
-                                    <label class="text-span">学院名称</label></td>
+                                    <label class="text-span">学院名称</label>
+                                </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="insertColl" />
+                                    <input class="form-control teaAddinput" type="text" id="insertColl"  />
+                                <span id="validate"></span>
                                 </td>
                             </tr>
                         </tbody>

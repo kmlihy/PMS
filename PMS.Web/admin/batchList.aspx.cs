@@ -165,7 +165,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format("planName={0} or collegeName={0}", "'" + search + "'");
+                    search = String.Format("planId {0} or startTime {0} or endTime {0} or state {0} or planName {0} or collegeName {0}", "like " + "'%" + search + "%'");
                 }
             }
             catch { }

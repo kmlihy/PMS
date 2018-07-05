@@ -77,3 +77,8 @@ a {
     font-size:20px;
 }
 /*batchList.aspx*/
+.btnEditor{
+    position:relative !important;
+    margin-top:-55px !important;
+    margin-left:200px !important;
+}

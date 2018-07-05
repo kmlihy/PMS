@@ -90,109 +90,127 @@ $(document).ready(function () {
             });
         }
     })
-    //查看教师信息
+    $(".cstdteaPwd").hide();
+    //查看教师信息点击事件
     $(".changebtn").click(function () {
-        var btnState = 1;
-        //关闭改变btnstate状态
-        $("#closeModel").click(function () {
-            btnState = 1;
-            $("#chbtn").text("编辑");
-        })
         $(".bootstrap-select").hide();
         $("#tr-pwd").hide();
-        $("#chteaAccount").hide();
-        $("#chteaName").hide();
-        $("#chemail").hide();
-        $("#chtel").hide();
-
+        $("#chbtn").hide();
+        $("#chteaAccount").show();
+        $("#chteaName").show();
+        $("#chemail").show();
+        $("#chtel").show();
         $("#p-collegeName").show();
         $("#p-chteaType").show();
         $("#p-chsex").show();
-        $("#p-chteaAccount").show();
-        $("#p-chteaName").show();
-        $("#p-chemail").show();
-        $("#p-chtel").show();
+        //$("#p-chteaAccount").show();
+        //$("#p-chteaName").show();
+        //$("#p-chemail").show();
+        // $("#p-chtel").show();
 
         $("#p-chteaType").text($(this).parent().parent().find("#tdteatype").text());
         $("#p-chsex").text($(this).parent().parent().find("#tdteaSex").text());
         $("#p-collegeName").text($(this).parent().parent().find("#tdteacoll").text());
-        $("#p-chteaAccount").text($(this).parent().parent().find("#tdteaAccount").text());
-        $("#p-chteaName").text($(this).parent().parent().find("#tdteaName").text());
-        $("#p-chemail").text($(this).parent().parent().find("#tdteaEmail").text());
-        $("#p-chtel").text($(this).parent().parent().find("#tdteaTel").text());
+        //$("#p-chteaAccount").text($(this).parent().parent().find("#tdteaAccount").text());
+        //$("#p-chteaName").text($(this).parent().parent().find("#tdteaName").text());
+        //$("#p-chemail").text($(this).parent().parent().find("#tdteaEmail").text());
+        //$("#p-chtel").text($(this).parent().parent().find("#tdteaTel").text());
 
+        //var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
+        //alert(teaAccount)
+        //获得基础信息
         $("#chteaAccount").val($(this).parent().parent().find("#tdteaAccount").text().trim());
-        $("#chpwd").val("");
+        $("#chpwd").val($(this).parent().parent().find("#tdteaPwd").text().trim());
         $("#chteaName").val($(this).parent().parent().find("#tdteaName").text().trim());
         $("#chemail").val($(this).parent().parent().find("#tdteaEmail").text().trim());
         $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim())
-
-        //$(this).parent().parent().find("#sex").text();
-        //$(this).parent().parent().find("#collegeName").text();
-        //$(this).parent().parent().find("#teaType").text();
-        //编辑完成保存
-        $("#chbtn").click(function () {
-            switch (btnState) {
-                case (0):
-                    var teaAccount = $("#chteaAccount").val(),
-                    teaName = $("#chteaName").val(),
-                    teaEmail = $("#chemail").val(),
-                    teaPhone = $("#chtel").val(),
-                    pwd = $("#chpwd").val(),
-                    collegeId = $("#chselectcol").find("option:selected").val(),
-                    sex = $("#chsex").find("option:selected").text(),
-                    teaType = $("#chteaType").find("option:selected").val();
-                    if (teaAccount == "" || teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == 0 || sex == "-请选择性别-") {
-                        alert("不能含有未填项");
-                    }
-                    else {
-                        $.ajax({
-                            type: 'Post',
-                            url: 'teaList.aspx',
-                            data: {
-                                TeaAccount: teaAccount,
-                                TeaName: teaName,
-                                TeaEmail: teaEmail,
-                                TeaPhone: teaPhone,
-                                Pwd: pwd,
-                                CollegeId: collegeId,
-                                Sex: sex,
-                                TeaType: teaType,
-                                op: "change"
-                            },
-                            dataType: 'text',
-                            success: function (succ) {
-                                alert(succ);
-                                jump(1);
-                            }
-                        });
-                        btnState = 1;
-                        break;
-                    }
-                case (1):
-                    $("#p-collegeName").hide();
-                    $("#p-chteaType").hide();
-                    $("#p-chsex").hide();
-                    $("#p-chteaAccount").hide();
-                    $("#p-chteaName").hide();
-                    $("#p-chemail").hide();
-                    $("#p-chtel").hide();
-
-                    $(".bootstrap-select").show();
-                    $("#tr-pwd").show();
-                    $("#chteaAccount").show();
-                    $("#chteaName").show();
-                    $("#chemail").show();
-                    $("#chtel").show();
-                    $(this).text("保存");
-                    return btnState = 0;
-                    break;
-            }
-        })
     });
-    //删除事件
-    $(".isdelete").click(function () {
+    //编辑按钮点击事件
+    $(".btnch").click(function () {
+        //点击编辑按钮控件可输入
+        $("#chemail").attr("readonly", false);
+        $("#chtel").attr("readonly", false);
+        $("#chteaName").attr("readonly", false);
+        $("#chteaAccount").attr("readonly", false);
+        //隐藏
+        $("#p-collegeName").hide();
+        $("#p-chteaType").hide();
+        $("#p-chsex").hide();
+        $("#chbtn").hide();
+        $(".btnch").hide();
+        //展示保存按钮
+        $("#chbtn").show();
+        $(".bootstrap-select").show();
+        $("#tr-pwd").show();
 
+    })
+    //编辑完成保存
+    $("#chbtn").click(function () {
+        var teaAccount = $(".chteaAccount").val(),
+        teaName = $(".chteaName").val(),
+        teaEmail = $(".chemail").val(),
+        teaPhone = $(".chtel").val(),
+        pwd = $(".chpwd").val(),
+        collegeId = $("#chselectcol").find("option:selected").val(),
+        sex = $("#chsex").find("option:selected").text(),
+        teaType = $("#chteaType").find("option:selected").val();
+        if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == 0) {
+            alert("不能含有未填项");
+        }
+        else {
+            $.ajax({
+                type: 'Post',
+                url: 'teaList.aspx',
+                data: {
+                    TeaAccount: teaAccount,
+                    TeaName: teaName,
+                    TeaEmail: teaEmail,
+                    TeaPhone: teaPhone,
+                    Pwd: pwd,
+                    CollegeId: collegeId,
+                    Sex: sex,
+                    TeaType: teaType,
+                    op: "change"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    alert(succ);
+                    jump(1);
+                }
+            });
+            $(".btnch").show();
+        }
+    })
+    //关闭按钮事件
+    $(".chID").click(function () {
+        //teaAccount = "";
+        $(".btnch").show();
+        $("#chemail").attr("readonly", true);
+        $("#chtel").attr("readonly", true);
+        $("#chteaName").attr("readonly", true);
+        $("#chteaAccount").attr("readonly", true);
+    })
+    //删除事件
+    $(".btnDel").click(function () {
+        var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
+        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
+        if (result == true) {
+            $.ajax({
+                type: 'Post',
+                url: 'teaList.aspx',
+                data: {
+                    TeaAccount: teaAccount,
+                    op: "del"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    alert(succ);
+                    jump(parseInt(sessionStorage.getItem("Page")))
+                }
+            })
+        } else {
+
+        }
     });
 
 });
