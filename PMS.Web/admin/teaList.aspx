@@ -86,6 +86,9 @@
                         <td class="text-center" id="tdteaEmail">
                             <%=ds.Tables[0].Rows[i]["Email"].ToString() %>
                         </td>
+                        <td class="text-center cstdteaPwd" id="tdteaPwd">
+                            <%=ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
+                        </td>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -295,20 +298,20 @@
                                 <td class="teaLable">
                                     <label class="text-span">工号:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chteaAccount" />
+                                    <input class="form-control chteaAccount" type="text" id="chteaAccount" readonly="true" />
                                 </td>
                             </tr>
                             <tr id="tr-pwd">
                                 <td class="teaLable">
                                     <label class="text-span">密码:</label></td>
                                 <td>
-                                    <input class="form-control" type="password" id="chpwd" /></td>
+                                    <input class="form-control chpwd" type="password" id="chpwd"/></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chteaName" />
+                                    <input class="form-control chteaName" type="text" id="chteaName" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
@@ -327,14 +330,14 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chemail" />
+                                    <input class="form-control chemail" type="text" id="chemail" readonly="true"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">联系电话:</label></td>
                                 <td>
-                                    <input class="form-control" type="text" id="chtel" />
+                                    <input class="form-control chtel" type="text" id="chtel" readonly="true"/>
                                 </td>
                             </tr>
                         </tbody>

@@ -4,6 +4,8 @@ sessionStorage.setItem("page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
+
+//下拉框查询
 $(".selectdrop").change(function () {
     var strWhere = $("#selectdrop").find("option:selected").text();
     alert(strWhere);
@@ -18,6 +20,7 @@ function jump(cur) {
     }
 };
 $(document).ready(function () {
+    //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
@@ -47,14 +50,13 @@ $(document).ready(function () {
                 break;
         }
     });
+    //查询按钮事件
     $("#btn-search").click(function () {
         var strWhere = $("#inputsearch").val();
         sessionStorage.setItem("strWhere", strWhere);
         jump(1);
     });
-    function selectdrop() {
-        alert($(this).text());
-    }
+//传查询值到后台
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null) {
             window.location.href = "selectTopicList.aspx?currentPage=" + cur;
@@ -62,6 +64,7 @@ $(document).ready(function () {
             window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
     };
+    //查看详情弹窗数据填充
     $(".btnSearch").click(function () {
         //查看数据填充
         $("#TeaAccount").text(($(this).parent().parent().find("#teacount").text().trim()));
@@ -79,5 +82,25 @@ $(document).ready(function () {
         $("#RecordTime").text(($(this).parent().parent().find("#recordtime").text().trim()));
 
     });
+    //删除事件
+    $(".btnDel").click(function () {
+        var recordid = $(this).parent().parent().find("#recordid").text().trim();
+        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
+        if (result == true) {
+            $.ajax({
+                type: 'Post',
+                url: 'selectTopicList.aspx',
+                data: {
+                    Recordid: recordid,
+                    op: "del"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    alert(succ);
+                    jump(1);
+                }
+            })
+        } else { }
+    })
 
 });

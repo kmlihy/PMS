@@ -86,11 +86,10 @@
                             <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger">
+                            <button class="btn btn-default btn-sm btn-danger btnDel">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
-
                     </tr>
                     <%} %>
                 </tbody>
