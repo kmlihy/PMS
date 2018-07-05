@@ -61,9 +61,14 @@ $(document).ready(function () {
     //添加分院对象
     $("#saveCollege").click(function () {
         var collegeName = $("#insertColl").val();
+        var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
         if (collegeName === "") {
-            alert("请输入分院名称");
-        } else {
+            $("#validate").html("学院名不能为空").css("color", "red");
+        }
+        else if (!pattern_chin.test(collegeName)) {
+            $("#validate").html("学院名必须为汉字").css("color", "red");
+        } 
+        else {
             $.ajax({
                 type: 'Post',
                 url: 'branchList.aspx',
