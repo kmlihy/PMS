@@ -18,8 +18,13 @@ namespace PMS.Web.admin
                 string pwd = Request.Form["pwd"].ToString();
                 TeacherBll bll = new TeacherBll();
                 Model.Teacher teacher = bll.Login(teaAccount, pwd);
-                Session["user"] = teacher;
-                Response.Write("<script>alert(" + teacher + ");</script>");
+                if (teacher!=null)
+                {
+                    Session["user"] = teacher;
+                    Session["state"] = 0;
+                    Response.Redirect("main.aspx");
+                }               
+               
             }
             catch {
 

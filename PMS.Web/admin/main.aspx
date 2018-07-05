@@ -72,14 +72,171 @@
             <div class="page-left-nav col-xs-12 col-sm-2 col-md-2 col-lg-1 collapse in" id="nav-menu">
                 <nav role="navigation" class="row">
                     <ul class="nav nav-list nav-stacked">
+                        <%
+                            if (State == 2)
+                            { %>
                         <li role="presentation">
-                            <a href="#">
-                                <div></div>
+                            <a href="#ccccc"  class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-remind"></i>
                                 <span>公告管理</span>
+                                <i class="iconfont icon-more"></i>
                             </a>
+                            <ul class="collapse nav nav-list sidebarclick" id="ccccc">
+                                <li role="presentation">
+                                    <a href="../newsList.aspx">
+                                        <span>公告信息</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li role="presentation" id="focus" onclick="xuanz()">
+                        
+                        <li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>选题信息</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="setting">
+                                <li role="presentation">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>我要选题</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation">
+                                    <a href="PaperDtailStu.aspx" class="sidebarclick" >
+                                        <span>我的选题</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <%}
+                            else if (State == 1)
+                            {%>
+
+                        <li role="presentation">
+                            <a href="#teagonggao"  class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-remind"></i>
+                                <span>公告管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list sidebarclick" id="teagonggao">
+                                <li role="presentation">
+                                    <a href="allNews.aspx">
+                                        <span>公告信息</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li role="presentation">
+                            <a href="#timuguanli" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>题目管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="timuguanli">
+                                <li role="presentation">
+                                    <a href="adminList.aspx" class="sidebarclick" >
+                                        <span>题目信息</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="#question" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>学生选题</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="question">
+                                <li role="presentation">
+                                    <a href="adminList.aspx" class="sidebarclick" >
+                                        <span>我的学生</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <%}
+                            else if (State == 0)
+                            { %>
+                        <li role="presentation">
+                            <a href="#glygonggao" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>公告管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="glygonggao">
+                                <li role="presentation">
+                                    <a href="allNews.aspx" class="sidebarclick" >
+                                        <span>公告列表</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="#role" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>人员管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="role">
+                                <li role="presentation">
+                                    <a href="teaList.aspx" class="sidebarclick" >
+                                        <span>教师信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="stuLIst.aspx" class="sidebarclick" >
+                                        <span>学生信息</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="#xuanti" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>选题管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="xuanti">
+                                <li role="presentation">
+                                    <a href="adminList.aspx" class="sidebarclick" >
+                                        <span>题目信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="batchList.aspx" class="sidebarclick" >
+                                        <span>批次信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="selectTopicList.aspx" class="sidebarclick" >
+                                        <span>选题记录</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <%-- 
+                        <li role="presentation">
+                            <a href="#achievement" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>成绩管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="achievement">
+                                <li role="presentation">
+                                    <a href="adminList.aspx" class="sidebarclick" >
+                                        <span>成绩信息</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>--%>
+                        <%} %>
+<%--                        <li role="presentation">
                             <a href="#datasetting" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-jifen"></i>
                                 <span>数据管理</span>
@@ -103,44 +260,17 @@
                                 <i class="iconfont icon-set"></i>
                                 <span>网站配置</span>
                             </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
-                                <span>分院管理</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                            <ul class="collapse nav nav-list" id="setting">
-                                <li role="presentation">
-                                    <a href="#">
-                                        <span>分院设置</span>
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#">
-                                        <span>分院管理员设置</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li role="presentation" id="focus">
-                            <a href="#">
-                                <i class="iconfont icon-edit"></i>
-                                <span>批次管理</span>
-                            </a>
-                        </li>
+                        </li>--%>
+                        
                     </ul>
                 </nav>
 
             </div>
 
             <!-- 右侧内容区 -->
-            <div class="page-right-content col-xs-12 col-sm-10 col-md-10 col-lg-11">
+            <div class="page-right-content col-xs-12 col-sm-10 col-md-10 col-lg-11" id="content">
                 <article class="">
-                    <header class="">
-                        <p>这是内容区</p>
-                    </header>
-
+                   <iframe id="iframe" style="margin-top:20px;" frameborder="0" scrolling="auto" src="../newsList.aspx" width="100%"></iframe>
                 </article>
             </div>
         </div>
@@ -152,6 +282,8 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script>
+        
+
         autodivheight();
 
         //获取页面高度
@@ -179,7 +311,6 @@
             document.getElementById("moddle").style.height = winHeight - moddleheight + "px";
         }
         window.onresize = autodivheight; //浏览器窗口发生变化时同时变化DIV高度//
-
         //TODO 只有第一个>符号可以旋转，另一个未完成
         function xuanz() {
             x = document.getElementById("trans");
@@ -190,6 +321,24 @@
                 x.style.transform = "";
             }
         }
+
+        function gethref(val) {
+            document.getElementById("iframe").src = val;
+        }
+        var h = document.documentElement.clientHeight - 110;
+        x = document.getElementById("iframe");
+        x.height = h
+
+        window.onresize = function () {
+            var h = document.documentElement.clientHeight -110;
+            x = document.getElementById("iframe");
+            x.height = h
+        }
+
+        $(".sidebarclick").click(function () {
+            gethref($(this).attr("href"));
+            return false
+        });
     </script>
 </body>
 

@@ -36,6 +36,7 @@ namespace PMS.Web
                         else {
                             loginstate = 1;
                             Session["loginuser"] = tea;
+                            Session["state"] = 1;
                         }
                         break;
                     case "student":
@@ -49,7 +50,8 @@ namespace PMS.Web
                         {
                             loginstate = 1;
                             Session["loginuser"] = stu;
-                        }
+                            Session["state"] = 2;
+                            }
                         break;
                 }
                     if (loginstate == 0)
