@@ -216,6 +216,10 @@ $(document).ready(function () {
         } else if (!txtEmail.test(Email)) {
             $("#validateEmailE").html("邮箱地址不合法").css("color", "red");
         } else {
+            $("#validateNameE").html("");
+            $("#validatePwd").html("");
+            $("#validateTelE").html("");
+            $("#validateEmailE").html("");
             $.ajax({
                 type: 'Post',
                 url: 'adminList.aspx',
