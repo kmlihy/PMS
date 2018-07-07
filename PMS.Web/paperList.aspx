@@ -149,11 +149,10 @@
             success: function(succ) {                           
                 if(succ == "选题成功"){
                     alert(succ);
-                    //jump(parseInt(sessionStorage.getItem("page")));
+                    window.location.href = "PaperDtailStu.aspx?titleId=" + titleid;
                 }
                 else{
-                    alert("选题成功")
-                    //jump(parseInt(sessionStorage.getItem("page")));
+                    alert("选题失败");                
                 }                            
             }
         });
