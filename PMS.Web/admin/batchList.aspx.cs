@@ -18,7 +18,7 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
         protected int count;
         protected int getCurrentPage = 1;
-        protected int pagesize = 4;
+        protected int pagesize = 3;
         protected String search = "";
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
@@ -31,18 +31,18 @@ namespace PMS.Web.admin
             {
                 getdata(Search());
                 colds = colBll.Select();
-            }
-            if (op == "add")//添加
-            {
-                savePlan();
-            }
-            if (editorOp == "editor")//编辑
-            {
-                EditorPlan();
-            }
-            if (delOp == "del")//删除
-            {
-                deletePlan();
+                if (op == "add")//添加
+                {
+                    savePlan();
+                }
+                if (editorOp == "editor")//编辑
+                {
+                    EditorPlan();
+                }
+                if (delOp == "del")//删除
+                {
+                    deletePlan();
+                }
             }
         }
         //编辑批次
@@ -74,19 +74,15 @@ namespace PMS.Web.admin
                 if (EditorResult == Result.更新成功)
                 {
                     Response.Write("更新成功");
-                    //Response.End();
+                    Response.End();
                 }
                 else
                 {
                     Response.Write("更新失败");
-                    //Response.End();
+                    Response.End();
                 }
             }
             catch(Exception ex) { Response.Write(ex.Message); }
-            finally
-            {
-                Response.End();
-            }
         }
         //添加
         public void savePlan()
@@ -159,7 +155,7 @@ namespace PMS.Web.admin
         {
             try {
                 search = Request.QueryString["search"];
-                if (search.Length == 0)
+                if(search.Length == 0)
                 {
                     search = "";
                 }

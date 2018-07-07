@@ -66,10 +66,15 @@
             </div>
         </div>
     </body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <script src="js/zwh.js"></script>
     <script>
+        if ($("#userName").val() === "") {
+            content = "用户名不能为空！";
+        } else if ($("#pwd").val() === "") {
+            content = "密码不能为空！";
+        }
     </script>
 
     </html>

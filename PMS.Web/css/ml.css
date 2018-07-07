@@ -6,10 +6,10 @@ a {
     color: black;
 }
 
-a:hover {
-    color: #013A58;
-    text-decoration: none;
-}
+    a:hover {
+        color: rgb(12, 161, 241);
+        text-decoration: none;
+    }
 
 .big-box {
     margin-top: 30px !important;
@@ -27,9 +27,9 @@ a:hover {
     border-top: 2px solid #013A58;
 }
 
-/*#school-table span {
+#school-table span {
     color: #013A58;
-}*/
+}
 
 #school-word a {
     float: right;
@@ -59,9 +59,9 @@ a:hover {
     公告表格样式二次修改
     news.aspx
 */
-/*.panel .panel-body {
+.panel .panel-body {
     margin-top: -40px;
-}*/
+}
 
 .text-right span{
     font-family:"仿宋";
@@ -81,66 +81,4 @@ a:hover {
     position:relative !important;
     margin-top:-55px !important;
     margin-left:200px !important;
-}
-#btn-back{
-    float:right;
-}
-/*paperDetailStu*/
-/*题目信息页面panel面板调整*/
-.title_head{
-    border-bottom:2px solid #013A58;
-}
-.title_content{
-    font-size:20px;
-    position:relative;
-    padding:20px 20px 20px 20px;
-}
-.detail_panel{
-    margin-top:-30px;
-    margin-bottom:20px;
-}
-/*选定题目按钮样式*/
-#btn_ToPaperDtailStu{
-    float:right;
-    margin:-4px;
-}
-#teapanelbox{
-    background-color:#f5f5f5;
-}
-.detail_info{
-    margin-top:7px;
-}
-#btn_back{
-    float:right;
-    margin-top:-2px;
-}
-#page_head{
-    padding-top:10px;
-    padding-left:10px;
-    padding-right:10px;
-}
-/*公告信息页面head样式*/
-.news_pageHead{
-    padding-top:0px;
-    padding-left:10px;
-    padding-right:10px;
-}
-#news_btn_back{
-    float:right;
-    margin-top:8px;
-}
-/*公告列表页面表格时间列样式*/
-.newsList_td{
-    width:100px;
-}
-
-/*所有公告页面表格样式*/
-#allNews_table{
-    margin-top:30px;
-}
-#allNews_timeTD{
-    width:100px;
-}
-#allNews_timeTH{
-    width:100px;
 }

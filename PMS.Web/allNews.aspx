@@ -15,57 +15,59 @@
 
 <body>
     <div class="container-fluid table-bordered img-rounded col-lg-10 col-lg-offset-1">
-        <div class="container-fluid h2 text-danger"><%=newsType %></div>
-        <table class="table table-hover" id="allNews_table">
-            <thead>
-                <th>
-                    <label for="title">标题</label>
-                </th>
-                <th class="text-center" id="allNews_timeTH">发布时间</th>
-            </thead>
-            <tbody>
-                <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    { %>
-                <tr>
-                    <td>
-                        <a href="news.aspx?newid=<%=ds.Tables[0].Rows[i]["newsId"].ToString()  %>"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
-                    </td>
-                    <td class="text-center" id="allNews_timeTD">
-                        <% DateTime dt = DateTime.Parse(ds.Tables[0].Rows[i]["createTime"].ToString()); %>
-                        <%=string.Format("{0:yyyy-MM-dd}",dt) %>
-                    </td>
-                </tr>
-                <%} %>
-            </tbody>
-        </table>
-        <div class="container-fluid text-right">
-            <ul class="pagination pagination-sm">
-                <li>
-                    <a href="#" class="jump">首页</a>
-                </li>
-                <li>
-                    <a href="#" class="jump">
-                        <span class="iconfont icon-back" style="font-size: 11px;"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="jump">第 <%=getCurrentPage %> 页</a>
-                </li>
-                <li>
-                    <% if (count == 0) { count = 1; } %>
-                    <a href="#">总共：<%=count %> 页</a>
-                </li>
-                <li>
-                    <a href="#" class="jump">
-                        <span class="iconfont icon-more" style="font-size: 11px;"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="jump">尾页</a>
-                </li>
-            </ul>
-        </div>
-        <%--<div class="container-fluid text-right">
+        <ul class="list-unstyled">
+            <table class="table table-hover">
+                <thead>
+                    <th>
+                        <label for="title"><%=newsType %></label></th>
+                    <th>发布时间</th>
+                </thead>
+                <tbody>
+                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        { %>
+                    <tr>
+                        <td>
+                            <li>
+                                <a href="news.aspx?newid=<%=ds.Tables[0].Rows[i]["newsId"].ToString()  %>"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
+                            </li>
+                        </td>
+                        <td>
+                            <li><%=ds.Tables[0].Rows[i]["createTime"].ToString() %></li>
+                        </td>
+                    </tr>
+                    <%} %>
+                </tbody>
+            </table>
+            <li>
+                <div class="container-fluid text-center">
+                    <ul class="pagination pagination-sm">
+                        <li>
+                            <a href="#" class="jump">首页</a>
+                        </li>
+                        <li>
+                            <a href="#" class="jump">
+                                <span class="iconfont icon-back" style="font-size:11px;"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="jump">第 <%=getCurrentPage %> 页</a>
+                        </li>
+                        <li>
+                            <% if (count == 0) { count = 1; } %>
+                            <a href="#">总共：<%=count %> 页</a>
+                        </li>
+                        <li>
+                            <a href="#" class="jump">
+                                <span class="iconfont icon-more" style="font-size:11px;"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="jump">尾页</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <%--<div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
                         <a href="#" class="jump" id="prev">上一页
@@ -87,6 +89,7 @@
                     </li>
                 </ul>
             </div>--%>
+        </ul>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>

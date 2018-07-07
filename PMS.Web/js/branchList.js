@@ -58,19 +58,6 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
-    //验证分院输入框的失去焦点事件
-    $("#insertColl").blur(function () {
-        var collegeName = $("#insertColl").val();
-        var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
-        if (collegeName === "") {
-            $("#validate").html("学院名不能为空").css("color", "red");
-        }
-        else if (!pattern_chin.test(collegeName)) {
-            $("#validate").html("学院名必须为汉字").css("color", "red");
-        } else {
-            $("#validate").html("");
-        }
-    })
     //添加分院对象
     $("#saveCollege").click(function () {
         var collegeName = $("#insertColl").val();
@@ -91,19 +78,8 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "添加成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    }
+                    alert(succ);
+                    jump(parseInt(sessionStorage.getItem("page")));
                 }
             });
         }
@@ -126,14 +102,9 @@ $(document).ready(function () {
     $("#saveEdit").click(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
-        var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
-        if (name == "") {
-            $("#validateEdit").html("学院名不能为空").css("color", "red");
-        }
-        else if (!pattern_chin.test(name)) {
-            $("#validateEdit").html("学院名必须为汉字").css("color", "red");
+        if (name === "") {
+            alert("请输入分院名称");
         } else {
-            $("#validateEdit").html("");
             $.ajax({
                 type: 'Post',
                 url: 'branchList.aspx',
@@ -144,19 +115,8 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "更新成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    }
+                    alert(succ);
+                    jump(parseInt(sessionStorage.getItem("page")));
                 }
             });
         }
@@ -178,24 +138,13 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        if (succ == "删除成功") {
-                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                                onOk: function (v) {
-                                    jump(parseInt(sessionStorage.getItem("page")));
-                                }
-                            });
-                        } else {
-                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                                onOk: function (v) {
-                                    jump(parseInt(sessionStorage.getItem("page")));
-                                }
-                            });
-                        }
+                        alert(succ);
+                        jump(parseInt(sessionStorage.getItem("page")));
                     }
                 });
             }
         }
-        window.wxc.xcConfirm(txt, "warning", option);
+        window.wxc.xcConfirm(txt, "custom", option);
     })
     //批量删除
     $("#btn-Del").click(function (){
@@ -210,19 +159,5 @@ $(document).ready(function () {
             }
         });
             alert(strgetSelectValue);
-    })
-    //批量导入
-    $(".file").on("change", "input[type='file']", function () {
-        var filePath = $(this).val();
-        if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
-            $(".fileerrorTip").html("").hide();
-            var arr = filePath.split('\\');
-            var fileName = arr[arr.length - 1];
-            $(".showFileName").html(fileName);
-        } else {
-            $(".showFileName").html("");
-            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
-            return false
-        }
     })
 })

@@ -4,22 +4,33 @@ sessionStorage.setItem("page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
-
+//查询按钮事件
+$("#btn-search").click(function () {
+    var strWhere = $("#inputsearch").val();
+    sessionStorage.setItem("strWhere", strWhere);
+    sessionStorage.setItem("type","btn")
+    jump(1);
+});
 //下拉框查询
 $(".selectdrop").change(function () {
-    var strWhere = $("#selectdrop").find("option:selected").text();
-    alert(strWhere);
-    sessionStorage.setItem("strWhere", strWhere);
+    var dropstrWhere = $("#selectdrop").find("option:selected").text();
+    sessionStorage.setItem("dropstrWhere", dropstrWhere);
+    sessionStorage.setItem("type", "drop");
     jump(1);
 })
 function jump(cur) {
-    if (sessionStorage.getItem("strWhere") == null) {
+    if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
         window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-    } else {
-        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+    } else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere") == null) {
+        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
+    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") == null) {
+        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropsearch=" + sessionStorage.getItem("dropstrWhere")+"&type=" + sessionStorage.getItem("type");
+    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") != null) {
+        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropsearch=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
     }
 };
 $(document).ready(function () {
+    sessionStorage.setItem("type", "");
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -50,13 +61,8 @@ $(document).ready(function () {
                 break;
         }
     });
-    //查询按钮事件
-    $("#btn-search").click(function () {
-        var strWhere = $("#inputsearch").val();
-        sessionStorage.setItem("strWhere", strWhere);
-        jump(1);
-    });
-//传查询值到后台
+
+    //传查询值到后台
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null) {
             window.location.href = "selectTopicList.aspx?currentPage=" + cur;

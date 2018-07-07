@@ -16,36 +16,6 @@
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/xcConfirm.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
-    <style>
-        .file {
-            position: relative;
-            display: inline-block;
-            background: #337ab7;
-            border: 1px solid #337ab7;
-            border-radius: 4px;
-            padding: 4px 12px;
-            overflow: hidden;
-            color: #fff;
-            text-decoration: none;
-            text-indent: 0;
-            line-height: 20px;
-        }
-
-            .file input {
-                position: absolute;
-                font-size: 100px;
-                right: 0;
-                top: 0;
-                opacity: 0;
-            }
-
-            .file:hover {
-                background: #286090;
-                border-color: #286090;
-                color: #fff;
-                text-decoration: none;
-            }
-    </style>
 </head>
 
 <body>
@@ -65,7 +35,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal">
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal" >
                         <span class="glyphicon glyphicon-plus-sign"></span>
                         批量导入
                     </button>
@@ -171,8 +141,8 @@
                                     <label class="text-span">学院名称</label>
                                 </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="insertColl" />
-                                    <span id="validate"></span>
+                                    <input class="form-control teaAddinput" type="text" id="insertColl"  />
+                                <span id="validate"></span>
                                 </td>
                             </tr>
                         </tbody>
@@ -200,20 +170,9 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>
-                                    <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="brannchList.aspx?op=upload">
-                                        <div>
-                                            <a href="javascript:;" class="file">选择文件
-                                                <input type="file" name="upload" id="upload" />
-                                            </a>
-                                            <label class="showFileName"></label>
-                                            <label class="fileerrorTip"></label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary" id="btnupload">上传</button>
-                                    </form>
+                                <td class="teaLable text-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
                                 </td>
-                            </tr>
-                            <tr>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
                                 </td>
@@ -243,7 +202,6 @@
                                     <label class="text-span">学院名称</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="editColl" />
-                                    <span id="validateEdit"></span>
                                 </td>
                             </tr>
                         </tbody>
