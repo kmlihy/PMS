@@ -58,7 +58,7 @@ $(document).ready(function () {
         $("#first").hide();
         $("#last").hide();
     }
-    //添加分院对象
+    //验证分院输入框的失去焦点事件
     $("#insertColl").blur(function () {
         var collegeName = $("#insertColl").val();
         var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
@@ -71,6 +71,7 @@ $(document).ready(function () {
             $("#validate").html("");
         }
     })
+    //添加分院对象
     $("#saveCollege").click(function () {
         var collegeName = $("#insertColl").val();
         var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式

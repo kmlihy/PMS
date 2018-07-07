@@ -219,7 +219,7 @@ namespace PMS.Web.admin
                     //文件格式   
                     string tp = System.IO.Path.GetExtension(filename);
 
-                    if (tp == ".xls" || tp == "xlsx")
+                    if (tp == ".xls" || tp == ".xlsx")
                     {
                         DirectoryInfo dir;
                         //将文件导入服务器
