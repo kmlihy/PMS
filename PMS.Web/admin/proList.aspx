@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 <body>
     <div class="container-fluid big-box">
@@ -31,7 +32,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal" >
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal">
                         <span class="glyphicon glyphicon-plus-sign"></span>
                         批量导入
                     </button>
@@ -43,12 +44,12 @@
             </div>
         </div>
         <div class="" id="protab">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover" id="proTable">
                 <thead>
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">序号</th>
+                    <th class="text-center">编号</th>
                     <th class="text-center">专业名称</th>
                     <th class="text-center">所属分院</th>
                     <th class="text-center">操作</th>
@@ -60,7 +61,9 @@
                         <td class="text-center td-check">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center" id="tdproId"><%=ds.Tables[0].Rows[i]["proId"].ToString() %></td>
+                        <td class="text-center" id="tdproId">
+                            <%=ds.Tables[0].Rows[i]["proId"].ToString() %>
+                        </td>
                         <td class="text-center" id="tdproName"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
                         <td class="text-center" id="tdcollegeName"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
@@ -172,7 +175,7 @@
                                     <td class="teaLable">
                                         <label class="text-span">专业名称:</label></td>
                                     <td>
-                                        <input class="form-control teaAddinput" type="text" id="proName"/>
+                                        <input class="form-control teaAddinput" type="text" id="proName" />
                                         <span id="validata"></span>
                                     </td>
                                 </tr>
@@ -212,15 +215,15 @@
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                             <%} %>
                                         </select>
-                                        <input class="form-control col-sm-3" data-width="auto"  type="text" id="colname" readonly="true" />
+                                        <input class="form-control col-sm-3" data-width="auto" type="text" id="colname" readonly="true" />
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">专业名称:</label></td>
                                     <td>
-                                        <input class="form-control col-sm-3" data-width="auto"  type="text" id="p_proName" readonly="true"/>
+                                        <input class="form-control col-sm-3" data-width="auto" type="text" id="p_proName" readonly="true" />
                                         <span id="validate"></span>
                                     </td>
                                 </tr>
@@ -245,4 +248,5 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/lgd.js"></script>
 <script src="../js/proList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>

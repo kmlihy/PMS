@@ -119,7 +119,6 @@ $(document).ready(function () {
             alert("不能含有空项")
         }
         else {
-            alert("ajax");
             $.ajax({
                 type: 'Post',
                 url: 'teaList.aspx',
@@ -136,8 +135,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(1);
+                    if (succ == "添加成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -283,8 +293,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(1);
+                    if (succ == "修改成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             });
             $(".btnch").show();
@@ -305,8 +326,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(parseInt(sessionStorage.getItem("Page")))
+                    if (succ == "删除成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             })
         } else {
