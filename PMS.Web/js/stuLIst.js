@@ -35,6 +35,10 @@ $(document).ready(function () {
                 break;
         }
     });
+    if (sessionStorage.getItem("countPage") == "1") {
+        $("#first").hide();
+        $("#last").hide();
+    }
     //查询
     $("#search").click(function () {
         var strWhere = $("#inputsearch").val();

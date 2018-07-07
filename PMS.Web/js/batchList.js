@@ -1,7 +1,7 @@
 ﻿//时间选择器
 $(function () {
     $(".datetimepicker").datepicker({
-        dateFormat: 'yy/mm/dd',//显示日期格式
+        dateFormat: 'yy-mm-dd',//显示日期格式
         //英文转中文
         dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
         monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
@@ -13,9 +13,6 @@ sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
 $(document).ready(function () {
-    //$("#btn-Del").click(function () {
-    //    alert(sessionStorage.getItem("page") + sessionStorage.getItem("countPage"));
-    //})
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -58,6 +55,9 @@ $(document).ready(function () {
         sessionStorage.setItem("strWhere", strWhere);
         jump(1);
     });
+    //查询条件获取框隐藏
+    $("#val_search").hide();
+    
     //地址栏显示信息
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null) {
@@ -68,66 +68,102 @@ $(document).ready(function () {
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
-    if (sessionStorage.getItem("count") === "1") {
-        $("#first").hide();
+    if (sessionStorage.getItem("countPage") == "1") {
         $("#last").hide();
+        $("#first").hide();
+    }
+    else {
+        $("#last").show();
+        $("#first").show();
     }
     //新增模态框验证
-    var pattern_chin = /[\u4e00-\u9fa5]/g;//汉字的正则表达式
-    var pattern_time = /\d{4}-\d{1,2}-\d{1,2}/; //日期格式
+    //var pattern_chin = /[\u4e00-\u9fa5]/g;//汉字的正则表达式
+    //日期格式
     //批次输入框验证
+    //$("#planName").blur(function () {
+    //    var planName = $(this).val();
+    //    //alert(planName);
+    //    if (planName !== "") {
+    //        $("#p_name").hide();
+    //        var matchResult = planName.match(pattern_chin);
+    //        if (matchResult == null) {
+    //            $("#p_name").show();
+    //            $("#p_name").html("请输入中文").css("color", "red");
+    //        }
+    //        else {
+    //            $("#p_name").hide();
+    //        }
+    //    }
+    //    else {
+    //        $("#p_name").html("批次名称不能为空").css("color","red");
+    //    }
+    //})
+    //开始时间输入框验证
+    //$("#startTime").blur(function () {
+    //    var startTime = $(this).val();
+    //    if (startTime == null) {
+    //        $("#p_start").hide();
+    //    }
+    //    else {
+    //        $("#p_start").show();
+    //        $("#p_start").html("开始时间不能空！").css("color", "red");
+    //    }
+    //})
+    //结束时间框验证
+    //$("#endTime").blur(function () {
+    //    var endTime = $(this).val();
+    //    if (endTime == null) {
+    //        $("#p_end").hide();
+    //    }
+    //    else {
+    //        $("#p_end").show();
+    //        $("#p_end").html("结束时间不能空！").css("color", "red");
+    //    }
+    //})
+    //添加批次
+
+    //批次名称验证
     $("#planName").blur(function () {
         var planName = $(this).val();
-        //alert(planName);
-        if (planName !== "") {
-            $("#p_name").hide();
-            var matchResult = planName.match(pattern_chin);
-            if (matchResult == null) {
-                $("#p_name").show();
-                $("#p_name").html("请输入中文").css("color", "red");
-            }
-            else {
-                $("#p_name").hide();
-            }
-        }
-        else {
-            $("#p_name").html("批次名称不能为空").css("color","red");
+        var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/;
+        if (!pattern.test(planName)) {
+            $("#p_name").html("批次名称不能含有特殊字符且不能是数字").css("color", "red")
         }
     })
-    //开始时间输入框验证
+    $("#planName").focus(function () {
+        $("#p_name").html("");
+    })
+    //批次开始时间验证
     $("#startTime").blur(function () {
+        var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;//日期格式验证
         var startTime = $(this).val();
-        if (startTime == null) {
-            $("#p_start").hide();
-        }
-        else {
-            $("#p_start").show();
-            $("#p_start").html("开始时间不能空！").css("color", "red");
+        if (!reg.test(startTime)) {
+            $("#p_start").html("请输入正确的日期格式!").css("color", "red");
         }
     })
-    //结束时间框验证
+    $("#startTime").focus(function () {
+        $("#p_start").html("");
+    })
+    //批次结束时间验证
     $("#endTime").blur(function () {
-        var endTime = $(this).val();
-        if (endTime == null) {
-            $("#p_end").hide();
-        }
-        else {
-            $("#p_end").show();
-            $("#p_end").html("结束时间不能空！").css("color", "red");
+        var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;//日期格式验证
+        var startTime = $(this).val();
+        if (!reg.test(startTime)) {
+            $("#p_end").html("请输入正确的日期格式!").css("color", "red");
         }
     })
-    //添加批次
+    $("#endTime").focus(function () {
+        $("#p_end").html("");
+    })
+    //提交添加信息
     $("#savePlan").click(function () {
         var planName = $("#planName").val(),
             startTime = $("#startTime").val(),
             endTime = $("#endTime").val(),
             state = $("#state").find("option:selected").val(),
             college = $("#collegeId").find("option:selected").val();
-        if (startTime == null) {
-            $("#p_start").html("开始时间不能空！").css("color", "red");
-        }
-        else if (endTime == null) {
-            $("#p_end").html("结束时间不能空！").css("color", "red");
+        if (planName == "" || startTime == "" || endTime == "" || state == "" || college == "") {
+            alert("不能出现未填项！");
         }
         else {
             $("#p_start").hide(); $("#p_end").hide();
@@ -144,8 +180,19 @@ $(document).ready(function () {
                 },
                 dateType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(1);
+                    if (succ == "添加成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             })
         }
@@ -239,8 +286,19 @@ $(document).ready(function () {
             },
             dataType: 'text',
             success: function (succ) {
-                alert(succ);
-                jump(1);
+                if (succ == "更新成功") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            jump(1);
+                        }
+                    });
+                } else {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            jump(1);
+                        }
+                    });
+                }
             }
         })
     })
@@ -259,8 +317,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(parseInt(sessionStorage.getItem("page")));
+                    if (succ == "删除成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    }
                 }
             })
         }
