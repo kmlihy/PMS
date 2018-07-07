@@ -61,13 +61,14 @@
                                 登录
                             </button>
                         </div>
+                        <input type="text" value="<%=code %>" id="checkCode" />
                     </div>
                 </form>
             </div>
         </div>
     </body>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/zwh.js"></script>
     <script>
     </script>

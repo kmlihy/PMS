@@ -58,11 +58,7 @@ namespace PMS.Web
                             }
                             break;
                     }
-                    if (loginstate == 0)
-                    {
-                        Response.Write("<script>alert('登录失败');</script>");
-                    }
-                    else if (loginstate == 1)
+                    if (loginstate == 1)
                     {
                         Response.Redirect("admin/main.aspx");
                     }
@@ -81,7 +77,7 @@ namespace PMS.Web
 
             }
         }
-  
+
 
         /// <summary>
         /// 验证前台页面的数据
@@ -89,6 +85,7 @@ namespace PMS.Web
         /// <returns></returns>
         public string vildata() {
             string alertmsg = "";
+            code = Session["code"].ToString().ToLower();
             if (userName == null) {
                 alertmsg = "用户名不能为空";
             }
