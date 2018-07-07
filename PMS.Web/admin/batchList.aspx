@@ -16,14 +16,15 @@
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
     <link rel="stylesheet" href="../css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
     <div class="container-fluid panel bacthBox">
         <div class="panel panel-default" id="teapanelbox">
-            <div class="pane input-group" id="panel-head">
+            <div class="input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch"/>
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search" id="search">查询</span>
@@ -47,11 +48,11 @@
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">序号</th>
+                    <th class="text-center">批次编号</th>
                     <th class="text-center">批次名</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>
-                    <th class="text-center">激活状态、</th>
+                    <th class="text-center">激活状态</th>
                     <th class="text-center">所属学院</th>
                     <th class="text-center">操作</th>
                 </thead>
@@ -105,7 +106,7 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump">首页</a>
+                        <a href="#" class="jump" id="first">首页</a>
                     </li>
                     <li>
                         <a href="#" class="jump" id="prev">
@@ -130,7 +131,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="jump">尾页</a>
+                        <a href="#" class="jump" id="last">尾页</a>
                     </li>
                 </ul>
             </div>
@@ -296,6 +297,7 @@
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
+    <span id="val_search"><%=search %></span>
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -305,4 +307,5 @@
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/batchList.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>
