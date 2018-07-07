@@ -61,7 +61,6 @@
                                 登录
                             </button>
                         </div>
-                        <input type="text" value="<%=code %>" id="checkCode" />
                     </div>
                 </form>
             </div>
