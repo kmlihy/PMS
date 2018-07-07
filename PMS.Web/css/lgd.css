@@ -133,10 +133,6 @@
     margin-left: 6px;
 }
 
-#btn-search {
-    margin-left: -5px;
-}
-
 .teaAddinput {
     width: 200px;
 }
@@ -144,11 +140,9 @@
 .text-span {
     margin-top: 7px;
 }
-
 .teaLable {
     text-align: right;
 }
-
 .modal-body .table {
     margin-left: 80px;
     width: 80%;
@@ -157,6 +151,9 @@
 .modal-body #selecttab {
     margin-left: 0;
     width: 100%;
+}
+.modal-body {
+    margin-left: -80px;
 }
 
 #panel-head {
@@ -168,12 +165,20 @@
     margin-top: 8px;
 }
 
-#btn-Add {
+#btn-Add, #btn-Del, #btn-Adds, #inputsearch {
     margin-left: 5px;
 }
 
-#btn-Del {
-    margin-left: 5px;
+#chooseStuPro, #choosePlan {
+    height: 34px;
+    width: 200px;
+    margin-left:5px;
+    float:left;
+    border-radius:4px;
+}
+
+#btn-search {
+    margin-left: -5px;
 }
 
 #teapanelbox {
@@ -198,7 +203,4 @@
 /*选题记录*/
 .hidemsg {
     display: none;
-}
-#btn-Adds {
-margin-left:5px;
 }
