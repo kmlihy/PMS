@@ -80,6 +80,66 @@ $(document).ready(function () {
         $("#validateTel").html("");
 
     })
+    //账号文本框失去焦点事件
+    $("#Iaccount").blur(function () {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        } else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        } else {
+            $("#validateAccount").html("");
+        }
+    })
+    //姓名文本框失去焦点事件
+    $("#Iname").blur(function () {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        } else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        } else {
+            $("#validateAccount").html("");
+        }
+    })
+    //姓名文本框失去焦点事件
+    $("#Isex").blur(function () {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        } else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        } else {
+            $("#validateAccount").html("");
+        }
+    })
+    //姓名文本框失去焦点事件
+    $("#Icoll").blur(function () {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        } else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        } else {
+            $("#validateAccount").html("");
+        }
+    })
+    //邮箱文本框失去焦点事件
+    $("#Iemail").blur(function () {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        } else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        } else {
+            $("#validateAccount").html("");
+        }
+    })
+    //联系电话文本框失去焦点事件
+    $("#Iphone").blur(function () {
+        if (account == "") {
+            $("#validateAcoount").html("账号不能为空！").css("color", "red");
+        } else if (!txtAccount.test(account)) {
+            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
+        } else {
+            $("#validateAccount").html("");
+        }
+    })
     //添加分院管理员对象
     $("#btnInsert").click(function () {
         var account = $("#Iaccount").val(),
@@ -130,9 +190,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    //alert(succ);
-                    window.wxc.xcConfirm("succ", window.wxc.xcConfirm.typeEnum.success);
-                    jump(1);
+                    if (succ == "添加成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -235,8 +305,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(1);
+                    if (succ == "更新成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -260,12 +341,23 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        alert(succ);
-                        jump(parseInt(sessionStorage.getItem("page")));
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
                     }
                 });
             }
         }
-        window.wxc.xcConfirm(txt, "custom", option);
+        window.wxc.xcConfirm(txt, "warning", option);
     })
 })

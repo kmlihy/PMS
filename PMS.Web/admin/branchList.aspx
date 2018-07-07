@@ -142,7 +142,7 @@
                                 </td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="insertColl"  />
-                                <span id="validate"></span>
+                                    <span id="validate"></span>
                                 </td>
                             </tr>
                         </tbody>
@@ -202,6 +202,7 @@
                                     <label class="text-span">学院名称</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="editColl" />
+                                    <span id="validateEdit"></span>
                                 </td>
                             </tr>
                         </tbody>
