@@ -73,7 +73,7 @@
                 <nav role="navigation" class="row">
                     <ul class="nav nav-list nav-stacked">
                         <%
-                            if (State == 2)
+                            if (State == 3)
                             { %>
                         <!-- 学生 -->
                         <li role="presentation">
@@ -262,9 +262,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>--%>
-                        <%} %>
-<%--                        <li role="presentation">
+                        </li><li role="presentation">
                             <a href="#datasetting" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-jifen"></i>
                                 <span>数据管理</span>
@@ -289,7 +287,76 @@
                                 <span>网站配置</span>
                             </a>
                         </li>--%>
-                        
+                        <%}
+                            else if (State == 2)
+                            { %>
+                        <!-- 管理员 -->
+                        <li role="presentation">
+                            <a href="#glygonggao" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>公告管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="glygonggao">
+                                <li role="presentation">
+                                    <a href="../newsList.aspx" class="sidebarclick" >
+                                        <span>公告列表</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="#role" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>基本信息管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="role">
+                                <li role="presentation">
+                                    <a href="proList.aspx" class="sidebarclick" >
+                                        <span>专业信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="teaList.aspx" class="sidebarclick" >
+                                        <span>教师信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="stuLIst.aspx" class="sidebarclick" >
+                                        <span>学生信息</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="#xuanti" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>选题管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="xuanti">
+                                <li role="presentation">
+                                    <a href="titleList.aspx" class="sidebarclick" >
+                                        <span>题目信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="batchList.aspx" class="sidebarclick" >
+                                        <span>批次信息</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="selectTopicList.aspx" class="sidebarclick" >
+                                        <span>选题记录</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <%} %>
                     </ul>
                 </nav>
 
