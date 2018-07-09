@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="paperList.aspx.cs" Inherits="PMS.Web.paperList" %>
+
 <%= "" %>
 
 <!DOCTYPE html>
@@ -22,14 +23,11 @@
         <table class="table table-striped paperlisttable text-center">
             <thead>
                 <tr>
-                    <th class="text-center">
-                        论文题目
+                    <th class="text-center">论文题目
                     </th>
-                    <th class="text-center">
-                        已选人数/人数上限
+                    <th class="text-center">已选人数/人数上限
                     </th>
-                    <th class="text-center">
-                        状态
+                    <th class="text-center">状态
                     </th>
                 </tr>
             </thead>
@@ -37,10 +35,10 @@
                 <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {  %>
                 <tr>
-                    <td>
+                    <td style="width:400px;">
                         <a href="paperDetail.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>"><%=ds.Tables[0].Rows[i]["title"].ToString()%></a>
                     </td>
-                    <td><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
+                    <td style="width:400px;"><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
                     </td>
                     <td>
                         <a class="btn btn-primary selectTitle" id="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>
@@ -142,20 +140,27 @@
         }
     });
     $(".selectTitle").click(function(){
-        var titleid = $(this).attr("id");
-        $.ajax({
-            type: 'Post',
-            url: 'paperList.aspx?titleId=' + titleid + "&op=selectTitle",
-            success: function(succ) {                           
-                if(succ == "选题成功"){
-                    alert(succ);
-                    window.location.href = "PaperDtailStu.aspx?titleId=" + titleid;
+        var result = confirm("您确定要选题吗？若要查看题目详情可直接点击题目！");
+        if(result == true){
+            var titleid = $(this).attr("id");
+            $.ajax({
+                type: 'Post',
+                url: 'paperList.aspx?titleId=' + titleid + "&op=selectTitle",
+                success: function(succ) {                           
+                    if(succ == "选题成功"){
+                        alert(succ);
+                        window.location.href = "PaperDtailStu.aspx?titleId=" + titleid;
+                    }
+                    else if(succ=="已选题")
+                    {
+                        alert("您已经选过题目，不能多次选题！");                
+                    }                            
                 }
-                else{
-                    alert("选题失败");                
-                }                            
-            }
-        });
+            });
+        }else
+        {
+        
+        }
     })
 </script>
 </html>
