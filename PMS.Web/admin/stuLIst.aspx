@@ -32,7 +32,7 @@
                         </option>
                         <%} %>
                     </select>
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch"/>
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search" id="search">查询</span>
