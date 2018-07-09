@@ -177,20 +177,30 @@ $(document).ready(function () {
                 });
             }
         }
-        window.wxc.xcConfirm(txt, "custom", option);
+        window.wxc.xcConfirm(txt, "warning", option);
     })
     //批量删除
-    $("#btn-Del").click(function (){
-        var strgetSelectValue;
-        var getSelectValueMenbers = $(".check:checked").each(function (j) {
-            if (j >= 0) {
-                strgetSelectValue = $(this).val() + ",";
-                strgetSelectValue += $(this).parent().find("#collegeId").val() + ",";
+    $("#btn-Del").click(function () {
+        var selectValue = "";
+        var smObj = document.getElementsByName("checkbox");
+        for (var i = 0; i < smObj.length; i++) {
+            if (smObj[i].checked == true) {
+                selectValue += $(this).next().val() + ",";
+                selectValue += $(this).parent().find("#collegeId").val() + ",";
+            } else {
+                alert("请至少选择一项");
             }
-            else {
-                alert("请选择至少一个");
-            }
-        });
-            alert(strgetSelectValue);
+        }
+        //var strgetSelectValue;
+        //var getSelectValueMenbers = $(".check:checked").each(function (j) {
+        //    if (j >= 0) {
+        //        strgetSelectValue = $(this).val() + ",";
+        //        strgetSelectValue += $(this).parent().find("#collegeId").val() + ",";
+        //        alert(strgetSelectValue);
+        //    }
+        //    else {
+        //        alert("请选择至少一个");
+        //    }
+        //});
     })
 })
