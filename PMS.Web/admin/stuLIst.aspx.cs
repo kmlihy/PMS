@@ -21,6 +21,9 @@ namespace PMS.Web.admin
         protected int count;
         protected int pagesize = 3;
         protected String search = "";
+        protected String searchdrop = "";
+        protected string showstr = null;
+        protected string showinput = null;
 
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
@@ -54,6 +57,92 @@ namespace PMS.Web.admin
             {
                 Search();
             }
+            if (type == "drop")
+            {
+                getdata(Searchdrop());
+            }
+            if (type == "btn")
+            {
+                getdata(Search());
+            }
+
+            //下拉框保留查询条件
+            if(searchdrop == "")
+            {
+                showstr = "-请选择专业-";
+            }
+            else if (searchdrop != null && searchdrop.Length > 0)
+            {
+                string sec = searchdrop.ToString();
+                string[] secArray = sec.Split('=');
+                if (secArray.Length > 0)
+                {
+                    string str = secArray[1].ToString();
+                    showstr = str.Substring(1, str.Length - 2);
+                }
+            }
+
+            //查询按钮保存查询条件
+            if (search == null)
+            {
+                showinput = "请输入查询条件";
+            }
+            else if (search != null && search.Length > 1)
+            {
+                string sec = search.ToString();
+                string[] secArray = sec.Split('%');
+                string str = secArray[1].ToString();
+                showinput = str;
+            }
+
+        }
+        //查询
+        public string Search()
+        {
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format("stuAccount {0} or sex {0} or realName {0} or collegeName {0} or phone {0} or Email {0} or proName {0} ", "like " + "'%" + search + "%'");
+                }
+            }
+            catch
+            {
+            }
+            return search;
+        }
+        //下拉查询保留查询条件
+        public string Searchdrop()
+        {
+            try
+            {
+                searchdrop = Request.QueryString["dropstrWhere"];
+                if (searchdrop.Length == 0)
+                {
+                    searchdrop = "";
+                }
+                else if (searchdrop == null)
+                {
+                    searchdrop = "";
+                }
+                else
+                {
+                    searchdrop = String.Format("proName={0} ", "'"+ searchdrop + "'");
+                }
+            }
+            catch
+            {
+            }
+            return searchdrop;
         }
         //编辑学生
         public void editorStu()
@@ -158,30 +247,6 @@ namespace PMS.Web.admin
             };
             getCurrentPage = int.Parse(currentPage);
             ds = pro.SelectBypage(tabuilder, out count);
-        }
-        //查询
-        public string Search()
-        {
-            try
-            {
-                search = Request.QueryString["search"];
-                if (search.Length == 0)
-                {
-                    search = "";
-                }
-                else if (search == null)
-                {
-                    search = "";
-                }
-                else
-                {
-                    search = String.Format("stuAccount {0} or sex {0} or realName {0} or collegeName {0} or phone {0} or Email {0} or proName {0} ", "like " + "'%" + search + "%'");
-                }
-            }
-            catch
-            {
-            }
-            return search;
         }
         //判断是否能删除学生
         public Result isDeleteStu()
