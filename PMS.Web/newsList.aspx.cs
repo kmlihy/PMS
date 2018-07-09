@@ -16,6 +16,7 @@ namespace PMS.Web
         protected DataSet dsAdmin = null;
         protected DataSet dsTea = null;
         int intPageCount;
+        protected String userType = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             NewsBll bll = new NewsBll();
@@ -55,6 +56,8 @@ namespace PMS.Web
             tableBuilder2.IntPageNum = 1;
             tableBuilder2.StrWhere = "teaType = 1";
             dsTea = bll.SelectBypage(tableBuilder2, out intPageCount);
+
+            //判断登录者，显示和隐藏公告列表
         }
     }
 }

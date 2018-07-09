@@ -31,6 +31,7 @@ namespace PMS.Web.admin
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
             string del = Context.Request["op"];
+            string type = Request.QueryString["type"];
             if (!Page.IsPostBack)
             {
                 getdata(Search());
@@ -48,6 +49,10 @@ namespace PMS.Web.admin
             if (del == "delete")//删除
             {
                 deleteStu();
+            }
+            if (search != "")
+            {
+                Search();
             }
         }
         //编辑学生
@@ -178,7 +183,6 @@ namespace PMS.Web.admin
             }
             return search;
         }
-
         //判断是否能删除学生
         public Result isDeleteStu()
         {
