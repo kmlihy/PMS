@@ -33,7 +33,7 @@ namespace PMS.Web.admin
             //添加管理员
             if (op == "add")
             {
-                saveAdmin();
+                insertAdmin();
                 Search();
                 getdata(Search());
             }
@@ -47,7 +47,7 @@ namespace PMS.Web.admin
             //删除管理员
             else if (op == "dele")
             {
-                deleteCollege();
+                deleteAdmin();
                 Search();
                 getdata(Search());
             }
@@ -118,7 +118,7 @@ namespace PMS.Web.admin
             return search;
         }
         //添加学院管理员
-        public void saveAdmin()
+        public void insertAdmin()
         {
             string account = Context.Request["account"].ToString();
             string name = Context.Request["name"].ToString();
@@ -197,7 +197,7 @@ namespace PMS.Web.admin
             }
         }
         //判断是否能删除
-        public Result IsdeleteCollege()
+        public Result IsdeleteAdmin()
         {
             string account = Context.Request["Daccount"].ToString();
             Result row = Result.记录不存在;
@@ -212,10 +212,10 @@ namespace PMS.Web.admin
             return row;
         }
         //删除
-        public void deleteCollege()
+        public void deleteAdmin()
         {
             string account = Context.Request["Daccount"].ToString();
-            Result row = IsdeleteCollege();
+            Result row = IsdeleteAdmin();
             if (row == Result.记录不存在)
             {
                 Result result = teabll.Delete(account);

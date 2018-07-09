@@ -143,6 +143,7 @@ $(document).ready(function () {
             });
         }
     })
+    
     //删除分院信息
     $(".btnDlete").click(function () {
         var collegeId = $(this).parent().parent().find(".collegeId").text().trim();

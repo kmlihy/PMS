@@ -165,29 +165,34 @@
                     <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <a href="javascript:;" class="file">选择文件<input type="file" name="upload" id="upload" />
-                                        <label class="showFileName"></label>
-                                        <label class="fileerrorTip"></label>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-primary">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnupload">上传</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary">下载模板</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -229,4 +234,20 @@
 <script src="../js/branchList.js"></script>
 <script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script>
+    //批量导入
+    $(".file").on("change", "input[type='file']", function () {
+        var filePath = $(this).val();
+        if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
+            $(".fileerrorTip").html("").hide();
+            var arr = filePath.split('\\');
+            var fileName = arr[arr.length - 1];
+            $(".showFileName").html(fileName);
+        } else {
+            $(".showFileName").html("");
+            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+            return false
+        }
+    })
+</script>
 </html>
