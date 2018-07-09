@@ -50,7 +50,7 @@ namespace PMS.Web
                         {
                             loginstate = 1;
                             Session["loginuser"] = stu;
-                            Session["state"] = 2;
+                            Session["state"] = 3;
                             }
                         break;
                 }
