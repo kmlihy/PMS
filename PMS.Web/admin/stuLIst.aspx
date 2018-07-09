@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
@@ -366,4 +367,5 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/stuLIst.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>

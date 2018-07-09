@@ -89,6 +89,7 @@ $(document).ready(function () {
             email = $("#Iemail").val(),
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
+        //alert($("#Icoll").val() + " : " + $("#Icoll").find("option:selected").text())
         if (account == "") {
             $("#validateAcoount").html("账号不能为空！").css("color", "red");
         }else if (!txtAccount.test(account)) {
@@ -130,9 +131,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    //alert(succ);
-                    window.wxc.xcConfirm("succ", window.wxc.xcConfirm.typeEnum.success);
-                    jump(1);
+                    if (succ == "添加成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -231,8 +242,19 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(1);
+                    if (succ == "更新成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -256,12 +278,23 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        alert(succ);
-                        jump(parseInt(sessionStorage.getItem("page")));
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
                     }
                 });
             }
         }
-        window.wxc.xcConfirm(txt, "custom", option);
+        window.wxc.xcConfirm(txt, "warning", option);
     })
 })

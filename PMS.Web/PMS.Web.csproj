@@ -102,6 +102,7 @@
     <Content Include="js\addNews.js" />
     <Content Include="js\adminList.js" />
     <Content Include="js\ajaxfileupload.js" />
+    <Content Include="js\allNews.js" />
     <Content Include="js\batchList.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrapValidator.min.js" />
@@ -445,6 +446,8 @@
     <Content Include="obj\Debug\PMS.Web.csproj.CopyComplete" />
     <Content Include="obj\Debug\PMS.Web.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\PMS.Web.csprojAssemblyReference.cache" />
+    <Content Include="upload\学院信息导入Excel文件存储\admin\20180704121643--新建 XLS 工作表.xls" />
+    <Content Include="upload\学院信息导入Excel文件存储\admin\20180706180128-新建 XLS 工作表.xls" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -15,59 +15,68 @@
 
 <body>
     <div class="container-fluid table-bordered img-rounded col-lg-10 col-lg-offset-1">
-        <ul class="list-unstyled">
-            <table class="table table-hover">
-                <thead>
-                    <th>
-                        <label for="title"><%=newsType %></label></th>
-                    <th>发布时间</th>
-                </thead>
-                <tbody>
-                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        { %>
-                    <tr>
-                        <td>
-                            <li>
-                                <a href="news.aspx?newid=<%=ds.Tables[0].Rows[i]["newsId"].ToString()  %>"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
-                            </li>
-                        </td>
-                        <td>
-                            <li><%=ds.Tables[0].Rows[i]["createTime"].ToString() %></li>
-                        </td>
-                    </tr>
-                    <%} %>
-                </tbody>
-            </table>
-            <li>
-                <div class="container-fluid text-center">
-                    <ul class="pagination pagination-sm">
-                        <li>
-                            <a href="#" class="jump">首页</a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">
-                                <span class="iconfont icon-back" style="font-size:11px;"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">第 <%=getCurrentPage %> 页</a>
-                        </li>
-                        <li>
-                            <% if (count == 0) { count = 1; } %>
-                            <a href="#">总共：<%=count %> 页</a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">
-                                <span class="iconfont icon-more" style="font-size:11px;"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">尾页</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <%--<div class="container-fluid text-right">
+        <div class="navbar allNews_pageHead" role="navigation">
+                <span class="h3 text-danger" id="allNews_info">
+                    <%=newsType %>
+                </span>
+                <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="location.href='newsList.aspx'">返回</button>
+            </div>
+        <table class="table table-hover" id="allNews_table">
+            <thead>
+                <th class="text-left">
+                    <label for="title">标题</label>
+                </th>
+                <th class="text-center">
+                    <label for="title">发布者</label>
+                </th>
+                <th class="text-right" id="allNews_timeTH">发布时间</th>
+            </thead>
+            <tbody>
+                <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    { %>
+                <tr>
+                    <td class="text-left col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <a href="news.aspx?newid=<%=ds.Tables[0].Rows[i]["newsId"].ToString()  %>"><%=ds.Tables[0].Rows[i]["newsTitle"].ToString() %></a>
+                    </td>
+                    <td class="text-center col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <%=ds.Tables[0].Rows[i]["teaName"].ToString() %>
+                    </td>
+                    <td class="text-right col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <% DateTime dt = DateTime.Parse(ds.Tables[0].Rows[i]["createTime"].ToString()); %>
+                        <%=string.Format("{0:yyyy-MM-dd}",dt) %>
+                    </td>
+                </tr>
+                <%} %>
+            </tbody>
+        </table>
+        <div class="container-fluid text-right" id="drop_Page">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                        <span class="iconfont icon-back" style="font-size: 11px;"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">第 <%=getCurrentPage %> 页</a>
+                </li>
+                <li>
+                    <% if (count == 0) { count = 1; } %>
+                    <a href="#">总共：<%=count %> 页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                        <span class="iconfont icon-more" style="font-size: 11px;"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
+        </div>
+        <%--<div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
                         <a href="#" class="jump" id="prev">上一页
@@ -89,51 +98,12 @@
                     </li>
                 </ul>
             </div>--%>
-        </ul>
     </div>
+    <span id="page"><%=getCurrentPage %></span>
+    <span id="countPage"><%=count %></span>
+    <span id="newsType"><%=roleId %></span> 
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
-    sessionStorage.setItem("page", <%=getCurrentPage %>);
-    sessionStorage.setItem("countPage",<%=count %>);
-    $(document).ready(function () {
-        //alert(sessionStorage.getItem("page"));
-        $(".jump").click(function () {
-            // alert($.trim($(this).html()));          
-            switch ($.trim($(this).html())) {
-                case ('<span class="iconfont icon-back" style="font-size:11px;"></span>'):
-                    if (parseInt(sessionStorage.getItem("page")) > 1) {
-                        jump(parseInt(sessionStorage.getItem("page")) - 1);
-                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) - 1);
-                        break;
-                    }
-                    else {
-                        jump(1);
-                        break;
-                    }
-                case ('<span class="iconfont icon-more" style="font-size:11px;"></span>'):
-                    if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                        jump(parseInt(sessionStorage.getItem("page")) + 1);
-                        sessionStorage.setItem("page", parseInt(sessionStorage.getItem("page")) + 1);
-                        break;
-                    }
-                    else {
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case ("首页"):
-                    jump(1);
-                    break;
-                case ("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        function jump(cur) {
-            window.location.href = "allNews.aspx?roleId=<%=roleId %>&currentPage=" + cur;
-        }
-    })
-    
-</script>
+<script src="js/allNews.js"></script>
 </html>
