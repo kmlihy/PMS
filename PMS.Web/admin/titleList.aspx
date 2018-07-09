@@ -263,8 +263,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="closeModel">关闭</button>
-                    <button type="button" class="btn btn-primary" id="chbtn">保存更改</button>
+                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="btnClose">关闭</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">保存更改</button>
                 </div>
             </div>
         </div>
@@ -284,6 +284,7 @@
         //存储总页数
         var countPage = $("#countPage").val();
         sessionStorage.setItem("countPage", countPage);
+        
         $(document).ready(function () {
             //分页参数传递
             $(".jump").click(function () {
@@ -329,55 +330,12 @@
                     window.location.href = "titleList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
                 }
             };
+            //自动隐藏导航栏首页尾页
             if (sessionStorage.getItem("countPage") == "1") {
                 $("#first").hide();
                 $("#last").hide();
             }
-            //添加教师验证
-            //账号验证
-            $("#teaAccount").blur(function () {
-                teaAccount = $("#teaAccount").val();
-                var pattern = /[a-zA-Z0-9_]{6,10}/;
-                if (!pattern.test(teaAccount)) {
-                    $("#validateAccount").html("请输入6位以上的字母或数字").css("color", "red")
-                }
-            })
-            $("#teaAccount").focus(function () {
-                $("#validateAccount").html("");
-            })
-            //姓名验证
-            $("#teaName").blur(function () {
-                teaAccount = $("#teaName").val();
-                var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
-                if (!pattern.test(teaAccount)) {
-                    $("#validateName").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
-                }
-            })
-            $("#teaName").focus(function () {
-                $("#validateName").html("");
-            })
-            //邮箱验证
-            $("#email").blur(function () {
-                teaAccount = $("#email").val();
-                var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-                if (!pattern.test(teaAccount)) {
-                    $("#validateEmal").html("邮箱格式不正确").css("color", "red")
-                }
-            })
-            $("#email").focus(function () {
-                $("#validateEmal").html("");
-            })
-            //电话验证
-            $("#tel").blur(function () {
-                teaAccount = $("#tel").val();
-                var pattern = /^1[34578]\d{9}$/;
-                if (!pattern.test(teaAccount)) {
-                    $("#validateTel").html("请输入正确的手机号码").css("color", "red")
-                }
-            })
-            $("#tel").focus(function () {
-                $("#validateTel").html("");
-            })
+
             //关闭清除提示
             $(".addclose").click(function () {
                 $("#validateAccount").html("");
@@ -389,53 +347,6 @@
             $("#btn-Add").click(function () {
                 window.location.href = "addPaper.aspx";
             });
-            //密码框默认隐藏
-            $(".cstdteaPwd").hide();
-            //编辑验证
-            //账号验证
-            $("#chteaAccount").blur(function () {
-                teaAccount = $("#chteaAccount").val();
-                var pattern = /[a-zA-Z0-9_]{6,10}/;
-                if (!pattern.test(teaAccount)) {
-                    $("#chValitateAccount").html("请输入6位以上的字母或数字").css("color", "red")
-                }
-            })
-            $("#chteaAccount").focus(function () {
-                $("#chValitateAccount").html("");
-            })
-            //姓名验证
-            $("#chteaName").blur(function () {
-                teaAccount = $("#chteaName").val();
-                var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
-                if (!pattern.test(teaAccount)) {
-                    $("#chValitateteaName").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
-                }
-            })
-            $("#chteaName").focus(function () {
-                $("#chValitateteaName").html("");
-            })
-            //邮箱验证
-            $("#chemail").blur(function () {
-                teaAccount = $("#chemail").val();
-                var pattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-                if (!pattern.test(teaAccount)) {
-                    $("#chValitateteaemail").html("邮箱格式不正确").css("color", "red")
-                }
-            })
-            $("#chemail").focus(function () {
-                $("#chValitateteaemail").html("");
-            })
-            //电话验证
-            $("#chtel").blur(function () {
-                teaAccount = $("#chtel").val();
-                var pattern = /^1[34578]\d{9}$/;
-                if (!pattern.test(teaAccount)) {
-                    $("#chValitateteatel").html("请输入正确的手机号码").css("color", "red")
-                }
-            })
-            $("#chtel").focus(function () {
-                $("#chValitateteatel").html("");
-            })
 
             //点击编辑按钮，编辑弹框绑定数据
             $(".btnEdit").click(function () {
@@ -455,47 +366,88 @@
                 $("#ediCreateTime").val(ediCreateTime);
             });
 
-            //验证是否提交更改
-            $("").click({
-
+            //点击关闭按钮，清除验证提示信息
+            $("#btnClose").click(function () {
+                $("#titleIdValidate").html("");
+                $("#titleValidate").html("");
+                $("#planValidate").html("");
+                $("#profValidate").html("");
+                $("#teaNameValidate").html("");
+                $("#limitValidate").html("");
+                $("#createTimeValidate").html("");
             });
+            //验证是否提交更改
+            $("#btnSave").click(function () {
+                var saveTitleId = $("#ediTitleId").val(),
+                    saveTitle = $("#ediTitle").val(),
+                    savePlan = $("#ediPlan").val(),
+                    saveProf = $("#ediProf").val(),
+                    saveTeaName = $("#ediTeaName").val(),
+                    saveLimit = $("#ediLimit").val(),
+                    saveCreateTime = $("#ediCreateTime").val();
+
+                //验证用户输入不能为空
+                if (saveTitleId == "") {
+                    $("#titleIdValidate").html("题目编号不能为空！").css("color", "red");
+                }
+                else if (saveTitle == "") {
+                    $("#titleValidate").html("题目不能为空，请重新输入！").css("color", "red");
+                }
+                else if (savePlan == "") {
+                    $("#planValidate").html("批次不能为空，请重新输入！").css("color", "red");
+                }
+                else if (saveProf == "") {
+                    $("#profValidate").html("学院不能为空，请重新输入！").css("color", "red");
+                }
+                else if (saveTeaName == "") {
+                    $("#teaNameValidate").html("发布人不能为空，请重新输入！").css("color", "red");
+                }
+                else if (saveLimit == "") {
+                    $("#limitValidate").html("人数上限不能为空，请重新输入！").css("color", "red");
+                }
+                else if (saveCreateTime == "") {
+                    $("#createTimeValidate").html("创建时间不能为空，请重新输入！").css("color", "red");
+                }
+                
+            });
+            
 
             //编辑完成保存
-            $("#chbtn").click(function () {
-                var teaAccount = $(".chteaAccount").val(),
-                    teaName = $(".chteaName").val(),
-                    teaEmail = $(".chemail").val(),
-                    teaPhone = $(".chtel").val(),
-                    pwd = $(".chpwd").val(),
-                    collegeId = $("#chselectcol").find("option:selected").val(),
-                    sex = $("#chsex").find("option:selected").text(),
-                    teaType = $("#chteaType").find("option:selected").val();
-                if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == "-1") {
-                    alert("不能含有未填项");
-                }
-                else {
-                    $.ajax({
-                        type: 'Post',
-                        url: 'teaList.aspx',
-                        data: {
-                            TeaAccount: teaAccount,
-                            TeaName: teaName,
-                            TeaEmail: teaEmail,
-                            TeaPhone: teaPhone,
-                            Pwd: pwd,
-                            CollegeId: collegeId,
-                            Sex: sex,
-                            TeaType: teaType,
-                            op: "change"
-                        },
-                        dataType: 'text',
-                        success: function (succ) {
-                            alert(succ);
-                            jump(1);
-                        }
-                    });
-                }
-            })
+            //$("#chbtn").click(function () {
+            //    var saveTitleId = $(".chteaAccount").val(),
+            //        teaName = $(".chteaName").val(),
+            //        teaEmail = $(".chemail").val(),
+            //        teaPhone = $(".chtel").val(),
+            //        pwd = $(".chpwd").val(),
+            //        collegeId = $("#chselectcol").find("option:selected").val(),
+            //        sex = $("#chsex").find("option:selected").text(),
+            //        teaType = $("#chteaType").find("option:selected").val();
+            //    if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == "-1") {
+            //        alert("不能含有未填项");
+            //    }
+            //    else {
+            //        $.ajax({
+            //            type: 'Post',
+            //            url: 'teaList.aspx',
+            //            data: {
+            //                TeaAccount: teaAccount,
+            //                TeaName: teaName,
+            //                TeaEmail: teaEmail,
+            //                TeaPhone: teaPhone,
+            //                Pwd: pwd,
+            //                CollegeId: collegeId,
+            //                Sex: sex,
+            //                TeaType: teaType,
+            //                op: "change"
+            //            },
+            //            dataType: 'text',
+            //            success: function (succ) {
+            //                alert(succ);
+            //                jump(1);
+            //            }
+            //        });
+            //    }
+            //})
 
             //删除事件
             $(".btnDel").click(function () {
