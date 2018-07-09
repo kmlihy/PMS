@@ -59,18 +59,6 @@ $(document).ready(function () {
         $("#last").hide();
     }
     //添加分院对象
-    $("#insertColl").blur(function () {
-        var collegeName = $("#insertColl").val();
-        var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
-        if (collegeName === "") {
-            $("#validate").html("学院名不能为空").css("color", "red");
-        }
-        else if (!pattern_chin.test(collegeName)) {
-            $("#validate").html("学院名必须为汉字").css("color", "red");
-        } else {
-            $("#validate").html("");
-        }
-    })
     $("#saveCollege").click(function () {
         var collegeName = $("#insertColl").val();
         var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
@@ -125,14 +113,9 @@ $(document).ready(function () {
     $("#saveEdit").click(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
-        var pattern_chin = /[\u4e00-\u9fa5]/g; //汉字的正则表达式
-        if (name == "") {
-            $("#validateEdit").html("学院名不能为空").css("color", "red");
-        }
-        else if (!pattern_chin.test(name)) {
-            $("#validateEdit").html("学院名必须为汉字").css("color", "red");
+        if (name === "") {
+            alert("请输入分院名称");
         } else {
-            $("#validateEdit").html("");
             $.ajax({
                 type: 'Post',
                 url: 'branchList.aspx',
@@ -194,7 +177,7 @@ $(document).ready(function () {
                 });
             }
         }
-        window.wxc.xcConfirm(txt, "warning", option);
+        window.wxc.xcConfirm(txt, "custom", option);
     })
     //批量删除
     $("#btn-Del").click(function (){

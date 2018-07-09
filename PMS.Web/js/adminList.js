@@ -80,66 +80,6 @@ $(document).ready(function () {
         $("#validateTel").html("");
 
     })
-    //账号文本框失去焦点事件
-    $("#Iaccount").blur(function () {
-        if (account == "") {
-            $("#validateAcoount").html("账号不能为空！").css("color", "red");
-        } else if (!txtAccount.test(account)) {
-            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        } else {
-            $("#validateAccount").html("");
-        }
-    })
-    //姓名文本框失去焦点事件
-    $("#Iname").blur(function () {
-        if (account == "") {
-            $("#validateAcoount").html("账号不能为空！").css("color", "red");
-        } else if (!txtAccount.test(account)) {
-            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        } else {
-            $("#validateAccount").html("");
-        }
-    })
-    //姓名文本框失去焦点事件
-    $("#Isex").blur(function () {
-        if (account == "") {
-            $("#validateAcoount").html("账号不能为空！").css("color", "red");
-        } else if (!txtAccount.test(account)) {
-            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        } else {
-            $("#validateAccount").html("");
-        }
-    })
-    //姓名文本框失去焦点事件
-    $("#Icoll").blur(function () {
-        if (account == "") {
-            $("#validateAcoount").html("账号不能为空！").css("color", "red");
-        } else if (!txtAccount.test(account)) {
-            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        } else {
-            $("#validateAccount").html("");
-        }
-    })
-    //邮箱文本框失去焦点事件
-    $("#Iemail").blur(function () {
-        if (account == "") {
-            $("#validateAcoount").html("账号不能为空！").css("color", "red");
-        } else if (!txtAccount.test(account)) {
-            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        } else {
-            $("#validateAccount").html("");
-        }
-    })
-    //联系电话文本框失去焦点事件
-    $("#Iphone").blur(function () {
-        if (account == "") {
-            $("#validateAcoount").html("账号不能为空！").css("color", "red");
-        } else if (!txtAccount.test(account)) {
-            $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        } else {
-            $("#validateAccount").html("");
-        }
-    })
     //添加分院管理员对象
     $("#btnInsert").click(function () {
         var account = $("#Iaccount").val(),
@@ -149,6 +89,7 @@ $(document).ready(function () {
             email = $("#Iemail").val(),
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
+        //alert($("#Icoll").val() + " : " + $("#Icoll").find("option:selected").text())
         if (account == "") {
             $("#validateAcoount").html("账号不能为空！").css("color", "red");
         }else if (!txtAccount.test(account)) {
@@ -286,10 +227,6 @@ $(document).ready(function () {
         } else if (!txtEmail.test(Email)) {
             $("#validateEmailE").html("邮箱地址不合法").css("color", "red");
         } else {
-            $("#validateNameE").html("");
-            $("#validatePwd").html("");
-            $("#validateTelE").html("");
-            $("#validateEmailE").html("");
             $.ajax({
                 type: 'Post',
                 url: 'adminList.aspx',

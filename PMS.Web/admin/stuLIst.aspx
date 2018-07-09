@@ -35,14 +35,12 @@
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search" id="search"></span>
-                            查询
+                            <span class="glyphicon glyphicon-search" id="search">查询</span>
                         </button>
                     </span>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                            <span class="glyphicon glyphicon-plus-sign"></span>
-                            新增
+                            <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
                     <button class="btn btn-danger" type="button" id="btn-Del">
@@ -124,7 +122,7 @@
             <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
-                        <a href="#" class="jump" id="first">首页</a>
+                        <a href="#" class="jump">首页</a>
                     </li>
                     <li>
                         <a href="#" class="jump" id="prev">
@@ -149,7 +147,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="jump" id="last">尾页</a>
+                        <a href="#" class="jump">尾页</a>
                     </li>
                 </ul>
             </div>

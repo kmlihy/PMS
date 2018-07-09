@@ -4,32 +4,39 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>我的题目信息</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/ml.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/lgd.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
 </head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/ml.css">
+<link rel="stylesheet" href="css/style.css">
 <body>
     <div class="container-fluid col-lg-10 col-lg-offset-1">
-        <div class="navbar navbar-default" role="navigation" id="page_head">
-            <span class="h3" id="page_info">我的题目信息</span>
-            <button class="btn btn-primary navbar-btn" id="btn_back" onclick="javascript :history.back(1);">返回</button>
-        </div>
-        <div class="panel detail_panel">
-            <div class="panel-heading text-center title_head">
-                <h2><%=titleId.title.ToString() %></h2>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">我的题目信息</a>
+                </div>
             </div>
-            <div class="panel-body title_content">
+        </nav>
+        <div class="panel">
+            <div class="panel-heading text-center">
+                <label for="title"><%=titleId.title.ToString() %></label>
+            </div>
+            <div class="panel-body">
                 <span>
                     <%=titleId.TitleContent.ToString() %>
                 </span>
             </div>
             <div class="panel-footer">
-                <label class=""><a href="#">指导教师:<%=titleId.teacher.TeaName.ToString() %></a></label>
-                <span>|</span>
-                <label class=""><a href="#">交叉指导教师:XXX</a></label>
+                <ul class="list-group list-inline">
+                    <li class="list-group-item">
+                        <a href="#">指导教师:<%=titleId.teacher.TeaName.ToString() %></a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#">交叉指导老师：XX</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

@@ -59,8 +59,6 @@ function admincheckForm() {
 
 // 学生登录界面提示框
 function stuMsg() {
-    var code = $("#checkCode").val().toLowerCase();
-    alert(code);
     var my_toast_plug_name = "mytoast";
     $[my_toast_plug_name] = function (options) {
         var content;
@@ -70,8 +68,6 @@ function stuMsg() {
             content = "密码不能为空！";
         } else if ($("#captcha").val() === "") {
             content = "验证码不能为空！";
-        } else if ($("#captcha").val().toLowerCase() != $("#checkCode").val().toLowerCase()) {
-            content = "验证码错误！";
         } else {
             return;
         }

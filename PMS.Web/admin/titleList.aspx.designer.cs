@@ -7,9 +7,9 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace PMS.Web {
+namespace PMS.Web.admin {
     
     
-    public partial class test {
+    public partial class titleList {
     }
 }

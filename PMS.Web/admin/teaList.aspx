@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 <body>
     <div class="container-fluid big-box">
@@ -182,7 +183,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-hover">
+                    <table class="table">
                         <tbody>
                             <tr>
                                 <td class="teaLable">
@@ -314,13 +315,13 @@
                                 <td class="teaLable">
                                     <label class="text-span">密码:</label></td>
                                 <td>
-                                    <input class="form-control chpwd" type="password" id="chpwd"/></td>
+                                    <input class="form-control chpwd" type="password" id="chpwd" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名:</label></td>
                                 <td>
-                                    <input class="form-control chteaName" type="text" id="chteaName"/>
+                                    <input class="form-control chteaName" type="text" id="chteaName" />
                                     <span id="chValitateteaName"></span>
                                 </td>
                             </tr>
@@ -340,7 +341,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">邮箱:</label></td>
                                 <td>
-                                    <input class="form-control chemail" type="text" id="chemail"/>
+                                    <input class="form-control chemail" type="text" id="chemail" />
                                     <span id="chValitateteaemail"></span>
                                 </td>
                             </tr>
@@ -348,7 +349,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">联系电话:</label></td>
                                 <td>
-                                    <input class="form-control chtel" type="text" id="chtel"/>
+                                    <input class="form-control chtel" type="text" id="chtel" />
                                     <span id="chValitateteatel"></span>
                                 </td>
                             </tr>
@@ -372,4 +373,5 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/ml.js"></script>
 <script src="../js/teaList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>

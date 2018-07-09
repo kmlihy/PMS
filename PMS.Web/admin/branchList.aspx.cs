@@ -80,19 +80,18 @@ namespace PMS.Web.admin
         public void saveCollege()
         {
             string collegeName = Context.Request["collegeName"].ToString();
-                    college.ColName = collegeName;
-                    Result result = coll.Insert(college);
-                    if (result == Result.添加成功)
-                    {
-                        Response.Write("添加成功");
-                        Response.End();
-                    }
-                    else
-                    {
-                        Response.Write("添加失败");
-                        Response.End();
-                    }
-            
+            college.ColName = collegeName;
+            Result result = coll.Insert(college);
+            if (result == Result.添加成功)
+            {
+                Response.Write("添加成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("添加失败");
+                Response.End();
+            }
         }
         //编辑分院信息
         public void editCollege()

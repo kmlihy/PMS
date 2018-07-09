@@ -27,25 +27,90 @@ namespace PMS.Web.admin
         protected int count;
         protected int pagesize = 2;
         protected String search = "";
+        protected String searchdrop = "";
+        protected string showstr = null;
+        protected string showinput = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string op = Context.Request.Form["op"];
+            string type =Request.QueryString["type"];
             if (op == "del")
             {
                 IsdeleteCollege();
                 delPro();
-
-
             }
-            if (!IsPostBack)
+            if (type == "btn")
             {
                 Search();
                 getPage(Search());
-                bads = colbll.Select();
-                prods = probll.Select();
             }
+            else if (type == "drop")
+            {
+                Searchdrop();
+                getPage(Searchdrop());
+            }
+            else {
+                getPage("");
+            }
+           
+            bads = colbll.Select();
+            prods = probll.Select();
+            //下拉搜索后条件保存
+            if (searchdrop == null)
+            {
+                showstr = "-请选择专业-";
+            }
+            else if (searchdrop != null &&searchdrop.Length>0)
+            {
+                string sec = searchdrop.ToString();
+                string[] secArray = sec.Split('=');
+                if (secArray.Length > 0)
+                {
+                    string str = secArray[1].ToString();
+                    showstr = str.Substring(1, str.Length - 2);
+                }
+
+            }
+            //查询按钮点击后查询条件保存
+            if (search == null)
+            {
+                showinput = "请输入查询条件";
+            }
+            else if (search != null && search.Length > 1)
+            {
+                string sec = search.ToString();
+                string[] secArray = sec.Split('%');
+                string str = secArray[1].ToString();
+                showinput = str;
+
+            }
+            else { }
+        }
+        public string Searchdrop()
+        {
+            try
+            {
+                searchdrop = Request.QueryString["dropsearch"];
+                if (searchdrop.Length == 0)
+                {
+                    searchdrop = "";
+                }
+                else if (searchdrop == null)
+                {
+                    searchdrop = "";
+                }
+                else
+                {
+                    searchdrop = String.Format(" proName={0}", "'" + searchdrop + "'");
+
+                }
+            }
+            catch
+            {
+
+            }
+            return searchdrop;
         }
         //判断是否能删除
         public Result IsdeleteCollege()
@@ -131,7 +196,7 @@ namespace PMS.Web.admin
                 else
                 {
                     search = String.Format(" teaName {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + search + "%'");
-                    
+
                 }
             }
             catch
