@@ -25,8 +25,10 @@ namespace PMS.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            strWhere = "";
-            roleId = Request.QueryString["roleId"];
+            if (!Page.IsPostBack)
+            {
+                strWhere = "";
+                roleId = Request.QueryString["roleId"];
                 if (roleId == "0")
                 {
                     strteaType = "teaType=0";
@@ -36,13 +38,14 @@ namespace PMS.Web
                 {
                     strteaType = "teaType=1";
                     newsType = "学生公告";
-            }
+                }
                 else if (roleId == "2")
                 {
                     strteaType = "teaType=2";
                     newsType = "学院公告";
+                }
+                getdata(strteaType);
             }
-            getdata(strteaType);
         }
         public void getdata(String strWhere)
         {

@@ -101,6 +101,7 @@
     <Content Include="js\addNews.js" />
     <Content Include="js\adminList.js" />
     <Content Include="js\ajaxfileupload.js" />
+    <Content Include="js\allNews.js" />
     <Content Include="js\batchList.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrapValidator.min.js" />

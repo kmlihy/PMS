@@ -137,10 +137,28 @@ a:hover {
 /*所有公告页面表格样式*/
 #allNews_table{
     margin-top:30px;
+    table-layout:fixed;
 }
-#allNews_timeTD{
+#allNews_table tbody tr td{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
+/*#allNews_timeTD{
     width:100px;
 }
 #allNews_timeTH{
     width:100px;
+}*/
+#allNews_info{
+    margin-top:8px; 
+}
+.allNews_pageHead{
+    padding-top:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+#allNaws_btnBack{
+    float:right;
+    margin-top:-2px;
 }
