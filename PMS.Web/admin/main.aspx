@@ -34,7 +34,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation">
+                                <!--<li role="presentation">
                                     <a role="menuitem" tabindex="-1" href="#">
                                         <b class="iconfont icon-smile"></b>
                                         <span>个人中心</span>
@@ -45,7 +45,7 @@
                                         <b class="iconfont icon-remind1"></b>
                                         <span>我的消息</span>
                                     </a>
-                                </li>
+                                </li>-->
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1" href="changePwd.aspx">
                                         <b class="iconfont icon-password"></b>
@@ -54,7 +54,7 @@
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#">
+                                    <a role="menuitem" tabindex="-1" href="javascript:logout();">
                                         <i class="glyphicon glyphicon-off"></i>
                                         <span>退出登录</span>
                                     </a>
@@ -434,6 +434,19 @@
             gethref($(this).attr("href"));
             return false
         });
+
+        function logout() {
+            alert("退出登录");
+            $.ajax({
+                type: 'get',
+                url: 'main.aspx?op=logout',
+                datatype: 'text',
+                data: {},
+                success: function (data) {
+                    window.location.href = "../login.aspx";
+                }
+            });
+        }
     </script>
 </body>
 
