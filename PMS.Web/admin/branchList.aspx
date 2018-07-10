@@ -234,20 +234,4 @@
 <script src="../js/branchList.js"></script>
 <script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
-<script>
-    //批量导入
-    $(".file").on("change", "input[type='file']", function () {
-        var filePath = $(this).val();
-        if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
-            $(".fileerrorTip").html("").hide();
-            var arr = filePath.split('\\');
-            var fileName = arr[arr.length - 1];
-            $(".showFileName").html(fileName);
-        } else {
-            $(".showFileName").html("");
-            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
-            return false
-        }
-    })
-</script>
 </html>

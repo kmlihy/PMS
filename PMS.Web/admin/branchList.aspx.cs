@@ -28,6 +28,12 @@ namespace PMS.Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request["op"];
+            //第一次加载页面时
+            if (!Page.IsPostBack)
+            {
+                Search();
+                getdata(Search());
+            }
             //添加学院
             if (op == "add")
             {
@@ -42,6 +48,13 @@ namespace PMS.Web.admin
                 Search();
                 getdata(Search());
             }
+            //批量上传
+            else if (op == "upload")
+            {
+                upload();
+                Search();
+                getdata(Search());
+            }
             //删除学院
             else if (op == "dele")
             {
@@ -49,18 +62,15 @@ namespace PMS.Web.admin
                 Search();
                 getdata(Search());
             }
-            else if (op == "upload")
+            //批量删除
+            else if (op == "batchDel")
             {
-                upload();
+                batchDeleteCollege();
                 Search();
                 getdata(Search());
             }
-            if (!Page.IsPostBack)
-            {
-                Search();
-                getdata(Search());
-            }     
         }
+
         //获取数据
         public void getdata(String strWhere)
         {
@@ -152,7 +162,7 @@ namespace PMS.Web.admin
         {
             try
             {
-                Teacher user = (Teacher)Session["user"];//取得登录用户用账号作为文件夹名称
+                //Teacher user = (Teacher)Session["user"];//取得登录用户用账号作为文件夹名称
                 HttpFileCollection file = HttpContext.Current.Request.Files;//从HTTP文件流中读取上传文件
                 if (file.Count > 0)
                 {
@@ -175,18 +185,17 @@ namespace PMS.Web.admin
                     //文件格式   
                     string tp = System.IO.Path.GetExtension(filename);
 
-                    if (tp == ".xls" || tp == "xlsx")
+                    if (tp == ".xls" || tp == ".xlsx")
                     {
                         DirectoryInfo dir;
                         //将文件导入服务器
-                        string savePath = Server.MapPath("~/upload/学院信息导入Excel文件存储");//指定上传文件在服务器上的保存路 
+                        string savePath = Server.MapPath("~/upload/学院信息导入Excel文件存储/admin");//指定上传文件在服务器上的保存路径
                         dir = new DirectoryInfo(savePath);
                         dir.Create();
 
-
-                        savePath = Server.MapPath("~/upload/学院信息导入Excel文件存储/" + user.TeaAccount + "");
-                        dir = new DirectoryInfo(savePath);
-                        dir.Create();
+                        //savePath = Server.MapPath("~/upload/学院信息导入Excel文件存储/admin" + "");
+                        //dir = new DirectoryInfo(savePath);
+                        //dir.Create();
 
                         DateTime d = DateTime.Now;
                         string datetime = d.ToString("yyyyMMddHHmmss");
@@ -223,7 +232,7 @@ namespace PMS.Web.admin
                 this.Response.Write("<script>alert('"+ex.Message+"');</script>");
             }
         }
-        //判断是否能删除
+        //单个删除前判断是否能删除
         public Result IsdeleteCollege()
         {
             string collegeid = Context.Request["collegeid"].ToString();
@@ -252,6 +261,64 @@ namespace PMS.Web.admin
             Result result = coll.Delete(int.Parse(collegeid));
 
                 if (result == Result.删除成功)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
+        }
+        //批量删除前判断是否能删除
+        public Result IsBatchDelete()
+        {
+            Result row = Result.记录不存在;
+            string collId = Context.Request["collId"].ToString();
+            string[] collList = collId.Split('?');
+            for (int i = 0; i < collList.Length; i++)
+            {
+                if (coll.IsDelete("T_Plan", "collegeId", collList[i]) == Result.关联引用)
+                {
+                    row = Result.关联引用;
+                }
+                if (coll.IsDelete("T_Profession", "collegeId", collList[i]) == Result.关联引用)
+                {
+                    row = Result.关联引用;
+                }
+                if (coll.IsDelete("T_Teacher", "collegeId", collList[i]) == Result.关联引用)
+                {
+                    row = Result.关联引用;
+                }
+            }
+            return row;
+        }
+        //批量删除
+        private void batchDeleteCollege()
+        {
+            string collegeid = Context.Request["collId"].ToString();
+            string[] collList = collegeid.Split('?');
+            Result row = IsBatchDelete();
+            int count = 0;
+            if (row == Result.记录不存在)
+            {
+                for (int i = 0; i < collList.Length-1; i++)
+                {
+                    int collId = int.Parse(collList[i]);
+                    Result result = coll.Delete(collId);
+                    if (result == Result.删除成功)
+                    {
+                        count++;
+                    }
+                }
+                if (count == collList.Length-1)
                 {
                     Response.Write("删除成功");
                     Response.End();
