@@ -11,6 +11,7 @@ using static PMS.BLL.Enums;
 
 namespace PMS.Web.admin
 {
+    using System.IO;
     using Result = Enums.OpResult;
     public partial class teaList : System.Web.UI.Page
     {
@@ -26,6 +27,7 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             string op = Context.Request["op"];
             if (op == "add")
             {
@@ -42,13 +44,89 @@ namespace PMS.Web.admin
                 Search();
                 getdata(Search());
             }
+            if (op == "upload")
+            {
+                upload();
+            }
             if (!IsPostBack)
             {
                 Search();
                 getdata(Search());
-                colds = colbll.Select();
+                
             }
+            getdata("");
+            colds = colbll.Select();
 
+        }
+        public void upload()
+        {
+            try
+            {
+                Teacher user = (Teacher)Session["user"];//获取当前用户账号作为文件夹名称
+                HttpFileCollection file = HttpContext.Current.Request.Files;//从HTTP文件流读取上传文件
+                if (file.Count > 0)
+                {
+                    //文件大小
+                    long size = file[0].ContentLength;
+                    //文件类型
+                    string type = file[0].ContentType;
+                    //文件名 IE浏览器文件名是绝对路径，服务器文件夹名称不支持（//），其他浏览器为文件名（兼容ie）
+                    string filename = "";
+                    if (filename.IndexOf("\\") != -1)//判断路径中是否包含\\
+                    {
+                        string[] a = filename.Split('\\');//分割字符串
+                        filename = a[a.Length - 1].ToString();//获取数组最后一位作为文件夹名称
+
+                    }
+                    else
+                    {
+                        filename = file[0].FileName;//不是IE 直接返回文件名称作为文件夹名
+
+                    }
+                    //文件格式
+                    string tp = System.IO.Path.GetExtension(filename);
+                    if (tp == ".xls" || tp == ".xlsx")
+                    {
+                        DirectoryInfo dir;
+                        //将文件导入服务器
+                        string savePath = Server.MapPath("~/upload/教师信息导入存储");//指定上传文件 在服务器保存路径
+                        dir = new DirectoryInfo(savePath);
+                        dir.Create();
+
+                        DateTime d = DateTime.Now;
+                        string datetime = d.ToString("yyyyMMddHHmmss");
+
+                        string name = datetime + "-" + filename;//将当前时间作为文件名称
+                        savePath = savePath + "\\" + name;//路径合并
+
+                        file[0].SaveAs(savePath);//存入服务器
+
+                        var dt = ExcelHelper.GetDataTable(savePath);//从服务器路径读取数据成DataTable
+                        TeacherBll bll = new TeacherBll();
+                        int row = bll.upload(dt);
+                        if (row > 0)
+                        {
+                            Page.ClientScript.RegisterClientScriptBlock(GetType(), "js", "<script>alert('导入失败');</script>");
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterClientScriptBlock(GetType(), "js", "<script>alert('导入成功');</script>");
+                        }
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterClientScriptBlock(GetType(), "js", "<script>alert('Excel格式不正确');</script>");
+                    }
+                }
+                else
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(GetType(), "js", "<script>alert('请选择上传文件');</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Response.Write(ex.Message);
+            }
         }
         //判断是否能删除
         public Result IsdeleteCollege()
@@ -170,11 +248,24 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
+            //判断是哪个院系的管理员登录 只加载该院系下的教师
+            //string admincollege = "";
+
+            //教师
+            string strTeaType = "";
+            if (strWhere == null || strWhere == "")
+            {
+                strTeaType = "teaType=1";
+            }
+            else
+            {
+                strTeaType = "teaType=1 and ";
+            }
             TeacherBll pro = new TeacherBll();
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Teacher",
-                StrWhere = strWhere == null ? "" : strWhere,
+                StrWhere = strTeaType + strWhere,
                 IntColType = 0,
                 IntOrder = 0,
                 IntPageNum = int.Parse(currentPage),

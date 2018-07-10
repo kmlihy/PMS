@@ -63,8 +63,7 @@
                     <th class="text-center">选题学生</th>
                     <th class="text-center">所属批次</th>
                     <th class="text-center">所属专业</th>
-                    <th class="text-center">已选人数</th>
-                    <th class="text-center">人数上限</th>
+                    <th class="text-center">已选人数/人数上限</th>
                     <th class="text-center">选题时间</th>
                     <th class="text-center">所属分院</th>
                     <th class="text-center">操作</th>
@@ -87,8 +86,7 @@
                         <td class="text-center" id="realname"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td class="text-center" id="planname"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
                         <td class="text-center" id="proname"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %>/<%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
                         <td class="text-center" id="recordtime"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
                         <td class="text-center" id="collegename"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
