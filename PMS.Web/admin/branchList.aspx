@@ -165,29 +165,34 @@
                     <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <a href="javascript:;" class="file">选择文件<input type="file" name="upload" id="upload" />
-                                        <label class="showFileName"></label>
-                                        <label class="fileerrorTip"></label>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-primary">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnupload">上传</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary">下载模板</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

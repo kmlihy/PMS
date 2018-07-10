@@ -142,11 +142,9 @@ i {
 /* 批量导入*/
 .file {
     position: relative;
-    width: 82px;
-    height: 34px;
     display: inline-block;
     background: #337ab7;
-    border: 1px solid #2e6da4;
+    border: 1px solid #286090;
     border-radius: 4px;
     padding: 4px 12px;
     overflow: hidden;
@@ -156,17 +154,17 @@ i {
     line-height: 20px;
 }
 
-.file input {
-    /*position: absolute;*/
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-}
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
 
-.file:hover {
-    background: #2e6da4;
-    border-color: #2e6da4;
-    color: #fff;
-    text-decoration: none;
-}
+    .file:hover {
+        background: #337ab7;
+        border-color: #286090;
+        color: #fff;
+        text-decoration: none;
+    }

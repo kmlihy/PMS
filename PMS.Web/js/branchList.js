@@ -78,7 +78,7 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "添加成功") {
+                    if (succ === "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
@@ -126,7 +126,7 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "更新成功") {
+                    if (succ === "更新成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
@@ -141,6 +141,20 @@ $(document).ready(function () {
                     }
                 }
             });
+        }
+    })
+    //批量导入
+    $(".file").on("change", "input[type='file']", function () {
+        var filePath = $(this).val();
+        if (filePath.indexOf("xls") !== -1 || filePath.indexOf("xlsx") !== -1) {
+            $(".fileerrorTip").html("").hide();
+            var arr = filePath.split('\\');
+            var fileName = arr[arr.length - 1];
+            $(".showFileName").html(fileName);
+        } else {
+            $(".showFileName").html("");
+            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+            return false
         }
     })
     //删除分院信息
@@ -160,7 +174,7 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        if (succ == "删除成功") {
+                        if (succ === "删除成功") {
                             window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                                 onOk: function (v) {
                                     jump(parseInt(sessionStorage.getItem("page")));
@@ -181,26 +195,37 @@ $(document).ready(function () {
     })
     //批量删除
     $("#btn-Del").click(function () {
-        var selectValue = "";
-        var smObj = document.getElementsByName("checkbox");
-        for (var i = 0; i < smObj.length; i++) {
-            if (smObj[i].checked == true) {
-                selectValue += $(this).next().val() + ",";
-                selectValue += $(this).parent().find("#collegeId").val() + ",";
-            } else {
-                alert("请至少选择一项");
-            }
+        var obj = document.getElementsByName('checkbox'); //选择所有name="checkbox"的对象，返回数组 
+        //取到对象数组后，循环检测它是不是被选中 
+        var collId = '';
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].checked) collId += obj[i].value + '?'; //如果选中，将value添加到变量s中 
         }
-        //var strgetSelectValue;
-        //var getSelectValueMenbers = $(".check:checked").each(function (j) {
-        //    if (j >= 0) {
-        //        strgetSelectValue = $(this).val() + ",";
-        //        strgetSelectValue += $(this).parent().find("#collegeId").val() + ",";
-        //        alert(strgetSelectValue);
-        //    }
-        //    else {
-        //        alert("请选择至少一个");
-        //    }
-        //});
+        //那么现在来检测s的值就知道选中的复选框的值了 
+        //alert(collId === '' ? '请至少选择一项！' : collId);
+        $.ajax({
+            type: 'Post',
+            url: 'branchList.aspx',
+            data: {
+                collId: collId,
+                op: "batchDel"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                if (succ === "删除成功") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            jump(parseInt(sessionStorage.getItem("page")));
+                        }
+                    });
+                } else {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            jump(parseInt(sessionStorage.getItem("page")));
+                        }
+                    });
+                }
+            }
+        });
     })
 })
