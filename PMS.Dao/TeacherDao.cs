@@ -125,6 +125,10 @@ namespace PMS.Dao
                     {
                         teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
                     }
+                    if (ds.Tables[0].Rows[0]["teaType"].ToString() != "")
+                    {
+                        teacher.TeaType = int.Parse(ds.Tables[0].Rows[0]["teaType"].ToString());
+                    }
                     if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
                     {
                         college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());

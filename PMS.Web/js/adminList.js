@@ -90,27 +90,27 @@ $(document).ready(function () {
             phone = $("#Iphone").val();
         //alert(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
         //alert($("#Icoll").val() + " : " + $("#Icoll").find("option:selected").text())
-        if (account == "") {
+        if (account === "") {
             $("#validateAcoount").html("账号不能为空！").css("color", "red");
         }else if (!txtAccount.test(account)) {
             $("#validateAccount").html("账号只能包括数字！").css("color", "red");
-        }else if (name == "") {
+        }else if (name === "") {
             $("#validateAcoount").html("")
             $("#validateName").html("姓名不能为空！").css("color", "red");
         } else if (!txtName.test(name)) {
             $("#validateName").html("姓名只能包括汉子/英文字符！").css("color", "red");
-        } else if (sex == "") {
+        } else if (sex === "") {
             $("#validateName").html("")
             $("#validateSex").html("请选择性别！").css("color", "red");
-        } else if (college == "") {
+        } else if (college === "") {
             $("#validateSex").html("")
             $("#validateColl").html("请选择学院！").css("color", "red");
-        } else if (email == "") {
+        } else if (email === "") {
             $("#validateColl").html("")
             $("#validateEmail").html("邮箱不能为空！").css("color", "red");
         } else if (!txtEmail.test(email)) {
             $("#validateEmail").html("邮箱地址不合法").css("color", "red");
-        } else if (phone == "") {
+        } else if (phone === "") {
             $("#validateEmail").html("")
             $("#validateTel").html("联系电话不能为空！").css("color", "red");
         } else if (!TelNum.test(phone)) {
@@ -131,7 +131,7 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "添加成功") {
+                    if (succ === "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
@@ -200,28 +200,29 @@ $(document).ready(function () {
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
         var flag = sessionStorage.getItem("flag");
-        if (flag == "false") {
-            var College = $("#EintColl").val();
-            var Sex = $("#EintSex").val();
+        var College, Sex;
+        if (flag === "false") {
+            College = $("#EintColl").val();
+            Sex = $("#EintSex").val();
         } else {
-            var College = $("#EselColl").val();
-            var Sex = $("#EselSex").val();
+            College = $("#EselColl").val();
+            Sex = $("#EselSex").val();
         }
-        if (Name == "") {
+        if (Name === "") {
             $("#validateNameE").html("姓名不能为空！").css("color", "red");
         } else if (!txtName.test(Name)) {
             $("#validateNameE").html("姓名只能包括汉子、英文字符！").css("color", "red");
-        } else if (Pwd == "") {
+        } else if (Pwd === "") {
             $("#validateNameE").html("")
             $("#validatePwd").html("密码为空！").css("color", "red");
         } else if (!txtPwd.test(Pwd)) {
             $("#validatePwd").html("密码不合法").css("color", "red");
-        } else if (Phone == "") {
+        } else if (Phone === "") {
             $("#validatePwd").html("")
             $("#validateTelE").html("联系电话不能为空！").css("color", "red");
         } else if (!TelNum.test(Phone)) {
             $("#validateTelE").html("联系电话不合法！").css("color", "red");
-        } else if (Email == "") {
+        } else if (Email === "") {
             $("#validateTelE").html("")
             $("#validateEmailE").html("邮箱不能为空！").css("color", "red");
         } else if (!txtEmail.test(Email)) {
@@ -242,7 +243,7 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "更新成功") {
+                    if (succ === "更新成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
@@ -278,7 +279,7 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        if (succ == "删除成功") {
+                        if (succ === "删除成功") {
                             window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                                 onOk: function (v) {
                                     jump(parseInt(sessionStorage.getItem("page")));

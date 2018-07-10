@@ -2,7 +2,35 @@
 sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
+//存储查询条件
+sessionStorage.setItem("type", "");
 $(document).ready(function () {
+    //按钮查询
+    $("#search").click(function () {
+        var strWhere = $("#inputsearch").val();
+        sessionStorage.setItem("strWhere", strWhere);
+        sessionStorage.setItem("type", "btn");
+        jump(1);
+    });
+    //下拉选项查询
+    $("#chooseStuPro").change(function () {
+        var dropstrWhere = $(this).find("option:selected").text().trim();
+        sessionStorage.setItem("dropstrWhere", dropstrWhere);
+        sessionStorage.setItem("type", "drop");
+        jump(1);
+    })
+    //function jump(cur) {
+    //    if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
+    //        window.location.href = "stuLIst.aspx?currentPage=" + cur;
+    //    } else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere") == null) {
+    //        window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
+    //    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") == null) {
+    //        window.location.href = "stuLIst.aspx?currentPage=" + cur + "&dropsearch=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
+    //    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") != null) {
+    //        window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropsearch=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
+    //    }
+    //};
+
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -35,24 +63,25 @@ $(document).ready(function () {
                 break;
         }
     });
-    //查询
-    $("#search").click(function () {
-        var strWhere = $("#inputsearch").val();
-        sessionStorage.setItem("strWhere", strWhere);
-        jump(1);
-    });
+
     //地址栏显示信息
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
-            window.location.href = "stuLIst.aspx?currentPage=" + cur
+        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
+            window.location.href = "stuLIst.aspx?currentPage=" + cur;
+        }
+        else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere")==null) {
+            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
+        }
+        else if(sessionStorage.getItem("strWhere")==null&&sessionStorage.getItem("dropstrWhere")!=null){
+            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
         }
         else {
-            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
         }
-    }
+    };
     //编辑学生
     //获取学生信息到编辑框
-    $(".Editor").click(function () {
+    $(".Editor").click(function(){
         var stuNO = $(this).parent().parent().find(".stuNO").text().trim();
         $(".editorStuNO").val(stuNO);//学号框获取学号
         var stuName = $(this).parent().parent().find(".stuName").text().trim();
@@ -286,12 +315,6 @@ $(document).ready(function () {
                 }
             })
         }
-    })
-    //下拉选项查询
-    $("#chooseStuPro").change(function () {
-        var strWhere = $(this).find("option:selected").text().trim();
-        sessionStorage.setItem("strWhere", strWhere);
-        jump(1);
     })
     //密码表格隐藏
     $(".stuPwd").hide();

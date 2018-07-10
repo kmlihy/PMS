@@ -24,7 +24,13 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker" id="chooseStuPro">
-                        <option>请选择专业</option>
+                        <option>
+                            <% if (showstr == null)
+                                {
+                                    showstr = "-请选择专业-";
+                                } %>
+                            <%=showstr %>
+                        </option>
                         <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             { %>
                         <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
@@ -32,7 +38,11 @@
                         </option>
                         <%} %>
                     </select>
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <%if (showinput == null)
+                        {
+                            showinput = "请输入搜索条件";
+                        } %>
+                    <input type="text" class="form-control" placeholder="<%=showinput %>" id="inputsearch"/>
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search" id="search">查询</span>

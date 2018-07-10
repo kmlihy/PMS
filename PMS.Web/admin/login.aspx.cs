@@ -20,9 +20,18 @@ namespace PMS.Web.admin
                 Model.Teacher teacher = bll.Login(teaAccount, pwd);
                 if (teacher!=null)
                 {
-                    Session["user"] = teacher;
-                    Session["state"] = 0;
-                    Response.Redirect("main.aspx");
+                    if(teacher.TeaType == 0)
+                    {
+                        Session["user"] = teacher;
+                        Session["state"] = 0;
+                        Response.Redirect("main.aspx");
+                    }
+                    else
+                    {
+                        Session["user"] = teacher;
+                        Session["state"] = 2;
+                        Response.Redirect("main.aspx");
+                    }                   
                 }               
                
             }

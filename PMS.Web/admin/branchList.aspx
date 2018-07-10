@@ -35,7 +35,7 @@
                             <span class="glyphicon glyphicon-plus-sign">新增</span>
                         </button>
                     </span>
-                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal" >
+                    <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal">
                         <span class="glyphicon glyphicon-plus-sign"></span>
                         批量导入
                     </button>
@@ -63,8 +63,7 @@
                 %>
                 <tr>
                     <td class="text-center">
-                        <input type="checkbox" name="checkbox" class="check" value="123" />
-                        <input type="hidden" value="<%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>" id="collegeId" />
+                        <input type="checkbox" name="checkbox" class="check" value="<%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>" />
                     </td>
                     <td class="text-center collegeId">
                         <%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>
@@ -141,8 +140,8 @@
                                     <label class="text-span">学院名称</label>
                                 </td>
                                 <td>
-                                    <input class="form-control teaAddinput" type="text" id="insertColl"  />
-                                <span id="validate"></span>
+                                    <input class="form-control teaAddinput" type="text" id="insertColl" />
+                                    <span id="validate"></span>
                                 </td>
                             </tr>
                         </tbody>
@@ -166,23 +165,34 @@
                     <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="teaLable text-center">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary">下载模板</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -138,3 +138,33 @@ i {
 /* 页面中部右侧区域样式 */
 .page-right-content {
 }
+
+/* 批量导入*/
+.file {
+    position: relative;
+    display: inline-block;
+    background: #337ab7;
+    border: 1px solid #286090;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #337ab7;
+        border-color: #286090;
+        color: #fff;
+        text-decoration: none;
+    }

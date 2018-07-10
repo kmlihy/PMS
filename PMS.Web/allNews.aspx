@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="css/iconfont.css" />
 </head>
 
-<body>
-    <div class="container-fluid table-bordered img-rounded col-lg-10 col-lg-offset-1">
+<body style="margin-top:0px;">
+    <div class="container-fluid table-bordered img-rounded">
         <div class="navbar allNews_pageHead" role="navigation">
                 <span class="h3 text-danger" id="allNews_info">
                     <%=newsType %>
