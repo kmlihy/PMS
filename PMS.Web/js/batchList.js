@@ -1,7 +1,7 @@
 ﻿//时间选择器
 $(function () {
     $(".datetimepicker").datepicker({
-        dateFormat: 'yy/mm/dd',//显示日期格式
+        dateFormat: 'yy-mm-dd',//显示日期格式
         //英文转中文
         dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
         monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
@@ -12,10 +12,9 @@ $(function () {
 sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
+//保留查询条件
+sessionStorage.setItem("type", "");
 $(document).ready(function () {
-    //$("#btn-Del").click(function () {
-    //    alert(sessionStorage.getItem("page") + sessionStorage.getItem("countPage"));
-    //})
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -52,10 +51,11 @@ $(document).ready(function () {
                 break;
         }
     });
-    //点击查询
+    //点击按钮查询
     $("#search").click(function () {
         var strWhere = $("#inputsearch").val();
         sessionStorage.setItem("strWhere", strWhere);
+        sessionStorage.setItem("type", "btn");
         jump(1);
     });
     //地址栏显示信息
@@ -64,7 +64,7 @@ $(document).ready(function () {
             window.location.href = "batchList.aspx?currentPage=" + cur
         }
         else {
-            window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
         }
     }
     //当总页数为1时，首页与尾页按钮隐藏
@@ -73,64 +73,76 @@ $(document).ready(function () {
         $("#last").hide();
     }
     //新增模态框验证
-    var pattern_chin = /[\u4e00-\u9fa5]/g;//汉字的正则表达式
-    var pattern_time = /\d{4}-\d{1,2}-\d{1,2}/; //日期格式
+    //var pattern_chin = /[\u4e00-\u9fa5]/g;//汉字的正则表达式
+    //var pattern_time = /\d{4}-\d{1,2}-\d{1,2}/; //日期格式
     //批次输入框验证
-    $("#planName").blur(function () {
-        var planName = $(this).val();
-        //alert(planName);
-        if (planName !== "") {
-            $("#p_name").hide();
-            var matchResult = planName.match(pattern_chin);
-            if (matchResult == null) {
-                $("#p_name").show();
-                $("#p_name").html("请输入中文").css("color", "red");
-            }
-            else {
-                $("#p_name").hide();
-            }
-        }
-        else {
-            $("#p_name").html("批次名称不能为空").css("color","red");
-        }
-    })
+    //$("#planName").blur(function () {
+    //    var planName = $(this).val();
+    //    //alert(planName);
+    //    if (planName !== "") {
+    //        $("#p_name").hide();
+    //        var matchResult = planName.match(pattern_chin);
+    //        if (matchResult == null) {
+    //            $("#p_name").show();
+    //            $("#p_name").html("请输入中文").css("color", "red");
+    //        }
+    //        else {
+    //            $("#p_name").hide();
+    //        }
+    //    }
+    //    else {
+    //        $("#p_name").html("批次名称不能为空").css("color","red");
+    //    }
+    //})
     //开始时间输入框验证
-    $("#startTime").blur(function () {
-        var startTime = $(this).val();
-        if (startTime == null) {
-            $("#p_start").hide();
-        }
-        else {
-            $("#p_start").show();
-            $("#p_start").html("开始时间不能空！").css("color", "red");
-        }
-    })
+    //$("#startTime").blur(function () {
+    //    var startTime = $(this).val();
+    //    if (startTime == null) {
+    //        $("#p_start").hide();
+    //    }
+    //    else {
+    //        $("#p_start").show();
+    //        $("#p_start").html("开始时间不能空！").css("color", "red");
+    //    }
+    //})
     //结束时间框验证
-    $("#endTime").blur(function () {
-        var endTime = $(this).val();
-        if (endTime == null) {
-            $("#p_end").hide();
-        }
-        else {
-            $("#p_end").show();
-            $("#p_end").html("结束时间不能空！").css("color", "red");
+    //$("#endTime").blur(function () {
+    //    var endTime = $(this).val();
+    //    if (endTime == null) {
+    //        $("#p_end").hide();
+    //    }
+    //    else {
+    //        $("#p_end").show();
+    //        $("#p_end").html("结束时间不能空！").css("color", "red");
+    //    }
+    //})
+    //添加批次
+    //
+
+    //新增模态框验证
+    //批次名称验证
+    $("#planName").blur(function () {
+        name = $(this).val();
+        var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
+        if (!pattern.test(name)) {
+            $("#p_name").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
         }
     })
-    //添加批次
+    $("#planName").focus(function () {
+        $("#p_name").html("");
+    })
+    //新增批次
     $("#savePlan").click(function () {
         var planName = $("#planName").val(),
             startTime = $("#startTime").val(),
             endTime = $("#endTime").val(),
             state = $("#state").find("option:selected").val(),
             college = $("#collegeId").find("option:selected").val();
-        if (startTime == null) {
-            $("#p_start").html("开始时间不能空！").css("color", "red");
-        }
-        else if (endTime == null) {
-            $("#p_end").html("结束时间不能空！").css("color", "red");
+        if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
+            alert("不能出现未填项！");
         }
         else {
-            $("#p_start").hide(); $("#p_end").hide();
+            //ajax传值到后台
             $.ajax({
                 type: 'Post',
                 url: 'batchList.aspx',
@@ -144,8 +156,19 @@ $(document).ready(function () {
                 },
                 dateType: 'text',
                 success: function (succ) {
-                    alert(succ);
-                    jump(1);
+                    if (succ == "添加成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
             })
         }
@@ -238,9 +261,24 @@ $(document).ready(function () {
                 editorOp: "editor"
             },
             dataType: 'text',
+            //success: function (succ) {
+            //    alert(succ);
+            //    jump(parseInt(sessionStorage.getItem("page")));
+            //}
             success: function (succ) {
-                alert(succ);
-                jump(1);
+                if (succ == "更新成功") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            jump(1);
+                        }
+                    });
+                } else {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            jump(1);
+                        }
+                    });
+                }
             }
         })
     })
@@ -258,9 +296,24 @@ $(document).ready(function () {
                     delOp: "del"
                 },
                 dataType: 'text',
+                //success: function (succ) {
+                //    alert(succ);
+                //    jump(parseInt(sessionStorage.getItem("page")));
+                //}
                 success: function (succ) {
-                    alert(succ);
-                    jump(parseInt(sessionStorage.getItem("page")));
+                    if (succ == "删除成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    }
                 }
             })
         }
