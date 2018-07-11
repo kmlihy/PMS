@@ -4,33 +4,8 @@ sessionStorage.setItem("page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
-//查询按钮事件
-$("#btn-search").click(function () {
-    var strWhere = $("#inputsearch").val();
-    sessionStorage.setItem("strWhere", strWhere);
-    sessionStorage.setItem("type","btn")
-    jump(1);
-});
-//下拉框查询
-$(".selectdrop").change(function () {
-    var dropstrWhere = $("#selectdrop").find("option:selected").text();
-    sessionStorage.setItem("dropstrWhere", dropstrWhere);
-    sessionStorage.setItem("type", "drop");
-    jump(1);
-})
-function jump(cur) {
-    if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
-        window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-    } else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere") == null) {
-        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
-    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") == null) {
-        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropsearch=" + sessionStorage.getItem("dropstrWhere")+"&type=" + sessionStorage.getItem("type");
-    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") != null) {
-        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropsearch=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
-    }
-};
+
 $(document).ready(function () {
-    sessionStorage.setItem("type", "");
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -43,7 +18,6 @@ $(document).ready(function () {
                     jump(1);
                     break;
                 }
-
             case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
@@ -61,14 +35,31 @@ $(document).ready(function () {
                 break;
         }
     });
-
+    //查询按钮事件
+    $("#btn-search").click(function () {
+        var strWhere = $("#inputsearch").val();
+        sessionStorage.setItem("strWhere", strWhere);
+        jump(1);
+    });
+    //专业下拉框查询
+    $(".selectdrop").change(function () {
+        var dropproWhere = $("#selectdrop").find("option:selected").val();
+        sessionStorage.setItem("dropstrWhere", dropproWhere);
+        jump(1);
+    })
+    //批次下拉查询
+    $(".selectdropbatch").change(function () {
+        var dropbatchWhere = $("#selectdropbatch").find("option:selected").val();
+        //alert(dropbatchWhere);
+        sessionStorage.setItem("batchWhere", dropbatchWhere);
+        jump(1);
+    })
     //传查询值到后台
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null) {
             window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-        } else {
-            window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
+        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere")+ "&search=" + sessionStorage.getItem("strWhere");
     };
     //查看详情弹窗数据填充
     $(".btnSearch").click(function () {
@@ -91,22 +82,30 @@ $(document).ready(function () {
     //删除事件
     $(".btnDel").click(function () {
         var recordid = $(this).parent().parent().find("#recordid").text().trim();
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            $.ajax({
-                type: 'Post',
-                url: 'selectTopicList.aspx',
-                data: {
-                    Recordid: recordid,
-                    op: "del"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    alert(succ);
-                    jump(1);
-                }
-            })
-        } else { }
+        var txt = "是否确认删除？";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'selectTopicList.aspx',
+                    data: {
+                        Recordid: recordid,
+                        op: "del"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        })
+                    }
+                })
+            }
+        }
+        window.wxc.xcConfirm(txt, "confirm", option);
     })
 
 });

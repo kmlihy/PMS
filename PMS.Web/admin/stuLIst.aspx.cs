@@ -17,13 +17,13 @@ namespace PMS.Web.admin
         protected DataSet colds = null;//院系
 
         protected DataSet ds = null;
-        protected int getCurrentPage = 2;
+        protected int getCurrentPage = 0;
         protected int count;
         protected int pagesize = 3;
         protected String search = "";
         protected String searchdrop = "";
         protected string showstr = null;
-        protected string showinput = null;
+        //protected string showinput = null;
 
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
@@ -39,7 +39,7 @@ namespace PMS.Web.admin
             {
                 getdata(Search());
                 colds = colBll.Select();
-                prods = proBll.Select();                
+                prods = proBll.Select();
             }
             if (op == "add")//添加
             {
@@ -53,10 +53,6 @@ namespace PMS.Web.admin
             {
                 deleteStu();
             }
-            if (search != "")
-            {
-                Search();
-            }
             if (type == "drop")
             {
                 getdata(Searchdrop());
@@ -66,34 +62,18 @@ namespace PMS.Web.admin
                 getdata(Search());
             }
 
-            //下拉框保留查询条件
-            if(searchdrop == "")
-            {
-                showstr = "-请选择专业-";
-            }
-            else if (searchdrop != null && searchdrop.Length > 0)
-            {
-                string sec = searchdrop.ToString();
-                string[] secArray = sec.Split('=');
-                if (secArray.Length > 0)
-                {
-                    string str = secArray[1].ToString();
-                    showstr = str.Substring(1, str.Length - 2);
-                }
-            }
-
             //查询按钮保存查询条件
-            if (search == null)
-            {
-                showinput = "请输入查询条件";
-            }
-            else if (search != null && search.Length > 1)
-            {
-                string sec = search.ToString();
-                string[] secArray = sec.Split('%');
-                string str = secArray[1].ToString();
-                showinput = str;
-            }
+            //if (search == null)
+            //{
+            //    showinput = "请输入查询条件";
+            //}
+            //else if (search != null && search.Length > 1)
+            //{
+            //    string sec = search.ToString();
+            //    string[] secArray = sec.Split('%');
+            //    string str = secArray[1].ToString();
+            //    showinput = str;
+            //}
 
         }
         //查询
@@ -129,14 +109,20 @@ namespace PMS.Web.admin
                 if (searchdrop.Length == 0)
                 {
                     searchdrop = "";
+                    //下拉框保留查询条件
+                    showstr = "0";
                 }
                 else if (searchdrop == null)
                 {
                     searchdrop = "";
+                    //下拉框保留查询条件
+                    showstr = "0";
                 }
                 else
                 {
-                    searchdrop = String.Format("proName={0} ", "'"+ searchdrop + "'");
+                    //下拉框保留查询条件
+                    showstr = searchdrop;
+                    searchdrop = String.Format("proId={0} ", "'"+ searchdrop + "'");
                 }
             }
             catch

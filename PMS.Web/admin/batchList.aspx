@@ -51,7 +51,7 @@
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">序号</th>
+                    <th class="text-center">批次编号</th>
                     <th class="text-center">批次名</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>

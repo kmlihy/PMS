@@ -6,6 +6,13 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
+    //防止当前页数大于总页数
+    var page = parseInt(sessionStorage.getItem("page"));
+    var countPage = parseInt(sessionStorage.getItem("countPage"));
+    if (page > countPage) {
+        sessionStorage.setItem("page", countPage);
+        jump(parseInt(sessionStorage.getItem("page")));
+    }
     //正则表达式
     var txtAccount = /^[0-9]*$/; //数字的正则表达式
     var txtName = /^[a-zA-Z\u4e00-\u9fa5]+$/; //汉字、英文的正则表达式
@@ -78,7 +85,6 @@ $(document).ready(function () {
         $("#validateColl").html("");
         $("#validateEmail").html("");
         $("#validateTel").html("");
-
     })
     //添加分院管理员对象
     $("#btnInsert").click(function () {

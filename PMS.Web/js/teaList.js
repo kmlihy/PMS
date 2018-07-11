@@ -4,6 +4,19 @@ sessionStorage.setItem("Page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
+$(".file").on("change", "input[type='file']", function () {
+    var filePath = $(this).val();
+    if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
+        $(".fileerrorTip").html("").hide();
+        var arr = filePath.split('\\');
+        var fileName = arr[arr.length - 1];
+        $(".showFileName").html(fileName);
+    } else {
+        $(".showFileName").html("");
+        $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+        return false
+    }
+})
 $(document).ready(function () {
     //分页参数传递
     $(".jump").click(function () {
@@ -107,8 +120,8 @@ $(document).ready(function () {
     })
     //教师添加函数
     $("#btnAdd").click(function () {
-        var collegeId = $("#selectcol").find("option:selected").val(),
-            teaType = $("#teaType").find("option:selected").val(),
+        var collegeId = $("#addselectcol").find("option:selected").val(),
+            teaType = $("#addteaType").find("option:selected").val(),
             teaAccount = $("#teaAccount").val(),
             pwd = $("#pwd").val(),
             teaName = $("#teaName").val(),
@@ -315,35 +328,45 @@ $(document).ready(function () {
     //删除事件
     $(".btnDel").click(function () {
         var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            $.ajax({
-                type: 'Post',
-                url: 'teaList.aspx',
-                data: {
-                    TeaAccount: teaAccount,
-                    op: "del"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    if (succ == "删除成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
+        var txt = "是否确认删除？";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'teaList.aspx',
+                    data: {
+                        TeaAccount: teaAccount,
+                        op: "del"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(1);
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(1);
+                                }
+                            });
+                        }
                     }
-                }
-            })
-        } else {
-
+                })
+            }
         }
+        window.wxc.xcConfirm(txt, "confirm", option);
     });
-
+    //点击下载模板事件
+    $("#downfile").click(function () {
+        var $eleForm = $("<form method='get'></form>");
+        $eleForm.attr("action", "../upload/信息模板下载/教师批量导入模板.xlsx");
+        $(document.body).append($eleForm);
+        //提交表单，实现下载
+        $eleForm.submit();
+    })
 });

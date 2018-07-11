@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
@@ -22,27 +23,45 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
-                        <option value="">
-                            <%if (showstr == null){
-                               showstr = "-请选择专业-";
-                            %>
-                            <%} %>
-                            <%=showstr %>
-                        </option>
+                        <option value="0">-查询全部专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                            {
+                                if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <%}%>
+                        <%else
                             {%>
                         <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <%} %>
+                        <%} %>
                     </select>
-                    <%if (showinput == null) {
-                            showinput = "请输入搜索条件";
-                        } %>
-                    <input type="text" class="form-control inputsearch" placeholder="<%=showinput %>" id="inputsearch" />
+                    &nbsp
+                    <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
+                        <option value="0">-请选择批次-</option>
+
+                        <%for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                            {
+                                if (plands.Tables[0].Rows[i]["planId"].ToString() == showbacthdrop)
+                                {%>
+                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <%}%>
+                        <%else
+                            {%>
+                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <%} %>
+                        <%} %>
+                    </select>
+                    <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=showinput %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
                         </button>
                     </span>
+                    <button class="btn btn-success" type="button" id="btn-export">
+                        <span class="glyphicon glyphicon-share-alt"></span>
+                        导出
+                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -57,14 +76,13 @@
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">序号</th>
+                    <th class="text-center">选题记录编号</th>
                     <th class="text-center">题目</th>
                     <th class="text-center">出题教师</th>
                     <th class="text-center">选题学生</th>
                     <th class="text-center">所属批次</th>
                     <th class="text-center">所属专业</th>
-                    <th class="text-center">已选人数</th>
-                    <th class="text-center">人数上限</th>
+                    <th class="text-center">已选人数/人数上限</th>
                     <th class="text-center">选题时间</th>
                     <th class="text-center">所属分院</th>
                     <th class="text-center">操作</th>
@@ -87,8 +105,7 @@
                         <td class="text-center" id="realname"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td class="text-center" id="planname"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
                         <td class="text-center" id="proname"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %>/<%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
                         <td class="text-center" id="recordtime"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
                         <td class="text-center" id="collegename"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                         <td class="text-center">
@@ -255,4 +272,11 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/lgd.js"></script>
 <script src="../js/selectTopicList.js"></script>
+<script src="../js/xcConfirm.js"></script>
+    <script>
+        $("#btn-export").click(function () {
+            alert("导出");
+            window.location.href = "selectTopicList.aspx?op=export";
+        })
+    </script>
 </html>

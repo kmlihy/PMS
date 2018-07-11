@@ -18,7 +18,9 @@ namespace PMS.Web.admin
         //专业
         protected DataSet prods = null;
         protected ProfessionBll probll = new ProfessionBll();
-
+        //批次
+        protected PlanBll planbll = new PlanBll();
+        protected DataSet plands = null;
         TitleRecordBll titrecordbll = new TitleRecordBll();
         //学院
         protected DataSet bads = null;
@@ -28,70 +30,154 @@ namespace PMS.Web.admin
         protected int pagesize = 2;
         protected String search = "";
         protected String searchdrop = "";
+        protected String searanddrop = "";
+        protected String searbatchdrop = "";
         protected string showstr = null;
         protected string showinput = null;
+        protected string showbacthdrop = null;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request.Form["op"];
-            string type =Request.QueryString["type"];
+            string op1 = Context.Request.QueryString["op"];
+            //下拉专业ID
+            string dropstrWhere = Request.QueryString["dropstrWhere"];
+            //下拉批次Id
+            string batchWhere = Request.QueryString["batchWhere"];
+            //搜索信息
+            string strsearch = Request.QueryString["search"];
             if (op == "del")
             {
                 IsdeleteCollege();
                 delPro();
             }
-            if (type == "btn")
+            //导出列表
+            if(op1 == "export")
             {
-                Search();
-                getPage(Search());
+                TitleRecordBll titlerd = new TitleRecordBll();
+                string strWhere = string.Format(" where proId = 1");
+                DataTable dt = titlerd.ExportExcel(strWhere);
+                var path = Server.MapPath("~/upload/daochu.xls");
+                ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                downloadfile(path);
             }
-            else if (type == "drop")
-            {
-                Searchdrop();
+            if (dropstrWhere != null && dropstrWhere != "null" && batchWhere == "null")
+            {// 如果批次id为空，专业id不为空
                 getPage(Searchdrop());
+            }
+            else if (batchWhere != null && batchWhere != "null" && dropstrWhere == "null")
+            {// 如果专业id为空，批次id不为空
+                getPage(batcchdrop());
+            }
+            else if (dropstrWhere != null && dropstrWhere != "null" && batchWhere != null && batchWhere != "null")
+            {
+                //两个都不为空
+                getPage(SearchProAndBatch());
+            }
+            if (strsearch != null)
+            {
+                getPage(Search());
             }
             else {
                 getPage("");
             }
-           
+
             bads = colbll.Select();
             prods = probll.Select();
-            //下拉搜索后条件保存
-            if (searchdrop == null)
-            {
-                showstr = "-请选择专业-";
-            }
-            else if (searchdrop != null &&searchdrop.Length>0)
-            {
-                string sec = searchdrop.ToString();
-                string[] secArray = sec.Split('=');
-                if (secArray.Length > 0)
-                {
-                    string str = secArray[1].ToString();
-                    showstr = str.Substring(1, str.Length - 2);
-                }
-
-            }
-            //查询按钮点击后查询条件保存
-            if (search == null)
-            {
-                showinput = "请输入查询条件";
-            }
-            else if (search != null && search.Length > 1)
-            {
-                string sec = search.ToString();
-                string[] secArray = sec.Split('%');
-                string str = secArray[1].ToString();
-                showinput = str;
-
-            }
-            else { }
+            plands = planbll.Select();
         }
+
+        public void downloadfile(string s_path)
+        {
+            System.IO.FileInfo file = new System.IO.FileInfo(s_path);
+            HttpContext.Current.Response.ContentType = "application/ms-download";
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.AddHeader("Content-Type", "application/octet-stream");
+            HttpContext.Current.Response.Charset = "utf-8";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=" + System.Web.HttpUtility.UrlEncode(file.Name, System.Text.Encoding.UTF8));
+            HttpContext.Current.Response.AddHeader("Content-Length", file.Length.ToString());
+            HttpContext.Current.Response.WriteFile(file.FullName);
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.End();
+        }
+
+        //批次下拉查询
+        public string batcchdrop()
+        {
+            try
+            {
+                searbatchdrop = Request.QueryString["batchWhere"];
+                if (searbatchdrop.Length == 0)
+                {
+                    showstr = "0";
+                }
+                else if (searbatchdrop == null)
+                {
+                    searchdrop = "";
+                }
+                else if (searbatchdrop == "0")
+                {
+                    searbatchdrop = "";
+                }
+                else
+                {
+                    int.Parse(searbatchdrop);
+                    //批次下拉搜索后条件保存
+                    showbacthdrop = searbatchdrop;
+                    searbatchdrop = String.Format(" planId={0}", "'" + searbatchdrop + "'");
+
+                }
+            }
+            catch
+            {
+
+            }
+            return searbatchdrop;
+        }
+        //专业和批次一起查询
+        public string SearchProAndBatch()
+        {
+            try
+            {
+                //专业下拉的条件
+                searchdrop = Request.QueryString["dropstrWhere"];
+                //专业条件传到前台
+                showstr = searchdrop;
+                //批次的条件
+                search = Request.QueryString["batchWhere"];
+                showbacthdrop = search;
+                if (searchdrop == "0")
+                {
+                    searchdrop = "";
+                    search = "";
+                    searanddrop = "";
+                }
+                else if (search == "0" && searchdrop != "0")
+                {
+                    search = "";
+                    searanddrop = String.Format(" proId={0} ", "'" + searchdrop + "'");
+                    //searanddrop = String.Format(" proId={0} and planId={1}", "'" + searchdrop + "'", " '" + search + "'");
+                }
+                else
+                {
+                    searanddrop = String.Format(" proId={0} and planId={1}", "'" + searchdrop + "'", " '" + search + "'");
+                }
+            }
+            catch
+            {
+
+            }
+            return searanddrop;
+        }
+
+        //专业下拉查询
         public string Searchdrop()
         {
             try
             {
-                searchdrop = Request.QueryString["dropsearch"];
+                searchdrop = Request.QueryString["dropstrWhere"];
                 if (searchdrop.Length == 0)
                 {
                     searchdrop = "";
@@ -100,10 +186,15 @@ namespace PMS.Web.admin
                 {
                     searchdrop = "";
                 }
+                else if (searchdrop == "0")
+                {
+                    searchdrop = "";
+                }
                 else
                 {
-                    searchdrop = String.Format(" proName={0}", "'" + searchdrop + "'");
-
+                    //专业下拉搜索后条件保存
+                    showstr = searchdrop;
+                    searchdrop = String.Format(" proId={0}", "'" + searchdrop + "'");
                 }
             }
             catch
@@ -111,6 +202,33 @@ namespace PMS.Web.admin
 
             }
             return searchdrop;
+        }
+        //搜索
+        public string Search()
+        {
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    //查询按钮点击后查询条件保存
+                    showinput = search;
+                    search = String.Format(" teaName {0} or title {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + search + "%'");
+                }
+            }
+            catch
+            {
+
+            }
+            return search;
         }
         //判断是否能删除
         public Result IsdeleteCollege()
@@ -162,8 +280,6 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
-
-
             TitleRecordBll titlerd = new TitleRecordBll();
             TableBuilder tabuilder = new TableBuilder()
             {
@@ -178,32 +294,6 @@ namespace PMS.Web.admin
             };
             getCurrentPage = int.Parse(currentPage);
             ds = titlerd.SelectBypage(tabuilder, out count);
-        }
-        //搜索
-        public string Search()
-        {
-            try
-            {
-                search = Request.QueryString["search"];
-                if (search.Length == 0)
-                {
-                    search = "";
-                }
-                else if (search == null)
-                {
-                    search = "";
-                }
-                else
-                {
-                    search = String.Format(" teaName {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + search + "%'");
-
-                }
-            }
-            catch
-            {
-
-            }
-            return search;
         }
     }
 }

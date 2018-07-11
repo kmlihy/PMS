@@ -53,7 +53,7 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 修改题目
+        /// 删除题目
         /// </summary>
         /// <param name="news">题目实体</param>
         /// <returns>返回处理结果</returns>
@@ -70,6 +70,11 @@ namespace PMS.BLL
             }
         }
 
+        /// <summary>
+        /// 更新方法
+        /// </summary>
+        /// <param name="title">题目对象</param>
+        /// <returns></returns>
         public Enums.OpResult Update(Title title)
         {
             int count = dao.Update(title);
