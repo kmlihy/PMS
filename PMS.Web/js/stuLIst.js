@@ -3,8 +3,39 @@ sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
 //存储查询条件
-sessionStorage.setItem("type", "");
 $(document).ready(function () {
+    //删除学生
+    $(".deleteStudent").click(function () {
+        var stuId = $(this).parent().parent().find(".stuNO").text().trim();
+        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
+        if (result == true) {
+            $.ajax({
+                type: 'Post',
+                url: 'stuLIst.aspx',
+                data: {
+                    stuId: stuId,
+                    op: "delete"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    if (succ == "删除成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                                //    jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    }
+                }
+            })
+        }
+    })
     //按钮查询
     $("#search").click(function () {
         var strWhere = $("#inputsearch").val();
@@ -14,10 +45,18 @@ $(document).ready(function () {
     });
     //下拉选项查询
     $("#chooseStuPro").change(function () {
+        sessionStorage.removeItem("strWhere");
         var dropstrWhere = $(this).find("option:selected").val();
         sessionStorage.setItem("dropstrWhere", dropstrWhere);
-        sessionStorage.setItem("type", "drop");
-        jump(1);
+        if (dropstrWhere != "0") {
+            sessionStorage.getItem("dropstrWhere");
+            sessionStorage.setItem("type", "drop");
+            jump(1);
+        }
+        else {
+            sessionStorage.removeItem("dropstrWhere");
+            jump(1);
+        }
     })
 
     //分页
@@ -34,6 +73,7 @@ $(document).ready(function () {
                 }
             case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                    
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     break;
                 }
@@ -52,7 +92,8 @@ $(document).ready(function () {
                 break;
         }
     });
-
+    //判断当前也的pagesize，当为0时，页数向前一页
+    
     //地址栏显示信息
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
@@ -274,37 +315,12 @@ $(document).ready(function () {
         }
     })
 
-    //删除学生
-    $(".deleteStudent").click(function () {
-        var stuId = $(this).parent().parent().find(".stuNO").text().trim();
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            $.ajax({
-                type: 'Post',
-                url: 'stuLIst.aspx',
-                data: {
-                    stuId: stuId,
-                    op: "delete"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    if (succ == "删除成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
-                    }
-                }
-            })
-        }
-    })
     //密码表格隐藏
     $(".stuPwd").hide();
+    if (parseInt(sessionStorage.getItem("page")) > parseInt(sessionStorage.getItem("countPage"))) {
+        {
+            jump(parseInt(sessionStorage.getItem("page")) - 1);
+        }
+    }
+
 })

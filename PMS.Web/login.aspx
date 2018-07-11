@@ -53,13 +53,7 @@
                             <input type="radio" name="user" id="input${1/(\w+)/\u\1/g}" value="student" checked="" />
                             学生
                         </label>
-                        <a href="admin/login.aspx">
-                            <label>
-                                <input type="radio" name="user" id="input${1/(\w+)/\u\1/g}" value="student" checked="" />
-                                管理员
-                            </label>
-                        </a>
-                        <a href="#" id="retrievePwd">找回密码</a>
+                        <a href="admin/changePwd.aspx" id="retrievePwd">找回密码</a>
                     </div>
                     <div id="btn">
                         <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>

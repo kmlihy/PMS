@@ -52,8 +52,6 @@
             </div>
         </div>
     </div>
-    <button id="GoSelect" class="btn navbar-btn btn-default">我要去选题</button>
-    <span id="stu"><%=stuAccount %></span>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
