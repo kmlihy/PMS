@@ -121,6 +121,7 @@
     <Content Include="js\test.js" />
     <Content Include="js\xcConfirm.js" />
     <Content Include="js\zwh.js" />
+    <Content Include="JurisdictionTest.aspx" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
     <Content Include="kindeditor\asp.net\README.txt" />
@@ -366,6 +367,13 @@
     </Compile>
     <Compile Include="checkCode.aspx.designer.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JurisdictionTest.aspx.cs">
+      <DependentUpon>JurisdictionTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JurisdictionTest.aspx.designer.cs">
+      <DependentUpon>JurisdictionTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
