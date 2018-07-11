@@ -6,6 +6,29 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
+    //列表导入
+    $(".file").on("change", "input[type='file']", function () {
+        var filePath = $(this).val();
+        if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
+            $(".fileerrorTip").html("").hide();
+            var arr = filePath.split('\\');
+            var fileName = arr[arr.length - 1];
+            $(".showFileName").html(fileName);
+        } else {
+            $(".showFileName").html("");
+            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+            return false
+        }
+    })
+    //点击下载模板事件
+    $("#downfile").click(function () {
+        var $eleForm = $("<form method='get'></form>");
+        $eleForm.attr("action", "../upload/信息模板下载/专业批量导入模板.xlsx");
+        $(document.body).append($eleForm);
+        //提交表单，实现下载
+        $eleForm.submit();
+    })
+
     //翻页实现
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {

@@ -23,39 +23,36 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
-                        <option value="0">请选择专业
-                            <%--<%if (showstr == null)
-                                {
-                                    showstr = "-请选择专业-";
-                            %>
-                            <%} %>
-                            <%=showstr %>--%>
-                        </option>
+                        <option value="0">-查询全部专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                            {
+                                if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <%}%>
+                        <%else
                             {%>
                         <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <%} %>
+                        <%} %>
                     </select>
                     &nbsp
-                    <select class="selectpicker selectdropbatch" data-width="auto">
-                        <option value="">
-                            <%if (showbacthdrop == null)
-                                {
-                                    showbacthdrop = "-请选择批次-";
-                            %>
-                            <%} %>
-                            <%=showbacthdrop %>
-                        </option>
+                    <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
+                        <option value="0">-请选择批次-</option>
+
                         <%for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                            {
+                                if (plands.Tables[0].Rows[i]["planId"].ToString() == showbacthdrop)
+                                {%>
+                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <%}%>
+                        <%else
                             {%>
                         <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
                         <%} %>
+                        <%} %>
                     </select>
-                    <%if (showinput == null)
-                        {
-                            showinput = "请输入搜索条件";
-                        } %>
-                    <input type="text" class="form-control inputsearch" placeholder="<%=showinput %>" id="inputsearch" />
+                    <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=showinput %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -276,4 +273,10 @@
 <script src="../js/lgd.js"></script>
 <script src="../js/selectTopicList.js"></script>
 <script src="../js/xcConfirm.js"></script>
+    <script>
+        $("#btn-export").click(function () {
+            alert("导出");
+            window.location.href = "selectTopicList.aspx?op=export";
+        })
+    </script>
 </html>
