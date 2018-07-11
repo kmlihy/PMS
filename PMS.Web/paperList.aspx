@@ -11,6 +11,7 @@
     <title>论文列表</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 
 </head>
 
@@ -35,10 +36,10 @@
                 <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {  %>
                 <tr>
-                    <td style="width:400px;">
+                    <td class="paperlisttd">
                         <a href="paperDetail.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>"><%=ds.Tables[0].Rows[i]["title"].ToString()%></a>
                     </td>
-                    <td style="width:400px;"><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
+                    <td><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
                     </td>
                     <td>
                         <a class="btn btn-primary selectTitle" id="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>
@@ -83,84 +84,12 @@
             </ul>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="../js/lgd.js"></script>
-<script>
-    //当前页数
-    sessionStorage.setItem("Page",<%=getCurrentPage%>);
-    //总页
-    sessionStorage.setItem("countPage",<%=count%>);
-    $(document).ready(function () {
-        $(".jump").click(function(){
-            switch($.trim($(this).html())){
-                case('<span class="glyphicon glyphicon-chevron-left"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))>1){
-                        jump(parseInt(sessionStorage.getItem("Page"))-1);
-                        break;
-                    }
-                    else{
-                        jump(1);
-                        break;
-                    }
-                    
-                case('<span class="glyphicon glyphicon-chevron-right"></span>'):
-                    if(parseInt(sessionStorage.getItem("Page"))<parseInt(sessionStorage.getItem("countPage"))){
-                        jump(parseInt(sessionStorage.getItem("Page"))+1);
-                        break;
-                    }
-                    else{
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case("首页"):
-                    jump(1);
-                    break;
-                case("尾页"):
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        });
-        $("#btn-search").click(function(){
-            var strWhere =$("#inputsearch").val();
-            sessionStorage.setItem("strWhere",strWhere);
-            jump(1);
-        });
-        function jump(cur) {
-            if(sessionStorage.getItem("strWhere")==null){
-                window.location.href = "paperList.aspx?currentPage=" + cur;
-            }else{
-                window.location.href ="paperList.aspx?currentPage="+cur+"&search="+sessionStorage.getItem("strWhere");
-            }
-        };
-        if (sessionStorage.getItem("countPage") == "1") {
-            $("#first").hide();
-            $("#last").hide();
-        }
-    });
-    $(".selectTitle").click(function(){
-        var result = confirm("您确定要选题吗？若要查看题目详情可直接点击题目！");
-        if(result == true){
-            var titleid = $(this).attr("id");
-            $.ajax({
-                type: 'Post',
-                url: 'paperList.aspx?titleId=' + titleid + "&op=selectTitle",
-                success: function(succ) {                           
-                    if(succ == "选题成功"){
-                        alert(succ);
-                        window.location.href = "PaperDtailStu.aspx?titleId=" + titleid;
-                    }
-                    else if(succ=="已选题")
-                    {
-                        alert("您已经选过题目，不能多次选题！");                
-                    }                            
-                }
-            });
-        }else
-        {
-        
-        }
-    })
-</script>
+<script src="js/xcConfirm.js"></script>
+<script src="js/paperList.js"></script>
 </html>

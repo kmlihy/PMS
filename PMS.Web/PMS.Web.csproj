@@ -113,6 +113,8 @@
     <Content Include="js\lgd.js" />
     <Content Include="js\messages_zh.min.js" />
     <Content Include="js\ml.js" />
+    <Content Include="js\newsList.js" />
+    <Content Include="js\paperList.js" />
     <Content Include="js\proList.js" />
     <Content Include="js\selectTopicList.js" />
     <Content Include="js\stuLIst.js" />
@@ -120,6 +122,7 @@
     <Content Include="js\test.js" />
     <Content Include="js\xcConfirm.js" />
     <Content Include="js\zwh.js" />
+    <Content Include="JurisdictionTest.aspx" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
     <Content Include="kindeditor\asp.net\README.txt" />
@@ -366,6 +369,13 @@
     <Compile Include="checkCode.aspx.designer.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>
     </Compile>
+    <Compile Include="JurisdictionTest.aspx.cs">
+      <DependentUpon>JurisdictionTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JurisdictionTest.aspx.designer.cs">
+      <DependentUpon>JurisdictionTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -448,6 +458,9 @@
     <Content Include="obj\Debug\PMS.Web.csprojAssemblyReference.cache" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180704121643--新建 XLS 工作表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180706180128-新建 XLS 工作表.xls" />
+    <Content Include="upload\学院信息导入Excel文件存储\admin\20180709142209-学院表.xls" />
+    <Content Include="upload\信息模板下载\教师批量导入模板.xlsx" />
+    <Content Include="upload\学院信息导入Excel文件存储\20180709142209-学院表.xls" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -474,7 +487,6 @@
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="upload\信息模板下载\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -1,5 +1,6 @@
 ﻿body {
     margin-top:20px;
+    background-color:rgb(241,248,252);
 }
 
 a {
@@ -25,6 +26,15 @@ a:hover {
 
 #Mine-list {
     border-top: 2px solid #013A58;
+}
+#school{
+    margin-bottom:10px;
+}
+#institute{
+    margin-bottom:10px;
+}
+#Mine{
+    margin-bottom:20px;
 }
 
 /*#school-table span {

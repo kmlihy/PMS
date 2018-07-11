@@ -9,9 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>分院管理员信息表</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
-    <%--<link rel="stylesheet" href="../css/zwh.css" />--%>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
@@ -49,14 +47,14 @@
                 <th class="text-center">
                     <input type="checkbox" class="js-checkbox-all" />
                 </th>
-                <th class="text-center">序号</th>
                 <th class="text-center">工号</th>
                 <th class="text-center">姓名</th>
-                <th class="text-center">密码</th>
+                <%--<th class="text-center">密码</th>--%>
                 <th class="text-center">性别</th>
                 <th class="text-center">院系</th>
                 <th class="text-center">联系电话</th>
                 <th class="text-center">邮箱</th>
+                    <th class="text-center">用户类型</th>
                 <th class="text-center">操作</th>
             </thead>
             <tbody>
@@ -67,18 +65,15 @@
                     <td class="text-center">
                         <input type="checkbox" />
                     </td>
-                    <td class="text-center">
-                        <%= i+1 %>
-                    </td>
                     <td class="text-center" id="teaAccount">
                         <%= ds.Tables[0].Rows[i]["teaAccount"].ToString() %>
                     </td>
                     <td class="text-center" id="teaName">
                         <%= ds.Tables[0].Rows[i]["teaName"].ToString() %>
                     </td>
-                    <td class="text-center" id="teaPwd">
+                    <%--<td class="text-center" id="teaPwd">
                         <%= ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
-                    </td>
+                    </td>--%>
                     <td class="text-center" id="sex">
                         <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                     </td>
@@ -92,6 +87,10 @@
                     <td class="text-center" id="email">
                         <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                     </td>
+                    
+                        <td class="text-center" id="tdteatype">
+                            <%=((ds.Tables[0].Rows[i]["teaType"].ToString()=="2")?"分院管理员":"")%>
+                        </td>
                     <td class="text-center">
                         <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#editModal">
                             <span class="glyphicon glyphicon-pencil"></span>
@@ -247,14 +246,14 @@
                                     <span id="validateNameE"></span>
                                 </td>
                             </tr>
-                            <tr>
+                            <%--<tr>
                                 <td class="teaLable">
                                     <label class="text-span">密码</label></td>
                                 <td>
                                     <input class="form-control teaAddinput" type="text" id="Epwd" />
                                     <span id="validatePwd"></span>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">性别</label></td>

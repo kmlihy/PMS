@@ -70,7 +70,7 @@ $(document).ready(function () {
     $("#btnAdd").click(function () {
         var collegeId = $("#selectcol").find("option:selected").val(),
             proName = $("#proName").val();
-        if (collegeId == "-1" || proName=="") {
+        if (collegeId == "-1" || proName == "") {
             alert("含有未填项，请检查！");
         }
         else {
@@ -170,35 +170,38 @@ $(document).ready(function () {
     })
     //删除事件
     $(".btnDel").click(function () {
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            var delproId = $(this).parent().parent().find("#tdproId").text().trim();
-            $.ajax({
-                type: 'Post',
-                url: 'proList.aspx',
-                data: {
-                    DelProId: delproId,
-                    op: "del"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    if (succ == "删除成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
+        var delproId = $(this).parent().parent().find("#tdproId").text().trim();
+        var txt = "是否确认删除？";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'proList.aspx',
+                    data: {
+                        DelProId: delproId,
+                        op: "del"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(1);
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(1);
+                                }
+                            });
+                        }
                     }
-                }
-            })
-        } else {
-
+                })
+            }
         }
+        window.wxc.xcConfirm(txt, "confirm", option);
     })
 });

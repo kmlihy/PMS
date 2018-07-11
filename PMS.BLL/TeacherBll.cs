@@ -131,5 +131,11 @@ namespace PMS.BLL
             intPageCount = pagecount;
             return ds;
         }
+        //上传
+        public int upload(DataTable dt)
+        {
+            int row = dao.upload(dt);
+            return row;
+        }
     }
 }

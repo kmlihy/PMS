@@ -13,10 +13,11 @@ namespace PMS.Web.admin
     using Result = Enums.OpResult;
     public partial class adminList : System.Web.UI.Page
     {
-        TeacherBll teabll = new TeacherBll();
+        TeacherBll teaBll = new TeacherBll();
         CollegeBll collBll = new CollegeBll();
         Teacher tea = new Teacher();
         College coll = new College();
+        Result result;
         //获取数据
         protected DataSet ds = null, dsColl = null;
         protected int count;
@@ -33,7 +34,7 @@ namespace PMS.Web.admin
             //添加管理员
             if (op == "add")
             {
-                saveAdmin();
+                insertAdmin();
                 Search();
                 getdata(Search());
             }
@@ -47,7 +48,7 @@ namespace PMS.Web.admin
             //删除管理员
             else if (op == "dele")
             {
-                deleteCollege();
+                deleteAdmin();
                 Search();
                 getdata(Search());
             }
@@ -88,7 +89,7 @@ namespace PMS.Web.admin
                 StrWhere = strTeaType + strWhere
             };
             getCurrentPage = int.Parse(currentPage);
-            ds = teabll.SelectBypage(tbd, out count);
+            ds = teaBll.SelectBypage(tbd, out count);
             //获取学院所有信息
             dsColl = collBll.Select();
         }
@@ -118,7 +119,7 @@ namespace PMS.Web.admin
             return search;
         }
         //添加学院管理员
-        public void saveAdmin()
+        public void insertAdmin()
         {
             string account = Context.Request["account"].ToString();
             string name = Context.Request["name"].ToString();
@@ -126,27 +127,38 @@ namespace PMS.Web.admin
             string college = Context.Request["college"].ToString();
             string email = Context.Request["email"].ToString();
             string phone = Context.Request["phone"].ToString();
-            //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-            coll.ColID = int.Parse(college);
-            tea.TeaAccount = account;
-            tea.TeaName = name;
-            tea.Sex = sex;
-            tea.college = coll;
-            tea.Email = email;
-            tea.Phone = phone;
-            tea.TeaPwd = "123456";
-            tea.TeaType = 2;
-            TeacherBll teaBll = new TeacherBll();
-            Result result = teaBll.Insert(tea);
-            if (result == Result.添加成功)
+            //根据输入的账号获取学生信息
+            tea = teaBll.GetModel(account);
+            string strEmail = tea.Email;
+            string strPhone = tea.Phone;
+            if (email == strEmail && phone == strPhone)
             {
-                Response.Write("添加成功");
+                result = Result.添加失败;
+                Response.Write("此联系电话、邮箱已存在");
                 Response.End();
             }
             else
             {
-                Response.Write("添加失败");
-                Response.End();
+                tea.TeaAccount = account;
+                tea.TeaName = name;
+                tea.Sex = sex;
+                coll.ColID = int.Parse(college);
+                tea.college = coll;
+                tea.Email = email;
+                tea.Phone = phone;
+                tea.TeaPwd = "123456";
+                tea.TeaType = 2;
+                result = teaBll.Insert(tea);
+                if (result == Result.添加成功)
+                {
+                    Response.Write("添加成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("添加失败");
+                    Response.End();
+                }
             }
         }
         //编辑学院管理员
@@ -171,9 +183,6 @@ namespace PMS.Web.admin
                 StrWhere = "collegeName = '" + college + "'"
             };
             dsColl = collBll.SelectBypage(tbd, out count);
-            //Response.Write(account + ":" + name + ":" + sex + ":" + college + ":" + email + ":" + phone);
-            Teacher tea = new Teacher();
-            College coll = new College();
             coll.ColID = int.Parse(dsColl.Tables[0].Rows[0]["collegeId"].ToString());
             tea.TeaAccount = account;
             tea.TeaName = name;
@@ -183,8 +192,7 @@ namespace PMS.Web.admin
             tea.Email = email;
             tea.Phone = phone;
             tea.TeaType = 2;
-            TeacherBll teaBll = new TeacherBll();
-            Result result = teaBll.Updata(tea);
+            result = teaBll.Updata(tea);
             if (result == Result.更新成功)
             {
                 Response.Write("更新成功");
@@ -197,28 +205,28 @@ namespace PMS.Web.admin
             }
         }
         //判断是否能删除
-        public Result IsdeleteCollege()
+        public Result IsdeleteAdmin()
         {
             string account = Context.Request["Daccount"].ToString();
             Result row = Result.记录不存在;
-            if (teabll.IsDelete("T_News", "teaAccount", account) == Result.关联引用)
+            if (teaBll.IsDelete("T_News", "teaAccount", account) == Result.关联引用)
             {
                 row = Result.关联引用;
             }
-            if (teabll.IsDelete("T_Title", "teaAccount", account) == Result.关联引用)
+            if (teaBll.IsDelete("T_Title", "teaAccount", account) == Result.关联引用)
             {
                 row = Result.关联引用;
             }
             return row;
         }
         //删除
-        public void deleteCollege()
+        public void deleteAdmin()
         {
             string account = Context.Request["Daccount"].ToString();
-            Result row = IsdeleteCollege();
+            Result row = IsdeleteAdmin();
             if (row == Result.记录不存在)
             {
-                Result result = teabll.Delete(account);
+                Result result = teaBll.Delete(account);
 
                 if (result == Result.删除成功)
                 {

@@ -9,7 +9,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>分院信息表</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
@@ -52,7 +51,7 @@
                 <th class="text-center">
                     <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                 </th>
-                <th class="text-center">工号</th>
+                <th class="text-center">学院编号</th>
                 <th class="text-center">学院名称</th>
                 <th class="text-center">操作</th>
             </thead>
@@ -165,29 +164,34 @@
                     <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="text-center">
-                                    <a href="javascript:;" class="file">选择文件<input type="file" name="upload" id="upload" />
-                                        <label class="showFileName"></label>
-                                        <label class="fileerrorTip"></label>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-primary">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="btnupload">上传</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" id="download" >
+                                        <a href="../upload/信息模板下载/学院信息表.xls" download="学院信息表.xls"><button type="button" class="btn btn-primary">下载模板</button></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
