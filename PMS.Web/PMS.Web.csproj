@@ -76,6 +76,7 @@
     <Content Include="admin\teaCenter.aspx" />
     <Content Include="admin\teaList.aspx" />
     <Content Include="admin\titleList.aspx" />
+    <Content Include="admin\titleReadList.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="bin\NPOI.dll" />
     <Content Include="bin\NPOI.OOXML.dll" />
@@ -98,6 +99,7 @@
     <Content Include="css\jquery-ui.min.css" />
     <Content Include="css\xcConfirm.css" />
     <Content Include="images\icons.png" />
+    <Content Include="images\regBground.jpg" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\addNews.js" />
     <Content Include="js\adminList.js" />
@@ -115,6 +117,7 @@
     <Content Include="js\ml.js" />
     <Content Include="js\newsList.js" />
     <Content Include="js\proList.js" />
+    <Content Include="js\reg.js" />
     <Content Include="js\selectTopicList.js" />
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
@@ -197,8 +200,8 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\lgd.css" />
     <Content Include="css\ml.css" />
-    <Content Include="css\style.css" />
     <Content Include="css\zgz.css" />
+    <Content Include="css\style.css" />
     <Content Include="css\zwh.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\logo.png" />
@@ -353,6 +356,13 @@
     <Compile Include="admin\titleList.aspx.designer.cs">
       <DependentUpon>titleList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\titleReadList.aspx.cs">
+      <DependentUpon>titleReadList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\titleReadList.aspx.designer.cs">
+      <DependentUpon>titleReadList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="allNews.aspx.cs">
       <DependentUpon>allNews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -450,6 +460,7 @@
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180704121643--新建 XLS 工作表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180706180128-新建 XLS 工作表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180709142209-学院表.xls" />
+    <Content Include="upload\信息模板下载\学院信息表.xls" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -476,7 +487,6 @@
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="upload\信息模板下载\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
