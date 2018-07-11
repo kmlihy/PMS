@@ -24,4 +24,7 @@ $(document).ready(function () {
             $("#school").show();
         }
     }
+    else {
+        document.write("您还没有登录，请先进行登录！");
+    }
 })
