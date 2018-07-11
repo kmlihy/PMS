@@ -66,22 +66,6 @@ namespace PMS.Web.admin
                 getdata(Search());
             }
 
-            //下拉框保留查询条件
-            if(searchdrop == "")
-            {
-                showstr = "-请选择专业-";
-            }
-            else if (searchdrop != null && searchdrop.Length > 0)
-            {
-                string sec = searchdrop.ToString();
-                string[] secArray = sec.Split('=');
-                if (secArray.Length > 0)
-                {
-                    string str = secArray[1].ToString();
-                    showstr = str.Substring(1, str.Length - 2);
-                }
-            }
-
             //查询按钮保存查询条件
             if (search == null)
             {
@@ -129,14 +113,20 @@ namespace PMS.Web.admin
                 if (searchdrop.Length == 0)
                 {
                     searchdrop = "";
+                    //下拉框保留查询条件
+                    showstr = "0";
                 }
                 else if (searchdrop == null)
                 {
                     searchdrop = "";
+                    //下拉框保留查询条件
+                    showstr = "0";
                 }
                 else
                 {
-                    searchdrop = String.Format("proName={0} ", "'"+ searchdrop + "'");
+                    //下拉框保留查询条件
+                    showstr = searchdrop;
+                    searchdrop = String.Format("proId={0} ", "'"+ searchdrop + "'");
                 }
             }
             catch

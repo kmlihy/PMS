@@ -16,10 +16,14 @@ namespace PMS.Web.admin
     {
         protected DataSet plands = null;//批次
         protected DataSet colds = null;//院系
+
         protected int count;
         protected int getCurrentPage = 1;
         protected int pagesize = 3;
+
         protected String search = "";
+        protected string showinput = null;
+
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
         protected void Page_Load(object sender, EventArgs e)
@@ -27,22 +31,39 @@ namespace PMS.Web.admin
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
             string delOp = Context.Request["delOp"];
+            string type = Request.QueryString["type"];
             if (!Page.IsPostBack)
             {
-                getdata(Search());
+                getdata("");
                 colds = colBll.Select();
-                if (op == "add")//添加
-                {
-                    savePlan();
-                }
-                if (editorOp == "editor")//编辑
-                {
-                    EditorPlan();
-                }
-                if (delOp == "del")//删除
-                {
-                    deletePlan();
-                }
+            }
+            if (op == "add")//添加
+            {
+                savePlan();
+            }
+            if (editorOp == "editor")//编辑
+            {
+                EditorPlan();
+            }
+            if (delOp == "del")//删除
+            {
+                deletePlan();
+            }
+            if (type == "btn")
+            {
+                getdata(Search());
+            }
+            //输入框保留查询条件
+            if (search == null)
+            {
+                showinput = "-请输入搜索条件-";
+            }
+            else if(search != null && search.Length > 1)
+            {
+                string sec = search.ToString();
+                string[] secArray = sec.Split('%');
+                string str = secArray[1].ToString();
+                showinput = str;
             }
         }
         //编辑批次
@@ -74,15 +95,19 @@ namespace PMS.Web.admin
                 if (EditorResult == Result.更新成功)
                 {
                     Response.Write("更新成功");
-                    Response.End();
+                    //Response.End();
                 }
                 else
                 {
                     Response.Write("更新失败");
-                    Response.End();
+                    //Response.End();
                 }
             }
             catch(Exception ex) { Response.Write(ex.Message); }
+            finally
+            {
+                Response.End();
+            }
         }
         //添加
         public void savePlan()

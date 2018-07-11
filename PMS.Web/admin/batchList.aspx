@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
     <link rel="stylesheet" href="../css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
@@ -23,7 +24,10 @@
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <% if (showinput == null) {
+                            showinput = "请输入搜索条件";
+                        } %>
+                    <input type="text" class="form-control" placeholder="<%=showinput %>" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search" id="search">查询</span>
@@ -47,7 +51,7 @@
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">序号</th>
+                    <th class="text-center">批次编号</th>
                     <th class="text-center">批次名</th>
                     <th class="text-center">开始时间</th>
                     <th class="text-center">结束时间</th>
@@ -305,4 +309,5 @@
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/batchList.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>
