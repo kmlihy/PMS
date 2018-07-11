@@ -161,17 +161,9 @@
     margin-left: 10px;
     margin-top: 8px;
 }
-
+/* 题目页面 */
 #btn-Add, #btn-Del, #btn-Adds, #inputsearch {
     margin-left: 5px;
-}
-
-#chooseStuPro, #choosePlan {
-    height: 34px;
-    width: 200px;
-    margin-left:5px;
-    float:left;
-    border-radius:4px;
 }
 
 #btn-search {

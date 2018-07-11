@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
-    <%--<link rel="stylesheet" href="../css/bootstrap-select.css" />--%>
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
+    <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
 </head>
 <body>
@@ -19,24 +20,46 @@
         <div class="panel panel-default" id="propanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker" id="chooseStuPro">
-                        <option>--请选择专业--</option>
+                    <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
+                        <option value="0">-显示所有专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                            { %>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                        </option>
+                            {
+                                if(prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
+                                {%>
+                                     <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
+                                         <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                     </option>
+                                <% }
+                                else
+                                {%>
+                                    <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                                        <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                    </option>
+                                <%}%>
                         <%} %>
                     </select>
-                    <select class="selectpicker" id="choosePlan">
-                        <option>--请选择批次--</option>
+                    &nbsp
+                    <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
+                        <option value="0">--显示所有批次--</option>
                         <%for (int i = 0; i < plads.Tables[0].Rows.Count; i++)
-                            { %>
-                        <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>">
-                            <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
-                        </option>
+                            {
+                                if (plads.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
+                                {%>
+                                    <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
+                                        <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
+                                    </option>
+                                 <%}
+                                else
+                                { %>
+                                    <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>">
+                                        <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
+                                    </option>
+                                <%} %>
                         <%} %>
                     </select>
+                    <%if (showinput == null) {
+                            showinput = "请输入搜索条件";
+                        } %>
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
@@ -82,6 +105,8 @@
                     <tr>
                         <td class="text-center td-check">
                             <input type="checkbox" />
+                            <input type="hidden" value="<%=ds.Tables[0].Rows[i]["titleContent"].ToString() %>" id="titleContent" />
+                            <input type="hidden" value="<%=ds.Tables[0].Rows[i]["selected"].ToString() %>" id="selected" />
                         </td>
                         <td class="text-center" id="titleId">
                             <%=ds.Tables[0].Rows[i]["titleId"].ToString() %>
@@ -89,7 +114,7 @@
                         <td class="text-center" id="title">
                             <%=ds.Tables[0].Rows[i]["title"].ToString() %>
                         </td>
-                        <td class="text-center" id="planName">
+                        <td class="text-center" id="plaName">
                             <%=ds.Tables[0].Rows[i]["planName"].ToString() %>
                         </td>
                         <td class="text-center" id="proName">
@@ -164,23 +189,34 @@
                     <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="teaLable text-center">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" id="download" >
+                                        <a href="~/upload/信息模板下载/学院信息表.xls" download="学院信息表.xls"><button type="button" class="btn btn-primary">下载模板</button></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -275,74 +311,169 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/icheck.min.js"></script>
-    <%--<script src="../js/bootstrap-select.js"></script>--%>
+    <script src="../js/bootstrap-select.js"></script>
     <script src="../js/ml.js"></script>
+    <script src="../js/xcConfirm.js"></script>
     <script>
         //存储当前页数
         var page = $("#page").val();
         sessionStorage.setItem("Page", page);
         //存储总页数
         var countPage = $("#countPage").val();
-        sessionStorage.setItem("countPage", countPage);
-        
+        sessionStorage.setItem("countPage", countPage);       
+
+        //专业下拉框查询
+        $("#chooseStuPro").change(function () {
+            //获取用户选中的专业下拉框的Id值
+            var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();   
+            if (dropstrWherepro != "0") {
+                //把值存储到sessionStorage中并传到后台
+                sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+                //获取用户选中批次的id值
+                var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
+                //判断批次下拉框有没有值
+                if (dropstrWhereplan != "0") {
+                    //存储批次下拉框的条件           
+                    sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                    sessionStorage.setItem("type", "alldrop");
+                    jump(1);
+                }
+                else {
+                    sessionStorage.setItem("type", "prodrop");
+                    jump(1);
+                }            
+            }  
+            else {
+                sessionStorage.removeItem("dropstrWhereplan");
+                var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
+                //判断批次下拉框有没有值
+                if (dropstrWhereplan != "0") {
+                    //存储批次下拉框的条件           
+                    sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                    sessionStorage.setItem("type", "alldrop");
+                    jump(1);
+                }
+                else {
+                    sessionStorage.removeItem("dropstrWhereplan");
+                    sessionStorage.setItem("type", "prodrop");
+                    jump(1);
+                }            
+            }            
+        });
+
+        //批次下拉框查询
+        $("#choosePlan").change(function () {            
+            //存储批次下拉框的条件
+            var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
+            if (dropstrWhereplan != "0") {
+                sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();          
+                //判断专业是否被选中
+                if (dropstrWherepro != "0") {
+                    //存储专业下拉框的条件
+                    sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+                    sessionStorage.setItem("type", "alldrop");
+                    jump(1);
+                }
+                else {
+                    sessionStorage.setItem("type", "plandrop");
+                    jump(1);
+                }
+            }
+            else {
+                sessionStorage.removeItem("dropstrWhereplan");
+                var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();          
+                //判断专业是否被选中
+                if (dropstrWherepro != "0") {
+                    //存储专业下拉框的条件
+                    sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+                    sessionStorage.setItem("type", "alldrop");
+                    jump(1);
+                }
+                else {
+                    sessionStorage.setItem("type", "plandrop");
+                    jump(1);
+                }
+            }            
+        });
+
+        function jump(cur) {
+
+            if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
+                window.location.href = "titleList.aspx?currentPage=" + cur;
+            }
+            if (sessionStorage.getItem("strWhere") != null) {
+                window.location.href = "titleList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
+            }
+            if (sessionStorage.getItem("dropstrWhereplan") != null && sessionStorage.getItem("dropstrWherepro") == null) {
+                window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+            }
+            if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") == null) {
+                window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
+            }
+            if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
+                window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro")+ "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+            }
+        };        
+
+        //查询按钮点击事件
+        $("#btn-search").click(function () {
+            var strWhere = $("#inputsearch").val();
+            sessionStorage.setItem("strWhere", strWhere);
+            sessionStorage.setItem("type", "textSelect");
+            jump(1);
+        });
+
         $(document).ready(function () {
             //分页参数传递
             $(".jump").click(function () {
                 switch ($.trim($(this).html())) {
                     case ('<span class="iconfont icon-back"></span>'):
-                        if (parseInt(sessionStorage.getItem("Page")) > 1) {
+                        if (parseInt(sessionStorage.getItem("Page")) > 1) {                            
+                            sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                            sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                             jump(parseInt(sessionStorage.getItem("Page")) - 1);
                             break;
                         }
                         else {
+                            sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                            sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                             jump(1);
                             break;
                         }
 
                     case ('<span class="iconfont icon-more"></span>'):
                         if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                            sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                            sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                             jump(parseInt(sessionStorage.getItem("Page")) + 1);
                             break;
                         }
                         else {
+                            sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                            sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                             jump(parseInt(sessionStorage.getItem("countPage")));
                             break;
                         }
                     case ("首页"):
+                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                         jump(1);
                         break;
                     case ("尾页"):
+                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                 }
             });
-            //查询按钮点击事件
-            $("#btn-search").click(function () {
-                var strWhere = $("#inputsearch").val();
-                sessionStorage.setItem("strWhere", strWhere);
-                jump(1);
-            });
-            //传值到后台事件
-            function jump(cur) {
-                if (sessionStorage.getItem("strWhere") == null) {
-                    window.location.href = "titleList.aspx?currentPage=" + cur;
-                } else {
-                    window.location.href = "titleList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
-                }
-            };
+
             //自动隐藏导航栏首页尾页
             if (sessionStorage.getItem("countPage") == "1") {
                 $("#first").hide();
                 $("#last").hide();
             }
 
-            //关闭清除提示
-            $(".addclose").click(function () {
-                $("#validateAccount").html("");
-                $("#validateTel").html("");
-                $("#validateName").html("");
-                $("#validateEmal").html("");
-            });
             //添加标题
             $("#btn-Add").click(function () {
                 window.location.href = "addPaper.aspx";
@@ -354,7 +485,7 @@
                 $("#ediTitleId").val(ediTitleId);
                 var ediTitle = $(this).parent().parent().find("#title").text().trim();
                 $("#ediTitle").val(ediTitle);
-                var ediPlan = $(this).parent().parent().find("#planName").text().trim();
+                var ediPlan = $(this).parent().parent().find("#plaName").text().trim();
                 $("#ediPlan").val(ediPlan);
                 var ediProf = $(this).parent().parent().find("#proName").text().trim();
                 $("#ediProf").val(ediProf);
@@ -384,7 +515,9 @@
                     saveProf = $("#ediProf").val(),
                     saveTeaName = $("#ediTeaName").val(),
                     saveLimit = $("#ediLimit").val(),
-                    saveCreateTime = $("#ediCreateTime").val();
+                    saveCreateTime = $("#ediCreateTime").val(),
+                    saveContent = $("#titleContent").val(),
+                    saveSelected = $("#selected").val();
 
                 //验证用户输入不能为空
                 if (saveTitleId == "") {
@@ -408,83 +541,103 @@
                 else if (saveCreateTime == "") {
                     $("#createTimeValidate").html("创建时间不能为空，请重新输入！").css("color", "red");
                 }
-                
-            });
-            
-
-            //编辑完成保存
-            //$("#chbtn").click(function () {
-            //    var saveTitleId = $(".chteaAccount").val(),
-            //        teaName = $(".chteaName").val(),
-            //        teaEmail = $(".chemail").val(),
-            //        teaPhone = $(".chtel").val(),
-            //        pwd = $(".chpwd").val(),
-            //        collegeId = $("#chselectcol").find("option:selected").val(),
-            //        sex = $("#chsex").find("option:selected").text(),
-            //        teaType = $("#chteaType").find("option:selected").val();
-            //    if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == "-1") {
-            //        alert("不能含有未填项");
-            //    }
-            //    else {
-            //        $.ajax({
-            //            type: 'Post',
-            //            url: 'teaList.aspx',
-            //            data: {
-            //                TeaAccount: teaAccount,
-            //                TeaName: teaName,
-            //                TeaEmail: teaEmail,
-            //                TeaPhone: teaPhone,
-            //                Pwd: pwd,
-            //                CollegeId: collegeId,
-            //                Sex: sex,
-            //                TeaType: teaType,
-            //                op: "change"
-            //            },
-            //            dataType: 'text',
-            //            success: function (succ) {
-            //                alert(succ);
-            //                jump(1);
-            //            }
-            //        });
-            //    }
-            //})
-
-            //删除事件
-            $(".btnDel").click(function () {
-                var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
-                var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-                if (result == true) {
+                else {
                     $.ajax({
                         type: 'Post',
-                        url: 'teaList.aspx',
+                        url: 'titleList.aspx',
                         data: {
-                            TeaAccount: teaAccount,
-                            op: "del"
+                            saveTitleId: saveTitleId,
+                            saveTitle: saveTitle,
+                            savePlan: savePlan,
+                            saveProf: saveProf,
+                            saveTeaName: saveTeaName,
+                            saveLimit: saveLimit,
+                            saveCreateTime: saveCreateTime,
+                            saveContent: saveContent,
+                            saveSelected: saveSelected,
+                            op: "edit"
                         },
                         dataType: 'text',
                         success: function (succ) {
-                            alert(succ);
-                            jump(parseInt(sessionStorage.getItem("Page")))
+                            if (succ == "更新成功") {
+                                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                    onOk: function (v) {
+                                        jump(1);
+                                        alert("更新成功");
+                                    }
+                                });
+                            } else {
+                                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                    onOk: function (v) {
+                                        jump(1);
+                                    }
+                                });
+                            }
                         }
-                    })
-                } else {
-
+                    });
                 }
             });
 
-            //下拉选项查询
-            //$("#chooseStuPro").change(function () {
-            //    var strWhere = $(this).find("option:selected").text().trim();
-            //    sessionStorage.setItem("strWhere", strWhere);
-            //    jump(1);
-            //});
+            //表单不能被用户编辑
+            $("#ediTitleId").attr("disabled", "disabled");
+            $("#ediPlan").attr("disabled", "disabled");
+            $("#ediProf").attr("disabled", "disabled");
+            $("#ediCreateTime").attr("disabled", "disabled");
 
-            //$("#choosePlan").change(function () {
-            //    var strWhere = $(this).find("option:selected").text().trim();
-            //    sessionStorage.setItem("strWhere", strWhere);
-            //    jump(1);
-            //})
-
+            //删除标题信息
+            $(".btnDel").click(function () {
+                var deleteTitleId = $(this).parent().parent().find("#titleId").text().trim();
+                alert(deleteTitleId);
+                //var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
+                //if (result == true) {
+                //    $.ajax({
+                //        type: 'Post',
+                //        url: 'titleList.aspx',
+                //        data: {
+                //            deleteTitleId: deleteTitleId,
+                //            op: "del"
+                //        },
+                //        dataType: 'text',
+                //        success: function (succ) {
+                //            alert(succ);
+                //            jump(parseInt(sessionStorage.getItem("Page")));
+                //        }
+                //    })
+                //}
+                //Confirm弹窗
+                var txt = "确定要删除吗？";
+                var option = {
+                    title: "删除警告",
+                    btn: parseInt("0011", 2),
+                    onOk: function () {
+                        $.ajax({
+                            type: 'Post',
+                            url: 'titleList.aspx',
+                            data: {
+                                deleteTitleId: deleteTitleId,
+                                op: "del"
+                            },
+                            dataType: 'text',
+                            success: function (succ) {
+                                if (succ == "删除成功") {
+                                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                        onOk: function (v) {
+                                            jump(parseInt(sessionStorage.getItem("Page")));
+                                        }
+                                    });
+                                } else {
+                                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                        onOk: function (v) {
+                                            jump(parseInt(sessionStorage.getItem("Page")));
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+                window.wxc.xcConfirm(txt, "warning", option);
+            })
         });
     </script>
 </body>
