@@ -120,8 +120,8 @@ $(document).ready(function () {
     })
     //教师添加函数
     $("#btnAdd").click(function () {
-        var collegeId = $("#selectcol").find("option:selected").val(),
-            teaType = $("#teaType").find("option:selected").val(),
+        var collegeId = $("#addselectcol").find("option:selected").val(),
+            teaType = $("#addteaType").find("option:selected").val(),
             teaAccount = $("#teaAccount").val(),
             pwd = $("#pwd").val(),
             teaName = $("#teaName").val(),
@@ -328,7 +328,6 @@ $(document).ready(function () {
     //删除事件
     $(".btnDel").click(function () {
         var teaAccount = $(this).parent().parent().find("#tdteaAccount").text().trim();
-        // var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
         var txt = "是否确认删除？";
         var option = {
             title: "提示",
@@ -362,5 +361,12 @@ $(document).ready(function () {
         }
         window.wxc.xcConfirm(txt, "confirm", option);
     });
-
+    //点击下载模板事件
+    $("#downfile").click(function () {
+        var $eleForm = $("<form method='get'></form>");
+        $eleForm.attr("action", "../upload/信息模板下载/教师批量导入模板.xlsx");
+        $(document.body).append($eleForm);
+        //提交表单，实现下载
+        $eleForm.submit();
+    })
 });

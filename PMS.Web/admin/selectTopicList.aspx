@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
@@ -22,19 +23,36 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
-                        <option value="">
-                            <%if (showstr == null){
-                               showstr = "-请选择专业-";
+                        <option value="0">请选择专业
+                            <%--<%if (showstr == null)
+                                {
+                                    showstr = "-请选择专业-";
                             %>
                             <%} %>
-                            <%=showstr %>
+                            <%=showstr %>--%>
                         </option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {%>
                         <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <%} %>
                     </select>
-                    <%if (showinput == null) {
+                    &nbsp
+                    <select class="selectpicker selectdropbatch" data-width="auto">
+                        <option value="">
+                            <%if (showbacthdrop == null)
+                                {
+                                    showbacthdrop = "-请选择批次-";
+                            %>
+                            <%} %>
+                            <%=showbacthdrop %>
+                        </option>
+                        <%for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                            {%>
+                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <%} %>
+                    </select>
+                    <%if (showinput == null)
+                        {
                             showinput = "请输入搜索条件";
                         } %>
                     <input type="text" class="form-control inputsearch" placeholder="<%=showinput %>" id="inputsearch" />
@@ -43,6 +61,10 @@
                             <span class="glyphicon glyphicon-search">查询</span>
                         </button>
                     </span>
+                    <button class="btn btn-success" type="button" id="btn-export">
+                        <span class="glyphicon glyphicon-share-alt"></span>
+                        导出
+                    </button>
                     <button class="btn btn-danger" type="button" id="btn-Del">
                         <span class="glyphicon glyphicon-trash"></span>
                         批量删除
@@ -57,7 +79,7 @@
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">序号</th>
+                    <th class="text-center">选题记录编号</th>
                     <th class="text-center">题目</th>
                     <th class="text-center">出题教师</th>
                     <th class="text-center">选题学生</th>
@@ -253,4 +275,5 @@
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/lgd.js"></script>
 <script src="../js/selectTopicList.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>

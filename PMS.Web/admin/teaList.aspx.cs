@@ -24,6 +24,7 @@ namespace PMS.Web.admin
         //分院
         protected DataSet colds = null;
         protected CollegeBll colbll = new CollegeBll();
+        protected string showmsg="";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,12 +53,16 @@ namespace PMS.Web.admin
             {
                 Search();
                 getdata(Search());
-                
             }
-            getdata("");
             colds = colbll.Select();
-
+            if (search!=null &&search!="") {
+                string sec = search.ToString();
+                string[] secArray = sec.Split('%');
+                string str = secArray[1].ToString();
+                showmsg = str;
+            }
         }
+        //批量导入
         public void upload()
         {
             try
@@ -241,6 +246,7 @@ namespace PMS.Web.admin
             }
 
         }
+        //获取信息
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -249,32 +255,58 @@ namespace PMS.Web.admin
                 currentPage = "1";
             }
             //判断是哪个院系的管理员登录 只加载该院系下的教师
-            //string admincollege = "";
-
-            //教师
-            string strTeaType = "";
-            if (strWhere == null || strWhere == "")
-            {
-                strTeaType = "teaType=1";
-            }
-            else
-            {
-                strTeaType = "teaType=1 and ";
-            }
+            //获取登录者的类型
+            string userType = Session["state"].ToString();
+            //string userType = "2";
+            string usercollege = "";
             TeacherBll pro = new TeacherBll();
-            TableBuilder tabuilder = new TableBuilder()
+            if (userType == "2") {
+                //如果是分院管理员只加载该分院的教师
+                Teacher tea = (Teacher)Session["user"];
+                int usercollegeId = tea.college.ColID;
+                string strTeaType = "";
+                if (strWhere == null || strWhere == "")
+                {
+                    strTeaType = "teaType=1 and ";
+                    usercollege = "collegeId=" + "'" + usercollegeId + "'";
+                }
+                else
+                {
+                    strTeaType = "teaType=1 and ";
+                    usercollege = "collegeId=" + "'" + usercollegeId+"'" + "and ";
+                }
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Teacher",
+                    StrWhere = strTeaType + usercollege + strWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "teaAccount",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = pro.SelectBypage(tabuilder, out count);
+            }
+            else if (userType=="0")
             {
-                StrTable = "V_Teacher",
-                StrWhere = strTeaType + strWhere,
-                IntColType = 0,
-                IntOrder = 0,
-                IntPageNum = int.Parse(currentPage),
-                IntPageSize = pagesize,
-                StrColumn = "teaAccount",
-                StrColumnlist = "*"
-            };
-            getCurrentPage = int.Parse(currentPage);
-            ds = pro.SelectBypage(tabuilder, out count);
+                //如果是超管则加载所有教师包括分院管理员
+                TableBuilder tabuilder = new TableBuilder()
+                {
+
+                    StrTable = "V_Teacher",
+                    StrWhere = strWhere == null ? "" : strWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "teaAccount",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = pro.SelectBypage(tabuilder, out count);
+            }
         }
 
         //public void changepage() {

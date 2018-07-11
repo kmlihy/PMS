@@ -114,6 +114,7 @@
     <Content Include="js\messages_zh.min.js" />
     <Content Include="js\ml.js" />
     <Content Include="js\newsList.js" />
+    <Content Include="js\paperList.js" />
     <Content Include="js\proList.js" />
     <Content Include="js\selectTopicList.js" />
     <Content Include="js\stuLIst.js" />

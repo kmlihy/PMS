@@ -18,7 +18,9 @@ namespace PMS.Web.admin
         //专业
         protected DataSet prods = null;
         protected ProfessionBll probll = new ProfessionBll();
-
+        //批次
+        protected PlanBll planbll = new PlanBll();
+        protected DataSet plands = null;
         TitleRecordBll titrecordbll = new TitleRecordBll();
         //学院
         protected DataSet bads = null;
@@ -29,9 +31,11 @@ namespace PMS.Web.admin
         protected String search = "";
         protected String searchdrop = "";
         protected String searanddrop = "";
+        protected String searbatchdrop = "";
         protected string showstr = null;
         protected string showinput = null;
-        
+        protected string showbacthdrop = null;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -64,26 +68,46 @@ namespace PMS.Web.admin
 
             bads = colbll.Select();
             prods = probll.Select();
-            //下拉搜索后条件保存
-            if (searchdrop == null)
+            plands = planbll.Select();
+            //专业下拉搜索后条件保存
+            //if (searchdrop == null)
+            //{
+            //    showstr = "-请选择专业-";
+            //}
+            //else if (searchdrop != null && searchdrop.Length > 0)
+            //{
+            //    string sec = searchdrop.ToString();
+            //    string[] secArray = sec.Split('=');
+            //    if (secArray.Length > 1)
+            //    {
+            //        string str = secArray[0].ToString();
+            //        showstr = str.Substring(0, str.Length);
+            //    }
+            //    else
+            //    {
+            //        string str = secArray[0].ToString();
+            //        showstr = str;
+            //    }
+            //}
+            //批次下拉搜索后条件保存
+            if (searbatchdrop == null)
             {
-                showstr = "-请选择专业-";
+                showbacthdrop = "-请选择批次-";
             }
-            else if (searchdrop != null && searchdrop.Length > 0)
+            else if (searbatchdrop != null && searbatchdrop.Length > 0)
             {
-                string sec = searchdrop.ToString();
+                string sec = searbatchdrop.ToString();
                 string[] secArray = sec.Split('=');
                 if (secArray.Length > 1)
                 {
                     string str = secArray[0].ToString();
-                    showstr = str.Substring(0, str.Length);
+                    showbacthdrop = str.Substring(0, str.Length);
                 }
                 else
                 {
                     string str = secArray[0].ToString();
-                    showstr = str;
+                    showbacthdrop = str;
                 }
-
             }
             //查询按钮点击后查询条件保存
             if (search == null)
@@ -96,7 +120,6 @@ namespace PMS.Web.admin
                 string[] secArray = sec.Split('%');
                 if (secArray.Length > 0)
                 {
-                    int length = secArray.Length;
                     string str = secArray[0].ToString();
                     showinput = str;
                 }
@@ -137,14 +160,17 @@ namespace PMS.Web.admin
                 if (searchdrop.Length == 0)
                 {
                     searchdrop = "";
+                    showstr = "0";
                 }
                 else if (searchdrop == null)
                 {
+                    showstr = "0";
                     searchdrop = "";
                 }
                 else
                 {
-                    searchdrop = String.Format(" proName={0}", "'" + searchdrop + "'");
+                    showstr = searchdrop;
+                    searchdrop = String.Format(" proId={0}", "'" + searchdrop + "'");
 
                 }
             }
