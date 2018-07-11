@@ -15,10 +15,11 @@ namespace PMS.Web.admin
 
     public partial class branchList : System.Web.UI.Page
     {
-        CollegeBll coll = new CollegeBll();
+        CollegeBll collBll = new CollegeBll();
         College college = new College();
+        Result result;
         //获取数据
-        protected DataSet ds = null;
+        protected DataSet ds = null, dsColl = null;
         protected int getCurrentPage = 1;
         protected int count;
         protected int pagesize = 5;
@@ -91,23 +92,41 @@ namespace PMS.Web.admin
                 StrColumnlist = "*"
             };
             getCurrentPage = int.Parse(currentPage);
-            ds = coll.SelectBypage(tbd, out count);
+            ds = collBll.SelectBypage(tbd, out count);
         }
         //添加分院信息
         public void saveCollege()
         {
             string collegeName = Context.Request["collegeName"].ToString();
-            college.ColName = collegeName;
-            Result result = coll.Insert(college);
-            if (result == Result.添加成功)
+            dsColl = collBll.Select();
+            bool flag = true;
+            for(int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
             {
-                Response.Write("添加成功");
+                if(collegeName == dsColl.Tables[0].Rows[i]["collegeName"].ToString())
+                {
+                    flag = false;
+                }
+            }
+            if (flag == false)
+            {
+                result = Result.添加失败;
+                Response.Write("学院已存在");
                 Response.End();
             }
             else
             {
-                Response.Write("添加失败");
-                Response.End();
+                college.ColName = collegeName;
+                result = collBll.Insert(college);
+                if (result == Result.添加成功)
+                {
+                    Response.Write("添加成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("添加失败");
+                    Response.End();
+                }
             }
         }
         //编辑分院信息
@@ -115,21 +134,36 @@ namespace PMS.Web.admin
         {
             int collegeId = int.Parse(Context.Request["id"].ToString());
             string collegeName = Context.Request["name"].ToString();
-            College college = new College();
-            college.ColID = collegeId;
-            college.ColName = collegeName;
-            //Response.Write(collegeName);
-            CollegeBll coll = new CollegeBll();
-            Result result = coll.Update(college);
-            if (result == Result.更新成功)
+            dsColl = collBll.Select();
+            bool flag = true;
+            for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
             {
-                Response.Write("更新成功");
+                if (collegeName == dsColl.Tables[0].Rows[i]["collegeName"].ToString())
+                {
+                    flag = false;
+                }
+            }
+            if (flag == false)
+            {
+                result = Result.更新失败;
+                Response.Write("学院名已存在");
                 Response.End();
             }
             else
             {
-                Response.Write("更新失败");
-                Response.End();
+                college.ColID = collegeId;
+                college.ColName = collegeName;
+                result = collBll.Update(college);
+                if (result == Result.更新成功)
+                {
+                    Response.Write("更新成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
+                }
             }
         }
         //查询
@@ -237,15 +271,15 @@ namespace PMS.Web.admin
         {
             string collegeid = Context.Request["collegeid"].ToString();
             Result row = Result.记录不存在;
-            if (coll.IsDelete("T_Plan", "collegeId", collegeid) == Result.关联引用)
+            if (collBll.IsDelete("T_Plan", "collegeId", collegeid) == Result.关联引用)
             {
                 row = Result.关联引用;
             }
-            if (coll.IsDelete("T_Profession", "collegeId", collegeid) == Result.关联引用)
+            if (collBll.IsDelete("T_Profession", "collegeId", collegeid) == Result.关联引用)
             {
                 row = Result.关联引用;
             }
-            if (coll.IsDelete("T_Teacher", "collegeId", collegeid) == Result.关联引用)
+            if (collBll.IsDelete("T_Teacher", "collegeId", collegeid) == Result.关联引用)
             {
                 row = Result.关联引用;
             }
@@ -258,7 +292,7 @@ namespace PMS.Web.admin
             Result row = IsdeleteCollege();
             if (row == Result.记录不存在)
             {
-            Result result = coll.Delete(int.Parse(collegeid));
+            Result result = collBll.Delete(int.Parse(collegeid));
 
                 if (result == Result.删除成功)
                 {
@@ -285,15 +319,15 @@ namespace PMS.Web.admin
             string[] collList = collId.Split('?');
             for (int i = 0; i < collList.Length; i++)
             {
-                if (coll.IsDelete("T_Plan", "collegeId", collList[i]) == Result.关联引用)
+                if (collBll.IsDelete("T_Plan", "collegeId", collList[i]) == Result.关联引用)
                 {
                     row = Result.关联引用;
                 }
-                if (coll.IsDelete("T_Profession", "collegeId", collList[i]) == Result.关联引用)
+                if (collBll.IsDelete("T_Profession", "collegeId", collList[i]) == Result.关联引用)
                 {
                     row = Result.关联引用;
                 }
-                if (coll.IsDelete("T_Teacher", "collegeId", collList[i]) == Result.关联引用)
+                if (collBll.IsDelete("T_Teacher", "collegeId", collList[i]) == Result.关联引用)
                 {
                     row = Result.关联引用;
                 }
@@ -301,7 +335,7 @@ namespace PMS.Web.admin
             return row;
         }
         //批量删除
-        private void batchDeleteCollege()
+        public void batchDeleteCollege()
         {
             string collegeid = Context.Request["collId"].ToString();
             string[] collList = collegeid.Split('?');
@@ -312,7 +346,7 @@ namespace PMS.Web.admin
                 for (int i = 0; i < collList.Length-1; i++)
                 {
                     int collId = int.Parse(collList[i]);
-                    Result result = coll.Delete(collId);
+                    Result result = collBll.Delete(collId);
                     if (result == Result.删除成功)
                     {
                         count++;

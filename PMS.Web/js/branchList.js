@@ -5,6 +5,13 @@ sessionStorage.setItem("page", page);
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 $(document).ready(function () {
+    //防止当前页数大于总页数
+    var page = parseInt(sessionStorage.getItem("page"));
+    var countPage = parseInt(sessionStorage.getItem("countPage"));
+    if (page > countPage) {
+        sessionStorage.setItem("page", countPage);
+        jump(parseInt(sessionStorage.getItem("page")));
+    }
     //点击翻页按钮
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {

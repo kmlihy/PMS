@@ -9,7 +9,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>分院信息表</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
@@ -52,7 +51,7 @@
                 <th class="text-center">
                     <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                 </th>
-                <th class="text-center">工号</th>
+                <th class="text-center">学院编号</th>
                 <th class="text-center">学院名称</th>
                 <th class="text-center">操作</th>
             </thead>
@@ -181,8 +180,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary">下载模板</button>
+                                    <td class="text-center" id="download" >
+                                        <a href="../upload/信息模板下载/学院信息表.xls" download="学院信息表.xls"><button type="button" class="btn btn-primary">下载模板</button></a>
                                     </td>
                                 </tr>
                             </tbody>
