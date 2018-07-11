@@ -55,12 +55,6 @@ namespace PMS.Web.admin
                 getdata(Search());
             }
             colds = colbll.Select();
-            if (search!=null &&search!="") {
-                string sec = search.ToString();
-                string[] secArray = sec.Split('%');
-                string str = secArray[1].ToString();
-                showmsg = str;
-            }
         }
         //批量导入
         public void upload()
@@ -329,7 +323,8 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    search = String.Format(" teaAccount {0} or teaName {0} or collegeName {0} or phone {0} or Email {0} ", "like '%" + search + "%'");
+                    showmsg = search;
+                    search = String.Format(" teaAccount {0} or sex {0} or teaName {0} or collegeName {0} or phone {0} or Email {0} ", "like '%" + search + "%'");
                 }
             }
             catch
