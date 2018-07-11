@@ -20,6 +20,7 @@
         <div class="panel panel-default" id="propanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
+                    <input type="text" value="<%=secSearch %>" style="display:none" id="search" />
                     <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
                         <option value="0">-显示所有专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
@@ -61,6 +62,7 @@
                             showinput = "请输入搜索条件";
                         } %>
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -438,7 +440,43 @@
         $(document).ready(function () {
             //分页参数传递
             $(".jump").click(function () {
-                switch ($.trim($(this).html())) {
+                if ($("#search").val() != null) {
+                    switch ($.trim($(this).html())) {
+                    case ('<span class="iconfont icon-back"></span>'):
+                        if (parseInt(sessionStorage.getItem("Page")) > 1) {                            
+                            sessionStorage.setItem("strWhere", $("#search").val());
+                            jump(parseInt(sessionStorage.getItem("Page")) - 1);
+                            break;
+                        }
+                        else {
+                            sessionStorage.setItem("strWhere", $("#search").val());
+                            jump(1);
+                            break;
+                        }
+
+                    case ('<span class="iconfont icon-more"></span>'):
+                        if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                            sessionStorage.setItem("strWhere", $("#search").val());
+                            jump(parseInt(sessionStorage.getItem("Page")) + 1);
+                            break;
+                        }
+                        else {
+                            sessionStorage.setItem("strWhere", $("#search").val());
+                            jump(parseInt(sessionStorage.getItem("countPage")));
+                            break;
+                        }
+                    case ("首页"):
+                        sessionStorage.setItem("strWhere", $("#search").val());
+                        jump(1);
+                        break;
+                    case ("尾页"):
+                        sessionStorage.setItem("strWhere", $("#search").val());
+                        jump(parseInt(sessionStorage.getItem("countPage")));
+                        break;
+                    }
+                }
+                else {
+                    switch ($.trim($(this).html())) {
                     case ('<span class="iconfont icon-back"></span>'):
                         if (parseInt(sessionStorage.getItem("Page")) > 1) {                            
                             sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
@@ -477,6 +515,8 @@
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                 }
+                }
+                
             });
 
             //自动隐藏导航栏首页尾页
