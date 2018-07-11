@@ -324,6 +324,7 @@
 
         //专业下拉框查询
         $("#chooseStuPro").change(function () {
+            sessionStorage.removeItem("strWhere");
             //获取用户选中的专业下拉框的Id值
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();   
             if (dropstrWherepro != "0") {
@@ -335,34 +336,38 @@
                 if (dropstrWhereplan != "0") {
                     //存储批次下拉框的条件           
                     sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                    sessionStorage.removeItem("type");
                     sessionStorage.setItem("type", "alldrop");
                     jump(1);
                 }
                 else {
+                    sessionStorage.removeItem("type");
                     sessionStorage.setItem("type", "prodrop");
                     jump(1);
                 }            
             }  
             else {
-                sessionStorage.removeItem("dropstrWhereplan");
+                sessionStorage.removeItem("dropstrWherepro");
                 var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
                 //判断批次下拉框有没有值
                 if (dropstrWhereplan != "0") {
                     //存储批次下拉框的条件           
                     sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
-                    sessionStorage.setItem("type", "alldrop");
+                    sessionStorage.removeItem("type");
+                    sessionStorage.setItem("type", "plandrop");
                     jump(1);
                 }
                 else {
                     sessionStorage.removeItem("dropstrWhereplan");
-                    sessionStorage.setItem("type", "prodrop");
+                    sessionStorage.removeItem("type");
                     jump(1);
                 }            
             }            
         });
 
         //批次下拉框查询
-        $("#choosePlan").change(function () {            
+        $("#choosePlan").change(function () {      
+            sessionStorage.removeItem("strWhere");
             //存储批次下拉框的条件
             var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
             if (dropstrWhereplan != "0") {
@@ -372,10 +377,12 @@
                 if (dropstrWherepro != "0") {
                     //存储专业下拉框的条件
                     sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+                    sessionStorage.removeItem("type");
                     sessionStorage.setItem("type", "alldrop");
                     jump(1);
                 }
                 else {
+                    sessionStorage.removeItem("type");
                     sessionStorage.setItem("type", "plandrop");
                     jump(1);
                 }
@@ -387,11 +394,13 @@
                 if (dropstrWherepro != "0") {
                     //存储专业下拉框的条件
                     sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
-                    sessionStorage.setItem("type", "alldrop");
+                    sessionStorage.removeItem("type");
+                    sessionStorage.setItem("type", "prodrop");
                     jump(1);
                 }
                 else {
-                    sessionStorage.setItem("type", "plandrop");
+                    sessionStorage.removeItem("dropstrWherepro");
+                    sessionStorage.removeItem("type");
                     jump(1);
                 }
             }            
@@ -421,6 +430,8 @@
             var strWhere = $("#inputsearch").val();
             sessionStorage.setItem("strWhere", strWhere);
             sessionStorage.setItem("type", "textSelect");
+            sessionStorage.removeItem("dropstrWhereplan");
+            sessionStorage.removeItem("dropstrWherepro")
             jump(1);
         });
 
