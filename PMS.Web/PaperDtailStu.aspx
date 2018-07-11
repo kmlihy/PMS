@@ -6,20 +6,13 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>我的题目信息</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/ml.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-    <div class="container-fluid col-lg-10 col-lg-offset-1">
-        <%--<nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">我的题目信息</a>
-                </div>
-            </div>
-        </nav>--%>
+    <div class="container-fluid col-lg-10 col-lg-offset-1" id="box" onload="disp_confirm()">
         <div class="navbar navbar-default allNews_pageHead" role="navigation">
             <span class="h2 text-info" id="allNews_info">我的题目信息
             </span>
@@ -27,32 +20,49 @@
         </div>
         <div class="panel">
             <div class="panel-heading text-center">
-                <span class="h3"><%=titleId.title.ToString() %></span>
+
+                <% if (showTitle == null)
+                    {
+                        showTitle = "";
+                    }%>
+                <span class="h3">
+                    <%=showTitle %>
+                </span>
             </div>
             <div class="panel-body">
+                <% if (showTitleContent == null)
+                    {
+                        showTitleContent = "";
+                    }%>
                 <span>
-                    <%=titleId.TitleContent.ToString() %>
+                    <%=showTitleContent %>
                 </span>
             </div>
             <div class="panel-footer">
-                <label>指导教师:<%=titleId.teacher.TeaName.ToString() %></label>
+                <label>
+                    <% if (showTeaName == null)
+                        {
+                            showTeaName = "";
+                        }%>
+                    <span>我的指导老师：<%=showTeaName %>
+                    </span>
+                </label>
                 <span>|</span>
                 <label>交叉指导老师：XX</label>
             </div>
         </div>
     </div>
-    <%--<input type="hidden" value="<%=Session["state"] %>" id="stuNO" />--%>
-    <span id="stuNO"><%=Session["state"] %></span>
+    <button id="GoSelect" class="btn navbar-btn btn-default">我要去选题</button>
+    <span id="stu"><%=stuAccount %></span>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
+     <%if (showTitle == "")
+    {%>
     $(document).ready(function () {
-        var stuAccount = $("#stuNO").val();
-        sessionStorage.setItem("user")
-        function jump(info) {
-            window.location.href = "PaperDtailStu.aspx?stuAccount=" + stuAccount;
-        }
+        document.write('<a href="http://localhost:33192/PaperList.aspx">你还没有选题，请点击跳转到选题界面  </a>');
     })
+    <% }%>
 </script>
 </html>

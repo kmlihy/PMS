@@ -14,22 +14,11 @@ $(document).ready(function () {
     });
     //下拉选项查询
     $("#chooseStuPro").change(function () {
-        var dropstrWhere = $(this).find("option:selected").text().trim();
+        var dropstrWhere = $(this).find("option:selected").val();
         sessionStorage.setItem("dropstrWhere", dropstrWhere);
         sessionStorage.setItem("type", "drop");
         jump(1);
     })
-    //function jump(cur) {
-    //    if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
-    //        window.location.href = "stuLIst.aspx?currentPage=" + cur;
-    //    } else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere") == null) {
-    //        window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
-    //    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") == null) {
-    //        window.location.href = "stuLIst.aspx?currentPage=" + cur + "&dropsearch=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
-    //    } else if (sessionStorage.getItem("dropstrWhere") != null && sessionStorage.getItem("strWhere") != null) {
-    //        window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropsearch=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
-    //    }
-    //};
 
     //分页
     $(".jump").click(function () {

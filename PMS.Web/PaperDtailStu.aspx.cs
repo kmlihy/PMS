@@ -10,14 +10,47 @@ using PMS.Model;
 
 namespace PMS.Web
 {
+    using Result = Enums.OpResult;
     public partial class WebForm1 : System.Web.UI.Page
     {
-        protected Title titleId = null;
+        protected Title titleId;
+        protected DataSet ds;
+
+        protected string stuAccount = "";
+        protected Student stu;
+        protected string showTitle = "";
+        protected string showTitleContent = "";
+        protected string showTeaName = "";
+
+        StudentBll stuBll = new StudentBll();
+        TitleBll titleBll = new TitleBll();
+        TitleRecordBll titleRecordBll = new TitleRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            TitleBll titleBll = new TitleBll();
-            string tId = Request.QueryString["titleId"];
-            titleId = titleBll.GetTitle(int.Parse(tId));
+            stu = (Student)Session["loginuser"];
+            stuAccount = stu.StuAccount.ToString();
+            ds = titleRecordBll.Select();
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                    {
+                        string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
+                        titleId = titleBll.GetTitle(int.Parse(tId));
+                        showTitle = titleId.title.ToString();
+                        showTitleContent = titleId.TitleContent.ToString();
+                        showTeaName = titleId.teacher.TeaName.ToString();
+                        break;
+                    }
+                    else
+                    {
+                        showTitle = "";
+                        showTitleContent = "";
+                        showTeaName = "";
+                    }
+                }
+            }
         }
     }
-}
+} 

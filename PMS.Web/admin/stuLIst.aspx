@@ -24,18 +24,15 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker" id="chooseStuPro">
-                        <option>
-                            <% if (showstr == null)
-                                {
-                                    showstr = "-请选择专业-";
-                                } %>
-                            <%=showstr %>
-                        </option>
+                        <option value="0">-请选择搜索专业-</option>
                         <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                            { %>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                        </option>
+                            {
+                                string proid = prods.Tables[0].Rows[i]["proId"].ToString();
+                                if (proid == showstr){%>
+                                    <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                    <% }%>
+                                
+                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <%} %>
                     </select>
                     <%if (showinput == null)
