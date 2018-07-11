@@ -23,7 +23,7 @@ namespace PMS.Web
         protected int count;
         //每页的行数
         protected int pagesize = 5;
-        string stuId = "2121003";
+        string stuId = "15612200015";
 
         PublicProcedureBll pbll = new PublicProcedureBll();
         StudentBll stuBll = new StudentBll();

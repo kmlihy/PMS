@@ -20,7 +20,7 @@
         <div class="panel panel-default" id="propanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -52,9 +52,9 @@
                     <th class="text-center">姓名</th>
                     <th class="text-center">性别</th>
                     <th class="text-center">院系</th>
-                    <th class="text-center">教师类型</th>
                     <th class="text-center">联系电话</th>
                     <th class="text-center">邮箱</th>
+                    <th class="text-center">教师类型</th>
                     <th class="text-center">操作</th>
                 </thead>
                 <tbody>
@@ -78,9 +78,6 @@
                         <td class="text-center" id="tdteacoll">
                             <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                         </td>
-                        <td class="text-center" id="tdteatype">
-                            <%=((ds.Tables[0].Rows[i]["teaType"].ToString()=="1")?"教师":"分院管理员")%>
-                        </td>
                         <td class="text-center" id="tdteaTel">
                             <%=ds.Tables[0].Rows[i]["phone"].ToString() %>
                         </td>
@@ -89,6 +86,9 @@
                         </td>
                         <td class="text-center cstdteaPwd" id="tdteaPwd">
                             <%=ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
+                        </td>
+                        <td class="text-center" id="tdteatype">
+                            <%=((ds.Tables[0].Rows[i]["teaType"].ToString()=="1")?"教师":"分院管理员")%>
                         </td>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-warning changebtn" data-toggle="modal" data-target="#myModa2">
@@ -141,33 +141,44 @@
         </div>
     </div>
     <!-- 批量导入弹框 -->
-    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
+                    <h4 class="modal-title" id="addsModalLabel">批量导入教师信息
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td class="teaLable text-center">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">上传</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">下载模板</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
+                <form id="form2" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">列表导入
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -189,8 +200,8 @@
                                 <td class="teaLable">
                                     <label class="text-span">所属院系</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="selectcol">
-                                        <option value="-1">-请选择院系-</option>
+                                    <select class="selectpicker" data-width="auto" id="addselectcol">
+                                        <option value="">-请选择院系-</option>
                                         <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -200,9 +211,9 @@
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">类型</label></td>
+                                    <label class="text-span">教师类型</label></td>
                                 <td>
-                                    <select class="selectpicker" data-width="auto" id="teaType">
+                                    <select class="selectpicker" data-width="auto" id="addteaType">
                                         <option value="1">教师</option>
                                         <option value="2">管理员</option>
                                     </select>

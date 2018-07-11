@@ -154,5 +154,26 @@ namespace PMS.Dao
                 throw;
             }
         }
+        /// <summary>
+        ///批量导入教师信息 
+        /// </summary>
+        /// <param name="dt">教师信息列表</param>
+        /// <returns>row大于0代表失败，row 小于0代表成功</returns>
+        public int upload(DataTable dt)
+        {
+            string tableName = "T_Teacher";
+            List<SqlBulkCopyColumnMapping> list = new List<SqlBulkCopyColumnMapping>();
+            list.Add(new SqlBulkCopyColumnMapping("教师工号", "teaAccount"));
+            list.Add(new SqlBulkCopyColumnMapping("教师密码", "teaPwd"));
+            list.Add(new SqlBulkCopyColumnMapping("教师姓名", "teaName"));
+            list.Add(new SqlBulkCopyColumnMapping("教师性别", "sex"));
+            list.Add(new SqlBulkCopyColumnMapping("教师电话", "phone"));
+            list.Add(new SqlBulkCopyColumnMapping("教师邮箱", "Email"));
+            list.Add(new SqlBulkCopyColumnMapping("教师类型", "teaType"));
+            list.Add(new SqlBulkCopyColumnMapping("教师所属分院编号", "collegeId"));
+
+            int row = db.BulkInsert(dt, tableName, list);
+            return row;
+        }
     }
 }
