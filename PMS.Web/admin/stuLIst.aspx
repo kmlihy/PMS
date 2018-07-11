@@ -24,25 +24,27 @@
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker" id="chooseStuPro">
-                        <option>
-                            <% if (showstr == null)
-                                {
-                                    showstr = "-请选择专业-";
-                                } %>
-                            <%=showstr %>
-                        </option>
-                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                        <%if (showstr == "0")
                             { %>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                        </option>
-                        <%} %>
+                        <option value="0" selected="selected">-查询全部专业-</option>
+                        <%}
+                            else
+                            { %>
+                        <option value="0">-查询全部专业-</option>
+                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                            {
+                                if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <% }
+                            else
+                            {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <%}
+                                }
+                            } %>
                     </select>
-                    <%if (showinput == null)
-                        {
-                            showinput = "请输入搜索条件";
-                        } %>
-                    <input type="text" class="form-control" placeholder="<%=showinput %>" id="inputsearch"/>
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search" id="search">查询</span>
@@ -82,7 +84,7 @@
                         {
 
                             string x = ds.Tables[0].Rows[i]["collegeName"].ToString();
-                            %>
+                    %>
                     <tr>
                         <td class="text-center">
                             <input type="checkbox" />
@@ -287,7 +289,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">密码</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorStuPwd" type="text"/>
+                                    <input class="form-control teaAddinput editorStuPwd" type="text" />
                                 </td>
                             </tr>
                             <tr>
@@ -312,7 +314,7 @@
                                     <input class="form-control teaAddinput editorPro" type="text" />
                                     <div class="selectPro">
                                         <select class="selectpicker selectStuPro" data-width="auto">
-                                            <option value="">请选择专业</option>
+                                            <option value="0">-请选择专业-</option>
                                             <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                                                 { %>
                                             <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
@@ -330,17 +332,6 @@
                                     <label class="text-span">院系</label></td>
                                 <td>
                                     <input class="form-control teaAddinput editorCollege" type="text" disabled="disabled" />
-<%--                                    <div class="selectCollege">
-                                        <select class="selectpicker selectStuCollege" data-width="auto">
-                                            <option value="">请选择学院</option>
-                                            <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                                { %>
-                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
-                                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                                            </option>
-                                            <% } %>
-                                        </select>
-                                    </div>--%>
                                 </td>
                             </tr>
                             <tr>

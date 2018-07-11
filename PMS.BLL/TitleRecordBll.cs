@@ -85,6 +85,21 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 导出成Excel表
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
+        /// <returns>返回一个DataTable的选题记录集合</returns>
+        public DataTable ExportExcel(string strWhere)
+        {
+            DataTable dt = dao.ExportExcel(strWhere);
+            if(dt != null && dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 根据条间分页查询所有选题记录信息
         /// </summary>
         /// <param name="tab">参数实体</param>

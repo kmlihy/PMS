@@ -117,6 +117,23 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 导出成Excel表
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
+        /// <returns>返回一个DataTable的选题记录集合</returns>
+        public DataTable ExportExcel(string strWhere)
+        {
+            String cmdText = string.Format("select titleRecordId as 题目编号,title as 题目名称,stuAccount as 学生学号,realName as 学生姓名,teaAccount as 教师工号,teaName as 教师名称,collegeName as 所属学院,planName as 所属批次,createTime as 选题时间 from V_TitleRecord {0}",strWhere);
+            DataSet ds = db.FillDataSet(cmdText, null, null);
+            DataTable dt = null;
+            if(ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            return dt;
+        }
+
+        /// <summary>
         /// 获得一个选题记录信息
         /// </summary>
         /// <param name="recordId">要获得的选题记录ID</param>
