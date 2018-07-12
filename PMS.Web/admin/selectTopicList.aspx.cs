@@ -53,20 +53,54 @@ namespace PMS.Web.admin
                 delPro();
             }
             //导出列表
-            if(op1 == "export")
+            if (op1 == "export")
             {
+                string pro = Request.QueryString["dropstrWhere"];
+                string batch = Request.QueryString["batchWhere"];
+                string input = Request.QueryString["search"];
+                string strWhere = "";
+                if (input == null)
+                {
+                    if (pro == "null" && batch == "null")
+                    {
+                        strWhere =string.Format("");
+                    } else if (pro != "null" && batch == "null")
+                    {
+                        strWhere = string.Format(" where proId = {0}", "'" + pro + "'");
+                    }
+                    else if (pro == "null" && batch != "null")
+                    {
+                        strWhere = string.Format(" where planId = {0}", "'" + batch + "'");
+                    }
+                    else
+                    {
+                        strWhere = string.Format(" where planId = {0} and proId = {1}", "'" + batch + "'","'"+pro+"'");
+                    }
+                }
+                //如果不为空传 input里的值
+                else {
+                    strWhere = string.Format(" where teaName {0} or title {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + input + "%'");
+                }
                 TitleRecordBll titlerd = new TitleRecordBll();
-                string strWhere = string.Format(" where proId = 1");
+                var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
                 DataTable dt = titlerd.ExportExcel(strWhere);
-                var path = Server.MapPath("~/upload/daochu.xls");
-                ExcelHelper.x2003.TableToExcelForXLS(dt, path);
-                downloadfile(path);
+                if(dt!= null && dt.Rows.Count > 0)
+                {
+                    var path = Server.MapPath("~/upload/选题记录导出/" + name + ".xls");
+                    ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                    downloadfile(path);
+                }
+                else
+                {
+                    Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
+                }
+                
             }
             if (dropstrWhere != null && dropstrWhere != "null" && batchWhere == "null")
             {// 如果批次id为空，专业id不为空
                 getPage(Searchdrop());
             }
-            else if (batchWhere != null && batchWhere != "null" && (dropstrWhere == "null" || dropstrWhere=="0"))
+            else if (batchWhere != null && batchWhere != "null" && (dropstrWhere == "null" || dropstrWhere == "0"))
             {// 如果专业id为空，批次id不为空
                 getPage(batcchdrop());
             }
@@ -79,7 +113,8 @@ namespace PMS.Web.admin
             {
                 getPage(Search());
             }
-            else {
+            else
+            {
                 getPage("");
             }
 
@@ -87,7 +122,7 @@ namespace PMS.Web.admin
             prods = probll.Select();
             plands = planbll.Select();
         }
-
+        //导出列表方法
         public void downloadfile(string s_path)
         {
             System.IO.FileInfo file = new System.IO.FileInfo(s_path);
@@ -136,7 +171,10 @@ namespace PMS.Web.admin
             }
             return searbatchdrop;
         }
-        //专业和批次一起查询
+        /// <summary>
+        /// 专业和批次一起查询
+        /// </summary>
+        /// <returns>返回查询字符串</returns>
         public string SearchProAndBatch()
         {
             try
@@ -172,7 +210,10 @@ namespace PMS.Web.admin
             return searanddrop;
         }
 
-        //专业下拉查询
+        /// <summary>
+        /// 专业下拉查询
+        /// </summary>
+        /// <returns>返回查询字符串</returns>
         public string Searchdrop()
         {
             try
@@ -203,7 +244,11 @@ namespace PMS.Web.admin
             }
             return searchdrop;
         }
-        //搜索
+        /// <summary>
+        ///  //搜索
+        /// </summary>
+        /// <returns>返回查询字符串</returns>
+
         public string Search()
         {
             try
@@ -230,7 +275,11 @@ namespace PMS.Web.admin
             }
             return search;
         }
-        //判断是否能删除
+        /// <summary>
+        /// //判断是否能删除
+        /// </summary>
+        /// <returns>返回是否有关联的表</returns>
+
         public Result IsdeleteCollege()
         {
             string recordid = Context.Request["Recordid"].ToString();
@@ -245,7 +294,9 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除
+        /// <summary>
+        /// 执行删除
+        /// </summary>
         public void delPro()
         {
             int recordid = int.Parse(Context.Request["Recordid"].ToString());
@@ -271,7 +322,11 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //获取数据
+        /// <summary>
+        /// //获取数据
+        /// </summary>
+        /// <param name="strWhere">查询字符串</param>
+
         public void getPage(String strWhere)
         {
 
