@@ -127,6 +127,15 @@ namespace PMS.BLL
            return dao.GetTitle(titleId);
         }
 
-
+        /// <summary>
+        /// 批量导入
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public int upload(DataTable dt)
+        {
+            int row = dao.upload(dt);
+            return row;
+        }
     }
 }

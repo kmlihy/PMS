@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using PMS.DBHelper;
@@ -204,6 +205,17 @@ namespace PMS.Dao
             return title;
         }
 
-
+        /// <summary>
+        /// 批量导入题目信息
+        /// </summary>
+        /// <param name="dt">题目信息列表</param>
+        /// <returns>row大于0代表失败，row小于0代表成功</returns>
+        public int upload(DataTable dt)
+        {
+            string tableName = "T_Title";
+            List<SqlBulkCopyColumnMapping> list = new List<SqlBulkCopyColumnMapping>() { new SqlBulkCopyColumnMapping("题目名称", "title") };
+            int row = db.BulkInsert(dt, tableName, list);
+            return row;
+        }
     }
 }
