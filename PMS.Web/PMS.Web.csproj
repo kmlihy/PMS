@@ -70,6 +70,7 @@
     <Content Include="admin\changePwd.aspx" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
+    <Content Include="admin\myStudents.aspx" />
     <Content Include="admin\proList.aspx" />
     <Content Include="admin\selectTopicList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
@@ -312,6 +313,13 @@
     </Compile>
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\myStudents.aspx.cs">
+      <DependentUpon>myStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\myStudents.aspx.designer.cs">
+      <DependentUpon>myStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\proList.aspx.cs">
       <DependentUpon>proList.aspx</DependentUpon>
