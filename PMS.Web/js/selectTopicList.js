@@ -38,29 +38,66 @@ $(document).ready(function () {
     //查询按钮事件
     $("#btn-search").click(function () {
         var strWhere = $("#inputsearch").val();
+        if (sessionStorage.getItem("op") != null) {
+            sessionStorage.removeItem("op");
+        }
         sessionStorage.setItem("strWhere", strWhere);
+        if (sessionStorage.getItem("dropstrWhere") != null) {
+            sessionStorage.removeItem("dropstrWhere");
+        }
+        if (sessionStorage.getItem("batchWhere") != null) {
+            sessionStorage.removeItem("batchWhere");
+        }
         jump(1);
     });
     //专业下拉框查询
     $(".selectdrop").change(function () {
         var dropproWhere = $("#selectdrop").find("option:selected").val();
+        if (sessionStorage.getItem("op") != null) {
+            sessionStorage.removeItem("op");
+        }
         sessionStorage.setItem("dropstrWhere", dropproWhere);
+        if (sessionStorage.getItem("strWhere") != null) {
+            sessionStorage.removeItem("strWhere");
+        }
+        if (sessionStorage.getItem("batchWhere") != null) {
+            sessionStorage.removeItem("batchWhere");
+        }
         jump(1);
     })
     //批次下拉查询
     $(".selectdropbatch").change(function () {
         var dropbatchWhere = $("#selectdropbatch").find("option:selected").val();
+        if (sessionStorage.getItem("op") != null) {
+            sessionStorage.removeItem("op");
+        }
         //alert(dropbatchWhere);
         sessionStorage.setItem("batchWhere", dropbatchWhere);
+        if (sessionStorage.getItem("strWhere") != null) {
+            sessionStorage.removeItem("strWhere");
+        }
         jump(1);
     })
     //传查询值到后台
     function jump(cur) {
         if (sessionStorage.getItem("strWhere") == null) {
             window.location.href = "selectTopicList.aspx?currentPage=" + cur;
+        } else {
+
+            window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" +sessionStorage.getItem("op");
         }
-        window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere")+ "&search=" + sessionStorage.getItem("strWhere");
+        if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+            window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere") + "&op=" + sessionStorage.getItem("op");
+        }
     };
+    //导出按钮传值
+    $("#btn-export").click(function () {
+        //alert("导出");
+        sessionStorage.setItem("op", "export");
+        jump(1);
+        //window.location.href = "selectTopicList.aspx?op=export";
+    })
+
     //查看详情弹窗数据填充
     $(".btnSearch").click(function () {
         //查看数据填充

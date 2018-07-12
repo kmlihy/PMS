@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+<%--    <link rel="stylesheet" href="../css/style.css" />--%>
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
@@ -20,6 +20,48 @@
 
 <body>
     <div class="container-fluid ">
+<%--        <div class="panel panel-default" id="teapanelbox">
+            <div class="panel input-group" id="panel-head">
+                <div class="input-group" id="inputgroups">
+                    <select class="selectpicker" id="chooseStuPro">
+                        <%if (showstr == "0")
+                            { %>
+                        <option value="0" selected="selected">-查询全部专业-</option>
+                        <%}
+                            else
+                            { %>
+                        <option value="0">-查询全部专业-</option>
+                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                            {
+                                if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <% }
+                            else
+                            {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                        <%}
+                                }
+                            } %>
+                    </select>
+                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" id="btn-search">
+                            <span class="glyphicon glyphicon-search" id="search">查询</span>
+                        </button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                            <span class="glyphicon glyphicon-plus-sign">新增</span>
+                        </button>
+                    </span>
+                    <button class="btn btn-danger" type="button" id="btn-Del">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        批量删除
+                    </button>
+                </div>
+            </div>
+        </div>--%>
         <div class="panel panel-default" id="teapanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">

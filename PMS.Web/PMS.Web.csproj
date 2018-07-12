@@ -114,6 +114,7 @@
     <Content Include="js\lgd.js" />
     <Content Include="js\messages_zh.min.js" />
     <Content Include="js\ml.js" />
+    <Content Include="js\myStudent.js" />
     <Content Include="js\newsList.js" />
     <Content Include="js\paperList.js" />
     <Content Include="js\proList.js" />
@@ -194,6 +195,7 @@
     <Content Include="kindeditor\themes\qq\editor.gif" />
     <Content Include="kindeditor\themes\qq\qq.css" />
     <Content Include="kindeditor\themes\simple\simple.css" />
+    <Content Include="myStudents.aspx" />
     <Content Include="news.aspx" />
     <Content Include="newsList.aspx" />
     <Content Include="css\bootstrap-theme.css" />
@@ -386,6 +388,13 @@
     <Compile Include="JurisdictionTest.aspx.designer.cs">
       <DependentUpon>JurisdictionTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="myStudents.aspx.cs">
+      <DependentUpon>myStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myStudents.aspx.designer.cs">
+      <DependentUpon>myStudents.aspx</DependentUpon>
+    </Compile>
     <Compile Include="news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -497,6 +506,7 @@
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="upload\选题记录导出\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
