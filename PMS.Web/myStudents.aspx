@@ -4,51 +4,60 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的学生</title>
-
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/lgd.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../square/_all.css" />
-    <link rel="stylesheet" href="../css/_all.css" />
-    <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="square/_all.css" />
+    <link rel="stylesheet" href="css/_all.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
+    <link rel="stylesheet" href="css/iconfont.css" />
 </head>
 <body>
      <div class="container-fluid big-box">
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
-                        <option value="0">-请选择专业-</option>
+                    <input type="text" value="<%=secSearch %>" style="display:none" id="search" />
+                    <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
+                        <option value="0">-显示所有专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {
-                                String proId = prods.Tables[0].Rows[i]["proId"].ToString();
-                                if (showstr == proId)
+                                
+                                if(prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
                                 {
                         %>
-                                 <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                 <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected">
+                                     <%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                                <%}
                                 else
                                 {%>
-                                 <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                        
+                                 <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>">
+                                     <%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <%
                                 }
                             }%>
                     </select>&nbsp;
 
-                    <select class="selectpicker selectplan" data-width="auto" id="selectplans">
-                        <option value="0">-请选择批次-</option>
+                    <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
+                        <option value="0">--显示所有批次--</option>
                         <%for (int i = 0; i < plans.Tables[0].Rows.Count; i++)
-                            {%>
-                        <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString()%>"><%=plans.Tables[0].Rows[i]["planName"].ToString() %></option>
-                        <%} %>   
+                            {
+                                if (plans.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
+                                {%>
+                                    <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
+                                        <%=plans.Tables[0].Rows[i]["planName"].ToString() %>
+                                    </option>
+                                 <%}
+                                else
+                                { %>
+                                    <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString() %>">
+                                        <%=plans.Tables[0].Rows[i]["planName"].ToString() %>
+                                    </option>
+                                <%} %>
+                        <%} %>
                     </select>
 
-
-                    <%if (showinput == null) {
-                            showinput = "请输入搜索条件";
-                        } %>
-                    <input type="text" class="form-control inputsearch" placeholder="<%=showinput %>" id="inputsearch" />
+                    <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -105,7 +114,7 @@
                     </li>
                     <li>
                         <a href="#" class="jump" id="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="iconfont icon-back"></span>
                         </a>
                     </li>
                     <li>
@@ -124,7 +133,7 @@
                     </li>
                     <li>
                         <a href="#" id="next" class="jump">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="iconfont icon-more"></span>
                         </a>
                     </li>
                     <li>
@@ -209,10 +218,10 @@
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/icheck.min.js"></script>
-    <script src="../js/bootstrap-select.js"></script>
-    <script src="../js/lgd.js"></script>
-    <script src="../js/myStudent.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/icheck.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/lgd.js"></script>
+    <script src="js/myStudent.js"></script>
 </html>

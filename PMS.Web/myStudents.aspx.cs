@@ -26,61 +26,52 @@ namespace PMS.Web.admin
         protected String search = "";
         protected String searchdrop = "";
         protected string showstr = null;
-        protected string showinput = null;
+        protected String dropstrWhereplan = "";
+        protected String dropstrWherepro = "";
+        protected string secSearch = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request.Form["op"];
             string type = Request.QueryString["type"];
-            if (type == "btn")
+            if (!IsPostBack)
             {
                 Search();
                 getPage(Search());
             }
-            else if (type == "drop")
+            //批次下拉菜单
+            if (type == "plandrop")
             {
-                Searchdrop();
-                getPage(Searchdrop());
+                dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
+                if (dropstrWhereplan == "0")
+                {
+                    getPage("");
+                }
+                string strWhere = string.Format(" planId = {0}", dropstrWhereplan);
+                getPage(strWhere);
             }
-            else
+            //专业下拉菜单
+            if (type == "prodrop")
             {
-                Search();
-                getPage(Search());
+                dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
+                string strWhere = string.Format(" proId = {0}", dropstrWherepro);
+                getPage(strWhere);
+            }
+            //所有下拉菜单
+            if (type == "alldrop")
+            {
+                dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
+                dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
+                string strWhere = string.Format(" proId = {0} and planId = {1}", dropstrWherepro, dropstrWhereplan);
+                getPage(strWhere);
             }
 
             bads = colbll.Select();
             prods = probll.Select();
             plans = plbll.Select();
-            //下拉搜索后条件保存
-            if (searchdrop == null)
-            {
-                showstr = "-请选择专业-";
-            }
-            else if (searchdrop != null && searchdrop.Length > 0)
-            {
-                string sec = searchdrop.ToString();
-                string[] secArray = sec.Split('=');
-                if (secArray.Length > 0)
-                {
-                    string str = secArray[1].ToString();
-                    showstr = str.Substring(1, str.Length - 2);
-                }
-            }
-            //查询按钮点击后查询条件保存
-            if (search == null)
-            {
-                showinput = "请输入查询条件";
-            }
-            else if (search != null && search.Length > 1)
-            {
-                string sec = search.ToString();
-                string[] secArray = sec.Split('%');
-                string str = secArray[1].ToString();
-                showinput = str;
 
-            }
-            else { }
         }
+
         public string Searchdrop()
         {
             try
@@ -106,7 +97,7 @@ namespace PMS.Web.admin
             }
             return searchdrop;
         }
-        
+
         //获取表格数据
         public void getPage(String strWhere)
         {
@@ -131,6 +122,7 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             ds = titlerd.SelectBypage(tabuilder, out count);
         }
+
         //输入框搜索
         public string Search()
         {
@@ -140,14 +132,17 @@ namespace PMS.Web.admin
                 if (search.Length == 0)
                 {
                     search = "";
+                    secSearch = "";
                 }
                 else if (search == null)
                 {
                     search = "";
+                    secSearch = "";
                 }
                 else
                 {
-                    search = String.Format(" realName {0} or proName {0} or title {0} or planName {0}", "like '%" + search + "%'");
+                    secSearch = search;
+                    search = String.Format("titleRecordId {0} or realName {0} or phone {0} or proName {0} or title {0} or planName {0} or sex {0}", "like '%" + search + "%'");
                 }
             }
             catch
