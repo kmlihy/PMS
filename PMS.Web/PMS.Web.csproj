@@ -76,6 +76,7 @@
     <Content Include="admin\teaCenter.aspx" />
     <Content Include="admin\teaList.aspx" />
     <Content Include="admin\titleList.aspx" />
+    <Content Include="admin\titleReadList.aspx" />
     <Content Include="allNews.aspx" />
     <Content Include="bin\NPOI.dll" />
     <Content Include="bin\NPOI.OOXML.dll" />
@@ -116,10 +117,12 @@
     <Content Include="js\newsList.js" />
     <Content Include="js\paperList.js" />
     <Content Include="js\proList.js" />
+    <Content Include="js\reg.js" />
     <Content Include="js\selectTopicList.js" />
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
+    <Content Include="js\titleReadList.js" />
     <Content Include="js\xcConfirm.js" />
     <Content Include="js\zwh.js" />
     <Content Include="JurisdictionTest.aspx" />
@@ -354,6 +357,13 @@
     </Compile>
     <Compile Include="admin\titleList.aspx.designer.cs">
       <DependentUpon>titleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\titleReadList.aspx.cs">
+      <DependentUpon>titleReadList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\titleReadList.aspx.designer.cs">
+      <DependentUpon>titleReadList.aspx</DependentUpon>
     </Compile>
     <Compile Include="allNews.aspx.cs">
       <DependentUpon>allNews.aspx</DependentUpon>

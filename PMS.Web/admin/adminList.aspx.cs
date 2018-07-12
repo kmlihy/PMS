@@ -171,37 +171,38 @@ namespace PMS.Web.admin
             string college = Context.Request["College"].ToString();
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
-            TableBuilder tbd = new TableBuilder()
+            //根据输入的账号获取学生信息
+            tea = teaBll.GetModel(account);
+            string strEmail = tea.Email;
+            string strPhone = tea.Phone;
+            if (email == strEmail && phone == strPhone)
             {
-                StrTable = "T_College",
-                StrColumn = "collegeId",
-                IntColType = 0,
-                IntOrder = 0,
-                StrColumnlist = "collegeId",
-                IntPageSize = 1,
-                IntPageNum = 1,
-                StrWhere = "collegeName = '" + college + "'"
-            };
-            dsColl = collBll.SelectBypage(tbd, out count);
-            coll.ColID = int.Parse(dsColl.Tables[0].Rows[0]["collegeId"].ToString());
-            tea.TeaAccount = account;
-            tea.TeaName = name;
-            tea.TeaPwd = pwd;
-            tea.Sex = sex;
-            tea.college = coll;
-            tea.Email = email;
-            tea.Phone = phone;
-            tea.TeaType = 2;
-            result = teaBll.Updata(tea);
-            if (result == Result.更新成功)
-            {
-                Response.Write("更新成功");
+                result = Result.更新失败;
+                Response.Write("此联系电话、邮箱已存在");
                 Response.End();
             }
             else
             {
-                Response.Write("更新失败");
-                Response.End();
+                tea.TeaAccount = account;
+                tea.TeaName = name;
+                tea.TeaPwd = pwd;
+                tea.Sex = sex;
+                coll.ColID = int.Parse(college);
+                tea.college = coll;
+                tea.Email = email;
+                tea.Phone = phone;
+                tea.TeaType = 2;
+                result = teaBll.Updata(tea);
+                if (result == Result.更新成功)
+                {
+                    Response.Write("更新成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
+                }
             }
         }
         //判断是否能删除
