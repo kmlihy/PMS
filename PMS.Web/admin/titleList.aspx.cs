@@ -21,13 +21,15 @@ namespace PMS.Web.admin
 
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 3;
+        protected int pagesize = 5;
         protected String search = "";
         protected String dropstrWhereplan = "";
         protected String dropstrWherepro = "";
         protected string showstr = null;
         protected string showinput = null;
-        
+        protected string secSearch = "";
+
+
 
         TeacherBll teabll = new TeacherBll();//教师对象
         ProfessionBll probll = new ProfessionBll();//专业
@@ -133,13 +135,16 @@ namespace PMS.Web.admin
                 if (search.Length == 0)
                 {
                     search = "";
+                    secSearch = "";
                 }
                 else if (search == null)
                 {
                     search = "";
+                    secSearch = "";
                 }
                 else
                 {
+                    secSearch = search;
                     search = String.Format("titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
                 }
             }
