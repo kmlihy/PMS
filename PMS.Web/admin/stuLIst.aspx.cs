@@ -100,7 +100,10 @@ namespace PMS.Web.admin
             }
             return search;
         }
-        //下拉查询保留查询条件
+        /// <summary>
+        /// 下拉查询保留查询条件
+        /// </summary>
+        /// <returns></returns>
         public string Searchdrop()
         {
             try
@@ -130,7 +133,9 @@ namespace PMS.Web.admin
             }
             return searchdrop;
         }
-        //编辑学生
+        /// <summary>
+        /// 编辑学生
+        /// </summary>
         public void editorStu()
         {
             string stuNO = Context.Request["stuNO"].ToString(),
@@ -170,7 +175,9 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //添加学生
+        /// <summary>
+        /// 添加学生
+        /// </summary>
         public void saveStudent()
         {
             try
@@ -210,7 +217,10 @@ namespace PMS.Web.admin
             }
             catch { }
         }
-        //分页
+        /// <summary>
+        /// 实现分页
+        /// </summary>
+        /// <param name="strWhere">搜索条件</param>
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -234,7 +244,10 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             ds = pro.SelectBypage(tabuilder, out count);
         }
-        //判断是否能删除学生
+        /// <summary>
+        /// 判断是否能删除学生
+        /// </summary>
+        /// <returns></returns>
         public Result isDeleteStu()
         {
             string stuId = Context.Request["stuId"].ToString();
@@ -245,7 +258,9 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除学生
+        /// <summary>
+        /// 删除学生
+        /// </summary>
         public void deleteStu()
         {
             string stuId = Context.Request["stuId"].ToString();

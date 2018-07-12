@@ -1,6 +1,5 @@
 ﻿body {
     margin-top:20px;
-    background-color:rgb(241,248,252);
 }
 
 a {
@@ -36,11 +35,6 @@ a:hover {
 #Mine{
     margin-bottom:20px;
 }
-
-/*#school-table span {
-    color: #013A58;
-}*/
-
 #school-word a {
     float: right;
     margin-top: 20px;
@@ -86,7 +80,9 @@ a:hover {
     font-weight:500;
     font-size:20px;
 }
-/*batchList.aspx*/
+
+
+/*batchList.aspx 批次页面样式*/
 .btnEditor{
     position:relative !important;
     margin-top:-55px !important;
@@ -94,6 +90,12 @@ a:hover {
 }
 #btn-back{
     float:right;
+}
+
+#plan_Title{
+    /*页面标题*/
+    padding:0px;
+    margin-top:-15px;
 }
 /*paperDetailStu*/
 /*题目信息页面panel面板调整*/
@@ -116,6 +118,7 @@ a:hover {
 }
 #teapanelbox{
     background-color:#f5f5f5;
+    margin-bottom:10px;
 }
 .detail_info{
     margin-top:7px;
@@ -171,4 +174,8 @@ a:hover {
 #allNaws_btnBack{
     float:right;
     margin-top:-2px;
+}
+#allNews_Title{
+    margin-bottom:-20px;
+    padding-bottom:0px;
 }

@@ -127,6 +127,11 @@
                                         <span>公告信息</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="addNews.aspx" class="sidebarclick" >
+                                        <span>发布公告</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         
@@ -172,7 +177,7 @@
                         <%}
                             else if (State == 0)
                             { %>
-                        <!-- 管理员 -->
+                        <!-- 超级管理员 -->
                         <li role="presentation">
                             <a href="#glygonggao" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
@@ -183,6 +188,11 @@
                                 <li role="presentation">
                                     <a href="../newsList.aspx" class="sidebarclick" >
                                         <span>公告列表</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="addNews.aspx" class="sidebarclick" >
+                                        <span>发布公告</span>
                                     </a>
                                 </li>
                             </ul>
@@ -301,6 +311,11 @@
                                 <li role="presentation">
                                     <a href="../newsList.aspx" class="sidebarclick" >
                                         <span>公告列表</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="addNews.aspx" class="sidebarclick" >
+                                        <span>发布公告</span>
                                     </a>
                                 </li>
                             </ul>
@@ -436,7 +451,7 @@
         });
 
         function logout() {
-            alert("退出登录");
+            //alert("退出登录");
             $.ajax({
                 type: 'get',
                 url: 'main.aspx?op=logout',

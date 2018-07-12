@@ -9,7 +9,7 @@
     <title>公告列表页面</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
-    <link rel="stylesheet" href="css/style.css" />
+<%--    <link rel="stylesheet" href="css/style.css" />--%>
 </head>
 
 <body>

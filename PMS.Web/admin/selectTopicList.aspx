@@ -273,10 +273,4 @@
 <script src="../js/lgd.js"></script>
 <script src="../js/selectTopicList.js"></script>
 <script src="../js/xcConfirm.js"></script>
-    <script>
-        $("#btn-export").click(function () {
-            alert("导出");
-            window.location.href = "selectTopicList.aspx?op=export";
-        })
-    </script>
 </html>

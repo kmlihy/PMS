@@ -2,7 +2,7 @@
 sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
-//存储查询条件
+
 $(document).ready(function () {
     //删除学生
     $(".deleteStudent").click(function () {
@@ -92,7 +92,6 @@ $(document).ready(function () {
                 break;
         }
     });
-    //判断当前也的pagesize，当为0时，页数向前一页
     
     //地址栏显示信息
     function jump(cur) {
@@ -317,6 +316,7 @@ $(document).ready(function () {
 
     //密码表格隐藏
     $(".stuPwd").hide();
+    //判断当删除最后一页最后一条信息时，当前也自动跳到上一页
     if (parseInt(sessionStorage.getItem("page")) > parseInt(sessionStorage.getItem("countPage"))) {
         {
             jump(parseInt(sessionStorage.getItem("page")) - 1);
