@@ -1,6 +1,5 @@
 ﻿body {
     margin-top:20px;
-    background-color:rgb(241,248,252);
 }
 
 a {
@@ -116,6 +115,7 @@ a:hover {
 }
 #teapanelbox{
     background-color:#f5f5f5;
+    margin-bottom:10px;
 }
 .detail_info{
     margin-top:7px;
