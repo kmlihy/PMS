@@ -66,7 +66,7 @@ namespace PMS.Web.admin
             {// 如果批次id为空，专业id不为空
                 getPage(Searchdrop());
             }
-            else if (batchWhere != null && batchWhere != "null" && dropstrWhere == "null")
+            else if (batchWhere != null && batchWhere != "null" && (dropstrWhere == "null" || dropstrWhere=="0"))
             {// 如果专业id为空，批次id不为空
                 getPage(batcchdrop());
             }
@@ -75,7 +75,7 @@ namespace PMS.Web.admin
                 //两个都不为空
                 getPage(SearchProAndBatch());
             }
-            if (strsearch != null)
+            else if (strsearch != null)
             {
                 getPage(Search());
             }
