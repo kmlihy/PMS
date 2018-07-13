@@ -112,6 +112,9 @@ input.error {
 
 /*教师出题页面*/
 
+#addPaperBody {
+    background-color: rgb(241,248,252);
+}
 .addPaper {
     width:auto;
 }
@@ -153,12 +156,27 @@ input.error {
     float: right;
     margin-right: 90px
 }
-.number input{
-    width: 20px;
+.number input {
+    width: 50px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 }
-
+#panel .panel-head {
+    margin-left: 30px;
+}
+#panel {
+    margin-top: 30px;
+}
 /*个人中心*/
-
 .box {
     margin-top: 100px;
 }

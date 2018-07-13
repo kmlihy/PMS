@@ -69,7 +69,7 @@
         <!-- 中间区域 -->
         <div class="moddle" id="moddle">
             <!-- 左侧导航栏 -->
-            <div class="page-left-nav col-xs-12 col-sm-2 col-md-2 col-lg-1 collapse in" id="nav-menu">
+            <div class="page-left-nav col-sm-2 col-md-2 col-lg-1 collapse in" id="nav-menu">
                 <nav role="navigation" class="row">
                     <ul class="nav nav-list nav-stacked">
                         <%
@@ -378,7 +378,7 @@
             </div>
 
             <!-- 右侧内容区 -->
-            <div class="page-right-content col-xs-12 col-sm-10 col-md-10 col-lg-11" id="content">
+            <div class="page-right-content col-sm-10 col-md-10 col-lg-11" id="content">
                 <article class="">
                    <iframe id="iframe" style="margin-top:20px;" frameborder="0" scrolling="auto" src="../newsList.aspx" width="100%"></iframe>
                 </article>

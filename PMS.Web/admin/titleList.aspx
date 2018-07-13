@@ -20,23 +20,23 @@
         <div class="panel panel-default" id="propanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <input type="text" value="<%=secSearch %>" style="display:none" id="search" />
+                    <input type="text" value="<%=secSearch %>" style="display: none" id="search" />
                     <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
                         <option value="0">-显示所有专业-</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {
-                                if(prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
+                                if (prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
                                 {%>
-                                     <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
-                                         <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                                     </option>
-                                <% }
-                                else
-                                {%>
-                                    <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                                        <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                                    </option>
-                                <%}%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
+                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                        </option>
+                        <% }
+                            else
+                            {%>
+                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                        </option>
+                        <%}%>
                         <%} %>
                     </select>
                     &nbsp
@@ -46,23 +46,24 @@
                             {
                                 if (plads.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
                                 {%>
-                                    <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
-                                        <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
-                                    </option>
-                                 <%}
-                                else
-                                { %>
-                                    <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>">
-                                        <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
-                                    </option>
-                                <%} %>
+                        <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
+                            <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
+                        </option>
+                        <%}
+                            else
+                            { %>
+                        <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>">
+                            <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
+                        </option>
+                        <%} %>
                         <%} %>
                     </select>
-                    <%if (showinput == null) {
+                    <%if (showinput == null)
+                        {
                             showinput = "请输入搜索条件";
                         } %>
                     <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
-                    
+
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -90,7 +91,7 @@
                     <th class="text-center">
                         <input type="checkbox" class="js-checkbox-all" />
                     </th>
-                    <th class="text-center">标题编号</th>
+                    <th class="text-center">题目编号</th>
                     <th class="text-center">标题</th>
                     <th class="text-center">批次</th>
                     <th class="text-center">专业</th>
@@ -118,12 +119,15 @@
                         </td>
                         <td class="text-center" id="plaName">
                             <%=ds.Tables[0].Rows[i]["planName"].ToString() %>
+                            <input type="hidden" value="<%=ds.Tables[0].Rows[i]["planId"].ToString() %>" />
                         </td>
                         <td class="text-center" id="proName">
                             <%=ds.Tables[0].Rows[i]["proName"].ToString() %>
+                            <input type="hidden" value="<%=ds.Tables[0].Rows[i]["proId"].ToString() %>" />
                         </td>
                         <td class="text-center" id="teaName">
                             <%=ds.Tables[0].Rows[i]["teaName"].ToString() %>
+                            <input type="hidden" value="<%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %>" />
                         </td>
                         <td class="text-center" id="titleNumber">
                             <span><%=ds.Tables[0].Rows[i]["selected"].ToString() %></span>
@@ -191,7 +195,7 @@
                     <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                     </h4>
                 </div>
-                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="titleList.aspx?op=upload">
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
@@ -207,8 +211,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="text-center" id="download" >
-                                        <a href="~/upload/信息模板下载/学院信息表.xls" download="学院信息表.xls"><button type="button" class="btn btn-primary">下载模板</button></a>
+                                    <td class="text-center" id="download">
+                                        <a href="~/upload/信息模板下载/题目信息表.xls" download="题目信息表.xls">
+                                            <button type="button" class="btn btn-primary">下载模板</button></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -322,13 +327,13 @@
         sessionStorage.setItem("Page", page);
         //存储总页数
         var countPage = $("#countPage").val();
-        sessionStorage.setItem("countPage", countPage);       
+        sessionStorage.setItem("countPage", countPage);
 
         //专业下拉框查询
         $("#chooseStuPro").change(function () {
             sessionStorage.removeItem("strWhere");
             //获取用户选中的专业下拉框的Id值
-            var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();   
+            var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
             if (dropstrWherepro != "0") {
                 //把值存储到sessionStorage中并传到后台
                 sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
@@ -346,8 +351,8 @@
                     sessionStorage.removeItem("type");
                     sessionStorage.setItem("type", "prodrop");
                     jump(1);
-                }            
-            }  
+                }
+            }
             else {
                 sessionStorage.removeItem("dropstrWherepro");
                 var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
@@ -363,18 +368,18 @@
                     sessionStorage.removeItem("dropstrWhereplan");
                     sessionStorage.removeItem("type");
                     jump(1);
-                }            
-            }            
+                }
+            }
         });
 
         //批次下拉框查询
-        $("#choosePlan").change(function () {      
+        $("#choosePlan").change(function () {
             sessionStorage.removeItem("strWhere");
             //存储批次下拉框的条件
             var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
             if (dropstrWhereplan != "0") {
                 sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
-                var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();          
+                var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
                 //判断专业是否被选中
                 if (dropstrWherepro != "0") {
                     //存储专业下拉框的条件
@@ -391,7 +396,7 @@
             }
             else {
                 sessionStorage.removeItem("dropstrWhereplan");
-                var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();          
+                var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
                 //判断专业是否被选中
                 if (dropstrWherepro != "0") {
                     //存储专业下拉框的条件
@@ -405,7 +410,7 @@
                     sessionStorage.removeItem("type");
                     jump(1);
                 }
-            }            
+            }
         });
 
         function jump(cur) {
@@ -423,9 +428,9 @@
                 window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
             }
             if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
-                window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro")+ "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+                window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
             }
-        };        
+        };
 
         //查询按钮点击事件
         $("#btn-search").click(function () {
@@ -437,86 +442,101 @@
             jump(1);
         });
 
+        //批量导入
+        $(".file").on("change", "input[type='file']", function () {
+            var filePath = $(this).val();
+            if (filePath.indexOf("xls") !== -1 || filePath.indexOf("xlsx") !== -1) {
+                $(".fileerrorTip").html("").hide();
+                var arr = filePath.split('\\');
+                var fileName = arr[arr.length - 1];
+                $(".showFileName").html(fileName);
+            } else {
+                $(".showFileName").html("");
+                $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+                return false
+            }
+        });
+
         $(document).ready(function () {
             //分页参数传递
             $(".jump").click(function () {
                 if ($("#search").val() != null) {
                     switch ($.trim($(this).html())) {
-                    case ('<span class="iconfont icon-back"></span>'):
-                        if (parseInt(sessionStorage.getItem("Page")) > 1) {                            
-                            sessionStorage.setItem("strWhere", $("#search").val());
-                            jump(parseInt(sessionStorage.getItem("Page")) - 1);
-                            break;
-                        }
-                        else {
+                        case ('<span class="iconfont icon-back"></span>'):
+                            if (parseInt(sessionStorage.getItem("Page")) > 1) {
+                                sessionStorage.setItem("strWhere", $("#search").val());
+                                jump(parseInt(sessionStorage.getItem("Page")) - 1);
+                                break;
+                            }
+                            else {
+                                sessionStorage.setItem("strWhere", $("#search").val());
+                                jump(1);
+                                break;
+                            }
+
+                        case ('<span class="iconfont icon-more"></span>'):
+                            if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                                sessionStorage.setItem("strWhere", $("#search").val());
+                                jump(parseInt(sessionStorage.getItem("Page")) + 1);
+                                break;
+                            }
+                            else {
+                                sessionStorage.setItem("strWhere", $("#search").val());
+                                jump(parseInt(sessionStorage.getItem("countPage")));
+                                break;
+                            }
+                        case ("首页"):
                             sessionStorage.setItem("strWhere", $("#search").val());
                             jump(1);
                             break;
-                        }
-
-                    case ('<span class="iconfont icon-more"></span>'):
-                        if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                            sessionStorage.setItem("strWhere", $("#search").val());
-                            jump(parseInt(sessionStorage.getItem("Page")) + 1);
-                            break;
-                        }
-                        else {
+                        case ("尾页"):
                             sessionStorage.setItem("strWhere", $("#search").val());
                             jump(parseInt(sessionStorage.getItem("countPage")));
                             break;
-                        }
-                    case ("首页"):
-                        sessionStorage.setItem("strWhere", $("#search").val());
-                        jump(1);
-                        break;
-                    case ("尾页"):
-                        sessionStorage.setItem("strWhere", $("#search").val());
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
                     }
                 }
                 else {
                     switch ($.trim($(this).html())) {
-                    case ('<span class="iconfont icon-back"></span>'):
-                        if (parseInt(sessionStorage.getItem("Page")) > 1) {                            
-                            sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                            sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                            jump(parseInt(sessionStorage.getItem("Page")) - 1);
-                            break;
-                        }
-                        else {
+                        case ('<span class="iconfont icon-back"></span>'):
+                            if (parseInt(sessionStorage.getItem("Page")) > 1) {
+                                sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                                sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                                jump(parseInt(sessionStorage.getItem("Page")) - 1);
+                                break;
+                            }
+                            else {
+                                sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                                sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                                jump(1);
+                                break;
+                            }
+
+                        case ('<span class="iconfont icon-more"></span>'):
+                            if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                                sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                                sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                                jump(parseInt(sessionStorage.getItem("Page")) + 1);
+                                break;
+                            }
+                            else {
+                                sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
+                                sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                                jump(parseInt(sessionStorage.getItem("countPage")));
+                                break;
+                            }
+                        case ("首页"):
                             sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                             sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                             jump(1);
                             break;
-                        }
-
-                    case ('<span class="iconfont icon-more"></span>'):
-                        if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                            sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                            sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                            jump(parseInt(sessionStorage.getItem("Page")) + 1);
-                            break;
-                        }
-                        else {
+                        case ("尾页"):
                             sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                             sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
                             jump(parseInt(sessionStorage.getItem("countPage")));
                             break;
-                        }
-                    case ("首页"):
-                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                        jump(1);
-                        break;
-                    case ("尾页"):
-                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
+                    }
                 }
-                }
-                
+
             });
 
             //自动隐藏导航栏首页尾页
@@ -639,22 +659,6 @@
             $(".btnDel").click(function () {
                 var deleteTitleId = $(this).parent().parent().find("#titleId").text().trim();
                 alert(deleteTitleId);
-                //var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-                //if (result == true) {
-                //    $.ajax({
-                //        type: 'Post',
-                //        url: 'titleList.aspx',
-                //        data: {
-                //            deleteTitleId: deleteTitleId,
-                //            op: "del"
-                //        },
-                //        dataType: 'text',
-                //        success: function (succ) {
-                //            alert(succ);
-                //            jump(parseInt(sessionStorage.getItem("Page")));
-                //        }
-                //    })
-                //}
                 //Confirm弹窗
                 var txt = "确定要删除吗？";
                 var option = {

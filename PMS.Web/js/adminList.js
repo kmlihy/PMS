@@ -170,6 +170,8 @@ $(document).ready(function () {
         $("#Ephone").val(Ephone);
         var Eemail = $(this).parent().parent().find("#email").text().trim();
         $("#Eemail").val(Eemail);
+        var collegeId = $(this).parent().parent().find("#collegeId").val();
+        sessionStorage.setItem("collegeId", collegeId);
     })
     //编辑学院
     $("#select").hide();
@@ -208,7 +210,7 @@ $(document).ready(function () {
         var flag = sessionStorage.getItem("flag");
         var College, Sex;
         if (flag === "false") {
-            College = $("#EintColl").val();
+            College = sessionStorage.getItem("collegeId");
             Sex = $("#EintSex").val();
         } else {
             College = $("#EselColl").val();
@@ -218,12 +220,14 @@ $(document).ready(function () {
             $("#validateNameE").html("姓名不能为空！").css("color", "red");
         } else if (!txtName.test(Name)) {
             $("#validateNameE").html("姓名只能包括汉子、英文字符！").css("color", "red");
-        } else if (Pwd === "") {
-            $("#validateNameE").html("")
-            $("#validatePwd").html("密码为空！").css("color", "red");
-        } else if (!txtPwd.test(Pwd)) {
-            $("#validatePwd").html("密码不合法").css("color", "red");
-        } else if (Phone === "") {
+        }
+        //else if (Pwd === "") {
+        //    $("#validateNameE").html("")
+        //    $("#validatePwd").html("密码为空！").css("color", "red");
+        //} else if (!txtPwd.test(Pwd)) {
+        //    $("#validatePwd").html("密码不合法").css("color", "red");
+        //}
+        else if (Phone === "") {
             $("#validatePwd").html("")
             $("#validateTelE").html("联系电话不能为空！").css("color", "red");
         } else if (!TelNum.test(Phone)) {

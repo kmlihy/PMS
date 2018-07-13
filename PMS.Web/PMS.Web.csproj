@@ -123,6 +123,7 @@
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
+    <Content Include="js\titleReadList.js" />
     <Content Include="js\xcConfirm.js" />
     <Content Include="js\zwh.js" />
     <Content Include="JurisdictionTest.aspx" />

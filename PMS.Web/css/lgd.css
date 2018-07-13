@@ -32,7 +32,6 @@
 .tablediv {
     position: relative;
     margin-left: 0%;
-    margin-top: 30px;
     border: #DDD 1.2px solid;
     border-radius: 10px 10px 10px 10px;
 }
@@ -42,7 +41,7 @@
 }
 
 #titleTable {
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     margin-top: 20px;
 }
 
@@ -69,7 +68,27 @@
     height: 400px;
     visibility: hidden;
 }
+#addNewsBody {
+    background-color: rgb(241,248,252);
+}
 
+#panel .panel-head {
+    margin-left: 30px;
+}
+
+#panel {
+    margin-top: 30px;
+}
+
+#ke-container {
+    width: 70%;
+    display: block;
+    border: 1px solid #CCCCCC;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
 
 /*密码修改界面样式表*/
 .td-check {

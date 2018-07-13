@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="addNews.aspx.cs" Inherits="PMS.Web.admin.addNews" %>
+
 <%= "" %>
 <!DOCTYPE html>
 
@@ -8,59 +9,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>发布公告</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../kindeditor/themes/default/default.css" />
 </head>
 
-<body>
-    <div class="container-fluid">
-        <div class="container">
-            <h1 class="text-center">发布公告
-            </h1>
+<body id="addNewsBody">
+    <div class="panel panel-default" id="panel">
+        <div class="panel-head">
+            <h2>发布公告</h2>
         </div>
+        <div class="panel-body">
+            <div class="container-fluid">
 
-        <div class="container-fluid tablediv">
-           <form runat="server" action="addNews.aspx" method="post">
-            <table class="table titleTable" id="titleTable">
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="container-fluid text-right">
-                                <span class="label title">标题</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-xs-3 col-sm-3 col-md-3 inputdiv">
-                                <input type="text" class="form-control" id="newsTitle" name="newsTitle" placeholder="请输入标题" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="container-fluid text-right">
-                                <span class="label title">内容</span>
-                            </div>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <textarea name="content" class="titlemain" id="content"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button class="btn btn-primary btn-title" type="button" id="release">
-                                发布公告
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-         </form>
+                <div class="container-fluid tablediv">
+                    <form runat="server" action="addNews.aspx" method="post">
+                        <table class="table titleTable" id="titleTable">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="container-fluid text-right">
+                                            <span class="label title">标题</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-5 col-sm-4 col-md-3 col-lg-3 inputdiv">
+                                            <input type="text" class="form-control" id="newsTitle" name="newsTitle" placeholder="请输入标题" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="container-fluid text-right col-xs-10 col-sm-10 col-md-8 col-lg-7">
+                                            <span class="label title">内容</span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <textarea name="content" class="titlemain" id="content"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-title" type="button" id="release">
+                                            发布公告
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

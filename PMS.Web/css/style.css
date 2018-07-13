@@ -16,17 +16,33 @@
     line-height: 20px;
 }
 
-    .file input {
-        position: absolute;
-        font-size: 100px;
-        right: 0;
-        top: 0;
-        opacity: 0;
-    }
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
 
-    .file:hover {
-        background: #337ab7;
-        border-color: #286090;
-        color: #fff;
-        text-decoration: none;
-    }
+.file:hover {
+    background: #337ab7;
+    border-color: #286090;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 列表页面样式*/
+#panel .panel-head{
+    text-align:center;
+}
+#panel .panel-body {
+    height: 550px;
+}
+#panel{
+    margin-top:30px;
+}
+#paging{
+    position:absolute;
+    top:550px;
+    left:940px;
+}

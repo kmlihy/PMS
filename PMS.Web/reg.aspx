@@ -14,17 +14,14 @@
 </head>
 
 <body id="regBody">
-    <div class="container col-xs-8 col-sm-8 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-3 col-lg-push-3" id="bigbox">
-        <%--<div>
-            
-        </div>--%>
+    <div class="container col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xs-push-2 col-sm-push-2 col-md-push-3 col-lg-push-4" id="bigbox">
         <div class="container-fluid" id="regmain">
             <div class="container-style">
                 <form class="form-horizontal" role="form" id="regform" method="post">
 
                     <table class="table table-hover">
                         <thead>
-                            <h1 class="col-xs-10 col-sm-10 col-md-4 col-lg-4 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4">账号注册</h1>
+                            <h1 class="col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4">账号注册</h1>
                         </thead>
                         <tbody>
                             <tr>
@@ -136,7 +133,7 @@
                     </table>
                     <div class="form-group">
                         <div class="col-sm-offset-2">
-                            <button type="button" class="btn btn-info col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1" id="btnAdd">立即注册</button>
+                            <button type="button" class="btn btn-info col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xs-push-2 col-sm-push-2 col-md-push-1" id="btnAdd">立即注册</button>
                         </div>
                     </div>
                 </form>
