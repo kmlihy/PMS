@@ -12,8 +12,7 @@ $(function () {
 sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
-//保留查询条件
-sessionStorage.setItem("type", "");
+
 $(document).ready(function () {
     //分页
     $(".jump").click(function () {
@@ -58,15 +57,36 @@ $(document).ready(function () {
         sessionStorage.setItem("type", "btn");
         jump(1);
     });
-    //地址栏显示信息
-    function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
-            window.location.href = "batchList.aspx?currentPage=" + cur
+    //下拉框查询
+    $("#chooseStuPro").change(function () {
+        sessionStorage.removeItem("strWhere");
+        var dropstrWhere = $(this).find("option:selected").val();
+        sessionStorage.setItem("dropstrWhere", dropstrWhere);
+        if (dropstrWhere != "0") {
+            sessionStorage.getItem("dropstrWhere");
+            sessionStorage.setItem("type", "drop");
+            jump(1);
         }
         else {
+            sessionStorage.removeItem("dropstrWhere");
+            jump(1);
+        }
+    })
+    //地址栏显示信息
+    function jump(cur) {
+        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
+            window.location.href = "batchList.aspx?currentPage=" + cur;
+        }
+        else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere") == null) {
             window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
         }
-    }
+        else if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") != null) {
+            window.location.href = "batchList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
+        }
+        else {
+            window.location.href = "batchList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
+        }
+    };
     //当总页数为1时，首页与尾页按钮隐藏
     if (sessionStorage.getItem("count") === "1") {
         $("#first").hide();
@@ -317,5 +337,34 @@ $(document).ready(function () {
                 }
             })
         }
+    })
+
+    //判断登录的管理员，对批次表格权限进行限制
+    var userState = $("#userState").text().trim();
+    if (userState == "0") {
+        $(".planEditor").hide();
+        $(".planDelete").hide();
+        $(".planSearch").show();
+    }
+    else if (userState == "2") {
+        $(".planEditor").show();
+        $(".planDelete").show();
+        $(".planSearch").hide();
+    }
+
+    //详细信息模态框数据绑定
+    $(".planSearch").click(function () {
+        var planId = $(this).parent().parent().find(".planNO").text().trim(),
+            planNmae = $(this).parent().parent().find(".planNO").next().text().trim(),
+            startTime = $(this).parent().parent().find(".planNO").next().next().text().trim(),
+            endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
+            state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),
+            collegeName = $(this).parent().parent().find(".planNO").next().next().next().next().next().text().trim();
+        $("#searchPlanId").text(planId);
+        $("#searchPlanName").text(planName);
+        $("#searchStartTime").text(startTime);
+        $("#searchEndTime").text(endTime);
+        $("#searchState").text(state);
+        $("#searchCol").text(collegeName);
     })
 })

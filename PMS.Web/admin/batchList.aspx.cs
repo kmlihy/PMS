@@ -22,6 +22,8 @@ namespace PMS.Web.admin
         protected int pagesize = 3;
 
         protected String search = "";
+        protected String searchdrop = "";
+        protected string showstr = "";
         protected string showinput = null;
 
         PlanBll planBll = new PlanBll();
@@ -53,20 +55,14 @@ namespace PMS.Web.admin
             {
                 getdata(Search());
             }
-            //输入框保留查询条件
-            if (search == null)
+            if(type == "drop")
             {
-                showinput = "-请输入搜索条件-";
-            }
-            else if(search != null && search.Length > 1)
-            {
-                string sec = search.ToString();
-                string[] secArray = sec.Split('%');
-                string str = secArray[1].ToString();
-                showinput = str;
+                getdata(Searchdrop());
             }
         }
-        //编辑批次
+        /// <summary>
+        /// 编辑批次
+        /// </summary>
         public void EditorPlan()
         {
             string planName = Context.Request["editorPlanName"].ToString();
@@ -109,7 +105,9 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //添加
+        /// <summary>
+        /// 添加批次
+        /// </summary>
         public void savePlan()
         {
             //获取参数
@@ -151,7 +149,10 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //分页
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <param name="strWhere"></param>
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -175,7 +176,10 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             plands = pro.SelectBypage(tabuilder, out count);
         }
-        //查询
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
         public string Search()
         {
             try {
@@ -196,7 +200,43 @@ namespace PMS.Web.admin
             catch { }
             return search;
         }
-        //判断是否能删除批次
+        /// <summary>
+        /// 下拉查询
+        /// </summary>
+        /// <returns></returns>
+        public string Searchdrop()
+        {
+            try
+            {
+                searchdrop = Request.QueryString["dropstrWhere"];
+                if (searchdrop.Length == 0)
+                {
+                    searchdrop = "";
+                    //下拉框保留查询条件
+                    showstr = "0";
+                }
+                else if (searchdrop == null)
+                {
+                    searchdrop = "";
+                    //下拉框保留查询条件
+                    showstr = "0";
+                }
+                else
+                {
+                    //下拉框保留查询条件
+                    showstr = searchdrop;
+                    searchdrop = String.Format("collegeId={0} ", "'" + searchdrop + "'");
+                }
+            }
+            catch
+            {
+            }
+            return searchdrop;
+        }
+        /// <summary>
+        /// 判断是否能删除批次
+        /// </summary>
+        /// <returns></returns>
         public Result isDeletePlan()
         {
             string planId = Context.Request["deletePlanId"].ToString();
@@ -207,7 +247,9 @@ namespace PMS.Web.admin
             }
             return delResult;
         }
-        //删除批次
+        /// <summary>
+        /// 删除批次
+        /// </summary>
         public void deletePlan()
         {
             int planId = int.Parse(Context.Request["deletePlanId"].ToString());
