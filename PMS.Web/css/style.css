@@ -32,8 +32,8 @@
 }
 
 /* 列表页面样式*/
-#panel .panel-head{
-    text-align:center;
+#panel .panel-head {
+    margin-left: 30px;
 }
 #panel .panel-body {
     height: 550px;
@@ -44,5 +44,5 @@
 #paging{
     position:absolute;
     top:550px;
-    left:940px;
+    left:780px;
 }

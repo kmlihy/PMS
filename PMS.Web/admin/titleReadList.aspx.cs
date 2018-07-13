@@ -83,8 +83,12 @@ namespace PMS.Web.admin
             }
             TitleBll titbll = new TitleBll();
             TableBuilder tabuilder = new TableBuilder();
+            Teacher tea = (Teacher)Session["loginuser"];
+            string teaAccount = tea.TeaAccount;
+            string account = "teaAccount not in ('" + teaAccount + "')";
+            string Account = "teaAccount not in '" + teaAccount + "' and ";
             tabuilder.StrTable = "V_Title";
-            tabuilder.StrWhere = (strWhere == null ? "" : strWhere);
+            tabuilder.StrWhere = (strWhere == null || strWhere=="" ? account : Account + strWhere);
             tabuilder.IntColType = 0;
             tabuilder.IntOrder = 0;
             tabuilder.IntPageNum = int.Parse(currentPage);

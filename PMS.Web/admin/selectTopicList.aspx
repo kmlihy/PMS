@@ -18,25 +18,30 @@
 </head>
 
 <body>
-    <div class="container-fluid big-box">
-        <div class="panel panel-default" id="selectToppanelbox">
-            <div class="pane input-group" id="panel-head">
-                <div class="input-group" id="inputgroups">
-                    <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
-                        <option value="0">-查询全部专业-</option>
-                        <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                            {
-                                if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
-                                {%>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                        <%}%>
-                        <%else
-                            {%>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                        <%} %>
-                        <%} %>
-                    </select>
-                    &nbsp
+    <div class="panel panel-default" id="panel">
+        <div class="panel-head">
+            <h2>选题管理列表列表</h2>
+        </div>
+        <div class="panel-body">
+            <div class="container-fluid big-box">
+                <div class="panel panel-default" id="selectToppanelbox">
+                    <div class="pane input-group" id="panel-head">
+                        <div class="input-group" id="inputgroups">
+                            <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
+                                <option value="0">-查询全部专业-</option>
+                                <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                        {%>
+                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                <%}%>
+                                <%else
+                                    {%>
+                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                <%} %>
+                                <%} %>
+                            </select>
+                            &nbsp
                     <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
                         <option value="0">-请选择批次-</option>
 
@@ -52,107 +57,109 @@
                         <%} %>
                         <%} %>
                     </select>
-                    <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=showinput %>" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search">查询</span>
-                        </button>
-                    </span>
-                    <button class="btn btn-success" type="button" id="btn-export">
-                        <span class="glyphicon glyphicon-share-alt"></span>
-                        导出
-                    </button>
-                    <button class="btn btn-danger" type="button" id="btn-Del">
-                        <span class="glyphicon glyphicon-trash"></span>
-                        批量删除
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="selectToptab">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <th class="text-center">
-                        <input type="checkbox" class="js-checkbox-all" />
-                    </th>
-                    <th class="text-center">选题记录编号</th>
-                    <th class="text-center">题目</th>
-                    <th class="text-center">出题教师</th>
-                    <th class="text-center">选题学生</th>
-                    <th class="text-center">所属批次</th>
-                    <th class="text-center">所属专业</th>
-                    <th class="text-center">已选人数/人数上限</th>
-                    <th class="text-center">选题时间</th>
-                    <th class="text-center">所属分院</th>
-                    <th class="text-center">操作</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                            {%>
-                        <td class="text-center" id="msg">
-                            <input type="checkbox" />
-                            <p class="hidemsg" id="teacount"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></p>
-                            <p class="hidemsg" id="stuaccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></p>
-                            <p class="hidemsg" id="phone"><%=ds.Tables[0].Rows[i]["phone"].ToString() %></p>
-                            <p class="hidemsg" id="email"><%=ds.Tables[0].Rows[i]["Email"].ToString() %></p>
-                            <p class="hidemsg" id="stusex"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></p>
-                        </td>
-                        <td class="text-center" id="recordid"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
-                        <td class="text-center" id="title"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                        <td class="text-center" id="teaname"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
-                        <td class="text-center" id="realname"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
-                        <td class="text-center" id="planname"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
-                        <td class="text-center" id="proname"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                        <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %>/<%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
-                        <td class="text-center" id="recordtime"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
-                        <td class="text-center" id="collegename"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
-                        <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
-                                <span class="glyphicon glyphicon-search"></span>
+                            <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=showinput %>" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" id="btn-search">
+                                    <span class="glyphicon glyphicon-search">查询</span>
+                                </button>
+                            </span>
+                            <button class="btn btn-success" type="button" id="btn-export">
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                                导出
                             </button>
-                            <button class="btn btn-default btn-sm btn-danger btnDel">
+                            <button class="btn btn-danger" type="button" id="btn-Del">
                                 <span class="glyphicon glyphicon-trash"></span>
+                                批量删除
                             </button>
-                        </td>
-                    </tr>
-                    <%} %>
-                </tbody>
-            </table>
-            <div class="text-right">
-                <ul class="pagination pagination-lg">
-                    <li>
-                        <a href="#" class="jump" id="first">首页</a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump" id="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump">
-                            <%=getCurrentPage %>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">/</a>
-                    </li>
-                    <li>
-                        <% if (count == 0) { count = 1; } %>
-                        <a href="#" class="jump">
-                            <%=count %>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" id="next" class="jump">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump" id="last">尾页</a>
-                    </li>
-                </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="selectToptab">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <th class="text-center">
+                                <input type="checkbox" class="js-checkbox-all" />
+                            </th>
+                            <th class="text-center">选题记录编号</th>
+                            <th class="text-center">题目</th>
+                            <th class="text-center">出题教师</th>
+                            <th class="text-center">选题学生</th>
+                            <th class="text-center">所属批次</th>
+                            <th class="text-center">所属专业</th>
+                            <th class="text-center">已选人数/人数上限</th>
+                            <th class="text-center">选题时间</th>
+                            <th class="text-center">所属分院</th>
+                            <th class="text-center">操作</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                    {%>
+                                <td class="text-center" id="msg">
+                                    <input type="checkbox" />
+                                    <p class="hidemsg" id="teacount"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></p>
+                                    <p class="hidemsg" id="stuaccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></p>
+                                    <p class="hidemsg" id="phone"><%=ds.Tables[0].Rows[i]["phone"].ToString() %></p>
+                                    <p class="hidemsg" id="email"><%=ds.Tables[0].Rows[i]["Email"].ToString() %></p>
+                                    <p class="hidemsg" id="stusex"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></p>
+                                </td>
+                                <td class="text-center" id="recordid"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
+                                <td class="text-center" id="title"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                                <td class="text-center" id="teaname"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
+                                <td class="text-center" id="realname"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
+                                <td class="text-center" id="planname"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
+                                <td class="text-center" id="proname"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
+                                <td class="text-center"><%=ds.Tables[0].Rows[i]["selected"].ToString() %>/<%=ds.Tables[0].Rows[i]["limit"].ToString() %></td>
+                                <td class="text-center" id="recordtime"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
+                                <td class="text-center" id="collegename"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                                <td class="text-center">
+                                    <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                    <button class="btn btn-default btn-sm btn-danger btnDel">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <%} %>
+                        </tbody>
+                    </table>
+                    <div class="text-right" id="paging">
+                        <ul class="pagination pagination-lg">
+                            <li>
+                                <a href="#" class="jump" id="first">首页</a>
+                            </li>
+                            <li>
+                                <a href="#" class="jump" id="prev">
+                                    <span class="iconfont icon-back"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="jump">
+                                    <%=getCurrentPage %>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">/</a>
+                            </li>
+                            <li>
+                                <% if (count == 0) { count = 1; } %>
+                                <a href="#" class="jump">
+                                    <%=count %>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="next" class="jump">
+                                    <span class="iconfont icon-more"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="jump" id="last">尾页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

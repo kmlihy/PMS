@@ -71,8 +71,11 @@ namespace PMS.Web.admin
                 getdata(Search());
             }
         }
-
-        //获取数据
+        
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="strWhere"></param>
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -94,7 +97,10 @@ namespace PMS.Web.admin
             getCurrentPage = int.Parse(currentPage);
             ds = collBll.SelectBypage(tbd, out count);
         }
-        //添加分院信息
+        
+        /// <summary>
+        /// 添加分院信息
+        /// </summary>
         public void saveCollege()
         {
             string collegeName = Context.Request["collegeName"].ToString();
@@ -129,7 +135,10 @@ namespace PMS.Web.admin
                 }
             }
         }
-        //编辑分院信息
+        
+        /// <summary>
+        /// 编辑分院信息
+        /// </summary>
         public void editCollege()
         {
             int collegeId = int.Parse(Context.Request["id"].ToString());
@@ -166,7 +175,11 @@ namespace PMS.Web.admin
                 }
             }
         }
-        //查询
+
+        /// <summary>
+        /// 查询筛选方法
+        /// </summary>
+        /// <returns>返回查询参数</returns>
         public string Search()
         {
             try
@@ -191,7 +204,10 @@ namespace PMS.Web.admin
             }
             return search;
         }
-        //批量导入
+
+        /// <summary>
+        /// 批量导入
+        /// </summary>
         public void upload()
         {
             try
@@ -266,7 +282,11 @@ namespace PMS.Web.admin
                 this.Response.Write("<script>alert('"+ex.Message+"');</script>");
             }
         }
-        //单个删除前判断是否能删除
+
+        /// <summary>
+        /// 单个删除前判断是否能删除
+        /// </summary>
+        /// <returns>返回判断结果</returns>
         public Result IsdeleteCollege()
         {
             string collegeid = Context.Request["collegeid"].ToString();
@@ -285,7 +305,10 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除
+
+        /// <summary>
+        /// 删除
+        /// </summary>
         public void deleteCollege()
         {
             string collegeid = Context.Request["collegeid"].ToString();
@@ -311,7 +334,11 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //批量删除前判断是否能删除
+
+        /// <summary>
+        /// 批量删除前判断是否能删除
+        /// </summary>
+        /// <returns>Result对象</returns>
         public Result IsBatchDelete()
         {
             Result row = Result.记录不存在;
@@ -334,7 +361,10 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //批量删除
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
         public void batchDeleteCollege()
         {
             string collegeid = Context.Request["collId"].ToString();

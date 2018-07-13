@@ -58,7 +58,10 @@ namespace PMS.Web.admin
                 getdata(Search());
             }
         }
-        //获取数据
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="strWhere"></param>
         public void getdata(string strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -93,7 +96,10 @@ namespace PMS.Web.admin
             //获取学院所有信息
             dsColl = collBll.Select();
         }
-        //查询
+        /// <summary>
+        /// 查询筛选方法
+        /// </summary>
+        /// <returns>返回查询参数</returns>
         public string Search()
         {
             try
@@ -118,7 +124,9 @@ namespace PMS.Web.admin
             }
             return search;
         }
-        //添加学院管理员
+        /// <summary>
+        /// 添加学院管理员
+        /// </summary>
         public void insertAdmin()
         {
             string account = Context.Request["account"].ToString();
@@ -161,7 +169,9 @@ namespace PMS.Web.admin
                 }
             }
         }
-        //编辑学院管理员
+        /// <summary>
+        /// 编辑学院管理员
+        /// </summary>
         public void editAdmin()
         {
             string account = Context.Request["Account"].ToString();
@@ -205,7 +215,10 @@ namespace PMS.Web.admin
                 }
             }
         }
-        //判断是否能删除
+        /// <summary>
+        /// 判断是否能删除
+        /// </summary>
+        /// <returns>返回判断结果</returns>
         public Result IsdeleteAdmin()
         {
             string account = Context.Request["Daccount"].ToString();
@@ -220,7 +233,9 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除
+        /// <summary>
+        /// 删除
+        /// </summary>
         public void deleteAdmin()
         {
             string account = Context.Request["Daccount"].ToString();

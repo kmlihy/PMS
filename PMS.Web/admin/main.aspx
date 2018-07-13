@@ -153,7 +153,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation">
-                                    <a href="titleList.aspx" class="sidebarclick" >
+                                    <a href="titleReadList.aspx" class="sidebarclick" >
                                         <span>题目信息</span>
                                     </a>
                                 </li>

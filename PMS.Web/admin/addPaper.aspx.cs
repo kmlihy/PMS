@@ -27,8 +27,7 @@ namespace PMS.Web.admin
             //selectPro();
             //调用下拉菜单数据
             TeacherBll teabll = new TeacherBll();
-            Teacher tea = teabll.GetModel("admin");
-            string collegeId = tea.college.ToString();
+            Teacher tea = (Teacher)Session["loginuser"];
             TableBuilder tb = new TableBuilder();
             ds = probll.Select();//调用专业方法
             pbds = pbll.Select();//调用批次方法

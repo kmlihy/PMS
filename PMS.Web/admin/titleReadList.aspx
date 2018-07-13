@@ -122,7 +122,7 @@
                                     <%=ds.Tables[0].Rows[i]["createTime"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success btn-sm btnSearch" data-toggle="modal" data-target="#myModa2">
+                                    <button class="btn btn-success btn-sm btnSearch">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </td>
