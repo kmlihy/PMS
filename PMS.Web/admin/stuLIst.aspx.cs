@@ -76,7 +76,10 @@ namespace PMS.Web.admin
             //}
 
         }
-        //查询
+        /// <summary>
+        /// 查询方法
+        /// </summary>
+        /// <returns></returns>
         public string Search()
         {
             try
