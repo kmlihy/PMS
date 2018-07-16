@@ -45,7 +45,7 @@ namespace PMS.Web.admin
                 title.TitleContent = paperContent;
                 title.CreateTime = DateTime.Now;
                 //TODO 专业批次选定人数为固定值，需重新改动
-                title.Selected = 32;
+                title.Selected = 0;
                 title.Limit = int.Parse(numMax);
                 title.teacher = tea;
                 title.plan = new Plan { PlanId = 1 };

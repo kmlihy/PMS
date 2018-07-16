@@ -5,140 +5,6 @@ sessionStorage.setItem("Page", page);
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
-//专业下拉框查询
-$("#chooseStuPro").change(function () {
-    sessionStorage.removeItem("strWhere");
-    //获取用户选中的专业下拉框的Id值
-    var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
-    if (dropstrWherepro != "0") {
-        //把值存储到sessionStorage中并传到后台
-        sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
-        //获取用户选中批次的id值
-        var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
-        //判断批次下拉框有没有值
-        if (dropstrWhereplan != "0") {
-            //存储批次下拉框的条件           
-            sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "alldrop");
-            jump(1);
-        }
-        else {
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "prodrop");
-            jump(1);
-        }
-    }
-    else {
-        sessionStorage.removeItem("dropstrWherepro");
-        var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
-        //判断批次下拉框有没有值
-        if (dropstrWhereplan != "0") {
-            //存储批次下拉框的条件           
-            sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "plandrop");
-            jump(1);
-        }
-        else {
-            sessionStorage.removeItem("dropstrWhereplan");
-            sessionStorage.removeItem("type");
-            jump(1);
-        }
-    }
-});
-
-//批次下拉框查询
-$("#choosePlan").change(function () {
-    sessionStorage.removeItem("strWhere");
-    //存储批次下拉框的条件
-    var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
-    if (dropstrWhereplan != "0") {
-        sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
-        var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
-        //判断专业是否被选中
-        if (dropstrWherepro != "0") {
-            //存储专业下拉框的条件
-            sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "alldrop");
-            jump(1);
-        }
-        else {
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "plandrop");
-            jump(1);
-        }
-    }
-    else {
-        sessionStorage.removeItem("dropstrWhereplan");
-        var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
-        //判断专业是否被选中
-        if (dropstrWherepro != "0") {
-            //存储专业下拉框的条件
-            sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "prodrop");
-            jump(1);
-        }
-        else {
-            sessionStorage.removeItem("dropstrWherepro");
-            sessionStorage.removeItem("type");
-            jump(1);
-        }
-    }
-});
-
-function jump(cur) {
-
-    if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
-        window.location.href = "titleList.aspx?currentPage=" + cur;
-    }
-    if (sessionStorage.getItem("strWhere") != null) {
-        window.location.href = "titleList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
-    }
-    if (sessionStorage.getItem("dropstrWhereplan") != null && sessionStorage.getItem("dropstrWherepro") == null) {
-        window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
-    }
-    if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") == null) {
-        window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
-    }
-    if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
-        window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
-    }
-};
-
-//查询按钮点击事件
-$("#btn-search").click(function () {
-    var strWhere = $("#inputsearch").val();
-    sessionStorage.setItem("strWhere", strWhere);
-    sessionStorage.setItem("type", "textSelect");
-    sessionStorage.removeItem("dropstrWhereplan");
-    sessionStorage.removeItem("dropstrWherepro")
-    jump(1);
-});
-
-//点击查看详情按钮
-$(".btnSearch").click(function () {
-    var titleId = $(this).parent().parent().find("#titleId").text().trim();
-    window.location.href = "paperDetail.aspx?titleId=" + titleId;
-})
-
-//批量导入
-$(".file").on("change", "input[type='file']", function () {
-    var filePath = $(this).val();
-    if (filePath.indexOf("xls") !== -1 || filePath.indexOf("xlsx") !== -1) {
-        $(".fileerrorTip").html("").hide();
-        var arr = filePath.split('\\');
-        var fileName = arr[arr.length - 1];
-        $(".showFileName").html(fileName);
-    } else {
-        $(".showFileName").html("");
-        $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
-        return false
-    }
-});
-
 $(document).ready(function () {
 
     //分页参数传递
@@ -249,6 +115,12 @@ $(document).ready(function () {
         $("#ediLimit").val(ediLimit);
         var ediCreateTime = $(this).parent().parent().find("#createTime").text().trim();
         $("#ediCreateTime").val(ediCreateTime);
+        var planId = $(this).parent().parent().find("#planId").val();
+        sessionStorage.setItem("planId", planId);
+        var proId = $(this).parent().parent().find("#proId").val();
+        sessionStorage.setItem("proId", proId);
+        var teaAccount = $(this).parent().parent().find("#teaAccount").val();
+        sessionStorage.setItem("teaAccount", teaAccount);
     });
 
     //点击关闭按钮，清除验证提示信息
@@ -261,18 +133,17 @@ $(document).ready(function () {
         $("#limitValidate").html("");
         $("#createTimeValidate").html("");
     });
-    //验证是否提交更改
+    //提交编辑更改
     $("#btnSave").click(function () {
         var saveTitleId = $("#ediTitleId").val(),
             saveTitle = $("#ediTitle").val(),
-            savePlan = $("#ediPlan").val(),
-            saveProf = $("#ediProf").val(),
-            saveTeaName = $("#ediTeaName").val(),
+            savePlan = sessionStorage.getItem("planId"),
+            saveProf = sessionStorage.getItem("proId"),
+            saveTea = sessionStorage.getItem("teaAccount"),
             saveLimit = $("#ediLimit").val(),
             saveCreateTime = $("#ediCreateTime").val(),
             saveContent = $("#titleContent").val(),
             saveSelected = $("#selected").val();
-
         //验证用户输入不能为空
         if (saveTitleId == "") {
             $("#titleIdValidate").html("题目编号不能为空！").css("color", "red");
@@ -286,7 +157,7 @@ $(document).ready(function () {
         else if (saveProf == "") {
             $("#profValidate").html("学院不能为空，请重新输入！").css("color", "red");
         }
-        else if (saveTeaName == "") {
+        else if (saveTea == "") {
             $("#teaNameValidate").html("发布人不能为空，请重新输入！").css("color", "red");
         }
         else if (saveLimit == "") {
@@ -304,7 +175,7 @@ $(document).ready(function () {
                     saveTitle: saveTitle,
                     savePlan: savePlan,
                     saveProf: saveProf,
-                    saveTeaName: saveTeaName,
+                    saveTea: saveTea,
                     saveLimit: saveLimit,
                     saveCreateTime: saveCreateTime,
                     saveContent: saveContent,
@@ -317,7 +188,6 @@ $(document).ready(function () {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
-                                alert("更新成功");
                             }
                         });
                     } else {
@@ -336,6 +206,7 @@ $(document).ready(function () {
     $("#ediTitleId").attr("disabled", "disabled");
     $("#ediPlan").attr("disabled", "disabled");
     $("#ediProf").attr("disabled", "disabled");
+    $("#ediTeaName").attr("disabled", "disabled");
     $("#ediCreateTime").attr("disabled", "disabled");
 
     //删除标题信息
@@ -376,4 +247,139 @@ $(document).ready(function () {
         }
         window.wxc.xcConfirm(txt, "warning", option);
     })
+
+    //批次下拉框查询
+    $("#choosePlan").change(function () {
+        sessionStorage.removeItem("strWhere");
+        //存储批次下拉框的条件
+        var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
+        if (dropstrWhereplan != "0") {
+            sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+            var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
+            //判断专业是否被选中
+            if (dropstrWherepro != "0") {
+                //存储专业下拉框的条件
+                sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "alldrop");
+                jump(1);
+            }
+            else {
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "plandrop");
+                jump(1);
+            }
+        }
+        else {
+            sessionStorage.removeItem("dropstrWhereplan");
+            var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
+            //判断专业是否被选中
+            if (dropstrWherepro != "0") {
+                //存储专业下拉框的条件
+                sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "prodrop");
+                jump(1);
+            }
+            else {
+                sessionStorage.removeItem("dropstrWherepro");
+                sessionStorage.removeItem("type");
+                jump(1);
+            }
+        }
+    });
+
+    //专业下拉框查询
+    $("#chooseStuPro").change(function () {
+        sessionStorage.removeItem("strWhere");
+        //获取用户选中的专业下拉框的Id值
+        var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
+        if (dropstrWherepro != "0") {
+            //把值存储到sessionStorage中并传到后台
+            sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+            //获取用户选中批次的id值
+            var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
+            //判断批次下拉框有没有值
+            if (dropstrWhereplan != "0") {
+                //存储批次下拉框的条件           
+                sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "alldrop");
+                jump(1);
+            }
+            else {
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "prodrop");
+                jump(1);
+            }
+        }
+        else {
+            sessionStorage.removeItem("dropstrWherepro");
+            var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
+            //判断批次下拉框有没有值
+            if (dropstrWhereplan != "0") {
+                //存储批次下拉框的条件           
+                sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "plandrop");
+                jump(1);
+            }
+            else {
+                sessionStorage.removeItem("dropstrWhereplan");
+                sessionStorage.removeItem("type");
+                jump(1);
+            }
+        }
+    });
+
+    function jump(cur) {
+
+        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
+            window.location.href = "titleList.aspx?currentPage=" + cur;
+        }
+        if (sessionStorage.getItem("strWhere") != null) {
+            window.location.href = "titleList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
+        }
+        if (sessionStorage.getItem("dropstrWhereplan") != null && sessionStorage.getItem("dropstrWherepro") == null) {
+            window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+        }
+        if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") == null) {
+            window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
+        }
+        if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
+            window.location.href = "titleList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+        }
+    };
+
+    //查询按钮点击事件
+    $("#btn-search").click(function () {
+        var strWhere = $("#inputsearch").val();
+        sessionStorage.setItem("strWhere", strWhere);
+        sessionStorage.setItem("type", "textSelect");
+        sessionStorage.removeItem("dropstrWhereplan");
+        sessionStorage.removeItem("dropstrWherepro")
+        jump(1);
+    });
+
+    //点击查看详情按钮
+    $(".btnSearch").click(function () {
+        var titleId = $(this).parent().parent().find("#titleId").text().trim();
+        window.location.href = "paperDetail.aspx?titleId=" + titleId;
+    })
+
+    //批量导入
+    $(".file").on("change", "input[type='file']", function () {
+        var filePath = $(this).val();
+        if (filePath.indexOf("xls") !== -1 || filePath.indexOf("xlsx") !== -1) {
+            $(".fileerrorTip").html("").hide();
+            var arr = filePath.split('\\');
+            var fileName = arr[arr.length - 1];
+            $(".showFileName").html(fileName);
+        } else {
+            $(".showFileName").html("");
+            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+            return false
+        }
+    });
+
 });

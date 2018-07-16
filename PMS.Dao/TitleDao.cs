@@ -213,7 +213,15 @@ namespace PMS.Dao
         public int upload(DataTable dt)
         {
             string tableName = "T_Title";
-            List<SqlBulkCopyColumnMapping> list = new List<SqlBulkCopyColumnMapping>() { new SqlBulkCopyColumnMapping("题目名称", "title") };
+            List<SqlBulkCopyColumnMapping> list = new List<SqlBulkCopyColumnMapping>();
+            list.Add(new SqlBulkCopyColumnMapping("论文标题", "title"));
+            list.Add(new SqlBulkCopyColumnMapping("论文内容", "titleContent"));
+            list.Add(new SqlBulkCopyColumnMapping("批次编号", "planId"));
+            list.Add(new SqlBulkCopyColumnMapping("专业编号", "proId"));
+            list.Add(new SqlBulkCopyColumnMapping("发布人账号", "teaAccount"));
+            list.Add(new SqlBulkCopyColumnMapping("已选人数", "selected"));
+            list.Add(new SqlBulkCopyColumnMapping("人数上限", "limit"));
+            list.Add(new SqlBulkCopyColumnMapping("创建时间(yyyy/m/d h:mm)", "createTime"));
             int row = db.BulkInsert(dt, tableName, list);
             return row;
         }
