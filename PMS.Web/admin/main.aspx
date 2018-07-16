@@ -242,7 +242,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="xuanti">
                                 <li role="presentation">
-                                    <a href="titleList.aspx" class="sidebarclick" >
+                                    <a href="titleReadList.aspx" class="sidebarclick" >
                                         <span>题目信息</span>
                                     </a>
                                 </li>
@@ -355,7 +355,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="xuanti">
                                 <li role="presentation">
-                                    <a href="titleList.aspx" class="sidebarclick" >
+                                    <a href="titleReadList.aspx" class="sidebarclick" >
                                         <span>题目信息</span>
                                     </a>
                                 </li>
