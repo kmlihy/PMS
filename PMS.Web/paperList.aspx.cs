@@ -31,8 +31,10 @@ namespace PMS.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //获取登录学生学号
             Student stu=(Student)Session["loginuser"];
             stuId = stu.StuAccount;
+            //获取op titiId
             string op = Context.Request.QueryString["op"];
             string titleid = Context.Request.QueryString["titleId"];
             if (!Page.IsPostBack)

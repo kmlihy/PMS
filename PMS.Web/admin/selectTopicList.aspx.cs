@@ -122,7 +122,11 @@ namespace PMS.Web.admin
             prods = probll.Select();
             plands = planbll.Select();
         }
-        //导出列表方法
+        /// <summary>
+        /// //导出列表方法
+        /// </summary>
+        /// <param name="s_path">文件路径</param>
+
         public void downloadfile(string s_path)
         {
             System.IO.FileInfo file = new System.IO.FileInfo(s_path);
