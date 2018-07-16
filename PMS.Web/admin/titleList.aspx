@@ -124,16 +124,16 @@
                                 </td>
                                 <td class="text-center" id="plaName">
                                     <%=ds.Tables[0].Rows[i]["planName"].ToString() %>
-                                    <input type="hidden" value="<%=ds.Tables[0].Rows[i]["planId"].ToString() %>" />
                                 </td>
+                                <input type="hidden" id="planId" value="<%=ds.Tables[0].Rows[i]["planId"].ToString() %>" />
                                 <td class="text-center" id="proName">
                                     <%=ds.Tables[0].Rows[i]["proName"].ToString() %>
-                                    <input type="hidden" value="<%=ds.Tables[0].Rows[i]["proId"].ToString() %>" />
                                 </td>
+                                <input type="hidden" id="proId" value="<%=ds.Tables[0].Rows[i]["proId"].ToString() %>" />
                                 <td class="text-center" id="teaName">
                                     <%=ds.Tables[0].Rows[i]["teaName"].ToString() %>
-                                    <input type="hidden" value="<%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %>" />
                                 </td>
+                                <input type="hidden" id="teaAccount" value="<%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %>" />
                                 <td class="text-center" id="titleNumber">
                                     <span><%=ds.Tables[0].Rows[i]["selected"].ToString() %></span>
                                     /<span id="limit"><%=ds.Tables[0].Rows[i]["limit"].ToString()%></span>
@@ -142,14 +142,12 @@
                                     <%=ds.Tables[0].Rows[i]["createTime"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <div id="edit">
-                                        <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#myModa2">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                        <button class="btn btn-default btn-sm btn-danger btnDel">
-                                            <span class="glyphicon glyphicon-trash"></span>
-                                        </button>
-                                    </div>
+                                    <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#myModa2">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button class="btn btn-default btn-sm btn-danger btnDel">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
                                 </td>
                             </tr>
                             <%

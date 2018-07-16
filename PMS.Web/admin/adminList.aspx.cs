@@ -181,7 +181,7 @@ namespace PMS.Web.admin
             string college = Context.Request["College"].ToString();
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
-            //根据输入的账号获取学生信息
+            //根据输入的账号获取管理员信息
             tea = teaBll.GetModel(account);
             string strEmail = tea.Email;
             string strPhone = tea.Phone;

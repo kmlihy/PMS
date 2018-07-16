@@ -479,9 +479,19 @@
     <Content Include="obj\Debug\PMS.Web.csprojAssemblyReference.cache" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180704121643--新建 XLS 工作表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180706180128-新建 XLS 工作表.xls" />
-    <Content Include="upload\学院信息导入Excel文件存储\admin\20180709142209-学院表.xls" />
     <Content Include="upload\信息模板下载\教师批量导入模板.xlsx" />
-    <Content Include="upload\学院信息导入Excel文件存储\20180709142209-学院表.xls" />
+    <Content Include="upload\信息模板下载\题目信息表导入模板.xls" />
+    <Content Include="upload\信息模板下载\专业信息表导入模板.xlsx" />
+    <Content Include="upload\信息模板下载\学院信息表导入模板.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716132754-题目信息表.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716132850-题目信息表.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716133702-题目信息表.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716133937-题目信息表.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716134936-题目信息表.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716135043-题目信息表.xls" />
+    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716135840-题目信息表.xls" />
+    <Content Include="upload\学院信息导入Excel文件存储\admin\20180711150556-学院信息表.xls" />
+    <Content Include="upload\学院信息导入Excel文件存储\admin\20180712105517-学院信息表.xls" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
