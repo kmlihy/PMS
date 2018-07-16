@@ -20,7 +20,7 @@
         <div class="panel-head">
             <h2>题目信息列表</h2>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="panelbody">
             <div class="container-fluid big-box">
                 <div class="panel panel-default" id="propanelbox">
                     <div class="pane input-group" id="panel-head">
@@ -132,42 +132,43 @@
                             %>
                         </tbody>
                     </table>
-                    <!--翻页区域-->
-                    <div class="container-fluid text-right" id="paging">
-                        <ul class="pagination pagination-lg">
-                            <li>
-                                <a href="#" class="jump" id="first">首页</a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump" id="prev">
-                                    <span class="iconfont icon-back"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump"><%=getCurrentPage %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">/</a>
-                            </li>
-                            <li>
-                                <% if (count == 0) { count = 1; } %>
-                                <a href="#" class="jump"><%=count %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="next" class="jump">
-                                    <span class="iconfont icon-more"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump" id="last">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
+        <!--翻页区域-->
+        <div class="container-fluid text-right">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump"><%=getCurrentPage %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                    <% if (count == 0) { count = 1; } %>
+                    <a href="#" class="jump"><%=count %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />

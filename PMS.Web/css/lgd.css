@@ -222,6 +222,11 @@
 .selectdropbatch button {
     margin-left: 5px;
 }
+#panelbody{
+    height:500px;
+    margin-top:-30px;
+
+}
 /*教师批量添加样式*/
 .file {
     position: relative;
