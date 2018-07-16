@@ -1,4 +1,5 @@
-﻿using PMS.Model;
+﻿using PMS.BLL;
+using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,15 @@ namespace PMS.Web.admin
     public partial class main : System.Web.UI.Page
     {
         protected int State;
+        protected bool count;
+        TitleRecordBll titleRecordBll = new TitleRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 State = int.Parse(Session["state"].ToString());
+                Student student = (Student)Session["loginuser"];
+                count = titleRecordBll.selectBystuId(Convert.ToInt32(student.StuAccount));
                 string op = Request.QueryString["op"].ToString();
                 //退出登录实现
                 if (op.Equals("logout"))
