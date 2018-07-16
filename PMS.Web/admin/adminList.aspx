@@ -20,9 +20,9 @@
 <body>
     <div class="panel panel-default" id="panel">
         <div class="panel-head">
-		    <h2>分院管理员信息列表</h2>
-	    </div>
-        <div class="panel-body">
+            <h2>分院管理员信息列表</h2>
+        </div>
+        <div class="panel-body" id="panelbody">
             <div class="container-fluid  big-box">
                 <!-- 编辑区-->
                 <div class="panel panel-default" id="teapanelbox">
@@ -108,216 +108,216 @@
                         <% }%>
                     </tbody>
                 </table>
-                <!-- 翻页区域-->
-                <div class="container-fluid text-right" id="paging">
-                    <ul class="pagination pagination-lg">
-                        <li>
-                            <a href="#" class="jump" id="first">首页</a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump" id="prev">
-                                <span class="iconfont icon-back"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump">
-                                <%=getCurrentPage %>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">/</a>
-                        </li>
-                        <li>
-                            <% if (count == 0) { count = 1; } %>
-                            <a href="#" class="jump">
-                                <%=count %>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" id="next" class="jump">
-                                <span class="iconfont icon-more"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="jump" id="last">尾页</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
-            <!-- 添加分院管理员弹框-->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                &times;
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">添加分院管理员
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="teaLable text-center">
-                                            <label class="text-span">工号</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" name="account" type="text" id="Iaccount" />
-                                            <span id="validateAcoount"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">姓名</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" name="username" type="text" id="Iname" />
-                                            <span id="validateName"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">性别</label></td>
-                                        <td>
-                                            <select class="selectpicker select" data-width="auto" name="sex" id="Isex">
-                                                <option value="">请选择性别</option>
-                                                <option value="男">男</option>
-                                                <option value="女">女</option>
-                                            </select>
-                                            <span id="validateSex"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">院系</label></td>
-                                        <td>
-                                            <select class="selectpicker select" data-width="auto" name="college" id="Icoll">
-                                                <option value="">请选择院系</option>
-                                                <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                                    { %>
-                                                <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                                <%} %>
-                                            </select>
-                                            <span id="validateColl"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">邮箱</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" type="text" name="email" id="Iemail" />
-                                            <span id="validateEmail"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">联系电话</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" type="text" name="telNum" id="Iphone" />
-                                            <span id="validateTel"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary" id="btnInsert">提交更改</button>
-                        </div>
+        </div>
+        <!-- 翻页区域-->
+        <div class="container-fluid text-right" id="paging">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                        <%=getCurrentPage %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                    <% if (count == 0) { count = 1; } %>
+                    <a href="#" class="jump">
+                        <%=count %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 添加分院管理员弹框-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">添加分院管理员
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="teaLable text-center">
+                                        <label class="text-span">工号</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" name="account" type="text" id="Iaccount" />
+                                        <span id="validateAcoount"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">姓名</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" name="username" type="text" id="Iname" />
+                                        <span id="validateName"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">性别</label></td>
+                                    <td>
+                                        <select class="selectpicker select" data-width="auto" name="sex" id="Isex">
+                                            <option value="">请选择性别</option>
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                        <span id="validateSex"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">院系</label></td>
+                                    <td>
+                                        <select class="selectpicker select" data-width="auto" name="college" id="Icoll">
+                                            <option value="">请选择院系</option>
+                                            <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                                { %>
+                                            <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%} %>
+                                        </select>
+                                        <span id="validateColl"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">邮箱</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" name="email" id="Iemail" />
+                                        <span id="validateEmail"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">联系电话</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" name="telNum" id="Iphone" />
+                                        <span id="validateTel"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="btnInsert">提交更改</button>
                     </div>
                 </div>
             </div>
-            <!-- 编辑分院管理员弹框 -->
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="delModalLabel">编辑分院</h4>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="teaLable text-center">
-                                            <label class="text-span">工号</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" type="text" id="Eaccount" readonly="true" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">姓名</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" type="text" id="Ename" />
-                                            <span id="validateNameE"></span>
-                                        </td>
-                                    </tr>
-                                    <%--<tr>
+        </div>
+        <!-- 编辑分院管理员弹框 -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="delModalLabel">编辑分院</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="teaLable text-center">
+                                        <label class="text-span">工号</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" id="Eaccount" readonly="true" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">姓名</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" id="Ename" />
+                                        <span id="validateNameE"></span>
+                                    </td>
+                                </tr>
+                                <%--<tr>
                                 <td class="teaLable">
                                     <label class="text-span">密码</label></td>
                                 <td>--%>
-                                    <input class="form-control teaAddinput" type="hidden" id="Epwd" />
-                                    <%--<span id="validatePwd"></span>
+                                <input class="form-control teaAddinput" type="hidden" id="Epwd" />
+                                <%--<span id="validatePwd"></span>
                                 </td>
                             </tr>--%>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">性别</label></td>
-                                        <td>
-                                            <div id="inputSex">
-                                                <input type="text" readonly="true" class="form-control teaAddinput" id="EintSex" />
-                                            </div>
-                                            <div id="selectSex">
-                                                <select class="selectpicker" data-width="auto" id="EselSex">
-                                                    <option value="男">男</option>
-                                                    <option value="女">女</option>
-                                                </select>
-                                            </div>
-                                            <button type="button" class="btn btn-info btnEditor" id="btnEditSex">编辑</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">院系</label></td>
-                                        <td>
-                                            <div id="input">
-                                                <input class="form-control teaAddinput" type="text" id="EintColl" readonly="true" />
-                                            </div>
-                                            <div id="select">
-                                                <select class="selectpicker" data-width="auto" id="EselColl">
-                                                    <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                                        {
-                                                    %>
-                                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                                    <%}
-                                                    %>
-                                                </select>
-                                            </div>
-                                            <button type="button" class="btn btn-info btnEditor" id="btnEditColl">编辑</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">联系电话</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" type="text" id="Ephone" />
-                                            <span id="validateTelE"></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="teaLable">
-                                            <label class="text-span">邮箱</label></td>
-                                        <td>
-                                            <input class="form-control teaAddinput" type="text" id="Eemail" />
-                                            <span id="validateEmailE"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary" id="saveEdit">提交更改</button>
-                        </div>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">性别</label></td>
+                                    <td>
+                                        <div id="inputSex">
+                                            <input type="text" readonly="true" class="form-control teaAddinput" id="EintSex" />
+                                        </div>
+                                        <div id="selectSex">
+                                            <select class="selectpicker" data-width="auto" id="EselSex">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-info btnEditor" id="btnEditSex">编辑</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">院系</label></td>
+                                    <td>
+                                        <div id="input">
+                                            <input class="form-control teaAddinput" type="text" id="EintColl" readonly="true" />
+                                        </div>
+                                        <div id="select">
+                                            <select class="selectpicker" data-width="auto" id="EselColl">
+                                                <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                                    {
+                                                %>
+                                                <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                                <%}
+                                                %>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-info btnEditor" id="btnEditColl">编辑</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">联系电话</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" id="Ephone" />
+                                        <span id="validateTelE"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">邮箱</label></td>
+                                    <td>
+                                        <input class="form-control teaAddinput" type="text" id="Eemail" />
+                                        <span id="validateEmailE"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="saveEdit">提交更改</button>
                     </div>
                 </div>
             </div>

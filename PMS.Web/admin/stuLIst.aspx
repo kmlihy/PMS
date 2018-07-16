@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
-<%--    <link rel="stylesheet" href="../css/style.css" />--%>
+    <%--    <link rel="stylesheet" href="../css/style.css" />--%>
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
@@ -19,8 +19,13 @@
 </head>
 
 <body>
-    <div class="container-fluid ">
-<%--        <div class="panel panel-default" id="teapanelbox">
+    <div class="panel panel-default" id="panel">
+        <div class="panel-head">
+            <h2>学生信息管理列表</h2>
+        </div>
+        <div class="panel-body" id="panelbody">
+            <div class="container-fluid big-box">
+                <%--        <div class="panel panel-default" id="teapanelbox">
             <div class="panel input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker" id="chooseStuPro">
@@ -62,149 +67,151 @@
                 </div>
             </div>
         </div>--%>
-        <div class="panel panel-default" id="teapanelbox">
-            <div class="pane input-group" id="panel-head">
-                <div class="input-group" id="inputgroups">
-                    <select class="selectpicker" id="chooseStuPro">
-                        <%if (showstr == "0")
-                            { %>
-                        <option value="0" selected="selected">-查询全部专业-</option>
-                        <%}
-                            else
-                            { %>
-                        <option value="0">-查询全部专业-</option>
-                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                            {
-                                if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
-                                {%>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                        <% }
-                            else
-                            {%>
-                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                        <%}
-                                }
-                            } %>
-                    </select>
-                    <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search" id="search">查询</span>
-                        </button>
-                    </span>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
-                            <span class="glyphicon glyphicon-plus-sign">新增</span>
-                        </button>
-                    </span>
-                    <button class="btn btn-danger" type="button" id="btn-Del">
-                        <span class="glyphicon glyphicon-trash"></span>
-                        批量删除
-                    </button>
+                <div class="panel panel-default" id="teapanelbox">
+                    <div class="pane input-group" id="panel-head">
+                        <div class="input-group" id="inputgroups">
+                            <select class="selectpicker" id="chooseStuPro">
+                                <%if (showstr == "0")
+                                    { %>
+                                <option value="0" selected="selected">-查询全部专业-</option>
+                                <%}
+                                    else
+                                    { %>
+                                <option value="0">-查询全部专业-</option>
+                                <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                        {%>
+                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                <% }
+                                    else
+                                    {%>
+                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                <%}
+                                        }
+                                    } %>
+                            </select>
+                            <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" id="btn-search">
+                                    <span class="glyphicon glyphicon-search" id="search">查询</span>
+                                </button>
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
+                                    <span class="glyphicon glyphicon-plus-sign">新增</span>
+                                </button>
+                            </span>
+                            <button class="btn btn-danger" type="button" id="btn-Del">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                批量删除
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <th class="text-center">
+                                <input type="checkbox" class="js-checkbox-all" />
+                            </th>
+                            <th class="text-center">学号</th>
+                            <th class="text-center">姓名</th>
+                            <th class="text-center">性别</th>
+                            <th class="text-center">专业编号</th>
+                            <th class="text-center">专业名称</th>
+                            <th class="text-center">学院编号</th>
+                            <th class="text-center">学院名称</th>
+                            <th class="text-center">联系电话</th>
+                            <th class="text-center">邮箱</th>
+                            <th class="text-center">操作</th>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                {
+
+                                    string x = ds.Tables[0].Rows[i]["collegeName"].ToString();
+                            %>
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" />
+                                </td>
+                                <td class="text-center stuNO">
+                                    <%= ds.Tables[0].Rows[i]["stuAccount"].ToString() %>
+                                </td>
+                                <td class="text-center stuName">
+                                    <%= ds.Tables[0].Rows[i]["realName"].ToString() %>
+                                </td>
+                                <td class="text-center stuSex">
+                                    <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
+                                </td>
+                                <td class="text-center stuPro">
+                                    <%= ds.Tables[0].Rows[i]["proId"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["proName"].ToString() %>
+                                </td>
+                                <td class="text-center stuCollege">
+                                    <%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                </td>
+                                <td class="text-center stuPhone">
+                                    <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-default btn-sm btn-warning Editor" data-toggle="modal" data-target="#myEditor">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                                <td class="text-center stuPwd">
+                                    <input type="password" value="<%= ds.Tables[0].Rows[i]["stuPwd"].ToString() %>" disabled="disabled" />
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <th class="text-center">
-                        <input type="checkbox" class="js-checkbox-all" />
-                    </th>
-                    <th class="text-center">学号</th>
-                    <th class="text-center">姓名</th>
-                    <th class="text-center">性别</th>
-                    <th class="text-center">专业编号</th>
-                    <th class="text-center">专业名称</th>
-                    <th class="text-center">学院编号</th>
-                    <th class="text-center">学院名称</th>
-                    <th class="text-center">联系电话</th>
-                    <th class="text-center">邮箱</th>
-                    <th class="text-center">操作</th>
-                </thead>
-                <tbody>
-                    <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        {
-
-                            string x = ds.Tables[0].Rows[i]["collegeName"].ToString();
-                    %>
-                    <tr>
-                        <td class="text-center">
-                            <input type="checkbox" />
-                        </td>
-                        <td class="text-center stuNO">
-                            <%= ds.Tables[0].Rows[i]["stuAccount"].ToString() %>
-                        </td>
-                        <td class="text-center stuName">
-                            <%= ds.Tables[0].Rows[i]["realName"].ToString() %>
-                        </td>
-                        <td class="text-center stuSex">
-                            <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
-                        </td>
-                        <td class="text-center stuPro">
-                            <%= ds.Tables[0].Rows[i]["proId"].ToString() %>
-                        </td>
-                        <td class="text-center">
-                            <%= ds.Tables[0].Rows[i]["proName"].ToString() %>
-                        </td>
-                        <td class="text-center stuCollege">
-                            <%= ds.Tables[0].Rows[i]["collegeId"].ToString() %>
-                        </td>
-                        <td class="text-center">
-                            <%= ds.Tables[0].Rows[i]["collegeName"].ToString() %>
-                        </td>
-                        <td class="text-center stuPhone">
-                            <%= ds.Tables[0].Rows[i]["phone"].ToString() %>
-                        </td>
-                        <td class="text-center">
-                            <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-warning Editor" data-toggle="modal" data-target="#myEditor">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-                            <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </td>
-                        <td class="text-center stuPwd">
-                            <input type="password" value="<%= ds.Tables[0].Rows[i]["stuPwd"].ToString() %>" disabled="disabled" />
-                        </td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-            <div class="container-fluid text-right">
-                <ul class="pagination pagination-lg">
-                    <li>
-                        <a href="#" class="jump">首页</a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump" id="prev">
-                            <span class="iconfont icon-back"></span>
-                            <%--上一页--%>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump"><%=getCurrentPage %></a>
-                    </li>
-                    <li>
-                        <a href="#">/</a>
-                    </li>
-                    <li>
-                        <% if (count == 0) { count = 1; } %>
-                        <a href="#" class="jump"><%=count %></a>
-                    </li>
-                    <li>
-                        <a href="#" id="next" class="jump">
-                            <span class="iconfont icon-more"></span>
-                            <%--下一页--%>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump">尾页</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="container-fluid text-right">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                        <%--上一页--%>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump"><%=getCurrentPage %></a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                    <% if (count == 0) { count = 1; } %>
+                    <a href="#" class="jump"><%=count %></a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                        <%--下一页--%>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">尾页</a>
+                </li>
+            </ul>
         </div>
     </div>
     <!-- 添加学生弹框（Modal） -->

@@ -381,7 +381,8 @@
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
-    <span id="userState"><%=Session["state"] %></span>
+    <%--<span id="userState"><%=Session["state"] %></span>--%>
+    <input type="hidden" id="userState" value="<%=Session["state"] %>" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>

@@ -197,6 +197,7 @@
     <Content Include="kindeditor\themes\qq\editor.gif" />
     <Content Include="kindeditor\themes\qq\qq.css" />
     <Content Include="kindeditor\themes\simple\simple.css" />
+    <Content Include="myInstructor.aspx" />
     <Content Include="myStudents.aspx" />
     <Content Include="news.aspx" />
     <Content Include="newsList.aspx" />
@@ -389,6 +390,13 @@
     </Compile>
     <Compile Include="JurisdictionTest.aspx.designer.cs">
       <DependentUpon>JurisdictionTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myInstructor.aspx.cs">
+      <DependentUpon>myInstructor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myInstructor.aspx.designer.cs">
+      <DependentUpon>myInstructor.aspx</DependentUpon>
     </Compile>
     <Compile Include="myStudents.aspx.cs">
       <DependentUpon>myStudents.aspx</DependentUpon>

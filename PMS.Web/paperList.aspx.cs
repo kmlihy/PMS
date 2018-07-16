@@ -23,13 +23,16 @@ namespace PMS.Web
         protected int count;
         //每页的行数
         protected int pagesize = 5;
-        string stuId = "15612200015";
+        
+        string stuId = "";
 
         PublicProcedureBll pbll = new PublicProcedureBll();
         StudentBll stuBll = new StudentBll();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Student stu=(Student)Session["loginuser"];
+            stuId = stu.StuAccount;
             string op = Context.Request.QueryString["op"];
             string titleid = Context.Request.QueryString["titleId"];
             if (!Page.IsPostBack)

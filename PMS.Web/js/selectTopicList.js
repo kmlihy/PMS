@@ -9,7 +9,7 @@ $(document).ready(function () {
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
-            case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+            case ('<span class="iconfont icon-back"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) > 1) {
                     jump(parseInt(sessionStorage.getItem("page")) - 1);
                     break;
@@ -18,7 +18,7 @@ $(document).ready(function () {
                     jump(1);
                     break;
                 }
-            case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+            case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     break;

@@ -340,7 +340,7 @@ $(document).ready(function () {
     })
 
     //判断登录的管理员，对批次表格权限进行限制
-    var userState = $("#userState").text().trim();
+    var userState = $("#userState").val();
     if (userState == "0") {
         $(".planEditor").hide();
         $(".planDelete").hide();
