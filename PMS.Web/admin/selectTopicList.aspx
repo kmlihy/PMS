@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../css/iconfont.css" />
     <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
-
 <body>
     <div class="panel panel-default" id="panel">
         <div class="panel-head">
@@ -28,6 +27,22 @@
                 <div class="panel panel-default" id="selectToppanelbox">
                     <div class="pane input-group" id="panel-head">
                         <div class="input-group" id="inputgroups">
+                            <select class="selectpicker" data-width="auto">
+                                <option value="0">-查询所有分院-</option>
+
+                                <%for (int i = 0; i < bads.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (bads.Tables[0].Rows[i]["collegeId"].ToString() == showbacthdrop)
+                                        {%>
+                                <option value="<%=bads.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <%}%>
+                                <%else
+                                    {%>
+                                <option value="<%=bads.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <%} %>
+                                <%} %>
+                            </select>
+                            &nbsp
                             <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
                                 <option value="0">-查询全部专业-</option>
                                 <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
@@ -43,21 +58,21 @@
                                 <%} %>
                             </select>
                             &nbsp
-                    <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
-                        <option value="0">-请选择批次-</option>
+                            <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
+                                <option value="0">-请选择批次-</option>
 
-                        <%for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
-                            {
-                                if (plands.Tables[0].Rows[i]["planId"].ToString() == showbacthdrop)
-                                {%>
-                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
-                        <%}%>
-                        <%else
-                            {%>
-                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
-                        <%} %>
-                        <%} %>
-                    </select>
+                                <%for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (plands.Tables[0].Rows[i]["planId"].ToString() == showbacthdrop)
+                                        {%>
+                                <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                <%}%>
+                                <%else
+                                    {%>
+                                <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString()%>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                <%} %>
+                                <%} %>
+                            </select>
                             <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=showinput %>" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
@@ -126,42 +141,42 @@
                             <%} %>
                         </tbody>
                     </table>
-                    <div class="text-right" id="paging">
-                        <ul class="pagination pagination-lg">
-                            <li>
-                                <a href="#" class="jump" id="first">首页</a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump" id="prev">
-                                    <span class="iconfont icon-back"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump">
-                                    <%=getCurrentPage %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">/</a>
-                            </li>
-                            <li>
-                                <% if (count == 0) { count = 1; } %>
-                                <a href="#" class="jump">
-                                    <%=count %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="next" class="jump">
-                                    <span class="iconfont icon-more"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump" id="last">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
+        </div>
+        <div class="text-right" id="paging">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                        <%=getCurrentPage %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                    <% if (count == 0) { count = 1; } %>
+                    <a href="#" class="jump">
+                        <%=count %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
         </div>
     </div>
     <!-- 查看选题记录弹框（Modal） -->
