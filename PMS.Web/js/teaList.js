@@ -21,7 +21,7 @@ $(document).ready(function () {
     //分页参数传递
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
-            case ('<span class="glyphicon glyphicon-chevron-left"></span>'):
+            case ('<span class="iconfont icon-back"></span>'):
                 if (parseInt(sessionStorage.getItem("Page")) > 1) {
                     jump(parseInt(sessionStorage.getItem("Page")) - 1);
                     break;
@@ -31,7 +31,7 @@ $(document).ready(function () {
                     break;
                 }
 
-            case ('<span class="glyphicon glyphicon-chevron-right"></span>'):
+            case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("Page")) + 1);
                     break;

@@ -21,9 +21,9 @@
 <body>
     <div class="panel panel-default" id="panel">
         <div class="panel-head">
-            <h2>选题管理列表列表</h2>
+            <h2>选题管理列表</h2>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="panelbody">
             <div class="container-fluid big-box">
                 <div class="panel panel-default" id="selectToppanelbox">
                     <div class="pane input-group" id="panel-head">
