@@ -15,9 +15,7 @@
 <body>
     <div class="container-fluid col-lg-10 col-lg-offset-1" id="box" onload="disp_confirm()">
         <div class="navbar navbar-default allNews_pageHead" role="navigation">
-            <span class="h2 text-info" id="allNews_info">我的题目信息
-            </span>
-            <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
+            <span class="h2 text-info" id="allNews_info">我的题目信息</span>
         </div>
         <div class="panel">
             <div class="panel-heading text-center">
