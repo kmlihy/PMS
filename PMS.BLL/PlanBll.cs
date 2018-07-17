@@ -25,7 +25,7 @@ namespace PMS.BLL
         public Result Insert(Plan plan)
         {
             int row = dao.Insert(plan);
-            if(row > 0)
+            if (row > 0)
             {
                 return Result.添加成功;
             }
@@ -40,7 +40,7 @@ namespace PMS.BLL
         public Result Update(Plan plan)
         {
             int row = dao.Update(plan);
-            if(row > 0)
+            if (row > 0)
             {
                 return Result.更新成功;
             }
@@ -75,7 +75,7 @@ namespace PMS.BLL
         public Result Delete(int planId)
         {
             int row = dao.Delete(planId);
-            if(row > 0)
+            if (row > 0)
             {
                 return Result.删除成功;
             }
@@ -91,7 +91,7 @@ namespace PMS.BLL
         /// <returns>类型为DataSet的批次信息列表</returns>
         public DataSet Select()
         {
-            DataSet ds =  dao.Select();
+            DataSet ds = dao.Select();
             return ds;
         }
 
@@ -117,13 +117,27 @@ namespace PMS.BLL
         public Plan Select(int planId)
         {
             Plan plan = dao.GetPlan(planId);
-            if(plan != null)
+            if (plan != null)
             {
                 return plan;
             }
             return null;
         }
 
+        /// <summary>
+        /// 根据学院ID查询批次信息
+        /// </summary>
+        /// <param name="collegeId">要查询的学院ID</param>
+        /// <returns>返回类型为DataSet的批次信息列表</returns>
+        public DataSet GetplanByCollegeId(int collegeId)
+        {
+            DataSet ds = dao.GetplanBycollegeId(collegeId);
+            if (ds != null)
+            {
+                return ds;
+            }
+            return null;
+        }
 
     }
 }

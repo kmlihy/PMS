@@ -209,5 +209,24 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+
+        public DataSet GetplanBycollegeId(int collegeId)
+        {
+            try {
+                string cmdText = "select * from V_Plan where collegeId = @collegeId";
+                string[] param = { "@collegeId" };
+                object[] values = { collegeId };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+
+            } catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
