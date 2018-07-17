@@ -122,6 +122,23 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 根据学院ID查询专业信息
+        /// </summary>
+        /// <param name="collegeId">要查询的专业分院ID</param>
+        /// <returns>类型为DataSet的专业信息列表</returns>
+        public DataSet selectBycollegeId( int collegeId) {
+            try {
+                string cmdText = "select * from V_Profession where collegeId = @collegeId";
+                string[] param = { "@collegeId" };
+                object[] values = { collegeId };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// 模糊查询专业信息
@@ -144,7 +161,23 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        public DataSet GetProfessionByCollegeId(int collegeId) {
 
+            try {
+                string cmdText = "select * from V_Profession where collegeId = @collegeId";
+                string[] param = { "@collegeId" };
+                object[] values = { collegeId };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds!=null) {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception ex) {
+
+                throw ex;
+            }
+        }
         /// <summary>
         /// 获取一个专业对象
         /// </summary>

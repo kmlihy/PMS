@@ -5,7 +5,16 @@ sessionStorage.setItem("page", page);
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
+//判断用户是分院管理员还是超级管理员(0)
+var userType = $("#userType").val();
+if (userType == "0") {
+    $("#selectdrop").selectpicker("hide");
+} else {
+    $("#selectcollegeId").selectpicker("hide");
+}
+
 $(document).ready(function () {
+
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -78,16 +87,43 @@ $(document).ready(function () {
         }
         jump(1);
     })
+    //分院下拉查询
+
+    $(".selectcollegeId").change(function () {
+        var collegeId = $("#selectcollegeId").find("option:selected").val();
+        if (sessionStorage.getItem("op") != null) {
+            sessionStorage.removeItem("op");
+        }
+        sessionStorage.setItem("dropCollegeIdstrWhere", collegeId);
+        if (sessionStorage.getItem("strWhere") != null) {
+            sessionStorage.removeItem("strWhere");
+        }
+        if (sessionStorage.getItem("batchWhere") != null) {
+            sessionStorage.removeItem("batchWhere");
+        }
+        jump(1);
+    })
     //传查询值到后台
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
-            window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-        } else {
+        if (sessionStorage.getItem("dropstrWhere") != null) {
+            if (sessionStorage.getItem("strWhere") == null) {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
+            } else {
 
-            window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" +sessionStorage.getItem("op");
-        }
-        if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
-            window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere") + "&op=" + sessionStorage.getItem("op");
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" + sessionStorage.getItem("op");
+            }
+            if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere") + "&op=" + sessionStorage.getItem("op");
+            }
+        } else {
+            if (sessionStorage.getItem("strWhere") == null) {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
+            } else {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" + sessionStorage.getItem("op");
+            }
+            if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&collegeIdstrWhere=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere") + "&op=" + sessionStorage.getItem("op");
+            }
         }
     };
     //导出按钮传值

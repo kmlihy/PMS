@@ -27,18 +27,20 @@
                 <div class="panel panel-default" id="selectToppanelbox">
                     <div class="pane input-group" id="panel-head">
                         <div class="input-group" id="inputgroups">
-                            <select class="selectpicker" data-width="auto">
+                            <select class="selectpicker selectcollegeId" data-width="auto" id="selectcollegeId">
                                 <option value="0">-查询所有分院-</option>
-
+                                <%if (userType == "0")
+                                    {%>
                                 <%for (int i = 0; i < bads.Tables[0].Rows.Count; i++)
                                     {
-                                        if (bads.Tables[0].Rows[i]["collegeId"].ToString() == showbacthdrop)
+                                        if (bads.Tables[0].Rows[i]["collegeId"].ToString() == showcollegedrop)
                                         {%>
                                 <option value="<%=bads.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                 <%}%>
                                 <%else
                                     {%>
                                 <option value="<%=bads.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=bads.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <%} %>
                                 <%} %>
                                 <%} %>
                             </select>
@@ -287,6 +289,7 @@
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
+    <input type="hidden" value="<%=userType %>" id="userType" />
 </body>
 
 <script src="../js/jquery-3.3.1.min.js"></script>
