@@ -64,21 +64,5 @@ namespace PMS.Web.admin
                 }
             }
         }
-
-        public void selectPro()
-        {
-            TableBuilder tbPlan= new TableBuilder()
-            {
-                StrTable = "T_Plan",
-                StrColumn = "planId",
-                IntColType = 0,
-                IntOrder = 0,
-                StrColumnlist = "*",
-                IntPageSize = 10,
-                IntPageNum = 1,
-                StrWhere = "collegeId = " + college
-            };
-            pbds = pbll.SelectBypage(tbPlan, out count);
-        }
     }
 }
