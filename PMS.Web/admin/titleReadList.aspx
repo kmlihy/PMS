@@ -115,14 +115,14 @@
                                     <%=ds.Tables[0].Rows[i]["teaName"].ToString() %>
                                 </td>
                                 <td class="text-center" id="titleNumber">
-                                    <span><%=ds.Tables[0].Rows[i]["selected"].ToString() %></span>
+                                    <span id="nowSelected"><%=ds.Tables[0].Rows[i]["selected"].ToString() %></span>
                                     /<span id="limit"><%=ds.Tables[0].Rows[i]["limit"].ToString()%></span>
                                 </td>
                                 <td class="text-center" id="createTime">
                                     <%=ds.Tables[0].Rows[i]["createTime"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success btn-sm btnSearch">
+                                    <button class="btn btn-success btn-sm btnSearch"  data-toggle="modal" data-target="#searchModal">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </td>
@@ -169,6 +169,77 @@
             </ul>
         </div>
 
+    </div>
+    <%--管理员查看题目信息模态框--%>
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="searchModalLabel">题目详细信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered" id="selecttab">
+                        <tbody class="tablebody">
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">题目编号:</label></td>
+                                <td>
+                                    <p id="searchTitleId" class="text-span"></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">标题:</label></td>
+                                <td>
+                                    <p id="searchTitle" class="text-span"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">批次:</label></td>
+                                <td>
+                                    <p id="searchPlan" class="text-span"></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">专业:</label></td>
+                                <td>
+                                    <p id="searchPro" class="text-span"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">发布人:</label></td>
+                                <td>
+                                    <p id="searchAuthor" class="text-span"></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">创建时间:</label></td>
+                                <td>
+                                    <p id="searchCreateTime" class="text-span"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
+                                    <label class="text-span">已选人数:</label></td>
+                                <td>
+                                    <p id="searchSelected" class="text-span"></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">人数上限:</label></td>
+                                <td>
+                                    <p id="searchAll" class="text-span"></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
