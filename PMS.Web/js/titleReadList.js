@@ -157,4 +157,25 @@ $(document).ready(function() {
         $("#first").hide();
         $("#last").hide();
     }
+
+    //查询详细信息模态框数据绑定
+    $(".btnSearch").click(function () {
+        var titleId = $(this).parent().parent().find("#titleId").text().trim(),
+            title = $(this).parent().parent().find("#title").text().trim(),
+            plan = $(this).parent().parent().find("#planName").text().trim(),
+            pro = $(this).parent().parent().find("#proName").text().trim(),
+            author = $(this).parent().parent().find("#teaName").text().trim(),
+            //selected = $(this).parent().parent().find("#titleNumber").text().trim(),
+            selected = $(this).parent().parent().find("#nowSelected").text().trim(),
+            limit = $(this).parent().parent().find("#limit").text().trim(),
+            createTime = $(this).parent().parent().find("#createTime").text().trim();
+        $("#searchTitleId").text(titleId);
+        $("#searchTitle").text(title);
+        $("#searchPlan").text(plan);
+        $("#searchPro").text(pro);
+        $("#searchAuthor").text(author);
+        $("#searchSelected").text(selected);
+        $("#searchAll").text(limit);
+        $("#searchCreateTime").text(createTime);
+    })
 });
