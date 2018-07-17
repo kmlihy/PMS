@@ -148,9 +148,9 @@ $(document).ready(function() {
         sessionStorage.removeItem("dropstrWherepro")
         jump(1);
     });
-    $("#btnSearch").click(function () {
+    $(".btnSearch").click(function () {
         var titleId = $(this).parent().parent().find("#titleId").text().trim();
-        window.location.href = "paperDetail.aspx?titleId=" + titleId;
+        window.location.href = "../paperDetail.aspx?titleId=" + titleId;
     })
     //当总页数为1时，首页与尾页按钮隐藏
     if (sessionStorage.getItem("countPage") == "1") {

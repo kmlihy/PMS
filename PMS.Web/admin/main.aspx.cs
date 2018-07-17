@@ -21,7 +21,9 @@ namespace PMS.Web.admin
             {
                 State = int.Parse(Session["state"].ToString());
                 Student student = (Student)Session["loginuser"];
-                count = titleRecordBll.selectBystuId(Convert.ToInt32(student.StuAccount));
+                string account = student.StuAccount;
+                count = titleRecordBll.selectBystuId(student.StuAccount);
+                //Response.Write(count);
                 string op = Request.QueryString["op"].ToString();
                 //退出登录实现
                 if (op.Equals("logout"))

@@ -51,7 +51,7 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="stuAccount"></param>
         /// <returns></returns>
-        public bool selectBystuId(int stuAccount)
+        public bool selectBystuId(string stuAccount)
         {
             int count = dao.selectBystuId(stuAccount);
             if (count>0)

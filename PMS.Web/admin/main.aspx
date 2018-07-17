@@ -97,13 +97,14 @@
                                 <span>选题信息</span>
                                 <i class="iconfont icon-more"></i>
                             </a>
+                            <input type="hidden" value="<%=count %>" id="count" />
                             <ul class="collapse nav nav-list" id="setting">
-                                <li role="presentation">
+                                <li role="presentation" id="selectTitle">
                                     <a href="../paperList.aspx" class="sidebarclick" >
                                         <span>我要选题</span>
                                     </a>
                                 </li>
-                                 <li role="presentation">
+                                 <li role="presentation" id="myTitle">
                                     <a href="../PaperDtailStu.aspx" class="sidebarclick" >
                                         <span>我的选题</span>
                                     </a>
