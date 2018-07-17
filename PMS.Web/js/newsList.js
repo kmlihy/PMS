@@ -25,6 +25,6 @@ $(document).ready(function () {
         }
     }
     else {
-        document.write('<a href="http://localhost:33192/login.aspx">您还没有登录或登录已超时，请点击跳转到登录界面  </a>');
+        //document.write('<a href="http://localhost:33192/login.aspx">您还没有登录或登录已超时，请点击跳转到登录界面  </a>');
     }
 })

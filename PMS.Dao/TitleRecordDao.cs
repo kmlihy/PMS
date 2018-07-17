@@ -115,6 +115,18 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 查询是否有选题记录
+        /// </summary>
+        /// <param name="stuAccount">学号</param>
+        /// <returns>影响行数</returns>
+        public int selectBystuId(string stuAccount)
+        {
+            string sql = "select count(stuAccount) from T_TitleRecord where stuAccount=@Account";
+            string[] param = { "@Account" };
+            object[] values = { stuAccount };
+            return Convert.ToInt32(db.ExecuteScalar(sql,param,values));
+        }
 
         /// <summary>
         /// 导出成Excel表

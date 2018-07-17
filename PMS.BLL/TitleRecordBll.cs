@@ -46,6 +46,23 @@ namespace PMS.BLL
             }
             return Result.更新失败;
         }
+        /// <summary>
+        /// 调用dal方法
+        /// </summary>
+        /// <param name="stuAccount"></param>
+        /// <returns></returns>
+        public bool selectBystuId(string stuAccount)
+        {
+            int count = dao.selectBystuId(stuAccount);
+            if (count>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// 判断在另外一张表中是否有数据
