@@ -116,7 +116,10 @@ input.error {
     background-color: rgb(241,248,252);
 }
 .addPaper {
-    width:auto;
+    width: auto;
+    padding-left: 0px;
+    border: 1.2px solid #DDD;
+    border-radius:10px;
 }
 .table>tbody>tr>td {
     border: 0px;
@@ -125,13 +128,15 @@ input.error {
     margin-top: 30px;
 }
 .lable {
-    font-size: 18px;
+    font-size: 16px;
+    color:#000;
     float: left;
     position: relative;
     top: 30px;
 }
 .lable1 {
-    font-size: 18px;
+    font-size: 16px;
+    color: #000;
     float: left;
 }
 .TextBox {
@@ -149,7 +154,8 @@ input.error {
 }
 #btnOK {
     font-size: 14px;
-    height: 50px;
+    height: 45px;
+    margin-bottom:20px;
 }
 .number {
     margin-top: 30px;

@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     var count = $("#count").val();
-    alert(count);
     if (count == "True" || count == true) {
         $("#selectTitle").hide();
         $("#myTitle").show();

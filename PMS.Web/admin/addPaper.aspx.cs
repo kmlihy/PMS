@@ -27,7 +27,8 @@ namespace PMS.Web.admin
             //selectPro();
             //调用下拉菜单数据
             TeacherBll teabll = new TeacherBll();
-            Teacher tea = (Teacher)Session["loginuser"];
+            //TODO 获取当前登录的教师账号
+            //Teacher tea = (Teacher)Session["loginuser"];
             TableBuilder tb = new TableBuilder();
             ds = probll.Select();//调用专业方法
             pbds = pbll.Select();//调用批次方法
@@ -47,6 +48,9 @@ namespace PMS.Web.admin
                 //TODO 专业批次选定人数为固定值，需重新改动
                 title.Selected = 0;
                 title.Limit = int.Parse(numMax);
+                //TODO 固定发布教师账号
+                Teacher tea = new Teacher();
+                tea.TeaAccount = "admin";
                 title.teacher = tea;
                 title.plan = new Plan { PlanId = 1 };
                 title.profession = new Profession { ProId = 1 };
