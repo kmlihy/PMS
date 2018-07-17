@@ -93,7 +93,7 @@ namespace PMS.Web.admin
                 int collegeId = collegeAdmin.college.ColID;
 
                 prods = probll.SelectByCollegeId(collegeId);
-                plands = planbll.Select();
+                plands = planbll.GetplanByCollegeId(collegeId);
 
                 if (dropstrWhere != null && dropstrWhere != "null" && batchWhere == "null")
                 {// 如果批次id为空，专业id不为空
@@ -117,6 +117,10 @@ namespace PMS.Web.admin
                     getPage("");
                 }
 
+            }
+            else {
+                prods = probll.Select();
+                getPage("");
             }
             plands = planbll.Select();
 
@@ -169,9 +173,7 @@ namespace PMS.Web.admin
                 {
                     Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
                 }
-
             }
-
         }
         /// <summary>
         /// //导出列表方法
@@ -239,7 +241,7 @@ namespace PMS.Web.admin
                 //学院下拉的条件
                 searchcollege = Request.QueryString["collegeIdstrWhere"];
                 //学院条件传到前台
-                showstr = searchcollege;
+                showcollegedrop = searchcollege;
                 //批次的条件
                 search = Request.QueryString["batchWhere"];
                 showbacthdrop = search;
