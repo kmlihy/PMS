@@ -121,6 +121,19 @@ namespace PMS.BLL
             }
             return null;
         }
+        /// <summary>
+        /// 根据专业所属分院ID查询专业
+        /// </summary>
+        /// <param name="collegeId">该专业所属分院ID</param>
+        /// <returns>类型为DataSet的专业信息列表</returns>
+        public DataSet SelectByCollegeId(int collegeId) {
+            DataSet pro = dao.GetProfessionByCollegeId(collegeId);
+            if (pro!=null) {
+                return pro;
+            }
+            return null;
+        }
+
 
         /// <summary>
         /// 

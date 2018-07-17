@@ -68,6 +68,7 @@
     height: 400px;
     visibility: hidden;
 }
+
 #addNewsBody {
     background-color: rgb(241,248,252);
 }
@@ -75,6 +76,7 @@
 #panel .panel-head {
     margin-left: 30px;
 }
+
 #ke-container {
     width: 70%;
     display: block;
@@ -182,6 +184,7 @@
 #btn-Add, #btn-Del, #btn-Adds, #inputsearch {
     margin-left: 5px;
 }
+
 #btn-search {
     margin-left: -5px;
 }
@@ -217,10 +220,14 @@
 .selectdropbatch button {
     margin-left: 5px;
 }
-#panelbody{
-    height:500px;
-    margin-top:-30px;
 
+#panelbody {
+    height: 500px;
+    margin-top: -30px;
+}
+
+#selectcollegeId {
+    min-width: 180px;
 }
 /*教师批量添加样式*/
 .file {

@@ -32,9 +32,15 @@ namespace PMS.Web.admin
         protected String searchdrop = "";
         protected String searanddrop = "";
         protected String searbatchdrop = "";
+        protected String searchcollege = "";
+        protected String searchbatchAndcollege = "";
         protected string showstr = null;
         protected string showinput = null;
         protected string showbacthdrop = null;
+        protected string showcollegedrop = null;
+
+        //用户类型
+        protected string userType = "";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -43,12 +49,79 @@ namespace PMS.Web.admin
             string op1 = Context.Request.QueryString["op"];
             //下拉专业ID
             string dropstrWhere = Request.QueryString["dropstrWhere"];
-            //下拉批次Id
+            //下拉批次ID
             string batchWhere = Request.QueryString["batchWhere"];
+            //下拉分院ID
+            string collegeIdstWhere = Request.QueryString["collegeIdstrWhere"];
             //搜索信息
             string strsearch = Request.QueryString["search"];
-            if (op == "del")
+            //获取登录者信息、判断是分院管理员还是超管
+            userType = Session["state"].ToString();
+            if (userType == "0")
             {
+                //0为超级管理员
+                bads = colbll.Select();
+                prods = probll.Select();
+
+                if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere == "null")
+                {// 如果批次id为空，分院id不为空
+                    getPage(Searchcollege());
+                }
+                else if (batchWhere != null && batchWhere != "null" && (collegeIdstWhere == "null" || collegeIdstWhere == "0"))
+                {// 如果分院id为空，批次id不为空
+                    getPage(batcchdrop());
+                }
+                else if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere != null && batchWhere != "null")
+                {
+                    //两个都不为空
+                    getPage(SearchCollegeAndBatch());
+                }
+                else if (strsearch != null)
+                {
+                    getPage(Search());
+                }
+                else
+                {
+                    getPage("");
+                }
+            }
+            else if (userType == "2")
+            {
+                //2为分院管理员
+                //获取分管所在分院ID
+                Teacher collegeAdmin = (Teacher)Session["user"];
+                int collegeId = collegeAdmin.college.ColID;
+
+                prods = probll.SelectByCollegeId(collegeId);
+                plands = planbll.Select();
+
+                if (dropstrWhere != null && dropstrWhere != "null" && batchWhere == "null")
+                {// 如果批次id为空，专业id不为空
+                    getPage(Searchdrop());
+                }
+                else if (batchWhere != null && batchWhere != "null" && (dropstrWhere == "null" || dropstrWhere == "0"))
+                {// 如果专业id为空，批次id不为空
+                    getPage(batcchdrop());
+                }
+                else if (dropstrWhere != null && dropstrWhere != "null" && batchWhere != null && batchWhere != "null")
+                {
+                    //两个都不为空
+                    getPage(SearchProAndBatch());
+                }
+                else if (strsearch != null)
+                {
+                    getPage(Search());
+                }
+                else
+                {
+                    getPage("");
+                }
+
+            }
+            plands = planbll.Select();
+
+            if (op == "del")
+            {//删除
                 IsdeleteCollege();
                 delPro();
             }
@@ -63,8 +136,9 @@ namespace PMS.Web.admin
                 {
                     if (pro == "null" && batch == "null")
                     {
-                        strWhere =string.Format("");
-                    } else if (pro != "null" && batch == "null")
+                        strWhere = string.Format("");
+                    }
+                    else if (pro != "null" && batch == "null")
                     {
                         strWhere = string.Format(" where proId = {0}", "'" + pro + "'");
                     }
@@ -74,17 +148,18 @@ namespace PMS.Web.admin
                     }
                     else
                     {
-                        strWhere = string.Format(" where planId = {0} and proId = {1}", "'" + batch + "'","'"+pro+"'");
+                        strWhere = string.Format(" where planId = {0} and proId = {1}", "'" + batch + "'", "'" + pro + "'");
                     }
                 }
                 //如果不为空传 input里的值
-                else {
+                else
+                {
                     strWhere = string.Format(" where teaName {0} or title {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + input + "%'");
                 }
                 TitleRecordBll titlerd = new TitleRecordBll();
                 var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
                 DataTable dt = titlerd.ExportExcel(strWhere);
-                if(dt!= null && dt.Rows.Count > 0)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     var path = Server.MapPath("~/upload/选题记录导出/" + name + ".xls");
                     ExcelHelper.x2003.TableToExcelForXLS(dt, path);
@@ -94,33 +169,9 @@ namespace PMS.Web.admin
                 {
                     Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
                 }
-                
-            }
-            if (dropstrWhere != null && dropstrWhere != "null" && batchWhere == "null")
-            {// 如果批次id为空，专业id不为空
-                getPage(Searchdrop());
-            }
-            else if (batchWhere != null && batchWhere != "null" && (dropstrWhere == "null" || dropstrWhere == "0"))
-            {// 如果专业id为空，批次id不为空
-                getPage(batcchdrop());
-            }
-            else if (dropstrWhere != null && dropstrWhere != "null" && batchWhere != null && batchWhere != "null")
-            {
-                //两个都不为空
-                getPage(SearchProAndBatch());
-            }
-            else if (strsearch != null)
-            {
-                getPage(Search());
-            }
-            else
-            {
-                getPage("");
+
             }
 
-            bads = colbll.Select();
-            prods = probll.Select();
-            plands = planbll.Select();
         }
         /// <summary>
         /// //导出列表方法
@@ -140,6 +191,80 @@ namespace PMS.Web.admin
             HttpContext.Current.Response.Flush();
             HttpContext.Current.Response.Clear();
             HttpContext.Current.Response.End();
+        }
+
+        /// <summary>
+        /// 分院下拉查询
+        /// </summary>
+        /// <returns>返回查询字符串</returns>
+        public string Searchcollege()
+        {
+            try
+            {
+                searchcollege = Request.QueryString["collegeIdstrWhere"];
+                if (searchcollege.Length == 0)
+                {
+                    searchcollege = "";
+                }
+                else if (searchcollege == null)
+                {
+                    searchcollege = "";
+                }
+                else if (searchcollege == "0")
+                {
+                    searchcollege = "";
+                }
+                else
+                {
+                    //专业下拉搜索后条件保存
+                    showcollegedrop = searchcollege;
+                    searchcollege = String.Format(" proId={0}", "'" + searchcollege + "'");
+                }
+            }
+            catch
+            {
+
+            }
+            return searchcollege;
+        }
+
+        /// <summary>
+        /// 学院和批次一起查询
+        /// </summary>
+        /// <returns>返回查询字符串</returns>
+        public string SearchCollegeAndBatch()
+        {
+            try
+            {
+                //学院下拉的条件
+                searchcollege = Request.QueryString["collegeIdstrWhere"];
+                //学院条件传到前台
+                showstr = searchcollege;
+                //批次的条件
+                search = Request.QueryString["batchWhere"];
+                showbacthdrop = search;
+                if (searchcollege == "0")
+                {
+                    searchcollege = "";
+                    search = "";
+                    searchbatchAndcollege = "";
+                }
+                else if (search == "0" && searchcollege != "0")
+                {
+                    search = "";
+                    searchbatchAndcollege = String.Format(" proId={0} ", "'" + searchcollege + "'");
+                    //searanddrop = String.Format(" proId={0} and planId={1}", "'" + searchdrop + "'", " '" + search + "'");
+                }
+                else
+                {
+                    searchbatchAndcollege = String.Format(" proId={0} and planId={1}", "'" + searchcollege + "'", " '" + search + "'");
+                }
+            }
+            catch
+            {
+
+            }
+            return searchbatchAndcollege;
         }
 
         //批次下拉查询
@@ -298,6 +423,7 @@ namespace PMS.Web.admin
             }
             return row;
         }
+
         /// <summary>
         /// 执行删除
         /// </summary>
@@ -326,11 +452,11 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
+
         /// <summary>
         /// //获取数据
         /// </summary>
         /// <param name="strWhere">查询字符串</param>
-
         public void getPage(String strWhere)
         {
 
