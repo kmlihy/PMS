@@ -8,6 +8,7 @@
     <title>我的题目信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/zwh.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -44,11 +45,59 @@
                         {
                             showTeaName = "";
                         }%>
-                    <span>我的指导老师：<%=showTeaName %>
+                    <span>我的指导老师：<a href="#" data-toggle="modal" data-target="#myModal"><%=showTeaName %></a>
                     </span>
                 </label>
                 <span>|</span>
                 <label>交叉指导老师：XX</label>
+            </div>
+        </div>
+    </div>
+    <!--查看指导教师弹窗-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="ModalLabel">查询指导教师
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="centerLable">姓名：</td>
+                                <td></td>
+                                <td id="userName"><%=teaName %></td>
+                            </tr>
+                            <tr>
+                                <td class="centerLable">性别：</td>
+                                <td></td>
+                                <td id="gender"><%=sex %></td>
+                            </tr>
+                            <tr>
+                                <td class="centerLable">学院：</td>
+                                <td></td>
+                                <td id="college"><%=college %></td>
+                            </tr>
+                            <tr>
+                                <td class="centerLable">联系电话：</td>
+                                <td></td>
+                                <td id="telNum"><%=phone %></td>
+                            </tr>
+                            <tr>
+                                <td class="centerLable">电子邮箱：</td>
+                                <td></td>
+                                <td id="email"><%=email %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
             </div>
         </div>
     </div>

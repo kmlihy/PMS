@@ -1,8 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myStudents.aspx.cs" Inherits="PMS.Web.admin.myStudents" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>我的学生</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
@@ -13,133 +14,138 @@
     <link rel="stylesheet" href="css/iconfont.css" />
 </head>
 <body>
-     <div class="container-fluid big-box">
-        <div class="panel panel-default" id="selectToppanelbox">
-            <div class="pane input-group" id="panel-head">
-                <div class="input-group" id="inputgroups">
-                    <input type="text" value="<%=secSearch %>" style="display:none" id="search" />
-                    <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
-                        <option value="0">-显示所有专业-</option>
-                        <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                            {
-                                
-                                if(prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
-                                {
-                        %>
-                                 <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected">
-                                     <%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                               <%}
-                                else
-                                {%>
-                                 <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>">
-                                     <%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                        <%
-                                }
-                            }%>
-                    </select>&nbsp;
-
-                    <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
-                        <option value="0">--显示所有批次--</option>
-                        <%for (int i = 0; i < plans.Tables[0].Rows.Count; i++)
-                            {
-                                if (plans.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
-                                {%>
-                                    <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
-                                        <%=plans.Tables[0].Rows[i]["planName"].ToString() %>
-                                    </option>
-                                 <%}
-                                else
-                                { %>
-                                    <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString() %>">
-                                        <%=plans.Tables[0].Rows[i]["planName"].ToString() %>
-                                    </option>
-                                <%} %>
-                        <%} %>
-                    </select>
-
-                    <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="button" id="btn-search">
-                            <span class="glyphicon glyphicon-search">查询</span>
-                        </button>
-                    </span>
-                </div>
-            </div>
+    <div class="panel panel-default" id="panel">
+        <div class="panel-head">
+            <h2>我的学生列表</h2>
         </div>
+        <div class="panel-body" id="panelbody">
+            <div class="container-fluid big-box">
+                <div class="panel panel-default" id="selectToppanelbox">
+                    <div class="pane input-group" id="panel-head">
+                        <div class="input-group" id="inputgroups">
+                            <input type="text" value="<%=secSearch %>" style="display: none" id="search" />
+                            <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
+                                <option value="0">-显示所有专业-</option>
+                                <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                    {
 
-        <div id="selectToptab">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <th class="text-center">
-                        <input type="checkbox" class="js-checkbox-all" />
-                    </th>
-                    <th class="text-center">编号</th>
-                    <th class="text-center">姓名</th>
-                    <th class="text-center">联系电话</th>
-                    <th class="text-center">专业</th>
-                    <th class="text-center">题目</th>
-                    <th class="text-center">批次</th>
-                    <th class="text-center">性别</th>
-                    <th class="text-center">选题时间</th>
-                    <th class="text-center">操作</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                            {%>
-                        <td class="text-center" id="msg">
-                            <input type="checkbox" />
-                        </td>
-                        <td class="text-center" id="titleRecordId"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
-                        <td class="text-center" id="realName"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
-                        <td class="text-center" id="phone"><%=ds.Tables[0].Rows[i]["phone"].ToString() %></td>
-                        <td class="text-center" id="proName"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
-                        <td class="text-center" id="title"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                        <td class="text-center" id="planName"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
-                        <td class="text-center" id="sex"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></td>
-                        <td class="text-center" id="recordtime"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
-                        <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </td>
-                    </tr>
-                    <%} %>
-                </tbody>
-            </table>
-            <div class="text-right">
-                <ul class="pagination pagination-lg">
-                    <li>
-                        <a href="#" class="jump" id="first">首页</a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump" id="prev">
-                            <span class="iconfont icon-back"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump">
-                            <%=getCurrentPage %>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">/</a>
-                    </li>
-                    <li>
-                        <% if (count == 0) { count = 1; } %>
-                        <a href="#" class="jump">
-                            <%=count %>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" id="next" class="jump">
-                            <span class="iconfont icon-more"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="jump" id="last">尾页</a>
-                    </li>
-                </ul>
+                                        if (prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
+                                        {
+                                %>
+                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>" selected="selected">
+                                    <%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                <%}
+                                    else
+                                    {%>
+                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString()%>">
+                                    <%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                <%
+                                        }
+                                    }%>
+                            </select>&nbsp;
+                            <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
+                                <option value="0">--显示所有批次--</option>
+                                <%for (int i = 0; i < plans.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (plans.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
+                                        {%>
+                                <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
+                                    <%=plans.Tables[0].Rows[i]["planName"].ToString() %>
+                                </option>
+                                <%}
+                                    else
+                                    { %>
+                                <option value="<%=plans.Tables[0].Rows[i]["planId"].ToString() %>">
+                                    <%=plans.Tables[0].Rows[i]["planName"].ToString() %>
+                                </option>
+                                <%} %>
+                                <%} %>
+                            </select>
+                            <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" id="btn-search">
+                                    <span class="glyphicon glyphicon-search">查询</span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="selectToptab">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <th class="text-center">
+                                <input type="checkbox" class="js-checkbox-all" />
+                            </th>
+                            <th class="text-center">编号</th>
+                            <th class="text-center">姓名</th>
+                            <th class="text-center">联系电话</th>
+                            <th class="text-center">专业</th>
+                            <th class="text-center">题目</th>
+                            <th class="text-center">批次</th>
+                            <th class="text-center">性别</th>
+                            <th class="text-center">选题时间</th>
+                            <th class="text-center">操作</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                    {%>
+                                <td class="text-center" id="msg">
+                                    <input type="checkbox" />
+                                </td>
+                                <td class="text-center" id="titleRecordId"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
+                                <td class="text-center" id="realName"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
+                                <td class="text-center" id="phone"><%=ds.Tables[0].Rows[i]["phone"].ToString() %></td>
+                                <td class="text-center" id="proName"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
+                                <td class="text-center" id="title"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                                <td class="text-center" id="planName"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
+                                <td class="text-center" id="sex"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></td>
+                                <td class="text-center" id="recordtime"><%=ds.Tables[0].Rows[i]["recordCreateTime"].ToString() %></td>
+                                <td class="text-center">
+                                    <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <%} %>
+                        </tbody>
+                    </table>
+                <!--翻页区域-->
+                    <div class="text-right" id="paging">
+                        <ul class="pagination pagination-lg">
+                            <li>
+                                <a href="#" class="jump" id="first">首页</a>
+                            </li>
+                            <li>
+                                <a href="#" class="jump" id="prev">
+                                    <span class="iconfont icon-back"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="jump">
+                                    <%=getCurrentPage %>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">/</a>
+                            </li>
+                            <li>
+                                <% if (count == 0) { count = 1; } %>
+                                <a href="#" class="jump">
+                                    <%=count %>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="next" class="jump">
+                                    <span class="iconfont icon-more"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="jump" id="last">尾页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -218,10 +224,10 @@
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/icheck.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/lgd.js"></script>
-    <script src="js/myStudent.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/icheck.min.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/lgd.js"></script>
+<script src="js/myStudent.js"></script>
 </html>

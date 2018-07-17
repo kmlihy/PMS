@@ -21,10 +21,17 @@ namespace PMS.Web
         protected string showTitle = "";
         protected string showTitleContent = "";
         protected string showTeaName = "";
+        protected string teaName;
+        protected string sex;
+        protected string college;
+        protected string phone;
+        protected string email;
 
         StudentBll stuBll = new StudentBll();
         TitleBll titleBll = new TitleBll();
         TitleRecordBll titleRecordBll = new TitleRecordBll();
+        TeacherBll tbll = new TeacherBll();
+        Teacher teacher = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             stu = (Student)Session["loginuser"];
@@ -51,6 +58,12 @@ namespace PMS.Web
                     }
                 }
             }
+            teacher = tbll.GetModel(titleId.teacher.TeaAccount);
+            teaName = teacher.TeaName;
+            sex = teacher.Sex;
+            college = teacher.college.ColName;
+            phone = teacher.Phone;
+            email = teacher.Email;
         }
     }
 } 

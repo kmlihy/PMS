@@ -28,17 +28,17 @@
                         <div id="box" class="col-xs-10 col-sm-4 col-md-3 col-lg-3 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
                             <span class="lable">专业：</span>
                             <select name="profession" id="input${1/(\w+)/\u\1/g}" class="TextBox form-control selPro" required="required">
-                            <option value="" id="getPro">————请选择专业————</option>
-                            <%
-                                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                                {%>
-                            <option>
-                                <%=ds.Tables[0].Rows[i]["proName"].ToString() %>
-                            </option>
-                            <% 
-                                }
-                            %>
-                        </select>
+                                <option value="" id="getPro">————请选择专业————</option>
+                                <%
+                                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                    {%>
+                                <option>
+                                    <%=ds.Tables[0].Rows[i]["proName"].ToString() %>
+                                </option>
+                                <% 
+                                    }
+                                %>
+                            </select>
                         </div>
                         <div id="box" class="col-xs-10 col-sm-4 col-md-3 col-lg-3 col-xs-push-1 col-sm-push-2 col-md-push-2 col-lg-push-2">
                             <span class="lable">批次：</span>
@@ -65,7 +65,7 @@
                             <textarea name="content" class="content">KindEditor</textarea>
                         </div>
                         <div>
-                            <button id="btnOK" type="submit" class="btn btn-primary col-xs-3 col-sm-3 col-md-2 col-lg-2 col-xs-push-8 col-sm-push-8 col-md-push-9 col-lg-push-9">提交</button>
+                            <button id="btnOK" type="submit" class="btn btn-primary col-xs-3 col-sm-3 col-md-2 col-lg-2 col-xs-push-8 col-sm-push-8 col-md-push-9 col-lg-push-9">提交论文</button>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,6 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../kindeditor/kindeditor-all.js"></script>
-    <script src="../kindeditor/lang/zh-CN.js"></script>
     <script src="../js/zwh.js"></script>
     <script src="../js/addPaper.js"></script>
     <script src="../js/xcConfirm.js"></script>
