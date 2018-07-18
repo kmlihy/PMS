@@ -263,7 +263,7 @@
                                 </td>
                                 <td class="teaLable">
                                     <label class="text-span">分院名字:</label></td>
-                                <td class="teaLable">
+                                <td>
                                     <p id="CollegeName" class="text-span"></p>
                                 </td>
                             </tr>
