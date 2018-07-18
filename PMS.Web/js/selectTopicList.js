@@ -105,24 +105,26 @@ $(document).ready(function () {
     })
     //传查询值到后台
     function jump(cur) {
-        if (sessionStorage.getItem("dropstrWhere") != null) {
-            if (sessionStorage.getItem("strWhere") == null) {
-                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-            } else {
-
+       // if (sessionStorage.getItem("dropstrWhere") != null || sessionStorage.getItem("batchWhere") != null) {
+        if (userType=="2") {
+            if (sessionStorage.getItem("strWhere") != null) {
                 window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" + sessionStorage.getItem("op");
             }
-            if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+            else if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
                 window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere") + "&op=" + sessionStorage.getItem("op");
             }
-        } else {
-            if (sessionStorage.getItem("strWhere") == null) {
+            else {
                 window.location.href = "selectTopicList.aspx?currentPage=" + cur;
-            } else {
-                window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" + sessionStorage.getItem("op");
             }
-            if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+        } else {
+            if (sessionStorage.getItem("strWhere") != null) {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&op=" + sessionStorage.getItem("op");
+                
+            } else if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
                 window.location.href = "selectTopicList.aspx?currentPage=" + cur + "&collegeIdstrWhere=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&batchWhere=" + sessionStorage.getItem("batchWhere") + "&op=" + sessionStorage.getItem("op");
+            }
+            else {
+                window.location.href = "selectTopicList.aspx?currentPage=" + cur;
             }
         }
     };
