@@ -120,83 +120,32 @@ $("#btn-search").click(function () {
 $(document).ready(function () {
     //分页参数传递
     $(".jump").click(function () {
-        if ($("#search").val() != null) {
-            switch ($.trim($(this).html())) {
-                case ('<span class="iconfont icon-back"></span>'):
-                    if (parseInt(sessionStorage.getItem("Page")) > 1) {
-                        sessionStorage.setItem("strWhere", $("#search").val());
-                        jump(parseInt(sessionStorage.getItem("Page")) - 1);
-                        break;
-                    }
-                    else {
-                        sessionStorage.setItem("strWhere", $("#search").val());
-                        jump(1);
-                        break;
-                    }
-
-                case ('<span class="iconfont icon-more"></span>'):
-                    if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                        sessionStorage.setItem("strWhere", $("#search").val());
-                        jump(parseInt(sessionStorage.getItem("Page")) + 1);
-                        break;
-                    }
-                    else {
-                        sessionStorage.setItem("strWhere", $("#search").val());
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case ("首页"):
-                    sessionStorage.setItem("strWhere", $("#search").val());
+        switch ($.trim($(this).html())) {
+            case ('<span class="iconfont icon-back"></span>'):
+                if (parseInt(sessionStorage.getItem("page")) > 1) {
+                    jump(parseInt(sessionStorage.getItem("page")) - 1);
+                    break;
+                }
+                else {
                     jump(1);
                     break;
-                case ("尾页"):
-                    sessionStorage.setItem("strWhere", $("#search").val());
+                }
+            case ('<span class="iconfont icon-more"></span>'):
+                if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
+                    jump(parseInt(sessionStorage.getItem("page")) + 1);
+                    break;
+                }
+                else {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
-            }
+                }
+            case ("首页"):
+                jump(1);
+                break;
+            case ("尾页"):
+                jump(parseInt(sessionStorage.getItem("countPage")));
+                break;
         }
-        else {
-            switch ($.trim($(this).html())) {
-                case ('<span class="iconfont icon-back"></span>'):
-                    if (parseInt(sessionStorage.getItem("Page")) > 1) {
-                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                        jump(parseInt(sessionStorage.getItem("Page")) - 1);
-                        break;
-                    }
-                    else {
-                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                        jump(1);
-                        break;
-                    }
-
-                case ('<span class="iconfont icon-more"></span>'):
-                    if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                        jump(parseInt(sessionStorage.getItem("Page")) + 1);
-                        break;
-                    }
-                    else {
-                        sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                        sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                        jump(parseInt(sessionStorage.getItem("countPage")));
-                        break;
-                    }
-                case ("首页"):
-                    sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                    sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                    jump(1);
-                    break;
-                case ("尾页"):
-                    sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
-                    sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
-                    jump(parseInt(sessionStorage.getItem("countPage")));
-                    break;
-            }
-        }
-
     });
 
     //点击查看详情弹窗加载数据
