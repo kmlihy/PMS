@@ -15,6 +15,7 @@ namespace PMS.Web.admin
     public partial class batchList : System.Web.UI.Page
     {
         protected DataSet plands = null;//批次
+        protected DataSet ds;
         protected DataSet colds = null;//院系
 
         protected int count;
@@ -25,6 +26,8 @@ namespace PMS.Web.admin
         protected String searchdrop = "";
         protected string showstr = "";
         protected string showinput = null;
+        protected Teacher loginUser;
+        protected string collegeName;
 
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
@@ -34,6 +37,8 @@ namespace PMS.Web.admin
             string editorOp = Context.Request["editorOp"];
             string delOp = Context.Request["delOp"];
             string type = Request.QueryString["type"];
+            loginUser = (Teacher)Session["user"];
+            collegeName = loginUser.college.ColName.ToString();
             if (!Page.IsPostBack)
             {
                 getdata("");
@@ -155,6 +160,8 @@ namespace PMS.Web.admin
         /// <param name="strWhere"></param>
         public void getdata(String strWhere)
         {
+            loginUser = (Teacher)Session["user"];
+            collegeName = loginUser.college.ColName.ToString();
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
@@ -162,10 +169,12 @@ namespace PMS.Web.admin
             }
             BLL.StudentBll sdao = new StudentBll();
             StudentBll pro = new StudentBll();
+            string account = "collegeName = '" + collegeName + "'";
+            string Account = "collegeName = '" + collegeName + "' and ";
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Plan",
-                StrWhere = strWhere == null ? "" : strWhere,
+                StrWhere = strWhere == null || strWhere== "" ? account : Account +strWhere,
                 IntColType = 0,
                 IntOrder = 0,
                 IntPageNum = int.Parse(currentPage),
@@ -174,7 +183,7 @@ namespace PMS.Web.admin
                 StrColumnlist = "*"
             };
             getCurrentPage = int.Parse(currentPage);
-            plands = pro.SelectBypage(tabuilder, out count);
+            plands = pro.SelectBypage(tabuilder, out count); 
         }
         /// <summary>
         /// 查询
