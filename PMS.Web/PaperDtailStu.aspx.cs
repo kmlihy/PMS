@@ -21,6 +21,7 @@ namespace PMS.Web
         protected string showTitle = "";
         protected string showTitleContent = "";
         protected string showTeaName = "";
+        protected string teaAccount;
         protected string teaName;
         protected string sex;
         protected string college;
@@ -64,6 +65,7 @@ namespace PMS.Web
             college = teacher.college.ColName;
             phone = teacher.Phone;
             email = teacher.Email;
+            teaAccount = teacher.TeaAccount;
         }
     }
 } 

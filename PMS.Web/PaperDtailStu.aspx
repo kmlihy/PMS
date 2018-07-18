@@ -63,32 +63,43 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <table class="table">
-                        <tbody>
+                    <table class="table table-bordered" id="selecttab">
+                        <tbody class="tablebody">
                             <tr>
-                                <td class="centerLable">姓名：</td>
-                                <td></td>
-                                <td id="userName"><%=teaName %></td>
+                                <td class="teaLable">
+                                    <label class="text-span">工号:</label></td>
+                                <td>
+                                    <p class="text-span"><%=teaAccount %></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">姓名:</label></td>
+                                <td>
+                                    <p class="text-span"><%=teaName %></p>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="centerLable">性别：</td>
-                                <td></td>
-                                <td id="gender"><%=sex %></td>
+                                <td class="teaLable">
+                                    <label class="text-span">性别:</label></td>
+                                <td>
+                                    <p class="text-span"><%=sex %></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">学院:</label></td>
+                                <td>
+                                    <p class="text-span"><%=college %></p>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="centerLable">学院：</td>
-                                <td></td>
-                                <td id="college"><%=college %></td>
-                            </tr>
-                            <tr>
-                                <td class="centerLable">联系电话：</td>
-                                <td></td>
-                                <td id="telNum"><%=phone %></td>
-                            </tr>
-                            <tr>
-                                <td class="centerLable">电子邮箱：</td>
-                                <td></td>
-                                <td id="email"><%=email %></td>
+                                <td class="teaLable">
+                                    <label class="text-span">联系电话:</label></td>
+                                <td>
+                                    <p class="text-span"><%=phone %></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">邮箱:</label></td>
+                                <td>
+                                    <p class="text-span"><%=email %></p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

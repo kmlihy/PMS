@@ -332,6 +332,7 @@ $(document).ready(function () {
         }
     });
 
+    //分页函数
     function jump(cur) {
 
         if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
@@ -381,5 +382,42 @@ $(document).ready(function () {
             return false
         }
     });
-
+    
+    //批量删除
+    $("#btn-Del").click(function () {
+        var obj = document.getElementsByName('checkbox'); //选择所有name="checkbox"的对象，返回数组 
+        //取到对象数组后，循环检测它是不是被选中 
+        var titleId = '';
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].checked)
+            {
+                titleId += obj[i].value + '?';//如果选中，将value添加到变量s中 
+            } 
+        }
+        alert(titleId === '' ? '请至少选择一项！' : titleId);
+        $.ajax({
+            type: 'Post',
+            url: 'titleList.aspx',
+            data: {
+                titleId: titleId,
+                op: "batchDel"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                if (succ === "删除成功") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            jump(parseInt(sessionStorage.getItem("page")));
+                        }
+                    });
+                } else {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            jump(parseInt(sessionStorage.getItem("page")));
+                        }
+                    });
+                }
+            }
+        });
+    })
 });

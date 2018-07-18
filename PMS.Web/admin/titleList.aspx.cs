@@ -336,5 +336,62 @@ namespace PMS.Web.admin
                 this.Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        /// <summary>
+        /// 批量删除前判断是否能删除
+        /// </summary>
+        /// <returns>Result对象</returns>
+        public Result IsBatchDelete()
+        {
+            Result row = Result.记录不存在;
+            string titleId = Context.Request["titleId"].ToString();
+            string[] titleList = titleId.Split('?');
+            for (int i = 0; i < titleList.Length; i++)
+            {
+                if (titbll.IsDelete("T_TitleRecord", "titleId", titleList[i]) == Result.关联引用)
+                {
+                    row = Result.关联引用;
+                }
+            }
+            return row;
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        public void batchDeleteCollege()
+        {
+            string titleId = Context.Request["titleId"].ToString();
+            string[] titleList = titleId.Split('?');
+            Result row = IsBatchDelete();
+            int count = 0;
+            if (row == Result.记录不存在)
+            {
+                for (int i = 0; i < titleList.Length - 1; i++)
+                {
+                    int collId = int.Parse(titleList[i]);
+                    Result result = titbll.Delete(collId);
+                    if (result == Result.删除成功)
+                    {
+                        count++;
+                    }
+                }
+                if (count == titleList.Length - 1)
+                {
+                    Response.Write("删除成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("删除失败");
+                    Response.End();
+                }
+            }
+            else
+            {
+                Response.Write("在其他表中有关联不能删除");
+                Response.End();
+            }
+        }
     }
 }
