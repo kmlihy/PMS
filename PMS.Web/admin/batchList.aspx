@@ -30,26 +30,26 @@
                     <div class="pane input-group" id="panel-head">
                         <div class="input-group" id="inputgroups">
                             <select class="selectpicker" id="chooseStuPro">
-                        <%if (showstr == "0")
-                            { %>
-                        <option value="0" selected="selected">-查询全部学院-</option>
-                        <%}
-                            else
-                            { %>
-                        <option value="0">-查询全部专业-</option>
-                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                            {
-                                if (colds.Tables[0].Rows[i]["collegeId"].ToString() == showstr)
-                                {%>
-                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>" selected="selected"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                        <% }
-                            else
-                            {%>
-                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                        <%}
-                                }
-                            } %>
-                    </select>
+                                <%if (showstr == "0")
+                                    { %>
+                                <option value="0" selected="selected">-查询全部学院-</option>
+                                <%}
+                                    else
+                                    { %>
+                                <option value="0">-查询全部专业-</option>
+                                <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (colds.Tables[0].Rows[i]["collegeId"].ToString() == showstr)
+                                        {%>
+                                <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>" selected="selected"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <% }
+                                    else
+                                    {%>
+                                <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <%}
+                                        }
+                                    } %>
+                            </select>
                             <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
@@ -99,14 +99,14 @@
                                 <%= plands.Tables[0].Rows[i]["planName"].ToString() %>
                             </td>
                             <td class="text-center">
-                                <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}",startTime) %>
+                                <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}", startTime) %>
                             </td>
                             <td class="text-center">
-                                <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}",endTime) %>
+                                <%=string.Format("{0:yyyy-MM-dd HH:mm:ss}", endTime) %>
                             </td>
                             <td class="text-center">
                                 <span class="stateData" id="<%=plands.Tables[0].Rows[i]["state"].ToString() %>">
-                                    <%= ((plands.Tables[0].Rows[i]["state"].ToString()=="1")?"已激活":"未激活") %>
+                                    <%= ((plands.Tables[0].Rows[i]["state"].ToString() == "1") ? "已激活" : "未激活") %>
                                 </span>
                             </td>
                             <td class="text-center" id="<%= plands.Tables[0].Rows[i]["collegeId"].ToString() %>">
@@ -381,7 +381,6 @@
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
-    <%--<span id="userState"><%=Session["state"] %></span>--%>
     <input type="hidden" id="userState" value="<%=Session["state"] %>" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
