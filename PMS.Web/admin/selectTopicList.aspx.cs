@@ -62,6 +62,7 @@ namespace PMS.Web.admin
                 //0为超级管理员
                 bads = colbll.Select();
                 prods = probll.Select();
+                plands = planbll.Select();
 
                 if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere == "null")
                 {// 如果批次id为空，分院id不为空
@@ -118,12 +119,12 @@ namespace PMS.Web.admin
                 }
 
             }
-            else {
+            else
+            {
                 prods = probll.Select();
+                plands = planbll.Select();
                 getPage("");
             }
-            plands = planbll.Select();
-
             if (op == "del")
             {//删除
                 IsdeleteCollege();
