@@ -62,8 +62,16 @@ namespace PMS.Web.admin
                 //0为超级管理员
                 bads = colbll.Select();
                 prods = probll.Select();
-                plands = planbll.Select();
 
+                //根据学院id判断 只加载该院系下的分院批次
+                if (collegeIdstWhere=="0"|| collegeIdstWhere=="null" || collegeIdstWhere==null)
+                {
+                    plands = planbll.Select();
+                }
+                else
+                {
+                    plands = planbll.GetplanByCollegeId(int.Parse(collegeIdstWhere));
+                }
                 if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere == "null")
                 {// 如果批次id为空，分院id不为空
                     getPage(Searchcollege());
