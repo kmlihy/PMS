@@ -23,7 +23,7 @@ namespace PMS.Web
         protected int count;
         //每页的行数
         protected int pagesize = 5;
-        
+
         string stuId = "";
 
         PublicProcedureBll pbll = new PublicProcedureBll();
@@ -32,43 +32,32 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             //获取登录学生学号
-            Student stu=(Student)Session["loginuser"];
+            Student stu = (Student)Session["loginuser"];
             stuId = stu.StuAccount;
             //获取op titiId
             string op = Context.Request.QueryString["op"];
             string titleid = Context.Request.QueryString["titleId"];
+            //获取学生专业id 
+            string proId = stu.profession.ProId.ToString();
             if (!Page.IsPostBack)
             {
-                getPage("");
+                if (proId != null)
+                {
+                    proId = "proId=" + proId;
+                    getPage(proId);
+                }
             }
-          
+
             if (op == "selectTitle")
             {
                 StusecltTitle();
-                //TitleRecord titleRecord = new TitleRecord();
-                ////TODO 后期从session里获取学生对象
-                ////Student student =  (Student)Session["user"];               
-                //Student student = new Student();
-                //student.StuAccount = "2121001";
-                //titleRecord.student = student;
-                //Title title = new Title();
-                //title.TitleId = int.Parse(titleid);
-                //titleRecord.title = title;
-
-                //int row = pbll.AddTitlerecord(titleRecord);
-                //if(row > 0)
-                //{
-                //    Response.Write("选题成功");
-                //    Response.End();
-                //}
-                //else
-                //{
-                //    Response.Write("选题失败");
-                //    Response.End();
-                //}
             }
         }
-        //判断是否已选题
+
+        /// <summary>
+        /// //判断是否已选题
+        /// </summary>
+        /// <returns>返回是否已选题</returns>
         public Result isExist()
         {
             //如果存在关联即表示已选，反之则未选
@@ -80,6 +69,9 @@ namespace PMS.Web
             }
             return row;
         }
+        /// <summary>
+        /// 执行选题操作
+        /// </summary>
         public void StusecltTitle()
         {
             //string stuId = Context.Request["stuId"].ToString();
@@ -117,6 +109,10 @@ namespace PMS.Web
         }
 
         //列表
+        /// <summary>
+        /// 表格数据加载
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
         public void getPage(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
