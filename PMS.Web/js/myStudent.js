@@ -1,6 +1,6 @@
 ﻿//存储当前页数
 var page = $("#page").val();
-sessionStorage.setItem("page", page);
+sessionStorage.setItem("Page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
