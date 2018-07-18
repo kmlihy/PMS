@@ -18,8 +18,7 @@
                 <h2>添加论文信息</h2>
             </div>
             <div class="panel-body">
-                <div class="addPaper container-fluid">
-                    <div class="container-fluid">
+                <div class="addPaper">
                         <div id="box" class="col-xs-10 col-xs-10 col-md-10 col-lg-10 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
                             <span class="lable">标题：</span>
                             <input maxlength="100" type="text" name="title" class="TextBox form-control title" placeholder="请输入标题" />
@@ -68,7 +67,6 @@
                             <button id="btnOK" type="submit" class="btn btn-primary col-xs-3 col-sm-3 col-md-2 col-lg-2 col-xs-push-8 col-sm-push-8 col-md-push-9 col-lg-push-9">提交论文</button>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </body>

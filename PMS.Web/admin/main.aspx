@@ -169,7 +169,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="question">
                                 <li role="presentation">
-                                    <a href="selectTopicList.aspx" class="sidebarclick" >
+                                    <a href="../myStudents.aspx" class="sidebarclick" >
                                         <span>我的学生</span>
                                     </a>
                                 </li>

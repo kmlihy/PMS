@@ -355,7 +355,7 @@ $(document).ready(function () {
     //详细信息模态框数据绑定
     $(".planSearch").click(function () {
         var planId = $(this).parent().parent().find(".planNO").text().trim(),
-            planNmae = $(this).parent().parent().find(".planNO").next().text().trim(),
+            planName = $(this).parent().parent().find(".planNO").next().text().trim(),
             startTime = $(this).parent().parent().find(".planNO").next().next().text().trim(),
             endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
             state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),

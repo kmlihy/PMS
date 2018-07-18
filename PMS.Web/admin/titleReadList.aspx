@@ -122,7 +122,7 @@
                                     <%=ds.Tables[0].Rows[i]["createTime"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success btn-sm btnSearch"  data-toggle="modal" data-target="#searchModal">
+                                    <button class="btn btn-success btn-sm btnSearch" data-toggle="modal" data-target="#searchModal">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
                                 </td>
@@ -168,10 +168,9 @@
                 </li>
             </ul>
         </div>
-
     </div>
     <%--管理员查看题目信息模态框--%>
-<%--    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <%--    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
