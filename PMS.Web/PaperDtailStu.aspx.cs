@@ -59,6 +59,11 @@ namespace PMS.Web
                     }
                 }
             }
+            string op = Context.Request.QueryString["op"];
+            if (op == "selectTitle")
+            {
+                StusecltTitle();
+            }
             teacher = tbll.GetModel(titleId.teacher.TeaAccount);
             teaName = teacher.TeaName;
             sex = teacher.Sex;
@@ -67,5 +72,37 @@ namespace PMS.Web
             email = teacher.Email;
             teaAccount = teacher.TeaAccount;
         }
+        public void StusecltTitle()
+        {
+            string titleid = Context.Request.QueryString["titleId"];
+            TitleRecord titleRecord = new TitleRecord();
+            //TODO 后期从session里获取学生对象
+            //Student student =  (Student)Session["user"];               
+            Student student = new Student();
+            titleRecord.student = stu;
+            Title title = new Title();
+            title.TitleId = int.Parse(titleid);
+            titleRecord.title = title;
+            PublicProcedureBll pbll = new PublicProcedureBll();
+            int rows = pbll.AddTitlerecord(titleRecord);
+            if (rows > 0)
+            {
+                //Response.Write("选题成功");
+                //刷新iframe父页面
+                Response.Write("<script>alert('选题成功');</script>");
+                Response.Write("<script>parent.location.reload();</script>");
+                Response.Write("<script>$('#iframe').src=PaperDtailStu.aspx;</script>");
+                //Response.Write("<script>window.location.href=PaperDtailStu.aspx;</script>");
+                //Response.Redirect("PaperDtailStu.aspx");
+                Response.End();
+                
+            }
+            else
+            {
+                Response.Write("<script>alert('选题失败');</script>");
+                Response.End();
+            }
+        }
+
     }
 } 

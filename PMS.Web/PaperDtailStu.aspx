@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="css/ml.css" />
     <link rel="stylesheet" href="css/zwh.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 
 <body>
     <div class="container-fluid col-lg-10 col-lg-offset-1" id="box" onload="disp_confirm()">
         <div class="navbar navbar-default allNews_pageHead" role="navigation">
             <span class="h2 text-info" id="allNews_info">我的题目信息</span>
+            <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
         </div>
         <div class="panel">
             <div class="panel-heading text-center">
@@ -113,6 +115,7 @@
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/xcConfirm.js"></script>
 <script>
      <%if (showTitle == "")
     {%>

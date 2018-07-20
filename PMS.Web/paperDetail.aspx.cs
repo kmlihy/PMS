@@ -15,7 +15,7 @@ namespace PMS.Web
         protected string titleid;
         protected void Page_Load(object sender, EventArgs e)
         {
-            titleid = Request["titleId"].ToString();
+            titleid = Request.QueryString["titleId"].ToString();
             TitleBll nb = new TitleBll();
             titleId = nb.GetTitle(int.Parse(titleid));
         }
