@@ -46,6 +46,13 @@
                                         <span>我的消息</span>
                                     </a>
                                 </li>-->
+                                <li role="presentation" id="myCenter">
+                                    <a role="menuitem" tabindex="-1" href="<%=url %>">
+                                        <b class="iconfont icon-yonghu"></b>
+                                        <span>个人中心</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="divider"></li>
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1" href="changePwd.aspx">
                                         <b class="iconfont icon-password"></b>

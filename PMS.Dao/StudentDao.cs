@@ -134,6 +134,10 @@ namespace PMS.Dao
                     {
                         college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
                     }
+                    if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                    {
+                        college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                    }
                     if (profession != null)
                     {
                         student.profession = profession;

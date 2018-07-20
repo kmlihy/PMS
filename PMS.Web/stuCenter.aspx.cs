@@ -17,14 +17,9 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             //TODO 改成从session里获取值
-            //student = (Student)Session["user"];
-            //getStudent(student.StuAccount);
-            getStudent("2121002");
-        }
-        public void getStudent(string stuAccount)
-        {
+            student = (Student)Session["loginuser"];
             StudentBll sbll = new StudentBll();
-            student = sbll.GetModel(stuAccount);
+            student = sbll.GetModel(student.StuAccount);
         }
     }
 }
