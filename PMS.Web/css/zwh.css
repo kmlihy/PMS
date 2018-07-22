@@ -208,6 +208,10 @@ input.error {
     width: 135px;
     height: 23px;
 }
+.title{
+    text-align:center;
+    font-size:24px;
+}
 /* 超链接样式修改*/
 a:visited {
     color: #000;

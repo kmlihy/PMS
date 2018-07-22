@@ -47,14 +47,14 @@
                                     </a>
                                 </li>-->
                                 <li role="presentation" id="myCenter">
-                                    <a role="menuitem" tabindex="-1" href="<%=url %>">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="<%=url %>">
                                         <b class="iconfont icon-yonghu"></b>
                                         <span>个人中心</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="changePwd.aspx">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="changePwd.aspx">
                                         <b class="iconfont icon-password"></b>
                                         <span>修改密码</span>
                                     </a>
