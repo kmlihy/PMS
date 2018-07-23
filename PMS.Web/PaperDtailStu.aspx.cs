@@ -13,7 +13,7 @@ namespace PMS.Web
     using Result = Enums.OpResult;
     public partial class WebForm1 : System.Web.UI.Page
     {
-        protected Title titleId;
+        protected Title title;
         protected DataSet ds;
 
         protected string stuAccount = "";
@@ -45,10 +45,20 @@ namespace PMS.Web
                     if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
                     {
                         string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
-                        titleId = titleBll.GetTitle(int.Parse(tId));
-                        showTitle = titleId.title.ToString();
-                        showTitleContent = titleId.TitleContent.ToString();
-                        showTeaName = titleId.teacher.TeaName.ToString();
+                        title = titleBll.GetTitle(int.Parse(tId));
+                        showTitle = title.title.ToString();
+                        showTitleContent = title.TitleContent.ToString();
+                        //
+                        teaAccount = title.teacher.TeaAccount;
+                        teacher = tbll.GetModel(teaAccount);
+                        teaName = teacher.TeaName;
+                        sex = teacher.Sex;
+                        college = teacher.college.ColName;
+                        phone = teacher.Phone;
+                        email = teacher.Email;
+                        teaAccount = teacher.TeaAccount;
+                        //
+                        showTeaName = title.teacher.TeaName.ToString();
                         break;
                     }
                     else
@@ -64,13 +74,6 @@ namespace PMS.Web
             {
                 StusecltTitle();
             }
-            teacher = tbll.GetModel(titleId.teacher.TeaAccount);
-            teaName = teacher.TeaName;
-            sex = teacher.Sex;
-            college = teacher.college.ColName;
-            phone = teacher.Phone;
-            email = teacher.Email;
-            teaAccount = teacher.TeaAccount;
         }
         public void StusecltTitle()
         {
@@ -83,26 +86,26 @@ namespace PMS.Web
             Title title = new Title();
             title.TitleId = int.Parse(titleid);
             titleRecord.title = title;
-            PublicProcedureBll pbll = new PublicProcedureBll();
-            int rows = pbll.AddTitlerecord(titleRecord);
-            if (rows > 0)
-            {
-                //Response.Write("选题成功");
-                //刷新iframe父页面
-                Response.Write("<script>alert('选题成功');</script>");
-                Response.Write("<script>parent.location.reload();</script>");
-                //var iframeId=window.frameElement.id;
-                Response.Write("<script>document.getElementById('iframe').src = '~/admin/PaperDtailStu.aspx';</script>");
-                //Response.Write("<script>window.location.href=PaperDtailStu.aspx;</script>");
-                //Response.Redirect("PaperDtailStu.aspx");
-                Response.End();
+            //PublicProcedureBll pbll = new PublicProcedureBll();
+            //int rows = pbll.AddTitlerecord(titleRecord);
+            //if (rows > 0)
+            //{
+            //    //Response.Write("选题成功");
+            //    //刷新iframe父页面
+            //    Response.Write("<script>alert('选题成功');</script>");
+            //    Response.Write("<script>parent.location.reload();</script>");
+            //    //var iframeId=window.frameElement.id;
+            //    Response.Write("<script>document.getElementById('iframe').src = '~/admin/PaperDtailStu.aspx';</script>");
+            //    //Response.Write("<script>window.location.href=PaperDtailStu.aspx;</script>");
+            //    //Response.Redirect("PaperDtailStu.aspx");
+            //    Response.End();
                 
-            }
-            else
-            {
-                Response.Write("<script>alert('选题失败');</script>");
-                Response.End();
-            }
+            //}
+            //else
+            //{
+            //    Response.Write("<script>alert('选题失败');</script>");
+            //    Response.End();
+            //}
         }
 
     }

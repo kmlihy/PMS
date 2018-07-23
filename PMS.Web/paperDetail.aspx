@@ -21,6 +21,7 @@
         </div>
         <div class="panel">
             <div class="panel-heading text-center">
+                <input type="hidden" value="<%=titleId.TitleId %>" id="titleId" />
                 <span class="h3"><%=titleId.title %></span>
             </div>
             <div class="panel-body">

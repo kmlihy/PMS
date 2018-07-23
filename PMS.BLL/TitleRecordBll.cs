@@ -47,9 +47,9 @@ namespace PMS.BLL
             return Result.更新失败;
         }
         /// <summary>
-        /// 调用dal方法
+        /// 根据学生账号查找是否有选题记录
         /// </summary>
-        /// <param name="stuAccount"></param>
+        /// <param name="stuAccount">学生账号</param>
         /// <returns></returns>
         public bool selectBystuId(string stuAccount)
         {

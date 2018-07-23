@@ -39,6 +39,7 @@ namespace PMS.Web
             string titleid = Context.Request.QueryString["titleId"];
             //获取学生专业id 
             string proId = stu.profession.ProId.ToString();
+            
             if (!Page.IsPostBack)
             {
                 if (proId != null)
@@ -53,7 +54,7 @@ namespace PMS.Web
                 StusecltTitle();
             }
         }
-
+        
         /// <summary>
         /// //判断是否已选题
         /// </summary>

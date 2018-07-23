@@ -21,7 +21,6 @@
         </div>
         <div class="panel">
             <div class="panel-heading text-center">
-
                 <% if (showTitle == null)
                     {
                         showTitle = "";

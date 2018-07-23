@@ -66,13 +66,3 @@ function logout() {
         }
     });
 }
-$(document).ready(function () {
-    var count = $("#count").val();
-    if (count === "True" || count === true) {
-        $("#selectTitle").hide();
-        $("#myTitle").show();
-    } else {
-        $("#myTitle").hide();
-        $("#selectTitle").show();
-    }
-});

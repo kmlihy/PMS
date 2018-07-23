@@ -72,7 +72,7 @@ namespace PMS.Web
                 }
                     if (loginstate == 0)
                     {
-                        Response.Write("<script>alert('登录失败');</script>");
+                        Response.Write("<script>alert('登录角色错误');</script>");
                     }
                     else if (loginstate == 1)
                     {

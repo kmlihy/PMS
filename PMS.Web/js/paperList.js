@@ -41,13 +41,13 @@ $(document).ready(function () {
         jump(1);
     });
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
+        if (sessionStorage.getItem("strWhere") === null) {
             window.location.href = "paperList.aspx?currentPage=" + cur;
         } else {
             window.location.href = "paperList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
     };
-    if (sessionStorage.getItem("countPage") == "1") {
+    if (sessionStorage.getItem("countPage") === "1") {
         $("#first").hide();
         $("#last").hide();
     }
@@ -63,14 +63,14 @@ $(".selectTitle").click(function () {
                 type: 'Post',
                 url: 'paperList.aspx?titleId=' + titleid + "&op=selectTitle",
                 success: function (succ) {
-                    if (succ == "选题成功") {
+                    if (succ === "选题成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 window.location.href = "PaperDtailStu.aspx?titleId=" + titleid;
                             }
                         });
                     }
-                    else if (succ == "已选题") {
+                    else if (succ === "已选题") {
                         window.wxc.xcConfirm("您已经选过题目，不能多次选题!", window.wxc.xcConfirm.typeEnum.error);
                     }
                 }

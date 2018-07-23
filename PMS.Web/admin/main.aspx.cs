@@ -13,7 +13,6 @@ namespace PMS.Web.admin
     public partial class main : System.Web.UI.Page
     {
         protected int State;
-        protected bool count;
         protected string url;
         TitleRecordBll titleRecordBll = new TitleRecordBll();
         protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +37,6 @@ namespace PMS.Web.admin
                     url = "../stuCenter.aspx";
                     Student student = (Student)Session["loginuser"];
                     string account = student.StuAccount;
-                    count = titleRecordBll.selectBystuId(student.StuAccount);
                 }
                 //Response.Write(count);
                 string op = Request.QueryString["op"].ToString();
