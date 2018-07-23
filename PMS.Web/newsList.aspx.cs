@@ -101,21 +101,19 @@ namespace PMS.Web
         public void loadNewsList()
         {
             state = Session["state"].ToString();
-            if (state == "0" || state == "1" || state == "2" && state != "3")//根据登录的管理员和教师只显示相关公告
+            if (state == "0" || state == "2")//根据登录的管理员只显示相关公告
             {
                 admin = (Teacher)Session["user"];
-                teacher = (Teacher)Session["loginuser"];
-                if (admin != null && teacher == null)
-                {
-                    colId = admin.college.ColID;
-                }
-                else
-                {
-                    teaId = teacher.TeaAccount;
-                    colId = teacher.college.ColID;
-                }
+                colId = admin.college.ColID;
+                teaId = admin.TeaAccount;
             }
-            else
+            else if(state == "1")//根据登录的教师只显示相关公告
+            {
+                teacher = (Teacher)Session["loginuser"];
+                colId = teacher.college.ColID;
+                teaId = teacher.TeaAccount;
+            }
+            else//根据登录的学生只显示相关公告
             {
                 stu = (Student)Session["loginuser"];
                 col = stu.college;
