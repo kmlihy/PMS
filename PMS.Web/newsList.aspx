@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <span id="userType"><%=Session["state"] %></span>
+    <input id="userType" value="<%=Session["state"] %>" type="hidden" />
 <%--    <span>state=<%=state %></span>
     <span>colId=<%=colId %></span>--%>
     <input id="teaId" value="<%=teaId %>" type="hidden" />

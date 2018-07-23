@@ -1,7 +1,7 @@
 ﻿//sessionStorage.setItem("userState", $("#userType").text().trim());
 $(document).ready(function () {
-    $("#userType").hide();
-    var userState = $("#userType").text().trim()
+    //$("#userType").hide();
+    var userState = $("#userType").val().trim()
     if (userState != "") {
         if (userState == "0") {
             $("#institute").hide();
@@ -29,7 +29,7 @@ $(document).ready(function () {
     }
     //当前教师没有发布公告时的处理
     var teacherNews = $("#Mine-table").html().trim();
-    if ($("#teaId").text() == "") {
+    if ($("#teaId").val() == "") {
         $("#Mine").hide();
     }
     else{
