@@ -48,7 +48,7 @@
                                 </li>-->
                                 <li role="presentation" id="myCenter">
                                     <a role="menuitem" tabindex="-1" class="sidebarclick" href="<%=url %>">
-                                        <b class="iconfont icon-yonghu"></b>
+                                        <b class="iconfont icon-smile"></b>
                                         <span>个人中心</span>
                                     </a>
                                 </li>

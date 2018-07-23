@@ -210,7 +210,8 @@ input.error {
 }
 .title{
     text-align:center;
-    font-size:24px;
+    font-size:28px;
+    margin-bottom:20px;
 }
 /* 超链接样式修改*/
 a:visited {

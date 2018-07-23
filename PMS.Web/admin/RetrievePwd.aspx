@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="changePwd.aspx.cs" Inherits="PMS.Web.admin.changePwd" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RetrievePwd.aspx.cs" Inherits="PMS.Web.admin.RetrievePwd" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>修改密码</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>找回密码</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <script src="../js/jquery-3.3.1.min.js "></script>
@@ -14,8 +13,6 @@
     <script src="../js/jquery.validate.min.js "></script>
     <script src="../js/additional-methods.js"></script>
     <script src="../js/messages_zh.min.js "></script>
-    <script src="../js/lgd.js"></script>
-
 </head>
 <body>
     <div class="container-fluid">
@@ -33,9 +30,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">原密码:</label>
+                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">手机号码:</label>
                         <div class="col-sm-3">
-                            <input type="password" class="form-control input-sm" id="quondampwd" name="quondampwd" placeholder="请输入原密码" />
+                            <input type="text" class="form-control input-sm" id="phone" name="phone" placeholder="请输入手机号码" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">验证码:</label>
+                        <div class="input-group  col-sm-3 teldiv">
+                            <input type="text" class="form-control input-sm  col-sm-2" id="telverify" name="telverify" placeholder="请输入验证码" />
+                            <div class="input-group-btn col-sm-pull-2">
+                                <button class="btn btn-default btn-sm" type="button" id="gettelverif">获取验证码</button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,8 +58,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-5">
-
-                            <button type="submit" class="btn btn-success">提交</button>
+                            <button type="submit" class="btn btn-default">提交</button>
                             <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
                         </div>
                     </div>
@@ -62,7 +67,4 @@
         </div>
     </div>
 </body>
-    <script>
-        var pwd = $("#quondampwd").val();
-    </script>
 </html>

@@ -12,7 +12,7 @@ namespace PMS.Web
 {
     public partial class allNews : System.Web.UI.Page
     {
-        protected DataSet ds = null;
+        protected DataSet ds = null, dsTea = null;
         protected int getCurrentPage = 1;
         protected int count;
         protected int pagesize = 5;
@@ -21,13 +21,44 @@ namespace PMS.Web
         protected string roleId;
         protected string newsid;
         protected string newsType;
-        
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            string account = "", teaAccount="";
+            int college = 0;
+            int state = Convert.ToInt32(Session["state"].ToString());
+            if (state == 1 || state == 2)
+            {
+                Teacher tea = (Teacher)Session["loginuser"];
+                account = tea.TeaAccount;
+                college = tea.college.ColID;
+
+            }
+            else if (state == 3)
+            {
+                Student stu = (Student)Session["loginuser"];
+                account = stu.StuAccount;
+                college = stu.college.ColID;
+                TitleRecordBll trBll = new TitleRecordBll();
+                bool flag = trBll.selectBystuId(account);
+                if (flag == true)
+                {
+                    TableBuilder tbd = new TableBuilder()
+                    {
+                        StrTable = "V_TitleRecord",
+                        StrColumn = "titleRecordId",
+                        IntColType = 0,
+                        IntOrder = 0,
+                        StrColumnlist = "*",
+                        IntPageSize = 1,
+                        IntPageNum = 1,
+                        StrWhere = "stuAccount ='" + account + "'"
+                    };
+                    dsTea = trBll.SelectBypage(tbd, out count);
+                    teaAccount = dsTea.Tables[0].Rows[0]["teaAccount"].ToString();
+                }
+            }
             if (!Page.IsPostBack)
             {
-                strWhere = "";
                 roleId = Request.QueryString["roleId"];
                 if (roleId == "0")
                 {
@@ -36,12 +67,12 @@ namespace PMS.Web
                 }
                 else if (roleId == "1")
                 {
-                    strteaType = "teaType=1";
+                    strteaType = "teaType=1 and teaAccount = '"+ teaAccount + "'";
                     newsType = "学生公告";
                 }
                 else if (roleId == "2")
                 {
-                    strteaType = "teaType=2";
+                    strteaType = "teaType=2 and collegeId=" + college;
                     newsType = "学院公告";
                 }
                 getdata(strteaType);
