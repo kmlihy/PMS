@@ -22,7 +22,7 @@ namespace PMS.Web.admin
         protected PlanBll plbll = new PlanBll();
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 2;
+        protected int pagesize = 5;
         protected String search = "";
         protected String searchdrop = "";
         protected string showstr = null;
@@ -108,10 +108,14 @@ namespace PMS.Web.admin
             }
 
             TitleRecordBll titlerd = new TitleRecordBll();
+            Teacher tea = (Teacher)Session["loginuser"];
+            string teaAccount = tea.TeaAccount;
+            string where1 = "teaAccount = " + teaAccount;
+            string where2 = "teaAccount = " + teaAccount + " and " + strWhere;
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_TitleRecord",
-                StrWhere = strWhere == null ? "" : strWhere,
+                StrWhere = strWhere == null || strWhere == "" ? where1 : where2,
                 IntColType = 0,
                 IntOrder = 0,
                 IntPageNum = int.Parse(currentPage),

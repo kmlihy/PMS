@@ -8,18 +8,18 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web.admin
 {
-    public partial class changePwd : System.Web.UI.Page
+    public partial class RetrievePwd : System.Web.UI.Page
     {
         protected string account;
         protected void Page_Load(object sender, EventArgs e)
         {
             int state = Convert.ToInt32(Session["state"].ToString());
-            if(state == 1)
+            if (state == 1)
             {
                 Teacher tea = (Teacher)Session["loginuser"];
                 account = tea.TeaAccount;
             }
-            else if(state == 3)
+            else if (state == 3)
             {
                 Student stu = (Student)Session["loginuser"];
                 account = stu.StuAccount;

@@ -165,6 +165,9 @@ input.error {
 .number input {
     width: 50px;
     height: 34px;
+    position:relative;
+    bottom:8px;
+    right:5px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.5;
@@ -204,6 +207,11 @@ input.error {
 .telNum {
     width: 135px;
     height: 23px;
+}
+.title{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:20px;
 }
 /* 超链接样式修改*/
 a:visited {

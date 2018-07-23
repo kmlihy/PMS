@@ -14,15 +14,32 @@ namespace PMS.Web.admin
     {
         protected int State;
         protected bool count;
+        protected string url;
         TitleRecordBll titleRecordBll = new TitleRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 State = int.Parse(Session["state"].ToString());
-                Student student = (Student)Session["loginuser"];
-                string account = student.StuAccount;
-                count = titleRecordBll.selectBystuId(student.StuAccount);
+                if(State == 0)
+                {
+                    Response.Write("<script>$('#myCenter').hide();</script>");
+                }
+                else if(State == 1)
+                {
+                    url = "teaCenter.aspx";
+                }
+                else if (State == 2)
+                {
+                    url = "adminCenter.aspx";
+                }
+                else if (State == 3)
+                {
+                    url = "../stuCenter.aspx";
+                    Student student = (Student)Session["loginuser"];
+                    string account = student.StuAccount;
+                    count = titleRecordBll.selectBystuId(student.StuAccount);
+                }
                 //Response.Write(count);
                 string op = Request.QueryString["op"].ToString();
                 //退出登录实现

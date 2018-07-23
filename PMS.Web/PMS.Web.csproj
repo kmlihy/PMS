@@ -71,6 +71,7 @@
     <Content Include="admin\login.aspx" />
     <Content Include="admin\main.aspx" />
     <Content Include="admin\proList.aspx" />
+    <Content Include="admin\RetrievePwd.aspx" />
     <Content Include="admin\selectTopicList.aspx" />
     <Content Include="admin\stuLIst.aspx" />
     <Content Include="admin\teaCenter.aspx" />
@@ -329,6 +330,13 @@
     </Compile>
     <Compile Include="admin\proList.aspx.designer.cs">
       <DependentUpon>proList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\RetrievePwd.aspx.cs">
+      <DependentUpon>RetrievePwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\RetrievePwd.aspx.designer.cs">
+      <DependentUpon>RetrievePwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\selectTopicList.aspx.cs">
       <DependentUpon>selectTopicList.aspx</DependentUpon>

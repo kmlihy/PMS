@@ -19,27 +19,45 @@ $(document).ready(function () {
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="iconfont icon-back"></span>'):
+                if (sessionStorage.getItem("op") != null) {
+                    sessionStorage.removeItem("op");
+                }
                 if (parseInt(sessionStorage.getItem("page")) > 1) {
                     jump(parseInt(sessionStorage.getItem("page")) - 1);
                     break;
                 }
                 else {
+                    if (sessionStorage.getItem("op") != null) {
+                        sessionStorage.removeItem("op");
+                    }
                     jump(1);
                     break;
                 }
             case ('<span class="iconfont icon-more"></span>'):
+                if (sessionStorage.getItem("op") != null) {
+                    sessionStorage.removeItem("op");
+                }
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     break;
                 }
                 else {
+                    if (sessionStorage.getItem("op") != null) {
+                        sessionStorage.removeItem("op");
+                    }
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
             case ("首页"):
+                if (sessionStorage.getItem("op") != null) {
+                    sessionStorage.removeItem("op");
+                }
                 jump(1);
                 break;
             case ("尾页"):
+                if (sessionStorage.getItem("op") != null) {
+                    sessionStorage.removeItem("op");
+                }
                 jump(parseInt(sessionStorage.getItem("countPage")));
                 break;
         }

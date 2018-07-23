@@ -22,13 +22,13 @@
             <div class="container-fluid big-box">
                 <div class="panel panel-default" id="selectToppanelbox">
                     <div class="pane input-group" id="panel-head">
+                        <!--操作区-->
                         <div class="input-group" id="inputgroups">
                             <input type="text" value="<%=secSearch %>" style="display: none" id="search" />
                             <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
                                 <option value="0">-显示所有专业-</option>
                                 <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                                     {
-
                                         if (prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
                                         {
                                 %>
@@ -70,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+                <!--数据显示区-->
                 <div id="selectToptab">
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -110,43 +111,43 @@
                             <%} %>
                         </tbody>
                     </table>
-                <!--翻页区域-->
-                    <div class="text-right" id="paging">
-                        <ul class="pagination pagination-lg">
-                            <li>
-                                <a href="#" class="jump" id="first">首页</a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump" id="prev">
-                                    <span class="iconfont icon-back"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump">
-                                    <%=getCurrentPage %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">/</a>
-                            </li>
-                            <li>
-                                <% if (count == 0) { count = 1; } %>
-                                <a href="#" class="jump">
-                                    <%=count %>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="next" class="jump">
-                                    <span class="iconfont icon-more"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="jump" id="last">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
+        </div>
+        <!--翻页区域-->
+        <div class="text-right" id="paging">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                        <%=getCurrentPage %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                    <% if (count == 0) { count = 1; } %>
+                    <a href="#" class="jump">
+                        <%=count %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
         </div>
     </div>
     <!-- 查看我的学生弹框（Modal） -->

@@ -16,7 +16,7 @@ namespace PMS.Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             
-                teacher = (Teacher)Session["user"];
+                teacher = (Teacher)Session["loginuser"];
             
            string op = Request.QueryString["op"];
            if (op=="update")

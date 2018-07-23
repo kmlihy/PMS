@@ -62,8 +62,16 @@ namespace PMS.Web.admin
                 //0为超级管理员
                 bads = colbll.Select();
                 prods = probll.Select();
-                plands = planbll.Select();
 
+                //根据学院id判断 只加载该院系下的分院批次
+                if (collegeIdstWhere=="0"|| collegeIdstWhere=="null" || collegeIdstWhere==null)
+                {
+                    plands = planbll.Select();
+                }
+                else
+                {
+                    plands = planbll.GetplanByCollegeId(int.Parse(collegeIdstWhere));
+                }
                 if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere == "null")
                 {// 如果批次id为空，分院id不为空
                     getPage(Searchcollege());
@@ -133,34 +141,71 @@ namespace PMS.Web.admin
             //导出列表
             if (op1 == "export")
             {
+                //分院id
+                string collegeId = Request.QueryString["collegeIdstrWhere"];
+                //专业id
                 string pro = Request.QueryString["dropstrWhere"];
+                //批次Id
                 string batch = Request.QueryString["batchWhere"];
+                //输入框条件
                 string input = Request.QueryString["search"];
                 string strWhere = "";
-                if (input == null)
+
+                if (userType == "2")
                 {
-                    if (pro == "null" && batch == "null")
+                    if (input == null)
                     {
-                        strWhere = string.Format("");
+                        if ((pro == "null" || pro == "0") && batch == "null")
+                        {
+                            strWhere = string.Format("");
+                        }
+                        else if (pro != "null" && batch == "null")
+                        {
+                            strWhere = string.Format(" where proId = {0}", "'" + pro + "'");
+                        }
+                        else if ((pro == "null" || pro == "0") && batch != "null")
+                        {
+                            strWhere = string.Format(" where planId = {0}", "'" + batch + "'");
+                        }
+                        else
+                        {
+                            strWhere = string.Format(" where planId = {0} and proId = {1}", "'" + batch + "'", "'" + pro + "'");
+                        }
                     }
-                    else if (pro != "null" && batch == "null")
-                    {
-                        strWhere = string.Format(" where proId = {0}", "'" + pro + "'");
-                    }
-                    else if (pro == "null" && batch != "null")
-                    {
-                        strWhere = string.Format(" where planId = {0}", "'" + batch + "'");
-                    }
+                    //如果不为空传 input里的值
                     else
                     {
-                        strWhere = string.Format(" where planId = {0} and proId = {1}", "'" + batch + "'", "'" + pro + "'");
+                        strWhere = string.Format(" where teaName {0} or title {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + input + "%'");
                     }
                 }
-                //如果不为空传 input里的值
                 else
                 {
-                    strWhere = string.Format(" where teaName {0} or title {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + input + "%'");
+                    if (input == null)
+                    {
+                        if (collegeId == "null" && batch == "null")
+                        {
+                            strWhere = string.Format("");
+                        }
+                        else if (collegeId != "null" && batch == "null")
+                        {
+                            strWhere = string.Format(" where collegeId = {0}", "'" + collegeId + "'");
+                        }
+                        else if ((collegeId == "null" || collegeId == "0") && batch != "null")
+                        {
+                            strWhere = string.Format(" where planId = {0}", "'" + batch + "'");
+                        }
+                        else
+                        {
+                            strWhere = string.Format(" where planId = {0} and collegeId = {1}", "'" + batch + "'", "'" + collegeId + "'");
+                        }
+                    }
+                    //如果不为空传 input里的值
+                    else
+                    {
+                        strWhere = string.Format(" where teaName {0} or title {0} or realName {0} or planName {0} or proName {0} or collegeName {0}", "like '%" + input + "%'");
+                    }
                 }
+
                 TitleRecordBll titlerd = new TitleRecordBll();
                 var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
                 DataTable dt = titlerd.ExportExcel(strWhere);
@@ -221,7 +266,7 @@ namespace PMS.Web.admin
                 {
                     //专业下拉搜索后条件保存
                     showcollegedrop = searchcollege;
-                    searchcollege = String.Format(" proId={0}", "'" + searchcollege + "'");
+                    searchcollege = String.Format(" collegeId={0}", searchcollege);
                 }
             }
             catch
@@ -255,12 +300,12 @@ namespace PMS.Web.admin
                 else if (search == "0" && searchcollege != "0")
                 {
                     search = "";
-                    searchbatchAndcollege = String.Format(" proId={0} ", "'" + searchcollege + "'");
+                    searchbatchAndcollege = String.Format(" collegeId={0} ", "'" + searchcollege + "'");
                     //searanddrop = String.Format(" proId={0} and planId={1}", "'" + searchdrop + "'", " '" + search + "'");
                 }
                 else
                 {
-                    searchbatchAndcollege = String.Format(" proId={0} and planId={1}", "'" + searchcollege + "'", " '" + search + "'");
+                    searchbatchAndcollege = String.Format(" collegeId={0} and planId={1}", "'" + searchcollege + "'", " '" + search + "'");
                 }
             }
             catch

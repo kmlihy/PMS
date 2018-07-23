@@ -15,8 +15,7 @@
 <body>
     <div class="container-fluid col-lg-10 col-lg-offset-1">
         <div class="navbar navbar-default allNews_pageHead" role="navigation">
-            <span class="h2 text-info" id="allNews_info">
-                题目信息
+            <span class="h2 text-info" id="allNews_info">题目信息
             </span>
             <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
         </div>
@@ -31,9 +30,7 @@
                 <label for="text">选题人数上限：<%=titleId.Limit %></label>
                 <span>|</span>
                 <label for="text">已选人数：<%=titleId.Selected %></label>
-                <button type="button" class="btn btn-primary navbar-btn" id="btn_ToPaperDtailStu" onclick="location.href='PaperDtailStu.aspx?titleid=<%=titleid %>'">
-                    选定题目
-                </button>
+                <a href="PaperDtailStu.aspx?titleId=<%=titleid %>&op=selectTitle" class="btn btn-primary navbar-btn selectTitle" id="btn_ToPaperDtailStu">选定题目</a>
             </div>
         </div>
     </div>

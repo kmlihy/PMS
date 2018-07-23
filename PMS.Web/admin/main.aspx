@@ -46,8 +46,15 @@
                                         <span>我的消息</span>
                                     </a>
                                 </li>-->
+                                <li role="presentation" id="myCenter">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="<%=url %>">
+                                        <b class="iconfont icon-smile"></b>
+                                        <span>个人中心</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="changePwd.aspx">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="changePwd.aspx">
                                         <b class="iconfont icon-password"></b>
                                         <span>修改密码</span>
                                     </a>
@@ -375,7 +382,6 @@
                         <%} %>
                     </ul>
                 </nav>
-
             </div>
 
             <!-- 右侧内容区 -->
