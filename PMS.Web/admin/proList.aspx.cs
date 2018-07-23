@@ -32,8 +32,15 @@ namespace PMS.Web.admin
         protected int pagesize = 3;
         //查询条件
         public String search = "";
+        string userType = "";
+        protected string showmsg = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //获取state 判断是分管理员还是超级管理员
+            userType = Session["state"].ToString();
+
             //添加专业
             string op = Context.Request.Form["op"];
             if (op == "add")
@@ -164,19 +171,50 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
-            TableBuilder tabuilder = new TableBuilder()
+            if (userType == "2")
             {
-                StrTable = "V_Profession",
-                StrWhere = strWhere == null ? "" : strWhere,
-                IntColType = 0,
-                IntOrder = 0,
-                IntPageNum = int.Parse(currentPage),
-                IntPageSize = pagesize,
-                StrColumn = "proId",
-                StrColumnlist = "*"
-            };
-            getCurrentPage = int.Parse(currentPage);
-            ds = probll2.SelectBypage(tabuilder, out count);
+                //如果登录者是分管 则只查询该分院管理员所在的分院下的专业
+                Teacher teaAdmin = (Teacher)Session["user"];
+                int adminCollegeId = teaAdmin.college.ColID;
+                string addStrWhere = "";
+                if (strWhere == null || strWhere == "")
+                {
+                    addStrWhere = "collegeId=" + "'" + adminCollegeId + "'";
+                }
+                else
+                {
+                    addStrWhere = "collegeId=" + "'" + adminCollegeId + "'" + "and " + "(" + strWhere + ")";
+                }
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Profession",
+                    StrWhere = addStrWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "proId",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = probll2.SelectBypage(tabuilder, out count);
+            }
+            else
+            {
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Profession",
+                    StrWhere = strWhere == null ? "" : strWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "proId",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = probll2.SelectBypage(tabuilder, out count);
+            }
         }
         public string Search()
         {
@@ -193,6 +231,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
+                    showmsg = search;
                     search = String.Format(" proName {0} or collegeName {0}", "like '%" + search + "%'");
                 }
             }

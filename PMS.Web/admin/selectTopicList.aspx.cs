@@ -266,7 +266,7 @@ namespace PMS.Web.admin
                 {
                     //专业下拉搜索后条件保存
                     showcollegedrop = searchcollege;
-                    searchcollege = String.Format(" proId={0}", "'" + searchcollege + "'");
+                    searchcollege = String.Format(" collegeId={0}", searchcollege);
                 }
             }
             catch
@@ -300,12 +300,12 @@ namespace PMS.Web.admin
                 else if (search == "0" && searchcollege != "0")
                 {
                     search = "";
-                    searchbatchAndcollege = String.Format(" proId={0} ", "'" + searchcollege + "'");
+                    searchbatchAndcollege = String.Format(" collegeId={0} ", "'" + searchcollege + "'");
                     //searanddrop = String.Format(" proId={0} and planId={1}", "'" + searchdrop + "'", " '" + search + "'");
                 }
                 else
                 {
-                    searchbatchAndcollege = String.Format(" proId={0} and planId={1}", "'" + searchcollege + "'", " '" + search + "'");
+                    searchbatchAndcollege = String.Format(" collegeId={0} and planId={1}", "'" + searchcollege + "'", " '" + search + "'");
                 }
             }
             catch

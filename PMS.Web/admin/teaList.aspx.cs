@@ -24,11 +24,11 @@ namespace PMS.Web.admin
         //分院
         protected DataSet colds = null;
         protected CollegeBll colbll = new CollegeBll();
-        protected string showmsg="";
+        protected string showmsg = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             string op = Context.Request["op"];
             if (op == "add")
             {
@@ -254,7 +254,8 @@ namespace PMS.Web.admin
             //string userType = "2";
             string usercollege = "";
             TeacherBll pro = new TeacherBll();
-            if (userType == "2") {
+            if (userType == "2")
+            {
                 //如果是分院管理员只加载该分院的教师
                 Teacher tea = (Teacher)Session["user"];
                 int usercollegeId = tea.college.ColID;
@@ -267,12 +268,12 @@ namespace PMS.Web.admin
                 else
                 {
                     strTeaType = "teaType=1 and ";
-                    usercollege = "collegeId=" + "'" + usercollegeId+"'" + "and ";
+                    usercollege = "collegeId=" + "'" + usercollegeId + "'" + "and " + "(" + strWhere + ")";
                 }
                 TableBuilder tabuilder = new TableBuilder()
                 {
                     StrTable = "V_Teacher",
-                    StrWhere = strTeaType + usercollege + strWhere,
+                    StrWhere = strTeaType + usercollege,
                     IntColType = 0,
                     IntOrder = 0,
                     IntPageNum = int.Parse(currentPage),
@@ -283,14 +284,18 @@ namespace PMS.Web.admin
                 getCurrentPage = int.Parse(currentPage);
                 ds = pro.SelectBypage(tabuilder, out count);
             }
-            else if (userType=="0")
+            else if (userType == "0")
             {
                 //如果是超管则加载所有教师包括分院管理员
+                string strTeaType = "teaType = 1";
+                if (strWhere !=null && strWhere!="") {
+                    strTeaType = "teaType = 1 and" + "(" + strWhere + ")";
+                }
                 TableBuilder tabuilder = new TableBuilder()
                 {
 
                     StrTable = "V_Teacher",
-                    StrWhere = strWhere == null ? "" : strWhere,
+                    StrWhere = strTeaType,
                     IntColType = 0,
                     IntOrder = 0,
                     IntPageNum = int.Parse(currentPage),
