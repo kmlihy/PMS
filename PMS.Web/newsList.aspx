@@ -90,8 +90,8 @@
     </div>
     <span id="userType"><%=Session["state"] %></span>
 <%--    <span>state=<%=state %></span>
-    <span>colId=<%=colId %></span>
-    <span>teaId=<%=teaId %></span>--%>
+    <span>colId=<%=colId %></span>--%>
+    <span id="teaId"><%=teaId %></span>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

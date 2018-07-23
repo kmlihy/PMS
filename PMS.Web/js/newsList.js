@@ -29,9 +29,14 @@ $(document).ready(function () {
     }
     //当前教师没有发布公告时的处理
     var teacherNews = $("#Mine-table").html().trim();
-    if (teacherNews == "") {
-        $("#Mine-list").html("<h4>暂无公告</h4>");
-        $("#teacher_all").hide();
+    if ($("#teaId").text() == "") {
+        $("#Mine").hide();
+    }
+    else{
+        if (teacherNews == "") {
+            $("#Mine-list").html("<h4>暂无公告</h4>");
+            $("#teacher_all").hide();
+        }
     }
     //当前学院没有发布公告时的处理
     var collegeNews = $("#newsListtable").html().trim();
