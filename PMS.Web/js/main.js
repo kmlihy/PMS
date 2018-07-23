@@ -28,7 +28,7 @@ window.onresize = autodivheight; //浏览器窗口发生变化时同时变化DIV
 //TODO 只有第一个>符号可以旋转，另一个未完成
 function xuanz() {
     x = document.getElementById("trans");
-    if (x.style.transform == "") {
+    if (x.style.transform === "") {
         x.style.transform = "rotate(90deg)";
     }
     else {
@@ -68,7 +68,7 @@ function logout() {
 }
 $(document).ready(function () {
     var count = $("#count").val();
-    if (count == "True" || count == true) {
+    if (count === "True" || count === true) {
         $("#selectTitle").hide();
         $("#myTitle").show();
     } else {

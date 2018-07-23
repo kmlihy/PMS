@@ -91,7 +91,8 @@ namespace PMS.Web
                 //刷新iframe父页面
                 Response.Write("<script>alert('选题成功');</script>");
                 Response.Write("<script>parent.location.reload();</script>");
-                Response.Write("<script>$('#iframe').src=PaperDtailStu.aspx;</script>");
+                //var iframeId=window.frameElement.id;
+                Response.Write("<script>document.getElementById('iframe').src = '~/admin/PaperDtailStu.aspx';</script>");
                 //Response.Write("<script>window.location.href=PaperDtailStu.aspx;</script>");
                 //Response.Redirect("PaperDtailStu.aspx");
                 Response.End();
