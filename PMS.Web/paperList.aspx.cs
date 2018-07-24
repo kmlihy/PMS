@@ -39,7 +39,7 @@ namespace PMS.Web
             string titleid = Context.Request.QueryString["titleId"];
             //获取学生专业id 
             string proId = stu.profession.ProId.ToString();
-            
+
             if (!Page.IsPostBack)
             {
                 if (proId != null)
@@ -54,7 +54,7 @@ namespace PMS.Web
                 StusecltTitle();
             }
         }
-        
+
         /// <summary>
         /// //判断是否已选题
         /// </summary>
@@ -76,35 +76,48 @@ namespace PMS.Web
         public void StusecltTitle()
         {
             //string stuId = Context.Request["stuId"].ToString();
-            Result row = isExist();
-            if (row == Result.记录不存在)
-            {
-                string titleid = Context.Request.QueryString["titleId"];
-                TitleRecord titleRecord = new TitleRecord();
-                //TODO 后期从session里获取学生对象
-                //Student student =  (Student)Session["user"];               
-                Student student = new Student();
-                student.StuAccount = stuId;
-                titleRecord.student = student;
-                Title title = new Title();
-                title.TitleId = int.Parse(titleid);
-                titleRecord.title = title;
+            int titleid = int.Parse(Context.Request.QueryString["titleId"]);
+            Title dstitle = new Title();
+            TitleBll titleSelect = new TitleBll();
+            dstitle = titleSelect.GetTitle(titleid);
 
-                int rows = pbll.AddTitlerecord(titleRecord);
-                if (rows > 0)
+            int limited = int.Parse(dstitle.Limit.ToString());
+            int selected = int.Parse(dstitle.Selected.ToString());
+            if (selected < limited)
+            {
+                Result row = isExist();
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("选题成功");
-                    Response.End();
+
+                    TitleRecord titleRecord = new TitleRecord();
+                    Student student = new Student();
+                    student.StuAccount = stuId;
+                    titleRecord.student = student;
+                    Title title = new Title();
+                    title.TitleId = titleid;
+                    titleRecord.title = title;
+
+                    int rows = pbll.AddTitlerecord(titleRecord);
+                    if (rows > 0)
+                    {
+                        Response.Write("选题成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("选题失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("选题失败");
+                    Response.Write("已选题");
                     Response.End();
                 }
             }
             else
             {
-                Response.Write("已选题");
+                Response.Write("已达上限");
                 Response.End();
             }
         }
