@@ -15,7 +15,7 @@
     <script src="../js/additional-methods.js"></script>
     <script src="../js/messages_zh.min.js "></script>
     <script src="../js/lgd.js"></script>
-
+    <script src="../js/changePwd.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-5">
 
-                            <button type="submit" class="btn btn-success">提交</button>
+                            <button type="submit" class="btn btn-success" id="postPwd">提交</button>
                             <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
                         </div>
                     </div>
@@ -62,7 +62,4 @@
         </div>
     </div>
 </body>
-    <script>
-        var pwd = $("#quondampwd").val();
-    </script>
 </html>

@@ -16,6 +16,7 @@ namespace PMS.Web
     {
         protected DataSet dsColl = null, dsPro = null, dsStu = null;
         protected int count;
+        protected string collid;
         Result result;
         CollegeBll collbll = new CollegeBll();
         ProfessionBll probll = new ProfessionBll();
@@ -48,7 +49,7 @@ namespace PMS.Web
         {
             dsPro = probll.Select();
             int count = dsPro.Tables[0].Rows.Count;
-            string collid = Context.Request["collegeId"].ToString();
+            collid = Context.Request["collegeId"].ToString();
             TableBuilder tbd = new TableBuilder();
             tbd.StrTable = "T_Profession";
             tbd.StrColumn = "proId";
@@ -57,7 +58,7 @@ namespace PMS.Web
             tbd.StrColumnlist = "*";
             tbd.IntPageSize = count;
             tbd.IntPageNum = 1;
-            tbd.StrWhere = "collegeId = " + int.Parse(collid);
+            tbd.StrWhere = collid=="" ? "" : "collegeId = " + int.Parse(collid);
             dsPro = probll.SelectBypage(tbd, out count);
         }
         //添加学生
@@ -68,17 +69,21 @@ namespace PMS.Web
             string account = Context.Request["account"].ToString();
             string name = Context.Request["name"].ToString();
             string sex = Context.Request["sex"].ToString();
-            string pwd = Context.Request["name"].ToString();
+            string pwd = Context.Request["pwd"].ToString();
             string email = Context.Request["email"].ToString();
             string phone = Context.Request["phone"].ToString();
-            //根据输入的账号获取学生信息
-            stu = stuBll.GetModel(account);
-            string strEmail = stu.Email;
-            string strPhone = stu.Phone;
-            if (email == strEmail && phone == strPhone)
+            //根据输入的邮箱、联系电话查找是否已存在
+            result = Result.添加失败;
+            bool flagPhone = stuBll.selectByPhone(phone);
+            bool flagEmail = stuBll.selectByEmail(email);
+            if (flagPhone)
             {
-                result = Result.添加失败;
-                Response.Write("此联系电话、邮箱已存在");
+                Response.Write("此联系电话已存在");
+                Response.End();
+            }
+            else if (flagEmail)
+            {
+                Response.Write("此邮箱已存在");
                 Response.End();
             }
             else
@@ -92,7 +97,7 @@ namespace PMS.Web
                 stu.RealName = name;
                 stu.Sex = sex;
                 stu.StuAccount = account;
-                stu.StuPwd = pwd;
+                stu.StuPwd = Security.SHA256Hash(pwd);
                 result = stuBll.Insert(stu);
                 if (result == Result.添加成功)
                 {

@@ -285,15 +285,18 @@ a:link {
 }
 #btnAdd {
     height:40px;
-    margin-left:16px;
+    margin-left:4px;
     border: 1px solid rgb(170, 170, 170);
 }
 #regLable {
     text-align: right;
-    width: 150px;
+    width: 90px;
     font-size:15px;
 }
 #regCode {
     border: 1px solid rgb(170, 170, 170);
     /*width: 210px;*/
+}
+#regform td{
+    line-height:33px;
 }

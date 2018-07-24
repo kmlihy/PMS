@@ -16,7 +16,7 @@ namespace PMS.BLL
         private PublicProcedure pdao = new PublicProcedure();
 
         /// <summary>
-        /// 
+        /// 教师登录
         /// </summary>
         /// <param name="teaAccount"></param>
         /// <param name="pwd"></param>
@@ -92,6 +92,7 @@ namespace PMS.BLL
                 return Enums.OpResult.删除失败;
             }
         }
+
         /// <summary>
         /// 更新教师
         /// </summary>
@@ -109,6 +110,26 @@ namespace PMS.BLL
                 return Enums.OpResult.更新失败;
             }
         }
+
+        /// <summary>
+        /// 更新教师密码
+        /// </summary>
+        /// <param name="teaAccount">教师账号</param>
+        /// <param name="teaPwd">教师密码</param>
+        /// <returns></returns>
+        public Enums.OpResult UpdataPwd(string teaAccount, string teaPwd)
+        {
+            int count = dao.UpdataPwd(teaAccount, teaPwd);
+            if (count > 0)
+            {
+                return Enums.OpResult.更新成功;
+            }
+            else
+            {
+                return Enums.OpResult.更新失败;
+            }
+        }
+
         /// <summary>
         /// 得到教师实体对象
         /// </summary>
@@ -131,11 +152,52 @@ namespace PMS.BLL
             intPageCount = pagecount;
             return ds;
         }
-        //上传
+        
+        /// <summary>
+        /// 批量导入
+        /// </summary>
+        /// <param name="dt">存储Excel数据的DataTable对象</param>
+        /// <returns></returns>
         public int upload(DataTable dt)
         {
             int row = dao.upload(dt);
             return row;
+        }
+
+        /// <summary>
+        /// 查找联系电话是否已存在
+        /// </summary>
+        /// <param name="stuAccount">联系电话</param>
+        /// <returns>查找结果</returns>
+        public bool selectByPhone(string phone)
+        {
+            int count = dao.SelectByPhone(phone);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 查找邮箱是否已存在
+        /// </summary>
+        /// <param name="stuAccount">邮箱</param>
+        /// <returns>查找结果</returns>
+        public bool selectByEmail(string email)
+        {
+            int count = dao.SelectByEmail(email);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

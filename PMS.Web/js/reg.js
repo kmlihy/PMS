@@ -10,13 +10,9 @@
     var flag = false;
     $("#college").change(function () {
         var collegeId = $("#college").val();
-        sessionStorage.setItem("college", collegeId);
         window.location.href = "reg.aspx?collegeId=" + collegeId + "&op=load";
     });
-    var collegeId = sessionStorage.getItem("college")
-    if (collegeId !== "") {
-        $("#college").val(collegeId).checked = true;
-    }
+
     $("#btnAdd").click(function () {
         var collegeId = $("#college").val();
         var profession = $("#profession").val();

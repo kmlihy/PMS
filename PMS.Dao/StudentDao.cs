@@ -28,6 +28,45 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 查询联系电话是否存在
+        /// </summary>
+        /// <param name="phone">联系电话</param>
+        /// <returns>符合条件的记录条数</returns>
+        public int SelectByPhone(string phone)
+        {
+            string sql = "select * from T_Student where phone = @phone";
+            string[] param = { "@phone" };
+            object[] values = { phone};
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
+        /// <summary>
+        /// 查询邮箱是否存在
+        /// </summary>
+        /// <param name="email">邮箱</param>
+        /// <returns>符合条件的记录条数</returns>
+        public int SelectByEmail(string email)
+        {
+            string sql = "select * from T_Student where Email = @email";
+            string[] param = { "@email" };
+            object[] values = { email };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
+        /// <summary>
+        /// 查询该账号是否存在
+        /// </summary>
+        /// <param name="stuAccount">学号</param>
+        /// <returns>符合条件的记录条数</returns>
+        public int selectBystuId(string stuAccount)
+        {
+            string sql = "select count(stuAccount) from T_Student where stuAccount=@Account";
+            string[] param = { "@Account" };
+            object[] values = { stuAccount };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
+        /// <summary>
         /// 添加学生
         /// </summary>
         /// <param name="student">学生实体</param>
@@ -43,6 +82,7 @@ namespace PMS.Dao
             String[] values = { student.StuAccount, student.StuPwd, student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString() };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
+
         /// <summary>
         /// 删除学生
         /// </summary>
@@ -57,6 +97,7 @@ namespace PMS.Dao
             String[] values = { StuAccount.ToString() };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
+
         /// <summary>
         /// 更新学生
         /// </summary>
@@ -75,6 +116,21 @@ namespace PMS.Dao
             strSql.Append(" where stuAccount=@stuAccount");
             String[] param = { "@stuPwd", "@realName", "@sex", "@phone", "@Email", "@proId", "@stuAccount" };
             String[] values = { student.StuPwd, student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString(), student.StuAccount };
+            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+        }
+
+        /// <summary>
+        /// 更新学生密码
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <param name="stuPwd">学生密码</param>
+        /// <returns></returns>
+        public int UpdataPwd(string stuAccount, string stuPwd)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update T_Student set stuPwd=@stuPwd where stuAccount=@stuAccount");
+            String[] param = { "@stuPwd", "@stuAccount" };
+            String[] values = { stuPwd, stuAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
 
