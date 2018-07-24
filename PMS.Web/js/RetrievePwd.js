@@ -84,11 +84,7 @@
             dataType: 'text',
             success: function (succ) {
                 if (succ === "验证码已发送至邮箱") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                        onOk: function (v) {
-                            //window.location.href = "login.aspx";
-                        }
-                    });
+                    alert("233");
                 } else {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                         onOk: function (v) {

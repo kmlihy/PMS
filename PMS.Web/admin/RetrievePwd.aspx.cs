@@ -40,10 +40,12 @@ namespace PMS.Web.admin
             try
             {
                 string op = Context.Request["op"].ToString();
+                //string send = Context.Request["send"].ToString();
                 if (op == "send")
                 {
-                    Response.Write("验证码已发送至邮箱");
                     GenerateRandomCode();
+                    Response.Write("验证码已发送至邮箱");
+                    //Response.Write(Session["result"]);
                     Response.End();
                 }
                 account = Context.Request["account"].ToString();
@@ -52,14 +54,29 @@ namespace PMS.Web.admin
                 pwd = Context.Request["pwd"].ToString();
                 if (op=="change")
                 {
-                    if (code == Session["result"].ToString())
+                    if (!stuBll.selectBystuId(account))
+                    {
+                        Response.Write("账号不存在");
+                        Response.End();
+                    }
+                    else if(!stuBll.selectByEmail(email))
+                    {
+                        Response.Write("邮箱不存在");
+                        Response.End();
+                    }
+                    else if(code != Session["result"].ToString())
+                    {
+                        Response.Write("验证码错误");
+                        Response.End();
+                    }
+                    else if (stuBll.selectBystuId(account) && stuBll.selectByEmail(email) && code == Session["result"].ToString())
                     {
                         Response.Write("修改成功");
                         Response.End();
                     }
                     else
                     {
-                        Response.Write("验证码错误");
+                        Response.Write("修改失败");
                         Response.End();
                     }
                 }
