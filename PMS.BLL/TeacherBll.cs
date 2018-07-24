@@ -137,5 +137,39 @@ namespace PMS.BLL
             int row = dao.upload(dt);
             return row;
         }
+        /// <summary>
+        /// 根据联系电话查找是否以存在
+        /// </summary>
+        /// <param name="stuAccount">联系电话</param>
+        /// <returns>查找结果</returns>
+        public bool selectByPhone(string phone)
+        {
+            int count = dao.SelectByPhone(phone);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 根据邮箱查找是否以存在
+        /// </summary>
+        /// <param name="stuAccount">邮箱</param>
+        /// <returns>查找结果</returns>
+        public bool selectByEmail(string email)
+        {
+            int count = dao.SelectByEmail(email);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
