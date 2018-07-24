@@ -135,14 +135,19 @@ namespace PMS.Web.admin
             string college = Context.Request["college"].ToString();
             string email = Context.Request["email"].ToString();
             string phone = Context.Request["phone"].ToString();
-            //根据输入的账号获取学生信息
-            tea = teaBll.GetModel(account);
-            string strEmail = tea.Email;
-            string strPhone = tea.Phone;
-            if (email == strEmail && phone == strPhone)
+            //根据输入的邮箱、联系电话查找是否已存在
+            result = Result.添加失败;
+            //bool flagEmail = teaBll.selectByEmail(email);
+            bool flagEmail = teaBll.selectByEmail(email);
+            bool flagPhone = teaBll.selectByPhone(phone);
+            if (flagEmail)
             {
-                result = Result.添加失败;
-                Response.Write("此联系电话、邮箱已存在");
+                Response.Write("此邮箱已存在");
+                Response.End();
+            }
+            else if (flagPhone)
+            {
+                Response.Write("此联系电话已存在");
                 Response.End();
             }
             else
@@ -154,7 +159,7 @@ namespace PMS.Web.admin
                 tea.college = coll;
                 tea.Email = email;
                 tea.Phone = phone;
-                tea.TeaPwd = "123456";
+                tea.TeaPwd = Security.SHA256Hash("000000");
                 tea.TeaType = 2;
                 result = teaBll.Insert(tea);
                 if (result == Result.添加成功)

@@ -202,7 +202,7 @@ namespace PMS.Dao
         /// <returns>符合条件的记录条数</returns>
         public int SelectByPhone(string phone)
         {
-            string sql = "select * from T_Teacher where phone = @phone";
+            string sql = "select count(stuAccount) from T_Teacher where phone = @phone";
             string[] param = { "@phone" };
             object[] values = { phone };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
@@ -215,7 +215,7 @@ namespace PMS.Dao
         /// <returns>符合条件的记录条数</returns>
         public int SelectByEmail(string email)
         {
-            string sql = "select * from T_Teacher where Email = @email";
+            string sql = "select count(stuAccount) from T_Teacher where Email = @email";
             string[] param = { "@email" };
             object[] values = { email };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));

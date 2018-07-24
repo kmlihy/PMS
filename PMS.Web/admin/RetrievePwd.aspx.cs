@@ -48,12 +48,12 @@ namespace PMS.Web.admin
                     //Response.Write(Session["result"]);
                     Response.End();
                 }
-                account = Context.Request["account"].ToString();
-                email = Context.Request["email"].ToString();
-                code = Context.Request["code"].ToString();
-                pwd = Context.Request["pwd"].ToString();
                 if (op=="change")
                 {
+                    account = Context.Request["account"].ToString();
+                    email = Context.Request["email"].ToString();
+                    code = Context.Request["code"].ToString();
+                    pwd = Context.Request["pwd"].ToString();
                     if (!stuBll.selectBystuId(account))
                     {
                         Response.Write("账号不存在");
@@ -81,9 +81,9 @@ namespace PMS.Web.admin
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                //Response.Write(ex.Message);
             }
         }
     }

@@ -82,7 +82,6 @@
             </div>
         </div>
     </div>
-    <div><%= Session["result"] %></div>
 </body>
 <script src="../js/xcConfirm.js"></script>
 <script src="../js/retrievePwd.js"></script>
