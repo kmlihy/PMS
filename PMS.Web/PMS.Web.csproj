@@ -61,6 +61,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
+    <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
     <Content Include="admin\adminCenter.aspx" />
