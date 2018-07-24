@@ -78,9 +78,9 @@ namespace PMS.Dao
         public DataSet Select(int titleId)
         {
             StringBuilder strBuilder = new StringBuilder();
-            strBuilder.Append("slect * from V_Title");
-            strBuilder.Append("where titleId=@titleid");
-            string[] param = { "titleid" };
+            strBuilder.Append("select * from V_Title");
+            strBuilder.Append("where titleId=@titleId");
+            string[] param = { "titleId" };
             string[] values = {titleId.ToString() };
             return db.FillDataSet(strBuilder.ToString(), param, values);
         }
