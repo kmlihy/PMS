@@ -32,9 +32,12 @@
                                     <select class="form-control input-sm select-drop" id="college">
                                         <option value="">--请选择学院--</option>
                                         <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
-                                            { %>
-                                        <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                        <%} %>
+                                            {
+                                                if (collid == dsColl.Tables[0].Rows[i]["collegeId"].ToString()) {%>
+                                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>" selected="selected"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                                <%} else { %>
+                                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                        <%} } %>
                                     </select>
                                     <span id="validateColl"></span>
                                 </td>
@@ -121,19 +124,19 @@
                                     <input type="text" class="form-control input-sm input" id="telNum" name="usertel" placeholder="请输入电话号码" />
                                     <span id="validateTelNum"></span></td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 <td id="regLable">
                                     <label class="control-label">验证码:</label></td>
                                 <td>
                                     <input type="text" class="input-sm" id="regCode" name="telverify" placeholder="请输入验证码" />
                                     <button class="btn-primary btn-sm" type="button" id="getCode">获取验证码</button>
                                     <span id="validateCode"></span></td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                     <div class="form-group">
                         <div class="col-sm-offset-2">
-                            <button type="button" class="btn btn-info col-xs-10 col-sm-10 col-md-10 col-lg-11 col-xs-push-2 col-sm-push-2 col-md-push-1" id="btnAdd">立即注册</button>
+                            <button type="button" class="btn btn-info col-xs-9 col-sm-9 col-md-10 col-lg-10 col-xs-push-2 col-sm-push-1 col-md-push-1" id="btnAdd">立即注册</button>
                         </div>
                     </div>
                 </form>

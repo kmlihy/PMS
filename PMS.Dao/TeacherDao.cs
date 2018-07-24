@@ -30,6 +30,7 @@ namespace PMS.Dao
             DataSet ds = db.FillDataSet(cmdText, param, values);            
             return ds;
         }
+
         /// <summary>
         /// 向数据库添加一条教师数据
         /// </summary>
@@ -46,6 +47,7 @@ namespace PMS.Dao
             String[] values = { teacher.TeaAccount, teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString() };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
+
         /// <summary>
         /// 删除教师数据
         /// </summary>
@@ -60,6 +62,7 @@ namespace PMS.Dao
             String[] values = { TeaAccount.ToString() };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
+
         /// <summary>
         /// 更新教师数据
         /// </summary>
@@ -81,7 +84,22 @@ namespace PMS.Dao
             String[] values = { teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString(), teacher.TeaAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
-        
+
+        /// <summary>
+        /// 更新教师密码
+        /// </summary>
+        /// <param name="teaAccount">教师账号</param>
+        /// <param name="teaPwd">教师密码</param>
+        /// <returns></returns>
+        public int UpdataPwd(string teaAccount, string teaPwd)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update T_Teacher set teaPwd=@teaPwd where teaAccount=@teaAccount");
+            String[] param = { "@teaPwd", "@teaAccount" };
+            String[] values = { teaPwd, teaAccount };
+            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+        }
+
         /// <summary>
         /// 根据老师的账号取得实体对象
         /// </summary>
@@ -154,6 +172,7 @@ namespace PMS.Dao
                 throw;
             }
         }
+
         /// <summary>
         ///批量导入教师信息 
         /// </summary>
@@ -175,6 +194,7 @@ namespace PMS.Dao
             int row = db.BulkInsert(dt, tableName, list);
             return row;
         }
+
         /// <summary>
         /// 查询联系电话是否存在
         /// </summary>
@@ -187,6 +207,7 @@ namespace PMS.Dao
             object[] values = { phone };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
+
         /// <summary>
         /// 查询邮箱是否存在
         /// </summary>

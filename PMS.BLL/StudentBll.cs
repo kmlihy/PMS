@@ -36,57 +36,7 @@ namespace PMS.BLL
             }
             return null;
         }
-        /// <summary>
-        /// 根据学生账号查找是否以存在
-        /// </summary>
-        /// <param name="stuAccount">学生账号</param>
-        /// <returns></returns>
-        public bool selectBystuId(string stuAccount)
-        {
-            int count = dao.selectBystuId(stuAccount);
-            if (count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        /// <summary>
-        /// 根据联系电话查找是否以存在
-        /// </summary>
-        /// <param name="stuAccount">联系电话</param>
-        /// <returns>查找结果</returns>
-        public bool selectByPhone(string phone)
-        {
-            int count = dao.SelectByPhone(phone);
-            if (count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        /// <summary>
-        /// 根据邮箱查找是否以存在
-        /// </summary>
-        /// <param name="stuAccount">邮箱</param>
-        /// <returns>查找结果</returns>
-        public bool selectByEmail(string email)
-        {
-            int count = dao.SelectByEmail(email);
-            if (count > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
         /// <summary>
         /// 添加学生
         /// </summary>
@@ -104,6 +54,7 @@ namespace PMS.BLL
                 return Enums.OpResult.添加失败;
             }
         }
+
         /// <summary>
         /// 判断在另外一张表中是否有数据
         /// </summary>
@@ -123,6 +74,7 @@ namespace PMS.BLL
                 return Enums.OpResult.记录不存在;
             }
         }
+
         /// <summary>
         /// 删除学生
         /// </summary>
@@ -140,6 +92,7 @@ namespace PMS.BLL
                 return Enums.OpResult.删除失败;
             }
         }
+
         /// <summary>
         /// 更新学生
         /// </summary>
@@ -159,6 +112,25 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 更新学生密码
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <param name="stuPwd">学生密码</param>
+        /// <returns></returns>
+        public Enums.OpResult UpdataPwd(string stuAccount,string stuPwd)
+        {
+            int count = dao.UpdataPwd(stuAccount, stuPwd);
+            if (count > 0)
+            {
+                return Enums.OpResult.更新成功;
+            }
+            else
+            {
+                return Enums.OpResult.更新失败;
+            }
+        }
+
+        /// <summary>
         /// 得到学生实体对象
         /// </summary>
         /// <param name="TeaAccount">学生账号</param>
@@ -166,6 +138,60 @@ namespace PMS.BLL
         public Student GetModel(String stuAccount)
         {
             return dao.GetStudent(stuAccount);
+        }
+
+        /// <summary>
+        /// 根据学生账号查找是否已存在
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
+        public bool selectBystuId(string stuAccount)
+        {
+            int count = dao.selectBystuId(stuAccount);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 查找联系电话是否已存在
+        /// </summary>
+        /// <param name="stuAccount">联系电话</param>
+        /// <returns>查找结果</returns>
+        public bool selectByPhone(string phone)
+        {
+            int count = dao.SelectByPhone(phone);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 查找邮箱是否已存在
+        /// </summary>
+        /// <param name="stuAccount">邮箱</param>
+        /// <returns>查找结果</returns>
+        public bool selectByEmail(string email)
+        {
+            int count = dao.SelectByEmail(email);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
