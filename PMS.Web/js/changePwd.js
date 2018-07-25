@@ -33,9 +33,10 @@
                 if (succ == "更新成功") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                            window.close();
-                            history.back();
-                            sessionStorage.clear();
+                            //window.close();
+                            //history.back();
+                            //sessionStorage.clear();
+                            top.location = "login.aspx";
                         }
                     });
                 } else {
