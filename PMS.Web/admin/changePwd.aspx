@@ -9,6 +9,7 @@
     <title>修改密码</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
     <script src="../js/jquery-3.3.1.min.js "></script>
     <script src="../js/bootstrap.min.js "></script>
     <script src="../js/jquery.validate.min.js "></script>
@@ -16,6 +17,7 @@
     <script src="../js/messages_zh.min.js "></script>
     <script src="../js/lgd.js"></script>
     <script src="../js/changePwd.js"></script>
+    <script src="../js/xcConfirm.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -53,7 +55,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-5">
 
-                            <button type="submit" class="btn btn-success" id="postPwd">提交</button>
+                            <button type="button" class="btn btn-success" id="postPwd">提交</button>
                             <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
                         </div>
                     </div>
