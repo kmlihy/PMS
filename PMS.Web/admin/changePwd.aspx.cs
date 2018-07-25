@@ -13,56 +13,52 @@ namespace PMS.Web.admin
     public partial class changePwd : System.Web.UI.Page
     {
         protected string account;
-        protected string OLDPWD;//hash加密后的旧密码
-        protected string NEWPWD;//hash加密后的新密码
-        protected string state;//获取登录者
         protected Student stu;//获取学生实体
         protected Teacher admin;//获取登录管理员实体
         protected Teacher teacher;//获取登录教师实体
         protected string adminPwd;//管理员密码
         protected string teacherPwd;//教师密码
+        protected string teacherID;//教师工号
         protected string stuPwd;//学生密码
+        protected string stuID;//学号
         Security sec = new Security();
         TeacherBll teaBll = new TeacherBll();
         StudentBll stuBll = new StudentBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             int state = Convert.ToInt32(Session["state"].ToString());
-            string op = Context.Request["op"];
-            if(state == 1)
+            if (state == 1)
             {
                 Teacher tea = (Teacher)Session["loginuser"];
                 account = tea.TeaAccount;
             }
-            else if(state == 3)
+            else if (state == 3)
             {
                 Student stu = (Student)Session["loginuser"];
                 account = stu.StuAccount;
             }
-            if(op == "password")
+            string op = Request.Form["type"];
+            if(op == "change")
             {
-                changePassWord();
+                Change();
             }
         }
-        public void changePassWord()
+        public void Change()
         {
-            state = Session["state"].ToString();
-            string oldPwd = Context.Request["oldPwd"],
-                newPwd = Context.Request["newPwd"];
-            OLDPWD = Security.SHA256Hash(oldPwd);
-            if(state == "0" || state == "2")
+            string oldpwd = Request.Form["old"];
+            string newpwd = Request.Form["newP"];
+            int state = Convert.ToInt32(Session["state"].ToString());
+            string Old = Security.SHA256Hash(oldpwd);
+            string NewPwd = Security.SHA256Hash(newpwd);
+            if (state == 0||state == 2)
             {
                 admin = (Teacher)Session["user"];
-                adminPwd = admin.TeaPwd;
-                if(OLDPWD == adminPwd)
+                teacherPwd = admin.TeaPwd;
+                teacherID = admin.TeaAccount;
+                if (Old == teacherPwd)
                 {
-                    NEWPWD = newPwd;
-                    Teacher updatePwd = new Teacher()
-                    {
-                        TeaPwd = NEWPWD
-                    };
-                    Result update = teaBll.Updata(updatePwd);
-                    if(update == Result.更新成功)
+                    Result result = teaBll.UpdataPwd(teacherID, NewPwd);
+                    if (result == Result.更新成功)
                     {
                         Response.Write("更新成功");
                         Response.End();
@@ -74,19 +70,15 @@ namespace PMS.Web.admin
                     }
                 }
             }
-            else if(state == "1")
+            else if(state == 1)
             {
                 teacher = (Teacher)Session["loginuser"];
                 teacherPwd = teacher.TeaPwd;
-                if(OLDPWD == teacherPwd)
+                teacherID = teacher.TeaAccount;
+                if (Old == teacherPwd)
                 {
-                    NEWPWD = newPwd;
-                    Teacher updatePwd = new Teacher()
-                    {
-                        TeaPwd = NEWPWD
-                    };
-                    Result update = teaBll.Updata(updatePwd);
-                    if (update == Result.更新成功)
+                    Result result = teaBll.UpdataPwd(teacherID, NewPwd);
+                    if (result == Result.更新成功)
                     {
                         Response.Write("更新成功");
                         Response.End();
@@ -98,18 +90,15 @@ namespace PMS.Web.admin
                     }
                 }
             }
-
             else
             {
                 stu = (Student)Session["loginuser"];
                 stuPwd = stu.StuPwd;
-                if(OLDPWD == stuPwd)
+                stuID = stu.StuAccount;
+                if (Old == stuPwd)
                 {
-                    NEWPWD = newPwd;
-                    Student updateStu = new Student();
-                    updateStu.StuPwd = NEWPWD;
-                    Result update = stuBll.Updata(updateStu);
-                    if (update == Result.更新成功)
+                    Result result = stuBll.UpdataPwd(stuID, NewPwd);
+                    if (result == Result.更新成功)
                     {
                         Response.Write("更新成功");
                         Response.End();
