@@ -41,10 +41,10 @@
                     <div class="form-group">
                         <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">验证码:</label>
                         <div class="input-group  col-sm-3 teldiv">
-                            <input type="text" class="form-control input-sm  col-sm-2" id="code" name="telverify" placeholder="请输入验证码" />
-                            <div class="input-group-btn col-sm-pull-2">
+                            <input type="text" class="form-control input-sm" id="code" name="telverify" placeholder="请输入验证码" />
+                            <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm" type="button" id="getcode">获取验证码</button>
-                            </div>
+                            </span>
                         </div>
                         <span class="col-sm-3  col-sm-offset-5" id="validateCode"></span>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-5">
                             <button type="button" class="btn btn-default" id="sumbit">提交</button>
-                            <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
+                            <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" type="button" onclick="history.go(-1)">返回</button>
                         </div>
                     </div>
                 </form>
