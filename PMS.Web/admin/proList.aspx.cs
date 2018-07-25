@@ -34,15 +34,15 @@ namespace PMS.Web.admin
         public String search = "";
         string userType = "";
         protected string showmsg = "";
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
             //获取state 判断是分管理员还是超级管理员
             userType = Session["state"].ToString();
 
-            //添加专业
+
             string op = Context.Request.Form["op"];
+            //添加专业
             if (op == "add")
             {
                 saveProfession();
@@ -73,30 +73,54 @@ namespace PMS.Web.admin
                 colds = colbll.Select();
             }
         }
-        //添加专业
+        /// <summary>
+        ///  //添加专业
+        /// </summary>
+
         public void saveProfession()
         {
             College college = new College();
+            Profession pro = new Profession();
+            ProfessionBll probll = new ProfessionBll();
+            DataSet ds = new DataSet();
             string proName = Context.Request["proName"].ToString();
             int collegeId = Convert.ToInt32(Context.Request["collegeId"]);
-            Profession pro = new Profession();
-            college.ColID = collegeId;
-            pro.college = college;
-            pro.ProName = proName;
-            ProfessionBll probll = new ProfessionBll();
-            OpResult result = probll.Insert(pro);
-            if (result == OpResult.添加成功)
+
+            ds = probll.SelectByCollegeId(collegeId);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                Response.Write("添加成功");
-                Response.End();
-            }
-            else
-            {
-                Response.Write("添加失败");
-                Response.End();
+                if (proName == ds.Tables[0].Rows[i]["proName"].ToString())
+                {
+
+                    Response.Write("专业已存在，添加失败");
+                    Response.End();
+                }
+                else
+                {
+                    college.ColID = collegeId;
+                    pro.college = college;
+                    pro.ProName = proName;
+
+
+                    OpResult result = probll.Insert(pro);
+                    if (result == OpResult.添加成功)
+                    {
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
+                }
             }
         }
-        //判断是否能删除
+
+        /// <summary>
+        /// //判断是否能删除
+        /// </summary>
+        /// <returns>返回是否关联引用</returns>
         public Result IsdeleteCollege()
         {
             string delproId = Context.Request["DelProId"].ToString();
@@ -111,7 +135,10 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除
+
+        /// <summary>
+        /// //删除
+        /// </summary>
         public void delPro()
         {
             int proId = int.Parse(Context.Request["DelProId"].ToString());
@@ -137,7 +164,10 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //修改
+        /// <summary>
+        ///   //修改
+        /// </summary>
+
         public void saveChange()
         {
             College college = new College();
@@ -162,7 +192,11 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //列表数据获取
+
+        /// <summary>
+        /// //列表数据获取
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
         public void getPage(String strWhere)
         {
 
@@ -216,6 +250,10 @@ namespace PMS.Web.admin
                 ds = probll2.SelectBypage(tabuilder, out count);
             }
         }
+        /// <summary>
+        /// 查询语句格式化
+        /// </summary>
+        /// <returns>返回格式化后的查询语句</returns>
         public string Search()
         {
             try
@@ -240,7 +278,10 @@ namespace PMS.Web.admin
             }
             return search;
         }
-        //批量导入
+
+        /// <summary>
+        ///   //批量导入
+        /// </summary>
         public void upload()
         {
             try

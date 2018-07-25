@@ -128,7 +128,7 @@ namespace PMS.Web.admin
                 {
                     //下拉框保留查询条件
                     showstr = searchdrop;
-                    searchdrop = String.Format("proId={0} ", "'"+ searchdrop + "'");
+                    searchdrop = String.Format("proId={0} ", "'" + searchdrop + "'");
                 }
             }
             catch
@@ -153,7 +153,7 @@ namespace PMS.Web.admin
             {
                 ColID = stuCollege
             };
-            Profession stup = new Profession() { ProId = stuPro};
+            Profession stup = new Profession() { ProId = stuPro };
             Student EditorStu = new Student()
             {
                 StuAccount = stuNO,
@@ -166,6 +166,7 @@ namespace PMS.Web.admin
                 profession = stup
             };
             StudentBll editorStuBll = new StudentBll();
+
             Result editorResult = editorStuBll.Updata(EditorStu);
             if (editorResult == Result.更新成功)
             {
@@ -196,7 +197,8 @@ namespace PMS.Web.admin
                 {
                     ProId = proId
                 };
-                Student stu = new Student() {
+                Student stu = new Student()
+                {
                     StuAccount = stuAccount,
                     StuPwd = pwd,
                     RealName = realName,
@@ -206,16 +208,24 @@ namespace PMS.Web.admin
                     profession = prof
                 };
                 StudentBll stuBll = new StudentBll();
-                Result result = stuBll.Insert(stu);
-                if(result == Result.添加成功)
+                if (stuBll.selectBystuId(stuAccount) == true)
                 {
-                    Response.Write("添加成功");
+                    Response.Write("该学生已存在，添加失败");
                     Response.End();
                 }
                 else
                 {
-                    Response.Write("添加失败");
-                    Response.End();
+                    Result result = stuBll.Insert(stu);
+                    if (result == Result.添加成功)
+                    {
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
                 }
             }
             catch { }
@@ -268,10 +278,10 @@ namespace PMS.Web.admin
         {
             string stuId = Context.Request["stuId"].ToString();
             Result row = isDeleteStu();
-            if(row == Result.记录不存在)
+            if (row == Result.记录不存在)
             {
                 Result delResult = stuBll.delete(stuId);
-                if(delResult == Result.删除成功)
+                if (delResult == Result.删除成功)
                 {
                     Response.Write("删除成功");
                     Response.End();
