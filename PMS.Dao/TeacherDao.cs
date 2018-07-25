@@ -194,15 +194,16 @@ namespace PMS.Dao
             int row = db.BulkInsert(dt, tableName, list);
             return row;
         }
+        
         /// <summary>
-        /// 查询该账号是否存在
+        /// 查询该教师账号是否存在
         /// </summary>
-        /// <param name="stuAccount">学号</param>
+        /// <param name="stuAccount">工号</param>
         /// <returns>符合条件的记录条数</returns>
         public int selectByteaId(string teaAccount)
         {
-            string sql = "select count(teaAccount) from T_Teacher where teaAccount=@Account";
-            string[] param = { "@Account" };
+            string sql = "select count(teaAccount) from T_Student where teaAccount=@teaAccount";
+            string[] param = { "@teaAccount" };
             object[] values = { teaAccount };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
@@ -214,7 +215,7 @@ namespace PMS.Dao
         /// <returns>符合条件的记录条数</returns>
         public int SelectByPhone(string phone)
         {
-            string sql = "select count(stuAccount) from T_Teacher where phone = @phone";
+            string sql = "select count(teaAccount) from T_Teacher where phone = @phone";
             string[] param = { "@phone" };
             object[] values = { phone };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
@@ -227,10 +228,24 @@ namespace PMS.Dao
         /// <returns>符合条件的记录条数</returns>
         public int SelectByEmail(string email)
         {
-            string sql = "select count(stuAccount) from T_Teacher where Email = @email";
+            string sql = "select count(teaAccount) from T_Teacher where Email = @email";
             string[] param = { "@email" };
             object[] values = { email };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
+
+        /// <summary>
+        /// 查询该学院是否已设置过管理员
+        /// </summary>
+        /// <param name="collegeId">学院ID</param>
+        /// <returns>符合条件的记录条数</returns>
+        public int SelectByColl(int collegeId)
+        {
+            string sql = "select count(teaAccount) from T_Teacher where collegeId = @collegeId and type = 2";
+            string[] param = { "@collegeId" };
+            object[] values = { collegeId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
     }
 }

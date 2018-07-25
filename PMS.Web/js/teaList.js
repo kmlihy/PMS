@@ -6,7 +6,7 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 $(".file").on("change", "input[type='file']", function () {
     var filePath = $(this).val();
-    if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
+    if (filePath.indexOf("xls") !== -1 || filePath.indexOf("xlsx") !== -1) {
         $(".fileerrorTip").html("").hide();
         var arr = filePath.split('\\');
         var fileName = arr[arr.length - 1];
@@ -56,13 +56,13 @@ $(document).ready(function () {
     });
     //传值到后台事件
     function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null) {
+        if (sessionStorage.getItem("strWhere") === null) {
             window.location.href = "teaList.aspx?currentPage=" + cur;
         } else {
             window.location.href = "teaList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         }
     };
-    if (sessionStorage.getItem("countPage") == "1") {
+    if (sessionStorage.getItem("countPage") === "1") {
         $("#first").hide();
         $("#last").hide();
     }
@@ -123,12 +123,12 @@ $(document).ready(function () {
         var collegeId = $("#addselectcol").find("option:selected").val(),
             teaType = $("#addteaType").find("option:selected").val(),
             teaAccount = $("#teaAccount").val(),
-            pwd = $("#pwd").val(),
+            //pwd = $("#pwd").val(),
             teaName = $("#teaName").val(),
             sex = $("#sex").find("option:selected").text(),
             email = $("#email").val(),
             tel = $("#tel").val();
-        if (collegeId == "" || teaAccount == "" || pwd == "" || teaName == "" || email == "" || tel == "") {
+        if (collegeId === "" || teaAccount === "" /*|| pwd == ""*/ || teaName === "" || email === "" || tel === "") {
             alert("不能含有空项")
         }
         else {
@@ -139,7 +139,7 @@ $(document).ready(function () {
                     CollegeId: collegeId,
                     TeaType: teaType,
                     TeaAccount: teaAccount,
-                    Pwd: pwd,
+                    //Pwd: pwd,
                     TeaName: teaName,
                     Sex: sex,
                     Email: email,
@@ -148,7 +148,7 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "添加成功") {
+                    if (succ === "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
@@ -166,7 +166,7 @@ $(document).ready(function () {
         }
     })
     //密码框默认隐藏
-    $(".cstdteaPwd").hide();
+    //$(".cstdteaPwd").hide();
     //编辑验证
     //账号验证
     $("#chteaAccount").blur(function () {
@@ -237,7 +237,7 @@ $(document).ready(function () {
 
         //获得基础信息
         $("#chteaAccount").val($(this).parent().parent().find("#tdteaAccount").text().trim());
-        $("#chpwd").val($(this).parent().parent().find("#tdteaPwd").text().trim());
+        //$("#chpwd").val($(this).parent().parent().find("#tdteaPwd").text().trim());
         $("#chteaName").val($(this).parent().parent().find("#tdteaName").text().trim());
         $("#chemail").val($(this).parent().parent().find("#tdteaEmail").text().trim());
         $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim())
@@ -273,7 +273,7 @@ $(document).ready(function () {
         //展示保存按钮
         $("#chbtn").show();
         $(".bootstrap-select").show();
-        $("#tr-pwd").show();
+        //$("#tr-pwd").show();
 
     })
     //编辑完成保存
@@ -282,11 +282,11 @@ $(document).ready(function () {
         teaName = $(".chteaName").val(),
         teaEmail = $(".chemail").val(),
         teaPhone = $(".chtel").val(),
-        pwd = $(".chpwd").val(),
+        //pwd = $(".chpwd").val(),
         collegeId = $("#chselectcol").find("option:selected").val(),
         sex = $("#chsex").find("option:selected").text(),
         teaType = $("#chteaType").find("option:selected").val();
-        if (teaEmail == "" || teaPhone == "" || pwd == "" || collegeId == "-1") {
+        if (teaEmail === "" || teaPhone === "" /*|| pwd == ""*/ || collegeId === "-1") {
             alert("不能含有未填项");
         }
         else {
@@ -298,7 +298,7 @@ $(document).ready(function () {
                     TeaName: teaName,
                     TeaEmail: teaEmail,
                     TeaPhone: teaPhone,
-                    Pwd: pwd,
+                    //Pwd: pwd,
                     CollegeId: collegeId,
                     Sex: sex,
                     TeaType: teaType,
@@ -306,7 +306,7 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ == "修改成功") {
+                    if (succ === "修改成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
@@ -342,7 +342,7 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        if (succ == "删除成功") {
+                        if (succ === "删除成功") {
                             window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                                 onOk: function (v) {
                                     jump(1);

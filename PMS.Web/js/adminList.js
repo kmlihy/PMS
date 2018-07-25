@@ -204,7 +204,6 @@ $(document).ready(function () {
     $("#saveEdit").click(function () {
         var Account = $("#Eaccount").val();
         var Name = $("#Ename").val();
-        var Pwd = $("#Epwd").val();
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
         var flag = sessionStorage.getItem("flag");
@@ -220,14 +219,7 @@ $(document).ready(function () {
             $("#validateNameE").html("姓名不能为空！").css("color", "red");
         } else if (!txtName.test(Name)) {
             $("#validateNameE").html("姓名只能包括汉子、英文字符！").css("color", "red");
-        }
-        //else if (Pwd === "") {
-        //    $("#validateNameE").html("")
-        //    $("#validatePwd").html("密码为空！").css("color", "red");
-        //} else if (!txtPwd.test(Pwd)) {
-        //    $("#validatePwd").html("密码不合法").css("color", "red");
-        //}
-        else if (Phone === "") {
+        }else if (Phone === "") {
             $("#validatePwd").html("")
             $("#validateTelE").html("联系电话不能为空！").css("color", "red");
         } else if (!TelNum.test(Phone)) {
@@ -244,7 +236,6 @@ $(document).ready(function () {
                 data: {
                     Account: Account,
                     Name: Name,
-                    Pwd: Pwd,
                     Sex: Sex,
                     College: College,
                     Email: Email,

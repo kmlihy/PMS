@@ -165,6 +165,24 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 根据教师账号查找是否已存在
+        /// </summary>
+        /// <param name="teaAccount">教师账号</param>
+        /// <returns></returns>
+        public bool selectByteaId(string teaAccount)
+        {
+            int count = dao.selectByteaId(teaAccount);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 查找联系电话是否已存在
         /// </summary>
         /// <param name="stuAccount">联系电话</param>
@@ -206,6 +224,24 @@ namespace PMS.BLL
         public bool selectByEmail(string email)
         {
             int count = dao.SelectByEmail(email);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 查询该学院是否已设置过管理员
+        /// </summary>
+        /// <param name="collegeId">学院ID</param>
+        /// <returns>查找结果</returns>
+        public bool selectByColl(int collegeId)
+        {
+            int count = dao.SelectByColl(collegeId);
             if (count > 0)
             {
                 return true;
