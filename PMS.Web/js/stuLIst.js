@@ -258,7 +258,7 @@ $(document).ready(function () {
     })
     //电话验证
     $("#phone").blur(function () {
-        teaAccount = $("#tel").val();
+        teaAccount = $("#phone").val();
         var pattern = /^1[34578]\d{9}$/;
         if (!pattern.test(teaAccount)) {
             $("#stu_phone").html("请输入正确的手机号码").css("color", "red")
@@ -298,6 +298,12 @@ $(document).ready(function () {
                 success: function (succ) {
                     if (succ == "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    } else if (succ == "添加失败") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
                                 jump(1);
                             }
