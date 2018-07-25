@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PMS.BLL;
 using System.Web.Security;
+using PMS.Model;
 
 namespace PMS.Web.admin
 {
@@ -19,7 +20,7 @@ namespace PMS.Web.admin
                 string pwd = Request.Form["pwd"].ToString();
                 TeacherBll bll = new TeacherBll();
                 string roles = "administrator";
-                Model.Teacher teacher = bll.Login(teaAccount, pwd);
+                Teacher teacher = bll.Login(teaAccount, Security.SHA256Hash(pwd));
                 if (teacher!=null)
                 {
                     if(teacher.TeaType == 0)
