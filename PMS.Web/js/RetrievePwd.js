@@ -73,12 +73,22 @@
 
     $("#getcode").click(function () {
         var code = $("#code").val();
+        var email = $("#email").val()
         var send = "send";
+
+        var disabled = $("#getcode").attr("disabled");
+        if (disabled) {
+            return false;
+        }
+        if (email == "" || email == null) {
+            window.wxc.xcConfirm("请填写正确的邮箱", window.wxc.xcConfirm.typeEnum.error);
+            return false;
+        }  
         $.ajax({
             type: 'Post',
             url: 'RetrievePwd.aspx',
             data: {
-                code: code,
+                email: email,
                 op:send
             },
             dataType: 'text',
@@ -86,7 +96,7 @@
                 if (succ === "验证码已发送至邮箱") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                            //window.location.href = "login.aspx";
+                            settime(); 
                         }
                     });
                 } else {
@@ -98,29 +108,23 @@
                 }
             }
         });
-    })
 
-    $(function () {
-        var btn = $("#getcode");
-        var code = $("#code").val();
-        $(function () {
-            btn.click(settime);
-        })
         var countdown = 5;
+        var _generate_code = $("#getcode");
         function settime() {
             if (countdown == 0) {
-                btn.attr("disabled", false);
-                btn.html("获取验证码");
-                btn.removeClass("disabled");
+                _generate_code.attr("disabled", false);
+                _generate_code.html("获取验证码");
                 countdown = 5;
-                return;
+                return false;
             } else {
-                btn.addClass("disabled");
-                btn.attr("disabled", true);
-                btn.html("重新发送(" + countdown + ")");
+                $("#getcode").attr("disabled", true);
+                _generate_code.html("重新发送(" + countdown + ")");
                 countdown--;
             }
-            setTimeout(settime, 1000);
-        }
+            setTimeout(function () {
+                settime();
+            }, 1000);
+        }  
     })
 })

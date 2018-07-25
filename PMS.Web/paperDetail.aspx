@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 
 <body>
@@ -31,7 +32,7 @@
                 <label for="text">选题人数上限：<%=titleId.Limit %></label>
                 <span>|</span>
                 <label for="text">已选人数：<%=titleId.Selected %></label>
-                <a href="PaperDtailStu.aspx?titleId=<%=titleid %>&op=selectTitle" class="btn btn-primary navbar-btn selectTitle" id="btn_ToPaperDtailStu">选定题目</a>
+                <a class="btn btn-primary navbar-btn selectTitle" id="btn_ToPaperDtailStu">选定题目</a>
             </div>
         </div>
     </div>
@@ -40,4 +41,5 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/paperDetail.js"></script>
+<script src="js/xcConfirm.js"></script>
 </html>

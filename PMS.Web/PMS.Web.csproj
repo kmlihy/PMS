@@ -61,6 +61,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
+    <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
     <Content Include="admin\adminCenter.aspx" />
@@ -110,6 +112,7 @@
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrapValidator.min.js" />
     <Content Include="js\branchList.js" />
+    <Content Include="js\changePwd.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="js\jquery.validate.min.js" />

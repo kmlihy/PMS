@@ -74,16 +74,16 @@ namespace PMS.Web
             string phone = Context.Request["phone"].ToString();
             //根据输入的邮箱、联系电话查找是否已存在
             result = Result.添加失败;
-            bool flagPhone = stuBll.selectByPhone(phone);
             bool flagEmail = stuBll.selectByEmail(email);
-            if (flagPhone)
-            {
-                Response.Write("此联系电话已存在");
-                Response.End();
-            }
-            else if (flagEmail)
+            bool flagPhone = stuBll.selectByPhone(phone);
+            if (flagEmail)
             {
                 Response.Write("此邮箱已存在");
+                Response.End();
+            }
+            else if (flagPhone)
+            {
+                Response.Write("此联系电话已存在");
                 Response.End();
             }
             else

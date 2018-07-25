@@ -181,7 +181,23 @@ namespace PMS.BLL
                 return false;
             }
         }
-
+        /// <summary>
+        /// 根据学生账号查找是否已存在
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
+        public bool selectByteaId(string teaAccount)
+        {
+            int count = dao.selectByteaId(teaAccount);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 查找邮箱是否已存在
         /// </summary>
