@@ -56,7 +56,10 @@ namespace PMS.Web.admin
             }
             colds = colbll.Select();
         }
-        //批量导入
+
+        /// <summary>
+        /// 批量导入
+        /// </summary>
         public void upload()
         {
             try
@@ -127,7 +130,11 @@ namespace PMS.Web.admin
                 this.Response.Write(ex.Message);
             }
         }
-        //判断是否能删除
+
+        /// <summary>
+        /// 判断是否能删除
+        /// </summary>
+        /// <returns>查询结果</returns>
         public Result IsdeleteCollege()
         {
             string delteaAccount = Context.Request["TeaAccount"].ToString();
@@ -142,7 +149,10 @@ namespace PMS.Web.admin
             }
             return row;
         }
-        //删除执行
+
+        /// <summary>
+        /// 删除执行
+        /// </summary>
         public void delTeal()
         {
             string delteaAccount = Context.Request["TeaAccount"].ToString();
@@ -168,65 +178,86 @@ namespace PMS.Web.admin
                 Response.End();
             }
         }
-        //添加教师
+
+        /// <summary>
+        /// 添加教师
+        /// </summary>
         public void saveTeacher()
         {
-            College college = new College();
-            int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
-            int teaType = Convert.ToInt32(Context.Request["TeaType"]);
             string teaAccount = Context.Request["TeaAccount"].ToString();
-            string pwd = Context.Request["Pwd"].ToString();
-            string teaName = Context.Request["TeaName"].ToString();
-            string sex = Context.Request["Sex"].ToString();
-            string email = Context.Request["Email"].ToString();
-            string tel = Context.Request["Tel"].ToString();
-            Teacher tea = new Teacher();
-            tea.college = college;
-            college.ColID = collegeId;
-            tea.TeaType = teaType;
-            tea.TeaAccount = teaAccount;
-            tea.TeaPwd = pwd;
-            tea.TeaName = teaName;
-            tea.Sex = sex;
-            tea.Email = email;
-            tea.Phone = tel;
-            TeacherBll teabll = new TeacherBll();
-            OpResult result = teabll.Insert(tea);
-            if (result == OpResult.添加成功)
-            {
-                Response.Write("添加成功");
-                Response.End();
+            if (!teabll.selectByteaId(teaAccount)) { 
+                int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+                int teaType = Convert.ToInt32(Context.Request["TeaType"]);
+                //string pwd = Context.Request["Pwd"].ToString();
+                string teaName = Context.Request["TeaName"].ToString();
+                string sex = Context.Request["Sex"].ToString();
+                string email = Context.Request["Email"].ToString();
+                string tel = Context.Request["Tel"].ToString();
+                if (teabll.selectByEmail(email))
+                {//根据输入的邮箱查找是否已存在
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
+                else if (teabll.selectByPhone(tel))
+                {//根据输入的联系电话查找是否已存在
+                    Response.Write("此联系电话已存在");
+                    Response.End();
+                }
+                else
+                {
+                    Teacher tea = new Teacher();
+                    tea.college.ColID = collegeId;
+                    tea.TeaType = teaType;
+                    tea.TeaAccount = teaAccount;
+                    tea.TeaPwd = Security.SHA256Hash("000000");
+                    tea.TeaName = teaName;
+                    tea.Sex = sex;
+                    tea.Email = email;
+                    tea.Phone = tel;
+                    OpResult result = teabll.Insert(tea);
+                    if (result == OpResult.添加成功)
+                    {
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
+                }
             }
             else
             {
-                Response.Write("添加失败");
+                Response.Write("此账号已存在");
                 Response.End();
             }
         }
-        //修改
+
+        /// <summary>
+        /// 修改
+        /// </summary>
         public void saveChange()
         {
-            College college = new College();
             string teaName = Context.Request["TeaName"].ToString();
             string teaAccount = Context.Request["TeaAccount"].ToString();
             string teaEmal = Context.Request["TeaEmail"].ToString();
             string teaPhone = Context.Request["TeaPhone"].ToString();
-            string pwd = Context.Request["Pwd"].ToString();
+            //string pwd = Context.Request["Pwd"].ToString();
             string sex = Context.Request["Sex"].ToString();
             int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
             int teaType = Convert.ToInt32(Context.Request["TeaType"]);
-
-            college.ColID = collegeId;
+            
             Teacher tea = new Teacher();
-            tea.college = college;
+            TeacherBll teabll = new TeacherBll();
+            tea.college.ColID = collegeId;
             tea.TeaAccount = teaAccount;
-            tea.TeaPwd = pwd;
+            tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
             tea.TeaName = teaName;
             tea.Phone = teaPhone;
             tea.Email = teaEmal;
             tea.Sex = sex;
             tea.TeaType = teaType;
-            TeacherBll teabll = new TeacherBll();
             OpResult result = teabll.Updata(tea);
             if (result == OpResult.更新成功)
             {
@@ -240,7 +271,11 @@ namespace PMS.Web.admin
             }
 
         }
-        //获取信息
+
+        /// <summary>
+        /// 获取信息
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -307,12 +342,11 @@ namespace PMS.Web.admin
                 ds = pro.SelectBypage(tabuilder, out count);
             }
         }
-
-        //public void changepage() {
-        //    string currentPage = Request.QueryString["currentPage"];
-        //    getCurrentPage = int.Parse(currentPage);           
-        //}
-
+        
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns>查询条件</returns>
         public string Search()
         {
             try

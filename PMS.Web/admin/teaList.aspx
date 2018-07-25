@@ -90,9 +90,9 @@
                                 <td class="text-center" id="tdteaEmail">
                                     <%=ds.Tables[0].Rows[i]["Email"].ToString() %>
                                 </td>
-                                <td class="text-center cstdteaPwd" id="tdteaPwd">
+                                <!--<td class="text-center cstdteaPwd" id="tdteaPwd">
                                     <%=ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
-                                </td>
+                                </td>-->
                                 <td class="text-center" id="tdteatype">
                                     <%=((ds.Tables[0].Rows[i]["teaType"].ToString()=="1")?"教师":"分院管理员")%>
                                 </td>
@@ -234,12 +234,12 @@
                                         <span id="validateAccount"></span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!--<tr>
                                     <td class="teaLable">
                                         <label class="text-span">密码</label></td>
                                     <td>
                                         <input class="form-control" type="password" id="pwd" /></td>
-                                </tr>
+                                </tr>-->
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">姓名</label></td>
@@ -329,12 +329,12 @@
                                         <span id="chValitateAccount"></span>
                                     </td>
                                 </tr>
-                                <tr id="tr-pwd">
+                                <!--<tr id="tr-pwd">
                                     <td class="teaLable">
                                         <label class="text-span">密码:</label></td>
                                     <td>
                                         <input class="form-control chpwd" type="password" id="chpwd" /></td>
-                                </tr>
+                                </tr>-->
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">姓名:</label></td>
