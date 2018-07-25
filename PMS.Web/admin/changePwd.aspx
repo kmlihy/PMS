@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="changePwd.aspx.cs" Inherits="PMS.Web.admin.changePwd" %>
-
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,14 +10,6 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/xcConfirm.css" />
-    <script src="../js/jquery-3.3.1.min.js "></script>
-    <script src="../js/bootstrap.min.js "></script>
-    <script src="../js/jquery.validate.min.js "></script>
-    <script src="../js/additional-methods.js"></script>
-    <script src="../js/messages_zh.min.js "></script>
-    <script src="../js/lgd.js"></script>
-    <script src="../js/changePwd.js"></script>
-    <script src="../js/xcConfirm.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -63,5 +55,15 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=Session["state"] %>" id="state" />
 </body>
+    <script src="../js/jquery-3.3.1.min.js "></script>
+    <script src="../js/bootstrap.min.js "></script>
+    <script src="../js/jquery.validate.min.js "></script>
+    <script src="../js/additional-methods.js"></script>
+    <script src="../js/messages_zh.min.js "></script>
+    <%--<script src="../js/lgd.js"></script>--%>
+    <script src="../js/changePwd.js"></script>
+    <script src="../js/xcConfirm.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
 </html>

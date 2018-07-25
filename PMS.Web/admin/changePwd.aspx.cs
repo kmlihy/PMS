@@ -63,11 +63,11 @@ namespace PMS.Web.admin
                         Response.Write("更新成功");
                         Response.End();
                     }
-                    else
-                    {
-                        Response.Write("更新失败");
-                        Response.End();
-                    }
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
                 }
             }
             else if(state == 1)
@@ -83,11 +83,11 @@ namespace PMS.Web.admin
                         Response.Write("更新成功");
                         Response.End();
                     }
-                    else
-                    {
-                        Response.Write("更新失败");
-                        Response.End();
-                    }
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
                 }
             }
             else
@@ -103,11 +103,11 @@ namespace PMS.Web.admin
                         Response.Write("更新成功");
                         Response.End();
                     }
-                    else
-                    {
-                        Response.Write("更新失败");
-                        Response.End();
-                    }
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
                 }
             }
         }
