@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PMS.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,7 +31,7 @@ namespace PMS.Web
                 switch (usertype) {
                     case "teacher":
                         BLL.TeacherBll tdao = new BLL.TeacherBll();
-                        Model.Teacher tea = tdao.Login(userName, pwd);
+                        Model.Teacher tea = tdao.Login(userName, Security.SHA256Hash(pwd));
                         if (tea == null)
                         {
                             loginstate = 0;
@@ -50,7 +51,7 @@ namespace PMS.Web
                         break;
                     case "student":
                         BLL.StudentBll sdao = new BLL.StudentBll();
-                        Model.Student stu = sdao.Login(userName, pwd);
+                        Model.Student stu = sdao.Login(userName, Security.SHA256Hash(pwd));
                         if (stu == null)
                         {
                             loginstate = 0;

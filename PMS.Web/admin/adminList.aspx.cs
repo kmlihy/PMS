@@ -134,15 +134,29 @@ namespace PMS.Web.admin
             string sex = Context.Request["sex"].ToString();
             string college = Context.Request["college"].ToString();
             string email = Context.Request["email"].ToString();
+            result = Result.添加失败;
             string phone = Context.Request["phone"].ToString();
-            //根据输入的账号获取学生信息
-            tea = teaBll.GetModel(account);
-            string strEmail = tea.Email;
-            string strPhone = tea.Phone;
-            if (email == strEmail && phone == strPhone)
+            if (teaBll.selectByColl(Convert.ToInt32(college)))
             {
-                result = Result.添加失败;
-                Response.Write("此联系电话、邮箱已存在");
+                Response.Write("该学院已设置过分院管理员");
+                Response.End();
+            }
+            else if (teaBll.selectByteaId(account))
+            {
+                if (teaBll.GetModel(account).TeaType == 2)
+                {
+                    Response.Write("该教师已为分院管理员");
+                    Response.End();
+                }
+            }
+            else if (teaBll.selectByEmail(email))
+            {//根据输入的邮箱查找是否已存在
+                Response.Write("此邮箱已存在");
+                Response.End();
+            }
+            else if (teaBll.selectByPhone(phone))
+            {//根据输入的联系电话查找是否已存在
+                Response.Write("此联系电话已存在");
                 Response.End();
             }
             else
@@ -154,7 +168,7 @@ namespace PMS.Web.admin
                 tea.college = coll;
                 tea.Email = email;
                 tea.Phone = phone;
-                tea.TeaPwd = "123456";
+                tea.TeaPwd = Security.SHA256Hash("000000");
                 tea.TeaType = 2;
                 result = teaBll.Insert(tea);
                 if (result == Result.添加成功)
@@ -174,31 +188,35 @@ namespace PMS.Web.admin
         /// </summary>
         public void editAdmin()
         {
+            result = Result.更新失败;
             string account = Context.Request["Account"].ToString();
             string name = Context.Request["Name"].ToString();
-            string pwd = Context.Request["Pwd"].ToString();
             string sex = Context.Request["Sex"].ToString();
-            string college = Context.Request["College"].ToString();
+            int college = Convert.ToInt32(Context.Request["College"].ToString());
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
-            //根据输入的账号获取管理员信息
-            tea = teaBll.GetModel(account);
-            string strEmail = tea.Email;
-            string strPhone = tea.Phone;
-            if (email == strEmail && phone == strPhone)
+            if (teaBll.selectByColl(college))
             {
-                result = Result.更新失败;
-                Response.Write("此联系电话、邮箱已存在");
+                Response.Write("该学院已设置过分院管理员");
+                Response.End();
+            }
+            else if (teaBll.selectByEmail(email))
+            {//根据输入的邮箱查找是否已存在
+                Response.Write("此邮箱已存在");
+                Response.End();
+            }
+            else if (teaBll.selectByPhone(phone))
+            {//根据输入的联系电话查找是否已存在
+                Response.Write("此联系电话已存在");
                 Response.End();
             }
             else
             {
                 tea.TeaAccount = account;
                 tea.TeaName = name;
-                tea.TeaPwd = pwd;
+                tea.TeaPwd = teaBll.GetModel(account).TeaPwd;
                 tea.Sex = sex;
-                coll.ColID = int.Parse(college);
-                tea.college = coll;
+                tea.college.ColID = college;
                 tea.Email = email;
                 tea.Phone = phone;
                 tea.TeaType = 2;

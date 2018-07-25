@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -18,6 +19,9 @@ namespace PMS.Web.admin
         protected string email;
         protected string code;
         protected string pwd;
+        protected string user;
+        StudentBll stuBll = new StudentBll();
+        TeacherBll teacherBll = new TeacherBll();
         /// <summary>
         /// 6位数字验证码
         /// </summary>
@@ -36,55 +40,131 @@ namespace PMS.Web.admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            StudentBll stuBll = new StudentBll();
             try
             {
                 string op = Context.Request["op"].ToString();
-                //string send = Context.Request["send"].ToString();
                 if (op == "send")
                 {
-                    GenerateRandomCode();
-                    Response.Write("验证码已发送至邮箱");
-                    //Response.Write(Session["result"]);
-                    Response.End();
-                }
-                account = Context.Request["account"].ToString();
-                email = Context.Request["email"].ToString();
-                code = Context.Request["code"].ToString();
-                pwd = Context.Request["pwd"].ToString();
-                if (op=="change")
-                {
-                    if (!stuBll.selectBystuId(account))
+                    email = Context.Request["email"].ToString();
+                    if (email==null||email=="")
                     {
-                        Response.Write("账号不存在");
-                        Response.End();
-                    }
-                    else if(!stuBll.selectByEmail(email))
-                    {
-                        Response.Write("邮箱不存在");
-                        Response.End();
-                    }
-                    else if(code != Session["result"].ToString())
-                    {
-                        Response.Write("验证码错误");
-                        Response.End();
-                    }
-                    else if (stuBll.selectBystuId(account) && stuBll.selectByEmail(email) && code == Session["result"].ToString())
-                    {
-                        Response.Write("修改成功");
+                        Response.Write("邮箱未填写");
                         Response.End();
                     }
                     else
                     {
-                        Response.Write("修改失败");
+                        GenerateRandomCode();
+                        sendMail(email);
+                        Response.Write("验证码已发送至邮箱");
                         Response.End();
+                    }
+                }
+                if (op=="change")
+                {
+                    account = Context.Request["account"].ToString();
+                    email = Context.Request["email"].ToString();
+                    code = Context.Request["code"].ToString();
+                    pwd = Context.Request["pwd"].ToString();
+                    user = Context.Request["user"].ToString();
+                    switch (user)
+                    {
+                        case "student": student();break;
+                        case "teacher": teacher(); break;
                     }
                 }
             }
             catch
             {
-
             }
+        }
+        private void student()
+        {
+            Student stu = stuBll.GetModel(account);
+            if (!stuBll.selectBystuId(account))
+            {
+                Response.Write("账号不存在");
+                Response.End();
+            }
+            else if (email != stu.Email)
+            {
+                Response.Write("邮箱错误");
+                Response.End();
+            }
+            else if (code != Session["result"].ToString() || Session["result"].ToString() == "")
+            {
+                Response.Write("验证码错误");
+                Response.End();
+            }
+            else if (stuBll.selectBystuId(account) && email == stu.Email && code == Session["result"].ToString())
+            {
+
+                result = stuBll.UpdataPwd(account, Security.SHA256Hash(pwd));
+                if (result == Result.更新成功)
+                {
+                    Response.Write("修改成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("修改失败");
+                    Response.End();
+                }
+            }
+        }
+        private void teacher()
+        {
+            Teacher tea = teacherBll.GetModel(account);
+            if (!teacherBll.selectByteaId(account))
+            {
+                Response.Write("账号不存在");
+                Response.End();
+            }
+            else if (email != tea.Email)
+            {
+                Response.Write("邮箱错误");
+                Response.End();
+            }
+            else if (code != Session["result"].ToString() || Session["result"].ToString() == "")
+            {
+                Response.Write("验证码错误");
+                Response.End();
+            }
+            else if (stuBll.selectBystuId(account) && email == tea.Email && code == Session["result"].ToString())
+            {
+                result = teacherBll.UpdataPwd(account, Security.SHA256Hash(pwd));
+                if (result == Result.更新成功)
+                {
+                    Response.Write("修改成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("修改失败");
+                    Response.End();
+                }
+                Response.End();
+            }
+        }
+        /// <summary>
+        /// 发送验证码到邮箱
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="mail"></param>
+        private void sendMail(string mail)
+        {
+            string addresser = "user@idaobin.com";
+            string emailPwd = "daobin@123";
+            string title = "云南工商学院毕业选题系统";
+            string content = "您的验证码为："+Session["result"];
+            MailMessage message = new MailMessage(addresser, mail);
+            message.Subject = title;
+            message.Body = content;
+            message.Priority = MailPriority.High;
+            SmtpClient client = new SmtpClient("smtp.mxhichina.com", 25);
+            client.EnableSsl = false;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(addresser, emailPwd);
+            client.Send(message);
         }
     }
 }

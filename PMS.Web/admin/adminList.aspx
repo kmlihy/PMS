@@ -76,9 +76,6 @@
                             <td class="text-center" id="teaName">
                                 <%= ds.Tables[0].Rows[i]["teaName"].ToString() %>
                             </td>
-                            <%--<td class="text-center" id="teaPwd">
-                        <%= ds.Tables[0].Rows[i]["teaPwd"].ToString() %>
-                    </td>--%>
                             <td class="text-center" id="sex">
                                 <%= ds.Tables[0].Rows[i]["sex"].ToString() %>
                             </td>

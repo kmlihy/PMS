@@ -23,7 +23,7 @@
         var confirmPwd = $("#confirmPwd").val();
         var email = $("#email").val();
         var phone = $("#telNum").val();
-        var code = $("#regCode").val();
+        //var code = $("#regCode").val();
         //alert(collegeId+":"+profession+":"+account+":"+name+":"+sex+":"+pwd+":"+confirmPwd+":"+email+":"+telNum+":"+code)
         if (collegeId === "") {
             $("#validateColl").html("请选择学院！").css({ "color": "red", "font-size": "14px"});
@@ -63,9 +63,10 @@
             $("#validateTel").html("联系电话不能为空！").css({ "color": "red", "font-size": "14px" });
         } else if (!TelNum.test(phone)) {
             $("#validateTel").html("联系电话不合法！").css({ "color": "red", "font-size": "14px" });
-        } else if (code === "") {
-            $("#validateCode").html("验证码不能为空！").css({ "color": "red", "font-size": "14px" });
         }
+        //else if (code === "") {
+        //    $("#validateCode").html("验证码不能为空！").css({ "color": "red", "font-size": "14px" });
+        //}
         //TODO 获取发送的验证码
         //else if (code !== "123") {
         //    $("#validateCode").html("验证码错误！").css("color", "red");
@@ -97,8 +98,7 @@
                     } else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
-                                window.location.href = "reg.aspx";
-                                sessionStorage.setItem("college", "");
+                                //window.location.href = "login.aspx";
                             }
                         });
                     }
