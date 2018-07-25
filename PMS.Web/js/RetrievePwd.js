@@ -56,7 +56,7 @@
                     if (succ === "修改成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
-                                //window.location.href = "login.aspx";
+                                top.location = "login.aspx";
                             }
                         });
                     } else {
