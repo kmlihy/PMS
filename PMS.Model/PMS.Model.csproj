@@ -49,6 +49,25 @@
     <Compile Include="Teacher.cs" />
     <Compile Include="Title.cs" />
     <Compile Include="TitleRecord.cs" />
+    <Compile Include="T_Title.cs" />
+    <Compile Include="T_TitleRecord.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\PMS.Model.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\PMS.Model.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\PMS.Model.csproj.CoreCompileInputs.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\PMS.Model.dll" />
+    <Content Include="bin\Debug\PMS.Model.pdb" />
+    <Content Include="obj\Debug\PMS.Model.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PMS.Model.dll" />
+    <Content Include="obj\Debug\PMS.Model.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

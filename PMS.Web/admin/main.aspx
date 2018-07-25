@@ -30,7 +30,7 @@
                         </a>
                         <div class="dropdown pull-right">
                             <button class="btn btn-primary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
-                                <b>bootstrap</b>
+                                <b>你好，<%=realName %>&nbsp</b>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">

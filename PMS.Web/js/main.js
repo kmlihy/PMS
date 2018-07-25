@@ -48,12 +48,17 @@ window.onresize = function () {
     x = document.getElementById("iframe");
     x.height = h
 }
-
+//点击右上角菜单里的菜单项时
 $(".sidebarclick").click(function () {
     gethref($(this).attr("href"));
+    $(".dropdown-menu").hide();
     return false
 });
-
+//点击右上角菜单时展开菜单项
+$("#dropdownMenu1").click(function () {
+        $(".dropdown-menu").toggle(1000);
+    return true
+});
 function logout() {
     //alert("退出登录");
     $.ajax({

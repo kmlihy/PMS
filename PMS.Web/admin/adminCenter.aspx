@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminCenter.aspx.cs" Inherits="PMS.Web.admin.adminCenter" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Debug="true" CodeBehind="adminCenter.aspx.cs" Inherits="PMS.Web.admin.adminCenter" %>
 
     <!DOCTYPE html>
 
@@ -14,7 +14,7 @@
     <body>
         <form id="form1" runat="server" action="adminCenter.aspx" method="post">
             <div class="box">
-                <div class="center col-xs-8 col-xm-5 col-md-6 col-lg-4 col-xs-push-2 col-sm-push-2 col-md-push-3 col-lg-push-4">
+                <div class="center col-xs-8 col-xm-8 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-3 col-lg-push-4">
                     <table class="table table-hover">
                         <tbody>
                             <tr>

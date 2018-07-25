@@ -14,6 +14,7 @@ namespace PMS.Web.admin
     {
         protected int State;
         protected string url;
+        protected string realName;
         TitleRecordBll titleRecordBll = new TitleRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,16 +28,21 @@ namespace PMS.Web.admin
                 else if(State == 1)
                 {
                     url = "teaCenter.aspx";
+                    Teacher teacher = (Teacher)Session["loginuser"];
+                    realName = teacher.TeaName;
                 }
                 else if (State == 2)
                 {
                     url = "adminCenter.aspx";
+                    Teacher teacher = (Teacher)Session["user"];
+                    realName = teacher.TeaName;
                 }
                 else if (State == 3)
                 {
                     url = "../stuCenter.aspx";
                     Student student = (Student)Session["loginuser"];
                     string account = student.StuAccount;
+                    realName = student.RealName;
                 }
                 //Response.Write(count);
                 string op = Request.QueryString["op"].ToString();
