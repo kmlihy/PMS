@@ -109,7 +109,14 @@ $(document).ready(function () {
                                 jump(1);
                             }
                         });
-                    } else {
+                    } else if (succ == "添加失败") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
+                    else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
                                 jump(1);
