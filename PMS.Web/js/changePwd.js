@@ -33,6 +33,8 @@
     //        },
     //    }
     //})
+
+    //validate验证函数
     function validate() {
         return $("#changePwdForm").validate({
             onfocusout: function (element) { $(element).valid(); },
@@ -72,7 +74,7 @@
     var state = $("#state").val();
     //修改密码功能实现（Ajax传值）
     $("#postPwd").click(function () {
-        if (validate().form()) {
+        if (validate().form()) {//点击按钮时调用验证函数再次验证
             var oldPwd = $("#quondampwd").val();
             var newPwd = $("#newpwd").val();
             var confirmPwd = $("#confirmPwd").val();

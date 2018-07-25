@@ -14,7 +14,7 @@
 <body>
     <div class="container-fluid">
         <div class="container">
-            <h1 class="col-sm-3  col-sm-offset-5">找回密码
+            <h1 class="col-sm-3  col-sm-offset-5">修改密码
             </h1>
         </div>
         <div class="container-fluid changepwd">

@@ -43,6 +43,9 @@ namespace PMS.Web.admin
                 Change();
             }
         }
+        /// <summary>
+        /// 修改密码
+        /// </summary>
         public void Change()
         {
             string oldpwd = Request.Form["old"];
