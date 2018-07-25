@@ -194,6 +194,18 @@ namespace PMS.Dao
             int row = db.BulkInsert(dt, tableName, list);
             return row;
         }
+        /// <summary>
+        /// 查询该账号是否存在
+        /// </summary>
+        /// <param name="stuAccount">学号</param>
+        /// <returns>符合条件的记录条数</returns>
+        public int selectByteaId(string teaAccount)
+        {
+            string sql = "select count(teaAccount) from T_Teacher where teaAccount=@Account";
+            string[] param = { "@Account" };
+            object[] values = { teaAccount };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
 
         /// <summary>
         /// 查询联系电话是否存在
