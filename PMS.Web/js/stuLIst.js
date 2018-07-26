@@ -3,62 +3,124 @@ sessionStorage.setItem("page", $("#page").val());
 //存储总页数
 sessionStorage.setItem("countPage", $("#countPage").val());
 
+//判断用户是分院管理员还是超级管理员(0)
+var userType = $("#userType").val();
+if (userType == "2") {
+    $("#selectcollegeId").selectpicker("hide");
+    $("#trcollege").hide();
+}
+
 $(document).ready(function () {
+    //添加下拉框联动
+    $("#stuAddCollege").change(function () {
+        var stuAddCollegeId = $("#stuAddCollege").find("option:selected").val();
+        $.ajax({
+            type: 'Post',
+            url: 'stuLIst.aspx',
+            data: {
+                stuAddcollegeId: stuAddCollegeId,
+                op: "stuadd"
+            },
+            dateType: 'text',
+            success: function (succ) {
+                if (succ == "刷新") {
+                    $("#pro").selectpicker('refresh');
+                    $("#pro").selectpicker('render');
+                }
+            }
+        })
+    });
+
     //删除学生
     $(".deleteStudent").click(function () {
         var stuId = $(this).parent().parent().find(".stuNO").text().trim();
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            $.ajax({
-                type: 'Post',
-                url: 'stuLIst.aspx',
-                data: {
-                    stuId: stuId,
-                    op: "delete"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    if (succ == "删除成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                                //    jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
+        var txt = "是否确认删除？";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'stuLIst.aspx',
+                    data: {
+                        stuId: stuId,
+                        op: "delete"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
                     }
-                }
-            })
+                })
+            }
         }
+        window.wxc.xcConfirm(txt, "confirm", option);
     })
-    //按钮查询
-    $("#search").click(function () {
-        var strWhere = $("#inputsearch").val();
-        sessionStorage.setItem("strWhere", strWhere);
-        sessionStorage.setItem("type", "btn");
+    //分院下拉查询
+    $(".selectcollegeId").change(function () {
+        var collegeId = $("#selectcollegeId").find("option:selected").val();
+        sessionStorage.setItem("dropCollegeIdstrWhere", collegeId);
+        if (sessionStorage.getItem("strWhere") != null) {
+            sessionStorage.removeItem("strWhere");
+        }
+        if (sessionStorage.getItem("proWhere") != null) {
+            sessionStorage.removeItem("proWhere");
+        }
         jump(1);
-    });
-    //下拉选项查询
-    $("#chooseStuPro").change(function () {
-        sessionStorage.removeItem("strWhere");
-        var dropstrWhere = $(this).find("option:selected").val();
-        sessionStorage.setItem("dropstrWhere", dropstrWhere);
-        if (dropstrWhere != "0") {
-            sessionStorage.getItem("dropstrWhere");
-            sessionStorage.setItem("type", "drop");
-            jump(1);
-        }
-        else {
-            sessionStorage.removeItem("dropstrWhere");
-            jump(1);
-        }
     })
 
+    //专业下拉选项查询
+    $("#chooseStuPro").change(function () {
+        var collegeId = $("#chooseStuPro").find("option:selected").val();
+        sessionStorage.setItem("proWhere", collegeId);
+        if (sessionStorage.getItem("strWhere") != null) {
+            sessionStorage.removeItem("strWhere");
+        }
+        jump(1);
+    })
+    //按钮查询
+    $("#btn-search").click(function () {
+        var strWhere = $("#inputsearch").val();
+        sessionStorage.setItem("strWhere", strWhere);
+        if (sessionStorage.getItem("dropCollegeIdstrWhere") != null) {
+            sessionStorage.removeItem("dropCollegeIdstrWhere");
+        }
+        if (sessionStorage.getItem("proWhere") != null) {
+            sessionStorage.removeItem("proWhere");
+        }
+        jump(1);
+    });
+    //地址栏显示信息
+    function jump(cur) {
+        if (userType == "0") {
+            if (sessionStorage.getItem("strWhere") != null) {
+                window.location.href = "stuList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            } else if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+                window.location.href = "stuList.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&proId=" + sessionStorage.getItem("proWhere");
+            } else {
+                window.location.href = "stuList.aspx?currentPage=" + cur;
+            }
+        } else if (userType == "2") {
+            if (sessionStorage.getItem("strWhere") != null) {
+                window.location.href = "stuList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            } else if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+                window.location.href = "stuList.aspx?currentPage=" + cur + "&proId=" + sessionStorage.getItem("proWhere");
+            } else {
+                window.location.href = "stuList.aspx?currentPage=" + cur;
+            }
+        }
+    };
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -73,7 +135,7 @@ $(document).ready(function () {
                 }
             case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
-                    
+
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
                     break;
                 }
@@ -92,25 +154,11 @@ $(document).ready(function () {
                 break;
         }
     });
-    
-    //地址栏显示信息
-    function jump(cur) {
-        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWhere") == null) {
-            window.location.href = "stuLIst.aspx?currentPage=" + cur;
-        }
-        else if (sessionStorage.getItem("strWhere") != null && sessionStorage.getItem("dropstrWhere")==null) {
-            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
-        }
-        else if(sessionStorage.getItem("strWhere")==null&&sessionStorage.getItem("dropstrWhere")!=null){
-            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
-        }
-        else {
-            window.location.href = "stuLIst.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&dropstrWhere=" + sessionStorage.getItem("dropstrWhere") + "&type=" + sessionStorage.getItem("type");
-        }
-    };
+
+
     //编辑学生
     //获取学生信息到编辑框
-    $(".Editor").click(function(){
+    $(".Editor").click(function () {
         var stuNO = $(this).parent().parent().find(".stuNO").text().trim();
         $(".editorStuNO").val(stuNO);//学号框获取学号
         var stuName = $(this).parent().parent().find(".stuName").text().trim();
@@ -269,6 +317,17 @@ $(document).ready(function () {
     })
     //添加学生
     $("#saveSutdent").click(function () {
+        if (sessionStorage.getItem("strWhere") != null || sessionStorage.getItem("dropCollegeIdstrWhere") != null || sessionStorage.getItem("proWhere") != null) {
+            if (sessionStorage.getItem("strWhere") != null) {
+                sessionStorage.removeItem("strWhere");
+            }
+            else if (sessionStorage.getItem("dropCollegeIdstrWhere") != null) {
+                sessionStorage.removeItem("dropCollegeIdstrWhere");
+            }
+            else if (sessionStorage.getItem("proWhere") != null) {
+                sessionStorage.removeItem("proWhere");
+            }
+        }
         var stuAccount = $("#stuAccount").val(),
             pwd = $("#pwd").val(),
             realName = $("#realName").val(),
@@ -280,7 +339,6 @@ $(document).ready(function () {
             alert("不能出现未填项！");
         }
         else {
-            alert("ajax");
             $.ajax({
                 type: 'Post',
                 url: 'stuLIst.aspx',

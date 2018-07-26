@@ -38,11 +38,8 @@ namespace PMS.Web.admin
         protected string showinput = null;
         protected string showbacthdrop = null;
         protected string showcollegedrop = null;
-
         //用户类型
         protected string userType = "";
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request.Form["op"];
@@ -63,8 +60,7 @@ namespace PMS.Web.admin
                 bads = colbll.Select();
                 prods = probll.Select();
 
-                //根据学院id判断 只加载该院系下的分院批次
-                if (collegeIdstWhere=="0"|| collegeIdstWhere=="null" || collegeIdstWhere==null)
+                if (collegeIdstWhere == "0" || collegeIdstWhere == "null" || collegeIdstWhere == null)
                 {
                     plands = planbll.Select();
                 }
@@ -73,11 +69,14 @@ namespace PMS.Web.admin
                     plands = planbll.GetplanByCollegeId(int.Parse(collegeIdstWhere));
                 }
                 if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere == "null")
-                {// 如果批次id为空，分院id不为空
+                {
+                    // 分院id不为空,批次id为空
+                    
                     getPage(Searchcollege());
                 }
                 else if (batchWhere != null && batchWhere != "null" && (collegeIdstWhere == "null" || collegeIdstWhere == "0"))
-                {// 如果分院id为空，批次id不为空
+                {
+                    // 分院id为空，批次id不为空
                     getPage(batcchdrop());
                 }
                 else if (collegeIdstWhere != null && collegeIdstWhere != "null" && batchWhere != null && batchWhere != "null")
@@ -264,7 +263,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    //专业下拉搜索后条件保存
+                    //分院下拉搜索后条件保存
                     showcollegedrop = searchcollege;
                     searchcollege = String.Format(" collegeId={0}", searchcollege);
                 }
@@ -301,7 +300,6 @@ namespace PMS.Web.admin
                 {
                     search = "";
                     searchbatchAndcollege = String.Format(" collegeId={0} ", "'" + searchcollege + "'");
-                    //searanddrop = String.Format(" proId={0} and planId={1}", "'" + searchdrop + "'", " '" + search + "'");
                 }
                 else
                 {
