@@ -10,6 +10,7 @@ using System.Data;
 
 namespace PMS.Web.admin
 {
+    using System.Text;
     using Result = Enums.OpResult;
     public partial class stuLIst : System.Web.UI.Page
     {
@@ -128,9 +129,47 @@ namespace PMS.Web.admin
             {
                 int addcollegeId = int.Parse(Context.Request["stuAddcollegeId"]);
                 stuAddProds = proBll.SelectByCollegeId(addcollegeId);
-                Response.Write("刷新");
+                DataTable dt = stuAddProds.Tables[0];
+                string data = DataTableToJson(dt);
+
+                //Response.Write("刷新");
+                Response.Write(data);
                 Response.End();
             }
+        }
+
+        public string DataTableToJson(DataTable table)
+        {
+            var JsonString = new StringBuilder();
+            if (table.Rows.Count > 0)
+            {
+                JsonString.Append("[");
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    JsonString.Append("{");
+                    for (int j = 0; j < table.Columns.Count; j++)
+                    {
+                        if (j < table.Columns.Count - 1)
+                        {
+                            JsonString.Append("\"" + table.Columns[j].ColumnName.ToString() + "\":" + "\"" + table.Rows[i][j].ToString() + "\",");
+                        }
+                        else if (j == table.Columns.Count - 1)
+                        {
+                            JsonString.Append("\"" + table.Columns[j].ColumnName.ToString() + "\":" + "\"" + table.Rows[i][j].ToString() + "\"");
+                        }
+                    }
+                    if (i == table.Rows.Count - 1)
+                    {
+                        JsonString.Append("}");
+                    }
+                    else
+                    {
+                        JsonString.Append("},");
+                    }
+                }
+                JsonString.Append("]");
+            }
+            return JsonString.ToString();
         }
         /// <summary>
         /// 查询方法

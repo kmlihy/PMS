@@ -7,13 +7,27 @@ sessionStorage.setItem("countPage", $("#countPage").val());
 var userType = $("#userType").val();
 if (userType == "2") {
     $("#selectcollegeId").selectpicker("hide");
-    $("#trcollege").hide();
+    $("#trCollegeId").hide();
+    $("#trPro").hide();
+}
+else if (userType == "0") {
+    $("#trPro").hide();
+    $("#trstuPro").hide();
+
 }
 
 $(document).ready(function () {
+    function GetJsonLength(JsonData) {
+        var jsonLenth = 0;
+        for (var item in JsonData) {
+            jsonLenth++;
+        }
+        return jsonLenth;
+    }
     //添加下拉框联动
     $("#stuAddCollege").change(function () {
         var stuAddCollegeId = $("#stuAddCollege").find("option:selected").val();
+        $("#pro").html("");
         $.ajax({
             type: 'Post',
             url: 'stuLIst.aspx',
@@ -21,12 +35,14 @@ $(document).ready(function () {
                 stuAddcollegeId: stuAddCollegeId,
                 op: "stuadd"
             },
-            dateType: 'text',
-            success: function (succ) {
-                if (succ == "刷新") {
-                    $("#pro").selectpicker('refresh');
-                    $("#pro").selectpicker('render');
-                }
+            dateType: 'json',
+            success: function (data) {
+                $.each($.parseJSON(data), function (i, obj) {
+                    $("#trPro").show();
+                    $('#pro').append("<option value=" + obj.proId + ">" + obj.proName + "</option>");
+                    $('#pro').selectpicker('refresh');
+                    $('#pro').selectpicker('render');
+                })
             }
         })
     });
@@ -328,11 +344,19 @@ $(document).ready(function () {
                 sessionStorage.removeItem("proWhere");
             }
         }
+        var colladmin = $(".pro").find("option:selected").val();
+        var proadmin = $("#pro").find("option:selected").val();
+        var pro = "";
+        if (proadmin == null) {
+            pro = colladmin;
+        } else {
+            pro = proadmin;
+        }
         var stuAccount = $("#stuAccount").val(),
             pwd = $("#pwd").val(),
             realName = $("#realName").val(),
             sex = $("#sex").find("option:selected").val(),
-            pro = $("#pro").find("option:selected").val(),
+
             phone = $("#phone").val(),
             email = $("#email").val();
         if (stuAccount == "" || pwd == "" || realName == "" || sex == "" || pro == "" || phone == "" || email == "") {
