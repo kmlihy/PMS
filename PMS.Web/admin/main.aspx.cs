@@ -23,7 +23,10 @@ namespace PMS.Web.admin
                 State = int.Parse(Session["state"].ToString());
                 if(State == 0)
                 {
-                    Response.Write("<script>$('#myCenter').hide();</script>");
+                    //Response.Write("<script>$('#myCenter').hide();</script>");
+                    url = "adminCenter.aspx";
+                    Teacher teacher = (Teacher)Session["user"];
+                    realName = teacher.TeaName;
                 }
                 else if(State == 1)
                 {

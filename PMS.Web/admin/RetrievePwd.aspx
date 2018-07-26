@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">确认新密码:</label>
+                        <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">确认新密码:</label>    
                         <div class="col-sm-3">
                             <input type="password" class="form-control input-sm" id="confirmPwd" name="confirmPwd" placeholder="请再次输入新密码" />
                             <span id="validateConfirmPwd"></span>

@@ -161,6 +161,11 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 根据学院Id 获取该院系下的专业
+        /// </summary>
+        /// <param name="collegeId">所查询院系的id</param>
+        /// <returns>返回该院系下的所有专业信息表</returns>
         public DataSet GetProfessionByCollegeId(int collegeId) {
 
             try {

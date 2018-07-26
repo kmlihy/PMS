@@ -106,7 +106,6 @@ $(document).ready(function () {
         jump(1);
     })
     //分院下拉查询
-
     $(".selectcollegeId").change(function () {
         var collegeId = $("#selectcollegeId").find("option:selected").val();
         if (sessionStorage.getItem("op") != null) {

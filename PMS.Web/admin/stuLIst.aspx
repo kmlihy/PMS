@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="stuLIst.aspx.cs" Inherits="PMS.Web.admin.stuLIst" Debug="true"%>
 
 <%="" %>
 <!DOCTYPE html>
@@ -70,6 +70,24 @@
                 <div class="panel panel-default" id="teapanelbox">
                     <div class="pane input-group" id="panel-head">
                         <div class="input-group" id="inputgroups">
+                            <select class="selectpicker selectcollegeId" data-width="auto" id="selectcollegeId">
+                                <option value="0">-查询所有分院-</option>
+                                <%if (userType == "0")
+                                    {%>
+                                <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (colds.Tables[0].Rows[i]["collegeId"].ToString() == showcollegedrop)
+                                        {%>
+                                <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <%}%>
+                                <%else
+                                    {%>
+                                <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                <%} %>
+                                <%} %>
+                                <%} %>
+                            </select>
+                            &nbsp
                             <select class="selectpicker" id="chooseStuPro">
                                 <%if (showstr == "0")
                                     { %>
@@ -91,7 +109,7 @@
                                         }
                                     } %>
                             </select>
-                            <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                            <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
                                     <span class="glyphicon glyphicon-search" id="search">查询</span>
@@ -265,16 +283,31 @@
                                     </select>
                                 </td>
                             </tr>
+                            <tr id="trcollege">
+                                <td class="teaLable">
+                                    <label class="text-span">所属分院</label></td>
+                                <td>
+                                    <select class="selectpicker" data-width="auto" id="stuAddCollege">
+                                        <option>请选择院系</option>
+                                        <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                            <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                        </option>
+                                        <%} %>
+                                    </select>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">专业</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="pro">
                                         <option>请选择专业</option>
-                                        <% for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                        <% for (int i = 0; i < stuAddProds.Tables[0].Rows.Count; i++)
                                             { %>
-                                        <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                                            <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                        <option value="<%=stuAddProds.Tables[0].Rows[i]["proId"].ToString() %>">
+                                            <%=stuAddProds.Tables[0].Rows[i]["proName"].ToString() %>
                                         </option>
                                         <%} %>
                                     </select>
@@ -409,6 +442,7 @@
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
+    <input type="hidden" value="<%=userType %>" id="userType" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>

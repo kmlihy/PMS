@@ -15,15 +15,25 @@ namespace PMS.Web.admin
     {
         protected DataSet prods = null;//专业
         protected DataSet colds = null;//院系
-
+        //添加的专业下拉框
+        protected DataSet stuAddProds = null;
         protected DataSet ds = null;
         protected int getCurrentPage = 0;
         protected int count;
         protected int pagesize = 3;
         protected String search = "";
         protected String searchdrop = "";
+        protected String searchCollege = "";
+        protected String searchProAndCollege = "";
+
         protected string showstr = null;
-        //protected string showinput = null;
+
+        //输入框条件保存
+        protected string showmsg = "";
+        //学院下拉框条保存
+        protected string showcollegedrop = "";
+        //用户类型
+        protected string userType = "";
 
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
@@ -33,13 +43,73 @@ namespace PMS.Web.admin
         {
             string op = Context.Request["op"];
             string editorOp = Context.Request["editorOp"];
-            string del = Context.Request["op"];
-            string type = Request.QueryString["type"];
-            if (!Page.IsPostBack)
+            //下拉专业id
+            string proId = Request.QueryString["proId"];
+            //下拉学院id
+            string collegeId = Request.QueryString["collegeId"];
+            //输入框信息
+            string strsearch = Request.QueryString["search"];
+
+            userType = Session["state"].ToString();
+
+            if (userType == "0")
             {
-                getdata(Search());
                 colds = colBll.Select();
                 prods = proBll.Select();
+                stuAddProds = proBll.Select();
+                if (collegeId == null || collegeId == "0" || collegeId == "null")
+                {
+                    prods = proBll.Select();
+                }
+                else
+                {
+                    prods = proBll.SelectByCollegeId(int.Parse(collegeId));
+                }
+                if (proId != null && proId != "null" && collegeId == "null")
+                {
+                    //学院为空 专业不为空
+                    getdata(Searchdrop());
+                }
+                else if (collegeId != null && collegeId != "null" && (proId == "null" || proId == "0"))
+                {
+                    //学院不为空 专业为空
+                    getdata(SearchByCollege());
+                }
+                else if (collegeId != null && collegeId != "null" && proId != null && proId != "null")
+                {
+                    //两个都不为空
+                    getdata(SearchProAndCollege());
+                }
+                else if (strsearch != null)
+                {
+                    getdata(Search());
+                }
+                else
+                {
+                    getdata("");
+                    colds = colBll.Select();
+                }
+
+            }
+            else if (userType == "2")
+            {
+                Teacher tea = (Teacher)Session["user"];
+                int usercollegeId = tea.college.ColID;
+                colds = colBll.Select();
+                prods = proBll.SelectByCollegeId(usercollegeId);
+                stuAddProds = proBll.SelectByCollegeId(usercollegeId);
+                if (strsearch != null)
+                {
+                    getdata(Search());
+                }
+                else if (proId != null && proId != "null")
+                {
+                    getdata(Searchdrop());
+                }
+                else
+                {
+                    getdata("");
+                }
             }
             if (op == "add")//添加
             {
@@ -49,32 +119,18 @@ namespace PMS.Web.admin
             {
                 editorStu();
             }
-            if (del == "delete")//删除
+            if (op == "delete")//删除
             {
                 deleteStu();
             }
-            if (type == "drop")
-            {
-                getdata(Searchdrop());
-            }
-            if (type == "btn")
-            {
-                getdata(Search());
-            }
 
-            //查询按钮保存查询条件
-            //if (search == null)
-            //{
-            //    showinput = "请输入查询条件";
-            //}
-            //else if (search != null && search.Length > 1)
-            //{
-            //    string sec = search.ToString();
-            //    string[] secArray = sec.Split('%');
-            //    string str = secArray[1].ToString();
-            //    showinput = str;
-            //}
-
+            if (op == "stuadd")
+            {
+                int addcollegeId = int.Parse(Context.Request["stuAddcollegeId"]);
+                stuAddProds = proBll.SelectByCollegeId(addcollegeId);
+                Response.Write("刷新");
+                Response.End();
+            }
         }
         /// <summary>
         /// 查询方法
@@ -95,6 +151,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
+                    showmsg = search;
                     search = String.Format("stuAccount {0} or sex {0} or realName {0} or collegeName {0} or phone {0} or Email {0} or proName {0} ", "like " + "'%" + search + "%'");
                 }
             }
@@ -104,25 +161,25 @@ namespace PMS.Web.admin
             return search;
         }
         /// <summary>
-        /// 下拉查询保留查询条件
+        /// 专业下拉查询
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回查询字符串</returns>
         public string Searchdrop()
         {
             try
             {
-                searchdrop = Request.QueryString["dropstrWhere"];
+                searchdrop = Request.QueryString["proId"];
                 if (searchdrop.Length == 0)
                 {
                     searchdrop = "";
-                    //下拉框保留查询条件
-                    showstr = "0";
                 }
                 else if (searchdrop == null)
                 {
                     searchdrop = "";
-                    //下拉框保留查询条件
-                    showstr = "0";
+                }
+                else if (searchdrop == "0")
+                {
+                    searchdrop = "";
                 }
                 else
                 {
@@ -135,6 +192,77 @@ namespace PMS.Web.admin
             {
             }
             return searchdrop;
+        }
+
+        /// <summary>
+        /// 学院下拉查询
+        /// </summary>
+        /// <returns></returns>
+        public string SearchByCollege()
+        {
+
+            try
+            {
+                searchCollege = Request.QueryString["collegeId"];
+                if (searchCollege.Length == 0)
+                {
+                    searchCollege = "";
+                }
+                else if (searchCollege == null)
+                {
+                    searchCollege = "";
+                }
+                else if (searchCollege == "0")
+                {
+                    searchCollege = "";
+                }
+                else
+                {
+                    //分院下拉搜索后条件保存
+                    showcollegedrop = searchCollege;
+                    searchCollege = String.Format(" collegeId={0}", searchCollege);
+                }
+            }
+            catch
+            {
+
+            }
+            return searchCollege;
+        }
+
+        public string SearchProAndCollege()
+        {
+            try
+            {
+                //学院下拉的条件
+                searchCollege = Request.QueryString["collegeId"];
+                //学院条件传到前台
+                showcollegedrop = searchCollege;
+                //批次的条件
+
+                searchdrop = Request.QueryString["proId"];
+                showstr = searchdrop;
+                if (searchCollege == "0")
+                {
+                    searchCollege = "";
+                    searchdrop = "";
+                    searchProAndCollege = "";
+                }
+                else if (search == "0" && searchCollege != "0")
+                {
+                    searchdrop = "";
+                    searchProAndCollege = String.Format(" collegeId={0} ", "'" + searchCollege + "'");
+                }
+                else
+                {
+                    searchProAndCollege = String.Format(" collegeId={0} and proId={1}", "'" + searchCollege + "'", " '" + searchdrop + "'");
+                }
+            }
+            catch
+            {
+
+            }
+            return searchProAndCollege;
         }
         /// <summary>
         /// 编辑学生
@@ -241,21 +369,56 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
-            BLL.StudentBll sdao = new StudentBll();
-            StudentBll pro = new StudentBll();
-            TableBuilder tabuilder = new TableBuilder()
+            string userType = Session["state"].ToString();
+            string userCollege = "";
+            //usertype=2 为分院管理员登录
+            if (userType == "2")
             {
-                StrTable = "V_Student",
-                StrWhere = strWhere == null ? "" : strWhere,
-                IntColType = 0,
-                IntOrder = 0,
-                IntPageNum = int.Parse(currentPage),
-                IntPageSize = pagesize,
-                StrColumn = "stuAccount",
-                StrColumnlist = "*"
-            };
-            getCurrentPage = int.Parse(currentPage);
-            ds = pro.SelectBypage(tabuilder, out count);
+                Teacher tea = (Teacher)Session["user"];
+                int userCollegeId = tea.college.ColID;
+                if (strWhere == null || strWhere == "")
+                {
+                    userCollege = "collegeId=" + "'" + userCollegeId + "'";
+                }
+                else
+                {
+                    userCollege = "collegeId=" + "'" + userCollegeId + "'" + "and" + "(" + strWhere + ")";
+                }
+                StudentBll pro = new StudentBll();
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Student",
+                    StrWhere = userCollege,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "stuAccount",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = pro.SelectBypage(tabuilder, out count);
+
+            }
+            else
+            {
+                StudentBll pro = new StudentBll();
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Student",
+                    StrWhere = strWhere == null ? "" : strWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "stuAccount",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = pro.SelectBypage(tabuilder, out count);
+            }
+
+
         }
         /// <summary>
         /// 判断是否能删除学生

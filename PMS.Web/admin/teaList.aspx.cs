@@ -20,6 +20,7 @@ namespace PMS.Web.admin
         protected int count;
         protected int pagesize = 3;
         protected String search = "";
+        protected int state;
         TeacherBll teabll = new TeacherBll();
         //分院
         protected DataSet colds = null;
@@ -28,7 +29,7 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            state = Convert.ToInt32(Session["state"]);
             string op = Context.Request["op"];
             if (op == "add")
             {
@@ -186,8 +187,8 @@ namespace PMS.Web.admin
         {
             string teaAccount = Context.Request["TeaAccount"].ToString();
             if (!teabll.selectByteaId(teaAccount)) { 
-                int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
-                int teaType = Convert.ToInt32(Context.Request["TeaType"]);
+                //int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+                //int teaType = Convert.ToInt32(Context.Request["TeaType"]);
                 //string pwd = Context.Request["Pwd"].ToString();
                 string teaName = Context.Request["TeaName"].ToString();
                 string sex = Context.Request["Sex"].ToString();
@@ -206,8 +207,12 @@ namespace PMS.Web.admin
                 else
                 {
                     Teacher tea = new Teacher();
-                    tea.college.ColID = collegeId;
-                    tea.TeaType = teaType;
+                    College college = new College();
+                    Teacher tealogin = (Teacher)Session["user"];
+                    Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
+                    college.ColID = tealogin.college.ColID;
+                    tea.college = college;
+                    tea.TeaType = 1;
                     tea.TeaAccount = teaAccount;
                     tea.TeaPwd = Security.SHA256Hash("000000");
                     tea.TeaName = teaName;
@@ -245,12 +250,22 @@ namespace PMS.Web.admin
             string teaPhone = Context.Request["TeaPhone"].ToString();
             //string pwd = Context.Request["Pwd"].ToString();
             string sex = Context.Request["Sex"].ToString();
-            int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
-            int teaType = Convert.ToInt32(Context.Request["TeaType"]);
-            
+            //int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+            int teaType;
+            if (state==0)
+            {
+                teaType = Convert.ToInt32(Context.Request["TeaType"]);
+            }
+            else
+            {
+                teaType = 1;
+            }
             Teacher tea = new Teacher();
-            TeacherBll teabll = new TeacherBll();
-            tea.college.ColID = collegeId;
+            College college = new College();
+            Teacher tealogin = (Teacher)Session["user"];
+            Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
+            college.ColID = tealogin.college.ColID;
+            tea.college = college;
             tea.TeaAccount = teaAccount;
             tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
             tea.TeaName = teaName;
