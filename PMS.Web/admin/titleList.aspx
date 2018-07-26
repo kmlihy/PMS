@@ -142,9 +142,10 @@
                                     <%=ds.Tables[0].Rows[i]["createTime"].ToString() %>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#myModa2">
+                                    <%--<button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#myModa2">
                                         <span class="glyphicon glyphicon-pencil"></span>
-                                    </button>
+                                    </button>--%>
+                                    <a href="addPaper.aspx?article=edit&titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString()%>" class="btn btn-default btn-sm btn-warning btnEdit"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <button class="btn btn-default btn-sm btn-danger btnDel">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
