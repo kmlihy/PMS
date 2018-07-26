@@ -136,8 +136,8 @@ $(document).ready(function () {
                 type: 'Post',
                 url: 'teaList.aspx',
                 data: {
-                    CollegeId: collegeId,
-                    TeaType: teaType,
+                    //CollegeId: collegeId,
+                    //TeaType: teaType,
                     TeaAccount: teaAccount,
                     //Pwd: pwd,
                     TeaName: teaName,
@@ -245,13 +245,13 @@ $(document).ready(function () {
     //关闭按钮事件
     $(".chID").click(function () {
         $(".btnch").show();
-
         //控件状态改变
         $("#chemail").attr("disabled", "disabled");//改成disabled
         $("#chtel").attr("disabled", "disabled");//改成disabled
         $("#chteaName").attr("disabled", "disabled");//改成disabled
         $("#chteaAccount").attr("disabled", "disabled");//改成disabled
         //清除提示
+        $(".bootstrap-select").show();
         $("#chValitateAccount").html("");
         $("#chValitateteaName").html("");
         $("#chValitateteaemail").html("");
@@ -299,7 +299,7 @@ $(document).ready(function () {
                     TeaEmail: teaEmail,
                     TeaPhone: teaPhone,
                     //Pwd: pwd,
-                    CollegeId: collegeId,
+                    //CollegeId: collegeId,
                     Sex: sex,
                     TeaType: teaType,
                     op: "change"
