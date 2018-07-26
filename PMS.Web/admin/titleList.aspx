@@ -125,7 +125,7 @@
                                 <td class="text-center" id="plaName">
                                     <%=ds.Tables[0].Rows[i]["planName"].ToString() %>
                                 </td>
-                                <input type="hidden" id="planId" value="<%=ds.Tables[0].Rows[i]["planId"].ToString() %>" />
+                                <input type="hidden" id="planId" name="planId" value="<%=ds.Tables[0].Rows[i]["planId"].ToString() %>" />
                                 <td class="text-center" id="proName">
                                     <%=ds.Tables[0].Rows[i]["proName"].ToString() %>
                                 </td>
@@ -145,7 +145,11 @@
                                     <%--<button class="btn btn-default btn-sm btn-warning btnEdit" data-toggle="modal" data-target="#myModa2">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>--%>
-                                    <a href="addPaper.aspx?article=edit&titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString()%>" class="btn btn-default btn-sm btn-warning btnEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <button class="btn btn-default btn-sm btn-warning btnEdit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <%--<a href="addPaper.aspx?article=edit&titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString()%>&planId=<%=ds.Tables[0].Rows[i]["planId"].ToString() %>" class="btn btn-default btn-sm btn-warning btnEdit"><span class="glyphicon glyphicon-pencil"></span></a>--%>
+
                                     <button class="btn btn-default btn-sm btn-danger btnDel">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
@@ -241,6 +245,20 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title" id="myModal2">不可编辑提示
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h4>批次已激活，不可编辑</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default chID" data-dismiss="modal" id="btnClose">关闭</button>
+                </div>
+            </div>
+        </div>
+        <%--<div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h4 class="modal-title" id="myModal2">题目信息修改
                     </h4>
                 </div>
@@ -319,7 +337,7 @@
                     <button type="button" class="btn btn-primary" id="btnSave">保存更改</button>
                 </div>
             </div>
-        </div>
+        </div>--%>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />

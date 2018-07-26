@@ -28,6 +28,7 @@ $(document).ready(function () {
     //    var college = $(".selPro").val();
     //    alert(college);
     //});
+    var article = $("#article").val();
     $("#btnOK").click(function () {
         var paperTitle = $(".TextBox").val(),//获取标题文本值
             profession = $(".selPro").val(),//获取专业文本值
@@ -59,12 +60,19 @@ $(document).ready(function () {
                     plan: plan,
                     paperContent: paperContent,
                     numMax: numMax,
-                    op: "add"
+                    op: article
                 },
                 dataType: 'text',
                 success: function (succ) {
                     if (succ == "添加成功") {
                         window.wxc.xcConfirm("发布成功!", window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                window.location.href = "titleList.aspx";
+                            }
+                        });
+                    }
+                    else if (succ == "更新成功") {
+                        window.wxc.xcConfirm("修改成功!", window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 window.location.href = "titleList.aspx";
                             }

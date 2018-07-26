@@ -21,7 +21,7 @@ namespace PMS.Web.admin
         Plan plan = new Plan();
         protected string college;//获取学院
         protected string article;
-        protected Title title;
+        protected Title titleEdit;
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request["op"];
@@ -35,60 +35,70 @@ namespace PMS.Web.admin
             if (article == "edit")
             {
                 string titleId = Request.QueryString["titleId"];
+                Session["titleId"] = titleId;
                 TitleBll titBll = new TitleBll();
-                title = titBll.GetTitle(Convert.ToInt32(titleId));
+                titleEdit = titBll.GetTitle(Convert.ToInt32(titleId));
                 //string ti = title.Limit.ToString();
             }
             else {
-            //selectPro();
-                if (op == "add")
+                TitleBll titlebll = new TitleBll();
+                Title title = new Title();
+
+                if (op == "new")
                 {
                     string paperTitle = Request["paperTitle"].ToString();
                     string profession = Request["profession"].ToString();
                     string plans = Request["plan"].ToString();
                     string numMax = Request["numMax"].ToString();
                     string paperContent = Request["paperContent"].ToString();
-                    TitleBll titlebll = new TitleBll();
-                    Title title = new Title();
                     title.title = paperTitle;
                     title.TitleContent = HttpUtility.UrlDecode(paperContent);
                     title.CreateTime = DateTime.Now;
                     //TODO 专业批次选定人数为固定值，需重新改动
                     title.Selected = 0;
                     title.Limit = int.Parse(numMax);
-                    //TODO 固定发布教师账号
-                    Teacher teaLogin = (Teacher)Session["loginuser"];
-                    title.teacher.TeaAccount = teaLogin.TeaAccount;
+                    title.teacher = (Teacher)Session["loginuser"];
                     title.plan = new Plan { PlanId = 1 };
                     title.profession = new Profession { ProId = 1 };
-
-                    if (article == "new")
+                    Result result = titlebll.Insert(title);
+                    if (result == Result.添加成功)
                     {
-                        Result result = titlebll.Insert(title);
-                        if (result == Result.添加成功)
-                        {
-                            Response.Write("添加成功");
-                            Response.End();
-                        }
-                        else
-                        {
-                            Response.Write("添加失败");
-                            Response.End();
-                        }
+                        Response.Write("添加成功");
+                        Response.End();
                     }
                     else
                     {
-                        Result result = titlebll.Update(title);
-                        if (result == Result.更新成功)
-                        {
-                            Response.Write("更新成功");
-                            Response.End();
-                        }
-                        else
-                        {
-                            Response.Write("更新失败");
-                            Response.End();
-                        }
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
+                }
+                else if(op == "edit")
+                {
+                    string paperTitle = Request["paperTitle"].ToString();
+                    string profession = Request["profession"].ToString();
+                    string plans = Request["plan"].ToString();
+                    string numMax = Request["numMax"].ToString();
+                    string paperContent = Request["paperContent"].ToString();
+                    title.TitleId = Convert.ToInt32(Session["titleId"].ToString());
+                    title.title = paperTitle;
+                    title.TitleContent = HttpUtility.UrlDecode(paperContent);
+                    title.CreateTime = DateTime.Now;
+                    //TODO 专业批次选定人数为固定值，需重新改动
+                    title.Selected = 0;
+                    title.Limit = int.Parse(numMax);
+                    title.teacher = (Teacher)Session["loginuser"];
+                    title.plan = new Plan { PlanId = 1 };
+                    title.profession = new Profession { ProId = 1 };
+                    Result result = titlebll.Update(title);
+                    if (result == Result.更新成功)
+                    {
+                        Response.Write("更新成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        Response.End();
                     }
                 }
             }
