@@ -28,7 +28,8 @@ KindEditor.ready(function (K) {
 //提交发布信息脚本
 $("#release").click(function () {
     var newsTitle = $("#newsTitle").val();
-    var content = $("#content").val();
+    //var content = System.Web.HttpUtility.HtmlEncode($("#content").val());
+    var content = escape($("#content").val());
     // alert(content);
     if (newsTitle == "") {
         alert("标题不能为空");
@@ -40,7 +41,11 @@ $("#release").click(function () {
         $.ajax({
             type: 'Post',
             url: 'addNews.aspx',
-            data: { newsTitle: newsTitle, content: content, op: "add" },
+            data: {
+                newsTitle: newsTitle,
+                content: content,
+                op: "add"
+            },
             dataType: 'text',
             success: function (succ) {
                 if (succ == "添加成功") {

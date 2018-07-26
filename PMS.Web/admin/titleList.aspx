@@ -32,15 +32,15 @@
                                     {
                                         if (prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
                                         {%>
-                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
-                                    <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                                </option>
-                                <% }
-                                    else
-                                    {%>
-                                <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
-                                    <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
-                                </option>
+                                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
+                                                <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                            </option>
+                                            <% }
+                                                else
+                                                {%>
+                                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                                                <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                                            </option>
                                 <%}%>
                                 <%} %>
                             </select>
@@ -120,7 +120,7 @@
                                     <%=ds.Tables[0].Rows[i]["titleId"].ToString() %>
                                 </td>
                                 <td class="text-center" id="title">
-                                    <%=ds.Tables[0].Rows[i]["title"].ToString() %>
+                                    <a href="../paperDetail.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>"><%=ds.Tables[0].Rows[i]["title"].ToString() %></a>
                                 </td>
                                 <td class="text-center" id="plaName">
                                     <%=ds.Tables[0].Rows[i]["planName"].ToString() %>

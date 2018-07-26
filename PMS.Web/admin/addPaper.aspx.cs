@@ -43,7 +43,7 @@ namespace PMS.Web.admin
                 TitleBll titlebll = new TitleBll();
                 Title title = new Title();
                 title.title = paperTitle;
-                title.TitleContent = paperContent;
+                title.TitleContent = HttpUtility.UrlDecode(paperContent);
                 title.CreateTime = DateTime.Now;
                 //TODO 专业批次选定人数为固定值，需重新改动
                 title.Selected = 0;

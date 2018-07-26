@@ -22,7 +22,7 @@
                 <div class="container-fluid">
                 <div id="box" class="col-xs-10 col-xs-10 col-md-10 col-lg-10 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
                     <span class="lable">标题：</span>
-                    <input maxlength="100" type="text" name="title" class="TextBox form-control title" placeholder="请输入标题" />
+                    <input maxlength="100" type="text" name="title" class="TextBox form-control" placeholder="请输入标题" />
                 </div>
 
                 <div id="box" class="col-xs-10 col-sm-4 col-md-3 col-lg-3 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
@@ -62,7 +62,7 @@
 
                 <div id="box" class="col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
                     <span class="lable1">内容：</span>
-                    <textarea name="content" class="content">KindEditor</textarea>
+                    <textarea name="content" class="content"></textarea>
                 </div>
                 <div>
                     <button id="btnOK" type="submit" class="btn btn-primary col-xs-3 col-sm-3 col-md-2 col-lg-2 col-xs-push-8 col-sm-push-8 col-md-push-9 col-lg-push-9">提交论文</button>
