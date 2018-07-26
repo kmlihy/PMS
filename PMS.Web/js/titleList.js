@@ -101,106 +101,109 @@ $(document).ready(function () {
 
     //点击编辑按钮，编辑弹框绑定数据
     $(".btnEdit").click(function () {
-        var ediTitleId = $(this).parent().parent().find("#titleId").text().trim();
-        $("#ediTitleId").val(ediTitleId);
-        var ediTitle = $(this).parent().parent().find("#title").text().trim();
-        $("#ediTitle").val(ediTitle);
-        var ediPlan = $(this).parent().parent().find("#plaName").text().trim();
-        $("#ediPlan").val(ediPlan);
-        var ediProf = $(this).parent().parent().find("#proName").text().trim();
-        $("#ediProf").val(ediProf);
-        var ediTeaName = $(this).parent().parent().find("#teaName").text().trim();
-        $("#ediTeaName").val(ediTeaName);
-        var ediLimit = $(this).parent().parent().find("#limit").text().trim();
-        $("#ediLimit").val(ediLimit);
-        var ediCreateTime = $(this).parent().parent().find("#createTime").text().trim();
-        $("#ediCreateTime").val(ediCreateTime);
+        var titleId = $(this).parent().parent().find("#titleId").text().trim();
         var planId = $(this).parent().parent().find("#planId").val();
-        sessionStorage.setItem("planId", planId);
-        var proId = $(this).parent().parent().find("#proId").val();
-        sessionStorage.setItem("proId", proId);
-        var teaAccount = $(this).parent().parent().find("#teaAccount").val();
-        sessionStorage.setItem("teaAccount", teaAccount);
+        $.ajax({
+            type: 'Post',
+            url: 'titleList.aspx',
+            data: {
+                titleId: titleId,
+                planId: planId,
+                op: "edit"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                if (succ == "批次已激活，不可编辑") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            jump(1);
+                        }
+                    });
+                } else {
+                    window.location.href = "addPaper.aspx?article=edit&titleId="+titleId;
+                }
+            }
+        });
     });
 
     //点击关闭按钮，清除验证提示信息
-    $("#btnClose").click(function () {
-        $("#titleIdValidate").html("");
-        $("#titleValidate").html("");
-        $("#planValidate").html("");
-        $("#profValidate").html("");
-        $("#teaNameValidate").html("");
-        $("#limitValidate").html("");
-        $("#createTimeValidate").html("");
-    });
+    //$("#btnClose").click(function () {
+    //    $("#titleIdValidate").html("");
+    //    $("#titleValidate").html("");
+    //    $("#planValidate").html("");
+    //    $("#profValidate").html("");
+    //    $("#teaNameValidate").html("");
+    //    $("#limitValidate").html("");
+    //    $("#createTimeValidate").html("");
+    //});
     //提交编辑更改
-    $("#btnSave").click(function () {
-        var saveTitleId = $("#ediTitleId").val(),
-            saveTitle = $("#ediTitle").val(),
-            savePlan = sessionStorage.getItem("planId"),
-            saveProf = sessionStorage.getItem("proId"),
-            saveTea = sessionStorage.getItem("teaAccount"),
-            saveLimit = $("#ediLimit").val(),
-            saveCreateTime = $("#ediCreateTime").val(),
-            saveContent = $("#titleContent").val(),
-            saveSelected = $("#selected").val();
-        //验证用户输入不能为空
-        if (saveTitleId == "") {
-            $("#titleIdValidate").html("题目编号不能为空！").css("color", "red");
-        }
-        else if (saveTitle == "") {
-            $("#titleValidate").html("题目不能为空，请重新输入！").css("color", "red");
-        }
-        else if (savePlan == "") {
-            $("#planValidate").html("批次不能为空，请重新输入！").css("color", "red");
-        }
-        else if (saveProf == "") {
-            $("#profValidate").html("学院不能为空，请重新输入！").css("color", "red");
-        }
-        else if (saveTea == "") {
-            $("#teaNameValidate").html("发布人不能为空，请重新输入！").css("color", "red");
-        }
-        else if (saveLimit == "") {
-            $("#limitValidate").html("人数上限不能为空，请重新输入！").css("color", "red");
-        }
-        else if (saveCreateTime == "") {
-            $("#createTimeValidate").html("创建时间不能为空，请重新输入！").css("color", "red");
-        }
-        else {
-            $.ajax({
-                type: 'Post',
-                url: 'titleList.aspx',
-                data: {
-                    saveTitleId: saveTitleId,
-                    saveTitle: saveTitle,
-                    savePlan: savePlan,
-                    saveProf: saveProf,
-                    saveTea: saveTea,
-                    saveLimit: saveLimit,
-                    saveCreateTime: saveCreateTime,
-                    saveContent: saveContent,
-                    saveSelected: saveSelected,
-                    op: "edit"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    if (succ == "更新成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });
+    //$("#btnSave").click(function () {
+    //    var saveTitleId = $("#ediTitleId").val(),
+    //        saveTitle = $("#ediTitle").val(),
+    //        savePlan = sessionStorage.getItem("planId"),
+    //        saveProf = sessionStorage.getItem("proId"),
+    //        saveTea = sessionStorage.getItem("teaAccount"),
+    //        saveLimit = $("#ediLimit").val(),
+    //        saveCreateTime = $("#ediCreateTime").val(),
+    //        saveContent = $("#titleContent").val(),
+    //        saveSelected = $("#selected").val();
+    //    //验证用户输入不能为空
+    //    if (saveTitleId == "") {
+    //        $("#titleIdValidate").html("题目编号不能为空！").css("color", "red");
+    //    }
+    //    else if (saveTitle == "") {
+    //        $("#titleValidate").html("题目不能为空，请重新输入！").css("color", "red");
+    //    }
+    //    else if (savePlan == "") {
+    //        $("#planValidate").html("批次不能为空，请重新输入！").css("color", "red");
+    //    }
+    //    else if (saveProf == "") {
+    //        $("#profValidate").html("学院不能为空，请重新输入！").css("color", "red");
+    //    }
+    //    else if (saveTea == "") {
+    //        $("#teaNameValidate").html("发布人不能为空，请重新输入！").css("color", "red");
+    //    }
+    //    else if (saveLimit == "") {
+    //        $("#limitValidate").html("人数上限不能为空，请重新输入！").css("color", "red");
+    //    }
+    //    else if (saveCreateTime == "") {
+    //        $("#createTimeValidate").html("创建时间不能为空，请重新输入！").css("color", "red");
+    //    }
+    //    else {
+    //        $.ajax({
+    //            type: 'Post',
+    //            url: 'titleList.aspx',
+    //            data: {
+    //                saveTitleId: saveTitleId,
+    //                saveTitle: saveTitle,
+    //                savePlan: savePlan,
+    //                saveProf: saveProf,
+    //                saveTea: saveTea,
+    //                saveLimit: saveLimit,
+    //                saveCreateTime: saveCreateTime,
+    //                saveContent: saveContent,
+    //                saveSelected: saveSelected,
+    //                op: "edit"
+    //            },
+    //            dataType: 'text',
+    //            success: function (succ) {
+    //                if (succ == "更新成功") {
+    //                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+    //                        onOk: function (v) {
+    //                            jump(1);
+    //                        }
+    //                    });
+    //                } else {
+    //                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+    //                        onOk: function (v) {
+    //                            jump(1);
+    //                        }
+    //                    });
+    //                }
+    //            }
+    //        });
+    //    }
+    //});
 
     //表单不能被用户编辑
     $("#ediTitleId").attr("disabled", "disabled");

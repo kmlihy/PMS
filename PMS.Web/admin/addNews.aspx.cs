@@ -17,14 +17,14 @@ namespace PMS.Web.admin
             string op = Context.Request["op"];
             if (op == "add")
             {
-                string newsTitle = Request.Form["newsTitle"].ToString();
-                string content = Request.Form["content"].ToString();
+                string newsTitle = Request["newsTitle"].ToString();
+                string content = Request["content"].ToString();
                 //TODO将从登录的Session中取到公告发布对象
                 //Teacher teacher = (Teacher)Session["user"];
                 NewsBll bll = new NewsBll();
                 News news = new News();
                 news.NewsTitle = newsTitle;
-                news.NewsContent = content;
+                news.NewsContent = HttpUtility.UrlDecode(content);
                 news.teacher = new Teacher { TeaAccount = "admin" };
                 news.CreateTime = DateTime.Now;
                 Result result = bll.Insert(news);

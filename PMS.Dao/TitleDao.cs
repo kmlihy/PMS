@@ -29,7 +29,18 @@ namespace PMS.Dao
             ,title.plan.PlanId,title.teacher.TeaAccount,title.profession.ProId};
             return db.ExecuteNoneQuery(strBuilder.ToString(), param, values);
         }
-
+        /// <summary>
+        /// 判断批次是否激活
+        /// </summary>
+        /// <param name="planId">批次id</param>
+        /// <returns>1为激活，0为非激活</returns>
+        public int selectByplanId(string planId)
+        {
+            string sql = "select count(planId) from T_Plan where planId=@planId and state>0";
+            string[] param = { "@planId" };
+            object[] values = { planId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
         /// <summary>
         /// 通过id删除一条题目信息
         /// </summary>

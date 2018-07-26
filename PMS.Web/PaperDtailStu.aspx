@@ -44,7 +44,7 @@
                         {
                             showTeaName = "";
                         }%>
-                    <span>我的指导老师：<a href="#" data-toggle="modal" data-target="#myModal"><%=showTeaName %></a>
+                    <span>我的指导老师：<a href="#" data-toggle="modal" data-target="#myModal"><u>&nbsp<%=showTeaName %>&nbsp</u></a>
                     </span>
                 </label>
                 <span>|</span>

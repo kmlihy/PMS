@@ -54,7 +54,7 @@
                                 </td>
                                 <td></td>
                                 <td id="email">
-                                    <a href="#"><button type="button" class="btn btn-info">修改密码</button></a>
+                                    <a href="changePwd.aspx"><button type="button" class="btn btn-info">修改密码</button></a>
                                 </td>
                             </tr>
                         </tbody>

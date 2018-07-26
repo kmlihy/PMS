@@ -155,7 +155,7 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="addPaper.aspx" class="sidebarclick" >
+                                    <a href="addPaper.aspx?article=new" class="sidebarclick" >
                                         <span>我要出题</span>
                                     </a>
                                 </li>

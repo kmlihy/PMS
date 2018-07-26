@@ -48,9 +48,9 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="newsContent">
-                                    <label for="text">
+                                    <article for="text">
                                         <%=newsId.NewsContent %>
-                                    </label>
+                                    </article>
                                 </td>
                             </tr>
                         </tbody>

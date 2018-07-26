@@ -87,7 +87,23 @@ namespace PMS.BLL
                 return Result.更新失败;
             }
         }
-
+        /// <summary>
+        /// 判断批次是否激活
+        /// </summary>
+        /// <param name="planId">批次id</param>
+        /// <returns>1为激活，0为非激活</returns>
+        public bool selectByplanId(string planId)
+        {
+            int count = dao.selectByplanId(planId);
+            if(count>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 根据id查询题目信息
         /// </summary>

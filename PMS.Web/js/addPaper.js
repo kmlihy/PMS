@@ -28,11 +28,12 @@ $(document).ready(function () {
     //    var college = $(".selPro").val();
     //    alert(college);
     //});
+    var article = $("#article").val();
     $("#btnOK").click(function () {
         var paperTitle = $(".TextBox").val(),//获取标题文本值
             profession = $(".selPro").val(),//获取专业文本值
             plan = $(".selBat").val(),//获取批次文本值
-            paperContent = $(".content").val();//获取内容文本值
+            paperContent = escape($(".content").val());//获取内容文本值
         numMax = $(".numMax").val();//获取人数上限值
         if (paperTitle == "") {
             alert("论文标题不能为空");
@@ -53,11 +54,25 @@ $(document).ready(function () {
             $.ajax({
                 type: 'Post',
                 url: 'addPaper.aspx',
-                data: { paperTitle: paperTitle, profession: profession, plan: plan, paperContent: paperContent, numMax: numMax, op: "add" },
+                data: {
+                    paperTitle: paperTitle,
+                    profession: profession,
+                    plan: plan,
+                    paperContent: paperContent,
+                    numMax: numMax,
+                    op: article
+                },
                 dataType: 'text',
                 success: function (succ) {
                     if (succ == "添加成功") {
                         window.wxc.xcConfirm("发布成功!", window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                window.location.href = "titleList.aspx";
+                            }
+                        });
+                    }
+                    else if (succ == "更新成功") {
+                        window.wxc.xcConfirm("修改成功!", window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 window.location.href = "titleList.aspx";
                             }

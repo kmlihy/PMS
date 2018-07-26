@@ -39,6 +39,7 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             string op = Context.Request["op"];
             string type = Request.QueryString["type"];
             if (!IsPostBack)
@@ -97,6 +98,11 @@ namespace PMS.Web.admin
                 dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
                 string strWhere = string.Format(" proId = {0} and planId = {1}", dropstrWherepro, dropstrWhereplan);
                 getdata(strWhere);
+            }
+            string alert = Request.QueryString["state"];
+            if (alert == "1")
+            {
+                Response.Write("<script>alert('批次已激活，不可编辑')</script>");
             }
         }
 
@@ -169,50 +175,20 @@ namespace PMS.Web.admin
         /// </summary>
         public void editTitle()
         {
-            int titleId = int.Parse(Context.Request["saveTitleId"].ToString());
-            string title = Context.Request["saveTitle"].ToString();
-
-            string planId = Context.Request["savePlan"].ToString();
-            string proId = Context.Request["saveProf"].ToString();
-            string teaAccount = Context.Request["saveTea"].ToString();
-
-            int limit = int.Parse(Context.Request["saveLimit"].ToString());
-            DateTime createTime = Convert.ToDateTime(Context.Request["saveCreateTime"].ToString());
-            string content = Context.Request["saveContent"].ToString();
-            int selected = int.Parse(Context.Request["saveSelected"].ToString());
-            
-            Plan plan = new Plan();
-            plan.PlanId = int.Parse(planId);
-
-            Profession pro = new Profession();
-            pro.ProId = int.Parse(proId);
-
-            Teacher tea = new Teacher();
-            tea.TeaAccount = teaAccount;
-
-            TitleBll tbll = new TitleBll();
-            Title getTitle = new Title();
-            getTitle.TitleId = titleId;
-            getTitle.title = title;
-            getTitle.plan = plan;
-            getTitle.profession = pro;
-            getTitle.teacher = tea;
-            getTitle.Limit = limit;
-            getTitle.CreateTime = createTime;
-            getTitle.TitleContent = content;
-            getTitle.Selected = selected;
-
-            Result result = tbll.Update(getTitle);
-            if (result == Result.更新成功)
+            int titleId = int.Parse(Context.Request["titleId"].ToString());
+            string planId = Context.Request["planId"].ToString();
+            TitleBll titleBll = new TitleBll();
+            bool state = titleBll.selectByplanId(planId);
+            if (state)
             {
-                Response.Write("更新成功");
+                Response.Write("批次已激活，不可编辑");
                 Response.End();
             }
             else
             {
-                Response.Write("更新失败");
-                Response.End();
+                //Response.Redirect("addPaper.aspx?state=1");
             }
+
         }
 
         /// <summary>

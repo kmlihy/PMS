@@ -26,7 +26,7 @@
                 <span class="h3"><%=titleId.title %></span>
             </div>
             <div class="panel-body">
-                <span><%=titleId.TitleContent %></span>
+                <article ><%=titleId.TitleContent %></article>
             </div>
             <div class="panel-footer">
                 <label for="text">选题人数上限：<%=titleId.Limit %></label>
