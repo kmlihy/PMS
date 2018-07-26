@@ -61,7 +61,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="404.html" />
+    <Content Include="css\404.css" />
     <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
@@ -101,7 +101,12 @@
     <Content Include="css\iconfont.css" />
     <Content Include="css\jquery-ui.min.css" />
     <Content Include="css\xcConfirm.css" />
+    <Content Include="images\blueprint.png" />
+    <Content Include="images\carbon.png" />
+    <Content Include="images\error-hanger.png" />
+    <Content Include="images\error-pin.png" />
     <Content Include="images\icons.png" />
+    <Content Include="404.html" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\addNews.js" />
     <Content Include="js\addPaper.js" />

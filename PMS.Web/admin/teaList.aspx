@@ -203,7 +203,7 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-                                <tr>
+<%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系</label></td>
                                     <td>
@@ -215,8 +215,8 @@
                                             <%} %>
                                         </select>
                                     </td>
-                                </tr>
-                                <tr>
+                                </tr>--%>
+<%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">教师类型</label></td>
                                     <td>
@@ -225,7 +225,7 @@
                                             <option value="2">管理员</option>
                                         </select>
                                     </td>
-                                </tr>
+                                </tr>--%>
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">工号</label></td>
@@ -296,7 +296,7 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-                                <tr>
+<%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系:</label></td>
                                     <td>
@@ -309,8 +309,9 @@
                                         </select>
                                         <p class="text-span" id="p-collegeName"></p>
                                     </td>
-                                </tr>
-                                <tr>
+                                </tr>--%>
+                                <%if (state==0) { %>
+                                <tr id="type">
                                     <td class="teaLable">
                                         <label class="text-span">类型:</label></td>
                                     <td>
@@ -329,6 +330,7 @@
                                         <span id="chValitateAccount"></span>
                                     </td>
                                 </tr>
+                                <%} %>
                                 <!--<tr id="tr-pwd">
                                     <td class="teaLable">
                                         <label class="text-span">密码:</label></td>

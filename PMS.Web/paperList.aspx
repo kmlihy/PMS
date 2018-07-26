@@ -18,7 +18,7 @@
 <body>
     <div class="container-fluid paperlistbox">
         <div class="panel-head">
-            <h2>选题管理列表</h2>
+            <h2>选题列表</h2>
         </div>
         <%--<div class="container">
             <h1 class="col-sm-3  col-sm-offset-5">选题列表

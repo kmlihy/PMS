@@ -160,8 +160,8 @@ $(document).ready(function () {
         $("#Eaccount").val(Eaccount);
         var Ename = $(this).parent().parent().find("#teaName").text().trim();
         $("#Ename").val(Ename);
-        var Epwd = $(this).parent().parent().find("#teaPwd").text().trim();
-        $("#Epwd").val(Epwd);
+        //var Epwd = $(this).parent().parent().find("#teaPwd").text().trim();
+        //$("#Epwd").val(Epwd);
         var EintSex = $(this).parent().parent().find("#sex").text().trim();
         $("#EintSex").val(EintSex);
         var EintColl = $(this).parent().parent().find("#collegeName").text().trim();

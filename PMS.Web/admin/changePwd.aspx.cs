@@ -32,6 +32,11 @@ namespace PMS.Web.admin
                 Teacher tea = (Teacher)Session["loginuser"];
                 account = tea.TeaAccount;
             }
+            else if (state == 2)
+            {
+                Teacher tea = (Teacher)Session["user"];
+                account = tea.TeaAccount;
+            }
             else if (state == 3)
             {
                 Student stu = (Student)Session["loginuser"];
@@ -43,6 +48,9 @@ namespace PMS.Web.admin
                 Change();
             }
         }
+        /// <summary>
+        /// 修改密码
+        /// </summary>
         public void Change()
         {
             string oldpwd = Request.Form["old"];
@@ -63,11 +71,11 @@ namespace PMS.Web.admin
                         Response.Write("更新成功");
                         Response.End();
                     }
-                    else
-                    {
-                        Response.Write("更新失败");
-                        Response.End();
-                    }
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
                 }
             }
             else if(state == 1)
@@ -83,11 +91,11 @@ namespace PMS.Web.admin
                         Response.Write("更新成功");
                         Response.End();
                     }
-                    else
-                    {
-                        Response.Write("更新失败");
-                        Response.End();
-                    }
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
                 }
             }
             else
@@ -103,11 +111,11 @@ namespace PMS.Web.admin
                         Response.Write("更新成功");
                         Response.End();
                     }
-                    else
-                    {
-                        Response.Write("更新失败");
-                        Response.End();
-                    }
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
                 }
             }
         }

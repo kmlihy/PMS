@@ -134,10 +134,10 @@ namespace PMS.Web.admin
             string sex = Context.Request["sex"].ToString();
             string college = Context.Request["college"].ToString();
             string email = Context.Request["email"].ToString();
-            result = Result.添加失败;
             string phone = Context.Request["phone"].ToString();
             if (teaBll.selectByColl(Convert.ToInt32(college)))
             {
+                result = Result.添加失败;
                 Response.Write("该学院已设置过分院管理员");
                 Response.End();
             }
@@ -145,17 +145,20 @@ namespace PMS.Web.admin
             {
                 if (teaBll.GetModel(account).TeaType == 2)
                 {
+                    result = Result.添加失败;
                     Response.Write("该教师已为分院管理员");
                     Response.End();
                 }
             }
             else if (teaBll.selectByEmail(email))
             {//根据输入的邮箱查找是否已存在
+                result = Result.添加失败;
                 Response.Write("此邮箱已存在");
                 Response.End();
             }
             else if (teaBll.selectByPhone(phone))
             {//根据输入的联系电话查找是否已存在
+                result = Result.添加失败;
                 Response.Write("此联系电话已存在");
                 Response.End();
             }

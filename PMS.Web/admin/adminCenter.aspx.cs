@@ -15,9 +15,7 @@ namespace PMS.Web.admin
         protected Enums.OpResult enums;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                teacher = (Teacher)Session["loginuser"];
-            
+           teacher = (Teacher)Session["user"];
            string op = Request.QueryString["op"];
            if (op=="update")
             {

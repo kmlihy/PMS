@@ -74,7 +74,7 @@ $(".selectTitle").click(function () {
                         window.wxc.xcConfirm("您已经选过题目，不能多次选题!", window.wxc.xcConfirm.typeEnum.error);
                     }
                     else if (succ == "已达上限") {
-                        window.wxc.xcConfirm("该题目选题人数已达上限，请选择其他题目!", window.wxc.xcConfirm.typeEnum.error);
+                        window.wxc.xcConfirm("题目选题人数已达上限，请选择其他题目!", window.wxc.xcConfirm.typeEnum.error);
                     }
                 }
             });

@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace PMS.Web
 {
     public partial class login : System.Web.UI.Page
     {
-        protected string userName;
+        protected string account;
         protected string pwd;
         protected string captcha;
         protected string usertype;
@@ -19,7 +20,7 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
          try {
-                userName = Request.Form["userName"].Trim();
+                account = Request.Form["userName"].Trim();
                 pwd = Request.Form["pwd"].Trim();
                 captcha = Request.Form["captcha"].ToLower();
                 usertype = Request.Form["user"].Trim();
@@ -30,28 +31,35 @@ namespace PMS.Web
                 int loginstate = 0;
                 switch (usertype) {
                     case "teacher":
-                        BLL.TeacherBll tdao = new BLL.TeacherBll();
-                        Model.Teacher tea = tdao.Login(userName, Security.SHA256Hash(pwd));
-                        if (tea == null)
-                        {
-                            loginstate = 0;
-                        }
-                        else {
-                            loginstate = 1;
-                            Session["loginuser"] = tea;
-                            Session["state"] = 1;
-                            Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
-                            roles = "teacher";
-                            FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
-                            string HashTicket = FormsAuthentication.Encrypt(Ticket); //加密序列化验证票为字符串 
-                            Session["HashTicket"] = HashTicket;
-                            HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
-                            Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
+                        TeacherBll teaBll = new TeacherBll();
+                        if(teaBll.GetModel(account).TeaType == 1) {
+                            Teacher tea = teaBll.Login(account, Security.SHA256Hash(pwd));
+                            if (tea == null)
+                            {
+                                loginstate = 0;
                             }
-                        break;
+                            else {
+                                loginstate = 1;
+                                Session["loginuser"] = tea;
+                                Session["state"] = 1;
+                                Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
+                                roles = "teacher";
+                                FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
+                                string HashTicket = FormsAuthentication.Encrypt(Ticket); //加密序列化验证票为字符串 
+                                Session["HashTicket"] = HashTicket;
+                                HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
+                                Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
+                            }
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('管理员请前往管理员登录界面登录');</script>");
+                                Response.Redirect("admin/login.aspx");
+                        }
+                    break;
                     case "student":
-                        BLL.StudentBll sdao = new BLL.StudentBll();
-                        Model.Student stu = sdao.Login(userName, Security.SHA256Hash(pwd));
+                        StudentBll sdao = new BLL.StudentBll();
+                        Student stu = sdao.Login(account, Security.SHA256Hash(pwd));
                         if (stu == null)
                         {
                             loginstate = 0;
@@ -63,7 +71,7 @@ namespace PMS.Web
                             Session["state"] = 3;
                             Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
                             roles = "student";
-                            FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
+                            FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
                             string HashTicket = FormsAuthentication.Encrypt(Ticket); //加密序列化验证票为字符串 
                             Session["HashTicket"] = HashTicket;
                             HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
@@ -73,7 +81,7 @@ namespace PMS.Web
                 }
                     if (loginstate == 0)
                     {
-                        Response.Write("<script>alert('登录角色错误');</script>");
+                        Response.Write("<script>alert('用户名或密码错误');</script>");
                     }
                     else if (loginstate == 1)
                     {
@@ -101,7 +109,7 @@ namespace PMS.Web
         /// <returns></returns>
         public string vildata() {
             string alertmsg = "";
-            if (userName == null) {
+            if (account == null) {
                 alertmsg = "用户名不能为空";
             }
             else if (pwd==null) {

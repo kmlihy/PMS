@@ -191,6 +191,7 @@ input.error {
 }
 .center {
     border: 1px solid #cbcbcb;
+    padding: 20px;
 }
 .box td {
     width: 320px;
@@ -299,4 +300,8 @@ a:link {
 }
 #regform td{
     line-height:33px;
+}
+
+.changePwdForm{
+    padding:10px;
 }

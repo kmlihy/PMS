@@ -20,20 +20,23 @@ namespace PMS.Web
 
         protected Title titleId = null;
         protected string titleid;
+        protected string state;//判断登录者
         protected void Page_Load(object sender, EventArgs e)
         {
-            Student stu = (Student)Session["loginuser"];
-            stuId = stu.StuAccount;
-
+            state = Session["state"].ToString();
             string op = Context.Request.QueryString["op"];
 
             titleid = Request.QueryString["titleId"].ToString();
             TitleBll nb = new TitleBll();
             titleId = nb.GetTitle(int.Parse(titleid));
-
-            if (op == "selectTitle")
+            if (state == "3")
             {
-                StusecltTitle();
+                Student stu = (Student)Session["loginuser"];
+                stuId = stu.StuAccount;
+                if (op == "selectTitle")
+                {
+                    StusecltTitle();
+                }
             }
         }
         /// <summary>
