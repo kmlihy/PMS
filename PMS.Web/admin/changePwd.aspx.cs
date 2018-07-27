@@ -32,7 +32,7 @@ namespace PMS.Web.admin
                 Teacher tea = (Teacher)Session["loginuser"];
                 account = tea.TeaAccount;
             }
-            else if (state == 2)
+            else if (state == 2 || state == 0)
             {
                 Teacher tea = (Teacher)Session["user"];
                 account = tea.TeaAccount;

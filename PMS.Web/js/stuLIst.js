@@ -353,13 +353,13 @@ $(document).ready(function () {
             pro = proadmin;
         }
         var stuAccount = $("#stuAccount").val(),
-            pwd = $("#pwd").val(),
+            //pwd = $("#pwd").val(),
             realName = $("#realName").val(),
             sex = $("#sex").find("option:selected").val(),
 
             phone = $("#phone").val(),
             email = $("#email").val();
-        if (stuAccount === "" || pwd === "" || realName === "" || sex === "" || pro === "" || phone === "" || email === "") {
+        if (stuAccount === "" /*|| pwd === ""*/ || realName === "" || sex === "" || pro === "" || phone === "" || email === "") {
             alert("不能出现未填项！");
         }
         else {
@@ -368,7 +368,7 @@ $(document).ready(function () {
                 url: 'stuLIst.aspx',
                 data: {
                     stuAccount: stuAccount,
-                    pwd: pwd,
+                    //pwd: pwd,
                     realName: realName,
                     sex: sex,
                     pro: pro,
@@ -380,12 +380,6 @@ $(document).ready(function () {
                 success: function (succ) {
                     if (succ === "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    } else if (succ === "添加失败") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
                                 jump(1);
                             }

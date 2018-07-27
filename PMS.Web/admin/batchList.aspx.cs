@@ -23,6 +23,7 @@ namespace PMS.Web.admin
         protected int pagesize = 3;
 
         protected String search = "";
+        protected String secSearch = "";
         protected String searchdrop = "";
         protected string showstr = "";
         protected string showinput = null;
@@ -213,16 +214,19 @@ namespace PMS.Web.admin
         {
             try {
                 search = Request.QueryString["search"];
-                if(search.Length == 0)
+                if (search.Length == 0)
                 {
                     search = "";
+                    secSearch = "";
                 }
                 else if (search == null || search == "")
                 {
                     search = "";
+                    secSearch = "";
                 }
                 else
                 {
+                    secSearch = search;
                     search = String.Format("planName {0} or collegeName {0}", "like " + "'%" + search + "%'");
                 }
             }

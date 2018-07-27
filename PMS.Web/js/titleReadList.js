@@ -5,9 +5,8 @@ sessionStorage.setItem("Page", page);
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 $(document).ready(function () {
-    $("#inputsearch").val(sessionStorage.getItem("strWhere"));
     //分页参数传递
-    $(".jump").click(function() {
+    $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="iconfont icon-back"></span>'):
                 if (parseInt(sessionStorage.getItem("Page")) > 1) {
@@ -178,14 +177,17 @@ $(document).ready(function () {
             sessionStorage.setItem("type", "textSelect");
             sessionStorage.removeItem("dropstrWhereplan");
             sessionStorage.removeItem("dropstrWherepro");
+            $("#inputsearch").val(sessionStorage.getItem("strWhere"));
             jump(1);
         }
         else {
             sessionStorage.removeItem("dropstrWhereplan");
             sessionStorage.removeItem("dropstrWherepro");
+            $("#inputsearch").val(sessionStorage.getItem("strWhere"));
             jump(1);
         }
     });
+    //点击查看题目详情按钮
     $(".btnSearch").click(function () {
         var titleId = $(this).parent().parent().find("#titleId").text().trim();
         window.location.href = "../paperDetail.aspx?titleId=" + titleId;

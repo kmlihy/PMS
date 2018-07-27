@@ -373,7 +373,7 @@ namespace PMS.Web.admin
             try
             {
                 string stuAccount = Context.Request["stuAccount"].ToString(),
-                    pwd = Context.Request["pwd"].ToString(),
+                    //pwd = Context.Request["pwd"].ToString(),
                     realName = Context.Request["realName"].ToString(),
                     sex = Context.Request["sex"].ToString(),
                     phone = Context.Request["phone"].ToString(),

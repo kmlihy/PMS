@@ -210,7 +210,7 @@
                                     <span id="stu_NO"></span>
                                 </td>
                             </tr>
-                            <tr>
+                            <%--<tr>
                                 <td class="teaLable text-center">
                                     <label class="text-span">初始密码</label>
                                 </td>
@@ -218,7 +218,7 @@
                                     <input class="form-control teaAddinput" type="password" id="pwd" value="000000" />
                                     <span id="stu_pwd"></span>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">姓名</label></td>
@@ -243,6 +243,7 @@
                                     <label class="text-span">所属分院</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="stuAddCollege">
+                                        <option>请选择分院</option>
                                         <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                             { %>
                                         <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
@@ -347,6 +348,13 @@
                             </tr>
                             <tr>
                                 <td class="teaLable">
+                                    <label class="text-span">院系</label></td>
+                                <td>
+                                    <input class="form-control teaAddinput editorCollege" type="text" disabled="disabled" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="teaLable">
                                     <label class="text-span">专业</label></td>
                                 <td>
                                     <input class="form-control teaAddinput editorPro" type="text" />
@@ -363,13 +371,6 @@
                                     </div>
                                     <button type="button" class="btn btn-default btnEditor" id="btnEditor3">编辑</button>
                                     <button type="button" class="btn btn-default btnEditor" id="btnSure3">确定</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">院系</label></td>
-                                <td>
-                                    <input class="form-control teaAddinput editorCollege" type="text" disabled="disabled" />
                                 </td>
                             </tr>
                             <tr>

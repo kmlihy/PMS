@@ -14,7 +14,6 @@ if (userType == "0") {
 }
 
 $(document).ready(function () {
-
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
