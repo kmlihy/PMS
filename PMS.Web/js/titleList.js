@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     //分页参数传递
     $(".jump").click(function () {
-        if ($("#search").val() !== null) {
+        if ($("#search").val() != null) {
             switch ($.trim($(this).html())) {
                 case ('<span class="iconfont icon-back"></span>'):
                     if (parseInt(sessionStorage.getItem("Page")) > 1) {
@@ -89,7 +89,7 @@ $(document).ready(function () {
     });
 
     //自动隐藏导航栏首页尾页
-    if (sessionStorage.getItem("countPage") === "1") {
+    if (sessionStorage.getItem("countPage") == "1") {
         $("#first").hide();
         $("#last").hide();
     }
@@ -113,7 +113,7 @@ $(document).ready(function () {
             },
             dataType: 'text',
             success: function (succ) {
-                if (succ === "批次已激活，不可编辑") {
+                if (succ == "批次已激活，不可编辑") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
                             jump(1);
@@ -231,7 +231,7 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        if (succ === "删除成功") {
+                        if (succ == "删除成功") {
                             window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                                 onOk: function (v) {
                                     jump(parseInt(sessionStorage.getItem("Page")));
@@ -256,11 +256,11 @@ $(document).ready(function () {
         sessionStorage.removeItem("strWhere");
         //存储批次下拉框的条件
         var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
-        if (dropstrWhereplan !== "0") {
+        if (dropstrWhereplan != "0") {
             sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
             //判断专业是否被选中
-            if (dropstrWherepro !== "0") {
+            if (dropstrWherepro != "0") {
                 //存储专业下拉框的条件
                 sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
                 sessionStorage.removeItem("type");
@@ -277,7 +277,7 @@ $(document).ready(function () {
             sessionStorage.removeItem("dropstrWhereplan");
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
             //判断专业是否被选中
-            if (dropstrWherepro !== "0") {
+            if (dropstrWherepro != "0") {
                 //存储专业下拉框的条件
                 sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
                 sessionStorage.removeItem("type");
@@ -297,13 +297,13 @@ $(document).ready(function () {
         sessionStorage.removeItem("strWhere");
         //获取用户选中的专业下拉框的Id值
         var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
-        if (dropstrWherepro !== "0") {
+        if (dropstrWherepro != "0") {
             //把值存储到sessionStorage中并传到后台
             sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
             //获取用户选中批次的id值
             var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
             //判断批次下拉框有没有值
-            if (dropstrWhereplan !== "0") {
+            if (dropstrWhereplan != "0") {
                 //存储批次下拉框的条件           
                 sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
                 sessionStorage.removeItem("type");
@@ -320,7 +320,7 @@ $(document).ready(function () {
             sessionStorage.removeItem("dropstrWherepro");
             var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
             //判断批次下拉框有没有值
-            if (dropstrWhereplan !== "0") {
+            if (dropstrWhereplan != "0") {
                 //存储批次下拉框的条件           
                 sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
                 sessionStorage.removeItem("type");
@@ -338,7 +338,7 @@ $(document).ready(function () {
     //分页函数
     function jump(cur) {
 
-        if (sessionStorage.getItem("strWhere") === null && sessionStorage.getItem("dropstrWherepro")= == null && sessionStorage.getItem("dropstrWhereplan"=) == null) {
+        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
             window.location.href = "titleList.aspx?currentPage=" + cur;
         }
         if (sessionStorage.getItem("strWhere") != null) {

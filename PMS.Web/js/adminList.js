@@ -42,7 +42,7 @@ $(document).ready(function () {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
-                //点击首页按钮时
+            //点击首页按钮时
             case ("首页"):
                 jump(1);
                 break;
@@ -167,8 +167,10 @@ $(document).ready(function () {
         var EintColl = $(this).parent().parent().find("#collegeName").text().trim();
         $("#EintColl").val(EintColl);
         var Ephone = $(this).parent().parent().find("#phone").text().trim();
+        sessionStorage.setItem("phone", Ephone);
         $("#Ephone").val(Ephone);
         var Eemail = $(this).parent().parent().find("#email").text().trim();
+        sessionStorage.setItem("email", Eemail);
         $("#Eemail").val(Eemail);
         var collegeId = $(this).parent().parent().find("#collegeId").val();
         sessionStorage.setItem("collegeId", collegeId);
@@ -207,9 +209,12 @@ $(document).ready(function () {
         var Phone = $("#Ephone").val();
         var Email = $("#Eemail").val();
         var flag = sessionStorage.getItem("flag");
+        var oldCollegeId = sessionStorage.getItem("collegeId");
+        var oldEmail = sessionStorage.getItem("email");
+        var oldPhone = sessionStorage.getItem("phone");
         var College, Sex;
         if (flag === "false") {
-            College = sessionStorage.getItem("collegeId");
+            College = oldCollegeId;
             Sex = $("#EintSex").val();
         } else {
             College = $("#EselColl").val();
@@ -238,6 +243,9 @@ $(document).ready(function () {
                     Name: Name,
                     Sex: Sex,
                     College: College,
+                    oldCollegeId: oldCollegeId,
+                    oldEmail: oldEmail,
+                    oldPhone: oldPhone,
                     Email: Email,
                     Phone: Phone,
                     op: "edit"

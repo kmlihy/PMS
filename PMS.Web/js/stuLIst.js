@@ -5,17 +5,15 @@ sessionStorage.setItem("countPage", $("#countPage").val());
 
 //判断用户是分院管理员还是超级管理员(0)
 var userType = $("#userType").val();
-if (userType == "2") {
+if (userType === "2") {
     $("#selectcollegeId").selectpicker("hide");
     $("#trCollegeId").hide();
     $("#trPro").hide();
 }
-else if (userType == "0") {
+else if (userType === "0") {
     $("#trPro").hide();
     $("#trstuPro").hide();
-
 }
-
 $(document).ready(function () {
     function GetJsonLength(JsonData) {
         var jsonLenth = 0;
@@ -24,7 +22,7 @@ $(document).ready(function () {
         }
         return jsonLenth;
     }
-    //添加下拉框联动
+    //分院、专业下拉框联动
     $("#stuAddCollege").change(function () {
         var stuAddCollegeId = $("#stuAddCollege").find("option:selected").val();
         $("#pro").html("");
@@ -64,7 +62,7 @@ $(document).ready(function () {
                     },
                     dataType: 'text',
                     success: function (succ) {
-                        if (succ == "删除成功") {
+                        if (succ === "删除成功") {
                             window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                                 onOk: function (v) {
                                     jump(parseInt(sessionStorage.getItem("page")));
@@ -87,10 +85,10 @@ $(document).ready(function () {
     $(".selectcollegeId").change(function () {
         var collegeId = $("#selectcollegeId").find("option:selected").val();
         sessionStorage.setItem("dropCollegeIdstrWhere", collegeId);
-        if (sessionStorage.getItem("strWhere") != null) {
+        if (sessionStorage.getItem("strWhere") !== null) {
             sessionStorage.removeItem("strWhere");
         }
-        if (sessionStorage.getItem("proWhere") != null) {
+        if (sessionStorage.getItem("proWhere") !== null) {
             sessionStorage.removeItem("proWhere");
         }
         jump(1);
@@ -100,7 +98,7 @@ $(document).ready(function () {
     $("#chooseStuPro").change(function () {
         var collegeId = $("#chooseStuPro").find("option:selected").val();
         sessionStorage.setItem("proWhere", collegeId);
-        if (sessionStorage.getItem("strWhere") != null) {
+        if (sessionStorage.getItem("strWhere") !== null) {
             sessionStorage.removeItem("strWhere");
         }
         jump(1);
@@ -109,28 +107,28 @@ $(document).ready(function () {
     $("#btn-search").click(function () {
         var strWhere = $("#inputsearch").val();
         sessionStorage.setItem("strWhere", strWhere);
-        if (sessionStorage.getItem("dropCollegeIdstrWhere") != null) {
+        if (sessionStorage.getItem("dropCollegeIdstrWhere") !== null) {
             sessionStorage.removeItem("dropCollegeIdstrWhere");
         }
-        if (sessionStorage.getItem("proWhere") != null) {
+        if (sessionStorage.getItem("proWhere") !== null) {
             sessionStorage.removeItem("proWhere");
         }
         jump(1);
     });
     //地址栏显示信息
     function jump(cur) {
-        if (userType == "0") {
-            if (sessionStorage.getItem("strWhere") != null) {
+        if (userType === "0") {
+            if (sessionStorage.getItem("strWhere") !== null) {
                 window.location.href = "stuList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
-            } else if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+            } else if (sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") {
                 window.location.href = "stuList.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&proId=" + sessionStorage.getItem("proWhere");
             } else {
                 window.location.href = "stuList.aspx?currentPage=" + cur;
             }
-        } else if (userType == "2") {
-            if (sessionStorage.getItem("strWhere") != null) {
+        } else if (userType === "2") {
+            if (sessionStorage.getItem("strWhere") !== null) {
                 window.location.href = "stuList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
-            } else if (sessionStorage.getItem("strWhere") == null || sessionStorage.getItem("strWhere") == "") {
+            } else if (sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") {
                 window.location.href = "stuList.aspx?currentPage=" + cur + "&proId=" + sessionStorage.getItem("proWhere");
             } else {
                 window.location.href = "stuList.aspx?currentPage=" + cur;
@@ -170,8 +168,6 @@ $(document).ready(function () {
                 break;
         }
     });
-
-
     //编辑学生
     //获取学生信息到编辑框
     $(".Editor").click(function () {
@@ -190,8 +186,10 @@ $(document).ready(function () {
         var stuColId = $(this).parent().parent().find(".stuCollege").text().trim();//学院ID
         $(".stuCollegeId").text(stuColId);//学院ID框获取学院ID
         var stuPhone = $(this).parent().parent().find(".stuPhone").text().trim();
+        sessionStorage.setItem("phone", stuPhone);
         $(".editorPhone").val(stuPhone);//电话框获取电话
         var stuEmail = $(this).parent().parent().find(".stuPhone").next().text().trim();
+        sessionStorage.setItem("email", stuEmail);
         $(".editorEmail").val(stuEmail);//邮箱框获取邮箱
         var stuPwd = $(this).parent().next().find("input").val();
         $(".editorStuPwd").val(stuPwd);
@@ -250,7 +248,9 @@ $(document).ready(function () {
             stuCollege = $(".stuCollegeId").text(),
             stuPro = $(".stuProId").text(),
             stuEmail = $(".editorEmail").val(),
-            stuPhone = $(".editorPhone").val();
+            stuPhone = $(".editorPhone").val(),
+            oldPhone = sessionStorage.getItem("phone"),
+            oldEmail = sessionStorage.getItem("email");
         //alert("ajax");
         $.ajax({
             type: 'Post',
@@ -263,11 +263,13 @@ $(document).ready(function () {
                 stuPro: stuPro,
                 stuEmail: stuEmail,
                 stuPhone: stuPhone,
+                oldPhone: oldPhone,
+                oldEmail: oldEmail,
                 editorOp: "editor"
             },
             dataType: 'text',
             success: function (succ) {
-                if (succ == "更新成功") {
+                if (succ === "更新成功") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
                             jump(1);
@@ -331,21 +333,21 @@ $(document).ready(function () {
     })
     //添加学生
     $("#saveSutdent").click(function () {
-        if (sessionStorage.getItem("strWhere") != null || sessionStorage.getItem("dropCollegeIdstrWhere") != null || sessionStorage.getItem("proWhere") != null) {
-            if (sessionStorage.getItem("strWhere") != null) {
+        if (sessionStorage.getItem("strWhere") !== null || sessionStorage.getItem("dropCollegeIdstrWhere") !== null || sessionStorage.getItem("proWhere")!== null) {
+            if (sessionStorage.getItem("strWhere") !== null) {
                 sessionStorage.removeItem("strWhere");
             }
             else if (sessionStorage.getItem("dropCollegeIdstrWhere") != null) {
                 sessionStorage.removeItem("dropCollegeIdstrWhere");
             }
-            else if (sessionStorage.getItem("proWhere") != null) {
+            else if (sessionStorage.getItem("proWhere") !== null) {
                 sessionStorage.removeItem("proWhere");
             }
         }
         var colladmin = $(".pro").find("option:selected").val();
         var proadmin = $("#pro").find("option:selected").val();
         var pro = "";
-        if (proadmin == null) {
+        if (proadmin === null) {
             pro = colladmin;
         } else {
             pro = proadmin;
@@ -357,7 +359,7 @@ $(document).ready(function () {
 
             phone = $("#phone").val(),
             email = $("#email").val();
-        if (stuAccount == "" || pwd == "" || realName == "" || sex == "" || pro == "" || phone == "" || email == "") {
+        if (stuAccount === "" || pwd === "" || realName === "" || sex === "" || pro === "" || phone === "" || email === "") {
             alert("不能出现未填项！");
         }
         else {
@@ -376,13 +378,13 @@ $(document).ready(function () {
                 },
                 dateType: 'text',
                 success: function (succ) {
-                    if (succ == "添加成功") {
+                    if (succ === "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
                                 jump(1);
                             }
                         });
-                    } else if (succ == "添加失败") {
+                    } else if (succ === "添加失败") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
                                 jump(1);

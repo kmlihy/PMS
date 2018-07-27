@@ -253,7 +253,7 @@
                                 <td class="teaLable">
                                     <label class="text-span">密码</label></td>
                                 <td>--%>
-                                <input class="form-control teaAddinput" type="hidden" id="Epwd" />
+                                <%--<input class="form-control teaAddinput" type="hidden" id="Epwd" />--%>
                                 <%--<span id="validatePwd"></span>
                                 </td>
                             </tr>--%>

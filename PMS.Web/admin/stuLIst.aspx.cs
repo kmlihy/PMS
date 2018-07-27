@@ -312,36 +312,57 @@ namespace PMS.Web.admin
                    stuName = Context.Request["stuName"].ToString(),
                    stuSex = Context.Request["stuSex"].ToString(),
                    stuEmail = Context.Request["stuEmail"].ToString(),
-                   stuPhone = Context.Request["stuPhone"].ToString();
+                   stuPhone = Context.Request["stuPhone"].ToString(),
+                   oldPhone = Context.Request["oldPhone"].ToString(),
+                   oldEmail = Context.Request["oldEmail"].ToString();
             int stuCollege = int.Parse(Context.Request["stuCollege"].ToString()),
                 stuPro = int.Parse(Context.Request["stuPro"].ToString());
-            College stuCol = new College()
+            if (stuEmail != oldEmail)
             {
-                ColID = stuCollege
-            };
-            Profession stup = new Profession() { ProId = stuPro };
-            Student EditorStu = new Student()
+                if (stuBll.selectByEmail(stuEmail))
+                {//根据输入的邮箱查找是否已存在
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
+            }
+            else if (stuPhone != oldPhone)
             {
-                StuAccount = stuNO,
-                RealName = stuName,
-                Sex = stuSex,
-                Email = stuEmail,
-                Phone = stuPhone,
-                college = stuCol,
-                profession = stup
-            };
-            StudentBll editorStuBll = new StudentBll();
-
-            Result editorResult = editorStuBll.Updata(EditorStu);
-            if (editorResult == Result.更新成功)
-            {
-                Response.Write("更新成功");
-                Response.End();
+                if (stuBll.selectByPhone(stuPhone))
+                {//根据输入的联系电话查找是否已存在
+                    Response.Write("此联系电话已存在");
+                    Response.End();
+                }
             }
             else
             {
-                Response.Write("更新失败");
-                Response.End();
+                College stuCol = new College()
+                {
+                    ColID = stuCollege
+                };
+                Profession stup = new Profession() { ProId = stuPro };
+                Student EditorStu = new Student()
+                {
+                    StuAccount = stuNO,
+                    RealName = stuName,
+                    Sex = stuSex,
+                    Email = stuEmail,
+                    Phone = stuPhone,
+                    college = stuCol,
+                    profession = stup
+                };
+                StudentBll editorStuBll = new StudentBll();
+
+                Result editorResult = editorStuBll.Updata(EditorStu);
+                if (editorResult == Result.更新成功)
+                {
+                    Response.Write("更新成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("更新失败");
+                    Response.End();
+                }
             }
         }
         /// <summary>
@@ -358,38 +379,51 @@ namespace PMS.Web.admin
                     phone = Context.Request["phone"].ToString(),
                     email = Context.Request["email"].ToString();
                 int proId = int.Parse(Context.Request["pro"].ToString());
-                Profession prof = new Profession()
-                {
-                    ProId = proId
-                };
-                Student stu = new Student()
-                {
-                    StuAccount = stuAccount,
-                    StuPwd = pwd,
-                    RealName = realName,
-                    Sex = sex,
-                    Phone = phone,
-                    Email = email,
-                    profession = prof
-                };
-                StudentBll stuBll = new StudentBll();
-                if (stuBll.selectBystuId(stuAccount) == true)
-                {
-                    Response.Write("该学生已存在，添加失败");
+                if (stuBll.selectByEmail(email))
+                {//根据输入的邮箱查找是否已存在
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
+                else if (stuBll.selectByPhone(phone))
+                {//根据输入的联系电话查找是否已存在
+                    Response.Write("此联系电话已存在");
                     Response.End();
                 }
                 else
                 {
-                    Result result = stuBll.Insert(stu);
-                    if (result == Result.添加成功)
+                    Profession prof = new Profession()
                     {
-                        Response.Write("添加成功");
+                        ProId = proId
+                    };
+                    Student stu = new Student()
+                    {
+                        StuAccount = stuAccount,
+                        StuPwd = pwd,
+                        RealName = realName,
+                        Sex = sex,
+                        Phone = phone,
+                        Email = email,
+                        profession = prof
+                    };
+                    StudentBll stuBll = new StudentBll();
+                    if (stuBll.selectBystuId(stuAccount) == true)
+                    {
+                        Response.Write("该学生已存在，添加失败");
                         Response.End();
                     }
                     else
                     {
-                        Response.Write("添加失败");
-                        Response.End();
+                        Result result = stuBll.Insert(stu);
+                        if (result == Result.添加成功)
+                        {
+                            Response.Write("添加成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("添加失败");
+                            Response.End();
+                        }
                     }
                 }
             }

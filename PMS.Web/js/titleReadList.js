@@ -4,7 +4,8 @@ sessionStorage.setItem("Page", page);
 //存储总页数
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
-$(document).ready(function() {
+$(document).ready(function () {
+    $("#inputsearch").val(sessionStorage.getItem("strWhere"));
     //分页参数传递
     $(".jump").click(function() {
         switch ($.trim($(this).html())) {
@@ -56,6 +57,7 @@ $(document).ready(function() {
         sessionStorage.removeItem("strWhere");
         //获取用户选中的专业下拉框的Id值
         var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
+        //sessionStorage.setItem("dropstrWhereColl", null);
         if (dropstrWherepro !== "0") {
             //把值存储到sessionStorage中并传到后台
             sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
@@ -152,7 +154,7 @@ $(document).ready(function() {
         else if (sessionStorage.getItem("strWhere") !== null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
         }
-        else if (sessionStorage.getItem("dropstrWhereColl") !== null) {
+        else if (sessionStorage.getItem("dropstrWhereColl") !== null && sessionStorage.getItem("dropstrWhereColl") !== "undefined") {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereColl=" + sessionStorage.getItem("dropstrWhereColl") + "&type=" + sessionStorage.getItem("type");
         }
         else if (sessionStorage.getItem("dropstrWhereplan") !== null && sessionStorage.getItem("dropstrWherepro") === null) {
