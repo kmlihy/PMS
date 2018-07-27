@@ -296,7 +296,7 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-                                <%--                                <tr>
+                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系:</label></td>
                                     <td>
@@ -309,7 +309,7 @@
                                         </select>
                                         <p class="text-span" id="p-collegeName"></p>
                                     </td>
-                                </tr>--%>
+                                </tr>
                                 <%if (state == 0)
                                 { %>
                                 <tr id="type">

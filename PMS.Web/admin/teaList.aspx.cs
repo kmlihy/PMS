@@ -240,7 +240,7 @@ namespace PMS.Web.admin
         }
 
         /// <summary>
-        /// 修改
+        /// 编辑教师信息
         /// </summary>
         public void saveChange()
         {
@@ -250,7 +250,9 @@ namespace PMS.Web.admin
             string teaPhone = Context.Request["TeaPhone"].ToString();
             //string pwd = Context.Request["Pwd"].ToString();
             string sex = Context.Request["Sex"].ToString();
-            //int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+            int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+            string oldPhone = Context.Request["oldPhone"].ToString();
+            string oldEmail = Context.Request["oldEmail"].ToString();
             int teaType;
             if (state==0)
             {
@@ -260,29 +262,48 @@ namespace PMS.Web.admin
             {
                 teaType = 1;
             }
-            Teacher tea = new Teacher();
-            College college = new College();
-            Teacher tealogin = (Teacher)Session["user"];
-            Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
-            college.ColID = tealogin.college.ColID;
-            tea.college = college;
-            tea.TeaAccount = teaAccount;
-            tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
-            tea.TeaName = teaName;
-            tea.Phone = teaPhone;
-            tea.Email = teaEmal;
-            tea.Sex = sex;
-            tea.TeaType = teaType;
-            OpResult result = teabll.Updata(tea);
-            if (result == OpResult.更新成功)
+            if (teaEmal != oldEmail)
             {
-                Response.Write("修改成功");
-                Response.End();
+                if (teabll.selectByEmail(teaEmal))
+                {//根据输入的邮箱查找是否已存在
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
+            }
+            else if (teaPhone != oldPhone)
+            {
+                if (teabll.selectByPhone(teaPhone))
+                {//根据输入的联系电话查找是否已存在
+                    Response.Write("此联系电话已存在");
+                    Response.End();
+                }
             }
             else
             {
-                Response.Write("修改失败");
-                Response.End();
+                Teacher tea = new Teacher();
+                College college = new College();
+                Teacher tealogin = (Teacher)Session["user"];
+                Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
+                college.ColID = tealogin.college.ColID;
+                tea.college = college;
+                tea.TeaAccount = teaAccount;
+                tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
+                tea.TeaName = teaName;
+                tea.Phone = teaPhone;
+                tea.Email = teaEmal;
+                tea.Sex = sex;
+                tea.TeaType = teaType;
+                OpResult result = teabll.Updata(tea);
+                if (result == OpResult.更新成功)
+                {
+                    Response.Write("修改成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("修改失败");
+                    Response.End();
+                }
             }
 
         }

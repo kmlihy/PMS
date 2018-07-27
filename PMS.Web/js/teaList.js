@@ -230,17 +230,19 @@ $(document).ready(function () {
         $("#chteaName").attr("disabled", "disabled");//改成disabled
         $("#chteaAccount").attr("disabled", "disabled");//改成disabled
 
-
+        //绑定基础信息
         $("#p-chteaType").text($(this).parent().parent().find("#tdteatype").text());
         $("#p-chsex").text($(this).parent().parent().find("#tdteaSex").text());
         $("#p-collegeName").text($(this).parent().parent().find("#tdteacoll").text());
 
-        //获得基础信息
+        //绑定基础信息
         $("#chteaAccount").val($(this).parent().parent().find("#tdteaAccount").text().trim());
         //$("#chpwd").val($(this).parent().parent().find("#tdteaPwd").text().trim());
         $("#chteaName").val($(this).parent().parent().find("#tdteaName").text().trim());
         $("#chemail").val($(this).parent().parent().find("#tdteaEmail").text().trim());
-        $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim())
+        sessionStorage.setItem("email", $(this).parent().parent().find("#tdteaEmail").text().trim());
+        $("#chtel").val($(this).parent().parent().find("#tdteaTel").text().trim());
+        sessionStorage.setItem("phone", $(this).parent().parent().find("#tdteaTel").text().trim());
     });
     //关闭按钮事件
     $(".chID").click(function () {
@@ -285,7 +287,9 @@ $(document).ready(function () {
         //pwd = $(".chpwd").val(),
         collegeId = $("#chselectcol").find("option:selected").val(),
         sex = $("#chsex").find("option:selected").text(),
-        teaType = $("#chteaType").find("option:selected").val();
+        teaType = $("#chteaType").find("option:selected").val(),
+        oldPhone = sessionStorage.getItem("phone"),
+        oldEmail = sessionStorage.getItem("email");
         if (teaEmail === "" || teaPhone === "" /*|| pwd == ""*/ || collegeId === "-1") {
             alert("不能含有未填项");
         }
@@ -299,9 +303,11 @@ $(document).ready(function () {
                     TeaEmail: teaEmail,
                     TeaPhone: teaPhone,
                     //Pwd: pwd,
-                    //CollegeId: collegeId,
+                    CollegeId: collegeId,
                     Sex: sex,
                     TeaType: teaType,
+                    oldPhone: oldPhone,
+                    oldEmail: oldEmail,
                     op: "change"
                 },
                 dataType: 'text',

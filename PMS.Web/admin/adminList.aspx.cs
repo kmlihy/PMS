@@ -137,7 +137,6 @@ namespace PMS.Web.admin
             string phone = Context.Request["phone"].ToString();
             if (teaBll.selectByColl(Convert.ToInt32(college)))
             {
-                result = Result.添加失败;
                 Response.Write("该学院已设置过分院管理员");
                 Response.End();
             }
@@ -145,20 +144,17 @@ namespace PMS.Web.admin
             {
                 if (teaBll.GetModel(account).TeaType == 2)
                 {
-                    result = Result.添加失败;
                     Response.Write("该教师已为分院管理员");
                     Response.End();
                 }
             }
             else if (teaBll.selectByEmail(email))
             {//根据输入的邮箱查找是否已存在
-                result = Result.添加失败;
                 Response.Write("此邮箱已存在");
                 Response.End();
             }
             else if (teaBll.selectByPhone(phone))
             {//根据输入的联系电话查找是否已存在
-                result = Result.添加失败;
                 Response.Write("此联系电话已存在");
                 Response.End();
             }
@@ -196,22 +192,34 @@ namespace PMS.Web.admin
             string name = Context.Request["Name"].ToString();
             string sex = Context.Request["Sex"].ToString();
             int college = Convert.ToInt32(Context.Request["College"].ToString());
+            int oldCollegeId = Convert.ToInt32(Context.Request["oldCollegeId"].ToString());
+            string oldPhone = Context.Request["oldPhone"].ToString();
+            string oldEmail = Context.Request["oldEmail"].ToString();
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
-            if (teaBll.selectByColl(college))
+            if (college != oldCollegeId)
             {
-                Response.Write("该学院已设置过分院管理员");
-                Response.End();
+                if (teaBll.selectByColl(college))
+                {
+                    Response.Write("该学院已设置过分院管理员");
+                    Response.End();
+                }
             }
-            else if (teaBll.selectByEmail(email))
-            {//根据输入的邮箱查找是否已存在
-                Response.Write("此邮箱已存在");
-                Response.End();
+            else if(oldEmail != email)
+            {
+                if (teaBll.selectByEmail(email))
+                {//根据输入的邮箱查找是否已存在
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
             }
-            else if (teaBll.selectByPhone(phone))
-            {//根据输入的联系电话查找是否已存在
-                Response.Write("此联系电话已存在");
-                Response.End();
+             else if(oldPhone != phone)
+            {
+                if (teaBll.selectByPhone(phone))
+                {//根据输入的联系电话查找是否已存在
+                    Response.Write("此联系电话已存在");
+                    Response.End();
+                }
             }
             else
             {
@@ -219,7 +227,9 @@ namespace PMS.Web.admin
                 tea.TeaName = name;
                 tea.TeaPwd = teaBll.GetModel(account).TeaPwd;
                 tea.Sex = sex;
-                tea.college.ColID = college;
+                College coll = new College();
+                coll.ColID = college;
+                tea.college = coll;
                 tea.Email = email;
                 tea.Phone = phone;
                 tea.TeaType = 2;

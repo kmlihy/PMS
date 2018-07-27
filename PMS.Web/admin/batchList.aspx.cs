@@ -217,13 +217,13 @@ namespace PMS.Web.admin
                 {
                     search = "";
                 }
-                else if (search == null)
+                else if (search == null || search == "")
                 {
                     search = "";
                 }
                 else
                 {
-                    search = String.Format("state {0} or planName {0} or collegeName {0}", "like " + "'%" + search + "%'");
+                    search = String.Format("planName {0} or collegeName {0}", "like " + "'%" + search + "%'");
                 }
             }
             catch { }
