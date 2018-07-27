@@ -26,12 +26,18 @@ namespace PMS.Web
             string account = "", teaAccount="";
             int college = 0;
             int state = Convert.ToInt32(Session["state"].ToString());
-            if (state == 1 || state == 2)
+            if (state == 1)
             {
                 Teacher tea = (Teacher)Session["loginuser"];
                 account = tea.TeaAccount;
                 college = tea.college.ColID;
 
+            }
+            else if(state == 0 || state == 2)
+            {
+                Teacher admin = (Teacher)Session["user"];
+                account = admin.TeaAccount;
+                college = admin.college.ColID;
             }
             else if (state == 3)
             {
