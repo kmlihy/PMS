@@ -94,7 +94,7 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">标题编号</th>
+                            <th class="text-center">序号</th>
                             <th class="text-center">标题</th>
                             <th class="text-center">批次</th>
                             <th class="text-center">专业</th>
@@ -112,9 +112,10 @@
                                 <td class="text-center td-check">
                                     <input type="checkbox" />
                                 </td>
-                                <td class="text-center" id="titleId">
-                                    <%=ds.Tables[0].Rows[i]["titleId"].ToString() %>
+                                <td class="text-center">
+                                    <%=i+1+((getCurrentPage-1)*pagesize)%>
                                 </td>
+                                <input type="hidden" id="titleId" value="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>" />
                                 <td class="text-center" id="title">
                                     <%=ds.Tables[0].Rows[i]["title"].ToString() %>
                                 </td>

@@ -21,7 +21,7 @@ namespace PMS.Web.admin
         protected DataSet ds = null;
         protected int getCurrentPage = 0;
         protected int count;
-        protected int pagesize = 3;
+        protected int pagesize = 5;
         protected String search = "";
         protected String searchdrop = "";
         protected String searchCollege = "";

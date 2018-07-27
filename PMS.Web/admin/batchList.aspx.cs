@@ -20,7 +20,7 @@ namespace PMS.Web.admin
 
         protected int count;
         protected int getCurrentPage = 1;
-        protected int pagesize = 3;
+        protected int pagesize = 5;
 
         protected String search = "";
         protected String secSearch = "";

@@ -52,6 +52,7 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all" />
                         </th>
+                        <th class="text-center">序号</th>
                         <th class="text-center">工号</th>
                         <th class="text-center">姓名</th>
                         <%--<th class="text-center">密码</th>--%>
@@ -69,6 +70,9 @@
                         <tr>
                             <td class="text-center">
                                 <input type="checkbox" />
+                            </td>
+                            <td class="text-center">
+                                <%=i+1+((getCurrentPage-1)*pagesize)%>
                             </td>
                             <td class="text-center" id="teaAccount">
                                 <%= ds.Tables[0].Rows[i]["teaAccount"].ToString() %>

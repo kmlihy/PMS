@@ -73,7 +73,7 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all" />
                         </th>
-                        <th class="text-center">批次编号</th>
+                        <th class="text-center">序号</th>
                         <th class="text-center">批次名称</th>
                         <th class="text-center">开始时间</th>
                         <th class="text-center">结束时间</th>
@@ -92,9 +92,10 @@
                             <td class="text-center">
                                 <input type="checkbox" />
                             </td>
-                            <td class="text-center planNO" id="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>">
-                                <%= plands.Tables[0].Rows[i]["planId"].ToString() %>
+                            <td class="text-center">
+                                <%=i+1+((getCurrentPage-1)*pagesize)%>
                             </td>
+                            <input type="hidden" class="planNO" value="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>" />
                             <td class="text-center">
                                 <%= plands.Tables[0].Rows[i]["planName"].ToString() %>
                             </td>

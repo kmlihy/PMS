@@ -21,7 +21,7 @@ namespace PMS.Web.admin
         //获取数据
         protected DataSet ds = null, dsColl = null;
         protected int count;
-        protected int pageSize = 5;
+        protected int pagesize = 5;
         //分页
         protected int getCurrentPage = 1;
         //查询
@@ -87,7 +87,7 @@ namespace PMS.Web.admin
                 IntColType = 0,
                 IntOrder = 0,
                 StrColumnlist = "*",
-                IntPageSize = pageSize,
+                IntPageSize = pagesize,
                 IntPageNum = int.Parse(currentPage),
                 StrWhere = strTeaType + strWhere
             };

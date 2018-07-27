@@ -96,7 +96,7 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">题目编号</th>
+                            <th class="text-center">序号</th>
                             <th class="text-center">标题</th>
                             <th class="text-center">批次</th>
                             <th class="text-center">专业</th>
@@ -116,9 +116,10 @@
                                     <input type="hidden" value="<%=ds.Tables[0].Rows[i]["titleContent"].ToString() %>" id="titleContent" />
                                     <input type="hidden" value="<%=ds.Tables[0].Rows[i]["selected"].ToString() %>" id="selected" />
                                 </td>
-                                <td class="text-center" id="titleId">
-                                    <%=ds.Tables[0].Rows[i]["titleId"].ToString() %>
+                                <td class="text-center">
+                                    <%=i+1+((getCurrentPage-1)*pagesize)%>
                                 </td>
+                                <input type="hidden" id="titleId" value="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>" />
                                 <td class="text-center" id="title">
                                     <a href="../paperDetail.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>"><%=ds.Tables[0].Rows[i]["title"].ToString() %></a>
                                 </td>

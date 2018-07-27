@@ -99,7 +99,7 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">选题记录编号</th>
+                            <th class="text-center">序号</th>
                             <th class="text-center">题目</th>
                             <th class="text-center">出题教师</th>
                             <th class="text-center">选题学生</th>
@@ -122,7 +122,8 @@
                                     <p class="hidemsg" id="email"><%=ds.Tables[0].Rows[i]["Email"].ToString() %></p>
                                     <p class="hidemsg" id="stusex"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></p>
                                 </td>
-                                <td class="text-center" id="recordid"><%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
+                                <td class="text-center"><%=i+1+((getCurrentPage-1)*pagesize)%></td>
+                                <input type="hidden" id="recordid" value="<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %>"/>
                                 <td class="text-center" id="title"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                                 <td class="text-center" id="teaname"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
                                 <td class="text-center" id="realname"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>

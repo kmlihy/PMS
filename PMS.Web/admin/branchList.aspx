@@ -56,7 +56,7 @@
                         <th class="text-center">
                             <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                         </th>
-                        <th class="text-center">学院编号</th>
+                        <th class="text-center">序号</th>
                         <th class="text-center">学院名称</th>
                         <th class="text-center">操作</th>
                     </thead>
@@ -69,9 +69,10 @@
                             <td class="text-center">
                                 <input type="checkbox" name="checkbox" class="check" value="<%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>" />
                             </td>
-                            <td class="text-center collegeId">
-                                <%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>
+                            <td class="text-center">
+                                <%=i+1+((getCurrentPage-1)*pagesize)%>
                             </td>
+                            <input type="hidden" class="collegeId" value="<%=ds.Tables[0].Rows[i]["collegeId"].ToString() %>" />
                             <td class="text-center collegeName">
                                 <%=ds.Tables[0].Rows[i]["collegeName"].ToString() %>
                             </td>

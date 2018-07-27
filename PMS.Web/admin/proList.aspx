@@ -54,7 +54,7 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">编号</th>
+                            <th class="text-center">序号</th>
                             <th class="text-center">专业名称</th>
                             <th class="text-center">所属分院</th>
                             <th class="text-center">操作</th>
@@ -66,9 +66,10 @@
                                 <td class="text-center td-check">
                                     <input type="checkbox" />
                                 </td>
-                                <td class="text-center" id="tdproId">
-                                    <%=ds.Tables[0].Rows[i]["proId"].ToString() %>
+                                <td class="text-center">
+                                    <%=i+1+((getCurrentPage-1)*pagesize)%>
                                 </td>
+                                <input type="hidden" id="tdproId" value="<%=ds.Tables[0].Rows[i]["proId"].ToString() %>" />
                                 <td class="text-center" id="tdproName"><%=ds.Tables[0].Rows[i]["proName"].ToString() %></td>
                                 <td class="text-center" id="tdcollegeName"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
                                 <td class="text-center">

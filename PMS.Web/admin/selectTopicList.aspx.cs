@@ -27,7 +27,7 @@ namespace PMS.Web.admin
         protected CollegeBll colbll = new CollegeBll();
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 2;
+        protected int pagesize = 5;
         protected String search = "";
         protected String searchdrop = "";
         protected String searanddrop = "";
