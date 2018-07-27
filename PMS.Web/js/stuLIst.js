@@ -250,7 +250,7 @@ $(document).ready(function () {
             stuCollege = $(".stuCollegeId").text(),
             stuPro = $(".stuProId").text(),
             stuEmail = $(".editorEmail").val(),
-            stuPhone = $(".editorPhone").val(),
+            stuPhone = $(".editorPhone").val();
         //alert("ajax");
         $.ajax({
             type: 'Post',
