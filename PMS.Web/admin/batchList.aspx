@@ -56,6 +56,7 @@
                                     <span class="glyphicon glyphicon-search" id="search">查询</span>
                                 </button>
                             </span>
+                            <%if(state != 0){ %>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
                                     <span class="glyphicon glyphicon-plus-sign">新增</span>
@@ -65,6 +66,7 @@
                                 <span class="glyphicon glyphicon-trash"></span>
                                 批量删除
                             </button>
+                             <%}%>
                         </div>
                     </div>
                 </div>

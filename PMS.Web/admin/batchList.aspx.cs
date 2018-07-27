@@ -29,6 +29,7 @@ namespace PMS.Web.admin
         protected string showinput = null;
         protected Teacher loginUser;
         protected string collegeName;
+        protected int state;
 
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
@@ -39,6 +40,7 @@ namespace PMS.Web.admin
             string delOp = Context.Request["delOp"];
             string type = Request.QueryString["type"];
             loginUser = (Teacher)Session["user"];
+            state = Convert.ToInt32(Session["state"].ToString());
             collegeName = loginUser.college.ColName.ToString();
             if (!Page.IsPostBack)
             {
