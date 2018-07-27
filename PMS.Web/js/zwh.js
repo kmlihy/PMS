@@ -1,4 +1,4 @@
-﻿$(function() {
+﻿$(function () {
     $("#okMessage").hide();
     $("html").height($(window).height());
 })
@@ -120,12 +120,12 @@ function edit() {
     $("#okMessage").show();
 }
 
-function ok() {
+function ok(userType) {
     var telNum = $(".telNum").val();
     var email = $(".email").val();
     $.ajax({
         type: 'get',
-        url: 'adminCenter.aspx?op=update',
+        url: userType+'Center.aspx?op=update',
         datatype:'text',
         data: {
             phone: telNum,

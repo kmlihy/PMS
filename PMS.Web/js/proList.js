@@ -7,6 +7,7 @@ sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
     //列表导入
+    sessionStorage.removeItem("strWhere")
     $(".file").on("change", "input[type='file']", function () {
         var filePath = $(this).val();
         if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
@@ -106,12 +107,14 @@ $(document).ready(function () {
                     if (succ == "添加成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
+                                sessionStorage.removeItem("strWhere")
                                 jump(1);
                             }
                         });
                     } else if (succ == "添加失败") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
+                                sessionStorage.removeItem("strWhere")
                                 jump(1);
                             }
                         });
