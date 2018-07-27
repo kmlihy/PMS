@@ -312,8 +312,7 @@ namespace PMS.Web.admin
                    stuName = Context.Request["stuName"].ToString(),
                    stuSex = Context.Request["stuSex"].ToString(),
                    stuEmail = Context.Request["stuEmail"].ToString(),
-                   stuPhone = Context.Request["stuPhone"].ToString(),
-                   stuPwd = Context.Request["stuPwd"].ToString();
+                   stuPhone = Context.Request["stuPhone"].ToString();
             int stuCollege = int.Parse(Context.Request["stuCollege"].ToString()),
                 stuPro = int.Parse(Context.Request["stuPro"].ToString());
             College stuCol = new College()
@@ -328,7 +327,6 @@ namespace PMS.Web.admin
                 Sex = stuSex,
                 Email = stuEmail,
                 Phone = stuPhone,
-                StuPwd = stuPwd,
                 college = stuCol,
                 profession = stup
             };

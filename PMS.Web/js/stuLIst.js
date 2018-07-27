@@ -251,7 +251,6 @@ $(document).ready(function () {
             stuPro = $(".stuProId").text(),
             stuEmail = $(".editorEmail").val(),
             stuPhone = $(".editorPhone").val(),
-            stuPwd = $(".editorStuPwd").val();
         //alert("ajax");
         $.ajax({
             type: 'Post',
@@ -264,7 +263,6 @@ $(document).ready(function () {
                 stuPro: stuPro,
                 stuEmail: stuEmail,
                 stuPhone: stuPhone,
-                stuPwd: stuPwd,
                 editorOp: "editor"
             },
             dataType: 'text',

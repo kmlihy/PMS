@@ -203,7 +203,7 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-<%--                                <tr>
+                                <%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系</label></td>
                                     <td>
@@ -216,7 +216,7 @@
                                         </select>
                                     </td>
                                 </tr>--%>
-<%--                                <tr>
+                                <%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">教师类型</label></td>
                                     <td>
@@ -296,7 +296,7 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-<%--                                <tr>
+                                <%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系:</label></td>
                                     <td>
@@ -310,7 +310,8 @@
                                         <p class="text-span" id="p-collegeName"></p>
                                     </td>
                                 </tr>--%>
-                                <%if (state==0) { %>
+                                <%if (state == 0)
+                                { %>
                                 <tr id="type">
                                     <td class="teaLable">
                                         <label class="text-span">类型:</label></td>
@@ -327,6 +328,17 @@
                                         <label class="text-span">工号:</label></td>
                                     <td>
                                         <input class="form-control chteaAccount" type="text" id="chteaAccount" />
+                                        <span id="chValitateAccount"></span>
+                                    </td>
+                                </tr>
+                                <%}
+                                else
+                                { %>
+                                <tr>
+                                    <td class="teaLable">
+                                        <label class="text-span">工号:</label></td>
+                                    <td>
+                                        <input class="form-control chteaAccount" type="text" readonly="true" id="chteaAccount" />
                                         <span id="chValitateAccount"></span>
                                     </td>
                                 </tr>

@@ -335,13 +335,6 @@
                             </tr>
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">密码</label></td>
-                                <td>
-                                    <input class="form-control teaAddinput editorStuPwd" type="text" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
                                     <label class="text-span">性别</label></td>
                                 <td>
                                     <input class="form-control teaAddinput editorStuSex" type="text" />

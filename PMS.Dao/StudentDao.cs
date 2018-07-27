@@ -107,15 +107,14 @@ namespace PMS.Dao
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("update T_Student set ");
-            strSql.Append("stuPwd=@stuPwd,");
             strSql.Append("realName=@realName,");
             strSql.Append("sex=@sex,");
             strSql.Append("phone=@phone,");
             strSql.Append("Email=@Email,");
             strSql.Append("proId=@proId");
             strSql.Append(" where stuAccount=@stuAccount");
-            String[] param = { "@stuPwd", "@realName", "@sex", "@phone", "@Email", "@proId", "@stuAccount" };
-            String[] values = { student.StuPwd, student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString(), student.StuAccount };
+            String[] param = { "@realName", "@sex", "@phone", "@Email", "@proId", "@stuAccount" };
+            String[] values = { student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString(), student.StuAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
 
