@@ -53,9 +53,14 @@ $(document).ready(function () {
     //点击按钮查询
     $("#btn-search").click(function () {
         var strWhere = $("#inputsearch").val();
-        sessionStorage.setItem("strWhere", strWhere);
-        sessionStorage.setItem("type", "btn");
-        jump(1);
+        if (strWhere != null || strWhere != "") {
+            sessionStorage.setItem("strWhere", strWhere);
+            sessionStorage.setItem("type", "btn");
+            jump(1);
+        }
+        else {
+            jump(1);
+        }
     });
     //下拉框查询
     $("#chooseStuPro").change(function () {
