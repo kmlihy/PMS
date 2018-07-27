@@ -70,7 +70,7 @@
             }
         })
     }
-    $(validate());
+    $(validate()).ready();
     var state = $("#state").val();
     //修改密码功能实现（Ajax传值）
     $("#postPwd").click(function () {

@@ -36,7 +36,7 @@
                                 <%}
                                     else
                                     { %>
-                                <option value="0">-查询全部专业-</option>
+                                <option value="0">-查询全部学院-</option>
                                 <% for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                     {
                                         if (colds.Tables[0].Rows[i]["collegeId"].ToString() == showstr)
