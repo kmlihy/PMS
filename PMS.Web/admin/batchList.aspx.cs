@@ -171,19 +171,39 @@ namespace PMS.Web.admin
             StudentBll pro = new StudentBll();
             string account = "collegeName = '" + collegeName + "'";
             string Account = "collegeName = '" + collegeName + "' and ";
-            TableBuilder tabuilder = new TableBuilder()
+            int state = int.Parse(Session["state"].ToString());
+            if (state == 2)
             {
-                StrTable = "V_Plan",
-                StrWhere = strWhere == null || strWhere== "" ? account : Account +strWhere,
-                IntColType = 0,
-                IntOrder = 0,
-                IntPageNum = int.Parse(currentPage),
-                IntPageSize = pagesize,
-                StrColumn = "planId",
-                StrColumnlist = "*"
-            };
-            getCurrentPage = int.Parse(currentPage);
-            plands = pro.SelectBypage(tabuilder, out count); 
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Plan",
+                    StrWhere = strWhere == null || strWhere == "" ? account : Account + strWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "planId",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                plands = pro.SelectBypage(tabuilder, out count);
+            }
+            else
+            {
+                TableBuilder tabuilder = new TableBuilder()
+                {
+                    StrTable = "V_Plan",
+                    StrWhere = strWhere == null || strWhere == "" ? "" : strWhere,
+                    IntColType = 0,
+                    IntOrder = 0,
+                    IntPageNum = int.Parse(currentPage),
+                    IntPageSize = pagesize,
+                    StrColumn = "planId",
+                    StrColumnlist = "*"
+                };
+                getCurrentPage = int.Parse(currentPage);
+                plands = pro.SelectBypage(tabuilder, out count);
+            }
         }
         /// <summary>
         /// 查询
