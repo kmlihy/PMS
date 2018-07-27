@@ -51,7 +51,7 @@ $(document).ready(function () {
         }
     });
     //点击按钮查询
-    $("#search").click(function () {
+    $("#btn-search").click(function () {
         var strWhere = $("#inputsearch").val();
         sessionStorage.setItem("strWhere", strWhere);
         sessionStorage.setItem("type", "btn");
