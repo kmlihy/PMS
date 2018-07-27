@@ -137,7 +137,7 @@ namespace PMS.Web
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Title",
-                StrWhere = strWhere == null ? "" : strWhere,
+                StrWhere = strWhere == null ? "state = 1" : "state = 1 and "+strWhere,
                 IntColType = 0,
                 IntOrder = 1,
                 IntPageNum = int.Parse(currentPage),

@@ -398,7 +398,7 @@ namespace PMS.Web.admin
                     Student stu = new Student()
                     {
                         StuAccount = stuAccount,
-                        StuPwd = pwd,
+                        StuPwd = Security.SHA256Hash("000000"),
                         RealName = realName,
                         Sex = sex,
                         Phone = phone,
