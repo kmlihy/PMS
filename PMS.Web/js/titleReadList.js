@@ -126,27 +126,37 @@ $(document).ready(function() {
         if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur;
         }
-        if (sessionStorage.getItem("strWhere") != null) {
+        else if (sessionStorage.getItem("strWhere") != null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
         }
-        if (sessionStorage.getItem("dropstrWhereplan") != null && sessionStorage.getItem("dropstrWherepro") == null) {
+        else if (sessionStorage.getItem("dropstrWhereplan") != null && sessionStorage.getItem("dropstrWherepro") == null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
         }
-        if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") == null) {
+        else if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") == null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
         }
-        if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
+        else if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+        }
+        else {
+            window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type") + "&search=" + sessionStorage.getItem("strWhere");
         }
     };
     //查询按钮点击事件
     $("#btn-search").click(function() {
         var strWhere = $("#inputsearch").val();
-        sessionStorage.setItem("strWhere", strWhere);
-        sessionStorage.setItem("type", "textSelect");
-        sessionStorage.removeItem("dropstrWhereplan");
-        sessionStorage.removeItem("dropstrWherepro")
-        jump(1);
+        if (strWhere != null || strWhere != "") {
+            sessionStorage.setItem("strWhere", strWhere);
+            sessionStorage.setItem("type", "textSelect");
+            sessionStorage.removeItem("dropstrWhereplan");
+            sessionStorage.removeItem("dropstrWherepro");
+            jump(1);
+        }
+        else {
+            sessionStorage.removeItem("dropstrWhereplan");
+            sessionStorage.removeItem("dropstrWherepro");
+            jump(1);
+        }
     });
     $(".btnSearch").click(function () {
         var titleId = $(this).parent().parent().find("#titleId").text().trim();
