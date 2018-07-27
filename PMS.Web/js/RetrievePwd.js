@@ -1,4 +1,20 @@
 ﻿$(document).ready(function () {
+
+    //配置
+    var config = {
+        vx: 4,	//小球x轴速度,正为右，负为左
+        vy: 4,	//小球y轴速度
+        height: 2,	//小球高宽，其实为正方形，所以不宜太大
+        width: 2,
+        count: 60,		//点个数
+        color: "255, 251, 240", 	//点颜色
+        stroke: "255, 251, 240", 		//线条颜色
+        dist: 6000, 	//点吸附距离
+        e_dist: 20000, 	//鼠标吸附加速距离
+        max_conn: 10 	//点到点最大连接数
+    }
+    CanvasParticle(config);
+
     //正则表达式
     var txtAccount = /^[0-9]*$/; //数字的正则表达式
     var txtpwd = /^[\x21-\x7E]{6,20}$/;//英文、数字或符号且长度在6-20之间
@@ -46,10 +62,10 @@
                 data: {
                     account: account,
                     email: email,
-                    code:code,
+                    code: code,
                     pwd: pwd,
-                    user:user,
-                    op:"change"
+                    user: user,
+                    op: "change"
                 },
                 dataType: 'text',
                 success: function (succ) {
@@ -62,7 +78,7 @@
                     } else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
-                               //window.location.href = "reg.aspx";
+                                //window.location.href = "reg.aspx";
                             }
                         });
                     }
@@ -83,20 +99,20 @@
         if (email == "" || email == null) {
             window.wxc.xcConfirm("请填写正确的邮箱", window.wxc.xcConfirm.typeEnum.error);
             return false;
-        }  
+        }
         $.ajax({
             type: 'Post',
             url: 'RetrievePwd.aspx',
             data: {
                 email: email,
-                op:send
+                op: send
             },
             dataType: 'text',
             success: function (succ) {
                 if (succ === "验证码已发送至邮箱") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                            settime(); 
+                            settime();
                         }
                     });
                 } else {
@@ -125,6 +141,6 @@
             setTimeout(function () {
                 settime();
             }, 1000);
-        }  
+        }
     })
 })
