@@ -147,9 +147,6 @@
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </td>
-                                <td class="text-center stuPwd">
-                                    <input type="password" value="<%= ds.Tables[0].Rows[i]["stuPwd"].ToString() %>" disabled="disabled" />
-                                </td>
                             </tr>
                             <% } %>
                         </tbody>

@@ -402,8 +402,6 @@ $(document).ready(function () {
         }
     })
 
-    //密码表格隐藏
-    $(".stuPwd").hide();
     //判断当删除最后一页最后一条信息时，当前也自动跳到上一页
     if (parseInt(sessionStorage.getItem("page")) > parseInt(sessionStorage.getItem("countPage"))) {
         {

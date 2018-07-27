@@ -50,7 +50,7 @@
                             <tr>
                                 <td class="centerLable">
                                     <button type="button" class="btn btn-info" id="editMessage" onclick="edit()">编辑信息</button>
-                                    <button type="button" class="btn btn-info" id="okMessage" onclick="ok()">确定</button>
+                                    <button type="button" class="btn btn-info" id="okMessage" onclick="ok('tea')">确定</button>
                                 </td>
                                 <td></td>
                                 <td id="email">

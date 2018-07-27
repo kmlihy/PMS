@@ -1,4 +1,5 @@
-﻿using PMS.Model;
+﻿using PMS.BLL;
+using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,41 @@ namespace PMS.Web.admin
         {
             //TODO 改成从session里获取值
             teacher = (Teacher)Session["loginuser"];
-            getTeacher(teacher.TeaAccount);
+            TeacherBll tbll = new TeacherBll();
+            teacher = tbll.GetModel(teacher.TeaAccount);
+            string op = Request.QueryString["op"];
+            if (op == "update")
+            {
+                string phone = Context.Request["phone"].ToString();
+                string Email = Context.Request["Email"].ToString();
+                Teacher newTea = new Teacher();
+                College college = new College();
+                newTea.TeaAccount = teacher.TeaAccount;
+                newTea.TeaName = teacher.TeaName;
+                newTea.TeaPwd = teacher.TeaPwd;
+                newTea.Sex = teacher.Sex;
+                newTea.college = teacher.college;
+                newTea.TeaType = teacher.TeaType;
+                newTea.Phone = phone;
+                newTea.Email = Email;
+                updata(newTea);
+            }
         }
-        public void getTeacher(string Account)
+        public void updata(Teacher teacher)
         {
-            BLL.TeacherBll tbll = new BLL.TeacherBll();
-            teacher = tbll.GetModel(Account);
+            TeacherBll bll = new TeacherBll();
+            Enums.OpResult enums = bll.Updata(teacher);
+            if (enums.Equals(Enums.OpResult.更新成功))
+            {
+                Response.Write("修改成功");
+                Session["user"] = teacher;
+                Response.End();
+            }
+            else
+            {
+                Response.Write("修改失败");
+                Response.End();
+            }
         }
     }
 }
