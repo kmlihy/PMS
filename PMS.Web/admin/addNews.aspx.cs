@@ -20,12 +20,12 @@ namespace PMS.Web.admin
                 string newsTitle = Request["newsTitle"].ToString();
                 string content = Request["content"].ToString();
                 //TODO将从登录的Session中取到公告发布对象
-                //Teacher teacher = (Teacher)Session["user"];
+                Teacher teacher = (Teacher)Session["user"];
                 NewsBll bll = new NewsBll();
                 News news = new News();
                 news.NewsTitle = newsTitle;
                 news.NewsContent = HttpUtility.UrlDecode(content);
-                news.teacher = new Teacher { TeaAccount = "admin" };
+                news.teacher = teacher;
                 news.CreateTime = DateTime.Now;
                 Result result = bll.Insert(news);
                 if (result == Result.添加成功)

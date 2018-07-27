@@ -133,10 +133,30 @@ namespace PMS.Web.admin
             tabuilder.StrColumnlist = "*";
             getCurrentPage = int.Parse(currentPage);
             ds = titbll.SelectBypage(tabuilder, out count);
-            
+            //加载所有分院
             colds = colbll.Select();
-            prods = probll.Select();
-            plads = plabll.Select();
+            //加载登录教师所在分院的专业
+            TableBuilder tabuilderPro = new TableBuilder();
+            tabuilderPro.StrTable = "T_Profession";
+            tabuilderPro.StrWhere = "collegeId = '" + tea.college.ColID + "'";
+            tabuilderPro.IntColType = 0;
+            tabuilderPro.IntOrder = 0;
+            tabuilderPro.IntPageNum = 1;
+            tabuilderPro.IntPageSize = 100;
+            tabuilderPro.StrColumn = "proId";
+            tabuilderPro.StrColumnlist = "*";
+            prods = probll.SelectBypage(tabuilderPro,out count);
+            //加载登录教师所在分院的批次
+            TableBuilder tabuilderPlan = new TableBuilder();
+            tabuilderPlan.StrTable = "T_Plan";
+            tabuilderPlan.StrWhere = "collegeId = '" + tea.college.ColID + "'";
+            tabuilderPlan.IntColType = 0;
+            tabuilderPlan.IntOrder = 0;
+            tabuilderPlan.IntPageNum = 1;
+            tabuilderPlan.IntPageSize = 100;
+            tabuilderPlan.StrColumn = "planId";
+            tabuilderPlan.StrColumnlist = "*";
+            plads = plabll.SelectBypage(tabuilderPlan,out count);
         }
 
         /// <summary>

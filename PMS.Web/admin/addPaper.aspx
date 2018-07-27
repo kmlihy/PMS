@@ -29,15 +29,15 @@
                     <span class="lable">专业：</span>
                     <select name="profession" id="input${1/(\w+)/\u\1/g}" class="TextBox form-control selPro" required="required">
                         <option value="" id="getPro">————请选择专业————</option>
-                        <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {
                             if(article == "edit"){
-                                if(ds.Tables[0].Rows[i]["proId"].ToString() == titleEdit.profession.ProId.ToString()){%>
+                                if(prods.Tables[0].Rows[i]["proId"].ToString() == titleEdit.profession.ProId.ToString()){%>
                                     <option selected="selected"><%=titleEdit.profession.ProName %></option>
                                 <%}else{ %>
-                                    <option><%=ds.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                    <option><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                                     <%}}else{%>
-                                    <option><%=ds.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                    <option><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <% }}%>
                     </select>
                 </div>
@@ -46,16 +46,16 @@
                     <select name="batch" id="input${1/(\w+)/\u\1/g}" class="TextBox form-control selBat" required="required">
                         <option value="">————请选择批次————</option>
                         <%
-                            for (int i = 0; i < pbds.Tables[0].Rows.Count; i++)
+                            for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
                             {
                             if(article == "edit"){
-                                if(pbds.Tables[0].Rows[i]["planId"].ToString() == titleEdit.plan.PlanId.ToString()){%>
+                                if(plands.Tables[0].Rows[i]["planId"].ToString() == titleEdit.plan.PlanId.ToString()){%>
                                     <option selected="selected"><%=titleEdit.plan.PlanName %></option>
                                 <%}else{ %>
-                        <option><%=pbds.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <option><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
                                     <%}}else{%>
                         
-                        <option><%=pbds.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <option><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
                         <%
                             }}
                         %>

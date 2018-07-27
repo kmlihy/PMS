@@ -15,7 +15,7 @@ namespace PMS.Web.admin
     {
         ProfessionBll probll = new ProfessionBll();//调用专业对象
         Profession pro = new Profession();
-        protected DataSet ds = null,pbds = null;
+        protected DataSet prods = null,plands = null;
         int count = 1;
         PlanBll pbll = new PlanBll();//调用批次对象
         Plan plan = new Plan();
@@ -29,9 +29,30 @@ namespace PMS.Web.admin
             //调用下拉菜单数据
             TeacherBll teabll = new TeacherBll();
             //TODO 获取当前登录的教师账号
-            TableBuilder tb = new TableBuilder();
-            ds = probll.Select();//调用专业方法
-            pbds = pbll.Select();//调用批次方法
+            Teacher tea = (Teacher)Session["loginuser"];
+            //加载登录教师所在分院的专业
+            TableBuilder tabuilderPro = new TableBuilder();
+            tabuilderPro.StrTable = "T_Profession";
+            tabuilderPro.StrWhere = "collegeId = '" + tea.college.ColID + "'";
+            tabuilderPro.IntColType = 0;
+            tabuilderPro.IntOrder = 0;
+            tabuilderPro.IntPageNum = 1;
+            tabuilderPro.IntPageSize = 100;
+            tabuilderPro.StrColumn = "proId";
+            tabuilderPro.StrColumnlist = "*";
+            prods = probll.SelectBypage(tabuilderPro, out count);
+            //加载登录教师所在分院的批次
+            TableBuilder tabuilderPlan = new TableBuilder();
+            tabuilderPlan.StrTable = "T_Plan";
+            tabuilderPlan.StrWhere = "collegeId = '" + tea.college.ColID + "'";
+            tabuilderPlan.IntColType = 0;
+            tabuilderPlan.IntOrder = 0;
+            tabuilderPlan.IntPageNum = 1;
+            tabuilderPlan.IntPageSize = 100;
+            tabuilderPlan.StrColumn = "planId";
+            tabuilderPlan.StrColumnlist = "*";
+            plands = pbll.SelectBypage(tabuilderPlan, out count);
+
             if (article == "edit")
             {
                 string titleId = Request.QueryString["titleId"];

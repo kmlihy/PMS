@@ -148,15 +148,15 @@
                                 <span>题目管理</span>
                                 <i class="iconfont icon-more"></i>
                             </a>
-                            <ul class="collapse nav nav-list" id="timuguanli">                            
-                                <li role="presentation">
-                                    <a href="titleList.aspx" class="sidebarclick" >
-                                        <span>我的题目</span>
-                                    </a>
-                                </li>
+                            <ul class="collapse nav nav-list" id="timuguanli"> 
                                 <li role="presentation">
                                     <a href="addPaper.aspx?article=new" class="sidebarclick" >
                                         <span>我要出题</span>
+                                    </a>
+                                </li>                           
+                                <li role="presentation">
+                                    <a href="titleList.aspx" class="sidebarclick" >
+                                        <span>我的题目</span>
                                     </a>
                                 </li>
                                  <li role="presentation">
