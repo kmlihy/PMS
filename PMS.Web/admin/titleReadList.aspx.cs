@@ -18,10 +18,11 @@ namespace PMS.Web.admin
         protected int pagesize = 5;
         protected String search = "";
         protected String dropstrWhereplan = "";
-        protected String dropstrWherepro = "";
+        protected String dropstrWherepro = "", dropstrWhereColl="";
         protected string showstr = null;
         protected string showinput = null;
         protected string secSearch = "";
+        protected string state = "";
 
         TeacherBll teabll = new TeacherBll();
         ProfessionBll probll = new ProfessionBll();
@@ -31,13 +32,14 @@ namespace PMS.Web.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            state = Session["state"].ToString();
             if (!IsPostBack)
             {
                 string op = Context.Request["op"];
                 string type = Request.QueryString["type"];
                 getdata(Search());
                 //选择文本
-                if (type == "textSelect")
+                if (type == "textSelect" || type == null)
                 {
                     getdata(Search());
                 }
@@ -59,6 +61,13 @@ namespace PMS.Web.admin
                     string strWhere = string.Format(" proId = {0}", dropstrWherepro);
                     getdata(strWhere);
                 }
+                //分院下拉菜单
+                if (type == "Colldrop")
+                {
+                    dropstrWhereColl = Context.Request.QueryString["dropstrWhereColl"].ToString();
+                    string strWhere = string.Format(" collegeId = {0}", dropstrWhereColl);
+                    getdata(strWhere);
+                }
                 //所有下拉菜单
                 if (type == "alldrop")
                 {
@@ -76,15 +85,30 @@ namespace PMS.Web.admin
         /// <param name="strWhere">查询条件</param>
         public void getdata(String strWhere)
         {
+            string where;
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
                 currentPage = "1";
             }
+            if (state == "0")
+            {
+                where = "";
+            }
+            else if (state == "1")
+            {
+                Teacher teacher = (Teacher)Session["loginuser"];
+                where = "collegeId = '" + teacher.college.ColID + "'";
+            }
+            else
+            {
+                Teacher teacher = (Teacher)Session["user"];
+                where = "collegeId = '" + teacher.college.ColID + "'";
+            }
             TitleBll titbll = new TitleBll();
             TableBuilder tabuilder = new TableBuilder();
             tabuilder.StrTable = "V_Title";
-            tabuilder.StrWhere = (strWhere == null || strWhere=="" ? "" : strWhere);
+            tabuilder.StrWhere = (strWhere == null || strWhere=="" ? where : strWhere);
             tabuilder.IntColType = 0;
             tabuilder.IntOrder = 0;
             tabuilder.IntPageNum = int.Parse(currentPage);
@@ -113,15 +137,30 @@ namespace PMS.Web.admin
                     search = "";
                     secSearch = "";
                 }
-                else if (search == null)
+                else if (search == null || search == "null")
                 {
                     search = "";
                     secSearch = "";
                 }
                 else
                 {
-                    secSearch = search;
-                    search = String.Format("titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
+                    if (state == "0")
+                    {
+                        secSearch = search;
+                        search = String.Format("titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
+                    }
+                    else if (state == "1")
+                    {
+                        Teacher teacher = (Teacher)Session["loginuser"];
+                        secSearch = search;
+                        search = String.Format("collegeId = '"+ teacher.TeaAccount + "' and titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
+                    }
+                    else
+                    {
+                        Teacher teacher = (Teacher)Session["user"];
+                        secSearch = search;
+                        search = String.Format("collegeId = '" + teacher.TeaAccount + "' and titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
+                    }
                 }
             }
             catch

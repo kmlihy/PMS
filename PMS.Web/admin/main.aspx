@@ -160,7 +160,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation">
-                                    <a href="titleReadList.aspx" class="sidebarclick" >
+                                    <a href="titleReadList.aspx?search=null" class="sidebarclick" >
                                         <span>题目信息</span>
                                     </a>
                                 </li>

@@ -25,43 +25,56 @@
                 <div class="panel panel-default" id="propanelbox">
                     <div class="pane input-group" id="panel-head">
                         <div class="input-group" id="inputgroups">
-                            <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
-                                <option value="0">-显示所有专业-</option>
-                                <%for (int i = 0; i < dsPro.Tables[0].Rows.Count; i++)
-                                    {
-                                        if (dsPro.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
-                                        {%>
-                                <option value="<%=dsPro.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
-                                    <%=dsPro.Tables[0].Rows[i]["proName"].ToString() %>
-                                </option>
-                                <% }
-                                    else
-                                    {%>
-                                <option value="<%=dsPro.Tables[0].Rows[i]["proId"].ToString() %>">
-                                    <%=dsPro.Tables[0].Rows[i]["proName"].ToString() %>
-                                </option>
-                                <%}%>
+                            <%if(state == "0"){ %>
+                                <select class="selectpicker selectdrop" data-width="auto" id="chooseStuColl">
+                                    <option value="0">-显示所有分院-</option>
+                                    <%for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+                                        {
+                                            if (dsColl.Tables[0].Rows[i]["collegeId"].ToString() == dropstrWhereColl)
+                                            {%>
+                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>" selected="selected">
+                                        <%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                         <% }else{%>
+                                    <option value="<%=dsColl.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                        <%=dsColl.Tables[0].Rows[i]["collegeName"].ToString() %>
+                                    </option>
+                                    <%}%>
                                 <%} %>
-                            </select>
-                            &nbsp
-                    <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
-                        <option value="0">--显示所有批次--</option>
-                        <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
-                            {
-                                if (dsPlan.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
-                                {%>
-                        <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
-                            <%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %>
-                        </option>
-                        <%}
-                            else
-                            { %>
-                        <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>">
-                            <%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %>
-                        </option>
-                        <%} %>
-                        <%} %>
-                    </select>
+                                </select>
+                                &nbsp
+                            <%} else{%>
+                                <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
+                                    <option value="0">-显示所有专业-</option>
+                                    <%for (int i = 0; i < dsPro.Tables[0].Rows.Count; i++)
+                                        {
+                                            if (dsPro.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
+                                            {%>
+                                    <option value="<%=dsPro.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
+                                        <%=dsPro.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                        <% }else{%>
+                                    <option value="<%=dsPro.Tables[0].Rows[i]["proId"].ToString() %>">
+                                        <%=dsPro.Tables[0].Rows[i]["proName"].ToString() %>
+                                    </option>
+                                        <%}%>
+                                    <%} %>
+                                </select>
+                                &nbsp
+                                <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
+                                    <option value="0">--显示所有批次--</option>
+                                    <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
+                                        {
+                                            if (dsPlan.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
+                                            {%>
+                                    <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
+                                        <%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                        <%}else{ %>
+                                    <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>">
+                                        <%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %>
+                                    </option>
+                                        <%} %>
+                                    <%} %>
+                                </select>
+                            <%} %>
                             <%if (showinput == null)
                                 {
                                     showinput = "请输入搜索条件";
