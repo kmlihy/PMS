@@ -129,6 +129,24 @@ namespace PMS.BLL
                 return Enums.OpResult.更新失败;
             }
         }
+        /// <summary>
+        /// 重置学生密码
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <param name="resetPwd">hash后的密码</param>
+        /// <returns></returns>
+        public Enums.OpResult ResetPwd(string stuAccount, string resetPwd)
+        {
+            int count = dao.ResetPassword(stuAccount, resetPwd);
+            if (count > 0)
+            {
+                return Enums.OpResult.更新成功;
+            }
+            else
+            {
+                return Enums.OpResult.更新失败;
+            }
+        }
 
         /// <summary>
         /// 得到学生实体对象

@@ -168,6 +168,43 @@ $(document).ready(function () {
                 break;
         }
     });
+    //重置密码操作
+    $(".resetPwd").click(function () {
+        var stuAccount = $(this).parent().parent().find(".stuNO").text().trim();
+        var txt = "重置密码？";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'stuLIst.aspx',
+                    data: {
+                        stuNO: stuAccount,
+                        op: "reset"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ === "重置成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+        }
+        window.wxc.xcConfirm(txt, "confirm", option);
+    })
+
     //编辑学生
     //获取学生信息到编辑框
     $(".Editor").click(function () {

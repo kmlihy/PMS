@@ -127,17 +127,39 @@ namespace PMS.Web.admin
 
             if (op == "stuadd")
             {
+                //学院与专业下拉联动
                 int addcollegeId = int.Parse(Context.Request["stuAddcollegeId"]);
                 stuAddProds = proBll.SelectByCollegeId(addcollegeId);
                 DataTable dt = stuAddProds.Tables[0];
                 string data = DataTableToJson(dt);
-
-                //Response.Write("刷新");
                 Response.Write(data);
                 Response.End();
             }
+            if (op=="reset") {
+                //重置密码
+                stuPasswordReset();
+            }
         }
 
+        public void stuPasswordReset() {
+            string stuAccount = Context.Request["stuNO"].ToString();
+            string stuPwd = Security.SHA256Hash("123456");
+            
+            Result resetResult =stuBll.ResetPwd(stuAccount, stuPwd); 
+            if (resetResult== Result.更新成功) {
+                Response.Write("重置成功");
+                Response.End();
+            }
+            else {
+                Response.Write("重置失败");
+                Response.End();
+            }
+        }
+        /// <summary>
+        /// datatable转换成json
+        /// </summary>
+        /// <param name="table">需要转换的datatable</param>
+        /// <returns></returns>
         public string DataTableToJson(DataTable table)
         {
             var JsonString = new StringBuilder();

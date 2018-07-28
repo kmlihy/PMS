@@ -117,6 +117,7 @@
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrapValidator.min.js" />
     <Content Include="js\branchList.js" />
+    <Content Include="js\canvas-particle.js" />
     <Content Include="js\changePwd.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jquery-ui.min.js" />

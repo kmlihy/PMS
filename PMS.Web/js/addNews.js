@@ -32,10 +32,10 @@ $("#release").click(function () {
     var content = escape($("#content").val());
     // alert(content);
     if (newsTitle == "") {
-        alert("标题不能为空");
+        window.wxc.xcConfirm("标题不能为空", window.wxc.xcConfirm.typeEnum.warning);
     }
     else if (content == "") {
-        alert("内容不能为空");
+        window.wxc.xcConfirm("内容不能为空", window.wxc.xcConfirm.typeEnum.warning);
     }
     else {
         $.ajax({
@@ -49,11 +49,18 @@ $("#release").click(function () {
             dataType: 'text',
             success: function (succ) {
                 if (succ == "添加成功") {
-                    alert("发布成功!");
-                    window.location.href = "../newsList.aspx";
+                    window.wxc.xcConfirm("发布成功", window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            window.location.href = "../newsList.aspx";
+                        }
+                    });
                 }
                 else {
-                    alert("发布失败!");
+                    window.wxc.xcConfirm("发布失败", window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            window.location.href = "../admin/addNew.aspx";
+                        }
+                    });
                 }
             }
         });

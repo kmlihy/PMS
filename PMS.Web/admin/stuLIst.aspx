@@ -144,6 +144,7 @@
                                     <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                                 </td>
                                 <td class="text-center">
+                                    <button class="btn btn-default resetPwd">重置密码</button>
                                     <button class="btn btn-default btn-sm btn-warning Editor" data-toggle="modal" data-target="#myEditor">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
