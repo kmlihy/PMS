@@ -121,39 +121,58 @@ namespace PMS.Web.admin
             //获取参数
             string planName = Context.Request["planName"].ToString(),
                    startTiem = Context.Request["startTime"].ToString(),
-                   endTime = Context.Request["endTime"].ToString();
-            int state = int.Parse(Context.Request["state"].ToString()),
-                collegeId = int.Parse(Context.Request["college"].ToString());
-            //字符串转日期
-            DateTime startdt;
-            DateTime enddt;
-            DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-            dtFormat.ShortDatePattern = "yyyy/MM/dd";
-            startdt = Convert.ToDateTime(startTiem, dtFormat);
-            enddt = Convert.ToDateTime(endTime, dtFormat);
-            //实例化参数
-            College coll = new College()
-            {
-                ColID = collegeId
-            };
-            Plan plan = new Plan()
-            {
-                PlanName = planName,
-                StartTime = startdt,
-                EndTime = enddt,
-                State = state,
-                college = coll
-            };
-            PlanBll pBll = new PlanBll();
-            Result result = pBll.Insert(plan);
-            if(result == Result.添加成功)
-            {
-                Response.Write("添加成功");
-                Response.End();
+                   endTime = Context.Request["endTime"].ToString(),
+                   college = Context.Request["college"].ToString(),
+                   planstate = Context.Request["state"].ToString();
+            //int state = int.Parse(Context.Request["state"].ToString());
+            //collegeId = int.Parse(Context.Request["college"].ToString());
+            if (planName != ""&&startTiem != ""&&endTime !=""&&state.ToString()!=""&&college!="") {
+                int collegeId = int.Parse(college),
+                    state = int.Parse(planstate);
+                //字符串转日期
+                DateTime startdt;
+                DateTime enddt;
+                DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
+                dtFormat.ShortDatePattern = "yyyy/MM/dd";
+                startdt = Convert.ToDateTime(startTiem, dtFormat);
+                enddt = Convert.ToDateTime(endTime, dtFormat);
+                //实例化参数
+                College coll = new College()
+                {
+                    ColID = collegeId
+                };
+                //判断当开始时间在结束时间之后时，不能执行添加
+                if (DateTime.Compare(startdt, enddt) < 0) {
+                    Plan plan = new Plan()
+                    {
+                        PlanName = planName,
+                        StartTime = startdt,
+                        EndTime = enddt,
+                        State = state,
+                        college = coll
+                    };
+                    PlanBll pBll = new PlanBll();
+                    Result result = pBll.Insert(plan);
+                    if (result == Result.添加成功)
+                    {
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
+                }
+                else
+                {
+                    Response.Write("开始时间不能在结束时间之后");
+                    Response.End();
+                }
             }
             else
             {
-                Response.Write("添加失败");
+                Response.Write("以上内容不能出现未填项");
                 Response.End();
             }
         }

@@ -163,10 +163,10 @@ $(document).ready(function () {
             endTime = $("#endTime").val(),
             state = $("#state").find("option:selected").val(),
             college = $("#collegeId").find("option:selected").val();
-        if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
-            alert("不能出现未填项！");
-        }
-        else {
+        //if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
+        //    alert("不能出现未填项！");
+        //}
+        //else {
             //ajax传值到后台
             $.ajax({
                 type: 'Post',
@@ -187,7 +187,15 @@ $(document).ready(function () {
                                 jump(1);
                             }
                         });
-                    } else {
+                    }
+                    else if (succ == "以上内容不能出现未填项") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                $("#planName").focus();
+                            }
+                        });
+                    }
+                    else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
                                 jump(1);
@@ -196,7 +204,7 @@ $(document).ready(function () {
                     }
                 }
             })
-        }
+        //}
     })
     //编辑批次
     $(".planEditor").click(function () {

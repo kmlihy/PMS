@@ -208,8 +208,9 @@
                                     <label class="text-span">激活状态</label></td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="state">
+                                        <option value="">请选择激活状态</option>
                                         <option value="1">是</option>
-                                        <option value="0" selected="selected">否</option>
+                                        <option value="0">否</option>
                                     </select>
                                     <span class="validate" id="p_state"></span>
                                 </td>
