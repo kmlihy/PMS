@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     //点击编辑按钮，编辑弹框绑定数据
     $(".btnEdit").click(function () {
-        var titleId = $(this).parent().parent().find("#titleId").text().trim();
+        var titleId = $(this).parent().parent().find("#titleId").val();
         var planId = $(this).parent().parent().find("#planId").val();
         $.ajax({
             type: 'Post',

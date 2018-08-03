@@ -160,7 +160,7 @@ $(document).ready(function () {
         $("#StuAccount").text(($(this).parent().parent().find("#stuaccount").text().trim()));
         $("#StuTel").text(($(this).parent().parent().find("#phone").text().trim()));
         $("#StuEmail").text(($(this).parent().parent().find("#email").text().trim()));
-        $("#RecordId").text(($(this).parent().parent().find("#recordid").text().trim()));
+        $("#RecordId").text(($(this).parent().parent().find("#recordid").val()));
         $("#PlanName").text(($(this).parent().parent().find("#planname").text().trim()));
         $("#Title").text(($(this).parent().parent().find("#title").text().trim()));
         $("#TeaName").text(($(this).parent().parent().find("#teaname").text().trim()));

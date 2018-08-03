@@ -189,7 +189,7 @@ $(document).ready(function () {
     });
     //点击查看题目详情按钮
     $(".btnSearch").click(function () {
-        var titleId = $(this).parent().parent().find("#titleId").text().trim();
+        var titleId = $(this).parent().parent().find("#titleId").val();
         window.location.href = "../paperDetail.aspx?titleId=" + titleId;
     })
     //当总页数为1时，首页与尾页按钮隐藏

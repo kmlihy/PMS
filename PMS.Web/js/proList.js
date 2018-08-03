@@ -147,11 +147,11 @@ $(document).ready(function () {
     $(".changebtn").click(function () {
         $("#btnSave").hide();
         $("#btnch").show();
-        var proId = $(this).parent().parent().find("#tdproId").text();
+        var proId = $(this).parent().parent().find("#tdproId").val();
         $(".bootstrap-select").hide();
-        $("#colname").val($(this).parent().parent().find("#tdcollegeName").text());
+        $("#colname").val($(this).parent().parent().find("#tdcollegeName").text().trim());
         $("#colname").css("max-width", "140px");
-        $("#p_proName").val($(this).parent().parent().find("#tdproName").text());
+        $("#p_proName").val($(this).parent().parent().find("#tdproName").text().trim());
         $("#p_proName").css("max-width", "140px");
         //点击关闭清除ID
         $(".chID").click(function () {

@@ -104,7 +104,7 @@ $(document).ready(function () {
     })
     //编辑分院弹框绑定分院信息
     $(".btnEdit").click(function () {
-        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").val();
         var collegeName = $(this).parent().parent().find(".collegeName").text().trim();
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
