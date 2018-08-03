@@ -214,22 +214,23 @@ $(document).ready(function () {
             editorState = $(this).parent().prev("td").prev("td").find(".stateData").text().trim(),
             editorStateId = $(this).parent().prev("td").prev("td").find(".stateData").get(0).id,
             editorCollege = $(this).parent().prev("td").text().trim(),
-            editorPlanId = $(this).parent().parent().children("td").get(1).id;
-            var planCollegeId = $(this).parent().parent().children("td").get(6).id;
+            editorPlanId = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").prev("input").val(),
+            planCollegeId = $(this).parent().parent().children("td").get(6).id;
+        $(".editorPlanId").val(editorPlanId);
         $(".editorPlanName").val(editorName);
         $(".editorStartTime").val(editorStart);
         $(".editorEndTime").val(editorEnd);
         $(".editorState").val(editorState);
         $(".editorCollege").val(editorCollege);
         $(".planCollegeId").text(planCollegeId);
-        $(".planId").text(editorPlanId);
+        //$(".planId").text(editorPlanId);
         $(".editorStateId").text(editorStateId);
     });
     //按钮隐藏
     //下拉框隐藏
     $(".editorStateId").hide();
     $(".planCollegeId").hide();
-    $(".planId").hide();
+    //$(".planId").hide();
     //编辑按钮
     $(".batchState").hide();
     $(".batchCollege").hide();
@@ -274,7 +275,7 @@ $(document).ready(function () {
     })
     //提交编辑
     $(".saveEditor").click(function () {
-        var editorPlanId = $(".planId").text(),
+        var editorPlanId = $(".editorPlanId").val(),
             editorPlanName = $(".editorPlanName").val(),
             editorStartTime = $(".editorStartTime").val(),
             editorEndTime = $(".editorEndTime").val(),
@@ -365,7 +366,7 @@ $(document).ready(function () {
         $(".planSearch").hide();
     }
 
-    //详细信息模态框数据绑定
+    //超管查看详细信息模态框数据绑定
     $(".planSearch").click(function () {
         var planId = $(this).parent().parent().find(".planNO").val(),
             planName = $(this).parent().parent().find(".planNO").next().text().trim(),
@@ -373,7 +374,6 @@ $(document).ready(function () {
             endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
             state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),
             collegeName = $(this).parent().parent().find(".planNO").next().next().next().next().next().text().trim();
-        $("#searchPlanId").text(planId);
         $("#searchPlanName").text(planName);
         $("#searchStartTime").text(startTime);
         $("#searchEndTime").text(endTime);

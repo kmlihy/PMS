@@ -94,7 +94,7 @@
                             <td class="text-center">
                                 <input type="checkbox" />
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" class="orderNum">
                                 <%=i+1+((getCurrentPage-1)*pagesize)%>
                             </td>
                             <input type="hidden" class="planNO" value="<%= plands.Tables[0].Rows[i]["planId"].ToString() %>" />
@@ -261,7 +261,9 @@
 
                                 </td>
                                 <td>
-                                    <input class="form-control teaAddinput editorPlanName" type="text" /></td>
+                                    <input class="editorPlanId" type="hidden" />
+                                    <input class="form-control teaAddinput editorPlanName" type="text" />
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
@@ -316,7 +318,6 @@
                 <div class="modal-footer">
                     <span class="editorStateId"></span>
                     <span class="planCollegeId"></span>
-                    <span class="planId"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary saveEditor">提交更改</button>
                 </div>
@@ -339,14 +340,14 @@
                         <tbody class="tablebody">
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">批次编号:</label></td>
-                                <td>
-                                    <p id="searchPlanId" class="text-span"></p>
-                                </td>
-                                <td class="teaLable">
                                     <label class="text-span">批次名称:</label></td>
                                 <td>
                                     <p id="searchPlanName" class="text-span"></p>
+                                </td>
+                                <td class="teaLable">
+                                    <label class="text-span">所属学院:</label></td>
+                                <td>
+                                    <p id="searchCol" class="text-span"></p>
                                 </td>
                             </tr>
                             <tr>
@@ -366,11 +367,6 @@
                                     <label class="text-span">激活状态:</label></td>
                                 <td>
                                     <p id="searchState" class="text-span"></p>
-                                </td>
-                                <td class="teaLable">
-                                    <label class="text-span">所属学院:</label></td>
-                                <td>
-                                    <p id="searchCol" class="text-span"></p>
                                 </td>
                             </tr>
                         </tbody>
