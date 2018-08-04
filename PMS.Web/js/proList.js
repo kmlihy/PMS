@@ -203,7 +203,7 @@ $(document).ready(function () {
     })
     //删除事件
     $(".btnDel").click(function () {
-        var delproId = $(this).parent().parent().find("#tdproId").text().trim();
+        var delproId = $(this).parent().parent().find("#tdproId").val();
         var txt = "是否确认删除？";
         var option = {
             title: "提示",

@@ -166,7 +166,7 @@ $(document).ready(function () {
     })
     //删除分院信息
     $(".btnDlete").click(function () {
-        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").val();
         var txt = "确定要删除吗？";
         var option = {
             title: "删除警告",

@@ -67,7 +67,7 @@ $(document).ready(function () {
                     jump(1);
                     break;
                 }
-                //点击下一页按钮
+            //点击下一页按钮
             case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
@@ -77,14 +77,14 @@ $(document).ready(function () {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
-                //点击首页
+            //点击首页
             case ("首页"):
                 jump(1);
                 break;
             case (sessionStorage.getItem("countPage")):
                 jump(parseInt(sessionStorage.getItem("countPage")));
                 break;
-                //点击尾页
+            //点击尾页
             case ("尾页"):
                 jump(parseInt(sessionStorage.getItem("countPage")));
                 break;
@@ -207,44 +207,44 @@ $(document).ready(function () {
         //    alert("不能出现未填项！");
         //}
         //else {
-            //ajax传值到后台
-            $.ajax({
-                type: 'Post',
-                url: 'batchList.aspx',
-                data: {
-                    planName: planName,
-                    startTime: startTime,
-                    endTime: endTime,
-                    state: state,
-                    college: college,
-                    op: "add"
-                },
-                dateType: 'text',
-                success: function (succ) {
-                    if (succ == "添加成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(1);
-                            }
-                        });
-                    }
-                    else if (succ == "以上内容不能出现未填项") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                $("#planName").focus();
-                            }
-                        });
-                    }
-                    else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                $("#planName").focus();
-                                //jump(1);
-                            }
-                        });
-                    }
+        //ajax传值到后台
+        $.ajax({
+            type: 'Post',
+            url: 'batchList.aspx',
+            data: {
+                planName: planName,
+                startTime: startTime,
+                endTime: endTime,
+                state: state,
+                college: college,
+                op: "add"
+            },
+            dateType: 'text',
+            success: function (succ) {
+                if (succ == "添加成功") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            jump(1);
+                        }
+                    });
                 }
-            })
+                else if (succ == "以上内容不能出现未填项") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            $("#planName").focus();
+                        }
+                    });
+                }
+                else {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            $("#planName").focus();
+                            //jump(1);
+                        }
+                    });
+                }
+            }
+        })
         //}
     })
     //编辑批次
@@ -368,65 +368,70 @@ $(document).ready(function () {
 
     //删除批次
     $(".planDelete").click(function () {
-        var deletePlanId = $(this).parent().parent().children("td").get(1).id;
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
-            $.ajax({
-                type: 'Post',
-                url: 'batchList.aspx',
-                data: {
-                    deletePlanId: deletePlanId,
-                    delOp: "del"
-                },
-                dataType: 'text',
-                //success: function (succ) {
-                //    alert(succ);
-                //    jump(parseInt(sessionStorage.getItem("page")));
-                //}
-                success: function (succ) {
-                    if (succ == "删除成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
-                            }
-                        });
+        var deletePlanId = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").prev("input").val();
+        var txt = "您确定删除吗？如果该条记录没有关联其他表，将会直接删除！";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'batchList.aspx',
+                    data: {
+                        deletePlanId: deletePlanId,
+                        delOp: "del"
+                    },
+                    dataType: 'text',
+                    //success: function (succ) {
+                    //    alert(succ);
+                    //    jump(parseInt(sessionStorage.getItem("page")));
+                    //}
+                    success: function (succ) {
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
                     }
-                }
-            })
+                })
+            }
         }
-    })
+        window.wxc.xcConfirm(txt, "warning", option);
 
-    //判断登录的管理员，对批次表格权限进行限制
-    var userState = $("#userState").val();
-    if (userState == "0") {
-        $(".planEditor").hide();
-        $(".planDelete").hide();
-        $(".planSearch").show();
-    }
-    else if (userState == "2") {
-        $(".planEditor").show();
-        $(".planDelete").show();
-        $(".planSearch").hide();
-    }
+        //判断登录的管理员，对批次表格权限进行限制
+        var userState = $("#userState").val();
+        if (userState == "0") {
+            $(".planEditor").hide();
+            $(".planDelete").hide();
+            $(".planSearch").show();
+        }
+        else if (userState == "2") {
+            $(".planEditor").show();
+            $(".planDelete").show();
+            $(".planSearch").hide();
+        }
 
-    //超管查看详细信息模态框数据绑定
-    $(".planSearch").click(function () {
-        var planId = $(this).parent().parent().find(".planNO").val(),
-            planName = $(this).parent().parent().find(".planNO").next().text().trim(),
-            startTime = $(this).parent().parent().find(".planNO").next().next().text().trim(),
-            endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
-            state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),
-            collegeName = $(this).parent().parent().find(".planNO").next().next().next().next().next().text().trim();
-        $("#searchPlanName").text(planName);
-        $("#searchStartTime").text(startTime);
-        $("#searchEndTime").text(endTime);
-        $("#searchState").text(state);
-        $("#searchCol").text(collegeName);
+        //超管查看详细信息模态框数据绑定
+        $(".planSearch").click(function () {
+            var planId = $(this).parent().parent().find(".planNO").val(),
+                planName = $(this).parent().parent().find(".planNO").next().text().trim(),
+                startTime = $(this).parent().parent().find(".planNO").next().next().text().trim(),
+                endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
+                state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),
+                collegeName = $(this).parent().parent().find(".planNO").next().next().next().next().next().text().trim();
+            $("#searchPlanName").text(planName);
+            $("#searchStartTime").text(startTime);
+            $("#searchEndTime").text(endTime);
+            $("#searchState").text(state);
+            $("#searchCol").text(collegeName);
+        })
     })
 })

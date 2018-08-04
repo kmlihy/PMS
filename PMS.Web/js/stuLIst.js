@@ -384,7 +384,7 @@ $(document).ready(function () {
         var colladmin = $(".pro").find("option:selected").val();
         var proadmin = $("#pro").find("option:selected").val();
         var pro = "";
-        if (proadmin === null) {
+        if (proadmin === null || proadmin === "") {
             pro = colladmin;
         } else {
             pro = proadmin;

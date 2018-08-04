@@ -65,11 +65,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="jump">第 <%=getCurrentPage %> 页</a>
+                    <a href="#" class="jump"><%=getCurrentPage %></a>
+                </li>
+                <li>
+                    <a href="#" class="jump">/</a>
                 </li>
                 <li>
                     <% if (count == 0) { count = 1; } %>
-                    <a href="#">总共：<%=count %> 页</a>
+                    <a href="#"><%=count %> </a>
                 </li>
                 <li>
                     <a href="#" class="jump">

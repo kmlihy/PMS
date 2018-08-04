@@ -214,7 +214,7 @@ $(document).ready(function () {
 
     //删除标题信息
     $(".btnDel").click(function () {
-        var deleteTitleId = $(this).parent().parent().find("#titleId").text().trim();
+        var deleteTitleId = $(this).parent().parent().find("#titleId").val();
         alert(deleteTitleId);
         //Confirm弹窗
         var txt = "确定要删除吗？";

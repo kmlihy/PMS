@@ -449,7 +449,7 @@ namespace PMS.Web.admin
                     }
                 }
             }
-            catch { }
+            catch (Exception ex){ Response.Write(ex.Message); }
         }
         /// <summary>
         /// 实现分页
