@@ -1,11 +1,51 @@
 ﻿//时间选择器
-$(function () {
-    $(".datetimepicker").datepicker({
-        dateFormat: 'yy-mm-dd',//显示日期格式
-        //英文转中文
-        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
-        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-    })
+//$(function () {
+//    $(".datetimepicker").datepicker({
+//        dateFormat: 'yy-mm-dd',//显示日期格式
+//        //英文转中文
+//        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+//        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+//    })
+//})
+jeDate({
+    festival: true,
+    dateCell: "#startTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
+})
+jeDate({
+    festival: true,
+    dateCell: "#endTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
+})
+jeDate({
+    festival: true,
+    dateCell: "#editorStartTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
+})
+jeDate({
+    festival: true,
+    dateCell: "#editorEndTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
 })
 
 //存储当前页
@@ -198,7 +238,8 @@ $(document).ready(function () {
                     else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
-                                jump(1);
+                                $("#planName").focus();
+                                //jump(1);
                             }
                         });
                     }
@@ -306,7 +347,15 @@ $(document).ready(function () {
                             jump(1);
                         }
                     });
-                } else {
+                }
+                else if (succ == "开始时间必须小于结束时间") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+                            $("#planName").focus();
+                        }
+                    });
+                }
+                else {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                         onOk: function (v) {
                             jump(1);

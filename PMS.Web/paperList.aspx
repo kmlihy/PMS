@@ -48,7 +48,9 @@
                         <td><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
                         </td>
                         <%--选题截止时间--%>
-                        <td></td>
+                        <td>
+                            <%=ds.Tables[0].Rows[i]["endTime"].ToString()%>
+                        </td>
                         <td>
                             <a class="btn btn-primary selectTitle" id="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>
                         </td>

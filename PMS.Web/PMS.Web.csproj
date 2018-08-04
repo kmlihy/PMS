@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\404.css" />
+    <Content Include="css\jedate.css" />
     <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
@@ -120,6 +121,7 @@
     <Content Include="js\canvas-particle.js" />
     <Content Include="js\changePwd.js" />
     <Content Include="js\icheck.min.js" />
+    <Content Include="js\jedate.js" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\lgd.js" />
@@ -563,7 +565,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>33192</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

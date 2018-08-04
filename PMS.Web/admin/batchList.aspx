@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../css/iconfont.css" />
     <link rel="stylesheet" href="../css/jquery-ui.min.css" />
     <link rel="stylesheet" href="../css/xcConfirm.css" />
+    <script type="text/javascript" src="../js/jedate.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/jedate.css" id="jeDateSkin" />
 </head>
 
 <body>
@@ -56,7 +58,8 @@
                                     <span class="glyphicon glyphicon-search" id="search">查询</span>
                                 </button>
                             </span>
-                            <%if(state != 0){ %>
+                            <%if (state != 0)
+                                { %>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" id="btn-Add">
                                     <span class="glyphicon glyphicon-plus-sign">新增</span>
@@ -66,7 +69,7 @@
                                 <span class="glyphicon glyphicon-trash"></span>
                                 批量删除
                             </button>
-                             <%}%>
+                            <%}%>
                         </div>
                     </div>
                 </div>
@@ -191,7 +194,8 @@
                                 <td class="teaLable">
                                     <label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput datetimepicker" type="text" id="startTime" />
+                                    <input class="form-control teaAddinput editorStartTime datetimepicker" id="startTime" type="text" />
+                                    <%--<input class="form-control teaAddinput datetimepicker" type="text" id="startTime" />--%>
                                     <span class="validate" id="p_start"></span>
                                 </td>
                             </tr>
@@ -199,7 +203,8 @@
                                 <td class="teaLable">
                                     <label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput datetimepicker" type="text" id="endTime" />
+                                    <input class="form-control teaAddinput editorStartTime datetimepicker" id="endTime" type="text" />
+                                    <%--<input class="form-control teaAddinput datetimepicker" type="text" id="endTime" />--%>
                                     <span class="validate" id="p_end"></span>
                                 </td>
                             </tr>
@@ -269,13 +274,15 @@
                                 <td class="teaLable">
                                     <label class="text-span">开始时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorStartTime datetimepicker" type="text" /></td>
+                                    <input class="form-control teaAddinput editorStartTime datetimepicker" id="editorStartTime" type="text" />
+                                    <%--<input class="form-control teaAddinput editorStartTime datetimepicker" type="text" />--%>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="teaLable">
                                     <label class="text-span">结束时间</label></td>
                                 <td>
-                                    <input class="form-control teaAddinput editorEndTime datetimepicker" type="text" /></td>
+                                    <input class="form-control teaAddinput editorEndTime datetimepicker" id="editorEndTime" type="text" /></td>
                             </tr>
                             <tr>
                                 <td class="teaLable">

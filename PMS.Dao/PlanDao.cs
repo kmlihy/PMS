@@ -172,7 +172,7 @@ namespace PMS.Dao
                         }
                         if (ds.Tables[0].Rows[0]["StartTime"].ToString() != "")
                         {
-                            plan.StartTime = DateTime.Parse(ds.Tables[0].Rows[0]["planName"].ToString());
+                            plan.StartTime = DateTime.Parse(ds.Tables[0].Rows[0]["StartTime"].ToString());
                         }
                         if (ds.Tables[0].Rows[0]["endTime"].ToString() != "")
                         {
