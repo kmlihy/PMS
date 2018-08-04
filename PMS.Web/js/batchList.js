@@ -203,48 +203,58 @@ $(document).ready(function () {
             endTime = $("#endTime").val(),
             state = $("#state").find("option:selected").val(),
             college = $("#collegeId").find("option:selected").val();
-        //if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
-        //    alert("不能出现未填项！");
-        //}
-        //else {
-        //ajax传值到后台
-        $.ajax({
-            type: 'Post',
-            url: 'batchList.aspx',
-            data: {
-                planName: planName,
-                startTime: startTime,
-                endTime: endTime,
-                state: state,
-                college: college,
-                op: "add"
-            },
-            dateType: 'text',
-            success: function (succ) {
-                if (succ == "添加成功") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                        onOk: function (v) {
-                            jump(1);
-                        }
-                    });
+        startTime = startTime.replace(/-/g, "/");
+        endTime = endTime.replace(/-/g, "/");
+        var startdate = new Date(startTime);
+        var enddate = new Date(endTime);
+        var time = enddate.getTime() - startdate.getTime();
+        var days = parseInt(time / (1000 * 60 * 60 * 24));
+        if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
+            window.wxc.xcConfirm("不能出现未填项", window.wxc.xcConfirm.typeEnum.error);
+        }
+        //间隔天数小于1则不能
+        else if (days < 1) {
+            window.wxc.xcConfirm("开始与结束时间间隔必须大于1天", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else {
+            $.ajax({
+                type: 'Post',
+                url: 'batchList.aspx',
+                data: {
+                    planName: planName,
+                    startTime: startTime,
+                    endTime: endTime,
+                    state: state,
+                    college: college,
+                    op: "add"
+                },
+                dateType: 'text',
+                success: function (succ) {
+                    if (succ == "添加成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
+                    else if (succ == "以上内容不能出现未填项") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                $("#planName").focus();
+                            }
+                        });
+                    }
+                    else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                $("#planName").focus();
+                                //jump(1);
+                            }
+                        });
+                    }
                 }
-                else if (succ == "以上内容不能出现未填项") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-                            $("#planName").focus();
-                        }
-                    });
-                }
-                else {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-                            $("#planName").focus();
-                            //jump(1);
-                        }
-                    });
-                }
-            }
-        })
+            })
+        }
         //}
     })
     //编辑批次
@@ -302,6 +312,11 @@ $(document).ready(function () {
         $("#btnSure2").show();
         $(this).hide();
     })
+    //点击关闭清除开始和结束日期
+    $("#close").click(function () {
+        $(".editorStartTime").val("");
+        $(".editorEndTime").val("");
+    })
     //学院确认按钮
     $("#btnSure2").click(function () {
         var college = $(".selectCollege").find("option:selected").val();
@@ -323,47 +338,60 @@ $(document).ready(function () {
             editorState = $(".editorStateId").text(),
             planCollegeId = $(".planCollegeId").text();
         //alert("ajax");
-        $.ajax({
-            type: 'Post',
-            url: 'batchList.aspx',
-            data: {
-                editorPlanId: editorPlanId,
-                editorPlanName: editorPlanName,
-                editorStartTime: editorStartTime,
-                editorEndTime: editorEndTime,
-                editorState: editorState,
-                planCollegeId: planCollegeId,
-                editorOp: "editor"
-            },
-            dataType: 'text',
-            //success: function (succ) {
-            //    alert(succ);
-            //    jump(parseInt(sessionStorage.getItem("page")));
-            //}
-            success: function (succ) {
-                if (succ == "更新成功") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                        onOk: function (v) {
-                            jump(1);
-                        }
-                    });
+        editorStartTime = editorStartTime.replace(/-/g, "/");
+        editorEndTime = editorEndTime.replace(/-/g, "/");
+        var startdate = new Date(editorStartTime);
+        var enddate = new Date(editorEndTime);
+        var time = enddate.getTime() - startdate.getTime();
+        var days = parseInt(time / (1000 * 60 * 60 * 24));
+        //间隔天数小于1则不能
+        if (days < 1) {
+            window.wxc.xcConfirm("开始与结束时间间隔必须大于1天", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else {
+            $.ajax({
+                type: 'Post',
+                url: 'batchList.aspx',
+                data: {
+                    editorPlanId: editorPlanId,
+                    editorPlanName: editorPlanName,
+                    editorStartTime: editorStartTime,
+                    editorEndTime: editorEndTime,
+                    editorState: editorState,
+                    planCollegeId: planCollegeId,
+                    editorOp: "editor"
+                },
+                dataType: 'text',
+                //success: function (succ) {
+                //    alert(succ);
+                //    jump(parseInt(sessionStorage.getItem("page")));
+                //}
+                success: function (succ) {
+                    if (succ == "更新成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
+                    else if (succ == "开始与结束时间间隔必须大于1天") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                $("#planName").focus();
+                            }
+                        });
+                    }
+                    else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
+                            }
+                        });
+                    }
                 }
-                else if (succ == "开始时间必须小于结束时间") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-                            $("#planName").focus();
-                        }
-                    });
-                }
-                else {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-                            jump(1);
-                        }
-                    });
-                }
-            }
-        })
+            })
+        }
+
     })
 
     //删除批次

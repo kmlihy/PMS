@@ -172,7 +172,7 @@ $(document).ready(function () {
     });
     //删除事件
     $(".btnDel").click(function () {
-        var recordid = $(this).parent().parent().find("#recordid").text().trim();
+        var recordid = $(this).parent().parent().find("#recordid").val();
         var txt = "是否确认删除？";
         var option = {
             title: "提示",

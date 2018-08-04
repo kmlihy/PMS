@@ -480,7 +480,6 @@ namespace PMS.Web.admin
             if (row == Result.记录不存在)
             {
                 Result result = titrecordbll.delete(recordid);
-
                 if (result == Result.删除成功)
                 {
                     Response.Write("删除成功");

@@ -325,7 +325,7 @@
                 <div class="modal-footer">
                     <span class="editorStateId"></span>
                     <span class="planCollegeId"></span>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-default" id="close" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary saveEditor">提交更改</button>
                 </div>
             </div>

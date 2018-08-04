@@ -97,12 +97,13 @@ namespace PMS.Web.admin
                 PlanBll pBll = new PlanBll();
                 Result EditorResult = pBll.Update(plan);
                 //字符串转日期
-                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm");
+                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime startdt = Convert.ToDateTime(start);
-                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm");
+                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime enddt = Convert.ToDateTime(end);
-
-                if (startdt < enddt)
+                TimeSpan ts = enddt - startdt;
+                //间隔天数小于1则不能
+                if (ts.Days >= 1)
                 {
                     if (EditorResult == Result.更新成功)
                     {
@@ -117,7 +118,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    Response.Write("开始时间必须小于结束时间");
+                    Response.Write("开始与结束时间间隔必须大于1天");
                 }
             }
             catch(Exception ex) { Response.Write(ex.Message); }
@@ -143,9 +144,9 @@ namespace PMS.Web.admin
                 int collegeId = int.Parse(college),
                     state = int.Parse(planstate);
                 //字符串转日期
-                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm");
+                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime startdt = Convert.ToDateTime(start);
-                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm");
+                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime enddt = Convert.ToDateTime(end);
 
                 //实例化参数
@@ -154,7 +155,8 @@ namespace PMS.Web.admin
                     ColID = collegeId
                 };
                 //判断当开始时间在结束时间之后时，不能执行添加
-                if (startdt < enddt) {
+                TimeSpan ts = enddt - startdt;
+                if (ts.Days >= 1) {
                     Plan plan = new Plan()
                     {
                         PlanName = planName,
@@ -178,7 +180,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    Response.Write("开始时间必须小于结束时间");
+                    Response.Write("开始与结束时间间隔必须大于1天");
                     Response.End();
                 }
             }

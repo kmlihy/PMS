@@ -94,14 +94,13 @@ namespace PMS.Web
             string end = plan.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime endTime = Convert.ToDateTime(end);
 
-            if (nowTime < endTime)
+            if (nowTime <= endTime)
             {
                 if (selected < limited)
                 {
                     Result row = isExist();
                     if (row == Result.记录不存在)
                     {
-
                         TitleRecord titleRecord = new TitleRecord();
                         Student student = new Student();
                         student.StuAccount = stuId;
