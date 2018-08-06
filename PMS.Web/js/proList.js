@@ -6,6 +6,7 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //列表导入
     sessionStorage.removeItem("strWhere")
     $(".file").on("change", "input[type='file']", function () {

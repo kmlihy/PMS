@@ -54,6 +54,7 @@ sessionStorage.setItem("page", $("#page").val());
 sessionStorage.setItem("countPage", $("#countPage").val());
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {

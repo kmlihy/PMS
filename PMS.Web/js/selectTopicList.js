@@ -14,6 +14,7 @@ if (userType == "0") {
 }
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {

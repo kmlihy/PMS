@@ -18,6 +18,7 @@ $(".file").on("change", "input[type='file']", function () {
     }
 })
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //分页参数传递
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {

@@ -5,6 +5,7 @@ sessionStorage.setItem("Page", page);
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //分页参数传递
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {

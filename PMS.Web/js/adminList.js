@@ -6,6 +6,7 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //防止当前页数大于总页数
     var page = parseInt(sessionStorage.getItem("page"));
     var countPage = parseInt(sessionStorage.getItem("countPage"));

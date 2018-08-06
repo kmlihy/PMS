@@ -15,6 +15,7 @@ else if (userType === "0") {
     $("#trstuPro").hide();
 }
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     function GetJsonLength(JsonData) {
         var jsonLenth = 0;
         for (var item in JsonData) {
@@ -374,7 +375,7 @@ $(document).ready(function () {
             if (sessionStorage.getItem("strWhere") !== null) {
                 sessionStorage.removeItem("strWhere");
             }
-            else if (sessionStorage.getItem("dropCollegeIdstrWhere") != null) {
+            else if (sessionStorage.getItem("dropCollegeIdstrWhere") !== null) {
                 sessionStorage.removeItem("dropCollegeIdstrWhere");
             }
             else if (sessionStorage.getItem("proWhere") !== null) {
@@ -439,5 +440,4 @@ $(document).ready(function () {
             jump(parseInt(sessionStorage.getItem("page")) - 1);
         }
     }
-
 })
