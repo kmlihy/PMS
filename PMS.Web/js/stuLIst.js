@@ -385,7 +385,7 @@ $(document).ready(function () {
         var colladmin = $(".pro").find("option:selected").val();
         var proadmin = $("#pro").find("option:selected").val();
         var pro = "";
-        if (proadmin === null || proadmin === "") {
+        if (proadmin === null || proadmin === "" || proadmin === "请选择专业") {
             pro = colladmin;
         } else {
             pro = proadmin;
@@ -398,7 +398,8 @@ $(document).ready(function () {
             phone = $("#phone").val(),
             email = $("#email").val();
         if (stuAccount === "" /*|| pwd === ""*/ || realName === "" || sex === "" || pro === "" || phone === "" || email === "") {
-            alert("不能出现未填项！");
+            //alert("不能出现未填项！");
+            window.wxc.xcConfirm("不能出现未填项！", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             $.ajax({

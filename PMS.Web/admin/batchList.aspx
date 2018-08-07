@@ -220,7 +220,7 @@
                                     <span class="validate" id="p_state"></span>
                                 </td>
                             </tr>
-                            <tr>
+<%--                            <tr>
                                 <td class="teaLable">
                                     <label class="text-span">所属院系</label></td>
                                 <td>
@@ -235,7 +235,7 @@
                                     </select>
                                     <span class="validate" id="p_college"></span>
                                 </td>
-                            </tr>
+                            </tr>--%>
                         </tbody>
                     </table>
                 </div>
@@ -299,7 +299,7 @@
                                     <button type="button" class="btn btn-default btnEditor" id="btnSure1">确定</button>
                                 </td>
                             </tr>
-                            <tr>
+<%--                            <tr>
                                 <td class="teaLable">
                                     <label class="text-span">所属院系</label></td>
                                 <td>
@@ -318,7 +318,7 @@
                                     <button type="button" class="btn btn-default btnEditor" id="btnEditor2">编辑</button>
                                     <button type="button" class="btn btn-default btnEditor" id="btnSure2">确定</button>
                                 </td>
-                            </tr>
+                            </tr>--%>
                         </tbody>
                     </table>
                 </div>
