@@ -77,12 +77,16 @@ namespace PMS.Web.admin
             DateTime startTime = Convert.ToDateTime(Context.Request["editorStartTime"].ToString()),
                    endTime = Convert.ToDateTime(Context.Request["editorEndTime"].ToString());
             int state = int.Parse(Context.Request["editorState"].ToString()),
-                planId = int.Parse(Context.Request["editorPlanId"].ToString()),
-                collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
-            College coll = new College()
-            {
-                ColID = collegeId
-            };
+                planId = int.Parse(Context.Request["editorPlanId"].ToString());
+                //collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
+
+            //获取院系id
+            Teacher teacher = (Teacher)Session["user"];
+            string account = teacher.TeaAccount;
+            TeacherBll teacherBll = new TeacherBll();
+            loginUser = teacherBll.GetModel(account);
+            College ColID = loginUser.college;
+
             Plan plan = new Plan()
             {
                 PlanId = planId,
@@ -90,7 +94,7 @@ namespace PMS.Web.admin
                 StartTime = startTime,
                 EndTime = endTime,
                 State = state,
-                college = coll
+                college = ColID
             };
             try
             {
@@ -136,24 +140,25 @@ namespace PMS.Web.admin
             string planName = Context.Request["planName"].ToString(),
                    startTime = Context.Request["startTime"].ToString(),
                    endTime = Context.Request["endTime"].ToString(),
-                   college = Context.Request["college"].ToString(),
+                   //college = Context.Request["college"].ToString(),
                    planstate = Context.Request["state"].ToString();
-            //int state = int.Parse(Context.Request["state"].ToString());
-            //collegeId = int.Parse(Context.Request["college"].ToString());
-            if (planName != ""&&startTime != ""&&endTime !=""&&state.ToString()!=""&&college!="") {
-                int collegeId = int.Parse(college),
-                    state = int.Parse(planstate);
+
+            //获取院系id
+            Teacher teacher = (Teacher)Session["user"];
+            string account = teacher.TeaAccount;
+            TeacherBll teacherBll = new TeacherBll();
+            loginUser = teacherBll.GetModel(account);
+            College ColID = loginUser.college;
+
+            if (planName != ""&&startTime != ""&&endTime !=""&&state.ToString()!="") {
+                //int collegeId = int.Parse(college),
+                 int   state = int.Parse(planstate);
                 //字符串转日期
                 string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime startdt = Convert.ToDateTime(start);
                 string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime enddt = Convert.ToDateTime(end);
 
-                //实例化参数
-                College coll = new College()
-                {
-                    ColID = collegeId
-                };
                 //判断当开始时间在结束时间之后时，不能执行添加
                 TimeSpan ts = enddt - startdt;
                 if (ts.Days >= 1) {
@@ -163,7 +168,7 @@ namespace PMS.Web.admin
                         StartTime = startdt,
                         EndTime = enddt,
                         State = state,
-                        college = coll
+                        college = ColID
                     };
                     PlanBll pBll = new PlanBll();
                     Result result = pBll.Insert(plan);

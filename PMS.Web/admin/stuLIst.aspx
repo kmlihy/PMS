@@ -114,9 +114,9 @@
                                 <td class="text-center">
                                     <input type="checkbox" />
                                 </td>
-                            <td class="text-center">
-                                <%=i+1+((getCurrentPage-1)*pagesize)%>
-                            </td>
+                                <td class="text-center">
+                                    <%=i+1+((getCurrentPage-1)*pagesize)%>
+                                </td>
                                 <td class="text-center stuNO">
                                     <%= ds.Tables[0].Rows[i]["stuAccount"].ToString() %>
                                 </td>
@@ -265,6 +265,13 @@
                                 </td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="pro">
+                                        <option>请选择专业</option>
+                                        <% for (int i = 0; i < stuAddProds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=stuAddProds.Tables[0].Rows[i]["proId"].ToString() %>">
+                                            <%=stuAddProds.Tables[0].Rows[i]["proName"].ToString() %>
+                                        </option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>

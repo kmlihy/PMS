@@ -202,15 +202,15 @@ $(document).ready(function () {
         var planName = $("#planName").val(),
             startTime = $("#startTime").val(),
             endTime = $("#endTime").val(),
-            state = $("#state").find("option:selected").val(),
-            college = $("#collegeId").find("option:selected").val();
+            state = $("#state").find("option:selected").val();
+            //college = $("#collegeId").find("option:selected").val();
         startTime = startTime.replace(/-/g, "/");
         endTime = endTime.replace(/-/g, "/");
         var startdate = new Date(startTime);
         var enddate = new Date(endTime);
         var time = enddate.getTime() - startdate.getTime();
         var days = parseInt(time / (1000 * 60 * 60 * 24));
-        if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
+        if (planName == ""||startTime==""||endTime==""||state=="") {
             window.wxc.xcConfirm("不能出现未填项", window.wxc.xcConfirm.typeEnum.error);
         }
         //间隔天数小于1则不能
@@ -226,7 +226,7 @@ $(document).ready(function () {
                     startTime: startTime,
                     endTime: endTime,
                     state: state,
-                    college: college,
+                    //college: college,
                     op: "add"
                 },
                 dateType: 'text',
@@ -336,8 +336,8 @@ $(document).ready(function () {
             editorPlanName = $(".editorPlanName").val(),
             editorStartTime = $(".editorStartTime").val(),
             editorEndTime = $(".editorEndTime").val(),
-            editorState = $(".editorStateId").text(),
-            planCollegeId = $(".planCollegeId").text();
+            editorState = $(".editorStateId").text();
+            //planCollegeId = $(".planCollegeId").text();
         //alert("ajax");
         editorStartTime = editorStartTime.replace(/-/g, "/");
         editorEndTime = editorEndTime.replace(/-/g, "/");
@@ -359,7 +359,7 @@ $(document).ready(function () {
                     editorStartTime: editorStartTime,
                     editorEndTime: editorEndTime,
                     editorState: editorState,
-                    planCollegeId: planCollegeId,
+                    //planCollegeId: planCollegeId,
                     editorOp: "editor"
                 },
                 dataType: 'text',

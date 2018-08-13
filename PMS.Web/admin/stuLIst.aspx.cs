@@ -399,8 +399,8 @@ namespace PMS.Web.admin
                     realName = Context.Request["realName"].ToString(),
                     sex = Context.Request["sex"].ToString(),
                     phone = Context.Request["phone"].ToString(),
-                    email = Context.Request["email"].ToString();
-                int proId = int.Parse(Context.Request["pro"].ToString());
+                    email = Context.Request["email"].ToString(),
+                    proId = Context.Request["pro"].ToString();
                 if (stuBll.selectByEmail(email))
                 {//根据输入的邮箱查找是否已存在
                     Response.Write("此邮箱已存在");
@@ -415,7 +415,7 @@ namespace PMS.Web.admin
                 {
                     Profession prof = new Profession()
                     {
-                        ProId = proId
+                        ProId = Convert.ToInt32(proId)
                     };
                     Student stu = new Student()
                     {
@@ -449,7 +449,7 @@ namespace PMS.Web.admin
                     }
                 }
             }
-            catch (Exception ex){ Response.Write(ex.Message); }
+            catch {  }
         }
         /// <summary>
         /// 实现分页
