@@ -335,3 +335,53 @@
 #allNaws_btnBack {
     margin-left: 120px;
 }
+/*开题报告样式*/
+.openReportmain {
+    height: 150px;
+}
+
+.table-bordered > tbody > tr > td {
+    border: 1px solid black;
+}
+
+#openingReportmaindiv {
+    margin: 0 auto;
+}
+/*去掉textarea边框 Google浏览器聚焦时的蓝框 右下角的三角形*/
+.openReportText {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    word-break: break-all;
+}
+
+.table_mian {
+    width: 80%;
+}
+
+.table_head {
+    height: 50px;
+    text-align: center;
+}
+
+.lableTime {
+    float: right;
+    outline: none;
+}
+
+.adviceTextArea {
+    height: 85%;
+}
+
+.panleFooter {
+    background-color: white;
+    border: none;
+}
+
+#btnSubmit {
+    margin-top: 10px;
+    float: right;
+}
