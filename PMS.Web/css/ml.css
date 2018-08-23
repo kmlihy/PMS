@@ -180,3 +180,35 @@ a:hover {
     margin-bottom:-20px;
     padding-bottom:0px;
 }
+
+/*
+    mediiumQuality.aspx
+*/
+ .textInput{
+    width:100%;
+    height:100%;
+    border:none
+}
+.textInput:focus{
+    border:none;
+    outline:none;
+}
+.textArea{
+    width:100%;
+    height:100%;
+    border:none;
+    outline:none;
+    resize:none;
+}
+.label_Time{
+    outline:none;
+    border-bottom:1px solid black;
+}
+#mediumQuality_table{
+    border:2px solid black;
+}
+#mediumQuality_table td{
+    border:2px solid black;
+    text-align:center;
+    font-size:24px;
+}
