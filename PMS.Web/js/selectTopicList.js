@@ -14,6 +14,7 @@ if (userType == "0") {
 }
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //翻页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -160,7 +161,7 @@ $(document).ready(function () {
         $("#StuAccount").text(($(this).parent().parent().find("#stuaccount").text().trim()));
         $("#StuTel").text(($(this).parent().parent().find("#phone").text().trim()));
         $("#StuEmail").text(($(this).parent().parent().find("#email").text().trim()));
-        $("#RecordId").text(($(this).parent().parent().find("#recordid").text().trim()));
+        $("#RecordId").text(($(this).parent().parent().find("#recordid").val()));
         $("#PlanName").text(($(this).parent().parent().find("#planname").text().trim()));
         $("#Title").text(($(this).parent().parent().find("#title").text().trim()));
         $("#TeaName").text(($(this).parent().parent().find("#teaname").text().trim()));
@@ -172,7 +173,7 @@ $(document).ready(function () {
     });
     //删除事件
     $(".btnDel").click(function () {
-        var recordid = $(this).parent().parent().find("#recordid").text().trim();
+        var recordid = $(this).parent().parent().find("#recordid").val();
         var txt = "是否确认删除？";
         var option = {
             title: "提示",

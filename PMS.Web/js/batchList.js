@@ -1,11 +1,51 @@
 ﻿//时间选择器
-$(function () {
-    $(".datetimepicker").datepicker({
-        dateFormat: 'yy-mm-dd',//显示日期格式
-        //英文转中文
-        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
-        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-    })
+//$(function () {
+//    $(".datetimepicker").datepicker({
+//        dateFormat: 'yy-mm-dd',//显示日期格式
+//        //英文转中文
+//        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+//        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+//    })
+//})
+jeDate({
+    festival: true,
+    dateCell: "#startTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
+})
+jeDate({
+    festival: true,
+    dateCell: "#endTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
+})
+jeDate({
+    festival: true,
+    dateCell: "#editorStartTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
+})
+jeDate({
+    festival: true,
+    dateCell: "#editorEndTime",
+    format: "YYYY-MM-DD hh:mm:ss",
+    isinitVal: false,
+    isTime: true,
+    fixed: true,
+    zIndex: 10000,
+    minDate: "2017-01-01 00:00:00",
 })
 
 //存储当前页
@@ -14,6 +54,7 @@ sessionStorage.setItem("page", $("#page").val());
 sessionStorage.setItem("countPage", $("#countPage").val());
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //分页
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
@@ -27,7 +68,7 @@ $(document).ready(function () {
                     jump(1);
                     break;
                 }
-                //点击下一页按钮
+            //点击下一页按钮
             case ('<span class="iconfont icon-more"></span>'):
                 if (parseInt(sessionStorage.getItem("page")) < parseInt(sessionStorage.getItem("countPage"))) {
                     jump(parseInt(sessionStorage.getItem("page")) + 1);
@@ -37,14 +78,14 @@ $(document).ready(function () {
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
                 }
-                //点击首页
+            //点击首页
             case ("首页"):
                 jump(1);
                 break;
             case (sessionStorage.getItem("countPage")):
                 jump(parseInt(sessionStorage.getItem("countPage")));
                 break;
-                //点击尾页
+            //点击尾页
             case ("尾页"):
                 jump(parseInt(sessionStorage.getItem("countPage")));
                 break;
@@ -161,13 +202,22 @@ $(document).ready(function () {
         var planName = $("#planName").val(),
             startTime = $("#startTime").val(),
             endTime = $("#endTime").val(),
-            state = $("#state").find("option:selected").val(),
-            college = $("#collegeId").find("option:selected").val();
-        //if (planName == ""||startTime==""||endTime==""||state==""||college=="") {
-        //    alert("不能出现未填项！");
-        //}
-        //else {
-            //ajax传值到后台
+            state = $("#state").find("option:selected").val();
+            //college = $("#collegeId").find("option:selected").val();
+        startTime = startTime.replace(/-/g, "/");
+        endTime = endTime.replace(/-/g, "/");
+        var startdate = new Date(startTime);
+        var enddate = new Date(endTime);
+        var time = enddate.getTime() - startdate.getTime();
+        var days = parseInt(time / (1000 * 60 * 60 * 24));
+        if (planName == ""||startTime==""||endTime==""||state=="") {
+            window.wxc.xcConfirm("不能出现未填项", window.wxc.xcConfirm.typeEnum.error);
+        }
+        //间隔天数小于1则不能
+        else if (days < 1) {
+            window.wxc.xcConfirm("开始与结束时间间隔必须大于1天", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else {
             $.ajax({
                 type: 'Post',
                 url: 'batchList.aspx',
@@ -176,7 +226,7 @@ $(document).ready(function () {
                     startTime: startTime,
                     endTime: endTime,
                     state: state,
-                    college: college,
+                    //college: college,
                     op: "add"
                 },
                 dateType: 'text',
@@ -198,12 +248,14 @@ $(document).ready(function () {
                     else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
-                                jump(1);
+                                $("#planName").focus();
+                                //jump(1);
                             }
                         });
                     }
                 }
             })
+        }
         //}
     })
     //编辑批次
@@ -214,22 +266,23 @@ $(document).ready(function () {
             editorState = $(this).parent().prev("td").prev("td").find(".stateData").text().trim(),
             editorStateId = $(this).parent().prev("td").prev("td").find(".stateData").get(0).id,
             editorCollege = $(this).parent().prev("td").text().trim(),
-            editorPlanId = $(this).parent().parent().children("td").get(1).id;
-            var planCollegeId = $(this).parent().parent().children("td").get(6).id;
+            editorPlanId = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").prev("input").val(),
+            planCollegeId = $(this).parent().parent().children("td").get(6).id;
+        $(".editorPlanId").val(editorPlanId);
         $(".editorPlanName").val(editorName);
         $(".editorStartTime").val(editorStart);
         $(".editorEndTime").val(editorEnd);
         $(".editorState").val(editorState);
         $(".editorCollege").val(editorCollege);
         $(".planCollegeId").text(planCollegeId);
-        $(".planId").text(editorPlanId);
+        //$(".planId").text(editorPlanId);
         $(".editorStateId").text(editorStateId);
     });
     //按钮隐藏
     //下拉框隐藏
     $(".editorStateId").hide();
     $(".planCollegeId").hide();
-    $(".planId").hide();
+    //$(".planId").hide();
     //编辑按钮
     $(".batchState").hide();
     $(".batchCollege").hide();
@@ -260,6 +313,11 @@ $(document).ready(function () {
         $("#btnSure2").show();
         $(this).hide();
     })
+    //点击关闭清除开始和结束日期
+    $("#close").click(function () {
+        $(".editorStartTime").val("");
+        $(".editorEndTime").val("");
+    })
     //学院确认按钮
     $("#btnSure2").click(function () {
         var college = $(".selectCollege").find("option:selected").val();
@@ -274,59 +332,35 @@ $(document).ready(function () {
     })
     //提交编辑
     $(".saveEditor").click(function () {
-        var editorPlanId = $(".planId").text(),
+        var editorPlanId = $(".editorPlanId").val(),
             editorPlanName = $(".editorPlanName").val(),
             editorStartTime = $(".editorStartTime").val(),
             editorEndTime = $(".editorEndTime").val(),
-            editorState = $(".editorStateId").text(),
-            planCollegeId = $(".planCollegeId").text();
+            editorState = $(".editorStateId").text();
+            //planCollegeId = $(".planCollegeId").text();
         //alert("ajax");
-        $.ajax({
-            type: 'Post',
-            url: 'batchList.aspx',
-            data: {
-                editorPlanId: editorPlanId,
-                editorPlanName: editorPlanName,
-                editorStartTime: editorStartTime,
-                editorEndTime: editorEndTime,
-                editorState: editorState,
-                planCollegeId: planCollegeId,
-                editorOp: "editor"
-            },
-            dataType: 'text',
-            //success: function (succ) {
-            //    alert(succ);
-            //    jump(parseInt(sessionStorage.getItem("page")));
-            //}
-            success: function (succ) {
-                if (succ == "更新成功") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                        onOk: function (v) {
-                            jump(1);
-                        }
-                    });
-                } else {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-                            jump(1);
-                        }
-                    });
-                }
-            }
-        })
-    })
-
-    //删除批次
-    $(".planDelete").click(function () {
-        var deletePlanId = $(this).parent().parent().children("td").get(1).id;
-        var result = confirm("您确定删除吗？如果该条记录没有关联其他表，将会直接删除！");
-        if (result == true) {
+        editorStartTime = editorStartTime.replace(/-/g, "/");
+        editorEndTime = editorEndTime.replace(/-/g, "/");
+        var startdate = new Date(editorStartTime);
+        var enddate = new Date(editorEndTime);
+        var time = enddate.getTime() - startdate.getTime();
+        var days = parseInt(time / (1000 * 60 * 60 * 24));
+        //间隔天数小于1则不能
+        if (days < 1) {
+            window.wxc.xcConfirm("开始与结束时间间隔必须大于1天", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else {
             $.ajax({
                 type: 'Post',
                 url: 'batchList.aspx',
                 data: {
-                    deletePlanId: deletePlanId,
-                    delOp: "del"
+                    editorPlanId: editorPlanId,
+                    editorPlanName: editorPlanName,
+                    editorStartTime: editorStartTime,
+                    editorEndTime: editorEndTime,
+                    editorState: editorState,
+                    //planCollegeId: planCollegeId,
+                    editorOp: "editor"
                 },
                 dataType: 'text',
                 //success: function (succ) {
@@ -334,50 +368,99 @@ $(document).ready(function () {
                 //    jump(parseInt(sessionStorage.getItem("page")));
                 //}
                 success: function (succ) {
-                    if (succ == "删除成功") {
+                    if (succ == "更新成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
+                                jump(1);
                             }
                         });
-                    } else {
+                    }
+                    else if (succ == "开始与结束时间间隔必须大于1天") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
-                                jump(parseInt(sessionStorage.getItem("page")));
+                                $("#planName").focus();
+                            }
+                        });
+                    }
+                    else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(1);
                             }
                         });
                     }
                 }
             })
         }
+
     })
 
-    //判断登录的管理员，对批次表格权限进行限制
-    var userState = $("#userState").val();
-    if (userState == "0") {
-        $(".planEditor").hide();
-        $(".planDelete").hide();
-        $(".planSearch").show();
-    }
-    else if (userState == "2") {
-        $(".planEditor").show();
-        $(".planDelete").show();
-        $(".planSearch").hide();
-    }
+    //删除批次
+    $(".planDelete").click(function () {
+        var deletePlanId = $(this).parent().prev("td").prev("td").prev("td").prev("td").prev("td").prev("input").val();
+        var txt = "您确定删除吗？如果该条记录没有关联其他表，将会直接删除！";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'batchList.aspx',
+                    data: {
+                        deletePlanId: deletePlanId,
+                        delOp: "del"
+                    },
+                    dataType: 'text',
+                    //success: function (succ) {
+                    //    alert(succ);
+                    //    jump(parseInt(sessionStorage.getItem("page")));
+                    //}
+                    success: function (succ) {
+                        if (succ == "删除成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+        }
+        window.wxc.xcConfirm(txt, "warning", option);
 
-    //详细信息模态框数据绑定
-    $(".planSearch").click(function () {
-        var planId = $(this).parent().parent().find(".planNO").text().trim(),
-            planName = $(this).parent().parent().find(".planNO").next().text().trim(),
-            startTime = $(this).parent().parent().find(".planNO").next().next().text().trim(),
-            endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
-            state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),
-            collegeName = $(this).parent().parent().find(".planNO").next().next().next().next().next().text().trim();
-        $("#searchPlanId").text(planId);
-        $("#searchPlanName").text(planName);
-        $("#searchStartTime").text(startTime);
-        $("#searchEndTime").text(endTime);
-        $("#searchState").text(state);
-        $("#searchCol").text(collegeName);
+        //判断登录的管理员，对批次表格权限进行限制
+        var userState = $("#userState").val();
+        if (userState == "0") {
+            $(".planEditor").hide();
+            $(".planDelete").hide();
+            $(".planSearch").show();
+        }
+        else if (userState == "2") {
+            $(".planEditor").show();
+            $(".planDelete").show();
+            $(".planSearch").hide();
+        }
+
+        //超管查看详细信息模态框数据绑定
+        $(".planSearch").click(function () {
+            var planId = $(this).parent().parent().find(".planNO").val(),
+                planName = $(this).parent().parent().find(".planNO").next().text().trim(),
+                startTime = $(this).parent().parent().find(".planNO").next().next().text().trim(),
+                endTime = $(this).parent().parent().find(".planNO").next().next().next().text().trim(),
+                state = $(this).parent().parent().find(".planNO").next().next().next().next().text().trim(),
+                collegeName = $(this).parent().parent().find(".planNO").next().next().next().next().next().text().trim();
+            $("#searchPlanName").text(planName);
+            $("#searchStartTime").text(startTime);
+            $("#searchEndTime").text(endTime);
+            $("#searchState").text(state);
+            $("#searchCol").text(collegeName);
+        })
     })
 })

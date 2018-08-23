@@ -5,6 +5,7 @@ sessionStorage.setItem("page", page);
 var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     //防止当前页数大于总页数
     var page = parseInt(sessionStorage.getItem("page"));
     var countPage = parseInt(sessionStorage.getItem("countPage"));
@@ -104,7 +105,7 @@ $(document).ready(function () {
     })
     //编辑分院弹框绑定分院信息
     $(".btnEdit").click(function () {
-        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").val();
         var collegeName = $(this).parent().parent().find(".collegeName").text().trim();
         sessionStorage.setItem("collegeId", collegeId);
         $("#editColl").val(collegeName);
@@ -166,7 +167,7 @@ $(document).ready(function () {
     })
     //删除分院信息
     $(".btnDlete").click(function () {
-        var collegeId = $(this).parent().parent().find(".collegeId").text().trim();
+        var collegeId = $(this).parent().parent().find(".collegeId").val();
         var txt = "确定要删除吗？";
         var option = {
             title: "删除警告",

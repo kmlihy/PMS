@@ -32,6 +32,8 @@
                         </th>
                         <th class="text-center">已选人数/人数上限
                         </th>
+                        <th class="text-center">选题截止时间
+                        </th>
                         <th class="text-center">状态
                         </th>
                     </tr>
@@ -44,6 +46,10 @@
                             <a href="paperDetail.aspx?titleId=<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>"><%=ds.Tables[0].Rows[i]["title"].ToString()%></a>
                         </td>
                         <td><%=ds.Tables[0].Rows[i]["selected"].ToString()%>/<%=ds.Tables[0].Rows[i]["limit"].ToString()%>
+                        </td>
+                        <%--选题截止时间--%>
+                        <td>
+                            <%=ds.Tables[0].Rows[i]["endTime"].ToString()%>
                         </td>
                         <td>
                             <a class="btn btn-primary selectTitle" id="<%=ds.Tables[0].Rows[i]["titleId"].ToString() %>">选题</a>

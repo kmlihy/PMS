@@ -1,4 +1,4 @@
-﻿body {
+﻿html {
     background-color: rgb(241,248,252);
 }
 /* 批量导入*/
@@ -35,15 +35,6 @@
 #panel .panel-head {
     margin-left: 30px;
 }
-#panel .panel-body {
-    height: 420px;
-}
-#paging{
-    /*position:absolute;
-    top:550px;
-    left:780px;*/
-}
-
 article {
     word-break: break-all;
 }

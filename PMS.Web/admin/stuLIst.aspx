@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <%--    <link rel="stylesheet" href="../css/style.css" />--%>
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
@@ -113,9 +114,9 @@
                                 <td class="text-center">
                                     <input type="checkbox" />
                                 </td>
-                            <td class="text-center">
-                                <%=i+1+((getCurrentPage-1)*pagesize)%>
-                            </td>
+                                <td class="text-center">
+                                    <%=i+1+((getCurrentPage-1)*pagesize)%>
+                                </td>
                                 <td class="text-center stuNO">
                                     <%= ds.Tables[0].Rows[i]["stuAccount"].ToString() %>
                                 </td>
@@ -144,6 +145,7 @@
                                     <%= ds.Tables[0].Rows[i]["Email"].ToString() %>
                                 </td>
                                 <td class="text-center">
+                                    <button class="btn btn-default resetPwd">重置密码</button>
                                     <button class="btn btn-default btn-sm btn-warning Editor" data-toggle="modal" data-target="#myEditor">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
@@ -263,6 +265,13 @@
                                 </td>
                                 <td>
                                     <select class="selectpicker" data-width="auto" id="pro">
+                                        <option>请选择专业</option>
+                                        <% for (int i = 0; i < stuAddProds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=stuAddProds.Tables[0].Rows[i]["proId"].ToString() %>">
+                                            <%=stuAddProds.Tables[0].Rows[i]["proName"].ToString() %>
+                                        </option>
+                                        <%} %>
                                     </select>
                                 </td>
                             </tr>

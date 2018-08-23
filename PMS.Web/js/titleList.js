@@ -6,6 +6,7 @@ var countPage = $("#countPage").val();
 sessionStorage.setItem("countPage", countPage);
 
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
 
     //分页参数传递
     $(".jump").click(function () {
@@ -101,7 +102,7 @@ $(document).ready(function () {
 
     //点击编辑按钮，编辑弹框绑定数据
     $(".btnEdit").click(function () {
-        var titleId = $(this).parent().parent().find("#titleId").text().trim();
+        var titleId = $(this).parent().parent().find("#titleId").val();
         var planId = $(this).parent().parent().find("#planId").val();
         $.ajax({
             type: 'Post',
@@ -214,7 +215,7 @@ $(document).ready(function () {
 
     //删除标题信息
     $(".btnDel").click(function () {
-        var deleteTitleId = $(this).parent().parent().find("#titleId").text().trim();
+        var deleteTitleId = $(this).parent().parent().find("#titleId").val();
         alert(deleteTitleId);
         //Confirm弹窗
         var txt = "确定要删除吗？";

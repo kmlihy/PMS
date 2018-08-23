@@ -47,6 +47,11 @@ namespace PMS.Web
                         string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
                         title = titleBll.GetTitle(int.Parse(tId));
                         showTitle = title.title.ToString();
+                        if (showTitle == "")
+                        {
+                            Response.Write("<a href=‘../PaperList.aspx’>你还没有选题，请点击跳转到选题界面  </a>");
+                            Response.End();
+                        }
                         showTitleContent = title.TitleContent.ToString();
                         //
                         teaAccount = title.teacher.TeaAccount;

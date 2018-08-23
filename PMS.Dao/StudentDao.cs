@@ -36,7 +36,7 @@ namespace PMS.Dao
         {
             string sql = "select count(stuAccount) from T_Student where phone = @phone";
             string[] param = { "@phone" };
-            object[] values = { phone};
+            object[] values = { phone };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
 
@@ -132,7 +132,20 @@ namespace PMS.Dao
             String[] values = { stuPwd, stuAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
-
+        /// <summary>
+        /// 重置学生密码
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <param name="resetPwd">重置的密码</param>
+        /// <returns></returns>
+        public int ResetPassword(string stuAccount, string resetPwd)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update T_Student set stuPwd = @resetPwd where stuAccount = @stuAccount");
+            String[] param = { "@stuAccount", "@resetPwd" };
+            String[] values = { stuAccount, resetPwd };
+            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+        }
         /// <summary>
         /// 根据学生的账号取得实体对象
         /// </summary>
@@ -204,7 +217,8 @@ namespace PMS.Dao
                 }
                 return student;
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
         }

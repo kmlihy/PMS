@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body id="addNewsBody">
@@ -71,5 +72,5 @@
 <script src="../kindeditor/asp.net/lang/zh-CN.js"></script>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/addNews.js"></script>
-
+<script src="../js/xcConfirm.js"></script>
 </html>

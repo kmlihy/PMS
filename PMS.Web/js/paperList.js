@@ -70,6 +70,9 @@ $(".selectTitle").click(function () {
                             }
                         });
                     }
+                    else if (succ =="选题时间已截止") {
+                        window.wxc.xcConfirm("选题时间已截止，请选择其他题目!", window.wxc.xcConfirm.typeEnum.error);
+                    }
                     else if (succ === "已选题") {
                         window.wxc.xcConfirm("您已经选过题目，不能多次选题!", window.wxc.xcConfirm.typeEnum.error);
                     }

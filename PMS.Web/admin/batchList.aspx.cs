@@ -74,37 +74,55 @@ namespace PMS.Web.admin
         public void EditorPlan()
         {
             string planName = Context.Request["editorPlanName"].ToString();
-            DateTime startTiem = Convert.ToDateTime(Context.Request["editorStartTime"].ToString()),
+            DateTime startTime = Convert.ToDateTime(Context.Request["editorStartTime"].ToString()),
                    endTime = Convert.ToDateTime(Context.Request["editorEndTime"].ToString());
             int state = int.Parse(Context.Request["editorState"].ToString()),
-                planId = int.Parse(Context.Request["editorPlanId"].ToString()),
-                collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
-            College coll = new College()
-            {
-                ColID = collegeId
-            };
+                planId = int.Parse(Context.Request["editorPlanId"].ToString());
+                //collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
+
+            //获取院系id
+            Teacher teacher = (Teacher)Session["user"];
+            string account = teacher.TeaAccount;
+            TeacherBll teacherBll = new TeacherBll();
+            loginUser = teacherBll.GetModel(account);
+            College ColID = loginUser.college;
+
             Plan plan = new Plan()
             {
                 PlanId = planId,
                 PlanName = planName,
-                StartTime = startTiem,
+                StartTime = startTime,
                 EndTime = endTime,
                 State = state,
-                college = coll
+                college = ColID
             };
             try
             {
                 PlanBll pBll = new PlanBll();
                 Result EditorResult = pBll.Update(plan);
-                if (EditorResult == Result.更新成功)
+                //字符串转日期
+                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
+                DateTime startdt = Convert.ToDateTime(start);
+                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
+                DateTime enddt = Convert.ToDateTime(end);
+                TimeSpan ts = enddt - startdt;
+                //间隔天数小于1则不能
+                if (ts.Days >= 1)
                 {
-                    Response.Write("更新成功");
-                    //Response.End();
+                    if (EditorResult == Result.更新成功)
+                    {
+                        Response.Write("更新成功");
+                        //Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        //Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("更新失败");
-                    //Response.End();
+                    Response.Write("开始与结束时间间隔必须大于1天");
                 }
             }
             catch(Exception ex) { Response.Write(ex.Message); }
@@ -120,36 +138,37 @@ namespace PMS.Web.admin
         {
             //获取参数
             string planName = Context.Request["planName"].ToString(),
-                   startTiem = Context.Request["startTime"].ToString(),
+                   startTime = Context.Request["startTime"].ToString(),
                    endTime = Context.Request["endTime"].ToString(),
-                   college = Context.Request["college"].ToString(),
+                   //college = Context.Request["college"].ToString(),
                    planstate = Context.Request["state"].ToString();
-            //int state = int.Parse(Context.Request["state"].ToString());
-            //collegeId = int.Parse(Context.Request["college"].ToString());
-            if (planName != ""&&startTiem != ""&&endTime !=""&&state.ToString()!=""&&college!="") {
-                int collegeId = int.Parse(college),
-                    state = int.Parse(planstate);
+
+            //获取院系id
+            Teacher teacher = (Teacher)Session["user"];
+            string account = teacher.TeaAccount;
+            TeacherBll teacherBll = new TeacherBll();
+            loginUser = teacherBll.GetModel(account);
+            College ColID = loginUser.college;
+
+            if (planName != ""&&startTime != ""&&endTime !=""&&state.ToString()!="") {
+                //int collegeId = int.Parse(college),
+                 int   state = int.Parse(planstate);
                 //字符串转日期
-                DateTime startdt;
-                DateTime enddt;
-                DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
-                dtFormat.ShortDatePattern = "yyyy/MM/dd";
-                startdt = Convert.ToDateTime(startTiem, dtFormat);
-                enddt = Convert.ToDateTime(endTime, dtFormat);
-                //实例化参数
-                College coll = new College()
-                {
-                    ColID = collegeId
-                };
+                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
+                DateTime startdt = Convert.ToDateTime(start);
+                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
+                DateTime enddt = Convert.ToDateTime(end);
+
                 //判断当开始时间在结束时间之后时，不能执行添加
-                if (DateTime.Compare(startdt, enddt) < 0) {
+                TimeSpan ts = enddt - startdt;
+                if (ts.Days >= 1) {
                     Plan plan = new Plan()
                     {
                         PlanName = planName,
                         StartTime = startdt,
                         EndTime = enddt,
                         State = state,
-                        college = coll
+                        college = ColID
                     };
                     PlanBll pBll = new PlanBll();
                     Result result = pBll.Insert(plan);
@@ -166,7 +185,7 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    Response.Write("开始时间不能在结束时间之后");
+                    Response.Write("开始与结束时间间隔必须大于1天");
                     Response.End();
                 }
             }

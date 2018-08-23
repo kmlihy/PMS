@@ -31,8 +31,29 @@ namespace PMS.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            TitleRecordBll titleRecordBll = new TitleRecordBll();
+            TitleBll titleBll = new TitleBll();
             //获取登录学生学号
             Student stu = (Student)Session["loginuser"];
+            string stuAccount = stu.StuAccount.ToString();
+            ds = titleRecordBll.Select();
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                    {
+                        string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
+                        Title title = titleBll.GetTitle(int.Parse(tId));
+                        string showTitle = title.title.ToString();
+                        if (showTitle != "")
+                        {
+                            Response.Write("<a href='../PaperListStu.aspx'>你已选过题目，请点击跳转到题目详情界面  </a>");
+                            Response.End();
+                        }
+                    }
+                }
+            }
             stuId = stu.StuAccount;
             //获取op titiId
             string op = Context.Request.QueryString["op"];
@@ -78,46 +99,64 @@ namespace PMS.Web
             //string stuId = Context.Request["stuId"].ToString();
             int titleid = int.Parse(Context.Request.QueryString["titleId"]);
             Title dstitle = new Title();
+            Plan plan = new Plan();
             TitleBll titleSelect = new TitleBll();
+            PlanBll planBll = new PlanBll();
             dstitle = titleSelect.GetTitle(titleid);
 
             int limited = int.Parse(dstitle.Limit.ToString());
             int selected = int.Parse(dstitle.Selected.ToString());
-            if (selected < limited)
+
+            //获取截止时间
+            int pid = dstitle.plan.PlanId;
+            plan = planBll.Select(pid);
+            string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime nowTime = Convert.ToDateTime(now);
+            string end = plan.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime endTime = Convert.ToDateTime(end);
+
+            if (nowTime <= endTime)
             {
-                Result row = isExist();
-                if (row == Result.记录不存在)
+                if (selected < limited)
                 {
-
-                    TitleRecord titleRecord = new TitleRecord();
-                    Student student = new Student();
-                    student.StuAccount = stuId;
-                    titleRecord.student = student;
-                    Title title = new Title();
-                    title.TitleId = titleid;
-                    titleRecord.title = title;
-
-                    int rows = pbll.AddTitlerecord(titleRecord);
-                    if (rows > 0)
+                    Result row = isExist();
+                    if (row == Result.记录不存在)
                     {
-                        Response.Write("选题成功");
-                        Response.End();
+                        TitleRecord titleRecord = new TitleRecord();
+                        Student student = new Student();
+                        student.StuAccount = stuId;
+                        titleRecord.student = student;
+                        Title title = new Title();
+                        title.TitleId = titleid;
+                        titleRecord.title = title;
+
+                        int rows = pbll.AddTitlerecord(titleRecord);
+                        if (rows > 0)
+                        {
+                            Response.Write("选题成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("选题失败");
+                            Response.End();
+                        }
                     }
                     else
                     {
-                        Response.Write("选题失败");
+                        Response.Write("已选题");
                         Response.End();
                     }
                 }
                 else
                 {
-                    Response.Write("已选题");
+                    Response.Write("已达上限");
                     Response.End();
                 }
             }
             else
             {
-                Response.Write("已达上限");
+                Response.Write("选题时间已截止");
                 Response.End();
             }
         }

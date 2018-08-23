@@ -15,6 +15,7 @@ else if (userType === "0") {
     $("#trstuPro").hide();
 }
 $(document).ready(function () {
+    $("#panelbody").height(100 + $(".big-box").height());
     function GetJsonLength(JsonData) {
         var jsonLenth = 0;
         for (var item in JsonData) {
@@ -168,6 +169,43 @@ $(document).ready(function () {
                 break;
         }
     });
+    //重置密码操作
+    $(".resetPwd").click(function () {
+        var stuAccount = $(this).parent().parent().find(".stuNO").text().trim();
+        var txt = "重置密码？";
+        var option = {
+            title: "提示",
+            btn: parseInt("0011", 2),
+            onOk: function () {
+                $.ajax({
+                    type: 'Post',
+                    url: 'stuLIst.aspx',
+                    data: {
+                        stuNO: stuAccount,
+                        op: "reset"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ === "重置成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+                                    jump(parseInt(sessionStorage.getItem("page")));
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+        }
+        window.wxc.xcConfirm(txt, "confirm", option);
+    })
+
     //编辑学生
     //获取学生信息到编辑框
     $(".Editor").click(function () {
@@ -337,7 +375,7 @@ $(document).ready(function () {
             if (sessionStorage.getItem("strWhere") !== null) {
                 sessionStorage.removeItem("strWhere");
             }
-            else if (sessionStorage.getItem("dropCollegeIdstrWhere") != null) {
+            else if (sessionStorage.getItem("dropCollegeIdstrWhere") !== null) {
                 sessionStorage.removeItem("dropCollegeIdstrWhere");
             }
             else if (sessionStorage.getItem("proWhere") !== null) {
@@ -347,7 +385,7 @@ $(document).ready(function () {
         var colladmin = $(".pro").find("option:selected").val();
         var proadmin = $("#pro").find("option:selected").val();
         var pro = "";
-        if (proadmin === null) {
+        if (proadmin === null || proadmin === "" || proadmin === "请选择专业") {
             pro = colladmin;
         } else {
             pro = proadmin;
@@ -360,7 +398,8 @@ $(document).ready(function () {
             phone = $("#phone").val(),
             email = $("#email").val();
         if (stuAccount === "" /*|| pwd === ""*/ || realName === "" || sex === "" || pro === "" || phone === "" || email === "") {
-            alert("不能出现未填项！");
+            //alert("不能出现未填项！");
+            window.wxc.xcConfirm("不能出现未填项！", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             $.ajax({
@@ -402,5 +441,4 @@ $(document).ready(function () {
             jump(parseInt(sessionStorage.getItem("page")) - 1);
         }
     }
-
 })

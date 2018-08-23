@@ -40,11 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollegeDao.cs" />
+    <Compile Include="GuideRecordDao.cs" />
+    <Compile Include="MedtermQualityDao.cs" />
     <Compile Include="NewsDao.cs" />
+    <Compile Include="OpenReportDao.cs" />
+    <Compile Include="PathDao.cs" />
     <Compile Include="PlanDao.cs" />
     <Compile Include="ProfessionDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicProcedure.cs" />
+    <Compile Include="ScoreDao.cs" />
     <Compile Include="StudentDao.cs" />
     <Compile Include="TeacherDao.cs" />
     <Compile Include="TitleDao.cs" />
