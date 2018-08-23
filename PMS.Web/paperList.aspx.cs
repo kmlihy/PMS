@@ -31,8 +31,29 @@ namespace PMS.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            TitleRecordBll titleRecordBll = new TitleRecordBll();
+            TitleBll titleBll = new TitleBll();
             //获取登录学生学号
             Student stu = (Student)Session["loginuser"];
+            string stuAccount = stu.StuAccount.ToString();
+            ds = titleRecordBll.Select();
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                    {
+                        string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
+                        Title title = titleBll.GetTitle(int.Parse(tId));
+                        string showTitle = title.title.ToString();
+                        if (showTitle != "")
+                        {
+                            Response.Write("<a href='../PaperListStu.aspx'>你已选过题目，请点击跳转到题目详情界面  </a>");
+                            Response.End();
+                        }
+                    }
+                }
+            }
             stuId = stu.StuAccount;
             //获取op titiId
             string op = Context.Request.QueryString["op"];

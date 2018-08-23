@@ -115,12 +115,4 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/xcConfirm.js"></script>
-<script>
-     <%if (showTitle == "")
-    {%>
-    $(document).ready(function () {
-        document.write('<a href="http://localhost:33192/PaperList.aspx">你还没有选题，请点击跳转到选题界面  </a>');
-    })
-    <% }%>
-</script>
 </html>
