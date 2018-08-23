@@ -13,7 +13,7 @@ namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
 
-    public partial class branchList : System.Web.UI.Page
+    public partial class branchList : CommonPage
     {
         CollegeBll collBll = new CollegeBll();
         College college = new College();

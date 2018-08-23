@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class myInstructor : System.Web.UI.Page
+    public partial class myInstructor : CommonPage
     {
         protected Model.Teacher teacher = null;
 

@@ -10,7 +10,7 @@ using PMS.Model;
 
 namespace PMS.Web
 {
-    public partial class allNews : System.Web.UI.Page
+    public partial class allNews : CommonPage
     {
         protected DataSet ds = null, dsTea = null;
         protected int getCurrentPage = 1;

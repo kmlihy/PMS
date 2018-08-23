@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class openingReport : System.Web.UI.Page
+    public partial class openingReport : CommonPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

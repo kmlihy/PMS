@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class selectTopicList : System.Web.UI.Page
+    public partial class selectTopicList : CommonPage
     {
         //列表
         protected DataSet ds = null;
