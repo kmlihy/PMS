@@ -35,7 +35,7 @@ namespace PMS.Model
         public Path(string title, string path, DateTime dateTime)
         {
             this.title = title;
-            this.path = path;
+            this.paperPath = path;
             this.dateTime = dateTime;
         }
     }

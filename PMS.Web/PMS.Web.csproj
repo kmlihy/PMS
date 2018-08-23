@@ -231,13 +231,19 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
     <Content Include="login.aspx" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\PMS.Web.csproj.CopyComplete" />
+    <Content Include="obj\Debug\PMS.Web.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\PMS.Web.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PMS.Web.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\PMS.Web.dll" />
     <Content Include="obj\Debug\PMS.Web.pdb" />
     <Content Include="openingReport.aspx" />
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="reg.aspx" />
+    <Content Include="reviewOpeningReport.aspx" />
     <Content Include="square\aero%402x.png" />
     <Content Include="square\aero.css" />
     <Content Include="square\aero.png" />
@@ -486,6 +492,13 @@
     <Compile Include="reg.aspx.designer.cs">
       <DependentUpon>reg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="reviewOpeningReport.aspx.cs">
+      <DependentUpon>reviewOpeningReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reviewOpeningReport.aspx.designer.cs">
+      <DependentUpon>reviewOpeningReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="stuCenter.aspx.cs">
       <DependentUpon>stuCenter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,9 +533,6 @@
     <Content Include="kindeditor\asp.net\file_manager_json.ashx" />
     <Content Include="kindeditor\asp.net\upload_json.ashx" />
     <None Include="bin\PMS.Web.dll.config" />
-    <Content Include="obj\Debug\PMS.Web.csproj.CopyComplete" />
-    <Content Include="obj\Debug\PMS.Web.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\PMS.Web.csprojAssemblyReference.cache" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180704121643--新建 XLS 工作表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180706180128-新建 XLS 工作表.xls" />
     <Content Include="upload\信息模板下载\教师批量导入模板.xlsx" />
@@ -538,6 +548,7 @@
     <Content Include="upload\题目信息导入Excel文件存储\admin\20180716135840-题目信息表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180711150556-学院信息表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180712105517-学院信息表.xls" />
+    <Content Include="obj\Debug\PMS.Web.csprojResolveAssemblyReference.cache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -564,6 +575,7 @@
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Service References\" />
     <Folder Include="upload\选题记录导出\" />
   </ItemGroup>
   <ItemGroup>
