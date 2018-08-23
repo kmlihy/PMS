@@ -40,10 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="College.cs" />
+    <Compile Include="GuideRecord.cs" />
+    <Compile Include="MedtermQuality.cs" />
+    <Compile Include="OpenReport.cs" />
+    <Compile Include="Path.cs" />
     <Compile Include="Plan.cs" />
     <Compile Include="Profession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="News.cs" />
+    <Compile Include="Score.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="TableBuilder.cs" />
     <Compile Include="Teacher.cs" />
