@@ -48,7 +48,7 @@ namespace PMS.Web
                         string showTitle = title.title.ToString();
                         if (showTitle != "")
                         {
-                            Response.Write("<a href='../PaperListStu.aspx'>你已选过题目，请点击跳转到题目详情界面  </a>");
+                            Response.Write("<a href='../PaperDtailStu.aspx'>你已选过题目，请点击跳转到题目详情界面  </a>");
                             Response.End();
                         }
                     }
