@@ -69,6 +69,7 @@
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
+    <Content Include="downLoadPaper.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
@@ -428,6 +429,13 @@
     </Compile>
     <Compile Include="CommonPage.aspx.designer.cs">
       <DependentUpon>CommonPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="downLoadPaper.aspx.cs">
+      <DependentUpon>downLoadPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="downLoadPaper.aspx.designer.cs">
+      <DependentUpon>downLoadPaper.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
