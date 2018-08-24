@@ -32,10 +32,10 @@ namespace PMS.Model
         /// <param name="title">标题</param>
         /// <param name="path">路径</param>
         /// <param name="dateTime">上传时间</param>
-        public Path(string title, string path, DateTime dateTime)
+        public Path(string title, string paperPath, DateTime dateTime)
         {
             this.title = title;
-            this.path = path;
+            this.paperPath = paperPath;
             this.dateTime = dateTime;
         }
     }

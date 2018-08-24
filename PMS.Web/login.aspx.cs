@@ -58,8 +58,8 @@ namespace PMS.Web
                         }
                     break;
                     case "student":
-                        StudentBll sdao = new BLL.StudentBll();
-                        Student stu = sdao.Login(account, Security.SHA256Hash(pwd));
+                        StudentBll sbll = new StudentBll();
+                        Student stu = sbll.Login(account, Security.SHA256Hash(pwd));
                         if (stu == null)
                         {
                             loginstate = 0;
@@ -76,7 +76,7 @@ namespace PMS.Web
                             Session["HashTicket"] = HashTicket;
                             HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                             Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
-                            }
+                        }
                         break;
                 }
                     if (loginstate == 0)
