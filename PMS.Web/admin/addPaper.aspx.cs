@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class addPaper : System.Web.UI.Page
+    public partial class addPaper : CommonPage
     {
         ProfessionBll probll = new ProfessionBll();//调用专业对象
         Profession pro = new Profession();

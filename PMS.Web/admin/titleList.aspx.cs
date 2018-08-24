@@ -13,7 +13,7 @@ using static PMS.BLL.Enums;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class titleList : System.Web.UI.Page
+    public partial class titleList : CommonPage
     {
         protected DataSet ds = null;//储存标题表
         protected DataSet prods = null;//储存专业信息

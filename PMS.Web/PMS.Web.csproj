@@ -42,6 +42,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>kindeditor\asp.net\bin\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -61,8 +65,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CommonPage.aspx" />
     <Content Include="css\404.css" />
     <Content Include="css\jedate.css" />
+    <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
     <Content Include="admin\addPaper.aspx" />
@@ -414,6 +420,16 @@
     </Compile>
     <Compile Include="checkCode.aspx.designer.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CommonPage.aspx.cs">
+      <DependentUpon>CommonPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CommonPage.aspx.designer.cs">
+      <DependentUpon>CommonPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JurisdictionTest.aspx.cs">
       <DependentUpon>JurisdictionTest.aspx</DependentUpon>

@@ -11,7 +11,7 @@ using PMS.Model;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class adminList : System.Web.UI.Page
+    public partial class adminList : CommonPage
     {
         TeacherBll teaBll = new TeacherBll();
         CollegeBll collBll = new CollegeBll();

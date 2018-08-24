@@ -9,7 +9,7 @@ using PMS.BLL;
 
 namespace PMS.Web.admin
 {
-    public partial class adminCenter : System.Web.UI.Page
+    public partial class adminCenter : CommonPage
     {
         protected Teacher teacher = null;
         protected Enums.OpResult enums;

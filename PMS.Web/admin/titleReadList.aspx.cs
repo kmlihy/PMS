@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web.admin
 {
-    public partial class titleReadList : System.Web.UI.Page
+    public partial class titleReadList : CommonPage
     {
         protected DataSet ds = null, dsPro = null, dsPlan = null, dsColl = null;//储存标题表、专业、批次、分院信息
         protected int getCurrentPage = 1;

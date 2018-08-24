@@ -12,7 +12,7 @@ namespace PMS.Web.admin
 {
     using System.Text;
     using Result = Enums.OpResult;
-    public partial class stuLIst : System.Web.UI.Page
+    public partial class stuLIst : CommonPage
     {
         protected DataSet prods = null;//专业
         protected DataSet colds = null;//院系

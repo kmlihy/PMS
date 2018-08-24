@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class news : System.Web.UI.Page
+    public partial class news : CommonPage
     {
         protected News newsId = null;
         protected void Page_Load(object sender, EventArgs e)

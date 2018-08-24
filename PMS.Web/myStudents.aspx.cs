@@ -6,7 +6,7 @@ using System.Data;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class myStudents : System.Web.UI.Page
+    public partial class myStudents : CommonPage
     {
         //列表
         protected DataSet ds = null;

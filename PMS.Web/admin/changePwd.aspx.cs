@@ -10,7 +10,7 @@ using PMS.BLL;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class changePwd : System.Web.UI.Page
+    public partial class changePwd : CommonPage
     {
         protected string account;
         protected Student stu;//获取学生实体

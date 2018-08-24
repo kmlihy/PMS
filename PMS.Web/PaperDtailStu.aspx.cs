@@ -11,7 +11,7 @@ using PMS.Model;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm1 : CommonPage
     {
         protected Title title;
         protected DataSet ds;

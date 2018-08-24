@@ -14,7 +14,7 @@ namespace PMS.Web.admin
 {
     using System.IO;
     using Result = Enums.OpResult;
-    public partial class proList : System.Web.UI.Page
+    public partial class proList : CommonPage
     {
 
         //列表

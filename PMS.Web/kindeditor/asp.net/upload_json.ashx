@@ -24,10 +24,10 @@ public class Upload : IHttpHandler
 		String aspxUrl = context.Request.Path.Substring(0, context.Request.Path.LastIndexOf("/") + 1);
 		
 		//文件保存目录路径
-		String savePath = "../attached/";
+		String savePath = "../../images/user";
 
 		//文件保存目录URL
-		String saveUrl = aspxUrl + "../attached/";
+		String saveUrl = aspxUrl + "../../images/user";
 
 		//定义允许上传的文件扩展名
 		Hashtable extTable = new Hashtable();

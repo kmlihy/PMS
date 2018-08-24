@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class stuCenter : System.Web.UI.Page
+    public partial class stuCenter : CommonPage
     {
 
         protected Student student = null;
