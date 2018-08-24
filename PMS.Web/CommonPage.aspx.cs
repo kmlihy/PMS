@@ -32,9 +32,8 @@ namespace PMS.Web
                             Application.Lock();
                             Application["Online"] = hOnline;
                             Application.UnLock();
-                            string js = "<script language=javascript>alert('{0}');window.location.replace('{1}')</script>";
+                            string js = "<script language=javascript>alert('{0}');parent.document.getElementById('iframe').src='{1}'</script>";
                             Response.Write(string.Format(js, "帐号已在别处登录 ，你将被强迫下线（请保管好您的密码）！", "login.aspx"));
-
                             return;
                         }
                         break;
