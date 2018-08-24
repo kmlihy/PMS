@@ -67,6 +67,7 @@
   <ItemGroup>
     <Content Include="CommonPage.aspx" />
     <Content Include="css\404.css" />
+    <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
     <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
