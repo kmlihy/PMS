@@ -12,7 +12,7 @@ namespace PMS.Web
     using Result = Enums.OpResult;
 
 
-    public partial class paperDetail : System.Web.UI.Page
+    public partial class paperDetail : CommonPage
     {
         string stuId = "";
         PublicProcedureBll pbll = new PublicProcedureBll();

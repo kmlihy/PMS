@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web.admin
 {
-    public partial class teaCenter : System.Web.UI.Page
+    public partial class teaCenter : CommonPage
     {
         protected Teacher teacher = null;
 

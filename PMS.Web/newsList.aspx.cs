@@ -10,7 +10,7 @@ using PMS.Model;
 
 namespace PMS.Web
 {
-    public partial class newsList : System.Web.UI.Page
+    public partial class newsList : CommonPage
     {
         protected DataSet dsSadmin = null;
         protected DataSet dsAdmin = null;

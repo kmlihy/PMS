@@ -1,6 +1,7 @@
 ﻿using PMS.BLL;
 using PMS.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,39 @@ namespace PMS.Web
         protected string captcha;
         protected string usertype;
 
+        //单点登录判断
+        private void isLogined(string id)
+        {
+            Hashtable hOnline = (Hashtable)Application["Online"];
+            if (hOnline != null)
+            {
+                int i = 0;
+                while (i < hOnline.Count)
+                {
+                    IDictionaryEnumerator idE = hOnline.GetEnumerator();
+                    string strKey = "";
+                    while (idE.MoveNext())
+                    {
+                        if (idE.Value != null && idE.Value.ToString().Equals(id))
+                        {
+                            //already login              
+                            strKey = idE.Key.ToString();
+                            hOnline[strKey] = "XXXXXX";
+                            break;
+                        }
+                    }
+                    i = i + 1;
+                }
+            }
+            else
+            {
+                hOnline = new Hashtable();
+            }
+            hOnline[Session.SessionID] = id;
+            Application.Lock();
+            Application["Online"] = hOnline;
+            Application.UnLock();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
          try {
@@ -49,6 +83,7 @@ namespace PMS.Web
                                 Session["HashTicket"] = HashTicket;
                                 HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                                 Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
+                                isLogined(account);
                             }
                         }
                         else
@@ -58,8 +93,8 @@ namespace PMS.Web
                         }
                     break;
                     case "student":
-                        StudentBll sbll = new StudentBll();
-                        Student stu = sbll.Login(account, Security.SHA256Hash(pwd));
+                        StudentBll sdao = new BLL.StudentBll();
+                        Student stu = sdao.Login(account, Security.SHA256Hash(pwd));
                         if (stu == null)
                         {
                             loginstate = 0;
@@ -76,7 +111,8 @@ namespace PMS.Web
                             Session["HashTicket"] = HashTicket;
                             HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                             Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
-                        }
+                            isLogined(account);
+                            }
                         break;
                 }
                     if (loginstate == 0)

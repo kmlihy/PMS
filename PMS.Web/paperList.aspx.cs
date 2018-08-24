@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class paperList : System.Web.UI.Page
+    public partial class paperList : CommonPage
     {
         //列表
         protected DataSet ds = null;

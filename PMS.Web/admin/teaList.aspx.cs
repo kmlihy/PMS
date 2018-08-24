@@ -13,7 +13,7 @@ namespace PMS.Web.admin
 {
     using System.IO;
     using Result = Enums.OpResult;
-    public partial class teaList : System.Web.UI.Page
+    public partial class teaList : CommonPage
     {
         protected DataSet ds = null;
         protected int getCurrentPage = 1;

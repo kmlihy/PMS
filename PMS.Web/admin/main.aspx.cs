@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web.admin
 {
-    public partial class main : System.Web.UI.Page
+    public partial class main : CommonPage
     {
         protected int State;
         protected string url;

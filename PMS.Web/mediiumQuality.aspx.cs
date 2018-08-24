@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class mediiumQuality : System.Web.UI.Page
+    public partial class mediiumQuality : CommonPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

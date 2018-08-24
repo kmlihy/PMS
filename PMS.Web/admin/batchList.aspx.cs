@@ -12,7 +12,7 @@ using System.Globalization;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class batchList : System.Web.UI.Page
+    public partial class batchList : CommonPage
     {
         protected DataSet plands = null;//批次
         protected DataSet ds;
