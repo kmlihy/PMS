@@ -65,10 +65,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="checkReport.aspx" />
     <Content Include="CommonPage.aspx" />
+    <Content Include="crossGuide.aspx" />
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
+    <Content Include="downLoadPaper.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
@@ -137,6 +140,7 @@
     <Content Include="js\ml.js" />
     <Content Include="js\myStudent.js" />
     <Content Include="js\newsList.js" />
+    <Content Include="js\openingReport.js" />
     <Content Include="js\paperDetail.js" />
     <Content Include="js\paperList.js" />
     <Content Include="js\proList.js" />
@@ -422,12 +426,33 @@
     <Compile Include="checkCode.aspx.designer.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkReport.aspx.cs">
+      <DependentUpon>checkReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkReport.aspx.designer.cs">
+      <DependentUpon>checkReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CommonPage.aspx.cs">
       <DependentUpon>CommonPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CommonPage.aspx.designer.cs">
       <DependentUpon>CommonPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="crossGuide.aspx.cs">
+      <DependentUpon>crossGuide.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="crossGuide.aspx.designer.cs">
+      <DependentUpon>crossGuide.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="downLoadPaper.aspx.cs">
+      <DependentUpon>downLoadPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="downLoadPaper.aspx.designer.cs">
+      <DependentUpon>downLoadPaper.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

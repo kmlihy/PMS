@@ -143,16 +143,16 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据选题记录ID查询一个批次信息
+        /// 根据学生或教师账号获取选题记录信息
         /// </summary>
-        /// <param name="planId">要查询的选题记录ID</param>
-        /// <returns>类型为DataSet的选题记录信息列表</returns>
-        public TitleRecord Select(int recordId)
+        /// <param name="account">学生或教师账号</param>
+        /// <returns>选题记录对象</returns>
+        public TitleRecord GetByAccount(string account)
         {
-            TitleRecord plan = dao.GetTitleRecord(recordId);
-            if (plan != null)
+            TitleRecord tr = dao.GetByAccount(account);
+            if (tr != null)
             {
-                return plan;
+                return tr;
             }
             return null;
         }

@@ -20,58 +20,66 @@
                 <tbody>
                     <tr class="table_head">
                         <td class="col-sm-1">论文题目</td>
-                        <td colspan="9"></td>
+                        <td colspan="9"><b><%=title %></b></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">学生姓名</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><b><%= stuName%></b></td>
                         <td class="col-md-1">学号</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><b><%= stuAccount%></b></td>
                         <td class="col-md-1">专业</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><b><%= profession%></b></td>
                         <td class="col-md-1">班级</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><b></b></td>
                         <td class="col-md-1">指导教师</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><b><%= teaName%></b></td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">选题目的、价值和意义</textarea>
+                        <td class="openReportmain" colspan="2">选题目的、价值和意义：</td>
+                        <td class="openReportmain" colspan="8" id="meaning">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">本课题在国内外的研究状况及发展趋势</textarea>
+                        <td class="openReportmain" colspan="2">本课题在国内外的研究状况及发展趋势：</td>
+                        <td class="openReportmain" colspan="8" id="trend">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">主要研究内容</textarea>
+                        <td class="openReportmain" colspan="2">主要研究内容：</td>
+                        <td class="openReportmain" colspan="8" id="content">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">实验设计计划（内容简介）</textarea>
+                        <td class="openReportmain" colspan="2">实验设计计划（内容简介）：</td>
+                        <td class="openReportmain" colspan="8" id="plan">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">完成设计（论文）的条件、方法及措施</textarea>
+                        <td class="openReportmain" colspan="2">完成设计（论文）的条件、方法及措施：</td>
+                        <td class="openReportmain" colspan="8" id="method">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">设计（论文）拟定提纲</textarea>
+                        <td class="openReportmain" colspan="2">设计（论文）拟定提纲：</td>
+                        <td class="openReportmain" colspan="8" id="outline">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText">主要参考文献（研究综述：作者、题目、杂志、卷号、页码）</textarea>
+                        <td class="openReportmain" colspan="2">主要参考文献（研究综述：作者、题目、杂志、卷号、页码）：</td>
+                        <td class="openReportmain" colspan="8" id="reference">
+                            <textarea class="openReportText"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText adviceTextArea">指导教师意见及建议</textarea>
+                        <td class="openReportmain" colspan="2">指导教师意见及建议：</td>
+                        <td class="openReportmain" colspan="8" id="guideTeacher">
+                            <textarea class="openReportText adviceTextArea"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -79,8 +87,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText adviceTextArea">分院院长意见</textarea>
+                        <td class="openReportmain" colspan="2">分院院长意见：</td>
+                        <td class="openReportmain" colspan="8" id="dean">
+                            <textarea class="openReportText adviceTextArea"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
