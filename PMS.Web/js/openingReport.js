@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $("#btnTeaOpinion").hide();
     $(btnSubmit).click(function () {
         var meaning = $("#meaning").val();
         var trend = $("#trend").val();
@@ -58,6 +59,8 @@
                                 document.getElementById("method").readOnly;
                                 document.getElementById("outline").readOnly;
                                 document.getElementById("reference").readOnly;
+                                $("#btnTeaOpinion").show();
+                                $("#btnSubmit").hide();
                             }
                         });
                     } else {

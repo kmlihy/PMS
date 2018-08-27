@@ -104,6 +104,7 @@
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
             <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button>
+            <button class="btn btn-success col-xs-1" type="button" id="btnTeaOpinion">查看教师意见</button>
         </div>
     </div>
 </body>
