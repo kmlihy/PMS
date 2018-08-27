@@ -38,44 +38,44 @@
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">选题目的、价值和意义：</td>
-                        <td class="openReportmain" colspan="8" id="meaning">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="meaning"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">本课题在国内外的研究状况及发展趋势：</td>
-                        <td class="openReportmain" colspan="8" id="trend">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="trend"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">主要研究内容：</td>
-                        <td class="openReportmain" colspan="8" id="content">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="content"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">实验设计计划（内容简介）：</td>
-                        <td class="openReportmain" colspan="8" id="plan">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="plan"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">完成设计（论文）的条件、方法及措施：</td>
-                        <td class="openReportmain" colspan="8" id="method">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="method"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">设计（论文）拟定提纲：</td>
-                        <td class="openReportmain" colspan="8" id="outline">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="outline"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">主要参考文献（研究综述：作者、题目、杂志、卷号、页码）：</td>
-                        <td class="openReportmain" colspan="8" id="reference">
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText" id="reference"></textarea>
                         </td>
                     </tr>
                     <!--<tr>
@@ -110,4 +110,5 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/xcConfirm.js"></script>
+<script src="js/openingReport.js"></script>
 </html>
