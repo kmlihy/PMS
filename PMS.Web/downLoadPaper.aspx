@@ -22,8 +22,8 @@
                 <thead>
                     <tr>
                         <th>序号</th>
-                        <th>姓名</th>
                         <th>论文</th>
+                        <th>姓名</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -34,10 +34,12 @@
                             <a href="upload/题目信息导入Excel文件存储/admin/20180716132754-题目信息表.xls" download="论文.xls">点击下载论文</a>
                         </td>
                         <td>
-                             学生姓名
+                             <%=userName %>
                         </td>
                         <td>
-                            <a href="#">查看更多》</a>   
+                            <a href="#">
+                                查看更多》
+                            </a>   
                         </td>
                     </tr>
                 </tbody>
@@ -47,12 +49,4 @@
 </body>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script>
-        <%--$("#downLoadFile").click(function () {
-            var downForm = $("<form method='get'><form>");
-            downForm.attr("action", "upload/信息模板下载/教师批量导入模板.xlsx");
-            $(document.body).append(downForm);
-            downForm.submit();
-        })--%>
-    </script>
 </html>

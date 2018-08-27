@@ -131,17 +131,17 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="submitReport">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../paperSubmission.aspx" class="sidebarclick" >
                                         <span>提交论文</span>
                                     </a>
                                 </li>
                                  <li role="presentation" id="checkReport">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../checkReport.aspx" class="sidebarclick" >
                                         <span>查重报告</span>
                                     </a>
                                 </li>
                                  <li role="presentation" id="crossGuide">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../crossGuide.aspx" class="sidebarclick" >
                                         <span>交叉评阅</span>
                                     </a>
                                 </li>
@@ -267,7 +267,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="crossGuideTea">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../crossGuide.aspx" class="sidebarclick" >
                                         <span>交叉评阅</span>
                                     </a>
                                 </li>
