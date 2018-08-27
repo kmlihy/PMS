@@ -93,21 +93,136 @@ namespace PMS.Dao
                 throw ex;
             }
         }
-
+        
         /// <summary>
-        /// 根据选题记录ID查询一个批次信息
+        /// 根据学生或教师账号获取选题记录信息
         /// </summary>
-        /// <param name="planId">要查询的选题记录ID</param>
-        /// <returns>类型为DataSet的选题记录信息列表</returns>
-        public DataSet Select(int recordId)
+        /// <param name="account">学生或教师账号</param>
+        /// <returns>选题记录对象</returns>
+        public TitleRecord GetByAccount(string account)
         {
             try
             {
-                string cmdText = "select * from V_TitleRecord where titleRecordId = @titleRecordId";
-                string[] param = { "@titleRecordId" };
-                object[] values = { recordId };
+                string cmdText = "select * from V_TitleRecord where stuAccount = @account or teaAccount = @account";
+                string[] param = { "@account" };
+                object[] values = { account };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
-                return ds;
+
+                TitleRecord titleRecord = new TitleRecord();
+                Student student = new Student();
+                Title title = new Title();
+                Plan plan = new Plan();
+                Profession prodession = new Profession();
+                Teacher teacher = new Teacher();
+                College college = new College();
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    if (ds.Tables[0].Rows[0]["stuAccount"].ToString() != "")
+                    {
+                        if (ds.Tables[0].Rows[0]["stuAccount"].ToString() == account || ds.Tables[0].Rows[0]["teaAccount"].ToString() == account)
+                        {
+                            titleRecord.TitleRecordId = int.Parse(ds.Tables[0].Rows[0]["titleRecordId"].ToString());
+                            if (ds.Tables[0].Rows[0]["stuAccount"].ToString() != "")
+                            {
+                                student.StuAccount = ds.Tables[0].Rows[0]["stuAccount"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["titleId"].ToString() != "")
+                            {
+                                title.TitleId = int.Parse(ds.Tables[0].Rows[0]["titleId"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["defeseTeamId"].ToString() != "")
+                            {
+                                titleRecord.DefeseTeamId = int.Parse(ds.Tables[0].Rows[0]["defeseTeamId"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["stuPwd"].ToString() != "")
+                            {
+                                student.StuPwd = ds.Tables[0].Rows[0]["stuPwd"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["realName"].ToString() != "")
+                            {
+                                student.RealName = ds.Tables[0].Rows[0]["realName"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                            {
+                                student.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                            {
+                                student.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                            {
+                                student.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["proId"].ToString() != "")
+                            {
+                                prodession.ProId = int.Parse(ds.Tables[0].Rows[0]["proId"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["proName"].ToString() != "")
+                            {
+                                prodession.ProName = ds.Tables[0].Rows[0]["proName"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["title"].ToString() != "")
+                            {
+                                title.title = ds.Tables[0].Rows[0]["title"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["titleContent"].ToString() != "")
+                            {
+                                title.TitleContent = ds.Tables[0].Rows[0]["titleContent"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["createTime"].ToString() != "")
+                            {
+                                title.CreateTime = DateTime.Parse(ds.Tables[0].Rows[0]["createTime"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["selected"].ToString() != "")
+                            {
+                                title.Selected = int.Parse(ds.Tables[0].Rows[0]["selected"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["limit"].ToString() != "")
+                            {
+                                title.Limit = int.Parse(ds.Tables[0].Rows[0]["limit"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["planId"].ToString() != "")
+                            {
+                                plan.PlanId = int.Parse(ds.Tables[0].Rows[0]["planId"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["planName"].ToString() != "")
+                            {
+                                plan.PlanName = ds.Tables[0].Rows[0]["planName"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                            {
+                                teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                            {
+                                teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                            }
+                            if (ds.Tables[0].Rows[0]["recordCreateTime"].ToString() != "")
+                            {
+                                titleRecord.recordCreateTime = DateTime.Parse(ds.Tables[0].Rows[0]["recordCreateTime"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                            {
+                                college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+                            }
+                            if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                            {
+                                college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                            }
+                            if (student != null && title != null && plan != null && prodession != null && teacher != null)
+                            {
+                                titleRecord.student = student;
+                                titleRecord.title = title;
+                                titleRecord.plan = plan;
+                                titleRecord.profession = prodession;
+                                titleRecord.teacher = teacher;
+                                return titleRecord;
+                            }
+                        }
+                    }
+                }
+                return null;
             }
             catch (Exception ex)
             {

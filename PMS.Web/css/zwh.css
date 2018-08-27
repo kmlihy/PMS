@@ -305,3 +305,28 @@ a:link {
 .changePwdForm{
     padding:10px;
 }
+
+/* 批量导入*/
+#file {
+    position: relative;
+    top:20px;
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+#file:hover {
+    border-color: #286090;
+    text-decoration: none;
+}
+
+.web:visited {
+    color: #337ab7;
+}
+.web:link {
+    color: #337ab7;
+}
+.web:hover {
+    color: #337ab7;
+}

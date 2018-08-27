@@ -77,7 +77,6 @@ namespace PMS.Web.admin
                     getdata(strWhere);
                 }
             }
-
         }
         /// <summary>
         /// 获取数据

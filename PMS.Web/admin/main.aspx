@@ -117,6 +117,83 @@
                                 </li>
                             </ul>
                         </li>
+                        
+                        <li role="presentation">
+                            <a href="#reportStu" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>论文管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="reportStu">
+                                <li role="presentation" id="openReport">
+                                    <a href="../openingReport.aspx" class="sidebarclick" >
+                                        <span>开题报告</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="submitReport">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>提交论文</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="checkReport">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>查重报告</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="crossGuide">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>交叉评阅</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="defence">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>论文答辩</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>开题报告</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>提交论文</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>查重报告</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>交叉评阅</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>论文答辩</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                        </li>-->
+                        <li role="presentation">
+                            <a href="#" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>查看成绩</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                        </li>
 
                         <%}
                             else if (State == 1)
@@ -166,7 +243,41 @@
                                 </li>
                             </ul>
                         </li>
-
+                        
+                        <li role="presentation">
+                            <a href="#reportTea" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>论文管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="reportTea">
+                                <li role="presentation" id="openReportTea">
+                                    <a href="../reviewOpeningReport.aspx" class="sidebarclick" >
+                                        <span>开题报告</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="submitReportTea">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>论文评阅</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="checkReportTea">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>查重报告</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="crossGuideTea">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>交叉评阅</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="defenceTea">
+                                    <a href="#" class="sidebarclick" >
+                                        <span>查看答辩</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li role="presentation">
                             <a href="#question" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
