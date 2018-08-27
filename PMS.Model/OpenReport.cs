@@ -11,46 +11,50 @@ namespace PMS.Model
     public class OpenReport
     {
         /// <summary>
-        /// 选题记录id
+        /// 选题记录对象
         /// </summary>
         public TitleRecord titleRecord { set; get; }
         /// <summary>
-        /// 选题依据
+        /// 选题目的、价值和意义
         /// </summary>
-        public string titleBasis { set; get; }
+        public string meaning { set; get; }
         /// <summary>
-        /// 设计研究的主要内容
+        /// 本课题在国内外的研究状况及发展趋势
         /// </summary>
-        public string designContent { set; get; }
+        public string trend { set; get; }
         /// <summary>
-        /// 主要设计研究方法
+        /// 主要研究内容
         /// </summary>
-        public string designMethod { set; get; }
+        public string content { set; get; }
         /// <summary>
-        /// 设计研究进度计划
+        /// 实验设计计划（内容简介）
         /// </summary>
-        public string designRate { set; get; }
+        public string plan { set; get; }
         /// <summary>
-        /// 主要参考资料
+        /// 完成设计（论文）的条件、方法及措施
         /// </summary>
-        public string referenceMaterial { set; get; }
+        public string method { set; get; }
         /// <summary>
-        /// 指导教师意见
+        /// 设计（论文）拟定提纲
         /// </summary>
-        public string teacherOpinion { set; get; }
+        public string outline { set; get; }
+        /// <summary>
+        /// 主要参考文献（研究综述：作者、题目、杂志、卷号、页码）
+        /// </summary>
+        public string reference { set; get; }
         /// <summary>
         /// 提交时间
         /// </summary>
         public DateTime reportTime { set; get; }
         /// <summary>
-        /// 开题小组意见
+        /// 指导教师意见及建议
         /// </summary>
-        public string opneGroupOpinion { set; get; }
+        public string teacherOpinion { set; get; }
         /// <summary>
-        /// 分院毕业作业(论文)指导小组审定意见
+        /// 分院院长意见
         /// </summary>
-        public string guideGroupOpinion { set; get; }
-        
+        public string deanOpinion { set; get; }
+
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -59,28 +63,30 @@ namespace PMS.Model
         /// <summary>
         /// 参数构造函数
         /// </summary>
-        /// <param name="titleRecord">选题记录id</param>
-        /// <param name="titleBasis">选题依据</param>
-        /// <param name="designContent">设计研究的主要内容</param>
-        /// <param name="designMethod">主要设计研究方法</param>
-        /// <param name="designRate">设计研究进度计划</param>
-        /// <param name="referenceMaterial">主要参考资料</param>
-        /// <param name="teacherOpinion">指导教师意见</param>
-        /// <param name="reportTime">开题报告创建时间</param>
-        /// <param name="opneGroupOpinion">开题小组意见</param>
-        /// <param name="guideGroupOpinion">分院毕业作业（论文）指导小组审定意见</param>
-        public OpenReport(TitleRecord titleRecord,string titleBasis, string designContent, string designMethod, string designRate, string referenceMaterial, string teacherOpinion, DateTime reportTime, string opneGroupOpinion, string guideGroupOpinion )
+        /// <param name="titleRecord">选题记录对象</param>
+        /// <param name="meaning">选题目的、价值和意义</param>
+        /// <param name="trend">本课题在国内外的研究状况及发展趋势</param>
+        /// <param name="content">主要研究内容</param>
+        /// <param name="plan">实验设计计划（内容简介）</param>
+        /// <param name="method">完成设计（论文）的条件、方法及措施</param>
+        /// <param name="outline">设计（论文）拟定提纲</param>
+        /// <param name="reference">主要参考文献（研究综述：作者、题目、杂志、卷号、页码）</param>
+        /// <param name="teacherOpinion">指导教师意见及建议</param>
+        /// <param name="deanOpinion">分院院长意见</param>
+        /// <param name="reportTime">提交时间</param>
+        public OpenReport(TitleRecord titleRecord,string meaning, string trend, string content, string plan, string method, string outline, string reference, string teacherOpinion, string deanOpinion,DateTime reportTime )
         {
             this.titleRecord = titleRecord;
-            this.titleBasis = titleBasis;
-            this.designContent = designContent;
-            this.designMethod = designMethod;
-            this.designRate = designRate;
-            this.referenceMaterial = referenceMaterial;
+            this.meaning = meaning;
+            this.trend = trend;
+            this.content = content;
+            this.plan = plan;
+            this.method = method;
+            this.outline = outline;
+            this.reference = reference;
             this.teacherOpinion = teacherOpinion;
+            this.deanOpinion = deanOpinion;
             this.reportTime = reportTime;
-            this.opneGroupOpinion = opneGroupOpinion;
-            this.guideGroupOpinion = guideGroupOpinion;
         }
     }
 }
