@@ -139,6 +139,7 @@
     <Content Include="js\newsList.js" />
     <Content Include="js\paperDetail.js" />
     <Content Include="js\paperList.js" />
+    <Content Include="js\paperSubmission.js" />
     <Content Include="js\proList.js" />
     <Content Include="js\reg.js" />
     <Content Include="js\retrievePwd.js" />
