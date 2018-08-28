@@ -291,6 +291,7 @@
     <Content Include="square\yellow.png" />
     <Content Include="square\_all.css" />
     <Content Include="stuCenter.aspx" />
+    <Content Include="stuHistoryPaper.aspx" />
     <Content Include="test.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
@@ -572,6 +573,13 @@
     </Compile>
     <Compile Include="stuCenter.aspx.designer.cs">
       <DependentUpon>stuCenter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="stuHistoryPaper.aspx.cs">
+      <DependentUpon>stuHistoryPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stuHistoryPaper.aspx.designer.cs">
+      <DependentUpon>stuHistoryPaper.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>

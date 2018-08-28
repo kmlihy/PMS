@@ -19,7 +19,6 @@ namespace PMS.Web
         protected string stuAccount = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-         
         }
     }
 }
