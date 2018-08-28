@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -23,9 +24,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_OpeningReport(titleRecordId,titleBasis,designContent,designMethod,designRate,referenceMaterial,reportTime) values(@titleRecordId,@titleBasis,@designContent,@designMethod,@designRate,@referenceMaterial,@reportTime)";
-                string[] param = { "@titleRecordId","@titleBasis","@designContent","@designMethod","@designRate","@referenceMaterial", "@reportTime" };
-                object[] values = { openReport.titleRecord.TitleRecordId, openReport.titleBasis, openReport.designContent, openReport.designMethod, openReport.designRate, openReport.referenceMaterial, openReport.reportTime };
+                string cmdText = "insert into T_OpeningReport(titleRecordId,meaning,trend,openContent,openPlan,method,outline,reference,reportTime) values(@titleRecordId, @meaning, @trend, @content, @plan, @method, @outline, @reference, @reportTime)";
+                string[] param = { "@titleRecordId", "@meaning", "@trend", "@content", "@plan", "@method", "@outline", "@reference", "@reportTime" };
+                object[] values = { openReport.titleRecord.TitleRecordId, openReport.meaning, openReport.trend, openReport.content, openReport.plan, openReport.method,openReport.outline ,openReport.reference, openReport.reportTime };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -40,19 +41,39 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="openReport">开题报告实体</param>
         /// <returns>受影响行数</returns>
-        public int teaInsert(OpenReport openReport)
+        public int teaInsert(int titleRecordId, string teacherOpinion)
         {
             try
             {
                 string cmdText = "insert into T_OpeningReport(titleRecordId,teacherOpinion) values(@titleRecordId,@teacherOpinion)";
                 string[] param = { "@titleRecordId","@teacherOpinion" };
-                object[] values = { openReport.titleRecord.TitleRecordId, openReport.teacherOpinion};
+                object[] values = { titleRecordId, teacherOpinion};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        /// <summary>
+        /// 根据选题记录id获取学生开题报告信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns>开题报告数据集</returns>
+        public DataSet Select(int titleRecordId)
+        {
+            try
+            {
+                string cmdText = "select * from T_OpeningReport where titleRecordId=@titleRecordId";
+                String[] param = { "@titleRecordId" };
+                String[] values = { titleRecordId.ToString() };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

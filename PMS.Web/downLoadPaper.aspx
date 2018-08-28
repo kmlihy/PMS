@@ -8,6 +8,9 @@
     <title>下载学生论文并评阅</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
+    <style>
+        
+    </style>
 </head>
 <body>
     <div class="panel">
@@ -15,29 +18,37 @@
             <h1>下载并评阅论文</h1>
         </div>
         <div class="panel-body">
-            <%--<form id="form1" runat="server" method="post" enctype="multipart/form-data" action="~/downLoadPaper.aspx">
-                <button type="button" class="btn btn-primary" id="downLoadFile">下载论文</button>
-            </form>--%>
-            <table class="table">
+            <table class="table text-center table-bordered">
                 <thead>
                     <tr>
-                        <th>序号</th>
-                        <th>姓名</th>
-                        <th>论文</th>
-                        <th>操作</th>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">论文</th>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">下载</th>
+                        <th class="text-center">查看历史提交</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>
-                            <a href="upload/题目信息导入Excel文件存储/admin/20180716132754-题目信息表.xls" download="论文.xls">点击下载论文</a>
+                        <td  style="vertical-align:middle">1</td>
+                        <td style="vertical-align:middle">航班查询及预订系统</td>
+                        <td  style="vertical-align:middle">wudong</td>
+                        <td  style="vertical-align:middle">
+                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
                         </td>
-                        <td>
-                             学生姓名
+                        <td  style="vertical-align:middle">
+                            <a href="stuHistoryPaper.aspx">点击跳转</a>
                         </td>
-                        <td>
-                            <a href="#">查看更多》</a>   
+                    </tr>
+                    <tr>
+                        <td  style="vertical-align:middle">2</td>
+                        <td style="vertical-align:middle">汽车4S店车主管理系统</td>
+                        <td  style="vertical-align:middle">marry</td>
+                        <td  style="vertical-align:middle">
+                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
+                        </td>
+                        <td  style="vertical-align:middle">
+                            <a href="stuHistoryPaper.aspx">点击跳转</a>
                         </td>
                     </tr>
                 </tbody>
@@ -47,12 +58,4 @@
 </body>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script>
-        <%--$("#downLoadFile").click(function () {
-            var downForm = $("<form method='get'><form>");
-            downForm.attr("action", "upload/信息模板下载/教师批量导入模板.xlsx");
-            $(document.body).append(downForm);
-            downForm.submit();
-        })--%>
-    </script>
 </html>
