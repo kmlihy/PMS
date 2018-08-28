@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $("#btnTeaOpinion").hide();
-    $(btnSubmit).click(function () {
+    $("#btnSubmit").click(function () {
         var meaning = $("#meaning").val();
         var trend = $("#trend").val();
         var content = $("#content").val();
@@ -45,20 +45,20 @@
                     reference: reference,
                     //guideTeacher: guideTeacher,
                     //dean: dean,
-                    op: "insert"
+                    op: "add"
                 },
                 dataType: 'text',
                 success: function (succ) {
                     if (succ === "提交成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
-                                document.getElementById("meaning").readOnly;
-                                document.getElementById("trend").readOnly;
-                                document.getElementById("content").readOnly;
-                                document.getElementById("plan").readOnly;
-                                document.getElementById("method").readOnly;
-                                document.getElementById("outline").readOnly;
-                                document.getElementById("reference").readOnly;
+                                document.getElementById("meaning").readOnly = true;
+                                document.getElementById("trend").readOnly = true;
+                                document.getElementById("content").readOnly = true;
+                                document.getElementById("plan").readOnly = true;
+                                document.getElementById("method").readOnly = true;
+                                document.getElementById("outline").readOnly = true;
+                                document.getElementById("reference").readOnly = true;
                                 $("#btnTeaOpinion").show();
                                 $("#btnSubmit").hide();
                             }
@@ -72,5 +72,32 @@
                 }
             })
         }
+    })
+    $("#btnReviewSubmit").click(function () {
+        var teacherOpinion = $("#guideTeacher").val();
+        $.ajax({
+            type: 'Post',
+            url: 'reviewOpeningReport.aspx',
+            data:{
+                teacherOpinion: teacherOpinion,
+                op:"review"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                if (succ === "提交成功") {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+
+                        }
+                    });
+                } else {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                        onOk: function (v) {
+
+                        }
+                    });
+                }
+            }
+        })
     })
 })

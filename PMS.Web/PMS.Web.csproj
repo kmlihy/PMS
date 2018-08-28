@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="checkReport.aspx" />
+    <Content Include="checkReportTeacher.aspx" />
     <Content Include="CommonPage.aspx" />
     <Content Include="crossGuidanceStudent.aspx" />
     <Content Include="crossGuide.aspx" />
@@ -131,6 +132,7 @@
     <Content Include="js\branchList.js" />
     <Content Include="js\canvas-particle.js" />
     <Content Include="js\changePwd.js" />
+    <Content Include="js\crossGuide.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jedate.js" />
     <Content Include="js\jquery-ui.min.js" />
@@ -152,6 +154,7 @@
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
+    <Content Include="js\thesisSubmit.js" />
     <Content Include="js\titleList.js" />
     <Content Include="js\titleReadList.js" />
     <Content Include="js\xcConfirm.js" />
@@ -227,6 +230,7 @@
     <Content Include="kindeditor\themes\simple\simple.css" />
     <Content Include="mediiumQuality.aspx" />
     <Content Include="myInstructor.aspx" />
+    <Content Include="myStudentRespondent.aspx" />
     <Content Include="myStudents.aspx" />
     <Content Include="news.aspx" />
     <Content Include="newsList.aspx" />
@@ -292,6 +296,8 @@
     <Content Include="stuCenter.aspx" />
     <Content Include="stuHistoryPaper.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="thesisSubmit.aspx" />
+    <Content Include="upload.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
@@ -436,6 +442,13 @@
     <Compile Include="checkReport.aspx.designer.cs">
       <DependentUpon>checkReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="checkReportTeacher.aspx.cs">
+      <DependentUpon>checkReportTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkReportTeacher.aspx.designer.cs">
+      <DependentUpon>checkReportTeacher.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CommonPage.aspx.cs">
       <DependentUpon>CommonPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -487,6 +500,13 @@
     </Compile>
     <Compile Include="myInstructor.aspx.designer.cs">
       <DependentUpon>myInstructor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myStudentRespondent.aspx.cs">
+      <DependentUpon>myStudentRespondent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myStudentRespondent.aspx.designer.cs">
+      <DependentUpon>myStudentRespondent.aspx</DependentUpon>
     </Compile>
     <Compile Include="myStudents.aspx.cs">
       <DependentUpon>myStudents.aspx</DependentUpon>
@@ -586,6 +606,20 @@
     </Compile>
     <Compile Include="PaperDtailStu.aspx.designer.cs">
       <DependentUpon>PaperDtailStu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="thesisSubmit.aspx.cs">
+      <DependentUpon>thesisSubmit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="thesisSubmit.aspx.designer.cs">
+      <DependentUpon>thesisSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

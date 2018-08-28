@@ -1,11 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="crossGuidanceStudent.aspx.cs" Inherits="PMS.Web.crossGuidanceStudent" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myStudentRespondent.aspx.cs" Inherits="PMS.Web.myStudentRespondent" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>我的交叉指导学生</title>
+    <title>我的答辩学生</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -17,7 +16,7 @@
 <body>
     <div class="panel panel-default" id="panel">
         <div class="panel-head">
-            <h2>我的交叉指导学生列表</h2>
+            <h2>我的答辩学生列表</h2>
         </div>
         <div class="panel panel-body" id="panelbody">
             <div class="container-fluid big-box">
@@ -71,7 +70,7 @@
                             <th class="text-center">题目</th>
                             <th class="text-center">批次</th>
                             <th class="text-center">性别</th>
-                            <th class="text-center">选题时间</th>
+                            <th class="text-center">所属答辩小组</th>
                             <th class="text-center">操作</th>
                         </thead>
                         <tbody>
@@ -86,7 +85,7 @@
                                 <td class="text-center">大学生在线二手交易平台</td>
                                 <td class="text-center">2018年信息工程学院第一批次</td>
                                 <td class="text-center">男</td>
-                                <td class="text-center">2018-09-10 16:36:03</td>
+                                <td class="text-center">XXX答辩小组</td>
                                 <td class="text-center">
                                     <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
                                         <span class="glyphicon glyphicon-search"></span>
@@ -97,14 +96,14 @@
                                 <td class="text-center" id="msg">
                                     <input type="checkbox" />
                                 </td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">周杰杰</td>
-                                <td class="text-center">14769635334</td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">王小二</td>
+                                <td class="text-center">147699334</td>
                                 <td class="text-center">计算机科学与技术</td>
                                 <td class="text-center">大学生在线二手交易平台</td>
                                 <td class="text-center">2018年信息工程学院第一批次</td>
                                 <td class="text-center">男</td>
-                                <td class="text-center">2018-09-10 16:36:03</td>
+                                <td class="text-center">XXX答辩小组</td>
                                 <td class="text-center">
                                     <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
                                         <span class="glyphicon glyphicon-search"></span>
@@ -231,7 +230,7 @@
                                     <p id="planName1" class="text-span"></p>
                                 </td>
                                 <td class="teaLable">
-                                    <label class="text-span">选题时间:</label></td>
+                                    <label class="text-span">所属答辩小组:</label></td>
                                 <td>
                                     <p id="recordtime1" class="text-span"></p>
                                 </td>
