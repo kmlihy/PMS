@@ -24,7 +24,6 @@ namespace PMS.Web
             stuAccount = user.StuAccount;
             userType = Session["state"].ToString();
             StudentBll stuBll = new StudentBll();
-            ds = stuBll.selectBystuId()
         }
     }
 }

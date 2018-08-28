@@ -25,7 +25,7 @@ namespace PMS.Web
             title = tr.title.title;
             teaName = tr.teacher.TeaName;
             string op = Context.Request["op"];
-            if (op == "insert")
+            if (op == "add")
             {
                 string meaning = Request["meaning"];
                 string trend = Request["trend"];
