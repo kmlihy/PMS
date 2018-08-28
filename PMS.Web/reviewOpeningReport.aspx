@@ -7,14 +7,18 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>评阅开题报告</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 <body>
     <div class="panel">
         <div class="panel-heading text-center">
             <h2>评阅开题报告</h2>
         </div>
+        <% if(or == null){ %>
+            <h3>该学生还未提交开题报告，请耐心等待。</h3>
+        <% }else{ %>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered table_mian">
                 <tbody>
@@ -36,50 +40,50 @@
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">选题目的、价值和意义：</td>
-                        <td class="openReportmain" colspan="8" id="meaning"><%=or.meaning %>
-                            <%--<textarea class="openReportText"></textarea>--%>
+                        <td class="openReportmain" colspan="8" id="meaning">
+                            <textarea class="openReportText" readonly="readonly"><%=or.meaning %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">本课题在国内外的研究状况及发展趋势：</td>
-                        <td class="openReportmain" colspan="8" id="trend"><%=or.trend %>
-                            <%--<textarea class="openReportText"></textarea>--%>
+                        <td class="openReportmain" colspan="8" id="trend">
+                            <textarea class="openReportText" readonly="readonly"><%=or.trend %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">主要研究内容：</td>
-                        <td class="openReportmain" colspan="8" id="content"><%=or.content %>
-                            <%--<textarea class="openReportText"></textarea>--%>
+                        <td class="openReportmain" colspan="8" id="content">
+                            <textarea class="openReportText" readonly="readonly"><%=or.content %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">实验设计计划（内容简介）：</td>
-                        <td class="openReportmain" colspan="8" id="plan"><%=or.plan %>
-                            <%--<textarea class="openReportText"></textarea>--%>
+                        <td class="openReportmain" colspan="8" id="plan">
+                            <textarea class="openReportText" readonly="readonly"><%=or.plan %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">完成设计（论文）的条件、方法及措施：</td>
-                        <td class="openReportmain" colspan="8" id="method"><%=or.method %>
-                            <%--<textarea class="openReportText"></textarea>--%>
+                        <td class="openReportmain" colspan="8" id="method">
+                            <textarea class="openReportText" readonly="readonly"><%=or.method %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">设计（论文）拟定提纲：</td>
-                        <td class="openReportmain" colspan="8" id="outline"><%=or.outline %>
-                            <%--<textarea class="openReportText"></textarea>--%>
+                        <td class="openReportmain" colspan="8" id="outline">
+                            <textarea class="openReportText" readonly="readonly"><%=or.outline %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">主要参考文献（研究综述：作者、题目、杂志、卷号、页码）：</td>
-                        <td class="openReportmain" colspan="8" id="reference"><%=or.reference %>
-                            <textarea class="openReportText"></textarea>
+                        <td class="openReportmain" colspan="8" id="reference">
+                            <textarea class="openReportText" readonly="readonly"><%=or.reference %></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">指导教师意见及建议：</td>
-                        <td class="openReportmain" colspan="8" id="guideTeacher">
-                            <textarea class="openReportText adviceTextArea"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText adviceTextArea" id="guideTeacher"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -88,8 +92,8 @@
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">分院院长意见：</td>
-                        <td class="openReportmain" colspan="8" id="dean">
-                            <textarea class="openReportText adviceTextArea"></textarea>
+                        <td class="openReportmain" colspan="8">
+                            <textarea class="openReportText adviceTextArea" id="dean"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -101,10 +105,13 @@
         </div>
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
-            <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button>
+            <button class="btn btn-info col-xs-1" type="button" id="btnReviewSubmit">提交</button>
         </div>
+        <%} %>
     </div>
 </body>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/openingReport.js"></script>
+<script src="js/xcConfirm.js"></script>
 </html>

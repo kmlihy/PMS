@@ -41,13 +41,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="openReport">开题报告实体</param>
         /// <returns>受影响行数</returns>
-        public int teaInsert(OpenReport openReport)
+        public int teaInsert(int titleRecordId, string teacherOpinion)
         {
             try
             {
                 string cmdText = "insert into T_OpeningReport(titleRecordId,teacherOpinion) values(@titleRecordId,@teacherOpinion)";
                 string[] param = { "@titleRecordId","@teacherOpinion" };
-                object[] values = { openReport.titleRecord.TitleRecordId, openReport.teacherOpinion};
+                object[] values = { titleRecordId, teacherOpinion};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -56,66 +56,20 @@ namespace PMS.Dao
                 throw ex;
             }
         }
-
-        public OpenReport Select(int titleRecordId)
+        /// <summary>
+        /// 根据选题记录id获取学生开题报告信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns>开题报告数据集</returns>
+        public DataSet Select(int titleRecordId)
         {
             try
             {
-                StringBuilder strSql = new StringBuilder();
-                strSql.Append("select * from T_OpenReport ");
-                strSql.Append(" where titleRecordId=@titleRecordId");
+                string cmdText = "select * from T_OpeningReport where titleRecordId=@titleRecordId";
                 String[] param = { "@titleRecordId" };
                 String[] values = { titleRecordId.ToString() };
-                DataSet ds = db.FillDataSet(strSql.ToString(), param, values);
-                OpenReport open = new OpenReport();
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    if (ds.Tables[0].Rows[0]["meaning"].ToString() != "")
-                    {
-                        open.meaning = ds.Tables[0].Rows[0]["meaning"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["trend"].ToString() != "")
-                    {
-                        open.trend = ds.Tables[0].Rows[0]["trend"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["content"].ToString() != "")
-                    {
-                        open.content = ds.Tables[0].Rows[0]["content"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["method"].ToString() != "")
-                    {
-                        open.method = ds.Tables[0].Rows[0]["method"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["outline"].ToString() != "")
-                    {
-                        open.outline = ds.Tables[0].Rows[0]["outline"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["plan"].ToString() != "")
-                    {
-                        open.plan = ds.Tables[0].Rows[0]["plan"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["reference"].ToString() != "")
-                    {
-                        open.reference = ds.Tables[0].Rows[0]["reference"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["reportTime"].ToString() != "")
-                    {
-                        open.reportTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["reportTime"].ToString());
-                    }
-                    if (ds.Tables[0].Rows[0]["titleRecordId"].ToString() != "")
-                    {
-                        open .titleRecord.TitleRecordId = int.Parse(ds.Tables[0].Rows[0]["titleRecordId"].ToString());
-                    }
-                    if (ds.Tables[0].Rows[0]["teacherOpinion"].ToString() != "")
-                    {
-                        open.teacherOpinion = ds.Tables[0].Rows[0]["teacherOpinion"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["deanOpinion"].ToString() != "")
-                    {
-                        open.deanOpinion = ds.Tables[0].Rows[0]["deanOpinion"].ToString();
-                    }
-                }
-                return open;
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
             }
             catch (Exception)
             {

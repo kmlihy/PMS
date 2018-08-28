@@ -132,6 +132,7 @@
     <Content Include="js\branchList.js" />
     <Content Include="js\canvas-particle.js" />
     <Content Include="js\changePwd.js" />
+    <Content Include="js\crossGuide.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jedate.js" />
     <Content Include="js\jquery-ui.min.js" />
@@ -153,6 +154,7 @@
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
+    <Content Include="js\thesisSubmit.js" />
     <Content Include="js\titleList.js" />
     <Content Include="js\titleReadList.js" />
     <Content Include="js\xcConfirm.js" />
@@ -294,7 +296,8 @@
     <Content Include="stuCenter.aspx" />
     <Content Include="stuHistoryPaper.aspx" />
     <Content Include="test.aspx" />
-    <Content Include="viewScore.aspx" />
+    <Content Include="thesisSubmit.aspx" />
+    <Content Include="upload.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
@@ -604,12 +607,19 @@
     <Compile Include="PaperDtailStu.aspx.designer.cs">
       <DependentUpon>PaperDtailStu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="viewScore.aspx.cs">
-      <DependentUpon>viewScore.aspx</DependentUpon>
+    <Compile Include="thesisSubmit.aspx.cs">
+      <DependentUpon>thesisSubmit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="viewScore.aspx.designer.cs">
-      <DependentUpon>viewScore.aspx</DependentUpon>
+    <Compile Include="thesisSubmit.aspx.designer.cs">
+      <DependentUpon>thesisSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
