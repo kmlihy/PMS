@@ -340,7 +340,7 @@
     height: 150px;
 }
 
-.table-bordered > tbody > tr > td {
+.table_mian > tbody > tr > td {
     border: 1px solid black;
 }
 

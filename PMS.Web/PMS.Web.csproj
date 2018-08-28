@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="checkReport.aspx" />
+    <Content Include="checkReportTeacher.aspx" />
     <Content Include="CommonPage.aspx" />
     <Content Include="crossGuidanceStudent.aspx" />
     <Content Include="crossGuide.aspx" />
@@ -434,6 +435,13 @@
     </Compile>
     <Compile Include="checkReport.aspx.designer.cs">
       <DependentUpon>checkReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkReportTeacher.aspx.cs">
+      <DependentUpon>checkReportTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkReportTeacher.aspx.designer.cs">
+      <DependentUpon>checkReportTeacher.aspx</DependentUpon>
     </Compile>
     <Compile Include="CommonPage.aspx.cs">
       <DependentUpon>CommonPage.aspx</DependentUpon>
