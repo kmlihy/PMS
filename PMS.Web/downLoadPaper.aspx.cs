@@ -19,12 +19,6 @@ namespace PMS.Web
         protected string stuAccount = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = (Student)Session["loginuser"];
-            userName = user.RealName;
-            stuAccount = user.StuAccount;
-            userType = Session["state"].ToString();
-            StudentBll stuBll = new StudentBll();
-            ds = stuBll.selectBystuId()
         }
     }
 }
