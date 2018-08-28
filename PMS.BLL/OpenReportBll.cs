@@ -42,5 +42,15 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+        /// <summary>
+        /// 根据选题记录id获取开题报告对象
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
+        public OpenReport select(int titleRecordId)
+        {
+            OpenReport open = odao.Select(titleRecordId);
+            return open;
+        }
     }
 }

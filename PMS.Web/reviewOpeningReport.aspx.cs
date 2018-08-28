@@ -12,6 +12,7 @@ namespace PMS.Web
     public partial class reviewOpeningReport : CommonPage
     {
         public string stuAccount, stuName, profession, title, teaName;
+        public OpenReport or;
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -23,7 +24,8 @@ namespace PMS.Web
             profession = tr.profession.ProName;
             title = tr.title.title;
             teaName = teacher.TeaName;
-
+            OpenReportBll orbll = new OpenReportBll();
+            or = orbll.select(tr.TitleRecordId);
         }
     }
 }
