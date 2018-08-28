@@ -294,6 +294,7 @@
     <Content Include="stuCenter.aspx" />
     <Content Include="stuHistoryPaper.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="viewScore.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
@@ -602,6 +603,13 @@
     </Compile>
     <Compile Include="PaperDtailStu.aspx.designer.cs">
       <DependentUpon>PaperDtailStu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewScore.aspx.cs">
+      <DependentUpon>viewScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewScore.aspx.designer.cs">
+      <DependentUpon>viewScore.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
