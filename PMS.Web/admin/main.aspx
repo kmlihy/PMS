@@ -131,7 +131,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="submitReport">
-                                    <a href="../paperSubmission.aspx" class="sidebarclick" >
+                                    <a href="../thesisSubmit.aspx" class="sidebarclick" >
                                         <span>提交论文</span>
                                     </a>
                                 </li>
