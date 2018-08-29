@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollegeDao.cs" />
+    <Compile Include="DefenceDao.cs" />
     <Compile Include="GuideRecordDao.cs" />
     <Compile Include="MedtermQualityDao.cs" />
     <Compile Include="NewsDao.cs" />

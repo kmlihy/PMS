@@ -18,16 +18,16 @@
             <table class="table" style="width:50%;margin:auto;border:none;">
                 <tr>
                     <td class="viewScoreStudentinfo text-right">姓名:</td>
-                    <td class="viewScoreStudentinfo text-left">周杰杰</td>
+                    <td class="viewScoreStudentinfo text-left"><%=stuName %></td>
                 </tr>
                 <tr>
                     <td class="viewScoreStudentinfo text-right">学号:</td>
-                    <td class="viewScoreStudentinfo text-left">15612200021</td>
+                    <td class="viewScoreStudentinfo text-left"><%=stuAccount %></td>
                     
                 </tr>
                 <tr>
                     <td class="viewScoreStudentinfo text-right">专业:</td>
-                    <td class="viewScoreStudentinfo text-left">软件技术</td>
+                    <td class="viewScoreStudentinfo text-left"><%=profession %></td>
                 </tr>
             </table>
         </div>
@@ -41,8 +41,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>校园二手交易平台</td>
-                        <td>86</td>
+                        <td><%=title %></td>
+                        <td><%=score %></td>
                     </tr>
                 </tbody>
             </table>
