@@ -7,49 +7,52 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>查看毕业论文成绩</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/lgd.css" />
 </head>
-<body>
-    <div class="panel panel-heading text-center viewScore_panelhead">
-        <h2>2018届毕业生毕业论文成绩查询</h2>
-    </div>
-    <div class="panel panel-body text-center viewScore_panelbody">
-        <div>
-            <table class="table" style="width:50%;margin:auto;border:none;">
-                <tr>
-                    <td class="viewScoreStudentinfo text-right">姓名:</td>
-                    <td class="viewScoreStudentinfo text-left">周杰杰</td>
-                </tr>
-                <tr>
-                    <td class="viewScoreStudentinfo text-right">学号:</td>
-                    <td class="viewScoreStudentinfo text-left">15612200021</td>
-                    
-                </tr>
-                <tr>
-                    <td class="viewScoreStudentinfo text-right">专业:</td>
-                    <td class="viewScoreStudentinfo text-left">软件技术</td>
-                </tr>
-            </table>
+<body class="viewScore-body">
+    <div class="container viewscore-divbox">
+        <div class="panel panel-heading text-center viewScore_panelhead">
+            <h2>2018届毕业生毕业论文成绩查询</h2>
         </div>
-        <div class="table-score" style=" margin-top:30px;">
-            <table class="table table-bordered" style="width: 50%; margin: auto;">
-                <thead>
+        <div class="panel panel-body text-center viewScore_panelbody">
+            <div>
+                <table class="table table-studentInfo">
                     <tr>
-                        <td class="viewScoreStudentinfo">论文题目</td>
-                        <td class="viewScoreStudentinfo">得分</td>
+                        <td class="viewScoreStudentinfo text-right">姓名:</td>
+                        <td class="viewScoreStudentinfo text-left">周杰杰</td>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
-                        <td>校园二手交易平台</td>
-                        <td>86</td>
+                        <td class="viewScoreStudentinfo text-right">学号:</td>
+                        <td class="viewScoreStudentinfo text-left">15612200021</td>
+
                     </tr>
-                </tbody>
-            </table>
+                    <tr>
+                        <td class="viewScoreStudentinfo text-right">专业:</td>
+                        <td class="viewScoreStudentinfo text-left">软件技术</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-score">
+                <table class="table table-bordered table-scoreTable">
+                    <thead>
+                        <tr>
+                            <td class="viewScoreStudentinfo">论文题目</td>
+                            <td class="viewScoreStudentinfo">得分</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>校园二手交易平台</td>
+                            <td>86</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="panel panel-footer viewScore_panelfooter text-right">
-        <button type="button" class="btn btn-success">返回</button>
+        <div class="panel panel-footer viewScore_panelfooter text-right">
+            <button type="button" class="btn btn-success">返回</button>
+        </div>
     </div>
 </body>
 </html>
