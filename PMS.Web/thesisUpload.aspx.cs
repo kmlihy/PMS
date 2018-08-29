@@ -21,7 +21,8 @@ namespace PMS.Web
                 Student student = (Student)Session["loginuser"];
                 string stuAccount = student.StuAccount;
                 string stuName = student.RealName;
-                string director = Server.MapPath("/upload/"+ stuAccount + stuName+"/");
+                string year = DateTime.Now.ToString("yyyy");
+                string director = Server.MapPath("/upload/学生/"+ stuAccount + stuName+ "/论文/" + year + "/");
                 if (!Directory.Exists(director))
                 {
                     Directory.CreateDirectory(director);

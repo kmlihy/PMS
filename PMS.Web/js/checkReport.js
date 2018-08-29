@@ -1,18 +1,18 @@
 ﻿$(function () {
     $("#btnupload").click(function () {
-        var location = $("input[name='file']").val();
+        var location = $("input[name='upload']").val();
         var point = location.lastIndexOf(".");
         var type = location.substr(point).toLowerCase();
-        var uploadFiles = document.getElementById("file1").files;
+        var uploadFiles = document.getElementById("upload").files;
         if (uploadFiles.length == 0) {
             alert("请选择要上传的文件");
         }
-        else if (type == ".zip" || type == ".rar") {
+        else if (type == ".doc" || type == ".docx") {
             ajaxFileUpload();
            
         }
         else {
-            alert("只允许上传.zip或者.rar格式的文件");
+            alert("只允许上传.doc或者.docx格式的文件");
         }
     });
 });
@@ -20,27 +20,25 @@
 function ajaxFileUpload() {
     $.ajaxFileUpload(
         {
-            url: '/thesisUpload.aspx', 
+            url: '/uploadCheckReport.aspx',
             secureuri: false,
-            fileElementId: 'file1', //文件上传域的ID
-            dataType: 'json', 
-            success: function (data, status)  
-            {
+            fileElementId: 'upload', //文件上传域的ID
+            dataType: 'json',
+            success: function (data, status) {
                 console.log(data.msg);
                 if (typeof (data.error) != 'undefined') {
                     if (data.error != '') {
                         alert(data.error);
-                        $('#file1').val("");
+                        $('#upload').val("");
                     } else {
                         alert(data.msg);
-                        $('#file1').val("");
+                        $('#upload').val("");
                     }
                 }
             },
-            error: function (data, status, e)
-            {
+            error: function (data, status, e) {
                 alert(e);
-                $('#file1').val("");
+                $('#upload').val("");
             }
         }
     );

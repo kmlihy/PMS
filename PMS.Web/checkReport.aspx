@@ -25,12 +25,14 @@
                         <label class="showFileName"></label>
                         <label class="fileerrorTip"></label>
                     </a>
-                        <button type="submit" class="btn btn-primary" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-primary" id="btnupload">上传</button>
                     </h4>
             </form>
         </div>
     </div>
 </body>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajaxfileupload.js"></script>
+<script src="js/checkReport.js"></script>
 </html>
