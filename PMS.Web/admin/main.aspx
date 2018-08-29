@@ -163,7 +163,7 @@
                             </a>
                         </li>  
                         <li role="presentation">
-                            <a href="../crossGuidanceStudent.aspx" class="sidebarclick" >
+                            <a href="../crossGuideTeacher.aspx" class="sidebarclick" >
                                 <span>教师信息</span>
                             </a>
                         </li>  

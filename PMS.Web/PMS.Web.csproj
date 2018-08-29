@@ -70,6 +70,7 @@
     <Content Include="CommonPage.aspx" />
     <Content Include="crossGuidanceStudent.aspx" />
     <Content Include="crossGuide.aspx" />
+    <Content Include="crossGuideTeacher.aspx" />
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
@@ -471,6 +472,13 @@
     </Compile>
     <Compile Include="crossGuide.aspx.designer.cs">
       <DependentUpon>crossGuide.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="crossGuideTeacher.aspx.cs">
+      <DependentUpon>crossGuideTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="crossGuideTeacher.aspx.designer.cs">
+      <DependentUpon>crossGuideTeacher.aspx</DependentUpon>
     </Compile>
     <Compile Include="downLoadPaper.aspx.cs">
       <DependentUpon>downLoadPaper.aspx</DependentUpon>
