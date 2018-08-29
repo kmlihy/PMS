@@ -35,8 +35,8 @@
             <table class="table table-bordered" style="width: 50%; margin: auto;">
                 <thead>
                     <tr>
-                        <td>论文题目</td>
-                        <td>得分</td>
+                        <td class="viewScoreStudentinfo">论文题目</td>
+                        <td class="viewScoreStudentinfo">得分</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="panel panel-footer viewScore_panelfooter text-right">
-        <button type="button" class="btn btn-success">查看更多详细信息</button>
+        <button type="button" class="btn btn-success">返回</button>
     </div>
 </body>
 </html>
