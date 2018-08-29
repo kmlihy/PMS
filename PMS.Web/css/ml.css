@@ -212,3 +212,23 @@ a:hover {
     text-align:center;
     font-size:24px;
 }
+
+
+/*crossGuideTeacher*/
+.btn_searchComment {
+    vertical-align: middle;
+    float: right;
+}
+
+.sap {
+    padding-top: 20px;
+}
+
+.text_type {
+    width: 80px;
+    text-align: center;
+}
+
+.modal_comment {
+    height: 200px;
+}
