@@ -299,6 +299,7 @@
     <Content Include="test.aspx" />
     <Content Include="thesisSubmit.aspx" />
     <Content Include="upload.aspx" />
+    <Content Include="viewScore.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
@@ -621,6 +622,13 @@
     </Compile>
     <Compile Include="upload.aspx.designer.cs">
       <DependentUpon>upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewScore.aspx.cs">
+      <DependentUpon>viewScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewScore.aspx.designer.cs">
+      <DependentUpon>viewScore.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
