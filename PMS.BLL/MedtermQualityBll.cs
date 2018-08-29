@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -55,6 +56,30 @@ namespace PMS.BLL
                 return Result.添加成功;
             }
             return Result.添加失败;
+        }
+        /// <summary>
+        /// 根据选题记录id获取中期检查对象
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
+        public MedtermQuality Select(int titleRecordId)
+        {
+            DataSet ds = mdao.Select(titleRecordId);
+            MedtermQuality or = new MedtermQuality();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                int i = ds.Tables[0].Rows.Count - 1;
+                or.planFinishSituation = ds.Tables[0].Rows[i]["planFinishSituation"].ToString();
+                or.teacherOpinion = ds.Tables[0].Rows[i]["teacherOpinion"].ToString();
+                or.supervisionOpinion = ds.Tables[0].Rows[i]["supervisionOpinion"].ToString();
+                or.guideGroupOpinion = ds.Tables[0].Rows[i]["guideGroupOpinion"].ToString();
+                or.dateTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["dateTime"].ToString());
+                return or;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

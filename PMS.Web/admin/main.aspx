@@ -135,6 +135,11 @@
                                         <span>提交论文</span>
                                     </a>
                                 </li>
+                                 <li role="presentation" id="mediiumQuality">
+                                    <a href="../mediiumQuality.aspx" class="sidebarclick" >
+                                        <span>中期检查</span>
+                                    </a>
+                                </li>
                                  <li role="presentation" id="checkReport">
                                     <a href="../checkReport.aspx" class="sidebarclick" >
                                         <span>查重报告</span>
@@ -152,49 +157,16 @@
                                 </li>
                             </ul>
                         </li>
-                        <!--<li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
-                                <span>开题报告</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                        </li>
                         <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
-                                <span>提交论文</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
-                                <span>查重报告</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
-                                <span>交叉评阅</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
-                                <span>论文答辩</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                        </li>-->
-                        <li role="presentation">
-                            <a href="#" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-survey1"></i>
+                            <a href="../viewScore.aspx" class="sidebarclick" >
                                 <span>查看成绩</span>
-                                <i class="iconfont icon-more"></i>
                             </a>
-                        </li>
-
+                        </li>  
+                        <li role="presentation">
+                            <a href="../crossGuideTeacher.aspx" class="sidebarclick" >
+                                <span>教师信息</span>
+                            </a>
+                        </li>  
                         <%}
                             else if (State == 1)
                             {%>
@@ -257,22 +229,27 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="submitReportTea">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../stuHistoryPaper.aspx" class="sidebarclick" >
                                         <span>论文评阅</span>
                                     </a>
                                 </li>
+                                 <li role="presentation" id="mediiumQualityTea">
+                                    <a href="../mediiumQuality.aspx" class="sidebarclick" >
+                                        <span>中期检查</span>
+                                    </a>
+                                </li>
                                  <li role="presentation" id="checkReportTea">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../checkReportTeacher.aspx" class="sidebarclick" >
                                         <span>查重报告</span>
                                     </a>
                                 </li>
                                  <li role="presentation" id="crossGuideTea">
-                                    <a href="../crossGuide.aspx" class="sidebarclick" >
+                                    <a href="../crossGuidanceStudent.aspx" class="sidebarclick" >
                                         <span>交叉评阅</span>
                                     </a>
                                 </li>
                                  <li role="presentation" id="defenceTea">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../myStudentRespondent.aspx" class="sidebarclick" >
                                         <span>查看答辩</span>
                                     </a>
                                 </li>

@@ -470,3 +470,25 @@
 #fileBtn {
     float: right;
 }
+/*查看成绩样式*/
+.viewScore_panelhead {
+    border: 1px #ddd solid;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    border-bottom: 3px #DDD inset;
+}
+
+.viewScore_panelfooter {
+    width: 80%;
+    margin: auto;
+}
+
+.viewScore_panelbody {
+    -webkit-box-shadow:none;
+    height: 300px;
+}
+.viewScoreStudentinfo {
+    width:50%;
+    border-top:none !important;
+}
