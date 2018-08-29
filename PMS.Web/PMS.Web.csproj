@@ -155,6 +155,7 @@
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
+    <Content Include="js\thesisSubmit.js" />
     <Content Include="js\titleList.js" />
     <Content Include="js\titleReadList.js" />
     <Content Include="js\xcConfirm.js" />
@@ -296,6 +297,8 @@
     <Content Include="stuCenter.aspx" />
     <Content Include="stuHistoryPaper.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="thesisSubmit.aspx" />
+    <Content Include="upload.aspx" />
     <Content Include="Web.config" />
     <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
@@ -604,6 +607,20 @@
     </Compile>
     <Compile Include="PaperDtailStu.aspx.designer.cs">
       <DependentUpon>PaperDtailStu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="thesisSubmit.aspx.cs">
+      <DependentUpon>thesisSubmit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="thesisSubmit.aspx.designer.cs">
+      <DependentUpon>thesisSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

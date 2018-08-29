@@ -5,19 +5,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>下载学生论文并评阅</title>
+    <title>指导学生论文</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/iconfont.css" />
     <style>
-        
+        #body{
+            height:700px;
+        }
     </style>
 </head>
 <body>
     <div class="panel">
         <div class="panel-heading text-center">
-            <h1>下载并评阅论文</h1>
+            <h1>指导学生论文</h1>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="body">
             <table class="table text-center table-bordered">
                 <thead>
                     <tr>
@@ -55,6 +58,41 @@
             </table>
         </div>
     </div>
+    <div class="text-right" id="paging">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                        1
+                     <%--   <%=getCurrentPage %>--%>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                   <a href="#" class="jump">
+                        10
+                     <%--   <%=getCurrentPage %>--%>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
+        </div>
 </body>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
