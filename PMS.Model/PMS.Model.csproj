@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="College.cs" />
+    <Compile Include="DefenceGroup.cs" />
+    <Compile Include="DefenceRecord.cs" />
     <Compile Include="GuideRecord.cs" />
     <Compile Include="MedtermQuality.cs" />
     <Compile Include="OpenReport.cs" />

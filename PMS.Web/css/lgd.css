@@ -473,22 +473,67 @@
 /*查看成绩样式*/
 .viewScore_panelhead {
     border: 1px #ddd solid;
-    width: 80%;
     margin: auto;
-    margin-top: 30px;
-    border-bottom: 3px #DDD inset;
 }
 
 .viewScore_panelfooter {
-    width: 80%;
     margin: auto;
 }
 
 .viewScore_panelbody {
-    -webkit-box-shadow:none;
+    -webkit-box-shadow: none;
     height: 300px;
+    margin-top: 10px;
 }
+
 .viewScoreStudentinfo {
-    width:50%;
-    border-top:none !important;
+    width: 50%;
+    border-top: none !important;
+}
+
+.viewScore-body {
+    background-color: rgb(241,248,252) !important;
+}
+
+.table-score {
+    margin-top: 30px;
+}
+
+.table-scoreTable {
+    width: 50%;
+    margin: auto;
+}
+
+.table-studentInfo {
+    width: 50%;
+    margin: auto;
+    border: none;
+}
+
+.viewscore-divbox {
+    width: 100%;
+}
+/*答辩页面样式（学生）*/
+.oraldefense-table {
+    margin: auto;
+    width: 100%;
+    border: 1px #DDD solid !important;
+}
+
+.oraldefense-student {
+    background-color: rgb(241,248,252) !important;
+}
+
+.oraldefense-div {
+    width: 100%;
+}
+
+#oraldefenseHistory {
+    word-break: normal;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    background-color:white;
 }
