@@ -9,7 +9,7 @@
 </head>
 <body>
 <p><input type="file" id="file1" name="file" /></p>
-    <input type="button" value="上传" />
+    <input type="button" value="上传" id="btnupload" />
 </body>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/ajaxfileupload.js"></script>

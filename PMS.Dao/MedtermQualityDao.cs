@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -72,6 +73,26 @@ namespace PMS.Dao
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        /// <summary>
+        /// 根据选题记录id查找中期检查信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns>中期检查记录数据集</returns>
+        public DataSet Select(int titleRecordId)
+        {
+            try
+            {
+                string cmdText = "select * from T_MedtermQuality where titleRecordId=@titleRecordId";
+                String[] param = { "@titleRecordId" };
+                String[] values = { titleRecordId.ToString() };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

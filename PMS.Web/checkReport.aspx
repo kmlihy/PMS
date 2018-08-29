@@ -17,7 +17,7 @@
         </div>
         <div class="panel-body" id="panelbody">
             <form id="form1" runat="server">
-                <h4><a href="#" class="web">前往第三方网站>></a></h4>
+                <h4><a href="http://www.bylwjc.com/" class="web">前往第三方网站>></a></h4>
                 <h3><small>请使用第三方网站完成查重报告，可使用官方提供网址，也可自行查找；</small></h3>
                     <h4>上传查重报告：
                     <a href="javascript:;" id="file">
@@ -25,12 +25,14 @@
                         <label class="showFileName"></label>
                         <label class="fileerrorTip"></label>
                     </a>
-                        <button type="submit" class="btn btn-primary" id="btnupload">上传</button>
+                        <button type="button" class="btn btn-primary" id="btnupload">上传</button>
                     </h4>
             </form>
         </div>
     </div>
 </body>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ajaxfileupload.js"></script>
+<script src="js/checkReport.js"></script>
 </html>
