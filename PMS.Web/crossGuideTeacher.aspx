@@ -9,22 +9,6 @@
     <title></title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
-    <%--<style>
-        .btn_searchComment{
-            vertical-align:middle;
-            float:right;
-        }
-        .sap{
-            padding-top:20px;
-        }
-        .text_type{
-            width:80px;
-            text-align:center;
-        }
-        .modal_comment{
-            height:200px;
-        }
-    </style>--%>
 </head>
 <body>
     <div class="panel">
@@ -34,7 +18,7 @@
         <div class="panel-body">
             <table class="table table-bordered table-responsive">
                 <tr>
-                    <td colspan="8">
+                    <td colspan="8" style="vertical-align: middle">
                         <span class="sap">我的指导老师</span>
                         <button type="button" class="btn btn-default btn_searchComment btn-info btn-sm" data-toggle="modal" data-target="#myModa1">
                             <span class="glyphicon glyphicon-search"></span>
@@ -56,7 +40,7 @@
                     <td colspan="8"></td>
                 </tr>
                 <tr>
-                    <td colspan="8">
+                    <td colspan="8" style="vertical-align: middle">
                         <span class="sap">我的交叉指导老师</span>
                         <button type="button" class="btn btn-default btn_searchComment btn-info btn-sm" data-toggle="modal" data-target="#myModa2">
                             <span class="glyphicon glyphicon-search"></span>
@@ -74,10 +58,8 @@
                     <td class="text_type">电子邮件</td>
                     <td>123121312@qq.com</td>
                 </tr>
-                <tr>
-                    <td colspan="8"></td>
-                </tr>
-                <tr>
+
+<%--                <tr>
                     <td colspan="8">
                         <span class="sap">我的答辩小组</span>
                         <button type="button" class="btn btn-default btn_searchComment btn-info btn-sm" data-toggle="modal" data-target="#myModa3">
@@ -115,7 +97,7 @@
                     <td>12345679801</td>
                     <td class="text_type">电子邮件</td>
                     <td>123121312@qq.com</td>
-                </tr>
+                </tr>--%>
             </table>
         </div>
     </div>
@@ -159,7 +141,7 @@
     </div>
 
     <%--查看答辩小组意见--%>
-    <div class="modal fade" id="myModa3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+<%--    <div class="modal fade" id="myModa3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -174,7 +156,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
