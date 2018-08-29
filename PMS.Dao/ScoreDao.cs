@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -32,6 +33,27 @@ namespace PMS.Dao
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        /// <summary>
+        /// 根据学生账号、批次id获取成绩
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <param name="planId">批次id</param>
+        /// <returns></returns>
+        public DataSet Select(string stuAccount,int planId)
+        {
+            try
+            {
+                string cmdText = "select * from T_Score where stuAccount=@stuAccount and planId = @planId";
+                String[] param = { "@stuAccount", "@planId" };
+                String[] values = { stuAccount, planId.ToString() };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

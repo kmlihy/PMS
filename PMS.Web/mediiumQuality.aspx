@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td class="col-xs-2">毕业设计（论文）题目</td>
-                        <td class="col-xs-4"><%=title %></td>
+                        <td class="col-xs-4" colspan="8"><%=title %></td>
                         <%--<td colspan="4" class="text-left">
                             <div class="input-group" style="width:100%">
                                 <span class="input-group-addon" style="background-color:white; font-size:24px; border:none;">毕业设计（论文）题目：<%=title %></span>
@@ -53,7 +53,7 @@
                         <td colspan="10" style="padding:0 0;">
                             <%if(state == 3){ %>
                             <textarea rows="5" class="textArea" id="stuSet"></textarea>
-                            <%else if(state == 1){ %>
+                            <%}else if(state == 1){ %>
                             <textarea rows="5" class="textArea" id="stuShow" readonly="readonly"><%=mq.planFinishSituation %></textarea>
                             <%} %>
                             <div class="text-right" style="width:100%">
@@ -73,8 +73,8 @@
                         <td colspan="4" style="padding:0 0;">
                             <%if(state == 1){ %>
                             <textarea rows="5" class="textArea" id="teaSet"></textarea>
-                            <%else if(state == 3){ %>
-                            <textarea rows="5" class="textArea" id="teaShow" readonly="readonly"></textarea>
+                            <%}else if(state == 3){ %>
+                            <textarea rows="5" class="textArea" id="teaShow" readonly="readonly">提交后请等待指导教师回复</textarea>
                             <%} %>
                             <div class="text-right" style="width:100%">
                                 <span>指导教师签字：</span>
@@ -93,8 +93,8 @@
                         <td colspan="4" style="padding:0 0;">
                             <%if(state == 1){ %>
                             <textarea rows="5" class="textArea" id="groupSet"></textarea>
-                            <%else if(state == 3){ %>
-                            <textarea rows="5" class="textArea" id="groupShow" readonly="readonly"></textarea>
+                            <%}else if(state == 3){ %>
+                            <textarea rows="5" class="textArea" id="groupShow" readonly="readonly">提交后请等待毕业设计（论文）指导小组回复</textarea>
                             <%} %>
                             <div class="text-right" style="width:100%">
                                 <span>指导小组签字：</span>
