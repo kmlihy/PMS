@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="upload.aspx.cs" Inherits="PMS.Web.upload" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="uploadCheckReport.aspx.cs" Inherits="PMS.Web.uploadCheckReport" %>
 
 <!DOCTYPE html>
 

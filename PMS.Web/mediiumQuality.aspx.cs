@@ -68,6 +68,7 @@ namespace PMS.Web
             {
                 string opinion = Request["teacher"];
                 medterm.teacherOpinion = opinion;
+                medterm.dateTime = DateTime.Now;
                 medterm.titleRecord = tr;
                 Result row = mqbll.teaInsert(medterm);
                 if (row == Result.添加成功)

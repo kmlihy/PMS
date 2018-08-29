@@ -11,7 +11,7 @@ namespace PMS.Web
 {
 
 
-    public partial class upload
+    public partial class uploadCheckReport
     {
 
         /// <summary>
