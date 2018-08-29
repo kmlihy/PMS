@@ -135,6 +135,11 @@
                                         <span>提交论文</span>
                                     </a>
                                 </li>
+                                 <li role="presentation" id="mediiumQuality">
+                                    <a href="../mediiumQuality.aspx" class="sidebarclick" >
+                                        <span>中期检查</span>
+                                    </a>
+                                </li>
                                  <li role="presentation" id="checkReport">
                                     <a href="../checkReport.aspx" class="sidebarclick" >
                                         <span>查重报告</span>
@@ -259,6 +264,11 @@
                                  <li role="presentation" id="submitReportTea">
                                     <a href="#" class="sidebarclick" >
                                         <span>论文评阅</span>
+                                    </a>
+                                </li>
+                                 <li role="presentation" id="mediiumQualityTea">
+                                    <a href="../mediiumQuality.aspx" class="sidebarclick" >
+                                        <span>中期检查</span>
                                     </a>
                                 </li>
                                  <li role="presentation" id="checkReportTea">
