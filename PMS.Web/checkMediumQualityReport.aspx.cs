@@ -24,7 +24,7 @@ namespace PMS.Web
         TitleBll titleBll = new TitleBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            myStudent();
+            getData();
         }
         /// <summary>
         /// 判断教师是否已经出题
@@ -41,7 +41,10 @@ namespace PMS.Web
             }
             return row;
         }
-        public void myStudent()
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        public void getData()
         {
             teacher = (Teacher)Session["loginuser"];
             teaAccount = teacher.TeaAccount;
@@ -52,15 +55,16 @@ namespace PMS.Web
             }
             else
             {
+                string str = "teaAccount =" + "'" + teaAccount + "'";
                 TableBuilder tablBuilder = new TableBuilder()
                 {
-                    StrTable = "V_Title",
-                    StrWhere = "",
+                    StrTable = "V_TitleRecord",
+                    StrWhere = str,
                     IntColType = 0,
                     IntOrder = 0,
                     IntPageNum = 1,
                     IntPageSize = 10,
-                    StrColumn = "titleId",
+                    StrColumn = "teaAccount",
                     StrColumnlist = "*"
                 };
                 ds = titleBll.SelectBypage(tablBuilder, out count);
