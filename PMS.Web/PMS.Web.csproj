@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\LitJSON.dll" />
     <Content Include="checkMediumQualityReport.aspx" />
     <Content Include="checkReport.aspx" />
     <Content Include="checkReportTeacher.aspx" />
