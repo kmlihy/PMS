@@ -54,27 +54,28 @@ namespace PMS.Web.admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-            if (string.Compare(Request.RequestType, "get", true) == 0)
-            {
-                //将私钥存Session中
-                Session["private_key"] = rsa.ToXmlString(true);
-            }
-            else
-            {
+            //RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            //if (string.Compare(Request.RequestType, "get", true) == 0)
+            //{
+            //    //将私钥存Session中
+            //    Session["private_key"] = rsa.ToXmlString(true);
+            //}
+            //else
+            //{
                 try
                 {
                     teaAccount = Request.Form["userName"].ToString();
-                    string pwd = Request.Form["encrypted_pwd"].ToString();
+                    string pwd = Request.Form["pwd"].ToString();
 
-                    rsa.FromXmlString((string)Session["private_key"]);
-                    byte[] result = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
-                    System.Text.ASCIIEncoding enc = new ASCIIEncoding();
-                    string strPwdMD5 = enc.GetString(result);
+                    //rsa.FromXmlString((string)Session["private_key"]);
+                    //byte[] result = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
+                    //System.Text.ASCIIEncoding enc = new ASCIIEncoding();
+                    //string strPwdMD5 = enc.GetString(result);
 
                     TeacherBll bll = new TeacherBll();
                     string roles = "administrator";
-                    Teacher teacher = bll.Login(teaAccount, Security.SHA256Hash(strPwdMD5));
+                    Teacher teacher = bll.Login(teaAccount, Security.SHA256Hash(pwd));
+
                     if (teacher != null)
                     {
                         if (teacher.TeaType == 0)
@@ -114,10 +115,10 @@ namespace PMS.Web.admin
                 {
 
                 }
-            }
-            RSAParameters parameter = rsa.ExportParameters(true);
-            strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
-            strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
+            //}
+            //RSAParameters parameter = rsa.ExportParameters(true);
+            //strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
+            //strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
         }
     }
 }
