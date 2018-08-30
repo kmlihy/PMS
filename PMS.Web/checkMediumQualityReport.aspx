@@ -4,15 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
     <link rel="stylesheet" href="css/lgd.css" />
     <link rel="stylesheet" href="css/iconfont.css" />
     <style>
-        #body{
-            height:500px;
+        #body {
+            height: 500px;
         }
     </style>
 </head>
@@ -25,7 +25,7 @@
             <div class="panel panel-default" id="propanelbox">
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
-                                                <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                         <span class="input-group-btn">
                             <button class="btn btn-info" type="button" id="btn-search">
                                 <span class="glyphicon glyphicon-search">查询</span>
@@ -45,11 +45,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        {
+                             %>
                     <tr>
-                        <td style="vertical-align: middle" class="col-sm-1">1</td>
-                        <td style="vertical-align: middle">航班查询及预订系统</td>
-                        <td style="vertical-align: middle" class="col-sm-1">16612500026</td>
-                        <td style="vertical-align: middle" class="col-sm-1">wudong</td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=i %></td>
+                        <td style="vertical-align: middle"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1">
+                            <%=teaName %>
+                        </td>
                         <td style="vertical-align: middle">
                             <a href="stuMediumQuality.aspx">
                                 <span class="glyphicon glyphicon-hand-right"></span>
@@ -57,6 +62,7 @@
                             </a>
                         </td>
                     </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>
@@ -95,7 +101,8 @@
             </li>
         </ul>
     </div>
+    <label><%=Session["state"] %></label>
 </body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </html>
