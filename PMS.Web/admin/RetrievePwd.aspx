@@ -46,14 +46,14 @@
                 <div class="form-group">
                     <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">新密码:</label>
                     <div class="col-sm-4">
-                        <input type="password" class="form-control" id="newpwd" name="pwd" placeholder="请输入新密码" />
+                        <input type="password" class="form-control" id="newpwd" placeholder="请输入新密码" />
                         <span id="validatePwd"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">确认新密码:</label>
                     <div class="col-sm-4">
-                        <input type="password" class="form-control" id="confirmPwd" name="confirmPwd" placeholder="请再次输入新密码" />
+                        <input type="password" class="form-control" id="confirmPwd" placeholder="请再次输入新密码" />
                         <span id="validateConfirmPwd"></span>
                     </div>
                 </div>
@@ -69,15 +69,20 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-5">
-                        <button type="button" class="btn btn-default oksubmit" id="sumbit">提交</button>
+                        <button type="button" class="btn btn-default oksubmit" id="sumbit"  onclick="cmdEncrypt();">提交</button>
                         <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" type="button" onclick="history.go(-1)">返回</button>
                     </div>
                 </div>
+                <input type="hidden" name="encrypted_pwd" id="encrypted_pwd" />
             </form>
         </div>
     </div>
 </body>
-<script src="../js/jquery-3.3.1.min.js "></script>
+<script src="../js/jquery-1.4.1.js"></script>
+<script src="../js/jQuery.md5.js" type="text/javascript"></script>
+<script src="../js/BigInt.js" type="text/javascript"></script>
+<script src="../js/RSA.js" type="text/javascript"></script>
+<script src="../js/Barrett.js" type="text/javascript"></script>
 <script src="../js/bootstrap.min.js "></script>
 <script src="../js/jquery.validate.min.js "></script>
 <script src="../js/additional-methods.js"></script>
@@ -85,4 +90,14 @@
 <script src="../js/canvas-particle.js"></script>
 <script src="../js/xcConfirm.js"></script>
 <script src="../js/retrievePwd.js"></script>
+<script type="text/javascript">
+    function cmdEncrypt() {
+        setMaxDigits(129);
+        var key = new RSAKeyPair("<%=strPublicKeyExponent%>", "", "<%=strPublicKeyModulus%>");
+        var pwdMD5Twice = $.md5($.md5($("#newpwd").attr("value")));
+        var pwdRtn = encryptedString(key, pwdMD5Twice);
+        $("#encrypted_pwd").attr("value", pwdRtn);
+        $("#changePwdForm").submit();
+    }
+</script>
 </html>

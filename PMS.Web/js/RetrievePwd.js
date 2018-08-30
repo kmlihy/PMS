@@ -28,6 +28,7 @@
         var email = $("#email").val();
         var code = $("#code").val();
         var user = $("input[name='user']:checked").val();
+        var encrypted_pwd = $("#encrypted_pwd").val();
         $('#validateAcoount').text("");
         $('#validateEmail').text("");
         $('#validateCode').text("");
@@ -63,7 +64,8 @@
                     account: account,
                     email: email,
                     code: code,
-                    pwd: pwd,
+                    encrypted_pwd: encrypted_pwd,
+                    //pwd: pwd,
                     user: user,
                     op: "change"
                 },
@@ -91,7 +93,8 @@
         var code = $("#code").val();
         var email = $("#email").val()
         var send = "send";
-
+        var account = $("#account").val();
+        var user = $("input[name='user']:checked").val();
         var disabled = $("#getcode").attr("disabled");
         if (disabled) {
             return false;
@@ -104,7 +107,9 @@
             type: 'Post',
             url: 'RetrievePwd.aspx',
             data: {
+                account: account,
                 email: email,
+                user: user,
                 op: send
             },
             dataType: 'text',
@@ -125,7 +130,7 @@
             }
         });
 
-        var countdown = 5;
+        var countdown = 60;
         var _generate_code = $("#getcode");
         function settime() {
             if (countdown == 0) {

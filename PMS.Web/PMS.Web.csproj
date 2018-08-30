@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="checkMediumQualityReport.aspx" />
     <Content Include="checkReport.aspx" />
     <Content Include="checkReportTeacher.aspx" />
     <Content Include="CommonPage.aspx" />
@@ -127,7 +128,9 @@
     <Content Include="js\adminList.js" />
     <Content Include="js\ajaxfileupload.js" />
     <Content Include="js\allNews.js" />
+    <Content Include="js\Barrett.js" />
     <Content Include="js\batchList.js" />
+    <Content Include="js\BigInt.js" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\bootstrapValidator.min.js" />
     <Content Include="js\branchList.js" />
@@ -138,7 +141,9 @@
     <Content Include="js\crossStuList.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jedate.js" />
+    <Content Include="js\jquery-1.4.1.js" />
     <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\jQuery.md5.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\lgd.js" />
     <Content Include="js\main.js" />
@@ -154,6 +159,7 @@
     <Content Include="js\proList.js" />
     <Content Include="js\reg.js" />
     <Content Include="js\retrievePwd.js" />
+    <Content Include="js\RSA.js" />
     <Content Include="js\selectTopicList.js" />
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
@@ -299,6 +305,7 @@
     <Content Include="square\_all.css" />
     <Content Include="stuCenter.aspx" />
     <Content Include="stuHistoryPaper.aspx" />
+    <Content Include="stuMediumQuality.aspx" />
     <Content Include="test.aspx" />
     <Content Include="thesisSubmit.aspx" />
     <Content Include="thesisUpload.aspx" />
@@ -440,6 +447,13 @@
     </Compile>
     <Compile Include="checkCode.aspx.designer.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkMediumQualityReport.aspx.cs">
+      <DependentUpon>checkMediumQualityReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkMediumQualityReport.aspx.designer.cs">
+      <DependentUpon>checkMediumQualityReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="checkReport.aspx.cs">
       <DependentUpon>checkReport.aspx</DependentUpon>
@@ -605,6 +619,13 @@
     </Compile>
     <Compile Include="stuHistoryPaper.aspx.designer.cs">
       <DependentUpon>stuHistoryPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="stuMediumQuality.aspx.cs">
+      <DependentUpon>stuMediumQuality.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stuMediumQuality.aspx.designer.cs">
+      <DependentUpon>stuMediumQuality.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>

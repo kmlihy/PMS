@@ -23,6 +23,7 @@
         var confirmPwd = $("#confirmPwd").val();
         var email = $("#email").val();
         var phone = $("#telNum").val();
+        var encrypted_pwd = $("#encrypted_pwd").val();
         //var code = $("#regCode").val();
         //alert(collegeId+":"+profession+":"+account+":"+name+":"+sex+":"+pwd+":"+confirmPwd+":"+email+":"+telNum+":"+code)
         if (collegeId === "") {
@@ -82,9 +83,10 @@
                     account: account,
                     name: name,
                     sex: sex,
-                    pwd: pwd,
+                    //pwd: pwd,
                     email: email,
                     phone: phone,
+                    encrypted_pwd: encrypted_pwd,
                     op: "add"
                 },
                 dataType: 'text',
