@@ -32,9 +32,9 @@
                         <td class="col-md-1">学号</td>
                         <td class="col-sm-1"><b><%= stuAccount%></b></td>
                         <td class="col-md-1">专业</td>
-                        <td class="col-sm-1"><b><%= profession%></b></td>
-                        <td class="col-md-1">班级</td>
-                        <td class="col-sm-1"><b></b></td>
+                        <td class="col-sm-1"><b><%= proName%></b></td>
+                        <%--<td class="col-md-1">班级</td>
+                        <td class="col-sm-1"><b></b></td>--%>
                         <td class="col-md-1">指导教师</td>
                         <td class="col-sm-1"><b><%= teaName%></b></td>
                     </tr>

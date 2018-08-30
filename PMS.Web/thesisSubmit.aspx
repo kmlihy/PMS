@@ -6,10 +6,12 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-</head>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/lgd.css" />
+ </head>
 <body>
-<p><input type="file" id="file1" name="file" /></p>
-    <input type="button" value="上传" id="btnupload" />
+    <p id="upload-p">选择文件<input type="file" id="file1" name="file"/></p>
+    <input type="button" value="上传" id="btnupload" class="btn btn-info" />
 </body>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/ajaxfileupload.js"></script>

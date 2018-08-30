@@ -2,6 +2,7 @@
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,26 +13,34 @@ namespace PMS.Web
     using Result = Enums.OpResult;
     public partial class mediiumQuality : CommonPage
     {
-        public string stuAccount, stuName, profession, college, title, teaName;
+        public string stuAccount, stuName, proName, collegeName, title, teaName;
         public int state;
         public MedtermQuality mq = new MedtermQuality();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
-            TitleRecord tr = new TitleRecord();
             MedtermQualityBll mqbll = new MedtermQualityBll();
             MedtermQuality medterm = new MedtermQuality();
             state =Convert.ToInt32(Session["state"].ToString());
+            int titleRecordId = 0;
             if (state == 1)
             {
                 Teacher teacher = (Teacher)Session["loginuser"];
                 string teaAccount = teacher.TeaAccount;
-                tr = trbll.GetByAccount(teaAccount);
-                stuAccount = tr.student.StuAccount;
-                stuName = tr.student.RealName;
-                profession = tr.profession.ProName;
-                college = teacher.college.ColName;
-                title = tr.title.title;
+                DataSet ds = trbll.GetByAccount(teaAccount);
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
+                    if (stuaccount == "15612200017")
+                    {
+                        stuAccount = stuaccount;
+                        stuName = ds.Tables[0].Rows[i]["realName"].ToString();
+                        proName = ds.Tables[0].Rows[i]["proName"].ToString();
+                        title = ds.Tables[0].Rows[i]["title"].ToString();
+                        break;
+                    }
+                }
+                collegeName = teacher.college.ColName;
                 teaName = teacher.TeaName;
             }
             else if(state == 3)
@@ -39,11 +48,20 @@ namespace PMS.Web
                 Student student = (Student)Session["loginuser"];
                 stuAccount = student.StuAccount;
                 stuName = student.RealName;
-                profession = student.profession.ProName;
-                college = student.college.ColName;
-                tr = trbll.GetByAccount(stuAccount);
-                title = tr.title.title;
-                teaName = tr.teacher.TeaName;
+                proName = student.profession.ProName;
+                collegeName = student.college.ColName;
+                DataSet ds = trbll.GetByAccount(stuAccount);
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
+                    if (stuaccount == stuAccount)
+                    {
+                        title = ds.Tables[0].Rows[0]["title"].ToString();
+                        teaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                        titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                        break;
+                    }
+                }
             }
             string op = Request["op"];
             if(op == "student")
@@ -51,7 +69,7 @@ namespace PMS.Web
                 string plan = Request["student"];
                 medterm.planFinishSituation = plan;
                 medterm.dateTime = DateTime.Now;
-                medterm.titleRecord = tr;
+                medterm.titleRecord.TitleRecordId = titleRecordId;
                 Result row = mqbll.stuInsert(medterm);
                 if(row == Result.添加成功)
                 {
@@ -69,7 +87,7 @@ namespace PMS.Web
                 string opinion = Request["teacher"];
                 medterm.teacherOpinion = opinion;
                 medterm.dateTime = DateTime.Now;
-                medterm.titleRecord = tr;
+                medterm.titleRecord.TitleRecordId = titleRecordId;
                 Result row = mqbll.teaInsert(medterm);
                 if (row == Result.添加成功)
                 {
@@ -82,7 +100,7 @@ namespace PMS.Web
                     Response.End();
                 }
             }
-            mq = mqbll.Select(tr.TitleRecordId);
+            mq = mqbll.Select(titleRecordId);
         }
     }
 }

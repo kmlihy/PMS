@@ -44,10 +44,11 @@ namespace PMS.BLL
             DefenceGroup defence = new DefenceGroup();
             if(ds != null && ds.Tables[0].Rows.Count > 0)
             {
-                defence.leader = ds.Tables[0].Rows[0]["leader"].ToString();
-                defence.member = ds.Tables[0].Rows[0]["member"].ToString();
-                defence.recorder = ds.Tables[0].Rows[0]["recorder"].ToString();
-                defence.plan.PlanId = Convert.ToInt32(ds.Tables[0].Rows[0]["planId"].ToString());
+                int i = ds.Tables[0].Rows.Count - 1;
+                defence.leader = ds.Tables[0].Rows[i]["leader"].ToString();
+                defence.member = ds.Tables[0].Rows[i]["member"].ToString();
+                defence.recorder = ds.Tables[0].Rows[i]["recorder"].ToString();
+                defence.plan.PlanId = Convert.ToInt32(ds.Tables[0].Rows[i]["planId"].ToString());
                 return defence;
             }
             return null;
