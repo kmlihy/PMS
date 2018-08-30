@@ -75,6 +75,7 @@
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
+    <Content Include="defenseRecordTeacher.aspx" />
     <Content Include="downLoadPaper.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
@@ -267,6 +268,7 @@
     <Content Include="obj\Debug\PMS.Web.dll" />
     <Content Include="obj\Debug\PMS.Web.pdb" />
     <Content Include="openingReport.aspx" />
+    <Content Include="oralDefenseStudent.aspx" />
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="paperSubmission.aspx" />
@@ -497,6 +499,13 @@
     <Compile Include="crossGuideTeacher.aspx.designer.cs">
       <DependentUpon>crossGuideTeacher.aspx</DependentUpon>
     </Compile>
+    <Compile Include="defenseRecordTeacher.aspx.cs">
+      <DependentUpon>defenseRecordTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="defenseRecordTeacher.aspx.designer.cs">
+      <DependentUpon>defenseRecordTeacher.aspx</DependentUpon>
+    </Compile>
     <Compile Include="downLoadPaper.aspx.cs">
       <DependentUpon>downLoadPaper.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -569,6 +578,13 @@
     </Compile>
     <Compile Include="openingReport.aspx.designer.cs">
       <DependentUpon>openingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="oralDefenseStudent.aspx.cs">
+      <DependentUpon>oralDefenseStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="oralDefenseStudent.aspx.designer.cs">
+      <DependentUpon>oralDefenseStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="paperDetail.aspx.cs">
       <DependentUpon>paperDetail.aspx</DependentUpon>
