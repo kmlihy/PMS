@@ -57,18 +57,18 @@ namespace PMS.Web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-            if (string.Compare(Request.RequestType, "get", true) == 0)
-            {
-                //将私钥存Session中
-                Session["private_key"] = rsa.ToXmlString(true);
-            }
-            else
-            {
+            //RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            //if (string.Compare(Request.RequestType, "get", true) == 0)
+            //{
+            //    //将私钥存Session中
+            //    Session["private_key"] = rsa.ToXmlString(true);
+            //}
+            //else
+            //{
                 try
                 {
                     account = Request.Form["userName"].Trim();
-                    pwd = Request.Form["encrypted_pwd"].Trim();
+                    pwd = Request.Form["pwd"].Trim();
                     captcha = Request.Form["captcha"].ToLower();
                     usertype = Request.Form["user"].Trim();
                     string Verification = vildata();
@@ -76,10 +76,10 @@ namespace PMS.Web
                     if (Verification.Length == 0)
                     {
                         int loginstate = 0;
-                        rsa.FromXmlString((string)Session["private_key"]);
-                        byte[] result = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
-                        System.Text.ASCIIEncoding enc = new ASCIIEncoding();
-                        string strPwdMD5 = enc.GetString(result);
+                        //rsa.FromXmlString((string)Session["private_key"]);
+                        //byte[] result = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
+                        //System.Text.ASCIIEncoding enc = new ASCIIEncoding();
+                        //string strPwdMD5 = enc.GetString(result);
 
                         switch (usertype)
                         {
@@ -87,7 +87,7 @@ namespace PMS.Web
                                 TeacherBll teaBll = new TeacherBll();
                                 if (teaBll.GetModel(account).TeaType == 1)
                                 {
-                                    Teacher tea = teaBll.Login(account, Security.SHA256Hash(strPwdMD5));
+                                    Teacher tea = teaBll.Login(account, Security.SHA256Hash(pwd));
                                     if (tea == null)
                                     {
                                         loginstate = 0;
@@ -115,7 +115,7 @@ namespace PMS.Web
                                 break;
                             case "student":
                                 StudentBll sdao = new BLL.StudentBll();
-                                Student stu = sdao.Login(account, Security.SHA256Hash(strPwdMD5));
+                                Student stu = sdao.Login(account, Security.SHA256Hash(pwd));
                                 if (stu == null)
                                 {
                                     loginstate = 0;
@@ -158,10 +158,10 @@ namespace PMS.Web
                 {
 
                 }
-            }
-            RSAParameters parameter = rsa.ExportParameters(true);
-            strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
-            strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
+            //}
+            //RSAParameters parameter = rsa.ExportParameters(true);
+            //strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
+            //strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
         }
   
 
