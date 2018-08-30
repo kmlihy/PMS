@@ -229,7 +229,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="submitReportTea">
-                                    <a href="../stuHistoryPaper.aspx" class="sidebarclick" >
+                                    <a href="../downLoadPaper.aspx" class="sidebarclick" >
                                         <span>论文评阅</span>
                                     </a>
                                 </li>
