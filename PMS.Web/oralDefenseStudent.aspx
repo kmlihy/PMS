@@ -27,22 +27,22 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>刘备</td>
+                        <td><%=leaderName %> </td>
                         <td>组长</td>
-                        <td>1234567890</td>
-                        <td>1234567890@qq.com</td>
+                        <td><%=leaderTel %></td>
+                        <td><%=leaderMail %></td>
                     </tr>
                     <tr>
-                        <td>王五</td>
+                        <td><%=memberName %></td>
                         <td>副组长</td>
-                        <td>9876543210</td>
-                        <td>9876543210@qq.com</td>
+                        <td><%=memberTel %></td>
+                        <td><%=memberMail %></td>
                     </tr>
                     <tr>
-                        <td>李四</td>
+                        <td><%=recorderName %></td>
                         <td>秘书</td>
-                        <td>1593571330</td>
-                        <td>1593571330@qq.com</td>
+                        <td><%=recorderTel %></td>
+                        <td><%=recorderMail %></td>
                     </tr>
                 </tbody>
             </table>

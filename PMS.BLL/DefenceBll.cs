@@ -55,6 +55,16 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 通过defenGroupId分别取到leader，member，recorder
+        /// </summary>
+        /// <param name="dgId">defenGroupId</param>
+        /// <returns></returns>
+        public DefenceGroup getTeaId(string dgId)
+        {
+            return dedao.getTeaId(dgId);
+        }
+
+        /// <summary>
         /// 添加答辩记录
         /// </summary>
         /// <param name="defence">答辩记录对象</param>
