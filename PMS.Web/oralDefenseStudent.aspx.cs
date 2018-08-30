@@ -17,6 +17,7 @@ namespace PMS.Web
         DefenceBll defenceBll = new DefenceBll();
         TeacherBll teacherBll = new TeacherBll();
 
+        public string dgId;
         public string leaderName, memberName, recorderName;
         public string leaderTel, memberTel, recorderTel;
         public string leaderMail, memberMail,recorderMail;
@@ -30,30 +31,38 @@ namespace PMS.Web
             Student stu = (Student)Session["loginuser"];
             string account = stu.StuAccount;
             TitleRecord titleRecord = titleRecordBll.getDgId(account);
-            int dgId = titleRecord.DefeseTeamId;
-            DefenceGroup defenceGroup = defenceBll.getTeaId(dgId.ToString());
+            dgId = titleRecord.DefeseTeamId.ToString();
+            //未指定答辩小组
+            if (dgId=="0"||dgId==""||dgId==null)
+            {
+                dgId = "";
+            }
+            else
+            {
+                DefenceGroup defenceGroup = defenceBll.getTeaId(dgId);
 
-            ///分别取到小组成员账号
-            string leader = defenceGroup.leader;
-            string member = defenceGroup.member;
-            string recorder = defenceGroup.recorder;
+                ///分别取到小组成员账号
+                string leader = defenceGroup.leader;
+                string member = defenceGroup.member;
+                string recorder = defenceGroup.recorder;
 
-            Teacher leaderId = teacherBll.GetModel(leader);
-            Teacher memberId = teacherBll.GetModel(member);
-            Teacher recorderId = teacherBll.GetModel(recorder);
+                Teacher leaderId = teacherBll.GetModel(leader);
+                Teacher memberId = teacherBll.GetModel(member);
+                Teacher recorderId = teacherBll.GetModel(recorder);
 
-            //取到姓名
-            leaderName = leaderId.TeaName;
-            memberName = memberId.TeaName;
-            recorderName = recorderId.TeaName;
-            //取到电话
-            leaderTel = leaderId.Phone;
-            memberTel = memberId.Phone;
-            recorderTel = recorderId.Phone;
-            //取到邮箱
-            leaderMail = leaderId.Email;
-            memberMail = memberId.Email;
-            recorderMail = recorderId.Email;
+                //取到姓名
+                leaderName = leaderId.TeaName;
+                memberName = memberId.TeaName;
+                recorderName = recorderId.TeaName;
+                //取到电话
+                leaderTel = leaderId.Phone;
+                memberTel = memberId.Phone;
+                recorderTel = recorderId.Phone;
+                //取到邮箱
+                leaderMail = leaderId.Email;
+                memberMail = memberId.Email;
+                recorderMail = recorderId.Email;
+            }
         }
     }
 }

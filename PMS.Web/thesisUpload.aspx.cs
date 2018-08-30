@@ -22,13 +22,15 @@ namespace PMS.Web
                 string stuAccount = student.StuAccount;
                 string stuName = student.RealName;
                 string year = DateTime.Now.ToString("yyyy");
-                string director = Server.MapPath("/upload/学生/"+ stuAccount + stuName+ "/论文/" + year + "/");
+                string absPath = "/upload/学生/" + stuAccount + stuName + "/论文/" + year + "/";
+                string director = Server.MapPath(absPath);
                 if (!Directory.Exists(director))
                 {
                     Directory.CreateDirectory(director);
                 }
                 string now = DateTime.Now.ToString("yyyyMMddHHmmss");
                 string path = director + System.IO.Path.GetFileName(now + "-" + files[0].FileName);
+                string fileName = absPath + now + "-" + files[0].FileName;
                 if (File.Exists(path))
                 {
                     msg = "上传失败，文件存在";
@@ -36,6 +38,7 @@ namespace PMS.Web
                 else
                 {
                     files[0].SaveAs(path);
+
                     msg = "上传成功";
                 }
                 string res = "{ error:'" + error + "', msg:'" + msg + "'}";

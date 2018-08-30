@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="oraldefense-student">
+    <%if (dgId == "" || dgId == null || dgId == "0")
+        { %>
+    <h3>暂未指定答辩小组</h3>
+    <%}
+    else
+    {%>
     <div class="container oraldefense-div">
         <div class="panel panel-heading text-center">
             <h2>我的答辩小组</h2>
@@ -75,6 +81,7 @@
             </div>
         </div>
     </div>
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
