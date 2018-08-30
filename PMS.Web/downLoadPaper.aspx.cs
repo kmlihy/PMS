@@ -10,6 +10,7 @@ using System.Data;
 
 namespace PMS.Web
 {
+    using Result = Enums.OpResult;
     public partial class downLoadPaper : System.Web.UI.Page
     {
         public DataSet ds;
@@ -18,13 +19,41 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
-            ProfessionBll probll = new ProfessionBll();
-            PlanBll planBll = new PlanBll();
+            PathBll pathBll = new PathBll();
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
             collegeId = teacher.college.ColID;
             string op = Context.Request.Form["op"];
             string type = Request.QueryString["type"];
+            string addop = Request["addop"];
+            if (addop == "add")
+            {
+                string stuAccount = Request["stuAccount"];
+                string opinion = Request["opinion"];
+                GuideRecordBll guideBll = new GuideRecordBll();
+                GuideRecord guide = new GuideRecord();
+                DataSet dsTR = trbll.GetByAccount(stuAccount);
+                int i = dsTR.Tables[0].Rows.Count - 1;
+                guide.opinion = opinion;
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[i]["titleRecordId"].ToString());
+                guide.titleRecord = titleRecord;
+                guide.dateTime = DateTime.Now;
+                Path path = pathBll.Select(titleRecord.TitleRecordId);
+                guide.path = path;
+                int pathId = path.pathId;
+                Result row = guideBll.Insert(guide);
+                if(row == Result.添加成功)
+                {
+                    Response.Write("提交成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("提交失败");
+                    Response.End();
+                }
+            }
             if (!IsPostBack)
             {
                 Search();
@@ -73,7 +102,7 @@ namespace PMS.Web
             string where2 = "teaAccount = " + teaAccount + " and " + strWhere;
             TableBuilder tabuilder = new TableBuilder()
             {
-                StrTable = "V_CrossGuide",
+                StrTable = "V_TitleRecord",
                 StrWhere = strWhere == null || strWhere == "" ? where1 : where2,
                 IntColType = 0,
                 IntOrder = 0,

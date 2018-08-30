@@ -23,9 +23,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_GuideRecord(titleRecordId,opinion,paperPath,dateTime) values(@titleRecordId,@opinion,@paperPath,@dateTime)";
-                string[] param = { "@titleRecordId", "@opinion", "@paperPath", "@dateTime" };
-                object[] values = { guideRecord.titleRecord.TitleRecordId,guideRecord.opinion,guideRecord.paperPath,guideRecord.dateTime };
+                string cmdText = "insert into T_GuideRecord(titleRecordId,opinion,pathId,dateTime) values(@titleRecordId,@opinion,@pathId,@dateTime)";
+                string[] param = { "@titleRecordId", "@opinion", "@pathId", "@dateTime" };
+                object[] values = { guideRecord.titleRecord.TitleRecordId,guideRecord.opinion,guideRecord.path.pathId, guideRecord.dateTime };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

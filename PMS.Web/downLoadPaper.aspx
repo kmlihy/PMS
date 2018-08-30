@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/ml.css" />
     <link rel="stylesheet" href="css/lgd.css" />
     <link rel="stylesheet" href="css/iconfont.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
     <style>
         #body {
             height: 500px;
@@ -25,7 +26,7 @@
             <div class="panel panel-default" id="propanelbox">
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
-                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=search %>" />
+                        <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" value="<%=secSearch %>" />
                         <span class="input-group-btn">
                             <button class="btn btn-info" type="button" id="btn-search">
                                 <span class="glyphicon glyphicon-search">查询</span>
@@ -51,19 +52,19 @@
                         { %>
                     <tr>
                         <td style="vertical-align: middle" class="col-sm-1"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
-                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-3"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1" id="stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
                             <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
                         </td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModa1">
+                            <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModa1" id="btnOpinion">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 点击评价
                             </button>
                         </td>
-                        <td style="vertical-align: middle">
+                        <td style="vertical-align: middle" class="col-sm-1">
                             <a href="stuHistoryPaper.aspx">
                                 <span class="glyphicon glyphicon-hand-right"></span>
                                 点击查看
@@ -121,17 +122,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid table-bordered img-rounded modal_comment">
-                        <textarea rows="8" style="margin-top:15px;width:100%;"></textarea>
+                        <textarea rows="8" style="margin-top:15px;width:100%;" class="opinion"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-default ">提交</button>
+                    <button type="submit" class="btn btn-default " id="submit">提交</button>
                     <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/xcConfirm.js"></script>
+<script src="js/downloadPaper.js"></script>
 </html>

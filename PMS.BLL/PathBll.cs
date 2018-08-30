@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using PMS.Model;
 using PMS.Dao;
+using System.Data;
 
 namespace PMS.BLL
 {
@@ -13,6 +14,7 @@ namespace PMS.BLL
     /// </summary>
     public class PathBll
     {
+        PathDao pdao = new PathDao();
         /// <summary>
         /// 添加一条文件路径信息
         /// </summary>
@@ -20,13 +22,27 @@ namespace PMS.BLL
         /// <returns>成功返回Result.添加成功，失败返回Result.添加失败</returns>
         public Result Insert(Path path)
         {
-            PathDao pdao = new PathDao();
             int row = pdao.Insert(path);
             if (row > 0)
             {
                 return Result.添加成功;
             }
             return Result.添加失败;
+        }
+
+        public Path Select(int titleRecordId)
+        {
+            DataSet ds = pdao.Select(titleRecordId);
+            Path path = new Path();
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                path.pathId = Convert.ToInt32(ds.Tables[0].Rows[0]["pathTitle"].ToString());
+                path.title = ds.Tables[0].Rows[0]["pathTitle"].ToString();
+                path.paperPath = ds.Tables[0].Rows[0]["path"].ToString();
+                path.dateTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["dateTime"].ToString());
+                return path;
+            }
+            return null;
         }
     }
 }

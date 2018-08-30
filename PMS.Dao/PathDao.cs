@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using PMS.DBHelper;
@@ -32,6 +33,26 @@ namespace PMS.Dao
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public DataSet Select(int titleRecordId)
+        {
+            try
+            {
+                string cmdText = "select * from T_Path where titleRecordId = @titleRecordId";
+                string[] param = { "@titleRecordId" };
+                object[] values = { titleRecordId };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

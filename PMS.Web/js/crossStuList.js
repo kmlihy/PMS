@@ -147,15 +147,4 @@ $(document).ready(function () {
                 break;
         }
     });
-    //点击查看详情弹窗加载数据
-    //$(".btnSearch").click(function () {
-    //    $("#titleRecordId1").text(($(this).parent().parent().find("#titleRecordId").text().trim()));
-    //    $("#realName1").text(($(this).parent().parent().find("#realName").text().trim()));
-    //    $("#sex1").text(($(this).parent().parent().find("#sex").text().trim()));
-    //    $("#phone1").text(($(this).parent().parent().find("#phone").text().trim()));
-    //    $("#proName1").text(($(this).parent().parent().find("#proName").text().trim()));
-    //    $("#title1").text(($(this).parent().parent().find("#title").text().trim()));
-    //    $("#planName1").text(($(this).parent().parent().find("#planName").text().trim()));
-    //    $("#recordtime1").text(($(this).parent().parent().find("#recordtime").text().trim()));
-    //});
 });
