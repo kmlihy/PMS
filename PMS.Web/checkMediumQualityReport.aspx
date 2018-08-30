@@ -87,8 +87,8 @@
                 <a href="#">/</a>
             </li>
             <li>
-                <a href="#" class="jump">10
-                     <%--   <%=getCurrentPage %>--%>
+                <a href="#" class="jump">
+                        <%=count %>
                 </a>
             </li>
             <li>

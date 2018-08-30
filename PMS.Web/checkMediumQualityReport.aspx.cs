@@ -52,10 +52,11 @@ namespace PMS.Web
             }
             else
             {
+                string str = "where teaAccount =" + "'" + teaAccount + "'";
                 TableBuilder tablBuilder = new TableBuilder()
                 {
                     StrTable = "V_Title",
-                    StrWhere = "",
+                    StrWhere = str,
                     IntColType = 0,
                     IntOrder = 0,
                     IntPageNum = 1,
