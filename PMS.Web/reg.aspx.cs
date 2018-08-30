@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,22 +26,39 @@ namespace PMS.Web
         StudentBll stuBll = new StudentBll();
         College coll = new College();
         Student stu = new Student();
+        protected string college;
+        protected string profession;
+        protected string account;
+        protected string name;
+        protected string sex;
+        protected string pwd;
+        protected string email;
+        protected string phone;
+
+        protected string strPublicKeyExponent = "";
+        protected string strPublicKeyModulus = "";
+        RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RSAParameters parameter = rsa.ExportParameters(true);
+            strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
+            strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
             //获取学院
             dsColl = collbll.Select();
             //获取专业
             if (Context.Request["op"] != null)
             {
                 string op = Context.Request["op"].ToString();
-                if (op == "load")
+                if (op == "load"|| string.Compare(Request.RequestType, "get", true) == 0)
                 {
                     getPro();
+                    Session["private_key"] = rsa.ToXmlString(true);
                 }
                 else if (op == "add")
                 {
-                    insert();
+                     insert();
+                    
                 }
             }
 
@@ -64,14 +83,15 @@ namespace PMS.Web
         //添加学生
         protected void insert()
         {
-            string college = Context.Request["collegeId"].ToString();
-            string profession = Context.Request["profession"].ToString();
-            string account = Context.Request["account"].ToString();
-            string name = Context.Request["name"].ToString();
-            string sex = Context.Request["sex"].ToString();
-            string pwd = Context.Request["pwd"].ToString();
-            string email = Context.Request["email"].ToString();
-            string phone = Context.Request["phone"].ToString();
+            college = Context.Request["collegeId"].ToString();
+            profession = Context.Request["profession"].ToString();
+            account = Context.Request["account"].ToString();
+            name = Context.Request["name"].ToString();
+            sex = Context.Request["sex"].ToString();
+            pwd = Context.Request["encrypted_pwd"].ToString();
+            email = Context.Request["email"].ToString();
+            phone = Context.Request["phone"].ToString();
+
             //根据输入的邮箱、联系电话查找是否已存在
             result = Result.添加失败;
             bool flagEmail = stuBll.selectByEmail(email);
@@ -88,6 +108,12 @@ namespace PMS.Web
             }
             else
             {
+
+                rsa.FromXmlString((string)Session["private_key"]);
+                byte[] res = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
+                System.Text.ASCIIEncoding enc = new ASCIIEncoding();
+                string strPwdMD5 = enc.GetString(res);
+
                 pro.ProId = int.Parse(profession);
                 coll.ColID = int.Parse(college);
                 stu.college = coll;
@@ -97,7 +123,7 @@ namespace PMS.Web
                 stu.RealName = name;
                 stu.Sex = sex;
                 stu.StuAccount = account;
-                stu.StuPwd = Security.SHA256Hash(pwd);
+                stu.StuPwd = Security.SHA256Hash(strPwdMD5);
                 result = stuBll.Insert(stu);
                 if (result == Result.添加成功)
                 {
