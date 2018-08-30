@@ -62,7 +62,7 @@
                                         }
                                     }%>
                             </select>
-                            <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" value="<%=search %>" />
+                            <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" value="<%=secSearch %>" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
                                     <span class="glyphicon glyphicon-search">查询</span>

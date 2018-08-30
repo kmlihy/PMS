@@ -18,6 +18,16 @@ namespace PMS.BLL
         private PublicProcedure pubpro = new PublicProcedure();
 
         /// <summary>
+        /// 通过学生账号取到defenGroupId
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
+        public TitleRecord getDgId(string stuAccount)
+        {
+            return dao.getDgId(stuAccount);
+        }
+
+        /// <summary>
         /// 添加一条选题记录信息
         /// </summary>
         /// <param name="record">要添加的选题记录对象</param>
