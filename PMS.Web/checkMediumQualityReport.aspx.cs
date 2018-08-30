@@ -66,7 +66,7 @@ namespace PMS.Web
                 ds = titleBll.SelectBypage(tablBuilder, out count);
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    teaNnum = ds.Tables[0].Rows[i]["teaAccout"].ToString();
+                    teaNnum = ds.Tables[0].Rows[i]["teaAccount"].ToString();
                 }
             }
         }
