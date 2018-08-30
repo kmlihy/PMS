@@ -33,7 +33,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-lock"></span>
                     </span>
-                    <input type="password" class="form-control" id="pwd" placeholder="密码" />
+                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="密码" />
                 </div>
                 <p class="retrievePwd"><a href="RetrievePwd.aspx">找回密码</a></p>
                 <div class="form-group">
@@ -58,12 +58,12 @@
 <script src="../js/zwh.js"></script>
 <script type="text/javascript">
     function cmdEncrypt() {
-        setMaxDigits(129);
+<%--        setMaxDigits(129);
         var key = new RSAKeyPair("<%=strPublicKeyExponent%>", "", "<%=strPublicKeyModulus%>");
         var pwdMD5Twice = $.md5($.md5($("#pwd").attr("value")));
         var pwdRtn = encryptedString(key, pwdMD5Twice);
         $("#encrypted_pwd").attr("value", pwdRtn);
-        $("#form").submit();
+        $("#form").submit();--%>
     }
 </script>
 </html>
