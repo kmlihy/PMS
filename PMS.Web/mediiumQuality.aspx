@@ -23,9 +23,9 @@
                 <table class="table" id="mediumQuality_table">
                     <tr>
                         <td class="col-xs-2">分院</td>
-                        <td class="col-xs-4"><%=college %></td>
+                        <td class="col-xs-4"><%=collegeName %></td>
                         <td class="col-xs-2">专业</td>
-                        <td class="col-xs-4"><%=profession %></td>
+                        <td class="col-xs-4"><%=proName %></td>
                     </tr>
                     <tr>
                         <td class="col-xs-2">毕业设计（论文）题目</td>

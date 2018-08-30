@@ -21,9 +21,20 @@ namespace PMS.Web
             stuAccount = student.StuAccount;
             stuName = student.RealName;
             profession = student.profession.ProName;
-            TitleRecord tr = trbll.GetByAccount(stuAccount);
-            title = tr.title.title;
-            teaName = tr.teacher.TeaName;
+            DataSet dsTR = trbll.GetByAccount(stuAccount);
+            int planId = 0,titleRecordId = 0;
+            for (int i = 0; i < dsTR.Tables[0].Rows.Count; i++)
+            {
+                string stuaccount = dsTR.Tables[0].Rows[i]["stuAccount"].ToString();
+                if (stuaccount == stuAccount)
+                {
+                    title = dsTR.Tables[0].Rows[0]["title"].ToString();
+                    teaName = dsTR.Tables[0].Rows[0]["teaName"].ToString();
+                    planId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["planId"].ToString());
+                    titleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["titleRecordId"].ToString());
+                    break;
+                }
+            }
             string op = Context.Request["op"];
             if (op == "add")
             {
@@ -36,7 +47,7 @@ namespace PMS.Web
                 string reference = Request["reference"];
                 OpenReportBll orbll = new OpenReportBll();
                 OpenReport open = new OpenReport();
-                open.titleRecord = tr;
+                open.titleRecord.TitleRecordId = titleRecordId;
                 open.meaning = meaning;
                 open.trend = trend;
                 open.content = content;

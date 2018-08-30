@@ -12,20 +12,28 @@ namespace PMS.Web
 {
     public partial class viewScore : System.Web.UI.Page
     {
-        public string stuAccount, stuName, profession, title;
+        public string stuAccount, stuName, proName, title;
         public double score;
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
-            TitleRecord tr = new TitleRecord();
             ScoreBll sbll = new ScoreBll();
             Student student = (Student)Session["loginuser"];
             stuAccount = student.StuAccount;
             stuName = student.RealName;
-            profession = student.profession.ProName;
-            tr = trbll.GetByAccount(stuAccount);
-            title = tr.title.title;
-            int planId = tr.plan.PlanId;
+            proName = student.profession.ProName;
+            DataSet dsTR = trbll.GetByAccount(stuAccount);
+            int planId = 0;
+            for (int i = 0; i < dsTR.Tables[0].Rows.Count; i++)
+            {
+                string stuaccount = dsTR.Tables[0].Rows[i]["stuAccount"].ToString();
+                if (stuaccount == stuAccount)
+                {
+                    title = dsTR.Tables[0].Rows[0]["title"].ToString();
+                    planId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["planId"].ToString());
+                    break;
+                }
+            }
             //获取成绩
             DataSet ds = sbll.Select(stuAccount, planId);
             int openState = Convert.ToInt32(ds.Tables[0].Rows[0]["openState"].ToString());

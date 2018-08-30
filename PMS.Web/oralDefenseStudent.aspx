@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <div>
                         <pre id="oraldefenseHistory">
-                            文本内容格式自动换行
+                            老师还未录入答辩记录
                         </pre>
                     </div>
                 </div>
