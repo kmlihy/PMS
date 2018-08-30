@@ -49,11 +49,11 @@
                         {
                              %>
                     <tr>
-                        <td style="vertical-align: middle" class="col-sm-1"><%=i %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=i+1 %></td>
                         <td style="vertical-align: middle"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["teaAccount"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <%=teaName %>
+                            <%=ds.Tables[0].Rows[i]["realName"].ToString() %>
                         </td>
                         <td style="vertical-align: middle">
                             <a href="stuMediumQuality.aspx">
