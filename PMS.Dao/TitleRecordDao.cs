@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -148,6 +149,26 @@ namespace PMS.Dao
                 dt = ds.Tables[0];
             }
             return dt;
+        }
+
+        /// <summary>
+        /// 通过学生账号取到defenGroupId
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
+        public TitleRecord getDgId(string stuAccount)
+        {
+            string sql = "select defenGroupId from T_TitleRecord where stuAccount=@Account";
+            string[] param = { "@Account" };
+            object[] values = { stuAccount };
+            TitleRecord titleRecord = new TitleRecord();
+            SqlDataReader reader = db.ExecuteReader(sql,param,values);
+            while (reader.Read())
+            {
+                titleRecord.DefeseTeamId = reader.GetInt32(0);
+            }
+            reader.Close();
+            return titleRecord;;
         }
 
         /// <summary>
