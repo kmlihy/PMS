@@ -26,6 +26,7 @@ namespace PMS.Model
         /// 文件上传时间
         /// </summary>
         public DateTime dateTime { set; get; }
+        public TitleRecord titleRecord { get; set; } 
         /// <summary>
         /// 无参构造函数
         /// </summary>
