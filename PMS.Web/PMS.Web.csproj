@@ -261,6 +261,7 @@
     <Content Include="obj\Debug\PMS.Web.dll" />
     <Content Include="obj\Debug\PMS.Web.pdb" />
     <Content Include="openingReport.aspx" />
+    <Content Include="oralDefenseStudent.aspx" />
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="paperSubmission.aspx" />
@@ -563,6 +564,13 @@
     </Compile>
     <Compile Include="openingReport.aspx.designer.cs">
       <DependentUpon>openingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="oralDefenseStudent.aspx.cs">
+      <DependentUpon>oralDefenseStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="oralDefenseStudent.aspx.designer.cs">
+      <DependentUpon>oralDefenseStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="paperDetail.aspx.cs">
       <DependentUpon>paperDetail.aspx</DependentUpon>
