@@ -342,6 +342,7 @@
 
 .table_mian > tbody > tr > td {
     border: 1px solid black;
+    vertical-align: middle;
 }
 
 #openingReportmaindiv {
@@ -359,7 +360,7 @@
 }
 
 .table_mian {
-    width: 80%;
+    width: 95%;
 }
 
 .table_head {
@@ -379,6 +380,7 @@
 .panleFooter {
     background-color: white;
     border: none;
+    width: 95%;
 }
 
 #btnSubmit {
@@ -535,5 +537,17 @@
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
-    background-color:white;
+    background-color: white;
+}
+
+.textmain-record {
+    min-height: 500px;
+    text-align: center;
+}
+
+.textmain-record {
+    text-align: center;
+    height: 100%;
+    margin: auto;
+    writing-mode: vertical-lr;
 }

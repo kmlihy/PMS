@@ -1,0 +1,101 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="checkMediumQualityReport.aspx.cs" Inherits="PMS.Web.checkMediumQualityReport" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/iconfont.css" />
+    <style>
+        #body{
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-heading text-center">
+            <h1>我的学生中期质量报告</h1>
+        </div>
+        <div class="panel-body" id="body">
+            <div class="panel panel-default" id="propanelbox">
+                <div class="pane input-group" id="panel-head">
+                    <div class="input-group" id="inputgroups">
+                                                <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button" id="btn-search">
+                                <span class="glyphicon glyphicon-search">查询</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <table class="table text-center table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">序号</th>
+                        <th class="text-center">论文</th>
+                        <th class="text-center">学号</th>
+                        <th class="text-center">姓名</th>
+                        <th class="text-center">查看报告</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="vertical-align: middle" class="col-sm-1">1</td>
+                        <td style="vertical-align: middle">航班查询及预订系统</td>
+                        <td style="vertical-align: middle" class="col-sm-1">16612500026</td>
+                        <td style="vertical-align: middle" class="col-sm-1">wudong</td>
+                        <td style="vertical-align: middle">
+                            <a href="stuMediumQuality.aspx">
+                                <span class="glyphicon glyphicon-hand-right"></span>
+                                点击查看
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%--分页--%>
+    <div class="text-right" id="paging">
+        <ul class="pagination pagination-lg">
+            <li>
+                <a href="#" class="jump" id="first">首页</a>
+            </li>
+            <li>
+                <a href="#" class="jump" id="prev">
+                    <span class="iconfont icon-back"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="jump">1
+                     <%--   <%=getCurrentPage %>--%>
+                </a>
+            </li>
+            <li>
+                <a href="#">/</a>
+            </li>
+            <li>
+                <a href="#" class="jump">10
+                     <%--   <%=getCurrentPage %>--%>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="next" class="jump">
+                    <span class="iconfont icon-more"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="jump" id="last">尾页</a>
+            </li>
+        </ul>
+    </div>
+</body>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</html>

@@ -151,7 +151,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="defence">
-                                    <a href="#" class="sidebarclick" >
+                                    <a href="../oralDefenseStudent.aspx" class="sidebarclick" >
                                         <span>论文答辩</span>
                                     </a>
                                 </li>
