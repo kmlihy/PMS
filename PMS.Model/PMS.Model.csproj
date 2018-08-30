@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="College.cs" />
+    <Compile Include="CrossGuide.cs" />
     <Compile Include="DefenceGroup.cs" />
     <Compile Include="DefenceRecord.cs" />
     <Compile Include="GuideRecord.cs" />

@@ -9,7 +9,7 @@ using System.Text;
 namespace PMS.Dao
 {
     /// <summary>
-    /// 答辩数据访问类
+    /// 答辩数据库操作类
     /// </summary>
     public class DefenceDao
     {

@@ -147,12 +147,12 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="account">学生或教师账号</param>
         /// <returns>选题记录对象</returns>
-        public TitleRecord GetByAccount(string account)
+        public DataSet GetByAccount(string account)
         {
-            TitleRecord tr = dao.GetByAccount(account);
-            if (tr != null)
+            DataSet ds = dao.GetByAccount(account);
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
-                return tr;
+                return ds;
             }
             return null;
         }

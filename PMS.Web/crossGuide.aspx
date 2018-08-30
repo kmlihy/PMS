@@ -27,7 +27,7 @@
                         <td class="col-md-1">学生姓名</td>
                         <td class="col-sm-1"><%=stuName %></td>
                         <td class="col-md-1">专业</td>
-                        <td class="col-sm-1"><%=profession %></td>
+                        <td class="col-sm-1"><%=proName %></td>
                         <%--<td class="col-md-1">论文字数</td>
                         <td class="col-sm-1"></td>--%>
                     </tr>
