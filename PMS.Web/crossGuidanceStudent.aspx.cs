@@ -14,7 +14,7 @@ namespace PMS.Web
     {
         public DataSet dsPro, dsPlan, dsTR;
         public string teaAccount, dropstrWhereplan, dropstrWherepro , searchdrop , search , currentPage , secSearch ;
-        public int getCurrentPage=1, count, collegeId;
+        public int getCurrentPage=1,pagesize=5, count, collegeId;
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -106,7 +106,7 @@ namespace PMS.Web
                 IntColType = 0,
                 IntOrder = 0,
                 IntPageNum = int.Parse(currentPage),
-                IntPageSize = 5,
+                IntPageSize = pagesize,
                 StrColumn = "titleRecordId",
                 StrColumnlist = "*"
             };
@@ -133,7 +133,7 @@ namespace PMS.Web
                 else
                 {
                     secSearch = search;
-                    search = String.Format("titleRecordId {0} or realName {0} or phone {0} or proName {0} or title {0} or planName {0} or sex {0} ", "like '%" + search + "%'");
+                    search = String.Format("realName {0} or phone {0} or proName {0} or title {0} or planName {0} or sex {0} ", "like '%" + search + "%'");
                 }
             }
             catch

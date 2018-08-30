@@ -25,7 +25,7 @@
             <div class="panel panel-default" id="propanelbox">
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
-                                                <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=search %>" />
                         <span class="input-group-btn">
                             <button class="btn btn-info" type="button" id="btn-search">
                                 <span class="glyphicon glyphicon-search">查询</span>
@@ -47,11 +47,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        { %>
                     <tr>
-                        <td style="vertical-align: middle" class="col-sm-1">1</td>
-                        <td style="vertical-align: middle">航班查询及预订系统</td>
-                        <td style="vertical-align: middle" class="col-sm-1">16612500026</td>
-                        <td style="vertical-align: middle" class="col-sm-1">wudong</td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
                             <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
                         </td>
@@ -68,27 +70,7 @@
                             </a>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="vertical-align: middle">2</td>
-                        <td style="vertical-align: middle">汽车4S店车主管理系统</td>
-                        <td style="vertical-align: middle" class="col-sm-1">16612500026</td>
-                        <td style="vertical-align: middle">marry</td>
-                        <td style="vertical-align: middle">
-                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
-                        </td>
-                        <td style="vertical-align: middle">
-                            <button type="button" class="btn btn-info" >
-                                <span class="glyphicon glyphicon-list-alt"></span>
-                                点击评价
-                            </button>
-                        </td>
-                        <td style="vertical-align: middle">
-                            <a href="stuHistoryPaper.aspx">
-                                <span class="glyphicon glyphicon-hand-right"></span>
-                                点击查看
-                            </a>
-                        </td>
-                    </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>
@@ -105,16 +87,17 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="jump">1
-                     <%--   <%=getCurrentPage %>--%>
+                <a href="#" class="jump">
+                    <%=getCurrentPage %>
                 </a>
             </li>
             <li>
                 <a href="#">/</a>
             </li>
             <li>
-                <a href="#" class="jump">10
-                     <%--   <%=getCurrentPage %>--%>
+                <% if (count == 0) { count = 1; } %>
+                <a href="#" class="jump">
+                    <%=count %>
                 </a>
             </li>
             <li>

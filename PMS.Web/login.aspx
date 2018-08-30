@@ -46,11 +46,11 @@
                 <div class="form-group">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="user" id="input${1/(\w+)/\u\1/g}" value="teacher" checked="" />
+                            <input type="radio" name="user" value="teacher" checked="" />
                             教师
                         </label>
                         <label>
-                            <input type="radio" name="user" id="input${1/(\w+)/\u\1/g}" value="student" checked="" />
+                            <input type="radio" name="user" value="student" checked="" />
                             学生
                         </label>
                         <a href="admin/RetrievePwd.aspx" id="retrievePwd">找回密码</a>
