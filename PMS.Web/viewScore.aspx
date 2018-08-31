@@ -15,6 +15,12 @@
         <div class="panel panel-heading text-center viewScore_panelhead">
             <h2>2018届毕业生毕业论文成绩查询</h2>
         </div>
+        <%if (content == "暂无成绩")
+            {%>
+        <h3><%=content %></h3>
+        <%}
+    else
+    {%>
         <div class="panel panel-body text-center viewScore_panelbody">
             <div>
                 <table class="table table-studentInfo">
@@ -54,5 +60,6 @@
             <button type="button" class="btn btn-success">返回</button>
         </div>
     </div>
+        <%} %>
 </body>
 </html>

@@ -38,6 +38,7 @@ namespace PMS.Model
         /// 判断成绩是否开放给学生查看;0为未开放，1为已开放
         /// </summary>
         public int openState { set; get; }
+        public int state { get; set; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -52,7 +53,7 @@ namespace PMS.Model
         /// <param name="assess">评定等级</param>
         /// <param name="evaluate">评价</param>
         /// <param name="openState">判断成绩是否开放给学生查看;0为未开放，1为已开放</param>
-        public Score(Student student, Plan plan, double score, string remarks, string assess,string evaluate,int openState)
+        public Score(Student student, Plan plan, double score, string remarks, string assess,string evaluate,int openState, int state)
         {
             this.student = student;
             this.plan = plan;
@@ -61,6 +62,7 @@ namespace PMS.Model
             this.assess = assess;
             this.evaluate = evaluate;
             this.openState = openState;
+            this.state = state;
         }
     }
 }
