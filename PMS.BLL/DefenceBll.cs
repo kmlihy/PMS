@@ -20,6 +20,19 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="defence">答辩小组对象</param>
         /// <returns></returns>
+        /// 
+        public bool isGroup(string titleRecordId)
+        {
+            int i = dedao.isGroup(titleRecordId);
+            if (i>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public Result InsertGroup(DefenceGroup defence)
         {
             int row = dedao.InsertGroup(defence);
@@ -62,6 +75,15 @@ namespace PMS.BLL
         public DefenceGroup getTeaId(string dgId)
         {
             return dedao.getTeaId(dgId);
+        }
+        /// <summary>
+        /// 通过选题记录id取到答辩小组id
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DefenceGroup getDgId(string titleRecordId)
+        {
+            return dedao.getDgId(titleRecordId);
         }
 
         /// <summary>

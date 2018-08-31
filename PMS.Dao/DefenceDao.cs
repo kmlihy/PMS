@@ -60,6 +60,14 @@ namespace PMS.Dao
             }
         }
 
+        public int isGroup(string titleRecordId)
+        {
+            string sql = "select count(defenRecordId) from T_DefenceRecord where titleRecordId=@titleRecordId";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
         /// <summary>
         /// 通过defenGroupId分别取到leader，member，recorder
         /// </summary>
@@ -77,6 +85,26 @@ namespace PMS.Dao
                 defenceGroup.leader = reader.GetString(0);
                 defenceGroup.member = reader.GetString(1);
                 defenceGroup.recorder = reader.GetString(2);
+            }
+            reader.Close();
+            return defenceGroup; ;
+        }
+
+        /// <summary>
+        /// 通过选题记录id取到答辩小组id
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DefenceGroup getDgId(string titleRecordId)
+        {
+            string sql = "select top 1 defenGroupId from T_DefenceRecord where titleRecordId=@titleRecordId order by defenRecordId desc";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            DefenceGroup defenceGroup = new DefenceGroup();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                defenceGroup.defenGroupId = reader.GetInt32(0);
             }
             reader.Close();
             return defenceGroup; ;

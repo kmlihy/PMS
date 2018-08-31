@@ -17,7 +17,7 @@ namespace PMS.Web
         DefenceBll defenceBll = new DefenceBll();
         TeacherBll teacherBll = new TeacherBll();
 
-        public string dgId;
+        public string RTId;
         public string leaderName, memberName, recorderName;
         public string leaderTel, memberTel, recorderTel;
         public string leaderMail, memberMail,recorderMail;
@@ -30,15 +30,23 @@ namespace PMS.Web
         {
             Student stu = (Student)Session["loginuser"];
             string account = stu.StuAccount;
-            TitleRecord titleRecord = titleRecordBll.getDgId(account);
-            dgId = titleRecord.DefeseTeamId.ToString();
-            //未指定答辩小组
-            if (dgId=="0"||dgId==""||dgId==null)
+            TitleRecord titleRecord = titleRecordBll.getRtId(account);
+            RTId = titleRecord.TitleRecordId.ToString();
+            //暂未选题
+            if (RTId=="0" || RTId == ""|| RTId == null)
             {
-                dgId = "";
+                RTId = "";
+            }
+            //暂未指定答辩小组
+            else if (!defenceBll.isGroup(RTId))
+            {
+                RTId = "noGroup";
             }
             else
             {
+
+                DefenceGroup getDgId = defenceBll.getDgId(RTId);
+                string dgId = getDgId.defenGroupId.ToString();
                 DefenceGroup defenceGroup = defenceBll.getTeaId(dgId);
 
                 ///分别取到小组成员账号
