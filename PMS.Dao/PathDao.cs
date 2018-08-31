@@ -21,13 +21,33 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="path">文件路径实体</param>
         /// <returns>受影响行数</returns>
-        public int Insert(Path path)
+        public int InsertThesis(Path path)
         {
             try
             {
                 string cmdText = "insert into T_Path(titleRecordId,pathTitle,path,dateTime) values(@titleRecordId,@title,@paperPath,@dateTime)";
                 string[] param = { "@titleRecordId", "@title", "@paperPath", "@dateTime" };
                 object[] values = { path.titleRecord.TitleRecordId,path.title,path.paperPath,path.dateTime };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 学生提交查重报告
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns></returns>
+        public int InsertReport(Path path)
+        {
+            try
+            {
+                string cmdText = "insert into T_Path(titleRecordId,pathTitle,path,dateTime,type) values(@titleRecordId,@title,@paperPath,@dateTime,@type)";
+                string[] param = { "@titleRecordId", "@title", "@paperPath", "@dateTime" ,"@type"};
+                object[] values = { path.titleRecord.TitleRecordId, path.title, path.paperPath, path.dateTime ,path.type=1};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

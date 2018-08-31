@@ -27,6 +27,7 @@ namespace PMS.Model
         /// </summary>
         public DateTime dateTime { set; get; }
         public TitleRecord titleRecord { get; set; } 
+        public int type { get; set; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -38,12 +39,13 @@ namespace PMS.Model
         /// <param name="title">标题</param>
         /// <param name="path">路径</param>
         /// <param name="dateTime">上传时间</param>
-        public Path(int pathId,string title, string path, DateTime dateTime)
+        public Path(int pathId,string title, string path, DateTime dateTime,int type)
         {
             this.pathId = pathId;
             this.title = title;
             this.paperPath = path;
             this.dateTime = dateTime;
+            this.type = type;
         }
     }
 }

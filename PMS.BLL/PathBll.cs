@@ -20,9 +20,23 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="path">要添加的路径对象</param>
         /// <returns>成功返回Result.添加成功，失败返回Result.添加失败</returns>
-        public Result Insert(Path path)
+        public Result InsertThesis(Path path)
         {
-            int row = pdao.Insert(path);
+            int row = pdao.InsertThesis(path);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            return Result.添加失败;
+        }
+        /// <summary>
+        /// 学生提交查重报告
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns></returns>
+        public Result InsertReport(Path path)
+        {
+            int row = pdao.InsertReport(path);
             if (row > 0)
             {
                 return Result.添加成功;
