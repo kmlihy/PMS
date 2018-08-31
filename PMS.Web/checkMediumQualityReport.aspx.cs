@@ -21,11 +21,16 @@ namespace PMS.Web
         protected string teaNnum = null;
         protected int count;
         protected int getCurrentPage = 1;
+        protected int pagesize;
+        protected String search = "";
         TeacherBll teaBll = new TeacherBll();
         TitleBll titleBll = new TitleBll();
         protected void Page_Load(object sender, EventArgs e)
         {
-            getData();
+            if (!IsPostBack)
+            {
+                getData(Search());
+            }
         }
         /// <summary>
         /// 判断教师是否已经出题
@@ -43,28 +48,63 @@ namespace PMS.Web
         //    return row;
         //}
         /// <summary>
-        /// 获取数据
+        /// 获取数据并分页
         /// </summary>
-        public void getData()
+        public void getData(String strWhere)
         {
-            string currentPage = Context.Request.QueryString["currentPage"];
+            //teacher = (Teacher)Session["loginuser"];
+            //teaAccount = teacher.TeaAccount;
             teaAccount = "10010";
-            //teacher = (Teacher)Session["loginuser"]; 
-            string countPage = Request.QueryString["currentPage"];
-            string str = "teaAccount =" + "'" + teaAccount + "'";
+            string str = "";
+            if(strWhere == null || strWhere == "")
+            {
+                str = "teaAccount =" + "'" + teaAccount + "'";
+            }
+            else
+            {
+                str = "teaAccount =" + "'" + teaAccount + "'" + " and " + strWhere;
+            }
+            string currentPage = Context.Request.QueryString["currentPage"];
+            pagesize = 3;
+            if(currentPage == null || currentPage == "")
+            {
+                currentPage = "1";
+            }
             TableBuilder tableBuilder = new TableBuilder()
             {
                 StrTable = "V_TitleRecord",
                 StrWhere = str,
                 IntColType = 0,
                 IntOrder = 0,
-                IntPageNum = 1,
-                IntPageSize = 2,
-                StrColumn = "teaAccount",
+                IntPageNum = int.Parse(currentPage),
+                IntPageSize = pagesize,
+                StrColumn = "titleId",
                 StrColumnlist = "*"
             };
-            //getCurrentPage = int.Parse(countPage);
+            getCurrentPage = int.Parse(currentPage);
             ds = titleBll.SelectBypage(tableBuilder, out count);
+        }
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <returns></returns>
+        public string Search()
+        {
+            try
+            {
+                search = Request.QueryString["search"];
+                if(search.Length == 0 || search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    search = String.Format("stuAccount {0} or realName {0} proName {0} ", "like '%" + search + "%'");
+                }
+            }
+            catch { }
+            return search;
         }
     }
 }

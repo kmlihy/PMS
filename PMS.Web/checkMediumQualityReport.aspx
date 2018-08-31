@@ -27,7 +27,7 @@
                     <div class="input-group" id="inputgroups">
                         <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                         <span class="input-group-btn">
-                            <button class="btn btn-info" type="button" id="btn-search">
+                            <button class="btn btn-info" type="button" id="btn_search">
                                 <span class="glyphicon glyphicon-search">查询</span>
                             </button>
                         </span>
@@ -41,6 +41,7 @@
                         <th class="text-center">论文</th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
+                        <th class="text-center">专业</th>
                         <th class="text-center">查看报告</th>
                     </tr>
                 </thead>
@@ -49,11 +50,14 @@
                         {
                     %>
                     <tr>
-                        <td style="vertical-align: middle" class="col-sm-1"><%=i+1 %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=i+1+((getCurrentPage-1)*pagesize)%></td>
                         <td style="vertical-align: middle"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
                             <%=ds.Tables[0].Rows[i]["realName"].ToString() %>
+                        </td>
+                        <td style="vertical-align: middle" class="col-sm-1">
+                            <%=ds.Tables[0].Rows[i]["proName"].ToString() %>
                         </td>
                         <td style="vertical-align: middle">
                             <a href="stuMediumQuality.aspx">

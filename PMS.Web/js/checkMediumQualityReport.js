@@ -1,6 +1,7 @@
 ﻿sessionStorage.setItem("page", $("#page").val());
 sessionStorage.setItem("countPage", $("#countPage").val());
 $(document).ready(function () {
+    //分页事件
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="iconfont icon-back"></span>'):
@@ -33,8 +34,19 @@ $(document).ready(function () {
                 break;
         }
     });
+    //查询事件
+    $("#btn_search").click(function () {
+        var strWhere = $("#inputsearch").val();
+        sessionStorage.setItem("strWhere", strWhere);
+        jump(1);
+    })
+    //地址栏显示信息并传值到后台
     function jump(cur) {
-        window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur;
+        if (sessionStorage.getItem("strWhere") == null) {
+            window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur;
+        }
+        else {
+            window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+        }
     }
-    //jump(1);
 })
