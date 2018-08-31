@@ -17,15 +17,6 @@
             <h2>论文提交页面</h2>
         </div>
         <div class="panel-body text-center">
-            <div class="fileBox text-center">
-                <p class="fileInputP vm">
-                    <i>选择文件</i>
-                    <input type="file" multiple="multiple" id="fileInput" />
-
-                </p>
-                <span id="fileSpan" class="vm">或者将文件拖到此处</span>
-                <div class="mask"></div>
-            </div>
             <div class="container text-center">
                 <table class="fileList_parent table table-bordered">
                     <thead>
