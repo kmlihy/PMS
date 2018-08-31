@@ -1,22 +1,12 @@
-﻿sessionStorage.setItem("page", $("#page").val());
-sessionStorage.setItem("countPage", $("#countPage").val());
-//查询按钮点击事件
-
-function jump(cur) {
-    if (sessionStorage.getItem("strWhere") == null) {
-        window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur;
-    }
-    if (sessionStorage.getItem("strWhere") != null) {
-        window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
-    }
-}
-$("#btn-search").click(function () {
-    var strWhere = $("#inputsearch").val();
-    sessionStorage.setItem("strWhere", strWhere);
-    sessionStorage.setItem("type", "textSelect");
-    jump(1);
-});
-$(document).ready(function () {
+﻿$(document).ready(function () {
+    //分页参数传递
+    var stuAccount = $("#stuAccount").val();
+    var page = $("#page").val();
+    sessionStorage.setItem("Page", page);
+    sessionStorage.setItem("stuAccount", stuAccount);
+    //存储总页数
+    var countPage = $("#countPage").val();
+    sessionStorage.setItem("countPage", countPage);
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="iconfont icon-back"></span>'):
@@ -45,5 +35,9 @@ $(document).ready(function () {
                 break;
         }
     });
-    //jump(1);
-})
+});
+
+
+function jump(cur) {
+    window.location.href = "stuHistoryPaper.aspx?currentPage=" + cur + "&stuAccount=" + sessionStorage.getItem("stuAccount");
+};

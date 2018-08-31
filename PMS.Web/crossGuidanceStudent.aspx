@@ -95,7 +95,7 @@
                                 <td class="text-center" id="msg">
                                     <input type="checkbox" />
                                 </td>
-                                <td class="text-center" id="titleRecordId"><%=dsTR.Tables[0].Rows[i]["titleRecordId"].ToString() %></td>
+                                <td class="text-center"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                                 <td class="text-center" id="realName"><%=dsTR.Tables[0].Rows[i]["realName"].ToString() %></td>
                                 <td class="text-center" id="phone"><%=dsTR.Tables[0].Rows[i]["phone"].ToString() %></td>
                                 <td class="text-center" id="proName"><%=dsTR.Tables[0].Rows[i]["proName"].ToString() %></td>

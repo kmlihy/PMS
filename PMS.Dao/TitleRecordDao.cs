@@ -152,23 +152,44 @@ namespace PMS.Dao
         }
 
         /// <summary>
-        /// 通过学生账号取到defenGroupId
+        /// 通过学生账号取到选题记录id
         /// </summary>
         /// <param name="stuAccount">学生账号</param>
         /// <returns></returns>
-        public TitleRecord getDgId(string stuAccount)
+        public TitleRecord getRtId(string stuAccount)
         {
-            string sql = "select defenGroupId from T_TitleRecord where stuAccount=@Account";
+            string sql = "select top 1 titleRecordId from T_TitleRecord where stuAccount=@Account order by createTime desc";
             string[] param = { "@Account" };
             object[] values = { stuAccount };
             TitleRecord titleRecord = new TitleRecord();
             SqlDataReader reader = db.ExecuteReader(sql,param,values);
             while (reader.Read())
             {
-                titleRecord.DefeseTeamId = reader.GetInt32(0);
+                titleRecord.TitleRecordId = reader.GetInt32(0);
             }
             reader.Close();
             return titleRecord;;
+        }
+
+        /// <summary>
+        /// 通过学生和老师账号获取titleRecordId
+        /// </summary>
+        /// <param name="stuAccount"></param>
+        /// <param name="teaAccount"></param>
+        /// <returns></returns>
+        public TitleRecord getRtIdByTea(string stuAccount,string teaAccount)
+        {
+            string sql = "select top 1 titleRecordId from V_TitleRecord where stuAccount=@stuAccount and teaAccount=@teaAccount order by titleRecordId desc";
+            string[] param = { "@stuAccount", "teaAccount" };
+            object[] values = { stuAccount,teaAccount };
+            TitleRecord titleRecord = new TitleRecord();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                titleRecord.TitleRecordId = reader.GetInt32(0);
+            }
+            reader.Close();
+            return titleRecord; ;
         }
 
         /// <summary>

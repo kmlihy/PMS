@@ -65,7 +65,7 @@
                             </button>
                         </td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <a href="stuHistoryPaper.aspx">
+                            <a href="stuHistoryPaper.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
                                 <span class="glyphicon glyphicon-hand-right"></span>
                                 点击查看
                             </a>
@@ -132,6 +132,8 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

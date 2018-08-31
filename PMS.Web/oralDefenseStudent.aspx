@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="oraldefense-student">
-    <%if (dgId == "" || dgId == null || dgId == "0")
+    <%if (RTId == "" || RTId == null)
         { %>
-    <h3>暂未指定答辩小组</h3>
+    <h3>暂未选题</h3>
     <%}
+    else if (RTId=="noGroup")
+    { %>
+     <h3>未指定答辩小组</h3>
+        <% }
     else
     {%>
     <div class="container oraldefense-div">

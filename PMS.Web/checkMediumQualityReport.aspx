@@ -25,7 +25,7 @@
             <div class="panel panel-default" id="propanelbox">
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
-                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=secSearch %>" />
                         <span class="input-group-btn">
                             <button class="btn btn-info" type="button" id="btn-search">
                                 <span class="glyphicon glyphicon-search">查询</span>
@@ -49,14 +49,14 @@
                         {
                     %>
                     <tr>
-                        <td style="vertical-align: middle" class="col-sm-1"><%=i+1 %></td>
-                        <td style="vertical-align: middle"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
+                        <td style="vertical-align: middle" class="col-sm-2"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
                             <%=ds.Tables[0].Rows[i]["realName"].ToString() %>
                         </td>
                         <td style="vertical-align: middle">
-                            <a href="stuMediumQuality.aspx">
+                            <a href="mediiumQuality.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
                                 <span class="glyphicon glyphicon-hand-right"></span>
                                 点击查看
                             </a>
@@ -81,13 +81,14 @@
                 </li>
                 <li>
                     <a href="#" class="jump">
-                     <%=getCurrentPage %>
+                        <%=getCurrentPage %>
                     </a>
                 </li>
                 <li>
                     <a href="#">/</a>
                 </li>
                 <li>
+                    <% if (count == 0) { count = 1; } %>
                     <a href="#" class="jump">
                         <%=count %>
                     </a>

@@ -138,9 +138,12 @@
     <Content Include="js\branchList.js" />
     <Content Include="js\canvas-particle.js" />
     <Content Include="js\changePwd.js" />
+    <Content Include="js\checkMediumQualityReport.js" />
     <Content Include="js\checkReport.js" />
+    <Content Include="js\checkReportTeacher.js" />
     <Content Include="js\crossGuide.js" />
     <Content Include="js\crossStuList.js" />
+    <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jedate.js" />
@@ -164,6 +167,7 @@
     <Content Include="js\retrievePwd.js" />
     <Content Include="js\RSA.js" />
     <Content Include="js\selectTopicList.js" />
+    <Content Include="js\stuHistoryPaper.js" />
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
@@ -716,6 +720,8 @@
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180711150556-学院信息表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180712105517-学院信息表.xls" />
     <Content Include="obj\Debug\PMS.Web.csprojResolveAssemblyReference.cache" />
+    <Content Include="upload\学生\15612200013张光泽\论文\2018\20180829113357-branded-login-screen.ziP" />
+    <Content Include="upload\学生\15612200014徐震霖\论文\2018\2333.ziP" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

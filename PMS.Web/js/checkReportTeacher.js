@@ -1,15 +1,20 @@
-﻿sessionStorage.setItem("page", $("#page").val());
-sessionStorage.setItem("countPage", $("#countPage").val());
-//查询按钮点击事件
+﻿//存储当前页数
+var page = $("#page").val();
+sessionStorage.setItem("Page", page);
+//存储总页数
+var countPage = $("#countPage").val();
+sessionStorage.setItem("countPage", countPage);
 
 function jump(cur) {
     if (sessionStorage.getItem("strWhere") == null) {
-        window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur;
+        window.location.href = "checkReportTeacher.aspx?currentPage=" + cur;
     }
     if (sessionStorage.getItem("strWhere") != null) {
-        window.location.href = "checkMediumQualityReport.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
+        window.location.href = "checkReportTeacher.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
     }
-}
+};
+
+//查询按钮点击事件
 $("#btn-search").click(function () {
     var strWhere = $("#inputsearch").val();
     sessionStorage.setItem("strWhere", strWhere);
@@ -17,6 +22,7 @@ $("#btn-search").click(function () {
     jump(1);
 });
 $(document).ready(function () {
+    //分页参数传递
     $(".jump").click(function () {
         switch ($.trim($(this).html())) {
             case ('<span class="iconfont icon-back"></span>'):
@@ -45,5 +51,4 @@ $(document).ready(function () {
                 break;
         }
     });
-    //jump(1);
-})
+});
