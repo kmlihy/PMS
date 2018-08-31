@@ -18,13 +18,13 @@ namespace PMS.BLL
         private PublicProcedure pubpro = new PublicProcedure();
 
         /// <summary>
-        /// 通过学生账号取到defenGroupId
+        /// 通过学生账号取到选题记录id
         /// </summary>
         /// <param name="stuAccount">学生账号</param>
         /// <returns></returns>
-        public TitleRecord getDgId(string stuAccount)
+        public TitleRecord getRtId(string stuAccount)
         {
-            return dao.getDgId(stuAccount);
+            return dao.getRtId(stuAccount);
         }
 
         /// <summary>

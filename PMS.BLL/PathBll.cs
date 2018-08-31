@@ -30,6 +30,11 @@ namespace PMS.BLL
             return Result.添加失败;
         }
 
+        public Path getTitleRecordId(string stuAccount)
+        {
+            return pdao.getTitleRecordId(stuAccount);
+        }
+
         public Path Select(int titleRecordId)
         {
             DataSet ds = pdao.Select(titleRecordId);

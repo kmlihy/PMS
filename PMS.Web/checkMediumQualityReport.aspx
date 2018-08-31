@@ -47,7 +47,7 @@
                 <tbody>
                     <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
-                             %>
+                    %>
                     <tr>
                         <td style="vertical-align: middle" class="col-sm-1"><%=i+1 %></td>
                         <td style="vertical-align: middle"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
@@ -67,42 +67,47 @@
             </table>
         </div>
     </div>
-    <%--分页--%>
-    <div class="text-right" id="paging">
-        <ul class="pagination pagination-lg">
-            <li>
-                <a href="#" class="jump" id="first">首页</a>
-            </li>
-            <li>
-                <a href="#" class="jump" id="prev">
-                    <span class="iconfont icon-back"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="jump">1
-                     <%--   <%=getCurrentPage %>--%>
-                </a>
-            </li>
-            <li>
-                <a href="#">/</a>
-            </li>
-            <li>
-                <a href="#" class="jump">
+    <div class="panel-footer">
+        <%--分页--%>
+        <div class="text-right" id="paging">
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="#" class="jump" id="first">首页</a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="prev">
+                        <span class="iconfont icon-back"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
+                     <%=getCurrentPage %>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">/</a>
+                </li>
+                <li>
+                    <a href="#" class="jump">
                         <%=count %>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="next" class="jump">
-                    <span class="iconfont icon-more"></span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="jump" id="last">尾页</a>
-            </li>
-        </ul>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="next" class="jump">
+                        <span class="iconfont icon-more"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="jump" id="last">尾页</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <label><%=Session["state"] %></label>
+    <input type="text" value="<%=getCurrentPage %>" id="page" />
+    <input type="text" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/checkMediumQualityReport.js"></script>
 </html>

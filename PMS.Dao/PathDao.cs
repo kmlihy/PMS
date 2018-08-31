@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using PMS.DBHelper;
@@ -24,9 +25,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_Path(title,paperPath,dateTime) values(@title,@paperPath,@dateTime)";
-                string[] param = { "@title", "@paperPath", "@dateTime" };
-                object[] values = { path.title,path.paperPath,path.dateTime };
+                string cmdText = "insert into T_Path(titleRecordId,pathTitle,path,dateTime) values(@titleRecordId,@title,@paperPath,@dateTime)";
+                string[] param = { "@titleRecordId", "@title", "@paperPath", "@dateTime" };
+                object[] values = { path.titleRecord.TitleRecordId,path.title,path.paperPath,path.dateTime };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -34,6 +35,28 @@ namespace PMS.Dao
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// 通过学生账号查找到当前最近的titleRecordId
+        /// </summary>
+        /// <param name="stuAccount">学号</param>
+        /// <returns></returns>
+        public Path getTitleRecordId(string stuAccount)
+        {
+            string sql = "select top 1 titleRecordId from T_TitleRecord where stuAccount=@Account order by createTime desc";
+            string[] param = { "@Account" };
+            object[] values = { stuAccount };
+            Path path = new Path();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = reader.GetInt32(0);
+                path.titleRecord = titleRecord;
+            }
+            reader.Close();
+            return path;
         }
 
         public DataSet Select(int titleRecordId)
