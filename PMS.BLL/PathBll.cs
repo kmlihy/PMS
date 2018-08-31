@@ -34,7 +34,10 @@ namespace PMS.BLL
         {
             return pdao.getTitleRecordId(stuAccount);
         }
-
+        public DataSet getModel(int titleRecordId)
+        {
+            return pdao.Select(titleRecordId);
+        }
         public Path Select(int titleRecordId)
         {
             DataSet ds = pdao.Select(titleRecordId);

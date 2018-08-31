@@ -63,7 +63,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_Path where titleRecordId = @titleRecordId";
+                string cmdText = "select * from T_Path where titleRecordId = @titleRecordId and type =0";
                 string[] param = { "@titleRecordId" };
                 object[] values = { titleRecordId };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
