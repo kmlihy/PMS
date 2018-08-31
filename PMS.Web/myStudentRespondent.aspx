@@ -215,8 +215,8 @@
         </div>
     </div>
     <!-- 存储分页数和当前页数，不可见-->
-    <%--<input type="hidden" value="<%=getCurrentPage %>" id="page" />
-    <input type="hidden" value="<%=count %>" id="countPage" />--%>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
