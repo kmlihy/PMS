@@ -139,8 +139,10 @@
     <Content Include="js\canvas-particle.js" />
     <Content Include="js\changePwd.js" />
     <Content Include="js\checkReport.js" />
+    <Content Include="js\checkReportTeacher.js" />
     <Content Include="js\crossGuide.js" />
     <Content Include="js\crossStuList.js" />
+    <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
     <Content Include="js\icheck.min.js" />
     <Content Include="js\jedate.js" />
