@@ -16,19 +16,22 @@ namespace PMS.Web
     {
         protected DataSet ds = null;
         protected Teacher teacher = null;
-        protected string teaName = null;
-        protected string teaAccount = null;
-        protected string teaNnum = null;
-        protected int count;
+        protected string teaName = null,teaAccount = null,teaNnum = null, secSearch, search;
+        protected int count,pagesize = 5;
         protected int getCurrentPage = 1;
-        protected int pagesize;
-        protected String search = "";
         TeacherBll teaBll = new TeacherBll();
         TitleBll titleBll = new TitleBll();
         protected void Page_Load(object sender, EventArgs e)
         {
+            TitleRecordBll trbll = new TitleRecordBll();
+            PathBll pathBll = new PathBll();
+            Teacher teacher = (Teacher)Session["loginuser"];
+            string teaAccount = teacher.TeaAccount;
+            string op = Context.Request.Form["op"];
+            string type = Request.QueryString["type"];
             if (!IsPostBack)
             {
+                Search();
                 getData(Search());
             }
         }
@@ -48,62 +51,57 @@ namespace PMS.Web
         //    return row;
         //}
         /// <summary>
-        /// 获取数据并分页
+        /// 获取数据
         /// </summary>
-        public void getData(String strWhere)
+        public void getData(string strWhere)
         {
-            //teacher = (Teacher)Session["loginuser"];
-            //teaAccount = teacher.TeaAccount;
-            teaAccount = "10010";
-            string str = "";
-            if(strWhere == null || strWhere == "")
-            {
-                str = "teaAccount =" + "'" + teaAccount + "'";
-            }
-            else
-            {
-                str = "teaAccount =" + "'" + teaAccount + "'" + " and " + strWhere;
-            }
             string currentPage = Context.Request.QueryString["currentPage"];
-            pagesize = 3;
-            if(currentPage == null || currentPage == "")
-            {
-                currentPage = "1";
-            }
+            Teacher tea = (Teacher)Session["loginuser"];
+            teaAccount = tea.TeaAccount;
+            //teacher = (Teacher)Session["loginuser"]; 
+            string countPage = Request.QueryString["currentPage"];
+            string where1 = "teaAccount = " + teaAccount;
+            string where2 = "teaAccount = " + teaAccount + " and " + strWhere;
             TableBuilder tableBuilder = new TableBuilder()
             {
                 StrTable = "V_TitleRecord",
-                StrWhere = str,
+                StrWhere = strWhere == null || strWhere == "" ? where1 : where2,
                 IntColType = 0,
                 IntOrder = 0,
-                IntPageNum = int.Parse(currentPage),
+                IntPageNum = 1,
                 IntPageSize = pagesize,
-                StrColumn = "titleId",
+                StrColumn = "titleRecordId",
                 StrColumnlist = "*"
             };
-            getCurrentPage = int.Parse(currentPage);
+            //getCurrentPage = int.Parse(countPage);
             ds = titleBll.SelectBypage(tableBuilder, out count);
         }
-
-        /// <summary>
-        /// 查询
-        /// </summary>
-        /// <returns></returns>
+        //输入框搜索
         public string Search()
         {
             try
             {
                 search = Request.QueryString["search"];
-                if(search.Length == 0 || search == null)
+                if (search.Length == 0)
                 {
                     search = "";
+                    secSearch = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                    secSearch = "";
                 }
                 else
                 {
-                    search = String.Format("stuAccount {0} or realName {0} proName {0} ", "like '%" + search + "%'");
+                    secSearch = search;
+                    search = String.Format("realName {0} or stuAccount {0} or title {0} ", "like '%" + search + "%'");
                 }
             }
-            catch { }
+            catch
+            {
+
+            }
             return search;
         }
     }

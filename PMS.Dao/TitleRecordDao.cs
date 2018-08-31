@@ -152,20 +152,20 @@ namespace PMS.Dao
         }
 
         /// <summary>
-        /// 通过学生账号取到defenGroupId
+        /// 通过学生账号取到选题记录id
         /// </summary>
         /// <param name="stuAccount">学生账号</param>
         /// <returns></returns>
-        public TitleRecord getDgId(string stuAccount)
+        public TitleRecord getRtId(string stuAccount)
         {
-            string sql = "select defenGroupId from T_TitleRecord where stuAccount=@Account";
+            string sql = "select top 1 titleRecordId from T_TitleRecord where stuAccount=@Account order by createTime desc";
             string[] param = { "@Account" };
             object[] values = { stuAccount };
             TitleRecord titleRecord = new TitleRecord();
             SqlDataReader reader = db.ExecuteReader(sql,param,values);
             while (reader.Read())
             {
-                titleRecord.DefeseTeamId = reader.GetInt32(0);
+                titleRecord.TitleRecordId = reader.GetInt32(0);
             }
             reader.Close();
             return titleRecord;;

@@ -234,7 +234,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="mediiumQualityTea">
-                                    <a href="../stuMediumQuality.aspx" class="sidebarclick" >
+                                    <a href="../checkMediumQualityReport.aspx" class="sidebarclick" >
                                         <span>中期检查</span>
                                     </a>
                                 </li>
