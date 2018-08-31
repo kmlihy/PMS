@@ -1,4 +1,20 @@
-﻿$(function () {
+﻿var oFileInfo = document.getElementById("#tbody_reportFileInfo");//tbody
+
+function showname() {
+    $("#thesisTable").show();
+    var files = document.getElementById("upload").files;
+    var FileName = files[0].name;
+    //文件大小转换为M
+    var FileSize = (files[0].size) / 1024;
+    //取小数点后两位
+    var Size = FileSize.toFixed(2);
+    $("#tips").hide();
+    $("#thesisTable").show();
+    $("#thesisFileName").text(FileName);
+    $("#thseisFileSize").text(Size + "KB");
+}
+
+$(function () {
     $("#btnupload").click(function () {
         var location = $("input[name='upload']").val();
         var point = location.lastIndexOf(".");
