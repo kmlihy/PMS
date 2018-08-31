@@ -146,7 +146,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="crossGuide">
-                                    <a href="../crossGuide.aspx" class="sidebarclick" >
+                                    <a href="../crossGuideTeacher.aspx" class="sidebarclick" >
                                         <span>交叉评阅</span>
                                     </a>
                                 </li>
@@ -234,7 +234,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="mediiumQualityTea">
-                                    <a href="../mediiumQuality.aspx" class="sidebarclick" >
+                                    <a href="../stuMediumQuality.aspx" class="sidebarclick" >
                                         <span>中期检查</span>
                                     </a>
                                 </li>

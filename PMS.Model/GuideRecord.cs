@@ -21,7 +21,7 @@ namespace PMS.Model
         /// <summary>
         /// 论文路径信息
         /// </summary>
-        public string paperPath { set; get; }
+        public Path path { set; get; }
         /// <summary>
         /// 指导意见提交时间
         /// </summary>
@@ -38,11 +38,11 @@ namespace PMS.Model
         /// <param name="opinion">指导教师意见</param>
         /// <param name="paperPath">论文路径信息</param>
         /// <param name="dateTime">指导意见提交时间</param>
-        public GuideRecord(TitleRecord titleRecord, string opinion, string paperPath, DateTime dateTime)
+        public GuideRecord(TitleRecord titleRecord, string opinion, Path path, DateTime dateTime)
         {
             this.titleRecord = titleRecord;
             this.opinion = opinion;
-            this.paperPath = paperPath;
+            this.path = path;
             this.dateTime = dateTime;
         }
     }

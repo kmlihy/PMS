@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -58,6 +59,29 @@ namespace PMS.Dao
                 throw;
             }
         }
+
+        /// <summary>
+        /// 通过defenGroupId分别取到leader，member，recorder
+        /// </summary>
+        /// <param name="dgId">defenGroupId</param>
+        /// <returns></returns>
+        public DefenceGroup getTeaId(string dgId)
+        {
+            string sql = "select leader,member,recorder from T_DefenceGroup where defenGroupId=@dgId";
+            string[] param = { "@dgId" };
+            object[] values = { dgId };
+            DefenceGroup defenceGroup = new DefenceGroup();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                defenceGroup.leader = reader.GetString(0);
+                defenceGroup.member = reader.GetString(1);
+                defenceGroup.recorder = reader.GetString(2);
+            }
+            reader.Close();
+            return defenceGroup; ;
+        }
+
         /// <summary>
         /// 添加答辩记录
         /// </summary>
