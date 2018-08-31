@@ -20,6 +20,7 @@ namespace PMS.Web
         protected string teaAccount = null;
         protected string teaNnum = null;
         protected int count;
+        protected int getCurrentPage = 1;
         TeacherBll teaBll = new TeacherBll();
         TitleBll titleBll = new TitleBll();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,49 +31,40 @@ namespace PMS.Web
         /// 判断教师是否已经出题
         /// </summary>
         /// <returns></returns>
-        public Result isExitTeacher()
-        {
-            teacher = (Teacher)Session["loginuser"];
-            teaAccount = teacher.TeaAccount;
-            Result row = Result.记录不存在;
-            if(teaBll.IsDelete("T_Title","teaAccount",teaAccount) == Result.关联引用)
-            {
-                row = Result.关联引用;
-            }
-            return row;
-        }
+        //public Result isExitTeacher()
+        //{
+        //    teacher = (Teacher)Session["loginuser"];
+        //    teaAccount = teacher.TeaAccount;
+        //    Result row = Result.记录不存在;
+        //    if(teaBll.IsDelete("T_Title","teaAccount",teaAccount) == Result.关联引用)
+        //    {
+        //        row = Result.关联引用;
+        //    }
+        //    return row;
+        //}
         /// <summary>
         /// 获取数据
         /// </summary>
         public void getData()
         {
-            teacher = (Teacher)Session["loginuser"];
-            teaAccount = teacher.TeaAccount;
-            Result row = isExitTeacher();
-            if(row == Result.记录不存在)
+            string currentPage = Context.Request.QueryString["currentPage"];
+            teaAccount = "10010";
+            //teacher = (Teacher)Session["loginuser"]; 
+            string countPage = Request.QueryString["currentPage"];
+            string str = "teaAccount =" + "'" + teaAccount + "'";
+            TableBuilder tableBuilder = new TableBuilder()
             {
-                Response.Write("你还没有出题！");
-            }
-            else
-            {
-                string str = "teaAccount =" + "'" + teaAccount + "'";
-                TableBuilder tablBuilder = new TableBuilder()
-                {
-                    StrTable = "V_TitleRecord",
-                    StrWhere = str,
-                    IntColType = 0,
-                    IntOrder = 0,
-                    IntPageNum = 1,
-                    IntPageSize = 10,
-                    StrColumn = "teaAccount",
-                    StrColumnlist = "*"
-                };
-                ds = titleBll.SelectBypage(tablBuilder, out count);
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    teaNnum = ds.Tables[0].Rows[i]["teaAccount"].ToString();
-                }
-            }
+                StrTable = "V_TitleRecord",
+                StrWhere = str,
+                IntColType = 0,
+                IntOrder = 0,
+                IntPageNum = 1,
+                IntPageSize = 2,
+                StrColumn = "teaAccount",
+                StrColumnlist = "*"
+            };
+            //getCurrentPage = int.Parse(countPage);
+            ds = titleBll.SelectBypage(tableBuilder, out count);
         }
     }
 }
