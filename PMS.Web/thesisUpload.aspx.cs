@@ -55,7 +55,7 @@ namespace PMS.Web
                     insertPath.paperPath = fileName;
                     insertPath.dateTime = Convert.ToDateTime(time) ;
 
-                    pathBll.Insert(insertPath);
+                    pathBll.InsertThesis(insertPath);
                     msg = "上传成功";
                 }
                 string res = "{ error:'" + error + "', msg:'" + msg + "'}";
