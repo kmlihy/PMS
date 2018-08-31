@@ -68,8 +68,8 @@ namespace PMS.Web
             CrossGuideBll crossBll = new CrossGuideBll();
             Teacher tea = (Teacher)Session["loginuser"];
             teaAccount = tea.TeaAccount;
-            string where1 = "remarks = 1 and teaAccount = " + teaAccount;
-            string where2 = "remarks = 1 and teaAccount = " + teaAccount + " and " + strWhere;
+            string where1 = "type = 1 and teaAccount = " + teaAccount;
+            string where2 = "type = 1 and teaAccount = " + teaAccount + " and " + strWhere;
             TableBuilder tabuilder = new TableBuilder()
             {
                 StrTable = "V_Path",
