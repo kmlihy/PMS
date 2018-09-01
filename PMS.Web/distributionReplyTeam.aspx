@@ -112,7 +112,7 @@
                                             <option value="3">会计学院</option>
                                             <option value="4">设计学院</option>
                                         </select>
-                                        <select class="selectpicker" id="chooseStuPro">
+                                        <select class="selectpicker" data-width="auto" id="chooseStuPro">
                                             <option value="0">请选择查询批次</option>
                                             <option value="0">云南工商学院2019批次</option>
                                             <option value="1">信息工程学院2018批次</option>
@@ -153,7 +153,8 @@
                         <td class="col-sm-2">d</td>
                         <td class="col-sm-2">d</td>
                         <td class="col-sm-2">
-                            <button type="button" class="btn btn-info">分配答辩学生</button>
+                            <button type="button" class="btn btn-info" onclick="window.location.href='distributionReplyStudent.aspx'">分配答辩学生</button>
+                            <button type="button" class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button>
                         </td>
                     </tr>
                 </tbody>

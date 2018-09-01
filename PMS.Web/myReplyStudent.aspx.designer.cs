@@ -10,6 +10,6 @@
 namespace PMS.Web {
     
     
-    public partial class distributionReplyStudent {
+    public partial class myReplyStudent {
     }
 }
