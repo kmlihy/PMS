@@ -21,12 +21,14 @@
             <div>
                 <table class="table">
                     <tr>
-                        <td>
-                            <p>上传查重报告文件:</p>
+                        <td class="text-right file-Info">
+                            <p class="p-report">上传查重报告文件:</p>
                         </td>
-                        <td><a href="javascript:;" id="a_filereport">选择文件
-                        <input type="file" name="upload" id="upload" onchange="showname()" />
-                        </a></td>
+                        <td class="text-left file-Info">
+                            <a href="javascript:;" id="a_filereport">选择文件
+                                <input type="file" name="upload" id="upload" onchange="showname()" />
+                            </a>
+                        </td>
                     </tr>
                 </table>
                 <table class="table table-bordered" id="thesisTable" style="display: none">
