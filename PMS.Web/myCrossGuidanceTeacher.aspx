@@ -28,13 +28,13 @@
                 </tr>
                 <tr>
                     <td class="text_type">姓名</td>
-                    <td>刘备刘备</td>
+                    <td><%=name %></td>
                     <td class="text_type">性别</td>
-                    <td>男</td>
+                    <td><%=sex %></td>
                     <td class="text_type">联系方式</td>
-                    <td>12345679801</td>
+                    <td><%=phone %></td>
                     <td class="text_type">电子邮件</td>
-                    <td>123121312@qq.com</td>
+                    <td><%=email %></td>
                 </tr>
             </table>
         </div>

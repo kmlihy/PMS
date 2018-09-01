@@ -72,11 +72,12 @@
     <Content Include="CommonPage.aspx" />
     <Content Include="crossGuidanceStudent.aspx" />
     <Content Include="crossGuide.aspx" />
-    <Content Include="crossGuideTeacher.aspx" />
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
     <Content Include="defenseRecordTeacher.aspx" />
+    <Content Include="distributionReplyStudent.aspx" />
+    <Content Include="distributionReplyTeam.aspx" />
     <Content Include="downLoadPaper.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
@@ -246,9 +247,13 @@
     <Content Include="kindeditor\themes\qq\qq.css" />
     <Content Include="kindeditor\themes\simple\simple.css" />
     <Content Include="mediiumQuality.aspx" />
+    <Content Include="myCrossGuidanceTeacher.aspx" />
+    <Content Include="myGrogress.aspx" />
+    <Content Include="myGuideTeacher.aspx" />
     <Content Include="myInstructor.aspx" />
     <Content Include="myStudentRespondent.aspx" />
     <Content Include="myStudents.aspx" />
+    <Content Include="myStuOpeningReportList.aspx" />
     <Content Include="news.aspx" />
     <Content Include="newsList.aspx" />
     <Content Include="css\bootstrap-theme.css" />
@@ -497,19 +502,26 @@
     <Compile Include="crossGuide.aspx.designer.cs">
       <DependentUpon>crossGuide.aspx</DependentUpon>
     </Compile>
-    <Compile Include="crossGuideTeacher.aspx.cs">
-      <DependentUpon>crossGuideTeacher.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="crossGuideTeacher.aspx.designer.cs">
-      <DependentUpon>crossGuideTeacher.aspx</DependentUpon>
-    </Compile>
     <Compile Include="defenseRecordTeacher.aspx.cs">
       <DependentUpon>defenseRecordTeacher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="defenseRecordTeacher.aspx.designer.cs">
       <DependentUpon>defenseRecordTeacher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="distributionReplyStudent.aspx.cs">
+      <DependentUpon>distributionReplyStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="distributionReplyStudent.aspx.designer.cs">
+      <DependentUpon>distributionReplyStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="distributionReplyTeam.aspx.cs">
+      <DependentUpon>distributionReplyTeam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="distributionReplyTeam.aspx.designer.cs">
+      <DependentUpon>distributionReplyTeam.aspx</DependentUpon>
     </Compile>
     <Compile Include="downLoadPaper.aspx.cs">
       <DependentUpon>downLoadPaper.aspx</DependentUpon>
@@ -535,6 +547,27 @@
     <Compile Include="mediiumQuality.aspx.designer.cs">
       <DependentUpon>mediiumQuality.aspx</DependentUpon>
     </Compile>
+    <Compile Include="myCrossGuidanceTeacher.aspx.cs">
+      <DependentUpon>myCrossGuidanceTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myCrossGuidanceTeacher.aspx.designer.cs">
+      <DependentUpon>myCrossGuidanceTeacher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myGrogress.aspx.cs">
+      <DependentUpon>myGrogress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myGrogress.aspx.designer.cs">
+      <DependentUpon>myGrogress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myGuideTeacher.aspx.cs">
+      <DependentUpon>myGuideTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myGuideTeacher.aspx.designer.cs">
+      <DependentUpon>myGuideTeacher.aspx</DependentUpon>
+    </Compile>
     <Compile Include="myInstructor.aspx.cs">
       <DependentUpon>myInstructor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,6 +588,13 @@
     </Compile>
     <Compile Include="myStudents.aspx.designer.cs">
       <DependentUpon>myStudents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myStuOpeningReportList.aspx.cs">
+      <DependentUpon>myStuOpeningReportList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myStuOpeningReportList.aspx.designer.cs">
+      <DependentUpon>myStuOpeningReportList.aspx</DependentUpon>
     </Compile>
     <Compile Include="news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>

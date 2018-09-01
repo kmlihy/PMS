@@ -15,7 +15,7 @@ namespace PMS.Web
     {
         public DataSet ds;
         public Path path, paperPath;
-        public string teaAccount, searchdrop, search, currentPage, secSearch,op;
+        public string teaAccount, searchdrop, search, currentPage, secSearch,op,download;
         public int getCurrentPage = 1, pagesize=5, count, collegeId;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -56,11 +56,11 @@ namespace PMS.Web
             }
             else if(op == "download")
             {
+                download = "download";
                 string account = Request["stuAccount"];
                 Path getTitleRecordId = pathBll.getTitleRecordId(account);
                 int titleRecordId = getTitleRecordId.titleRecord.TitleRecordId;
                 paperPath = pathBll.Select(titleRecordId, account);
-                string d = paperPath.paperPath;
                 //Response.Redirect(paperPath.paperPath);
                 Response.Write("<script>$('#loadHref').href = '" + paperPath.paperPath + "';</script>");
                 //Response.End();

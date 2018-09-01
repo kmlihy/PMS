@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="crossGuideTeacher.aspx.cs" Inherits="PMS.Web.crossGuideTeacher" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myGuideTeacher.aspx.cs" Inherits="PMS.Web.myGuideTeacher" %>
 
 <%="" %>
 <!DOCTYPE html>
@@ -29,14 +29,15 @@
                 </tr>
                 <tr>
                     <td class="text_type">姓名</td>
-                    <td>刘备刘备</td>
+                    <td><%=name %></td>
                     <td class="text_type">性别</td>
-                    <td>男</td>
+                    <td><%=sex %></td>
                     <td class="text_type">联系方式</td>
-                    <td>12345679801</td>
+                    <td><%=phone %></td>
                     <td class="text_type">电子邮件</td>
-                    <td>123121312@qq.com</td>
+                    <td><%=email %></td>
                 </tr>
+
                 <%--<tr>
                     <td colspan="8"></td>
                 </tr>
@@ -100,11 +101,14 @@
                     <td>123121312@qq.com</td>
                 </tr>--%>
             </table>
+            <div class="container-fluid table-bordered img-rounded modal_comment">
+                是顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶
+            </div>
         </div>
     </div>
 
     <%--查看指导意见--%>
-    <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+<%--    <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,10 +125,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <%--查看交叉指导意见--%>
-    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+<%--    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -139,7 +143,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <%--查看答辩小组意见--%>
 <%--    <div class="modal fade" id="myModa3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
@@ -162,3 +166,4 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </html>
+

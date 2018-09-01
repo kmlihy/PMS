@@ -57,7 +57,7 @@
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                          <td style="vertical-align: middle" class="col-sm-1">
                             
-                             <a id="loadHref" href="#">
+                             <a id="loadHref" href="<% if (download == "download"){%><%=paperPath.paperPath %><%} %>">
                              <button type="button" class="btn btn-success" id="download">
                                 <span class="glyphicon glyphicon-download-alt"></span>
                             </button>

@@ -10,8 +10,6 @@ using PMS.Model;
 
 namespace PMS.Web
 {
-    using System.Text;
-    using Result = Enums.OpResult;
     public partial class checkMediumQualityReport : System.Web.UI.Page
     {
         protected DataSet ds = null;
@@ -35,21 +33,7 @@ namespace PMS.Web
                 getData(Search());
             }
         }
-        /// <summary>
-        /// 判断教师是否已经出题
-        /// </summary>
-        /// <returns></returns>
-        //public Result isExitTeacher()
-        //{
-        //    teacher = (Teacher)Session["loginuser"];
-        //    teaAccount = teacher.TeaAccount;
-        //    Result row = Result.记录不存在;
-        //    if(teaBll.IsDelete("T_Title","teaAccount",teaAccount) == Result.关联引用)
-        //    {
-        //        row = Result.关联引用;
-        //    }
-        //    return row;
-        //}
+
         /// <summary>
         /// 获取数据
         /// </summary>

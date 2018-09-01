@@ -10,6 +10,6 @@
 namespace PMS.Web {
     
     
-    public partial class crossGuideTeacher {
+    public partial class myGuideTeacher {
     }
 }

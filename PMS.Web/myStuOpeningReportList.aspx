@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myStuOpeningReportList.aspx.cs" Inherits="PMS.Web.myStuOpeningReportList" %>
-
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,7 +19,7 @@
 <body>
     <div class="panel">
         <div class="panel-heading text-center">
-            <h1>中期质量报告列表</h1>
+            <h1>开题报告质量报告列表</h1>
         </div>
         <div class="panel-body" id="body">
             <div class="panel panel-default" id="propanelbox">
@@ -45,35 +45,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">1</td>
-                        <td class="text-center">图书管理系统</td>
-                        <td class="text-center">16612500028</td>
-                        <td class="text-center">周杰杰</td>
-                        <td class="text-center">
-                            <a href="mediiumQuality.aspx">
-                            <span class="glyphicon glyphicon-hand-right"></span>
-                            点击查看
-                        </a></td>
-                    </tr>
-                    <%-- <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                     <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
                     %>
                     <tr>
                         <td style="vertical-align: middle" class="col-sm-1"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                         <td style="vertical-align: middle" class="col-sm-2"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <%=ds.Tables[0].Rows[i]["realName"].ToString() %>
-                        </td>
-                        <td style="vertical-align: middle">
-                            <a href="mediiumQuality.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
+                            <a href="reviewOpeningReport.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
                                 <span class="glyphicon glyphicon-hand-right"></span>
                                 点击查看
                             </a>
                         </td>
                     </tr>
-                    <%} %>--%>
+                    <%} %>
                 </tbody>
             </table>
         </div>
@@ -92,17 +79,17 @@
                 </li>
                 <li>
                     <a href="#" class="jump">
-                        <%-- <%=getCurrentPage %>--%>
+                        <%=getCurrentPage %>
                     </a>
                 </li>
                 <li>
                     <a href="#">/</a>
                 </li>
                 <li>
-                    <%--<% if (count == 0) { count = 1; } %>
+                    <% if (count == 0) { count = 1; } %>
                     <a href="#" class="jump">
                         <%=count %>
-                    </a>--%>
+                    </a>
                 </li>
                 <li>
                     <a href="#" id="next" class="jump">
@@ -115,9 +102,8 @@
             </ul>
         </div>
     </div>
-    <%--<label><%=Session["state"] %></label>
     <input type="text" value="<%=getCurrentPage %>" id="page" />
-    <input type="text" value="<%=count %>" id="countPage" />--%>
+    <input type="text" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

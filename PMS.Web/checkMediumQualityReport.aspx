@@ -53,7 +53,7 @@
                         <td style="vertical-align: middle" class="col-sm-2"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
-                        <td style="vertical-align: middle">
+                        <td style="vertical-align: middle" class="col-sm-1">
                             <a href="mediiumQuality.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
                                 <span class="glyphicon glyphicon-hand-right"></span>
                                 点击查看
