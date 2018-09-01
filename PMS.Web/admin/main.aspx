@@ -146,7 +146,7 @@
                                     </a>
                                 </li>
                                  <li role="presentation" id="crossGuide">
-                                    <a href="../crossGuideTeacher.aspx" class="sidebarclick" >
+                                    <a href="../myCrossGuidanceTeacher.aspx" class="sidebarclick" >
                                         <span>交叉评阅</span>
                                     </a>
                                 </li>
@@ -224,7 +224,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="reportTea">
                                 <li role="presentation" id="openReportTea">
-                                    <a href="../reviewOpeningReport.aspx" class="sidebarclick" >
+                                    <a href="../myStuOpeningReportList.aspx" class="sidebarclick" >
                                         <span>开题报告</span>
                                     </a>
                                 </li>
