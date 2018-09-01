@@ -103,21 +103,26 @@ namespace PMS.BLL
                 return Result.添加失败;
             }
         }
+        public DataSet getModel(string stuAccount, string titleRecordId)
+        {
+            return dedao.SelectRecord(stuAccount,titleRecordId);
+        }
 
         /// <summary>
         /// 根据选题记录id查找答辩记录信息
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>
         /// <returns></returns>
-        public DefenceRecord SelectRecord(int titleRecordId)
+        public DefenceRecord SelectRecord(string stuAccount,string titleRecordId)
         {
-            DataSet ds = dedao.SelectRecord(titleRecordId);
+            DataSet ds = dedao.SelectRecord(stuAccount,titleRecordId);
             DefenceRecord defence = new DefenceRecord();
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 defence.titleRecord.TitleRecordId = Convert.ToInt32(ds.Tables[0].Rows[0]["titleRecordId"].ToString());
                 defence.defenceGroup.defenGroupId = Convert.ToInt32(ds.Tables[0].Rows[0]["member"].ToString());
                 defence.recordContent = ds.Tables[0].Rows[0]["recordContent"].ToString();
+                
                 return defence;
             }
             return null;

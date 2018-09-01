@@ -383,7 +383,7 @@ a:link {
 /*学生上传查重报告页面样式*/
 
 #a_filereport {
-    position: relative;
+    float: left;
     display: inline-block;
     background: #D0EEFF;
     border: 1px solid #99D3F5;
@@ -413,4 +413,13 @@ a:link {
 
 #thesisTable {
     display: none;
+}
+
+.file-Info {
+    width: 50%;
+}
+
+.p-report {
+    font-size: 18px;
+    margin-top: 5px;
 }

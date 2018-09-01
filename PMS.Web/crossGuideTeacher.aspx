@@ -37,7 +37,7 @@
                     <td class="text_type">电子邮件</td>
                     <td>123121312@qq.com</td>
                 </tr>
-                <tr>
+                <%--<tr>
                     <td colspan="8"></td>
                 </tr>
                 <tr>
@@ -58,7 +58,7 @@
                     <td>12345679801</td>
                     <td class="text_type">电子邮件</td>
                     <td>123121312@qq.com</td>
-                </tr>
+                </tr>--%>
 
 <%--                <tr>
                     <td colspan="8">

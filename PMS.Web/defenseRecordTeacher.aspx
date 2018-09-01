@@ -22,7 +22,7 @@
                 <tbody>
                     <tr class="table_head">
                         <td class="col-sm-1">论文题目</td>
-                        <td colspan="4"></td>
+                        <td colspan="4"><%=titleName %></td>
                     </tr>
                     <tr class="table_head">
                         <td>姓名</td>
@@ -32,11 +32,11 @@
                         <td>指导教师</td>
                     </tr>
                     <tr class="table_head">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><%=stuName %></td>
+                        <td id="stuAccount"><%=account %></td>
+                        <td><%=proName %></td>
+                        <td><%=finishYear %></td>
+                        <td><%=teaName %></td>
                     </tr>
                     <tr class="table_head">
                         <td colspan="5">说明：本栏目填写学生论文答辩情况，答辩小组成员提问、学生回答等答辩过程及论文综合评价情况。每个学生记录一份。</td>
@@ -46,12 +46,12 @@
                             <div class="textmain-record">答 &nbsp&nbsp&nbsp&nbsp 辩 &nbsp&nbsp&nbsp&nbsp 记 &nbsp&nbsp&nbsp&nbsp 录</div>
                         </td>
                         <td class="record-td" colspan="4">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="content"><%=recordContent %></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td colspan="2">答辩日期</td>
-                        <td></td>
+                        <td><%=now%></td>
                         <td>答辩成绩</td>
                         <td></td>
                     </tr>
@@ -67,6 +67,7 @@
                     </tr>
                 </tbody>
             </table>
+            <input type="hidden" id="titleRecordId" value="<%=titleRecordId %>" />
         </div>
         <div class="container text-right panel-footer panleFooter">
             <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button>
@@ -76,5 +77,5 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/xcConfirm.js"></script>
-<script src="js/openingReport.js"></script>
+<script src="js/defenseRecordTeacher.js"></script>
 </html>
