@@ -14,6 +14,7 @@ namespace PMS.Web
     public partial class downLoadPaper : System.Web.UI.Page
     {
         public DataSet ds;
+        public Path path;
         public string teaAccount, searchdrop, search, currentPage, secSearch;
         public int getCurrentPage = 1, pagesize=5, count, collegeId;
         protected void Page_Load(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace PMS.Web
                 titleRecord.TitleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[i]["titleRecordId"].ToString());
                 guide.titleRecord = titleRecord;
                 guide.dateTime = DateTime.Now;
-                Path path = pathBll.Select(titleRecord.TitleRecordId);
+                path = pathBll.Select(titleRecord.TitleRecordId);
                 guide.path = path;
                 int pathId = path.pathId;
                 Result row = guideBll.Insert(guide);
@@ -60,6 +61,7 @@ namespace PMS.Web
                 getPage(Search());
             }
         }
+        //下拉框搜索
         public string Searchdrop()
         {
             try

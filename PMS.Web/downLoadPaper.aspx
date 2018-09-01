@@ -56,10 +56,14 @@
                         <td style="vertical-align: middle" class="col-sm-1" id="stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span></button>
+                            <a href="<%=path.paperPath %>">
+                                <button type="button" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-download-alt"></span>
+                                </button>
+                            </a>
                         </td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModa1" id="btnOpinion">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 点击评价
                             </button>
@@ -122,7 +126,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid table-bordered img-rounded modal_comment">
-                        <textarea rows="8" style="margin-top:15px;width:100%;" class="opinion"></textarea>
+                        <textarea rows="8" style="margin-top: 15px; width: 100%;" class="opinion"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -30,6 +30,15 @@ namespace PMS.BLL
             return Result.添加失败;
         }
         /// <summary>
+        /// 通过titleRecordId获取当前状态
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public Score getState(string titleRecordId)
+        {
+            return sdao.getState(titleRecordId);
+        }
+        /// <summary>
         /// 根据学生账号、批次id获取成绩
         /// </summary>
         /// <param name="stuAccount">学生账号</param>

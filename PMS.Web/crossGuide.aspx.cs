@@ -24,7 +24,8 @@ namespace PMS.Web
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 string stuAccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
-                if (stuAccount == "15612200017")
+                string account = Request.QueryString["stuAccount"];
+                if (stuAccount == account)
                 {
                     stuName = ds.Tables[0].Rows[i]["stuName"].ToString();
                     proName = ds.Tables[0].Rows[i]["proName"].ToString();
