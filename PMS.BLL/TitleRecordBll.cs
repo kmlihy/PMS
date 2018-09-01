@@ -27,6 +27,11 @@ namespace PMS.BLL
             return dao.getRtId(stuAccount);
         }
 
+        public TitleRecord getRtIdByTea(string stuAccount, string teaAccount)
+        {
+            return dao.getRtIdByTea(stuAccount,teaAccount);
+        }
+
         /// <summary>
         /// 添加一条选题记录信息
         /// </summary>

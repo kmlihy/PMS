@@ -15,9 +15,19 @@
             <h2>论文提交页面</h2>
         </div>
         <div class="panel-body text-center thesis-panelbody">
-            <p id="upload-p">选择文件<input onchange="showname()" type="file" id="file1" name="file" /></p>
+            <table class="table">
+                <tr>
+                    <td class="file-Info"><span id="tips">上传论文:</span></td>
+                    <td class="file-Info">
+                        <p id="upload-p">选择文件<input onchange="showname()" type="file" id="file1" name="file" /></p>
+                    </td>
+                </tr>
+            </table>
+            <div id="myAlert" class="alert alert-success">
+                <strong>提示！</strong> 因为只允许上传.zip或者.rar格式的文件，请把论文压缩成.zip或者.rar格式的文件,谢谢！
+            </div>
             <div class="container text-center">
-                <p id="tips"></p>
+                <%--<p id="tips"></p>--%>
                 <table class="table table-bordered" id="thesisTable">
                     <thead>
                         <tr>
@@ -35,7 +45,7 @@
             </div>
         </div>
         <div class="container panel-footer text-right panelFooter">
-            <input type="button" value="上传" id="btnupload" class="btn btn-info" />
+            <input type="button" value="上传" id="btnupload" class="btn btn-primary" />
         </div>
     </div>
 

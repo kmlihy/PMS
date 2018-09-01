@@ -52,9 +52,7 @@
                         <td style="vertical-align: middle" class="col-sm-1"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                         <td style="vertical-align: middle" class="col-sm-2"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
-                        <td style="vertical-align: middle" class="col-sm-1">
-                            <%=ds.Tables[0].Rows[i]["realName"].ToString() %>
-                        </td>
+                        <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td style="vertical-align: middle">
                             <a href="mediiumQuality.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
                                 <span class="glyphicon glyphicon-hand-right"></span>
@@ -104,9 +102,8 @@
             </ul>
         </div>
     </div>
-    <label><%=Session["state"] %></label>
-    <input type="text" value="<%=getCurrentPage %>" id="page" />
-    <input type="text" value="<%=count %>" id="countPage" />
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

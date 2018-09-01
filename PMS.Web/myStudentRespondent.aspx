@@ -84,7 +84,7 @@
                             <th class="text-center">题目</th>
                             <th class="text-center">批次</th>
                             <th class="text-center">性别</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center">前往记录</th>
                         </thead>
                         <tbody>
                             <% for (int i = 0;i < ds.Tables[0].Rows.Count;i++){ %>

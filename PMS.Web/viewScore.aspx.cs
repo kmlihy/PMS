@@ -14,6 +14,8 @@ namespace PMS.Web
     {
         public string stuAccount, stuName, proName, title;
         public double score;
+        public int titleRecordId,state;
+        public string content;
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -29,39 +31,49 @@ namespace PMS.Web
                 string stuaccount = dsTR.Tables[0].Rows[i]["stuAccount"].ToString();
                 if (stuaccount == stuAccount)
                 {
+                    titleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["titleRecordId"].ToString());
                     title = dsTR.Tables[0].Rows[0]["title"].ToString();
                     planId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["planId"].ToString());
                     break;
                 }
             }
-            //获取成绩
-            DataSet ds = sbll.Select(stuAccount, planId);
-            int openState = Convert.ToInt32(ds.Tables[0].Rows[0]["openState"].ToString());
-            if (openState == 0)
+            Score _score = sbll.getState(titleRecordId.ToString());
+            state = _score.state;
+            if (state==0 || state==1 || state==2)
             {
-                Response.Write("成绩还未开放查询，请耐心等待");
-                Response.End();
+                content = "暂无成绩";
             }
             else
             {
-                double guideScore = 0, crossScore = 0, defenceScore = 0;
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                //获取成绩
+                DataSet ds = sbll.Select(stuAccount, planId);
+                int openState = Convert.ToInt32(ds.Tables[0].Rows[0]["openState"].ToString());
+                if (openState == 0)
                 {
-                    string remarks = ds.Tables[0].Rows[i]["remarks"].ToString();
-                    if (remarks == "指导成绩")
-                    {
-                        guideScore = Convert.ToDouble(ds.Tables[0].Rows[i]["score"].ToString());
-                    }
-                    else if (remarks == "交叉评阅")
-                    {
-                        crossScore = Convert.ToDouble(ds.Tables[0].Rows[i]["score"].ToString());
-                    }
-                    else if (remarks == "答辩成绩")
-                    {
-                        defenceScore = Convert.ToDouble(ds.Tables[0].Rows[i]["score"].ToString());
-                    }
+                    Response.Write("成绩还未开放查询，请耐心等待");
+                    Response.End();
                 }
-                score = guideScore * 0.4 + crossScore * 0.3 + defenceScore * 0.3;
+                else
+                {
+                    double guideScore = 0, crossScore = 0, defenceScore = 0;
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        string remarks = ds.Tables[0].Rows[i]["remarks"].ToString();
+                        if (remarks == "指导成绩")
+                        {
+                            guideScore = Convert.ToDouble(ds.Tables[0].Rows[i]["score"].ToString());
+                        }
+                        else if (remarks == "交叉评阅")
+                        {
+                            crossScore = Convert.ToDouble(ds.Tables[0].Rows[i]["score"].ToString());
+                        }
+                        else if (remarks == "答辩成绩")
+                        {
+                            defenceScore = Convert.ToDouble(ds.Tables[0].Rows[i]["score"].ToString());
+                        }
+                    }
+                    score = guideScore * 0.4 + crossScore * 0.3 + defenceScore * 0.3;
+                }
             }
         }
     }

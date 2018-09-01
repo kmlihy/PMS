@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -55,6 +56,25 @@ namespace PMS.Dao
             {
                 throw;
             }
+        }
+        /// <summary>
+        /// 通过titleRecordId获取当前状态
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public Score getState(string titleRecordId)
+        {
+            string sql = "select state from T_DefenceRecord where titleRecordId=@titleRecordId";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            Score score = new Score();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                score.state = reader.GetInt32(0);
+            }
+            reader.Close();
+            return score;
         }
     }
 }

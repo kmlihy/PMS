@@ -400,6 +400,7 @@
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
+    float:left;
 }
 
     #upload-p input {
@@ -416,12 +417,27 @@
         color: #004974;
         text-decoration: none;
     }
-.file-Info {
-    width:50%;
-}
-.thesis-panelbody {
-    height:300px;
 
+.file-Info {
+    width: 50%;
+}
+
+.thesis-panelbody {
+    margin-top: 30px;
+    height: auto;
+}
+
+#thesisTable {
+    display: none;
+}
+
+#tips {
+    float: right;
+    font-size: 18px;
+    margin-top: 5px;
+}
+#myAlert {
+    height: 150px;
 }
 /*查看成绩样式*/
 .viewScore_panelhead {
@@ -484,6 +500,7 @@
 #oraldefenseHistory {
     word-break: normal;
     white-space: pre-wrap;
+    /*兼容其他浏览器*/
     white-space: -moz-pre-wrap;
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;

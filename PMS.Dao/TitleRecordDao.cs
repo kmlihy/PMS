@@ -172,6 +172,27 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 通过学生和老师账号获取titleRecordId
+        /// </summary>
+        /// <param name="stuAccount"></param>
+        /// <param name="teaAccount"></param>
+        /// <returns></returns>
+        public TitleRecord getRtIdByTea(string stuAccount,string teaAccount)
+        {
+            string sql = "select top 1 titleRecordId from V_TitleRecord where stuAccount=@stuAccount and teaAccount=@teaAccount order by titleRecordId desc";
+            string[] param = { "@stuAccount", "teaAccount" };
+            object[] values = { stuAccount,teaAccount };
+            TitleRecord titleRecord = new TitleRecord();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                titleRecord.TitleRecordId = reader.GetInt32(0);
+            }
+            reader.Close();
+            return titleRecord; ;
+        }
+
+        /// <summary>
         /// 获得一个选题记录信息
         /// </summary>
         /// <param name="recordId">要获得的选题记录ID</param>

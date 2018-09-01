@@ -167,6 +167,7 @@
     <Content Include="js\retrievePwd.js" />
     <Content Include="js\RSA.js" />
     <Content Include="js\selectTopicList.js" />
+    <Content Include="js\stuHistoryPaper.js" />
     <Content Include="js\stuLIst.js" />
     <Content Include="js\teaList.js" />
     <Content Include="js\test.js" />
