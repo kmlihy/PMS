@@ -100,9 +100,11 @@
                                 <td class="text-center"><%=ds.Tables[0].Rows[i]["planName"].ToString() %></td>
                                 <td class="text-center"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></td>
                                 <td class="text-center">
+                                    <a href="defenseRecordTeacher.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>&titleRecordId=<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %>">
                                     <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
                                         <span class="glyphicon glyphicon-search"></span>
                                     </button>
+                                        </a>
                                 </td>
                             </tr>
                             <%} %>
@@ -141,77 +143,6 @@
                     <a href="#" class="jump" id="last">尾页</a>
                 </li>
             </ul>
-        </div>
-    </div>
-    <!-- 查看我的交叉指导学生弹框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">详细信息
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered" id="selecttab">
-                        <tbody class="tablebody">
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">编号:</label></td>
-                                <td>
-                                    <p id="titleRecordId1" class="text-span"></p>
-                                </td>
-                                <td class="teaLable">
-                                    <label class="text-span">姓名:</label></td>
-                                <td>
-                                    <p id="realName1" class="text-span"></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">性别:</label></td>
-                                <td>
-                                    <p id="sex1" class="text-span"></p>
-                                </td>
-                                <td class="teaLable">
-                                    <label class="text-span">联系电话:</label></td>
-                                <td>
-                                    <p id="phone1" class="text-span"></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">专业名称:</label></td>
-                                <td>
-                                    <p id="proName1" class="text-span"></p>
-                                </td>
-                                <td class="teaLable">
-                                    <label class="text-span">题目:</label></td>
-                                <td>
-                                    <p id="title1" class="text-span"></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="teaLable">
-                                    <label class="text-span">所属批次:</label></td>
-                                <td>
-                                    <p id="planName1" class="text-span"></p>
-                                </td>
-                                <td class="teaLable">
-                                    <label class="text-span">所属答辩小组:</label></td>
-                                <td>
-                                    <p id="recordtime1" class="text-span"></p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
         </div>
     </div>
     <!-- 存储分页数和当前页数，不可见-->

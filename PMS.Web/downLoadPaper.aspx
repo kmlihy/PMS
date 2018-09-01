@@ -55,11 +55,12 @@
                         <td style="vertical-align: middle" class="col-sm-3"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1" id="stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
-                        <td style="vertical-align: middle" class="col-sm-1">
-                            <a href="<%=path.paperPath %>">
-                                <button type="button" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-download-alt"></span>
-                                </button>
+                         <td style="vertical-align: middle" class="col-sm-1">
+                            
+                             <a id="loadHref" href="#">
+                             <button type="button" class="btn btn-success" id="download">
+                                <span class="glyphicon glyphicon-download-alt"></span>
+                            </button>
                             </a>
                         </td>
                         <td style="vertical-align: middle" class="col-sm-1">

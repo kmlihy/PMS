@@ -23,6 +23,7 @@ namespace PMS.Model
         /// 答辩记录内容
         /// </summary>
         public string recordContent { set; get; }
+        public DateTime dateTime { get; set; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -33,11 +34,12 @@ namespace PMS.Model
         /// <param name="titleRecord">选题记录对象</param>
         /// <param name="defenceRecord">答辩小组对象</param>
         /// <param name="recordContent">答辩记录内容</param>
-        public DefenceRecord(TitleRecord titleRecord, DefenceRecord defenceRecord, string recordContent)
+        public DefenceRecord(TitleRecord titleRecord, DefenceRecord defenceRecord, string recordContent,DateTime dateTime)
         {
             this.titleRecord = titleRecord;
             this.defenceGroup = defenceGroup;
             this.recordContent = recordContent;
+            this.dateTime = dateTime;
         }
     }
 }
