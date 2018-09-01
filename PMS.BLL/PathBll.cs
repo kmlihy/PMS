@@ -44,17 +44,34 @@ namespace PMS.BLL
             return Result.添加失败;
         }
 
+        /// <summary>
+        /// 通过学生账号获取选题记录id
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
         public Path getTitleRecordId(string stuAccount)
         {
             return pdao.getTitleRecordId(stuAccount);
         }
-        public DataSet getModel(int titleRecordId)
+
+        /// <summary>
+        /// 通过选题记录id获取路径信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet getModel(int titleRecordId,string stuAccount)
         {
-            return pdao.Select(titleRecordId);
+            return pdao.Select(titleRecordId, stuAccount);
         }
-        public Path Select(int titleRecordId)
+
+        /// <summary>
+        /// 通过选题记录id获取最新的路径信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public Path Select(int titleRecordId,string stuAccount)
         {
-            DataSet ds = pdao.Select(titleRecordId);
+            DataSet ds = pdao.Select(titleRecordId,stuAccount);
             Path path = new Path();
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
