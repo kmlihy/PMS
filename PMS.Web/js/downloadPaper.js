@@ -13,7 +13,21 @@ function jump(cur) {
         window.location.href = "downLoadPaper.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
     }
 };
-
+$("#download").click(function () {
+    var stuAccount = $(this).parent().parent().parent().find("#stuAccount").text().trim();
+    $.ajax({
+        type: 'Post',
+        url: 'downLoadPaper.aspx',
+        data: {
+            stuAccount: stuAccount,
+            op: "download"
+        },
+        dataType: 'text',
+        success: function (succ) {
+            
+        }
+    });
+})
 //查询按钮点击事件
 $("#btn-search").click(function () {
     var strWhere = $("#inputsearch").val();
@@ -33,7 +47,7 @@ $("#submit").click(function () {
         data: {
             stuAccount: sessionStorage.getItem("account"),
             opinion: opinion,
-            addop:'add'
+            op:'add'
         },
         dataType: 'text',
         success: function (succ) {

@@ -14,8 +14,8 @@ namespace PMS.Web
     public partial class downLoadPaper : System.Web.UI.Page
     {
         public DataSet ds;
-        public Path path;
-        public string teaAccount, searchdrop, search, currentPage, secSearch;
+        public Path path, paperPath;
+        public string teaAccount, searchdrop, search, currentPage, secSearch,op;
         public int getCurrentPage = 1, pagesize=5, count, collegeId;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,10 +24,10 @@ namespace PMS.Web
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
             collegeId = teacher.college.ColID;
-            string op = Context.Request.Form["op"];
+            string addop = Context.Request.Form["op"];
             string type = Request.QueryString["type"];
-            string addop = Request["addop"];
-            if (addop == "add")
+            op = Request["op"];
+            if (op == "add")
             {
                 string stuAccount = Request["stuAccount"];
                 string opinion = Request["opinion"];
@@ -40,9 +40,8 @@ namespace PMS.Web
                 titleRecord.TitleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[i]["titleRecordId"].ToString());
                 guide.titleRecord = titleRecord;
                 guide.dateTime = DateTime.Now;
-                path = pathBll.Select(titleRecord.TitleRecordId);
+                path = pathBll.Select(titleRecord.TitleRecordId, stuAccount);
                 guide.path = path;
-                int pathId = path.pathId;
                 Result row = guideBll.Insert(guide);
                 if(row == Result.添加成功)
                 {
@@ -54,6 +53,17 @@ namespace PMS.Web
                     Response.Write("提交失败");
                     Response.End();
                 }
+            }
+            else if(op == "download")
+            {
+                string account = Request["stuAccount"];
+                Path getTitleRecordId = pathBll.getTitleRecordId(account);
+                int titleRecordId = getTitleRecordId.titleRecord.TitleRecordId;
+                paperPath = pathBll.Select(titleRecordId, account);
+                string d = paperPath.paperPath;
+                //Response.Redirect(paperPath.paperPath);
+                Response.Write("<script>$('#loadHref').href = '" + paperPath.paperPath + "';</script>");
+                //Response.End();
             }
             if (!IsPostBack)
             {
