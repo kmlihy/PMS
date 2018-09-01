@@ -143,6 +143,7 @@
     <Content Include="js\checkReportTeacher.js" />
     <Content Include="js\crossGuide.js" />
     <Content Include="js\crossStuList.js" />
+    <Content Include="js\defenseRecordTeacher.js" />
     <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
     <Content Include="js\icheck.min.js" />
@@ -277,7 +278,6 @@
     <Content Include="oralDefenseStudent.aspx" />
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
-    <Content Include="paperSubmission.aspx" />
     <Content Include="reg.aspx" />
     <Content Include="reviewOpeningReport.aspx" />
     <Content Include="square\aero%402x.png" />
@@ -605,13 +605,6 @@
     </Compile>
     <Compile Include="paperList.aspx.designer.cs">
       <DependentUpon>paperList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="paperSubmission.aspx.cs">
-      <DependentUpon>paperSubmission.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="paperSubmission.aspx.designer.cs">
-      <DependentUpon>paperSubmission.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="reg.aspx.cs">

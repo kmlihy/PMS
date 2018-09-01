@@ -119,9 +119,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_DefenceRecord(titleRecordId,defenGroupId,recordContent) values(@titleRecordId,@defenGroupId,@recordContent)";
-                string[] param = { "@titleRecordId", "@defenGroupId", "@recordContent" };
-                object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId, defence.recordContent };
+                string cmdText = "insert into T_DefenceRecord(titleRecordId,defenGroupId,recordContent,dateTime) values(@titleRecordId,@defenGroupId,@recordContent,@dateTime)";
+                string[] param = { "@titleRecordId", "@defenGroupId", "@recordContent","@dateTime" };
+                object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId, defence.recordContent ,defence.dateTime};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -135,13 +135,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>
         /// <returns></returns>
-        public DataSet SelectRecord(int titleRecordId)
+        public DataSet SelectRecord(string stuAccount,string titleRecordId)
         {
             try
             {
-                string cmdText = "select * from T_DefenceGroup where titleRecordId=@titleRecordId";
-                String[] param = { "@titleRecordId" };
-                String[] values = { titleRecordId.ToString() };
+                string cmdText = "select * from V_DefenceRecord where stuAccount=@stuAccount and titleRecordId=@titleRecordId";
+                String[] param = { "@stuAccount", "@titleRecordId" };
+                String[] values = {stuAccount, titleRecordId };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
                 if (ds != null)
                 {
