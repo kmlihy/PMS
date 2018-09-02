@@ -17,13 +17,13 @@
             if (succ === "添加成功") {
                 window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                     onOk: function (v) {
-                        alert("添加成功");
+                        //alert("添加成功");
                     }
                 });
             } else {
                 window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                     onOk: function (v) {
-                        alert("添加失败");
+                        //alert("添加失败");
                     }
                 });
             }
