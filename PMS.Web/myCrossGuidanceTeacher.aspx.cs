@@ -12,18 +12,32 @@ namespace PMS.Web
 {
     public partial class myCrossGuidanceTeacher : System.Web.UI.Page
     {
-        public string name, sex, phone, email;
+        public string name, sex, phone, email,opninion;
         protected void Page_Load(object sender, EventArgs e)
         {
             Student student = (Student)Session["loginuser"];
             string stuAccount = student.StuAccount;
             TitleRecordBll trecordBll = new TitleRecordBll();
             DataSet ds =trecordBll.GetByAccount(stuAccount);
-            int i = ds.Tables[0].Rows.Count;
-            name = ds.Tables[0].Rows[i]["teaName"].ToString();
-            sex = ds.Tables[0].Rows[i]["teaSex"].ToString();
-            phone = ds.Tables[0].Rows[i]["teaPhone"].ToString();
-            email = ds.Tables[0].Rows[i]["teaEmail"].ToString();
+            int i = ds.Tables[0].Rows.Count-1;
+            int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+            CrossGuideBll crossBll = new CrossGuideBll();
+            DataSet dsTea = crossBll.SelectTeacher(titleRecordId);
+            int j = dsTea.Tables[0].Rows.Count - 1;
+            name = dsTea.Tables[0].Rows[j]["teaName"].ToString();
+            sex = dsTea.Tables[0].Rows[j]["teaSex"].ToString();
+            phone = dsTea.Tables[0].Rows[j]["teaPhone"].ToString();
+            email = dsTea.Tables[0].Rows[j]["teaEmail"].ToString();
+            DataSet dsCross = crossBll.Select(titleRecordId);
+            if (dsCross != null)
+            {
+                int a = dsCross.Tables[0].Rows.Count - 1;
+                opninion = dsCross.Tables[0].Rows[a]["opninion"].ToString();
+            }
+            else
+            {
+                opninion = "教师未提交，请耐心等待";
+            }
         }
     }
 }

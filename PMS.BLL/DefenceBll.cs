@@ -103,9 +103,9 @@ namespace PMS.BLL
                 return Result.添加失败;
             }
         }
-        public DataSet getModel(string stuAccount, string titleRecordId)
+        public DataSet getModel(string titleRecordId)
         {
-            return dedao.SelectRecord(stuAccount,titleRecordId);
+            return dedao.SelectRecord(titleRecordId);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace PMS.BLL
         /// <returns></returns>
         public DefenceRecord SelectRecord(string stuAccount,string titleRecordId)
         {
-            DataSet ds = dedao.SelectRecord(stuAccount,titleRecordId);
+            DataSet ds = dedao.SelectRecord(titleRecordId);
             DefenceRecord defence = new DefenceRecord();
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {

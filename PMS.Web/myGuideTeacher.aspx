@@ -102,7 +102,7 @@
                 </tr>--%>
             </table>
             <div class="container-fluid table-bordered img-rounded modal_comment">
-                是顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶
+                <%=opinion %>
             </div>
         </div>
     </div>
