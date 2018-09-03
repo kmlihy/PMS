@@ -27,9 +27,53 @@ namespace PMS.Model
         /// </summary>
         public string remarks { set; get; }
         /// <summary>
-        /// 评定等级
+        /// 调查论证
         /// </summary>
-        public string assess { set; get; }
+        public string investigation { get; set; }
+        /// <summary>
+        /// 实践能力
+        /// </summary>
+        public string practice { get; set; }
+        /// <summary>
+        /// 分析、解决问题能力
+        /// </summary>
+        public string solveProblem { get; set; }
+        /// <summary>
+        /// 工作态度
+        /// </summary>
+        public string workAttitude { get; set; }
+        /// <summary>
+        /// 质量
+        /// </summary>
+        public string quality { get; set; }
+        /// <summary>
+        /// 翻译资料综述材料
+        /// </summary>
+        public string material { get; set; }
+        /// <summary>
+        /// 论文（设计）质量
+        /// </summary>
+        public string paperDesign { get; set; }
+        /// <summary>
+        /// 工作量及难度
+        /// </summary>
+        public string workload { get; set; }
+        /// <summary>
+        /// 报告内容
+        /// </summary>
+        public string reportContent { get; set; }
+        /// <summary>
+        /// 报告时间
+        /// </summary>
+        public string reportTime { get; set; }
+        /// <summary>
+        /// 答辩
+        /// </summary>
+        public string defence { get; set; }
+        /// <summary>
+        /// 创新
+        /// </summary>
+        public string innovate { get; set; }
         /// <summary>
         /// 评价
         /// </summary>
@@ -38,7 +82,6 @@ namespace PMS.Model
         /// 判断成绩是否开放给学生查看;0为未开放，1为已开放
         /// </summary>
         public int openState { set; get; }
-        public int state { get; set; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -59,10 +102,20 @@ namespace PMS.Model
             this.plan = plan;
             this.score = score;
             this.remarks = remarks;
-            this.assess = assess;
+            this.investigation = investigation;
+            this.practice = practice;
             this.evaluate = evaluate;
+            this.solveProblem = solveProblem;
+            this.workAttitude = workAttitude;
+            this.quality = quality;
+            this.material = material;
+            this.paperDesign = paperDesign;
+            this.workload = workload;
+            this.reportContent = reportContent;
+            this.reportTime = reportTime;
+            this.defence = defence;
+            this.innovate = innovate;
             this.openState = openState;
-            this.state = state;
         }
     }
 }

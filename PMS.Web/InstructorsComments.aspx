@@ -20,13 +20,16 @@
                 <tbody>
                     <tr class="table_head">
                         <td class="col-sm-1">论文题目</td>
-                        <td colspan="9"></td>
+                        <td colspan="9"><%=getData.Tables[0].Rows[0]["title"].ToString() %></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">学生姓名</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><%=getData.Tables[0].Rows[0]["realName"].ToString() %></td>
                         <td class="col-md-1">专业</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><%=getData.Tables[0].Rows[0]["proName"].ToString() %></td>
+                        <td class="col-md-1">成绩</td>
+                        <td class="col-sm-1">
+                            <input type="text" id="score"  /></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
@@ -35,42 +38,42 @@
                     <tr class="table_head">
                         <td class="col-md-1">调查论证</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="investigation"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">实践能力</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="practice"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">分析、解决问题能力</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="solveProblem"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">工作态度</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="workAttitude"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">质量</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="quality"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">创新</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="innovate"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText adviceTextArea">评价：</textarea>
+                            <textarea class="openReportText adviceTextArea" placeholder="请输入评价"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
