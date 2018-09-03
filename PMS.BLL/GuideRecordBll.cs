@@ -29,9 +29,20 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
-        public DataSet Select(int titleRecordId, string stuAccount)
+
+        /// <summary>
+        /// 根据选题记录id查找指导记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet Select(int titleRecordId)
         {
-            return gdao.Select(titleRecordId, stuAccount);
+            DataSet ds = gdao.Select(titleRecordId);
+            if (ds != null)
+            {
+                return ds;
+            }
+            return null;
         }
     }
 }

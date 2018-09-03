@@ -25,7 +25,7 @@ namespace PMS.Web
             {
                 titleRecordId = Request["titleRecordId"];
                 stuAccount = Request["stuAccount"];
-                getData = defenceBll.getModel(stuAccount, titleRecordId);
+                getData = defenceBll.getModel( titleRecordId);
                 DefenceRecord defenceRecord = new DefenceRecord();
                 TitleRecord titleRecord = new TitleRecord();
                 titleRecord.TitleRecordId = Convert.ToInt32(getData.Tables[0].Rows[0]["titleRecordId"]);
@@ -57,7 +57,7 @@ namespace PMS.Web
         {
             stuAccount = Request.QueryString["stuAccount"];
             titleRecordId = Request.QueryString["titleRecordId"];
-            getData = defenceBll.getModel(stuAccount, titleRecordId);
+            getData = defenceBll.getModel(titleRecordId);
             int i = getData.Tables[0].Rows.Count - 1;
             titleName = getData.Tables[0].Rows[i]["title"].ToString();
             stuName = getData.Tables[0].Rows[i]["realName"].ToString();

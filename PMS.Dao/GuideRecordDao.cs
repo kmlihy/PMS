@@ -54,5 +54,30 @@ namespace PMS.Dao
                 throw;
             }
         }
+
+        /// <summary>
+        /// 根据选题记录id查找指导记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet Select(int titleRecordId)
+        {
+            try
+            {
+                string cmdText = "select * from T_GuideRecord where titleRecordId=@titleRecordId";
+                String[] param = { "@titleRecordId" };
+                String[] values = { titleRecordId.ToString() };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -37,6 +37,7 @@
                     <td><%=email %></td>
                 </tr>
             </table>
+            <div class="container-fluid table-bordered img-rounded modal_comment"><%=opninion %></div>
         </div>
     </div>
 
@@ -49,7 +50,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid table-bordered img-rounded modal_comment"></div>
+                    <div class="container-fluid table-bordered img-rounded modal_comment"><%=opninion %></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn_close" data-dismiss="modal">关闭</button>
