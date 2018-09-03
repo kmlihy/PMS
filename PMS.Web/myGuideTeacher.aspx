@@ -101,14 +101,12 @@
                     <td>123121312@qq.com</td>
                 </tr>--%>
             </table>
-            <div class="container-fluid table-bordered img-rounded modal_comment">
-                <%=opinion %>
-            </div>
+            <div class="container-fluid table-bordered img-rounded modal_comment"><%=opinion %></div>
         </div>
     </div>
 
     <%--查看指导意见--%>
-<%--    <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -116,16 +114,26 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid table-bordered img-rounded modal_comment">
-                        是顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶
-                    </div>
+                    <%if (dsGuide != null && dsGuide.Tables[0].Rows.Count - 2 >= 0)
+                    {
+                        for (int k = dsGuide.Tables[0].Rows.Count - 2; k <= 0; k--)
+                        { %>
+                            <div class="container-fluid table-bordered img-rounded modal_comment"><%=dsGuide.Tables[0].Rows[k]["opinion"].ToString() %>
+                                <div class="right"><%=dsGuide.Tables[0].Rows[k]["dateTime"].ToString() %></div>
+                            </div>
+                        <%}
+                    }
+                    else
+                    { %>
+                    <h2>暂无历史指导意见</h2>
+                    <%} %>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn_close" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
-    </div>--%>
+    </div>
 
     <%--查看交叉指导意见--%>
 <%--    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">

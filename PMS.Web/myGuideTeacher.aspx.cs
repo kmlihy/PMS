@@ -12,6 +12,7 @@ namespace PMS.Web
 {
     public partial class myGuideTeacher : System.Web.UI.Page
     {
+        public DataSet dsGuide;
         public string name, sex, phone, email, opinion;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +27,7 @@ namespace PMS.Web
             phone = ds.Tables[0].Rows[i]["teaPhone"].ToString();
             email = ds.Tables[0].Rows[i]["teaEmail"].ToString();
             GuideRecordBll guideBll = new GuideRecordBll();
-            DataSet dsGuide = guideBll.Select(titleRecordId);
+            dsGuide = guideBll.Select(titleRecordId);
             if (dsGuide != null)
             {
                 int j = dsGuide.Tables[0].Rows.Count - 1;
@@ -34,7 +35,7 @@ namespace PMS.Web
             }
             else
             {
-                opinion = "教师未回复，请耐心等待";
+                opinion = "<h2>教师未回复，请耐心等待</h2>";
             }
         }
     }

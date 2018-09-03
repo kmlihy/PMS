@@ -12,6 +12,7 @@ namespace PMS.Web
 {
     public partial class myCrossGuidanceTeacher : System.Web.UI.Page
     {
+        public DataSet dsCross;
         public string name, sex, phone, email,opninion;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,11 +33,11 @@ namespace PMS.Web
             if (dsCross != null)
             {
                 int a = dsCross.Tables[0].Rows.Count - 1;
-                opninion = dsCross.Tables[0].Rows[a]["opninion"].ToString();
+                opninion = "教师回复："+dsCross.Tables[0].Rows[a]["guideOpinion"].ToString();
             }
             else
             {
-                opninion = "教师未提交，请耐心等待";
+                opninion = "<h2>教师未提交，请耐心等待</h2>";
             }
         }
     }
