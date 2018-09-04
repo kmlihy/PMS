@@ -20,22 +20,24 @@ namespace PMS.Web
             string stuAccount = student.StuAccount;
             TitleRecordBll trecordBll = new TitleRecordBll();
             DataSet ds = trecordBll.GetByAccount(stuAccount);
-            int i = ds.Tables[0].Rows.Count-1;
-            int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
-            name = ds.Tables[0].Rows[i]["teaName"].ToString();
-            sex = ds.Tables[0].Rows[i]["teaSex"].ToString();
-            phone = ds.Tables[0].Rows[i]["teaPhone"].ToString();
-            email = ds.Tables[0].Rows[i]["teaEmail"].ToString();
-            GuideRecordBll guideBll = new GuideRecordBll();
-            dsGuide = guideBll.Select(titleRecordId);
-            if (dsGuide != null)
-            {
-                int j = dsGuide.Tables[0].Rows.Count - 1;
-                opinion = "教师回复："+dsGuide.Tables[0].Rows[j]["opinion"].ToString();
-            }
-            else
-            {
-                opinion = "<h2>教师未回复，请耐心等待</h2>";
+            if (ds != null) {
+                int i = ds.Tables[0].Rows.Count - 1;
+                int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                name = ds.Tables[0].Rows[i]["teaName"].ToString();
+                sex = ds.Tables[0].Rows[i]["teaSex"].ToString();
+                phone = ds.Tables[0].Rows[i]["teaPhone"].ToString();
+                email = ds.Tables[0].Rows[i]["teaEmail"].ToString();
+                GuideRecordBll guideBll = new GuideRecordBll();
+                dsGuide = guideBll.Select(titleRecordId);
+                if (dsGuide != null)
+                {
+                    int j = dsGuide.Tables[0].Rows.Count - 1;
+                    opinion = "教师回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
+                }
+                else
+                {
+                    opinion = "<h2>教师未回复，请耐心等待</h2>";
+                }
             }
         }
     }
