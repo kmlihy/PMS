@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="crossGuidanceStudent.aspx.cs" Inherits="PMS.Web.crossGuidanceStudent" %>
 
-
+<%="" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">

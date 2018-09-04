@@ -22,7 +22,7 @@
                         <span class="sap">我的交叉指导老师</span>
                         <button type="button" class="btn btn-default btn_searchComment btn-info btn-sm" data-toggle="modal" data-target="#myModa2">
                             <span class="glyphicon glyphicon-search"></span>
-                            查看交叉指导意见
+                            查看历史指导意见
                         </button>
                     </td>
                 </tr>
@@ -37,6 +37,7 @@
                     <td><%=email %></td>
                 </tr>
             </table>
+            <div class="container-fluid table-bordered img-rounded modal_comment"><%=opninion %></div>
         </div>
     </div>
 
@@ -49,7 +50,18 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid table-bordered img-rounded modal_comment"></div>
+                    <%if (dsCross != null && dsCross.Tables[0].Rows.Count - 2 >= 0)
+                    {
+                        for (int k = dsCross.Tables[0].Rows.Count - 2; k >= 0; k--)
+                        { %>
+                            <div class="container-fluid table-bordered img-rounded modal_comment"><%=dsCross.Tables[0].Rows[k]["guideOpinion"].ToString() %>
+                                <span class="right"><%=dsCross.Tables[0].Rows[k]["dateTime"].ToString() %></span>
+                            </div>
+                        <%}
+                    }else
+                    { %>
+                    <h2>暂无历史指导意见</h2>
+                    <%} %>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn_close" data-dismiss="modal">关闭</button>

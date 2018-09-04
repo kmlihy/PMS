@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
     $("#btnSubmit").css("magin-top", "10px");
     $("#btnSubmit").click(function () {
-        var data = $("#data").text().trim() + "|," + $("#tdata").val();
-        var quality = $("#quality").text().trim() + "|," + $("#tquality").val();
-        var workload = $("#workload").text().trim() + "|," + $("#tworkload").val(); 
-        var innovate = $("#innovate").text().trim() + "|," + $("#tinnovate").val();
+        var material = $("#tdata").val();
+        var quality = $("#tquality").val();
+        var workload = $("#tworkload").val(); 
+        var innovate = $("#tinnovate").val();
         var score = $("#score").val();
         var evaluate = $("#evaluate").val();
         var assess = data + "|;" + quality + "|;" + workload + "|;" + innovate;
@@ -13,7 +13,10 @@
             url: 'crossGuide.aspx',
             data: {
                 score: score,
-                assess: assess,
+                material: material,
+                quality: quality,
+                workload: workload,
+                innovate: innovate,
                 evaluate: evaluate,
                 op:"add"
             },

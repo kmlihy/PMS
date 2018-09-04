@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myStudentRespondent.aspx.cs" Inherits="PMS.Web.myStudentRespondent" %>
 
+<%="" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -64,7 +65,7 @@
                             <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" value="<%=secSearch %>" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
-                                    <span class="glyphicon glyphicon-search">查询</span>
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                             </span>
                         </div>

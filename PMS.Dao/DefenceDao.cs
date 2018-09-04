@@ -135,13 +135,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>
         /// <returns></returns>
-        public DataSet SelectRecord(string stuAccount,string titleRecordId)
+        public DataSet SelectRecord(string titleRecordId)
         {
             try
             {
-                string cmdText = "select * from V_DefenceRecord where stuAccount=@stuAccount and titleRecordId=@titleRecordId";
-                String[] param = { "@stuAccount", "@titleRecordId" };
-                String[] values = {stuAccount, titleRecordId };
+                string cmdText = "select * from V_DefenceRecord where titleRecordId=@titleRecordId";
+                String[] param = { "@titleRecordId" };
+                String[] values = {titleRecordId };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
                 if (ds != null)
                 {

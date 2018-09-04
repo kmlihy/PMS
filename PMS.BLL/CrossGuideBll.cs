@@ -35,20 +35,31 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据选题记录id查找
+        /// 根据选题记录id查找交叉指导记录
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>
         /// <returns></returns>
-        public CrossGuide Select(int titleRecordId)
+        public DataSet Select(int titleRecordId)
         {
             DataSet ds = cgdao.Select(titleRecordId);
-            CrossGuide cross = new CrossGuide();
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            if (ds != null)
             {
-                int i = ds.Tables[0].Rows.Count-1;
-                cross.titleRecord.TitleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
-                cross.guideOpinion = ds.Tables[0].Rows[i]["guideOpinion"].ToString();
-                return cross;
+                return ds;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 根据学生账号和选题记录id获取交叉指导教师信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet SelectTeacher(int titleRecordId)
+        {
+            DataSet ds = cgdao.SelectTeacher(titleRecordId);
+            if (ds != null)
+            {
+                return ds;
             }
             return null;
         }

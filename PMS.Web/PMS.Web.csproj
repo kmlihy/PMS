@@ -125,6 +125,7 @@
     <Content Include="images\error-pin.png" />
     <Content Include="images\icons.png" />
     <Content Include="404.html" />
+    <Content Include="InstructorsComments.aspx" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\addNews.js" />
     <Content Include="js\addPaper.js" />
@@ -145,6 +146,7 @@
     <Content Include="js\crossGuide.js" />
     <Content Include="js\crossStuList.js" />
     <Content Include="js\defenseRecordTeacher.js" />
+    <Content Include="js\instructorsComments.js" />
     <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
     <Content Include="js\icheck.min.js" />
@@ -251,6 +253,7 @@
     <Content Include="myGrogress.aspx" />
     <Content Include="myGuideTeacher.aspx" />
     <Content Include="myInstructor.aspx" />
+    <Content Include="myReplyStudent.aspx" />
     <Content Include="myStudentRespondent.aspx" />
     <Content Include="myStudents.aspx" />
     <Content Include="myStuOpeningReportList.aspx" />
@@ -283,6 +286,7 @@
     <Content Include="paperDetail.aspx" />
     <Content Include="paperList.aspx" />
     <Content Include="reg.aspx" />
+    <Content Include="replyPanelsOpinion.aspx" />
     <Content Include="reviewOpeningReport.aspx" />
     <Content Include="square\aero%402x.png" />
     <Content Include="square\aero.css" />
@@ -533,6 +537,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InstructorsComments.aspx.cs">
+      <DependentUpon>InstructorsComments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InstructorsComments.aspx.designer.cs">
+      <DependentUpon>InstructorsComments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="JurisdictionTest.aspx.cs">
       <DependentUpon>JurisdictionTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -574,6 +585,13 @@
     </Compile>
     <Compile Include="myInstructor.aspx.designer.cs">
       <DependentUpon>myInstructor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myReplyStudent.aspx.cs">
+      <DependentUpon>myReplyStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myReplyStudent.aspx.designer.cs">
+      <DependentUpon>myReplyStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="myStudentRespondent.aspx.cs">
       <DependentUpon>myStudentRespondent.aspx</DependentUpon>
@@ -652,6 +670,13 @@
     </Compile>
     <Compile Include="reg.aspx.designer.cs">
       <DependentUpon>reg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="replyPanelsOpinion.aspx.cs">
+      <DependentUpon>replyPanelsOpinion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="replyPanelsOpinion.aspx.designer.cs">
+      <DependentUpon>replyPanelsOpinion.aspx</DependentUpon>
     </Compile>
     <Compile Include="reviewOpeningReport.aspx.cs">
       <DependentUpon>reviewOpeningReport.aspx</DependentUpon>

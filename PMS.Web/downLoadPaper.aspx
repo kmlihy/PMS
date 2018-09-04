@@ -42,8 +42,8 @@
                         <th class="text-center">论文</th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
-                        <th class="text-center">下载</th>
                         <th class="text-center">评价意见</th>
+                        <th class="text-center">评定</th>
                         <th class="text-center">查看历史提交</th>
                     </tr>
                 </thead>
@@ -55,19 +55,17 @@
                         <td style="vertical-align: middle" class="col-sm-3"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1" id="stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
-                         <td style="vertical-align: middle" class="col-sm-1">
-                            
-                             <a id="loadHref" href="<% if (download == "download"){%><%=paperPath.paperPath %><%} %>">
-                             <button type="button" class="btn btn-success" id="download">
-                                <span class="glyphicon glyphicon-download-alt"></span>
-                            </button>
-                            </a>
-                        </td>
                         <td style="vertical-align: middle" class="col-sm-1">
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 点击评价
                             </button>
+                        </td>
+                         <td style="vertical-align: middle" class="col-sm-1">
+                            <a href="InstructorsComments.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>&titleRecordId=<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %>">
+                                <span class="glyphicon glyphicon-hand-right"></span>
+                                评定及成绩
+                            </a>
                         </td>
                         <td style="vertical-align: middle" class="col-sm-1">
                             <a href="stuHistoryPaper.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>">
