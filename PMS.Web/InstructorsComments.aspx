@@ -8,6 +8,7 @@
     <title>指导教师评语</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                         <td class="col-sm-1"><%=getData.Tables[0].Rows[0]["proName"].ToString() %></td>
                         <td class="col-md-1">成绩</td>
                         <td class="col-sm-1">
-                            <input type="text" id="score"  /></td>
+                            <input type="number" id="score" min="0" max="100" /></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
@@ -73,7 +74,7 @@
                     </tr>
                     <tr class="table_head">
                         <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText adviceTextArea" placeholder="请输入评价"></textarea>
+                            <textarea class="openReportText adviceTextArea" placeholder="请输入评价" id="content"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -88,5 +89,9 @@
         </div>
     </div>
 </body>
+<script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/xcConfirm.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/instructorsComments.js"></script>
 </html>
 

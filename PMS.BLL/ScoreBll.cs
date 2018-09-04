@@ -20,9 +20,18 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="score">成绩对象</param>
         /// <returns>添加结果</returns>
-        public Result Insert(Score score)
+        public Result insertCrossGuide(Score score)
         {
-            int row = sdao.Insert(score);
+            int row = sdao.insertCrossGuide(score);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            return Result.添加失败;
+        }
+        public Result insertInstructorsComments(Score score)
+        {
+            int row = sdao.insertInstructorsComments(score);
             if (row > 0)
             {
                 return Result.添加成功;

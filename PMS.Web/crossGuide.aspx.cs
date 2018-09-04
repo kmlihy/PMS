@@ -43,8 +43,9 @@ namespace PMS.Web
                 string workload = Request["workload"];
                 string innovate = Request["innovate"];
                 string evaluate = Request["evaluate"];
+                string stuAccount = Request.QueryString["stuAccount"];
                 StudentBll stuBll = new StudentBll();
-                Student student = stuBll.GetModel("15612200017");
+                Student student = stuBll.GetModel(stuAccount);
                 ScoreBll sbll = new ScoreBll();
                 Score scoreModel = new Score();
                 scoreModel.material = material;
@@ -56,7 +57,7 @@ namespace PMS.Web
                 scoreModel.score = score;
                 scoreModel.student = student;
                 scoreModel.plan.PlanId = planId;
-                Result row = sbll.Insert(scoreModel);
+                Result row = sbll.insertCrossGuide(scoreModel);
                 if(row == Result.添加成功)
                 {
                     Response.Write("提交成功");

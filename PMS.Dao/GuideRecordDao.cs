@@ -64,7 +64,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_GuideRecord where titleRecordId=@titleRecordId";
+                string cmdText = "select * from V_TitleRecord where titleRecordId=@titleRecordId";
                 String[] param = { "@titleRecordId" };
                 String[] values = { titleRecordId.ToString() };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
