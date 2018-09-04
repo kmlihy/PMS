@@ -46,9 +46,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_Score(stuAccount,planId,score,remarks,investigation,practice,solveProblem,workAttitude,quality,innovate,evaluate) values(@stuAccount,@planId,@score,@remarks,@material,@quality,@workload,@innovate,@quality,@innovate,@evaluate)";
-                string[] param = { "@stuAccount", "@planId", "@score", "@remarks", "@investigation", "@practice", "@solveProblem", "@workAttitude", "@quality" , "@innovate", "@evaluate" };
-                object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.investigation, score.practice, score.solveProblem, score.workAttitude, score.quality ,score.innovate ,score.evaluate};
+                string cmdText = "insert into T_Score(stuAccount,planId,score,remarks,investigation,practice,solveProblem,workAttitude,paperDesign,innovate,evaluate) values(@stuAccount,@planId,@score,@remarks,@investigation,@practice,@solveProblem,@workAttitude,@paperDesign,@innovate,@evaluate)";
+                string[] param = { "@stuAccount", "@planId", "@score", "@remarks", "@investigation", "@practice", "@solveProblem", "@workAttitude", "@paperDesign", "@innovate", "@evaluate" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.investigation, score.practice, score.solveProblem, score.workAttitude, score.paperDesign, score.innovate ,score.evaluate};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

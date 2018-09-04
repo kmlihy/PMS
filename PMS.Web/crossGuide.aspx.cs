@@ -25,15 +25,27 @@ namespace PMS.Web
             {
                 string stuAccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
                 string account = Request.QueryString["stuAccount"];
-                if (stuAccount == account)
+                if (account==null||account=="")
                 {
-                    stuName = ds.Tables[0].Rows[i]["stuName"].ToString();
-                    proName = ds.Tables[0].Rows[i]["proName"].ToString();
-                    title = ds.Tables[0].Rows[i]["title"].ToString();
-                    planId = Convert.ToInt32(ds.Tables[0].Rows[i]["planId"].ToString());
-                    break;
+                    insert();
                 }
-            }
+                else
+                {
+                    if (stuAccount == account)
+                    {
+                        Session["stuAccount"] = stuAccount;
+                        stuName = ds.Tables[0].Rows[i]["realName"].ToString();
+                        proName = ds.Tables[0].Rows[i]["proName"].ToString();
+                        title = ds.Tables[0].Rows[i]["title"].ToString();
+                        planId = Convert.ToInt32(ds.Tables[0].Rows[i]["planId"].ToString());
+                        Session["planId"] = planId;
+                        break;
+                    }
+                }
+            } 
+        }
+        public void insert()
+        {
             string op = Request["op"];
             if (op == "add")
             {
@@ -43,9 +55,8 @@ namespace PMS.Web
                 string workload = Request["workload"];
                 string innovate = Request["innovate"];
                 string evaluate = Request["evaluate"];
-                string stuAccount = Request.QueryString["stuAccount"];
                 StudentBll stuBll = new StudentBll();
-                Student student = stuBll.GetModel(stuAccount);
+                Student student = stuBll.GetModel(Session["stuAccount"].ToString());
                 ScoreBll sbll = new ScoreBll();
                 Score scoreModel = new Score();
                 scoreModel.material = material;
@@ -56,9 +67,11 @@ namespace PMS.Web
                 scoreModel.remarks = "交叉评阅";
                 scoreModel.score = score;
                 scoreModel.student = student;
-                scoreModel.plan.PlanId = planId;
+                Plan plan = new Plan();
+                plan.PlanId = Convert.ToInt32(Session["planId"]) ;
+                scoreModel.plan = plan;
                 Result row = sbll.insertCrossGuide(scoreModel);
-                if(row == Result.添加成功)
+                if (row == Result.添加成功)
                 {
                     Response.Write("提交成功");
                     Response.End();

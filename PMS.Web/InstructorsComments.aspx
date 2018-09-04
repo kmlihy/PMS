@@ -74,7 +74,7 @@
                     </tr>
                     <tr class="table_head">
                         <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText adviceTextArea" placeholder="请输入评价" id="content"></textarea>
+                            <textarea class="openReportText adviceTextArea" placeholder="请输入评价" id="evaluate"></textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>

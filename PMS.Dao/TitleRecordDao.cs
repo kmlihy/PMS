@@ -104,7 +104,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from V_TitleRecord where stuAccount = @account or teaAccount = @account";
+                string cmdText = "select * from V_Cross where stuAccount = @account or teaAccount = @account";
                 string[] param = { "@account" };
                 object[] values = { account };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
