@@ -52,10 +52,10 @@
                 <div class="modal-body">
                     <%if (dsCross != null && dsCross.Tables[0].Rows.Count - 2 >= 0)
                     {
-                        for (int k = dsCross.Tables[0].Rows.Count - 2; k <= 0; k--)
+                        for (int k = dsCross.Tables[0].Rows.Count - 2; k >= 0; k--)
                         { %>
                             <div class="container-fluid table-bordered img-rounded modal_comment"><%=dsCross.Tables[0].Rows[k]["guideOpinion"].ToString() %>
-                                <div class="right"><%=dsCross.Tables[0].Rows[k]["dateTime"].ToString() %></div>
+                                <span class="right"><%=dsCross.Tables[0].Rows[k]["dateTime"].ToString() %></span>
                             </div>
                         <%}
                     }else
