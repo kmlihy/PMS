@@ -86,7 +86,7 @@
                         <td class="text-center check_box">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center"></td>
+                        <td class="text-center"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                         <td class="text-center">信息工程学院2018批次</td>
                         <td class="text-center">移动互联技术</td>
                         <td class="text-center">2231231</td>

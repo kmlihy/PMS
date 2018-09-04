@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/iconfont.css" />
     <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
     <div class="panel">
@@ -55,10 +56,10 @@
                     {
                         for (int k = dsGuide.Tables[0].Rows.Count - 2; k >= 0; k--)
                         { %>
-                            <div class="container-fluid table-bordered img-rounded" style="word-wrap:break-word;">
-                                <%=dsGuide.Tables[0].Rows[k]["dateTime"].ToString() %><hr />
+                            <%=dsGuide.Tables[0].Rows[k]["dateTime"].ToString() %>
+                            <script type="text/html" id="code">
                                 <%=dsGuide.Tables[0].Rows[k]["opinion"].ToString() %>
-                            </div>
+                            </script>
                             <br />
                         <%}
                     }

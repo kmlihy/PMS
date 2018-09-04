@@ -9,6 +9,7 @@
     <title></title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/ml.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
     <div class="panel">
@@ -54,9 +55,11 @@
                     {
                         for (int k = dsCross.Tables[0].Rows.Count - 2; k >= 0; k--)
                         { %>
-                            <div class="container-fluid table-bordered img-rounded modal_comment"><%=dsCross.Tables[0].Rows[k]["guideOpinion"].ToString() %>
-                                <span class="right"><%=dsCross.Tables[0].Rows[k]["dateTime"].ToString() %></span>
-                            </div>
+                            <%=dsCross.Tables[0].Rows[k]["dateTime"].ToString() %>
+                            <script type="text/html" id="code">
+                                <%=dsCross.Tables[0].Rows[k]["guideOpinion"].ToString() %>
+                            </script>
+                            <br />
                         <%}
                     }else
                     { %>

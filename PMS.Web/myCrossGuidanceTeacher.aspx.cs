@@ -12,7 +12,7 @@ namespace PMS.Web
 {
     public partial class myCrossGuidanceTeacher : System.Web.UI.Page
     {
-        public DataSet dsCross;
+        public DataSet dsCross=null;
         public string name, sex, phone, email,opninion;
         protected void Page_Load(object sender, EventArgs e)
         {
