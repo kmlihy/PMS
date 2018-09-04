@@ -31,11 +31,18 @@ namespace PMS.Web
             if (dsGuide != null)
             {
                 int j = dsGuide.Tables[0].Rows.Count - 1;
-                opinion = "教师回复："+dsGuide.Tables[0].Rows[j]["opinion"].ToString();
+                if (j<0)
+                {
+                    opinion = "<h3>教师未回复，请耐心等待</h3>";
+                }
+                else
+                {
+                    opinion = "教师回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
+                }
             }
             else
             {
-                opinion = "<h2>教师未回复，请耐心等待</h2>";
+                opinion = "<h3>教师未回复，请耐心等待</h3>";
             }
         }
     }
