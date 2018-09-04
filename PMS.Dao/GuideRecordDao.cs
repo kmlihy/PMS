@@ -22,18 +22,18 @@ namespace PMS.Dao
         /// <returns>受影响行数</returns>
         public int Insert(GuideRecord guideRecord)
         {
-            //try
-            //{
-            //    string cmdText = "insert into T_GuideRecord(titleRecordId,opinion,pathId,dateTime) values(@titleRecordId,@opinion,@pathId,@dateTime)";
-            //    string[] param = { "@titleRecordId", "@opinion", "@pathId", "@dateTime" };
-            //    object[] values = { guideRecord.titleRecord.TitleRecordId,guideRecord.opinion,guideRecord.path.pathId, guideRecord.dateTime };
-            //    int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
-            //    return row;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+            try
+            {
+                string cmdText = "insert into T_GuideRecord(titleRecordId,opinion,pathId,dateTime) values(@titleRecordId,@opinion,@pathId,@dateTime)";
+                string[] param = { "@titleRecordId", "@opinion", "@pathId", "@dateTime" };
+                object[] values = { guideRecord.titleRecord.TitleRecordId, guideRecord.opinion, guideRecord.path.pathId, guideRecord.dateTime };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public DataSet Select(int titleRecordId, string stuAccount)
         {

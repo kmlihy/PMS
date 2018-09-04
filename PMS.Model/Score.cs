@@ -27,6 +27,10 @@ namespace PMS.Model
         /// </summary>
         public string remarks { set; get; }
         /// <summary>
+        /// 答辩state
+        /// </summary>
+        public int state { set; get; }
+        /// <summary>
         /// 调查论证
         /// </summary>
         public string investigation { get; set; }

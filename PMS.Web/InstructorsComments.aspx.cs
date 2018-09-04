@@ -17,7 +17,7 @@ namespace PMS.Web
         {
             string stuAccount = Request.QueryString["stuAccount"];
             int titleRecordId = Convert.ToInt32(Request.QueryString["titleRecordId"]);
-            getData = guideRecordBll.Select(titleRecordId, stuAccount);
+            getData = guideRecordBll.Select(titleRecordId);
         }
     }
 }

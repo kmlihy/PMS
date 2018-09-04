@@ -38,13 +38,19 @@ namespace PMS.Web
             if (op == "add")
             {
                 double score = Convert.ToDouble(Request["score"]);
-                string assess = Request["assess"];
+                string material = Request["material"];
+                string quality = Request["quality"];
+                string workload = Request["workload"];
+                string innovate = Request["innovate"];
                 string evaluate = Request["evaluate"];
                 StudentBll stuBll = new StudentBll();
                 Student student = stuBll.GetModel("15612200017");
                 ScoreBll sbll = new ScoreBll();
                 Score scoreModel = new Score();
-                scoreModel.assess = assess;
+                scoreModel.material = material;
+                scoreModel.quality = quality;
+                scoreModel.workload = workload;
+                scoreModel.innovate = innovate;
                 scoreModel.evaluate = evaluate;
                 scoreModel.remarks = "交叉评阅";
                 scoreModel.score = score;

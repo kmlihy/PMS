@@ -25,9 +25,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_Score(stuAccount,planId,score,remarks,assess,evaluate) values(@stuAccount,@planId,@score,@remarks,@assess,@evaluate)";
-                string[] param = { "@stuAccount", "@planId", "@score", "@remarks","@assess","@evaluate" };
-                object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.assess, score.evaluate };
+                string cmdText = "insert into T_Score(stuAccount,planId,score,remarks,material,quality,workload,innovate,evaluate) values(@stuAccount,@planId,@score,@remarks,@material,@quality,@workload,@innovate,@evaluate)";
+                string[] param = { "@stuAccount", "@planId", "@score", "@remarks", "@material","@quality","@workload","@innovate", "@evaluate" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.material,score.quality,score.workload,score.innovate, score.evaluate };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
