@@ -119,8 +119,8 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_DefenceRecord(titleRecordId,defenGroupId,recordContent,dateTime) values(@titleRecordId,@defenGroupId,@recordContent,@dateTime)";
-                string[] param = { "@titleRecordId", "@defenGroupId", "@recordContent","@dateTime" };
+                string cmdText = "update T_DefenceRecord set recordContent = @recordContent , dateTime=@dateTime where defenRecordId = @defenRecordId";
+                string[] param = { "@defenRecordId", "@recordContent","@dateTime" };
                 object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId, defence.recordContent ,defence.dateTime};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
@@ -152,6 +152,26 @@ namespace PMS.Dao
             catch (Exception)
             {
                 throw;
+            }
+        }
+        /// <summary>
+        /// 添加答辩学生
+        /// </summary>
+        /// <param name="defence">答辩记录对象</param>
+        /// <returns></returns>
+        public int InsertStudent(DefenceRecord defence)
+        {
+            try
+            {
+                string cmdText = "insert into T_DefenceRecord(titleRecordId,defenGroupId) values(@titleRecordId,@defenGroupId)";
+                string[] param = { "@titleRecordId", "@defenGroupId" };
+                object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

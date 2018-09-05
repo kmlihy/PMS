@@ -33,7 +33,10 @@ namespace PMS.Web
             string strsearch = Request.QueryString["search"];
 
             userType = Session["state"].ToString();
-
+            if (op == "add")
+            {
+                addStudent();
+            }
             if (userType == "0")
             {
                 colds = colBll.Select();
@@ -277,6 +280,40 @@ namespace PMS.Web
                 getCurrentPage = int.Parse(currentPage);
                 ds = pro.SelectBypage(tabuilder, out count);
             }
+        }
+        public Result addStudent()
+        {
+            string defenGroupId = Request.QueryString["defenGroupId"];
+            string stuAccount = Request["stuAccount"];
+            string[] stuList = stuAccount.Split('?');
+            Result row=Result.添加失败;
+            for(int i = 0; i < stuList.Length; i++)
+            {
+                TitleRecordBll titleBll = new TitleRecordBll();
+                DataSet ds = titleBll.GetByAccount(stuList[i]);
+                int j = ds.Tables[0].Rows.Count - 1;
+                int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[j]["titleRecordId"].ToString());
+                DefenceBll defenceBll = new DefenceBll();
+                DefenceRecord defence = new DefenceRecord();
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = titleRecordId;
+                defence.titleRecord = titleRecord;
+                DefenceGroup defenceGroup = new DefenceGroup();
+                defenceGroup.defenGroupId = Convert.ToInt32(defenGroupId);
+                defence.defenceGroup = defenceGroup;
+                row = defenceBll.InsertStudent(defence);
+            }
+            if (row == Result.添加成功)
+            {
+                Response.Write("添加成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("添加成功");
+                Response.End();
+            }
+            return row;
         }
     }
 }

@@ -103,6 +103,25 @@ namespace PMS.BLL
                 return Result.添加失败;
             }
         }
+
+        /// <summary>
+        /// 添加答辩学生
+        /// </summary>
+        /// <param name="defence">答辩记录对象</param>
+        /// <returns></returns>
+        public Result InsertStudent(DefenceRecord defence)
+        {
+            int row = dedao.InsertStudent(defence);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            else
+            {
+                return Result.添加失败;
+            }
+        }
+
         public DataSet getModel(string titleRecordId)
         {
             return dedao.SelectRecord(titleRecordId);
