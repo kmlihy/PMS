@@ -351,6 +351,11 @@
                                         <span>选题记录</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="../distributionReplyTeam.aspx" class="sidebarclick" >
+                                        <span>分配答辩小组</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <%-- 
@@ -462,6 +467,11 @@
                                 <li role="presentation">
                                     <a href="selectTopicList.aspx" class="sidebarclick" >
                                         <span>选题记录</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="../distributionReplyTeam.aspx" class="sidebarclick" >
+                                        <span>分配答辩小组</span>
                                     </a>
                                 </li>
                             </ul>
