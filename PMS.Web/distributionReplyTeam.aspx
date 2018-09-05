@@ -19,6 +19,8 @@
             <h2>分配答辩小组</h2>
         </div>
         <div class="panel-body">
+            <% if (state == 2)
+                { %>
             <table class="table" style="width: 80%; margin: 0 auto;">
                 <thead>
                     <tr>
@@ -32,63 +34,69 @@
                 <tbody>
                     <tr>
                         <td class="col-sm-3">
-                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1  usertype" multiple="multiple" data-live-search="true" data-max-options="1">
-                                <option value="0">云南工商学院2019批次</option>
-                                <option value="1">信息工程学院2018批次</option>
-                                <option value="2">交通机电学院2018批次</option>
-                                <option value="3">建筑工程学院2018批次</option>
-                                <option value="4">信息工程学院2017批次</option>
-                                <option value="5">信息工程学院2019批次</option>
-                                <option value="6">交通机电学院2017批次</option>
-                                <option value="7">建筑工程学院2019批次</option>
-                                <option value="8">建筑工程学院2017批次</option>
-                                <option value="9">国际学院2018批次</option>
+                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1  usertype" id="plan" data-live-search="true" data-max-options="1">
+                                <option value="">请选择批次</option>
+                                <%for (int i = 0; i < getPlan.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (_planId == getPlan.Tables[0].Rows[i]["planId"].ToString())
+                                        {%>
+                                <option value="<%=getPlan.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=getPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                <%}else{ %>
+                                <option value="<%=getPlan.Tables[0].Rows[i]["planId"].ToString()%>"><%=getPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                <%}
+    } %>
                             </select>
                         </td>
                         <td class="col-sm-2">
-                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1 usertype" multiple="multiple" data-live-search="true" data-max-options="1">
-                                <option value="0">张三</option>
-                                <option value="1">李四</option>
-                                <option value="2">王五</option>
-                                <option value="3">赵六</option>
-                                <option value="4">横七</option>
-                                <option value="5">竖八</option>
-                                <option value="6">小王</option>
-                                <option value="7">刘备</option>
-                                <option value="8">曹操</option>
-                                <option value="9">孙权</option>
+                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1 usertype" id="leader" data-live-search="true" data-max-options="1">
+                                <option value="">请选择组长</option>
+                                <%for (int i = 0; i < getLeader.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (leader == getLeader.Tables[0].Rows[i]["teaAccount"].ToString())
+                                        {%>
+                                <option value="<%=getLeader.Tables[0].Rows[i]["teaAccount"].ToString()%>" selected="selected"><%=getLeader.Tables[0].Rows[i]["teaName"].ToString() %></option>
+                                <%}
+                                    else
+                                    { %>
+                                <option value="<%=getLeader.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=getLeader.Tables[0].Rows[i]["teaName"].ToString() %></option>
+                                <%}
+                                    }%>
                             </select>
                         </td>
                         <td class="col-sm-2">
-                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1 usertype" multiple="multiple" data-max-options="1" data-live-search="true">
-                                <option value="0">张三</option>
-                                <option value="1">李四</option>
-                                <option value="2">王五</option>
-                                <option value="3">赵六</option>
-                                <option value="4">横七</option>
-                                <option value="5">竖八</option>
-                                <option value="6">小王</option>
-                                <option value="7">刘备</option>
-                                <option value="8">曹操</option>
-                                <option value="9">孙权</option>
+                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1 usertype" id="member" data-max-options="1" data-live-search="true">
+                                <option value="">请选择副组长</option>
+                                <%for (int i = 0; i < getMember.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (member == getMember.Tables[0].Rows[i]["teaAccount"].ToString())
+                                        {%>
+                                <option value="<%=getMember.Tables[0].Rows[i]["teaAccount"].ToString()%>" selected="selected"><%=getMember.Tables[0].Rows[i]["teaName"].ToString() %></option>
+                                <%}
+                                else
+                                { %>
+                                <option value="<%=getMember.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=getMember.Tables[0].Rows[i]["teaName"].ToString() %></option>
+                                <%}
+                                    } %>
                             </select>
                         </td>
                         <td class="col-sm-2">
-                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1 usertype" multiple="multiple" data-max-options="1" data-live-search="true">
-                                <option value="0">张三</option>
-                                <option value="1">李四</option>
-                                <option value="2">王五</option>
-                                <option value="3">赵六</option>
-                                <option value="4">横七</option>
-                                <option value="5">竖八</option>
-                                <option value="6">小王</option>
-                                <option value="7">刘备</option>
-                                <option value="8">曹操</option>
-                                <option value="9">孙权</option>
+                            <select name="usertype" class="selectpicker show-tick form-control col-sm-1 usertype" id="record" data-max-options="1" data-live-search="true">
+                                <option value="">请选择秘书</option>
+                                <%for (int i = 0; i < getRecord.Tables[0].Rows.Count; i++)
+                                    {
+                                        if (record == getRecord.Tables[0].Rows[i]["teaAccount"].ToString())
+                                        {%>
+                                <option value="<%=getRecord.Tables[0].Rows[i]["teaAccount"].ToString()%>" selected="selected"><%=getRecord.Tables[0].Rows[i]["teaName"].ToString() %></option>
+                                <%}
+                                else
+                                { %>
+                                <option value="<%=getRecord.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=getRecord.Tables[0].Rows[i]["teaName"].ToString() %></option>
+                                <%}
+                                } %>
                             </select>
                         </td>
                         <td class="">
-                            <button type="button" class="btn btn-info">
+                            <button type="button" class="btn btn-info" id="confirm">
                                 <span class="glyphicon glyphicon-ok"></span>
                                 确定人选
                             </button>
@@ -96,7 +104,7 @@
                     </tr>
                 </tbody>
             </table>
-
+            <%} %>
             <table class="table table-bordered text-center">
                 <thead>
                     <tr>
@@ -178,5 +186,7 @@
         alert($('.usertype').selectpicker('val'));
     }
 </script>
-
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/distributionReplyTeam.js"></script>
+<script src="../js/xcConfirm.js"></script>
 </html>

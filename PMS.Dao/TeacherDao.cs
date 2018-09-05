@@ -246,6 +246,58 @@ namespace PMS.Dao
             object[] values = { collegeId };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
+        /// <summary>
+        /// 通过学院id获取教师信息
+        /// </summary>
+        /// <param name="collegeId">学院id</param>
+        /// <returns></returns>
+        public DataSet getLeaderByColl(int collegeId,string teaAccount1,string teaAccount2)
+        {
+            try
+            {
+                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1";
+                string[] param = { "@collegeId" , "@teaAccount1", "@teaAccount2" };
+                object[] values = { collegeId , teaAccount1 ,teaAccount2};
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+        }
+        public DataSet getMemberByColl(int collegeId, string teaAccount1, string teaAccount2)
+        {
+            try
+            {
+                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1";
+                string[] param = { "@collegeId", "@teaAccount1", "@teaAccount2" };
+                object[] values = { collegeId, teaAccount1, teaAccount2 };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public DataSet getRecordByColl(int collegeId, string teaAccount1, string teaAccount2)
+        {
+            try
+            {
+                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1";
+                string[] param = { "@collegeId", "@teaAccount1", "@teaAccount2" };
+                object[] values = { collegeId, teaAccount1, teaAccount2 };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

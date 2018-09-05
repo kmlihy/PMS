@@ -94,6 +94,16 @@ namespace PMS.BLL
             DataSet ds = dao.Select();
             return ds;
         }
+        /// <summary>
+        /// 通过学院id查找批次
+        /// </summary>
+        /// <param name="collegeId">学院id</param>
+        /// <returns></returns>
+        public DataSet getPlanByCid(int collegeId)
+        {
+            DataSet ds = dao.getPlanByCid(collegeId);
+            return ds;
+        }
 
         /// <summary>
         /// 根据条间分页查询所有学员信息

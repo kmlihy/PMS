@@ -234,5 +234,17 @@ namespace PMS.BLL
                 return false;
             }
         }
+        public DataSet getLeaderByColl(int collegeId, string teaAccount1,string teaAccount2)
+        {
+            return dao.getLeaderByColl(collegeId, teaAccount1, teaAccount2);
+        }
+        public DataSet getMemberByColl(int collegeId, string teaAccount1, string teaAccount2)
+        {
+            return dao.getMemberByColl(collegeId, teaAccount1, teaAccount2);
+        }
+        public DataSet getRecordByColl(int collegeId, string teaAccount1, string teaAccount2)
+        {
+            return dao.getRecordByColl(collegeId, teaAccount1, teaAccount2);
+        }
     }
 }

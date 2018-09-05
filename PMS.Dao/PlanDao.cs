@@ -101,6 +101,27 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 通过学院id查找批次
+        /// </summary>
+        /// <param name="collegeId">学院id</param>
+        /// <returns></returns>
+        public DataSet getPlanByCid(int collegeId)
+        {
+            try
+            {
+                string cmdText = "select * from T_Plan where collegeId=@collegeId";
+                string[] param = { "@collegeId" };
+                object[] values = { collegeId };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// 根据批次ID查询一个批次信息
