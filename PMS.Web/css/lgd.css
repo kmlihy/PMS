@@ -400,7 +400,7 @@
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
-    float:left;
+    float: left;
 }
 
     #upload-p input {
@@ -436,6 +436,7 @@
     font-size: 18px;
     margin-top: 5px;
 }
+
 #myAlert {
     height: 150px;
 }
@@ -511,11 +512,11 @@
 .textmain-record {
     min-height: 500px;
     text-align: center;
-}
-
-.textmain-record {
     text-align: center;
     height: 100%;
     margin: auto;
     writing-mode: vertical-lr;
+}
+.record-td {
+    height:500px;
 }

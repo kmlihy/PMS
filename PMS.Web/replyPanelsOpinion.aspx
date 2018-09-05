@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>答辩小组评语</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/lgd.css" />
 </head>
 <body>
     <div class="panel">
@@ -15,7 +16,7 @@
         </div>
         <div class="panel panel-body">
             <div class="container">
-                <table>
+                <table class="table table-bordered text-center table_mian">
                     <tbody>
                         <tr class="table_head">
                             <td class="col-sm-1">论文题目</td>
