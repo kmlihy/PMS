@@ -46,31 +46,6 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_CrossGuide where titleRecordId=@titleRecordId";
-                String[] param = { "@titleRecordId" };
-                String[] values = { titleRecordId.ToString() };
-                DataSet ds = db.FillDataSet(cmdText, param, values);
-                if (ds != null)
-                {
-                    return ds;
-                }
-                return null;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 根据选题记录id获取交叉指导教师信息
-        /// </summary>
-        /// <param name="titleRecordId">选题记录id</param>
-        /// <returns></returns>
-        public DataSet SelectTeacher(int titleRecordId)
-        {
-            try
-            {
                 string cmdText = "select * from V_CrossGuide where titleRecordId=@titleRecordId";
                 String[] param = { "@titleRecordId" };
                 String[] values = { titleRecordId.ToString() };

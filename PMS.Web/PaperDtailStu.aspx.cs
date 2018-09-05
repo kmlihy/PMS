@@ -49,7 +49,7 @@ namespace PMS.Web
                         showTitle = title.title.ToString();
                         if (showTitle == "")
                         {
-                            Response.Write("<a href=‘../PaperList.aspx’>你还没有选题，请点击跳转到选题界面  </a>");
+                            Response.Write("<a href='paperList.aspx'>你还没有选题，请点击跳转到选题界面  </a>");
                             Response.End();
                         }
                         showTitleContent = title.TitleContent.ToString();
@@ -71,6 +71,8 @@ namespace PMS.Web
                         showTitle = "";
                         showTitleContent = "";
                         showTeaName = "";
+                        Response.Write("<a href='paperList.aspx'>你还没有选题，请点击跳转到选题界面  </a>");
+                        Response.End();
                     }
                 }
             }

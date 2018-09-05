@@ -23,7 +23,7 @@ namespace PMS.Web
             int i = ds.Tables[0].Rows.Count-1;
             int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
             CrossGuideBll crossBll = new CrossGuideBll();
-            DataSet dsTea = crossBll.SelectTeacher(titleRecordId);
+            DataSet dsTea = crossBll.Select(titleRecordId);
             int j = dsTea.Tables[0].Rows.Count - 1;
             if (j<0)
             {

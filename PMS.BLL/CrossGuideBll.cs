@@ -50,21 +50,6 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据学生账号和选题记录id获取交叉指导教师信息
-        /// </summary>
-        /// <param name="titleRecordId">选题记录id</param>
-        /// <returns></returns>
-        public DataSet SelectTeacher(int titleRecordId)
-        {
-            DataSet ds = cgdao.SelectTeacher(titleRecordId);
-            if (ds != null)
-            {
-                return ds;
-            }
-            return null;
-        }
-
-        /// <summary>
         /// 根据条间分页查询所有选题记录信息
         /// </summary>
         /// <param name="tab">参数实体</param>
