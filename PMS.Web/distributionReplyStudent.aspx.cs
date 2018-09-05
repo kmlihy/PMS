@@ -9,6 +9,7 @@ namespace PMS.Web
 {
     public partial class distributionReplyStudent : System.Web.UI.Page
     {
+        public int getCurrentPage = 1, pagesize = 5, count;
         protected void Page_Load(object sender, EventArgs e)
         {
 

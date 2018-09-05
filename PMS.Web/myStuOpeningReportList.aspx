@@ -102,8 +102,8 @@
             </ul>
         </div>
     </div>
-    <input type="text" value="<%=getCurrentPage %>" id="page" />
-    <input type="text" value="<%=count %>" id="countPage" />
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

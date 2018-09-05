@@ -40,7 +40,7 @@ namespace PMS.Web
                 StrTable = "T_Path",
                 StrWhere = "titleRecordId=" + titleRecordId,
                 IntColType = 0,
-                IntOrder = 0,
+                IntOrder = 1,
                 IntPageNum = int.Parse(currentPage),
                 IntPageSize = pagesize,
                 StrColumn = "pathId",

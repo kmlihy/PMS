@@ -32,11 +32,11 @@ namespace PMS.Web
                 if (dsGuide != null)
                 {
                     int j = dsGuide.Tables[0].Rows.Count - 1;
-                    opinion = "教师回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
+                    opinion = "教师最新回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
                 }
                 else
                 {
-                    opinion = "<h2>教师未回复，请耐心等待</h2>";
+                    opinion = "<h3>教师未回复，请耐心等待</h3>";
                 }
             }
         }

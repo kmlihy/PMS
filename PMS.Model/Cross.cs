@@ -5,32 +5,33 @@ using System.Text;
 
 namespace PMS.Model
 {
-    /// <summary>
-    /// 交叉评阅实体类
-    /// </summary>
-    public class CrossGuide
+    public class Cross
     {
+        /// <summary>
+        /// 交叉指导id
+        /// </summary>
+        public int crossId { set; get; }
         /// <summary>
         /// 选题记录对象
         /// </summary>
-        public Cross cross { set; get; }
+        public TitleRecord titleRecord { set; get; }
         /// <summary>
-        /// 交叉指导教师意见
+        /// 教师对象
         /// </summary>
-        public string guideOpinion { set; get; }
+        public Teacher teacher { set; get; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
-        public CrossGuide() { }
+        public Cross() { }
         /// <summary>
         /// 参数构造函数
         /// </summary>
         /// <param name="titleRecord">选题记录对象</param>
-        /// <param name="guideOpinion">交叉指导教师意见</param>
-        public CrossGuide(Cross cross, string guideOpinion)
+        /// <param name="teacher">教师对象</param>
+        public Cross(TitleRecord titleRecord, Teacher teacher)
         {
-            this.cross = cross;
-            this.guideOpinion = guideOpinion;
+            this.titleRecord = titleRecord;
+            this.teacher = teacher;
         }
     }
 }

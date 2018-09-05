@@ -25,9 +25,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_CrossGuide(titleRecordId,guideOpinion) values(@titleRecordId,@guideOpinion)";
-                string[] param = { "@titleRecordId", "@guideOpinion" };
-                object[] values = { cross.titleRecord.TitleRecordId, cross.guideOpinion};
+                string cmdText = "insert into T_CrossGuide(crossId,guideOpinion) values(@crossId,@guideOpinion)";
+                string[] param = { "@crossId", "@guideOpinion" };
+                object[] values = { cross.cross.crossId, cross.guideOpinion};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

@@ -17,17 +17,38 @@ namespace PMS.Dao
         private SQLHelper db = new SQLHelper();
 
         /// <summary>
-        /// 学生提交论文路径
+        /// 插入交叉指导论文
         /// </summary>
-        /// <param name="path">文件路径实体</param>
+        /// <param name="score">分数实体</param>
         /// <returns>受影响行数</returns>
-        public int Insert(Score score)
+        public int insertCrossGuide(Score score)
         {
             try
             {
                 string cmdText = "insert into T_Score(stuAccount,planId,score,remarks,material,quality,workload,innovate,evaluate) values(@stuAccount,@planId,@score,@remarks,@material,@quality,@workload,@innovate,@evaluate)";
                 string[] param = { "@stuAccount", "@planId", "@score", "@remarks", "@material","@quality","@workload","@innovate", "@evaluate" };
                 object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.material,score.quality,score.workload,score.innovate, score.evaluate };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 插入指导评价
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public int insertInstructorsComments(Score score)
+        {
+            try
+            {
+                string cmdText = "insert into T_Score(stuAccount,planId,score,remarks,investigation,practice,solveProblem,workAttitude,paperDesign,innovate,evaluate) values(@stuAccount,@planId,@score,@remarks,@investigation,@practice,@solveProblem,@workAttitude,@paperDesign,@innovate,@evaluate)";
+                string[] param = { "@stuAccount", "@planId", "@score", "@remarks", "@investigation", "@practice", "@solveProblem", "@workAttitude", "@paperDesign", "@innovate", "@evaluate" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.investigation, score.practice, score.solveProblem, score.workAttitude, score.paperDesign, score.innovate ,score.evaluate};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
