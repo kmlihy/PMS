@@ -21,7 +21,7 @@ namespace PMS.Web
 
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
-
+        Result row = Result.添加失败;
         public void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request["op"];
@@ -31,11 +31,25 @@ namespace PMS.Web
             string collegeId = Request.QueryString["collegeId"];
             //输入框信息
             string strsearch = Request.QueryString["search"];
-
             userType = Session["state"].ToString();
             if (op == "add")
             {
                 addStudent();
+                if (row == Result.添加成功)
+                {
+                    Response.Write("添加成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("添加成功");
+                    Response.End();
+                }
+            }
+            if (!IsPostBack)
+            {
+                string defenGroupId = Request.QueryString["defenGroupId"];
+                Session["defenGroupId"] = defenGroupId;
             }
             if (userType == "0")
             {
@@ -114,6 +128,7 @@ namespace PMS.Web
             }
             return search;
         }
+
         /// <summary>
         /// 专业下拉查询
         /// </summary>
@@ -183,6 +198,7 @@ namespace PMS.Web
             }
             return searchCollege;
         }
+
         /// <summary>
         /// 学院、专业二级联动查询
         /// </summary>
@@ -221,10 +237,12 @@ namespace PMS.Web
             }
             return searchProAndCollege;
         }
+
         /// <summary>
         /// 实现分页
         /// </summary>
         /// <param name="strWhere">搜索条件</param>
+        /// 
         public void getdata(String strWhere)
         {
             string currentPage = Request.QueryString["currentPage"];
@@ -241,16 +259,16 @@ namespace PMS.Web
                 int userCollegeId = tea.college.ColID;
                 if (strWhere == null || strWhere == "")
                 {
-                    userCollege = "collegeId=" + "'" + userCollegeId + "'";
+                    userCollege = "collegeId=" + "'" + userCollegeId + "' " + "and state = 0";
                 }
                 else
                 {
-                    userCollege = "collegeId=" + "'" + userCollegeId + "'" + "and" + "(" + strWhere + ")";
+                    userCollege = "collegeId=" + "'" + userCollegeId + "' " + "and state = 0 " + "and " + "(" + strWhere + ")";
                 }
                 StudentBll pro = new StudentBll();
                 TableBuilder tabuilder = new TableBuilder()
                 {
-                    StrTable = "V_Student",
+                    StrTable = "V_TitleRecord",
                     StrWhere = userCollege,
                     IntColType = 0,
                     IntOrder = 0,
@@ -268,8 +286,8 @@ namespace PMS.Web
                 StudentBll pro = new StudentBll();
                 TableBuilder tabuilder = new TableBuilder()
                 {
-                    StrTable = "V_Student",
-                    StrWhere = strWhere == null || strWhere == ""? "" : strWhere,
+                    StrTable = "V_TitleRecord",
+                    StrWhere = strWhere == null || strWhere == ""? "state = 0" : "state = 0 and "+strWhere,
                     IntColType = 0,
                     IntOrder = 0,
                     IntPageNum = int.Parse(currentPage),
@@ -281,39 +299,41 @@ namespace PMS.Web
                 ds = pro.SelectBypage(tabuilder, out count);
             }
         }
-        public void addStudent()
+
+        /// <summary>
+        /// 添加学生
+        /// </summary>
+        /// <returns></returns>
+        public Result addStudent()
         {
-            string defenGroupId = Request.QueryString["defenGroupId"];
             string stuAccount = Request["stuAccount"];
             string[] stuList = stuAccount.Split('?');
-            Result row=Result.添加失败;
-            for(int i = 0; i < stuList.Length; i++)
+            for (int i = 0; i < stuList.Length-1; i++)
             {
                 TitleRecordBll titleBll = new TitleRecordBll();
-                DataSet ds = titleBll.GetByAccount(stuList[i]);
-                int j = ds.Tables[0].Rows.Count - 1;
-                int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[j]["titleRecordId"].ToString());
+                TitleRecord titleRecord = titleBll.getRtId(stuList[i]);
+                int titleRecordId = titleRecord.TitleRecordId;
                 DefenceBll defenceBll = new DefenceBll();
                 DefenceRecord defence = new DefenceRecord();
-                TitleRecord titleRecord = new TitleRecord();
-                titleRecord.TitleRecordId = titleRecordId;
                 defence.titleRecord = titleRecord;
                 DefenceGroup defenceGroup = new DefenceGroup();
                 defenceGroup.defenGroupId = 1;
-                //Convert.ToInt32(defenGroupId)
+                //Convert.ToInt32(Session["defenGroupId"])
                 defence.defenceGroup = defenceGroup;
                 row = defenceBll.InsertStudent(defence);
+                StudentBll stuBll = new StudentBll();
+                Student student = stuBll.GetModel(stuList[i]);
+                string stu = stuList[i];
+                student.state = 1;
+                Result result = stuBll.Updata(student);
+                if(row !=Result.添加成功 || result != Result.更新成功)
+                {
+                    Response.Write("添加失败");
+                    Response.End();
+                    break;
+                }
             }
-            if (row == Result.添加成功)
-            {
-                Response.Write("添加成功");
-                Response.End();
-            }
-            else
-            {
-                Response.Write("添加成功");
-                Response.End();
-            }
+            return row;
         }
     }
 }

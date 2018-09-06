@@ -112,6 +112,19 @@ $("#btnSubmit").click(function () {
         },
         dataType: 'text',
         success: function (succ) {
+            if (succ === "添加成功") {
+                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                    onOk: function (v) {
+                        jump(1);
+                    }
+                });
+            } else {
+                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                    onOk: function (v) {
+                        jump(1);
+                    }
+                });
+            }
         }
     });
 })
