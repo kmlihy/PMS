@@ -16,19 +16,10 @@ namespace PMS.BLL
     {
         ScoreDao sdao = new ScoreDao();
         /// <summary>
-        /// 添加成绩
+        /// 添加指导成绩
         /// </summary>
         /// <param name="score">成绩对象</param>
         /// <returns>添加结果</returns>
-        public Result insertCrossGuide(Score score)
-        {
-            int row = sdao.insertCrossGuide(score);
-            if (row > 0)
-            {
-                return Result.添加成功;
-            }
-            return Result.添加失败;
-        }
         public Result insertInstructorsComments(Score score)
         {
             int row = sdao.insertInstructorsComments(score);
@@ -38,15 +29,43 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
-        public Result insertreplyPanelsOpinion(Score score)
+
+        /// <summary>
+        /// 添加交叉指导成绩
+        /// </summary>
+        /// <param name="score">成绩对象</param>
+        /// <returns></returns>
+        public Result updateCrossGuide(Score score)
         {
-            int row = sdao.insertreplyPanelsOpinion(score);
-            if (row>0)
+            int row = sdao.updateCrossGuide(score);
+            if (row > 0)
             {
                 return Result.添加成功;
             }
-            return Result.添加失败;
+            else
+            {
+                return Result.添加失败;
+            }
         }
+
+        /// <summary>
+        /// 添加答辩成绩
+        /// </summary>
+        /// <param name="score">成绩对象</param>
+        /// <returns></returns>
+        public Result updateDefenGuide(Score score)
+        {
+            int row = sdao.updateDefenGuide(score);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            else
+            {
+                return Result.添加失败;
+            }
+        }
+
         /// <summary>
         /// 通过titleRecordId获取当前状态
         /// </summary>

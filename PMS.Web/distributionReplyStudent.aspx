@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="square/_all.css" />
     <link rel="stylesheet" href="css/bootstrap-select.css" />
-    <link rel="stylesheet" href="css/xcConfirm.css" />
     <link rel="stylesheet" href="css/iconfont.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
     <style>
         .check_box {
             width: 50px;
@@ -103,7 +103,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all check_box" />
+                            <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                         </th>
                         <th class="text-center Serial_number">序号</th>
                         <th class="text-center">学院</th>
@@ -117,7 +117,7 @@
                         {%>
                     <tr>
                         <td class="text-center check_box">
-                            <input type="checkbox" />
+                            <input type="checkbox" name="checkbox" class="check" value="<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>" />
                         </td>
                         <td class="text-center"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString()%></td>
@@ -179,9 +179,9 @@
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/distributionReplyStudent.js"></script>
 <script src="js/icheck.min.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script src="js/ml.js"></script>
-<script src="js/distributionReplyStudent.js"></script>
 <script src="js/xcConfirm.js"></script>
 </html>

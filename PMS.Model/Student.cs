@@ -41,6 +41,11 @@ namespace PMS.Model
         public string Email { get; set; }
 
         /// <summary>
+        /// 判断学生是否被分配到答辩小组
+        /// </summary>
+        public int state { get; set; }
+
+        /// <summary>
         /// 学生所属专业
         /// </summary>
         public Profession profession { get; set; }
@@ -65,9 +70,10 @@ namespace PMS.Model
         /// <param name="sex">学生性别</param>
         /// <param name="phone">联系电话</param>
         /// <param name="email">邮箱</param>
+        /// <param name="state">判断学生是否被分配到答辩小组</param>
         /// <param name="profession">学生所属专业</param>
         /// <param name="college">学生所属学院</param>
-        public Student(string stuAccount, string stuPwd, string realName, string sex, string phone, string email, Profession profession,College college)
+        public Student(string stuAccount, string stuPwd, string realName, string sex, string phone, string email,int state, Profession profession,College college)
         {
             StuAccount = stuAccount;
             StuPwd = stuPwd;
@@ -75,6 +81,7 @@ namespace PMS.Model
             Sex = sex;
             Phone = phone;
             Email = email;
+            this.state = state;
             this.profession = profession;
             this.college = college;
         }

@@ -19,13 +19,17 @@ namespace PMS.Model
         /// </summary>
         public Plan plan { set; get; }
         /// <summary>
-        /// 成绩
+        /// 指导成绩
         /// </summary>
-        public double score { set; get; }
+        public double guideScore { set; get; }
         /// <summary>
-        /// 备注（如：答辩成绩）
+        /// 交叉指导成绩
         /// </summary>
-        public string remarks { set; get; }
+        public double crossScore { set; get; }
+        /// <summary>
+        /// 答辩成绩
+        /// </summary>
+        public double defenceScore { set; get; }
         /// <summary>
         /// 答辩state
         /// </summary>
@@ -100,12 +104,13 @@ namespace PMS.Model
         /// <param name="assess">评定等级</param>
         /// <param name="evaluate">评价</param>
         /// <param name="openState">判断成绩是否开放给学生查看;0为未开放，1为已开放</param>
-        public Score(Student student, Plan plan, double score, string remarks, string assess,string evaluate,int openState, int state)
+        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state)
         {
             this.student = student;
             this.plan = plan;
-            this.score = score;
-            this.remarks = remarks;
+            this.guideScore = guideScore;
+            this.crossScore = crossScore;
+            this.defenceScore = denfenceScore;
             this.investigation = investigation;
             this.practice = practice;
             this.evaluate = evaluate;

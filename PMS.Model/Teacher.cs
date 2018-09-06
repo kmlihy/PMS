@@ -36,7 +36,12 @@ namespace PMS.Model
         /// 教师管理员邮箱
         /// </summary>
         public string Email { get; set; }
-        
+
+        /// <summary>
+        /// 判断教师是否被分配到答辩小组
+        /// </summary>
+        public int state { get; set; }
+
         /// <summary>
         /// 分院id(外键分院表)
         /// </summary>
@@ -51,18 +56,19 @@ namespace PMS.Model
         /// </summary>
         public Teacher() { }
 
-       /// <summary>
-       /// 有参构造函数
-       /// </summary>
-       /// <param name="teaAccount"></param>
-       /// <param name="teaPwd"></param>
-       /// <param name="teaName"></param>
-       /// <param name="sex"></param>
-       /// <param name="phone"></param>
-       /// <param name="email"></param>
-       /// <param name="college"></param>
-       /// <param name="teaType"></param>
-        public Teacher(string teaAccount, string teaPwd, string teaName, string sex, string phone, string email, College college, int teaType)
+        /// <summary>
+        /// 有参构造函数
+        /// </summary>
+        /// <param name="teaAccount"></param>
+        /// <param name="teaPwd"></param>
+        /// <param name="teaName"></param>
+        /// <param name="sex"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        /// <param name="state">判断教师是否被分配到答辩小组</param>
+        /// <param name="college"></param>
+        /// <param name="teaType"></param>
+        public Teacher(string teaAccount, string teaPwd, string teaName, string sex, string phone, string email, int state, College college, int teaType)
         {
             TeaAccount = teaAccount;
             TeaPwd = teaPwd;
@@ -70,6 +76,7 @@ namespace PMS.Model
             Sex = sex;
             Phone = phone;
             Email = email;
+            this.state = state;
             this.college = college;
             TeaType = teaType;
         }

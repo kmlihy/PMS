@@ -91,9 +91,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="defence">答辩记录对象</param>
         /// <returns></returns>
-        public Result InsertRecord(DefenceRecord defence)
+        public Result UpdateRecord(DefenceRecord defence)
         {
-            int row = dedao.InsertRecord(defence);
+            int row = dedao.UpdateRecord(defence);
             if (row > 0)
             {
                 return Result.添加成功;

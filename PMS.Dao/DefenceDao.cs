@@ -24,9 +24,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_DefenceGroup(leader,member,recorder,planId) values(@leader,@member,@recorder,@planId)";
-                string[] param = { "@leader", "@member", "@recorder", "@planId" };
-                object[] values = { defence.leader, defence.member, defence.recorder, defence.plan.PlanId };
+                string cmdText = "insert into T_DefenceGroup(leader,member,recorder,planId,leaderName,memberName,recordName) values(@leader,@member,@recorder,@planId,@leaderName,@memberName,@recordName)";
+                string[] param = { "@leader", "@member", "@recorder", "@planId" , "@leaderName", "@memberName" , "@recordName" };
+                object[] values = { defence.leader, defence.member, defence.recorder, defence.plan.PlanId ,defence.leaderName,defence.memberName,defence.recordName};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -115,13 +115,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="defence">答辩记录对象</param>
         /// <returns></returns>
-        public int InsertRecord(DefenceRecord defence)
+        public int UpdateRecord(DefenceRecord defence)
         {
             try
             {
-                string cmdText = "update T_DefenceRecord set recordContent = @recordContent , dateTime=@dateTime where defenRecordId = @defenRecordId";
-                string[] param = { "@defenRecordId", "@recordContent","@dateTime" };
-                object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId, defence.recordContent ,defence.dateTime};
+                string cmdText = "update T_DefenceRecord set recordContent = @recordContent , dateTime=@dateTime where titleRecordId = @titleRecordId";
+                string[] param = { "@titleRecordId", "@recordContent","@dateTime" };
+                object[] values = { defence.titleRecord.TitleRecordId, defence.recordContent ,defence.dateTime};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

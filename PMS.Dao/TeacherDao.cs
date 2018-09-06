@@ -77,11 +77,12 @@ namespace PMS.Dao
             strSql.Append("sex=@sex,");
             strSql.Append("phone=@phone,");
             strSql.Append("Email=@Email,");
+            strSql.Append("state=@state,");
             strSql.Append("collegeId=@collegeId,");
             strSql.Append("teaType=@teaType");
             strSql.Append(" where teaAccount=@teaAccount");
-            String[] param = { "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@collegeId","@teaType", "@teaAccount" };
-            String[] values = { teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.college.ColID.ToString(), teacher.TeaType.ToString(), teacher.TeaAccount };
+            String[] param = { "@teaPwd", "@teaName", "@sex", "@phone", "@Email", "@state", "@collegeId","@teaType", "@teaAccount" };
+            String[] values = { teacher.TeaPwd, teacher.TeaName, teacher.Sex, teacher.Phone, teacher.Email, teacher.state.ToString(), teacher.college.ColID.ToString(), teacher.TeaType.ToString(), teacher.TeaAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
 
@@ -255,7 +256,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1";
+                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1 and state=0";
                 string[] param = { "@collegeId" , "@teaAccount1", "@teaAccount2" };
                 object[] values = { collegeId , teaAccount1 ,teaAccount2};
                 DataSet ds = db.FillDataSet(cmdText, param, values);
@@ -271,7 +272,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1";
+                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1 and state=0";
                 string[] param = { "@collegeId", "@teaAccount1", "@teaAccount2" };
                 object[] values = { collegeId, teaAccount1, teaAccount2 };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
@@ -287,7 +288,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1";
+                string cmdText = "select * from T_Teacher where collegeId=@collegeId and teaAccount not like @teaAccount1 and teaAccount not like @teaAccount2 and teaType=1 and state=0";
                 string[] param = { "@collegeId", "@teaAccount1", "@teaAccount2" };
                 object[] values = { collegeId, teaAccount1, teaAccount2 };
                 DataSet ds = db.FillDataSet(cmdText, param, values);

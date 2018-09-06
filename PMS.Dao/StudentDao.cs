@@ -111,10 +111,11 @@ namespace PMS.Dao
             strSql.Append("sex=@sex,");
             strSql.Append("phone=@phone,");
             strSql.Append("Email=@Email,");
+            strSql.Append("state=@state,");
             strSql.Append("proId=@proId");
             strSql.Append(" where stuAccount=@stuAccount");
-            String[] param = { "@realName", "@sex", "@phone", "@Email", "@proId", "@stuAccount" };
-            String[] values = { student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString(), student.StuAccount };
+            String[] param = { "@realName", "@sex", "@phone", "@Email", "@state", "@proId", "@stuAccount" };
+            String[] values = { student.RealName, student.Sex, student.Phone, student.Email, student.state.ToString(), student.profession.ProId.ToString(), student.StuAccount };
             return db.ExecuteNoneQuery(strSql.ToString(), param, values);
         }
 
