@@ -61,5 +61,26 @@ namespace PMS.Dao
                 throw;
             }
         }
+
+        /// <summary>
+        /// 插入交叉指导论文
+        /// </summary>
+        /// <param name="score">分数实体</param>
+        /// <returns>受影响行数</returns>
+        public int updateCrossGuide(Score score)
+        {
+            try
+            {
+                string cmdText = "update T_Score set score=@score,remarks=@remarks,material=@material,paperDesign=@paperDesign,workload=@workload,innovate=@innovate,evaluate=evaluate where stuAccount=@stuAccount and planId=@planId";
+                string[] param = { "@stuAccount", "@planId", "@score", "@remarks", "@material", "@paperDesign", "@workload", "@innovate", "@evaluate" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId, score.score, score.remarks, score.material, score.paperDesign, score.workload, score.innovate, score.evaluate };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

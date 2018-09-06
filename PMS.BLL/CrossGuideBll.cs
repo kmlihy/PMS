@@ -33,7 +33,18 @@ namespace PMS.BLL
                 return Result.添加失败;
             }
         }
-
+        public Result updateCrossGuide(Score score)
+        {
+            int row = cgdao.updateCrossGuide(score);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            else
+            {
+                return Result.添加失败;
+            }
+        }
         /// <summary>
         /// 根据选题记录id查找交叉指导记录
         /// </summary>

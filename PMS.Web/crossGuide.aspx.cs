@@ -51,16 +51,17 @@ namespace PMS.Web
             {
                 double score = Convert.ToDouble(Request["score"]);
                 string material = Request["material"];
-                string quality = Request["quality"];
+                string paperDesign = Request["quality"];
                 string workload = Request["workload"];
                 string innovate = Request["innovate"];
                 string evaluate = Request["evaluate"];
                 StudentBll stuBll = new StudentBll();
                 Student student = stuBll.GetModel(Session["stuAccount"].ToString());
                 ScoreBll sbll = new ScoreBll();
+                CrossGuideBll crossGuideBll = new CrossGuideBll();
                 Score scoreModel = new Score();
                 scoreModel.material = material;
-                scoreModel.quality = quality;
+                scoreModel.paperDesign = paperDesign;
                 scoreModel.workload = workload;
                 scoreModel.innovate = innovate;
                 scoreModel.evaluate = evaluate;
@@ -70,7 +71,7 @@ namespace PMS.Web
                 Plan plan = new Plan();
                 plan.PlanId = Convert.ToInt32(Session["planId"]) ;
                 scoreModel.plan = plan;
-                Result row = sbll.insertCrossGuide(scoreModel);
+                Result row = crossGuideBll.updateCrossGuide(scoreModel);
                 if (row == Result.添加成功)
                 {
                     Response.Write("提交成功");
