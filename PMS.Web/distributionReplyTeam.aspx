@@ -41,10 +41,12 @@
                                         if (_planId == getPlan.Tables[0].Rows[i]["planId"].ToString())
                                         {%>
                                 <option value="<%=getPlan.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=getPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
-                                <%}else{ %>
+                                <%}
+                                    else
+                                    { %>
                                 <option value="<%=getPlan.Tables[0].Rows[i]["planId"].ToString()%>"><%=getPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
                                 <%}
-    } %>
+                                    } %>
                             </select>
                         </td>
                         <td class="col-sm-2">
@@ -72,8 +74,8 @@
                                         {%>
                                 <option value="<%=getMember.Tables[0].Rows[i]["teaAccount"].ToString()%>" selected="selected"><%=getMember.Tables[0].Rows[i]["teaName"].ToString() %></option>
                                 <%}
-                                else
-                                { %>
+                                    else
+                                    { %>
                                 <option value="<%=getMember.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=getMember.Tables[0].Rows[i]["teaName"].ToString() %></option>
                                 <%}
                                     } %>
@@ -88,11 +90,11 @@
                                         {%>
                                 <option value="<%=getRecord.Tables[0].Rows[i]["teaAccount"].ToString()%>" selected="selected"><%=getRecord.Tables[0].Rows[i]["teaName"].ToString() %></option>
                                 <%}
-                                else
-                                { %>
+                                    else
+                                    { %>
                                 <option value="<%=getRecord.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=getRecord.Tables[0].Rows[i]["teaName"].ToString() %></option>
                                 <%}
-                                } %>
+                                    } %>
                             </select>
                         </td>
                         <td class="">
@@ -112,26 +114,37 @@
                             <div class="panel panel-default" id="propanelbox">
                                 <div class="pane input-group" id="panel-head">
                                     <div class="input-group" id="inputgroups">
+                                        <%if (state == 0)
+                                            { %>
                                         <select class="selectpicker selectcollegeId" data-width="auto" id="selectcollegeId">
-                                            <option>请选择查询学院 </option>
-                                            <option value="0">信息工程学院</option>
-                                            <option value="1">交通机电学院</option>
-                                            <option value="2">建筑工程学院</option>
-                                            <option value="3">会计学院</option>
-                                            <option value="4">设计学院</option>
+                                            <option value="">请选择查询学院 </option>
+                                            <%for (int i = 0; i < getColl.Tables[0].Rows.Count; i++)
+                                                {
+                                                    if (coll == getColl.Tables[0].Rows[i]["collegeId"].ToString())
+                                                    {%>
+                                            <option value="<%=getColl.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=getColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%}
+                                                else
+                                                { %>
+                                            <option value="<%=getColl.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=getColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                            <%}
+                                                } %>
                                         </select>
+                                        <%} %>
+
                                         <select class="selectpicker" data-width="auto" id="chooseStuPro">
-                                            <option value="0">请选择查询批次</option>
-                                            <option value="0">云南工商学院2019批次</option>
-                                            <option value="1">信息工程学院2018批次</option>
-                                            <option value="2">交通机电学院2018批次</option>
-                                            <option value="3">建筑工程学院2018批次</option>
-                                            <option value="4">信息工程学院2017批次</option>
-                                            <option value="5">信息工程学院2019批次</option>
-                                            <option value="6">交通机电学院2017批次</option>
-                                            <option value="7">建筑工程学院2019批次</option>
-                                            <option value="8">建筑工程学院2017批次</option>
-                                            <option value="9">国际学院2018批次</option>
+                                            <option value="">请选择查询批次</option>
+                                            <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
+                                                {
+                                                    if (planid == dsPlan.Tables[0].Rows[i]["planId"].ToString())
+                                                    {%>
+                                            <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                            <%}
+                                                else
+                                                { %>
+                                            <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString()%>"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                                            <%}
+                                                } %>
                                         </select>
                                         <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                                         <span class="input-group-btn">
@@ -167,7 +180,39 @@
                     </tr>
                 </tbody>
             </table>
+            <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+            <input type="hidden" value="<%=count %>" id="countPage" />
         </div>
+        <div class="text-right" id="paging">
+                <ul class="pagination pagination-lg">
+                    <li>
+                        <a href="#" class="jump" id="first">首页</a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="prev">
+                            <span class="iconfont icon-back"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump"><%=getCurrentPage %></a>
+                    </li>
+                    <li>
+                        <a href="#">/</a>
+                    </li>
+                    <li>
+                        <% if (count == 0) { count = 1; } %>
+                    <a href="#" class="jump"><%=count %></a>
+                    </li>
+                    <li>
+                        <a href="#" id="next" class="jump">
+                            <span class="iconfont icon-more"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="jump" id="last">尾页</a>
+                    </li>
+                </ul>
+            </div>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
