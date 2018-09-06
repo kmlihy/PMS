@@ -73,5 +73,18 @@ namespace PMS.BLL
                 return null;
             }
         }
+
+        public Result isOpenReport(string stuAccount, int planId)
+        {
+            int count = odao.isOpenReport(stuAccount,planId);
+            if (count>0)
+            {
+                return Result.记录存在;
+            }
+            else
+            {
+                return Result.记录不存在;
+            }
+        }
     }
 }

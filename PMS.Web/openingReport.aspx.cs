@@ -14,6 +14,8 @@ namespace PMS.Web
     public partial class openingReport : CommonPage
     {
         public string stuAccount, stuName, profession, title, teaName;
+        public int state, planId, titleRecordId;
+        OpenReportBll orbll = new OpenReportBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -22,19 +24,39 @@ namespace PMS.Web
             stuName = student.RealName;
             profession = student.profession.ProName;
             DataSet dsTR = trbll.GetByAccount(stuAccount);
-            int planId = 0,titleRecordId = 0;
-            for (int i = 0; i < dsTR.Tables[0].Rows.Count; i++)
+            if (dsTR==null)
             {
-                string stuaccount = dsTR.Tables[0].Rows[i]["stuAccount"].ToString();
-                if (stuaccount == stuAccount)
+                state = 0;
+            }
+            else
+            {
+                for (int i = 0; i < dsTR.Tables[0].Rows.Count; i++)
                 {
-                    title = dsTR.Tables[0].Rows[0]["title"].ToString();
-                    teaName = dsTR.Tables[0].Rows[0]["teaName"].ToString();
-                    planId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["planId"].ToString());
-                    titleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["titleRecordId"].ToString());
-                    break;
+                    string stuaccount = dsTR.Tables[0].Rows[i]["stuAccount"].ToString();
+                    if (stuaccount == stuAccount)
+                    {
+                        title = dsTR.Tables[0].Rows[0]["title"].ToString();
+                        teaName = dsTR.Tables[0].Rows[0]["teaName"].ToString();
+                        planId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["planId"].ToString());
+                        titleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["titleRecordId"].ToString());
+                        break;
+                    }
                 }
             }
+            
+            Result result = orbll.isOpenReport(stuAccount, planId);
+            if (result==Result.记录存在)
+            {
+                state = 1;
+                insert();
+            }
+            else
+            {
+                state = 0;
+            }
+        }
+        private void insert()
+        {
             string op = Context.Request["op"];
             if (op == "add")
             {
@@ -45,9 +67,10 @@ namespace PMS.Web
                 string method = Request["method"];
                 string outline = Request["outline"];
                 string reference = Request["reference"];
-                OpenReportBll orbll = new OpenReportBll();
                 OpenReport open = new OpenReport();
-                open.titleRecord.TitleRecordId = titleRecordId;
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = titleRecordId;
+                open.titleRecord = titleRecord;
                 open.meaning = meaning;
                 open.trend = trend;
                 open.content = content;
@@ -57,7 +80,7 @@ namespace PMS.Web
                 open.reference = reference;
                 open.reportTime = DateTime.Now;
                 Result row = orbll.stuInsert(open);
-                if(row == Result.添加成功)
+                if (row == Result.添加成功)
                 {
                     Response.Write("提交成功");
                     Response.End();

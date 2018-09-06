@@ -44,7 +44,6 @@ namespace PMS.Web
             }
             else
             {
-
                 DefenceGroup getDgId = defenceBll.getDgId(RTId);
                 string dgId = getDgId.defenGroupId.ToString();
                 DefenceGroup defenceGroup = defenceBll.getTeaId(dgId);

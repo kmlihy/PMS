@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 <body>
+    <%if (content == "学生未提交中期质量检查")
+        { %>
+    <h3><%=content %></h3>
+    <%}
+    else if (content == "暂未选题")
+    {%>
+    <h3><%=content %></h3>
+    <%}
+    else
+    { %>
     <div class="container-fluid">
         <div class="panel">
             <div class="panel-heading">
@@ -116,6 +126,7 @@
             <%} %>
         </div>
     </div>
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

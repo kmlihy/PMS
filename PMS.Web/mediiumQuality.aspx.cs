@@ -15,7 +15,9 @@ namespace PMS.Web
     {
         public string stuAccount, stuName, proName, collegeName, title, teaName;
         public int state;
+        public string content;
         public MedtermQuality mq = new MedtermQuality();
+        PathBll pathBll = new PathBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -28,20 +30,27 @@ namespace PMS.Web
                 Teacher teacher = (Teacher)Session["loginuser"];
                 string teaAccount = teacher.TeaAccount;
                 DataSet ds = trbll.GetByAccount(teaAccount);
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                if (ds==null)
                 {
-                    string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
-                    if (stuaccount == "15612200017")
-                    {
-                        stuAccount = stuaccount;
-                        stuName = ds.Tables[0].Rows[i]["realName"].ToString();
-                        proName = ds.Tables[0].Rows[i]["proName"].ToString();
-                        title = ds.Tables[0].Rows[i]["title"].ToString();
-                        break;
-                    }
+                    content = "学生未提交中期质量检查";
                 }
-                collegeName = teacher.college.ColName;
-                teaName = teacher.TeaName;
+                else
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
+                        if (stuaccount == "15612200017")
+                        {
+                            stuAccount = stuaccount;
+                            stuName = ds.Tables[0].Rows[i]["realName"].ToString();
+                            proName = ds.Tables[0].Rows[i]["proName"].ToString();
+                            title = ds.Tables[0].Rows[i]["title"].ToString();
+                            break;
+                        }
+                    }
+                    collegeName = teacher.college.ColName;
+                    teaName = teacher.TeaName;
+                }
             }
             else if(state == 3)
             {
@@ -51,17 +60,36 @@ namespace PMS.Web
                 proName = student.profession.ProName;
                 collegeName = student.college.ColName;
                 DataSet ds = trbll.GetByAccount(stuAccount);
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                TitleRecordBll titleRecordBll = new TitleRecordBll();
+                TitleRecord titleRecord = titleRecordBll.getRtId(stuAccount);
+                int rtId = titleRecord.TitleRecordId;
+                Result result = pathBll.selectByTitleRecordId(rtId.ToString());
+                if (result==Result.记录存在)
                 {
-                    string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
-                    if (stuaccount == stuAccount)
+                    if (ds == null)
                     {
-                        title = ds.Tables[0].Rows[0]["title"].ToString();
-                        teaName = ds.Tables[0].Rows[0]["teaName"].ToString();
-                        titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
-                        break;
+                        content = "暂未选题";
+                    }
+                    else
+                    {
+                        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        {
+                            string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
+                            if (stuaccount == stuAccount)
+                            {
+                                title = ds.Tables[0].Rows[0]["title"].ToString();
+                                teaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                                titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                                break;
+                            }
+                        }
                     }
                 }
+                else
+                {
+                    content = "暂未选题";
+                }
+                
             }
             string op = Request["op"];
             if(op == "student")

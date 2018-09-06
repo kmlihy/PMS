@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="css/zwh.css" />
 </head>
 <body>
+    <%if (state == 0)
+        { %>
+    <h3>未提交论文</h3>
+    <%} else if (state==3) { %>
+    <h3>未选题</h3>
+    <%} else { %>
     <div class="panel panel-default text-center" id="panel">
         <div class="panel-head">
             <h2>提交查重报告</h2>
@@ -51,6 +57,7 @@
             <button type="button" class="btn btn-primary" id="btnupload">上传</button>
         </div>
     </div>
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

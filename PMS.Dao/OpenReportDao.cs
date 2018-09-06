@@ -76,5 +76,18 @@ namespace PMS.Dao
                 throw;
             }
         }
+        /// <summary>
+        /// 判断是否选题
+        /// </summary>
+        /// <param name="stuAccount"></param>
+        /// <param name="planId"></param>
+        /// <returns></returns>
+        public int isOpenReport(string stuAccount,int planId)
+        {
+            string sql = "select count(titleRecordId) from V_TitleRecord where planId=@planId and stuAccount=@stuAccount";
+            string[] param = { "@planId", "@stuAccount" };
+            object[] values = { planId,stuAccount };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
     }
 }

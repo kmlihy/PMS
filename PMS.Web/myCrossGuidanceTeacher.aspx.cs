@@ -20,30 +20,37 @@ namespace PMS.Web
             string stuAccount = student.StuAccount;
             TitleRecordBll trecordBll = new TitleRecordBll();
             DataSet ds =trecordBll.GetByAccount(stuAccount);
-            int i = ds.Tables[0].Rows.Count-1;
-            int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
-            CrossGuideBll crossBll = new CrossGuideBll();
-            DataSet dsTea = crossBll.Select(titleRecordId);
-            int j = dsTea.Tables[0].Rows.Count - 1;
-            if (j<0)
+            if (ds==null)
             {
                 opninion = "<h2>还未指定交叉指导教师，请耐心等待</h2>";
             }
             else
             {
-                name = dsTea.Tables[0].Rows[j]["teaName"].ToString();
-                sex = dsTea.Tables[0].Rows[j]["teaSex"].ToString();
-                phone = dsTea.Tables[0].Rows[j]["teaPhone"].ToString();
-                email = dsTea.Tables[0].Rows[j]["teaEmail"].ToString();
-                dsCross = crossBll.Select(titleRecordId);
-                if (dsCross != null)
+                int i = ds.Tables[0].Rows.Count - 1;
+                int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                CrossGuideBll crossBll = new CrossGuideBll();
+                DataSet dsTea = crossBll.Select(titleRecordId);
+                int j = dsTea.Tables[0].Rows.Count - 1;
+                if (j < 0)
                 {
-                    int a = dsCross.Tables[0].Rows.Count - 1;
-                    opninion = "教师最新回复：" + dsCross.Tables[0].Rows[a]["guideOpinion"].ToString();
+                    opninion = "<h2>还未指定交叉指导教师，请耐心等待</h2>";
                 }
                 else
                 {
-                    opninion = "<h2>教师未提交，请耐心等待</h2>";
+                    name = dsTea.Tables[0].Rows[j]["teaName"].ToString();
+                    sex = dsTea.Tables[0].Rows[j]["teaSex"].ToString();
+                    phone = dsTea.Tables[0].Rows[j]["teaPhone"].ToString();
+                    email = dsTea.Tables[0].Rows[j]["teaEmail"].ToString();
+                    dsCross = crossBll.Select(titleRecordId);
+                    if (dsCross != null)
+                    {
+                        int a = dsCross.Tables[0].Rows.Count - 1;
+                        opninion = "教师最新回复：" + dsCross.Tables[0].Rows[a]["guideOpinion"].ToString();
+                    }
+                    else
+                    {
+                        opninion = "<h2>教师未提交，请耐心等待</h2>";
+                    }
                 }
             }
         }
