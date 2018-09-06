@@ -24,9 +24,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_DefenceGroup(leader,member,recorder,planId) values(@leader,@member,@recorder,@planId)";
-                string[] param = { "@leader", "@member", "@recorder", "@planId" };
-                object[] values = { defence.leader, defence.member, defence.recorder, defence.plan.PlanId };
+                string cmdText = "insert into T_DefenceGroup(leader,member,recorder,planId,leaderName,memberName,recordName) values(@leader,@member,@recorder,@planId,@leaderName,@memberName,@recordName)";
+                string[] param = { "@leader", "@member", "@recorder", "@planId" , "@leaderName", "@memberName" , "@recordName" };
+                object[] values = { defence.leader, defence.member, defence.recorder, defence.plan.PlanId ,defence.leaderName,defence.memberName,defence.recordName};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

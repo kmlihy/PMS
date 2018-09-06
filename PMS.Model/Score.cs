@@ -110,7 +110,7 @@ namespace PMS.Model
             this.plan = plan;
             this.guideScore = guideScore;
             this.crossScore = crossScore;
-            this.denfenceScore = denfenceScore;
+            this.defenceScore = denfenceScore;
             this.investigation = investigation;
             this.practice = practice;
             this.evaluate = evaluate;

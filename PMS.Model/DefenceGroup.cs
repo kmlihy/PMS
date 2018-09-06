@@ -18,14 +18,17 @@ namespace PMS.Model
         /// 组长
         /// </summary>
         public string leader { set; get; }
+        public string leaderName { get; set; }
         /// <summary>
         /// 成员
         /// </summary>
         public string member { set; get; }
+        public string memberName { get; set; }
         /// <summary>
         /// 记录员
         /// </summary>
         public string recorder { set; get; }
+        public string recordName { get; set; }
         /// <summary>
         /// 批次id
         /// </summary>
