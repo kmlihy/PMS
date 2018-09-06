@@ -252,7 +252,7 @@
     <Content Include="kindeditor\themes\simple\simple.css" />
     <Content Include="mediiumQuality.aspx" />
     <Content Include="myCrossGuidanceTeacher.aspx" />
-    <Content Include="myGrogress.aspx" />
+    <Content Include="myProgress.aspx" />
     <Content Include="myGuideTeacher.aspx" />
     <Content Include="myInstructor.aspx" />
     <Content Include="myReplyStudent.aspx" />
@@ -567,12 +567,12 @@
     <Compile Include="myCrossGuidanceTeacher.aspx.designer.cs">
       <DependentUpon>myCrossGuidanceTeacher.aspx</DependentUpon>
     </Compile>
-    <Compile Include="myGrogress.aspx.cs">
-      <DependentUpon>myGrogress.aspx</DependentUpon>
+    <Compile Include="myProgress.aspx.cs">
+      <DependentUpon>myProgress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="myGrogress.aspx.designer.cs">
-      <DependentUpon>myGrogress.aspx</DependentUpon>
+    <Compile Include="myProgress.aspx.designer.cs">
+      <DependentUpon>myProgress.aspx</DependentUpon>
     </Compile>
     <Compile Include="myGuideTeacher.aspx.cs">
       <DependentUpon>myGuideTeacher.aspx</DependentUpon>

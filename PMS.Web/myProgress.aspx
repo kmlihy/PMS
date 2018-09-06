@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myGrogress.aspx.cs" Inherits="PMS.Web.myGrogress" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myProgress.aspx.cs" Inherits="PMS.Web.myGrogress" %>
 
 <!DOCTYPE html>
 
@@ -14,8 +14,11 @@
         <div class="history">
             <div class="history-date">
                 <ul>
-                    <h2><a href="#nogo">选题开始</a>
-                    </h2>
+                    <li>
+                        <h2>
+                            <a href="#nogo">选题开始</a>
+                        </h2>
+                    </li>
                     <li class="green">
                         <h3>10.08<span>2018</span></h3>
                         <dl>
@@ -26,7 +29,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <h2 class="date02"><a href="#nogo">提交开题报告</a></h2>
+                    <li><h2 class="date02"><a href="#nogo">提交开题报告</a></h2></li>
                     <li class="green">
                         <h3>10.12<span>2018</span></h3>
                         <dl>
@@ -43,7 +46,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
+                    <li><h2 class="date02"><a href="#nogo">论文指导阶段</a></h2></li>
                     <li>
                         <h3>10.14<span>2018</span></h3>
                         <dl>
@@ -90,7 +93,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <h2 class="date02"><a href="#nogo">交叉指导阶段</a></h2>
+                    <li><h2 class="date02"><a href="#nogo">交叉指导阶段</a></h2></li>
                     <li>
                         <h3>11.12<span>2018</span></h3>
                         <dl>
@@ -107,7 +110,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <h2 class="date02"><a href="#nogo">论文答辩阶段</a></h2>
+                    <li><h2 class="date02"><a href="#nogo">论文答辩阶段</a></h2></li>
                     <li>
                         <h3>11.20<span>2018</span></h3>
                         <dl>
