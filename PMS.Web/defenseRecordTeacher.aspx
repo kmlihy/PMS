@@ -53,17 +53,23 @@
                         <td colspan="2">答辩日期</td>
                         <td><%=now%></td>
                         <td>答辩成绩</td>
-                        <td></td>
+                        <td><a href="replyPanelsOpinion.aspx?stuAccount=<%=stuAccount%>">
+                                    <button class="btn btn-default btn-sm btn-success btnSearch">
+                                        给定成绩
+                                    </button>
+                            </a></td>
                     </tr>
                     <tr class="table_head">
                         <td colspan="2">答辩小组成员签字</td>
-                        <td colspan="3"></td>
+                        <td colspan="3">
+                            <textarea class="openReportText"></textarea>
+                        </td>
                     </tr>
                     <tr class="table_head">
                         <td colspan="2">答辩小组组长签字</td>
-                        <td></td>
+                        <td> <textarea class="openReportText"></textarea></td>
                         <td>记录人</td>
-                        <td></td>
+                        <td> <textarea class="openReportText"></textarea></td>
                     </tr>
                 </tbody>
             </table>

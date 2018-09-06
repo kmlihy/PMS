@@ -8,6 +8,7 @@
     <title>答辩小组评语</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 <body>
     <div class="panel">
@@ -19,57 +20,51 @@
                 <tbody>
                     <tr class="table_head">
                         <td class="col-sm-1">论文题目</td>
-                        <td colspan="9"></td>
+                        <td colspan="9"><%=ds.Tables[0].Rows[0]["title"].ToString()%></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">学生姓名</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><%=ds.Tables[0].Rows[0]["realName"].ToString()%></td>
                         <td class="col-md-1">专业</td>
-                        <td class="col-sm-1"></td>
+                        <td class="col-sm-1"><%=ds.Tables[0].Rows[0]["proName"].ToString()%></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
                         <td colspan="9">评价</td>
                     </tr>
                     <tr class="table_head">
-                        <td class="col-md-1">调查论证</td>
+                        <td class="col-md-1">报告内容</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="txtAreReportContent"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
-                        <td class="col-md-1">实践能力</td>
+                        <td class="col-md-1">报告时间</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="txtAreReportTime"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
-                        <td class="col-md-1">分析、解决问题能力</td>
+                        <td class="col-md-1">答辩</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
-                        </td>
-                    </tr>
-                    <tr class="table_head">
-                        <td class="col-md-1">工作态度</td>
-                        <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
-                        </td>
-                    </tr>
-                    <tr class="table_head">
-                        <td class="col-md-1">质量</td>
-                        <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="txtAreDefence"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-md-1">创新</td>
                         <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText"></textarea>
+                            <textarea class="openReportText" id="textAreInnovate"></textarea>
+                        </td>
+                    </tr>
+                    <tr class="table_head">
+                        <td class="col-md-1">成绩</td>
+                        <td class="openReportmain" colspan="7">
+                            <textarea class="openReportText" id="txtAreDefenceScore"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">
                         <td class="openReportmain" colspan="10">
-                            <textarea class="openReportText adviceTextArea">评价：</textarea>
+                            <textarea class="openReportText adviceTextArea" id="txtAreEvaluate">评价：</textarea>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -84,4 +79,8 @@
         </div>
     </div>
 </body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/xcConfirm.js"></script>
+<script src="js/replyPanelsOpinion.js"></script>
 </html>

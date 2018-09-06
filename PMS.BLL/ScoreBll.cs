@@ -38,6 +38,15 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+        public Result insertreplyPanelsOpinion(Score score)
+        {
+            int row = sdao.insertreplyPanelsOpinion(score);
+            if (row>0)
+            {
+                return Result.添加成功;
+            }
+            return Result.添加失败;
+        }
         /// <summary>
         /// 通过titleRecordId获取当前状态
         /// </summary>
