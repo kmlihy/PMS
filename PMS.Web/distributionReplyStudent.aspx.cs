@@ -317,8 +317,7 @@ namespace PMS.Web
                 DefenceRecord defence = new DefenceRecord();
                 defence.titleRecord = titleRecord;
                 DefenceGroup defenceGroup = new DefenceGroup();
-                defenceGroup.defenGroupId = 1;
-                //Convert.ToInt32(Session["defenGroupId"])
+                defenceGroup.defenGroupId = Convert.ToInt32(Session["defenGroupId"]);
                 defence.defenceGroup = defenceGroup;
                 row = defenceBll.InsertStudent(defence);
                 StudentBll stuBll = new StudentBll();

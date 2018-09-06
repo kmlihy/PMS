@@ -51,7 +51,7 @@ $("#confirm").click(function () {
                 if (succ === "分配成功") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                            //alert("添加成功");
+                            jump(1);
                         }
                     });
                 } else {
