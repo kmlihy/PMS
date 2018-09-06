@@ -22,6 +22,14 @@ namespace PMS.Web
         {
 
             stuAccount = Request.QueryString["stuAccount"];
+            if (stuAccount != null)
+            {
+                Session["stuAccount"] = stuAccount;
+            }
+            else
+            {
+                stuAccount = Session["stuAccount"].ToString();
+            }
             ds = titlebll.GetByAccount(stuAccount);
             planId = Convert.ToInt32(ds.Tables[0].Rows[0]["planId"]);
             string op = Request["op"];
@@ -50,9 +58,9 @@ namespace PMS.Web
             scoreModel.reportTime = txtAreReportTime;
             scoreModel.defence = txtAreDefence;
             scoreModel.innovate = txtAreInnovate;
-            scoreModel.score = txtAreDefenceScore;
+            scoreModel.defenceScore = txtAreDefenceScore;
             ScoreBll scorebll = new ScoreBll();
-            Result row = scorebll.insertreplyPanelsOpinion(scoreModel);
+            Result row = scorebll.updatereplyPanelsOpinion(scoreModel);
             if (row == Result.添加成功)
             {
                 Response.Write("提交成功");

@@ -28,7 +28,7 @@
             },
             dataType: 'text',
             success: function (succ) {
-                if (succ === "添加成功") {
+                if (succ === "提交成功") {
                     window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
                             //alert("添加成功");

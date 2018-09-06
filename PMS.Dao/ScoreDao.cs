@@ -57,6 +57,21 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        public int updatereplyPanelsOpinion(Score score)
+        {
+            try
+            {
+                string cmdText = "update T_Score set reportContent=@reportContent,reportTime=@reportTime,defence=@defence,innovate=@innovate,defenceScore=@defenceScore where stuAccount=@stuAccount and planId=@planId";
+                string[] param = { "@stuAccount", "@planId", "@reportContent", "@reportTime", "@defence", "@innovate", "@defenceScore" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId,score.reportContent,score.reportTime,score.defence,score.innovate,score.defenceScore};
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// 插入交叉指导论文

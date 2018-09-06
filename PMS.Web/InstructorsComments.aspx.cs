@@ -46,7 +46,6 @@ namespace PMS.Web
         public void insert()
         {
             double score = Convert.ToDouble(Request["score"]);
-            string remarks = "指导成绩";
             string investigation = Request["investigation"];
             string practice = Request["practice"];
             string solveProblem = Request["solveProblem"];
@@ -62,8 +61,7 @@ namespace PMS.Web
 
             scoreModel.student = student;
             scoreModel.plan = plan;
-            scoreModel.score = score;
-            scoreModel.remarks = remarks;
+            scoreModel.guideScore = score;
             scoreModel.investigation = investigation;
             scoreModel.practice = practice;
             scoreModel.solveProblem = solveProblem;
