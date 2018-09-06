@@ -115,13 +115,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="defence">答辩记录对象</param>
         /// <returns></returns>
-        public int InsertRecord(DefenceRecord defence)
+        public int UpdateRecord(DefenceRecord defence)
         {
             try
             {
-                string cmdText = "update T_DefenceRecord set recordContent = @recordContent , dateTime=@dateTime where defenRecordId = @defenRecordId";
-                string[] param = { "@defenRecordId", "@recordContent","@dateTime" };
-                object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId, defence.recordContent ,defence.dateTime};
+                string cmdText = "update T_DefenceRecord set recordContent = @recordContent , dateTime=@dateTime where titleRecordId = @titleRecordId";
+                string[] param = { "@titleRecordId", "@recordContent","@dateTime" };
+                object[] values = { defence.titleRecord.TitleRecordId, defence.recordContent ,defence.dateTime};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

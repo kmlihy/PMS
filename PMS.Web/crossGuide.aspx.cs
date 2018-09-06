@@ -58,20 +58,18 @@ namespace PMS.Web
                 StudentBll stuBll = new StudentBll();
                 Student student = stuBll.GetModel(Session["stuAccount"].ToString());
                 ScoreBll sbll = new ScoreBll();
-                CrossGuideBll crossGuideBll = new CrossGuideBll();
                 Score scoreModel = new Score();
                 scoreModel.material = material;
                 scoreModel.paperDesign = paperDesign;
                 scoreModel.workload = workload;
                 scoreModel.innovate = innovate;
                 scoreModel.evaluate = evaluate;
-                scoreModel.remarks = "交叉评阅";
-                scoreModel.score = score;
+                scoreModel.crossScore = score;
                 scoreModel.student = student;
                 Plan plan = new Plan();
                 plan.PlanId = Convert.ToInt32(Session["planId"]) ;
                 scoreModel.plan = plan;
-                Result row = crossGuideBll.updateCrossGuide(scoreModel);
+                Result row = sbll.updateCrossGuide(scoreModel);
                 if (row == Result.添加成功)
                 {
                     Response.Write("提交成功");

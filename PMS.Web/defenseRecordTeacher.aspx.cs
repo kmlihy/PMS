@@ -29,14 +29,11 @@ namespace PMS.Web
                 DefenceRecord defenceRecord = new DefenceRecord();
                 TitleRecord titleRecord = new TitleRecord();
                 titleRecord.TitleRecordId = Convert.ToInt32(getData.Tables[0].Rows[0]["titleRecordId"]);
-                DefenceGroup defenceGroup = new DefenceGroup();
-                defenceGroup.defenGroupId = Convert.ToInt32(getData.Tables[0].Rows[0]["defenGroupId"]);
-                defenceRecord.defenceGroup = defenceGroup;
                 defenceRecord.titleRecord= titleRecord;
                 defenceRecord.recordContent = Request["content"];
                 defenceRecord.dateTime = Convert.ToDateTime(now);
 
-                Result result = defenceBll.InsertRecord(defenceRecord);
+                Result result = defenceBll.UpdateRecord(defenceRecord);
                 if (result==Result.添加成功)
                 {
                     Response.Write("添加成功");

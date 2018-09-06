@@ -48,8 +48,7 @@ namespace PMS.Web
             string op = Request["op"];
             if (op == "submit")
             {
-                double score = Convert.ToDouble(Request["score"]);
-                string remarks = "指导成绩";
+                double guideScore = Convert.ToDouble(Request["score"]);
                 string investigation = Request["investigation"];
                 string practice = Request["practice"];
                 string solveProblem = Request["solveProblem"];
@@ -64,8 +63,7 @@ namespace PMS.Web
                 plan.PlanId = Convert.ToInt32(Session["planId"]);
                 scoreModel.student = student;
                 scoreModel.plan = plan;
-                scoreModel.score = score;
-                scoreModel.remarks = remarks;
+                scoreModel.guideScore = guideScore;
                 scoreModel.investigation = investigation;
                 scoreModel.practice = practice;
                 scoreModel.solveProblem = solveProblem;

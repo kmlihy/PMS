@@ -103,7 +103,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">
-                            <input type="checkbox" class="js-checkbox-all check_box" />
+                            <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                         </th>
                         <th class="text-center Serial_number">序号</th>
                         <th class="text-center">学院</th>
@@ -117,7 +117,7 @@
                         {%>
                     <tr>
                         <td class="text-center check_box">
-                            <input type="checkbox" />
+                            <input type="checkbox" name="checkbox" class="check" value="<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>" />
                         </td>
                         <td class="text-center"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString()%></td>

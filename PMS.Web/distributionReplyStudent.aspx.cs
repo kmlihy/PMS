@@ -281,7 +281,7 @@ namespace PMS.Web
                 ds = pro.SelectBypage(tabuilder, out count);
             }
         }
-        public Result addStudent()
+        public void addStudent()
         {
             string defenGroupId = Request.QueryString["defenGroupId"];
             string stuAccount = Request["stuAccount"];
@@ -299,7 +299,8 @@ namespace PMS.Web
                 titleRecord.TitleRecordId = titleRecordId;
                 defence.titleRecord = titleRecord;
                 DefenceGroup defenceGroup = new DefenceGroup();
-                defenceGroup.defenGroupId = Convert.ToInt32(defenGroupId);
+                defenceGroup.defenGroupId = 1;
+                //Convert.ToInt32(defenGroupId)
                 defence.defenceGroup = defenceGroup;
                 row = defenceBll.InsertStudent(defence);
             }
@@ -313,7 +314,6 @@ namespace PMS.Web
                 Response.Write("添加成功");
                 Response.End();
             }
-            return row;
         }
     }
 }

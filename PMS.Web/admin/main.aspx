@@ -167,6 +167,11 @@
                                 <span>教师信息</span>
                             </a>
                         </li>  
+                        <li role="presentation">
+                            <a href="../myGuideTeacher.aspx" class="sidebarclick" >
+                                <span>我的进度</span>
+                            </a>
+                        </li>  
                         <%}
                             else if (State == 1)
                             {%>
@@ -356,6 +361,11 @@
                                         <span>分配答辩小组</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="../distributionReplyStudent.aspx" class="sidebarclick" >
+                                        <span>答辩学生</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <%-- 
@@ -472,6 +482,11 @@
                                 <li role="presentation">
                                     <a href="../distributionReplyTeam.aspx" class="sidebarclick" >
                                         <span>分配答辩小组</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="../distributionReplyStudent.aspx" class="sidebarclick" >
+                                        <span>分配答辩学生</span>
                                     </a>
                                 </li>
                             </ul>
