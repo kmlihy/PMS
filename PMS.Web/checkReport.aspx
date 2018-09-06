@@ -64,8 +64,5 @@
 <script src="js/ajaxfileupload.js"></script>
 <script src="js/checkReport.js"></script>
 <script>
-    
-
-
 </script>
 </html>

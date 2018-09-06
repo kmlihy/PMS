@@ -97,7 +97,9 @@ namespace PMS.Web
                 string plan = Request["student"];
                 medterm.planFinishSituation = plan;
                 medterm.dateTime = DateTime.Now;
-                medterm.titleRecord.TitleRecordId = titleRecordId;
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = titleRecordId;
+                medterm.titleRecord = titleRecord;
                 Result row = mqbll.stuInsert(medterm);
                 if(row == Result.添加成功)
                 {
