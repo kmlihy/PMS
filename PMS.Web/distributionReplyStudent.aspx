@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="square/_all.css" />
     <link rel="stylesheet" href="css/bootstrap-select.css" />
-    <link rel="stylesheet" href="css/xcConfirm.css" />
     <link rel="stylesheet" href="css/iconfont.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
     <style>
         .check_box {
             width: 50px;
@@ -179,9 +179,9 @@
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/distributionReplyStudent.js"></script>
 <script src="js/icheck.min.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script src="js/ml.js"></script>
-<script src="js/distributionReplyStudent.js"></script>
 <script src="js/xcConfirm.js"></script>
 </html>
