@@ -101,7 +101,7 @@ namespace PMS.Web
             string where2 = "leader = " + teaAccount + " or member = " + teaAccount + " or recorder = " + teaAccount + " and " + strWhere;
             TableBuilder tabuilder = new TableBuilder()
             {
-                StrTable = "V_Defence",
+                StrTable = "V_DefenceRecord",
                 StrWhere = strWhere == null || strWhere == "" ? where1 : where2,
                 IntColType = 0,
                 IntOrder = 0,
