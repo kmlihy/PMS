@@ -16,6 +16,7 @@ namespace PMS.Web
         protected string planId;//批次ID
         protected string titleRecordId = null;//选题记录ID
         protected DateTime opTime;//提交开题报告时间
+        protected int opCount;
         protected Student student;
         protected OpenReport opReport;
         protected string state;//登录类型
@@ -46,8 +47,15 @@ namespace PMS.Web
                     string dsTime = ds.Tables[0].Rows[0]["createTime"].ToString();
                     selectTime = Convert.ToDateTime(dsTime);//学生选定题目时间
                     titleRecordId = ds.Tables[0].Rows[0]["titleRecordId"].ToString();
-                    opReport = opBll.Select(int.Parse(titleRecordId));
-                    opTime = opReport.reportTime;
+                    if (opBll.selectByRecordId(int.Parse(titleRecordId)) == true)
+                    {
+                        opReport = opBll.Select(int.Parse(titleRecordId));
+                        
+                    }
+                    else
+                    {
+                        opTime = DateTime.Now;
+                    }
                 }
                 else
                 {

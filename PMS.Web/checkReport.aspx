@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/zwh.css" />
+    <link rel="stylesheet" href="css/lgd.css" />
 </head>
 <body>
     <%if (state == 0)
@@ -31,9 +32,7 @@
                             <p class="p-report">上传查重报告文件:</p>
                         </td>
                         <td class="text-left file-Info">
-                            <a href="javascript:;" id="a_filereport">选择文件
-                                <input type="file" name="upload" id="upload" onchange="showname()" />
-                            </a>
+                            <p id="upload-p">选择文件<input onchange="showname()" type="file" name="upload" id="upload" /></p>
                         </td>
                     </tr>
                 </table>

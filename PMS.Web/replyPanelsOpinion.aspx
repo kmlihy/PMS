@@ -27,6 +27,13 @@
                         <td class="col-sm-1"><%=ds.Tables[0].Rows[0]["realName"].ToString()%></td>
                         <td class="col-md-1">专业</td>
                         <td class="col-sm-1"><%=ds.Tables[0].Rows[0]["proName"].ToString()%></td>
+                        <td class="col-md-1">成绩</td>
+                        <td class="col-sm-1 text-center">
+                            <input type="text" maxlength="3" id="defensescore" oninput="value = value.replace(/[^\d]/g, '')" style="outline:none;border:none;width:100%;" />
+                            <button onclick="rescore()" id="scoretips" style="width: 100%; height: 100%; background-color: white; border: none;">
+                            </button>
+                            <%--<textarea class="openReportText" id=""></textarea>--%>
+                        </td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
@@ -54,12 +61,6 @@
                         <td class="col-md-1">创新</td>
                         <td class="openReportmain" colspan="7">
                             <textarea class="openReportText" id="textAreInnovate"></textarea>
-                        </td>
-                    </tr>
-                    <tr class="table_head">
-                        <td class="col-md-1">成绩</td>
-                        <td class="openReportmain" colspan="7">
-                            <textarea class="openReportText" id="txtAreDefenceScore"></textarea>
                         </td>
                     </tr>
                     <tr class="table_head">

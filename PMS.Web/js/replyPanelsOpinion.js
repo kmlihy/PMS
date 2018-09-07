@@ -1,4 +1,29 @@
-﻿$("#btnSubmit").click(function () {
+﻿var tips = $("#scoretips");
+var score = $("#defensescore");
+$(document).ready(function () {
+    tips.hide();
+})
+$("#defensescore").change(function () {
+    if (score.val() == "") {
+        
+    }
+    else if (score.val() > 100) {
+        window.wxc.xcConfirm("分数应在0-100内", window.wxc.xcConfirm.typeEnum.warning);
+        score.val("  ");
+        score.select();
+    } else {
+        score.hide();
+        tips.show();
+        tips.text(score.val())
+    }
+})
+function rescore() {
+    score.show();
+    tips.hide();
+    score.val(tips.text());
+    score.focus();
+}
+$("#btnSubmit").click(function () {
     var submit = "submit";
     var txtAreReportContent = $("#txtAreReportContent").val();
     var txtAreReportTime = $("#txtAreReportTime").val();

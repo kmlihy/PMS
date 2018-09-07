@@ -14,11 +14,15 @@
 <body>
     <div class="panel">
         <div class="panel-heading text-center">
-            <h2>评阅开题报告</h2>
+            <span class="h2 ">评阅开题报告</span>
+            <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back" style="float:right">返回</button>
         </div>
-        <% if(or == null){ %>
-            <h3>该学生还未提交开题报告，请耐心等待。</h3>
-        <% }else{ %>
+        <% if (or == null)
+            { %>
+        <h3>该学生还未提交开题报告，请耐心等待。</h3>
+        <% }
+            else
+            { %>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered table_mian">
                 <tbody>
@@ -105,9 +109,33 @@
         </div>
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
-            <button class="btn btn-info col-xs-1" type="button" id="btnReviewSubmit">提交</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                点击评价
+            </button>
+            <button class="btn btn-info col-xs-1" type="button" id="btnReviewSubmit">同意</button>
         </div>
         <%} %>
+       <%-- 驳回意见填写--%>
+        <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModal1">驳回意见
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid table-bordered img-rounded modal_comment">
+                            <textarea rows="8" style="margin-top: 15px; width: 100%;" class="opinion"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default " id="submit">提交</button>
+                        <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>

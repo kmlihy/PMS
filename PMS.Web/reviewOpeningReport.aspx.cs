@@ -22,10 +22,11 @@ namespace PMS.Web
             string teaAccount = teacher.TeaAccount;
             DataSet ds = trbll.GetByAccount(teaAccount);
             int titleRecordId = 0;
+            string account = Request.QueryString["stuAccount"];
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
-                if (stuaccount == "15612200017")
+                if (stuaccount == account)
                 {
                     stuAccount = stuaccount;
                     stuName = ds.Tables[0].Rows[i]["realName"].ToString();
