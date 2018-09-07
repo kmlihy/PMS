@@ -31,13 +31,13 @@
                     </li>
                     <li class="green">
                         <h3><%=string.Format("{0:MM-dd}",time) %><span><%=string.Format("{0:yyyy}",time) %></span></h3>
-                        <%if (DateTime.Compare(time,startTime)<0)
+                        <%if (DateTime.Compare(time, startTime) < 0)
                             { %>
                         <dl>
                             <dt>选题时间没有到，你还不能选题</dt>
                         </dl>
                         <%}
-                            else if (DateTime.Compare(time,startTime)>0 && DateTime.Compare(time,endTime)<0)
+                            else if (DateTime.Compare(time, startTime) > 0 && DateTime.Compare(time, endTime) < 0)
                             {
                         %>
                         <dl>
@@ -80,21 +80,10 @@
                 <ul>
                     <h2 class="date02"><a href="#nogo">提交开题报告</a></h2>
                     <li class="green">
-                        <%if (DateTime.Compare(opTime,DateTime.Now) == 0)
-                            {
-                        %>
                         <h3><%=string.Format("{0:yyyy-MM-dd}", opTime) %><span><%=string.Format("{0:yyyy}", opTime) %></span></h3>
                         <dl>
-                            <dt>你还未提交开题报告</dt>
+                            <dt>你已提交开题报告，请等待指导教师审核</dt>
                         </dl>
-                        <%}
-                        else
-                        { %>
-                        <h3><%=string.Format("{0:yyyy-MM-dd}", opTime) %><span><%=string.Format("{0:yyyy}", opTime) %></span></h3>
-                        <dl>
-                            <dt>你已提交开题报告，请等待指导教师审核<%=opReport %></dt>
-                        </dl>
-                        <%} %>
                     </li>
                     <li>
                         <h3>10.13<span>2018</span></h3>

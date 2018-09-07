@@ -50,11 +50,7 @@ namespace PMS.Web
                     if (opBll.selectByRecordId(int.Parse(titleRecordId)) == true)
                     {
                         opReport = opBll.Select(int.Parse(titleRecordId));
-                        
-                    }
-                    else
-                    {
-                        opTime = DateTime.Now;
+                        opTime = opReport.reportTime;
                     }
                 }
                 else
