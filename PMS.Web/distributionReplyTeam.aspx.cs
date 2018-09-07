@@ -16,7 +16,7 @@ namespace PMS.Web
         public DataSet getPlan,getLeader,getMember,getRecord,getColl,dsPlan,ds;
         public int state;
         public string op, leader, member, record,_planId,coll,planid;
-        public int getCurrentPage = 1, pagesize = 5, count;
+        public int getCurrentPage = 1, pagesize = 1, count;
         protected string search = "",showmsg = "";
         protected string userType = "";
         PlanBll planBll = new PlanBll();
@@ -33,6 +33,7 @@ namespace PMS.Web
                 coll = Request.QueryString["collegeId"];
                 planid = Request.QueryString["planId"];
                 Coll();
+                getdata(Search());
             }
             else if(state==2)
             {
@@ -77,6 +78,12 @@ namespace PMS.Web
                         getRecord = teacherBll.getRecordByColl(collegeId, leader, member); ;
                     }
                 }
+                getdata(Search());
+            }
+            if (!IsPostBack)
+            {
+                Search();
+                getdata(Search());
             }
         }
         /// <summary>
@@ -105,7 +112,7 @@ namespace PMS.Web
             Plan plan = new Plan();
             plan.PlanId = Convert.ToInt32(planId);
             defenceGroup.plan = plan;
-
+            //添加过的教师不显示
             Result result, row1, row2, row3;
             teaLeader.state = 1;
             row1 = teacherBll.Updata(teaLeader);
@@ -198,11 +205,11 @@ namespace PMS.Web
                 int userCollegeId = tea.college.ColID;
                 if (strWhere == null || strWhere == "")
                 {
-                    userCollege = "collegeId=" + "'" + userCollegeId + "'";
+                    userCollege = "collegeId=" + userCollegeId + "";
                 }
                 else
                 {
-                    userCollege = "collegeId=" + "'" + userCollegeId + "'" + "and" + "(" + strWhere + ")";
+                    userCollege = "collegeId=" + userCollegeId + "and" + "(" + strWhere + ")";
                 }
                 TableBuilder tabuilder = new TableBuilder()
                 {
