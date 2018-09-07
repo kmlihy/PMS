@@ -55,7 +55,7 @@ namespace PMS.Model
         /// </summary>
         public College college { get; set; }
 
-
+        public int finishYear { get; set; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
