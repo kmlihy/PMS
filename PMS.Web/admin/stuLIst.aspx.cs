@@ -143,7 +143,7 @@ namespace PMS.Web.admin
 
         public void stuPasswordReset() {
             string stuAccount = Context.Request["stuNO"].ToString();
-            string stuPwd = Security.SHA256Hash("123456");
+            string stuPwd = Security.SHA256Hash("000000");
             
             Result resetResult =stuBll.ResetPwd(stuAccount, stuPwd); 
             if (resetResult== Result.更新成功) {

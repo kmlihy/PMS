@@ -95,7 +95,6 @@ namespace PMS.Dao
             string[] values = {titleId.ToString() };
             return db.FillDataSet(strBuilder.ToString(), param, values);
         }
-
         public Title GetTitle(int titleId)
         {
             StringBuilder strBuilder = new StringBuilder();

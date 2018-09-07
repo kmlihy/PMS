@@ -121,14 +121,17 @@ namespace PMS.Web
                 stuAccount = stu.StuAccount;
                 TitleRecordBll recordBll = new TitleRecordBll();
                 ds = recordBll.Select();
-                for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                if (ds!=null)
                 {
-                    if(stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        TitleBll titleBll = new TitleBll();
-                        titleId = int.Parse(ds.Tables[0].Rows[i]["titleId"].ToString());
-                        title = titleBll.GetTitle(titleId);
-                        teaId = title.teacher.TeaAccount;
+                        if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                        {
+                            TitleBll titleBll = new TitleBll();
+                            titleId = int.Parse(ds.Tables[0].Rows[i]["titleId"].ToString());
+                            title = titleBll.GetTitle(titleId);
+                            teaId = title.teacher.TeaAccount;
+                        }
                     }
                 }
             }
