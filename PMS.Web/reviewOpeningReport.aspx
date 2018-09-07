@@ -15,7 +15,7 @@
     <div class="panel">
         <div class="panel-heading text-center">
             <span class="h2 ">评阅开题报告</span>
-            <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back" style="float:right">返回</button>
+            <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back" style="float:right;margin-right: 30px;">返回</button>
         </div>
         <% if (or == null)
             { %>
@@ -109,11 +109,10 @@
         </div>
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                点击评价
+            <button type="button" class="btn btn-info agreebtn" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
+                不同意
             </button>
-            <button class="btn btn-info col-xs-1" type="button" id="btnReviewSubmit">同意</button>
+            <button class="btn btn-info col-xs-1 agreebtn" type="button" id="btnReviewSubmit">同意</button>
         </div>
         <%} %>
        <%-- 驳回意见填写--%>
