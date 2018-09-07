@@ -31,8 +31,8 @@ $(document).ready(function () {
     var article = $("#article").val();
     $("#btnOK").click(function () {
         var paperTitle = $(".TextBox").val(),//获取标题文本值
-            profession = $(".selPro").val(),//获取专业文本值
-            plan = $(".selBat").val(),//获取批次文本值
+            profession = $("#pro").val(),//获取专业文本值
+            plan = $("#plan").val(),//获取批次文本值
             paperContent = escape($(".content").val());//获取内容文本值
         numMax = $(".numMax").val();//获取人数上限值
         if (paperTitle == "") {

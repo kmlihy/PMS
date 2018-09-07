@@ -27,7 +27,7 @@
 
                 <div id="box" class="col-xs-10 col-sm-4 col-md-3 col-lg-3 col-xs-push-1 col-sm-push-1 col-md-push-1 col-lg-push-1">
                     <span class="lable">专业：</span>
-                    <select name="profession" id="input${1/(\w+)/\u\1/g}" class="TextBox form-control selPro" required="required">
+                    <select name="profession" id="pro" class="TextBox form-control selPro" required="required">
                         <option value="" id="getPro">————请选择专业————</option>
                         <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
                             {
@@ -35,15 +35,15 @@
                                 if(prods.Tables[0].Rows[i]["proId"].ToString() == titleEdit.profession.ProId.ToString()){%>
                                     <option selected="selected"><%=titleEdit.profession.ProName %></option>
                                 <%}else{ %>
-                                    <option><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                    <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                                     <%}}else{%>
-                                    <option><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                                    <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
                         <% }}%>
                     </select>
                 </div>
                 <div id="box" class="col-xs-10 col-sm-4 col-md-3 col-lg-3 col-xs-push-1 col-sm-push-2 col-md-push-2 col-lg-push-2">
                     <span class="lable">批次：</span>
-                    <select name="batch" id="input${1/(\w+)/\u\1/g}" class="TextBox form-control selBat" required="required">
+                    <select name="batch" id="plan" class="TextBox form-control selBat" required="required">
                         <option value="">————请选择批次————</option>
                         <%
                             for (int i = 0; i < plands.Tables[0].Rows.Count; i++)
@@ -52,10 +52,10 @@
                                 if(plands.Tables[0].Rows[i]["planId"].ToString() == titleEdit.plan.PlanId.ToString()){%>
                                     <option selected="selected"><%=titleEdit.plan.PlanName %></option>
                                 <%}else{ %>
-                        <option><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString() %>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
                                     <%}}else{%>
                         
-                        <option><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
+                        <option value="<%=plands.Tables[0].Rows[i]["planId"].ToString() %>"><%=plands.Tables[0].Rows[i]["planName"].ToString() %></option>
                         <%
                             }}
                         %>
