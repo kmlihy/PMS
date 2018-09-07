@@ -17,9 +17,10 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
+            CrossGuideBll crossGuideBll = new CrossGuideBll();
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
-            DataSet ds = trbll.GetByAccount(teaAccount);
+            DataSet ds = crossGuideBll.GetByAccount(teaAccount);
             int planId=0;
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
@@ -27,7 +28,11 @@ namespace PMS.Web
                 string account = Request.QueryString["stuAccount"];
                 if (account==null||account=="")
                 {
-                    insert();
+                    string op = Request["op"];
+                    if (op == "add")
+                    {
+                        insert();
+                    }
                 }
                 else
                 {
@@ -46,40 +51,36 @@ namespace PMS.Web
         }
         public void insert()
         {
-            string op = Request["op"];
-            if (op == "add")
+            double score = Convert.ToDouble(Request["score"]);
+            string material = Request["material"];
+            string paperDesign = Request["quality"];
+            string workload = Request["workload"];
+            string innovate = Request["innovate"];
+            string evaluate = Request["evaluate"];
+            StudentBll stuBll = new StudentBll();
+            Student student = stuBll.GetModel(Session["stuAccount"].ToString());
+            ScoreBll sbll = new ScoreBll();
+            Score scoreModel = new Score();
+            scoreModel.material = material;
+            scoreModel.paperDesign = paperDesign;
+            scoreModel.workload = workload;
+            scoreModel.innovate = innovate;
+            scoreModel.evaluate = evaluate;
+            scoreModel.crossScore = score;
+            scoreModel.student = student;
+            Plan plan = new Plan();
+            plan.PlanId = Convert.ToInt32(Session["planId"]);
+            scoreModel.plan = plan;
+            Result row = sbll.updateCrossGuide(scoreModel);
+            if (row == Result.添加成功)
             {
-                double score = Convert.ToDouble(Request["score"]);
-                string material = Request["material"];
-                string paperDesign = Request["quality"];
-                string workload = Request["workload"];
-                string innovate = Request["innovate"];
-                string evaluate = Request["evaluate"];
-                StudentBll stuBll = new StudentBll();
-                Student student = stuBll.GetModel(Session["stuAccount"].ToString());
-                ScoreBll sbll = new ScoreBll();
-                Score scoreModel = new Score();
-                scoreModel.material = material;
-                scoreModel.paperDesign = paperDesign;
-                scoreModel.workload = workload;
-                scoreModel.innovate = innovate;
-                scoreModel.evaluate = evaluate;
-                scoreModel.crossScore = score;
-                scoreModel.student = student;
-                Plan plan = new Plan();
-                plan.PlanId = Convert.ToInt32(Session["planId"]) ;
-                scoreModel.plan = plan;
-                Result row = sbll.updateCrossGuide(scoreModel);
-                if (row == Result.添加成功)
-                {
-                    Response.Write("提交成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("提交失败");
-                    Response.End();
-                }
+                Response.Write("提交成功");
+                Response.End();
+            }
+            else
+            {
+                Response.Write("提交失败");
+                Response.End();
             }
         }
     }

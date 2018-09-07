@@ -26,7 +26,11 @@ namespace PMS.BLL
         {
             return dao.getRtId(stuAccount);
         }
-
+        /// <summary>
+        /// 通过教师、学生账号取到选题记录id
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
         public TitleRecord getRtIdByTea(string stuAccount, string teaAccount)
         {
             return dao.getRtIdByTea(stuAccount,teaAccount);
@@ -97,6 +101,11 @@ namespace PMS.BLL
             {
                 return Enums.OpResult.记录不存在;
             }
+        }
+
+        public OpenReport getState(int titleRecordId)
+        {
+            return dao.getState(titleRecordId);
         }
         /// <summary>
         /// 根据id删除一条记录
@@ -170,6 +179,11 @@ namespace PMS.BLL
                 return ds;
             }
             return null;
+        }
+
+        public TitleRecord GetTitleRecord(int titleRecordId)
+        {
+            return dao.GetTitleRecord(titleRecordId);
         }
     }
 }

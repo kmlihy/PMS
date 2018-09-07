@@ -88,7 +88,42 @@ namespace PMS.Dao
                 String[] param = { "@titleRecordId" };
                 String[] values = { titleRecordId.ToString() };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
-                return ds;
+                if (ds != null)
+                {
+                    return ds;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 根据教师账号查找中期检查信息
+        /// </summary>
+        /// <param name="teaAccount">教师账号</param>
+        /// <returns></returns>
+        public DataSet SelectByTea(string teaAccount)
+        {
+            try
+            {
+                string cmdText = "select * from T_MedtermQuality where teaAccount=@teaAccount";
+                String[] param = { "@teaAccount" };
+                String[] values = { teaAccount };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception)
             {

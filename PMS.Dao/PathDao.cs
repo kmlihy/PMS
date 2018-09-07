@@ -56,6 +56,52 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        public int updateState(Path path)
+        {
+            try
+            {
+                string cmdText = "UPDATE T_Path SET state = @state WHERE pathId IN(SELECT TOP 1 pathId FROM  T_Path WHERE titleRecordId = @titleRecordId ORDER BY pathId DESC)";
+                string[] param = { "@state" , "@titleRecordId" };
+                object[] values = { path.state,path.titleRecord.TitleRecordId};
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 查询是否有中期质量
+        /// </summary>
+        /// <param name="stuAccount">titleRecordId</param>
+        /// <returns>影响行数</returns>
+        public int selectByTitleRecordId(string titleRecordId)
+        {
+            string sql = "select count(pathId) from T_Path where titleRecordId=@titleRecordId and type=0";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+        /// <summary>
+        /// 通过选题记录id获取最新state
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
+        public Path getState(int titleRecordId)
+        {
+            string sql = "select top 1 state from T_Path where titleRecordId=@titleRecordId order by pathId desc";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            Path path = new Path();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                path.state = reader.GetInt32(0);
+            }
+            reader.Close();
+            return path;
+        }
 
         /// <summary>
         /// 通过学生账号查找到当前最近的titleRecordId

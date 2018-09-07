@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="css/lgd.css" />
 </head>
 <body>
+    <%if (state != 3)
+        { %>
+    <h3>开题报告暂未通过</h3>
+    <%}
+    else
+    {%>
     <div class="container">
         <div class="panel-head text-center">
             <h2>论文提交页面</h2>
@@ -48,7 +54,7 @@
             <input type="button" value="上传" id="btnupload" class="btn btn-primary" />
         </div>
     </div>
-
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>

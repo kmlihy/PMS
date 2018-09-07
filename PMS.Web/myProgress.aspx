@@ -14,24 +14,73 @@
         <div class="history">
             <div class="history-date">
                 <ul>
-                    <li>
-                        <h2>
-                            <a href="#nogo">选题开始</a>
-                        </h2>
+                    <h2>
+                        <a href="#nogo">选题开始</a>
+                    </h2>
+                    <li class="green">
+                        <% DateTime time = new DateTime();
+                            time = DateTime.Now;
+                        %>
+                        <h3><%=string.Format("{0:MM-dd}",startTime) %><span><%=string.Format("{0:yyyy}",startTime) %></span></h3>
+                        <dl>
+                            <dt>选题时间
+                                <span>开始时间：<%=string.Format("{0:yyyy-MM-dd}",startTime) %></span>
+                                <span>结束时间：<%=string.Format("{0:yyyy-MM-dd}",endTime) %></span>
+                            </dt>
+                        </dl>
                     </li>
                     <li class="green">
-                        <h3>10.08<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",time) %><span><%=string.Format("{0:yyyy}",time) %></span></h3>
+                        <%if (time < startTime)
+                            { %>
                         <dl>
-                            <dt>10-8 开始选题<span>选了校园图书管理系统题目</span></dt>
+                            <dt>选题时间没有到，你还不能选题</dt>
                         </dl>
+                        <%}
+                            else if (time >= startTime && time <= endTime)
+                            {
+                        %>
+                        <dl>
+                            <dt>现在在选题时间内，你可以进行选题了</dt>
+                        </dl>
+                        <%}
+                            else
+                            { %>
+                        <dl>
+                            <dt>选题时间已经结束，你不能再进行选题</dt>
+                        </dl>
+                        <%} %>
+                    </li>
+                    <li class="green">
+                        <%
+                            DateTime nowTime = new DateTime();
+                            nowTime = DateTime.Now;
+                            if (title != "" || title != null)
+                            {%>
+                        <h3>
+                            <%=string.Format("{0:MM-dd}", selectTime) %>
+                            <span><%=string.Format("{0:yyyy}", selectTime) %></span>
+                            <span>选定题目时间</span>
+                        </h3>
+                        <dl>
+                            <dt>我的题目<span><%=title %></span></dt>
+                        </dl>
+                        <% }
+                            else
+                            { %>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
+                        <dl>
+                            <dt>你还没有选题，点击<a href="checkReport.aspx">进行选题</a></dt>
+                        </dl>
+                        <%} %>
                     </li>
                 </ul>
             </div>
             <div class="history-date">
                 <ul>
-                    <li><h2 class="date02"><a href="#nogo">提交开题报告</a></h2></li>
+                    <h2 class="date02"><a href="#nogo">提交开题报告<%=titleRecordId %></a></h2>
                     <li class="green">
-                        <h3>10.12<span>2018</span></h3>
+                        <h3><%=string.Format("{0:yyyy-MM-dd}",opTime) %><span>2018</span></h3>
                         <dl>
                             <dt>提交开题报告<span>提交开题报告</span></dt>
                         </dl>
@@ -46,7 +95,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <li><h2 class="date02"><a href="#nogo">论文指导阶段</a></h2></li>
+                    <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
                     <li>
                         <h3>10.14<span>2018</span></h3>
                         <dl>
@@ -93,7 +142,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <li><h2 class="date02"><a href="#nogo">交叉指导阶段</a></h2></li>
+                    <h2 class="date02"><a href="#nogo">交叉指导阶段</a></h2>
                     <li>
                         <h3>11.12<span>2018</span></h3>
                         <dl>
@@ -110,7 +159,7 @@
             </div>
             <div class="history-date">
                 <ul>
-                    <li><h2 class="date02"><a href="#nogo">论文答辩阶段</a></h2></li>
+                    <h2 class="date02"><a href="#nogo">论文答辩阶段</a></h2>
                     <li>
                         <h3>11.20<span>2018</span></h3>
                         <dl>

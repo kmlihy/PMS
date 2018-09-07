@@ -61,5 +61,31 @@ namespace PMS.Dao
                 throw;
             }
         }
+        /// <summary>
+        /// 根据学生或教师账号获取选题记录信息
+        /// </summary>
+        /// <param name="account">学生或教师账号</param>
+        /// <returns>选题记录对象</returns>
+        public DataSet GetByAccount(string account)
+        {
+            try
+            {
+                string cmdText = "select * from V_CrossGuide where stuAccount = @account or teaAccount = @account";
+                string[] param = { "@account" };
+                object[] values = { account };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

@@ -48,7 +48,10 @@ namespace PMS.BLL
             }
             return null;
         }
-
+        public DataSet GetByAccount(string account)
+        {
+            return cgdao.GetByAccount(account);
+        }
         /// <summary>
         /// 根据条间分页查询所有选题记录信息
         /// </summary>

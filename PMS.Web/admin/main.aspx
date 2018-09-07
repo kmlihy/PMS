@@ -168,7 +168,7 @@
                             </a>
                         </li>  
                         <li role="presentation">
-                            <a href="../myGrogress.aspx" class="sidebarclick" >
+                            <a href="../myProgress.aspx" class="sidebarclick" >
                                 <span>我的进度</span>
                             </a>
                         </li>  

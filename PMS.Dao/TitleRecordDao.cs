@@ -104,7 +104,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from V_CrossGuide where stuAccount = @account or teaAccount = @account";
+                string cmdText = "select * from V_TitleRecord where stuAccount = @account or teaAccount = @account";
                 string[] param = { "@account" };
                 object[] values = { account };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
@@ -168,7 +168,26 @@ namespace PMS.Dao
                 titleRecord.TitleRecordId = reader.GetInt32(0);
             }
             reader.Close();
-            return titleRecord;;
+            return titleRecord;
+        }
+        /// <summary>
+        /// 获取state
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public OpenReport getState(int titleRecordId)
+        {
+            string sql = "select top 1 state from T_OpeningReport where titleRecordId=@titleRecordId order by ID desc";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            OpenReport openReport = new OpenReport();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                openReport.state = reader.GetInt32(0);
+            }
+            reader.Close();
+            return openReport;
         }
 
         /// <summary>
@@ -215,96 +234,89 @@ namespace PMS.Dao
                 College college = new College();
                 if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
-                    if (ds.Tables[0].Rows[0]["titleRecordId"].ToString() != "" && ds.Tables[0].Rows[0]["titleRecordId"].ToString() == recordId.ToString())
+                    int i = ds.Tables[0].Rows.Count - 1;
+                    if (ds.Tables[0].Rows[i]["titleRecordId"].ToString() != "" && ds.Tables[0].Rows[i]["titleRecordId"].ToString() == recordId.ToString())
                     {
-                        titleRecord.TitleRecordId = int.Parse(ds.Tables[0].Rows[0]["titleRecordId"].ToString());
-                        if (ds.Tables[0].Rows[0]["stuAccount"].ToString() != "")
+                        titleRecord.TitleRecordId = int.Parse(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                        if (ds.Tables[0].Rows[i]["stuAccount"].ToString() != "")
                         {
-                            student.StuAccount = ds.Tables[0].Rows[0]["stuAccount"].ToString();
+                            student.StuAccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["titleId"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["titleId"].ToString() != "")
                         {
-                            title.TitleId = int.Parse(ds.Tables[0].Rows[0]["titleId"].ToString());
+                            title.TitleId = int.Parse(ds.Tables[0].Rows[i]["titleId"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["defeseTeamId"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["realName"].ToString() != "")
                         {
-                            titleRecord.DefeseTeamId = int.Parse(ds.Tables[0].Rows[0]["defeseTeamId"].ToString());
+                            student.RealName = ds.Tables[0].Rows[i]["realName"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["stuPwd"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["sex"].ToString() != "")
                         {
-                            student.StuPwd = ds.Tables[0].Rows[0]["stuPwd"].ToString();
+                            student.Sex = ds.Tables[0].Rows[i]["sex"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["realName"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["phone"].ToString() != "")
                         {
-                            student.RealName = ds.Tables[0].Rows[0]["realName"].ToString();
+                            student.Phone = ds.Tables[0].Rows[i]["phone"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["Email"].ToString() != "")
                         {
-                            student.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                            student.Email = ds.Tables[0].Rows[i]["Email"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["proId"].ToString() != "")
                         {
-                            student.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                            prodession.ProId = int.Parse(ds.Tables[0].Rows[i]["proId"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["proName"].ToString() != "")
                         {
-                            student.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                            prodession.ProName = ds.Tables[0].Rows[i]["proName"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["proId"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["title"].ToString() != "")
                         {
-                            prodession.ProId = int.Parse(ds.Tables[0].Rows[0]["proId"].ToString());
+                            title.title = ds.Tables[0].Rows[i]["title"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["proName"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["titleContent"].ToString() != "")
                         {
-                            prodession.ProName = ds.Tables[0].Rows[0]["proName"].ToString();
+                            title.TitleContent = ds.Tables[0].Rows[i]["titleContent"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["title"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["createTime"].ToString() != "")
                         {
-                            title.title = ds.Tables[0].Rows[0]["title"].ToString();
+                            title.CreateTime = DateTime.Parse(ds.Tables[0].Rows[i]["createTime"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["titleContent"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["selected"].ToString() != "")
                         {
-                            title.TitleContent = ds.Tables[0].Rows[0]["titleContent"].ToString();
+                            title.Selected = int.Parse(ds.Tables[0].Rows[i]["selected"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["createTime"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["limit"].ToString() != "")
                         {
-                            title.CreateTime = DateTime.Parse(ds.Tables[0].Rows[0]["createTime"].ToString());
+                            title.Limit = int.Parse(ds.Tables[0].Rows[i]["limit"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["selected"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["planId"].ToString() != "")
                         {
-                            title.Selected = int.Parse(ds.Tables[0].Rows[0]["selected"].ToString());
+                            plan.PlanId = int.Parse(ds.Tables[0].Rows[i]["planId"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["limit"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["planName"].ToString() != "")
                         {
-                            title.Limit = int.Parse(ds.Tables[0].Rows[0]["limit"].ToString());
+                            plan.PlanName = ds.Tables[0].Rows[i]["planName"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["planId"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["teaAccount"].ToString() != "")
                         {
-                            plan.PlanId = int.Parse(ds.Tables[0].Rows[0]["planId"].ToString());
+                            teacher.TeaAccount = ds.Tables[0].Rows[i]["teaAccount"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["planName"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["teaName"].ToString() != "")
                         {
-                            plan.PlanName = ds.Tables[0].Rows[0]["planName"].ToString();
+                            teacher.TeaName = ds.Tables[0].Rows[i]["teaName"].ToString();
                         }
-                        if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["recordCreateTime"].ToString() != "")
                         {
-                            teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                            titleRecord.recordCreateTime = DateTime.Parse(ds.Tables[0].Rows[i]["recordCreateTime"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["collegeId"].ToString() != "")
                         {
-                            teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                            college.ColID = int.Parse(ds.Tables[0].Rows[i]["collegeId"].ToString());
                         }
-                        if (ds.Tables[0].Rows[0]["recordCreateTime"].ToString() != "")
+                        if (ds.Tables[0].Rows[i]["collegeName"].ToString() != "")
                         {
-                            titleRecord.recordCreateTime = DateTime.Parse(ds.Tables[0].Rows[0]["recordCreateTime"].ToString());
-                        }
-                        if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
-                        {
-                            college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
-                        }
-                        if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
-                        {
-                            college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                            college.ColName = ds.Tables[0].Rows[i]["collegeName"].ToString();
                         }
                         if (student != null && title != null && plan != null && prodession != null && teacher != null)
                         {

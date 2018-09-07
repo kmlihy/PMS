@@ -1,4 +1,9 @@
 ﻿$(document).ready(function () {
+    //存储当前页
+    sessionStorage.setItem("page", $("#page").val());
+    //存储总页数
+    sessionStorage.setItem("countPage", $("#countPage").val());
+    var userType = $("#userType").val();
     $("#leader").change(function () {
         var leader = $("#leader option:selected").val();
         var member = $("#member option:selected").val();
@@ -65,18 +70,17 @@ $("#confirm").click(function () {
         })
     }
 });
-//存储当前页
-sessionStorage.setItem("page", $("#page").val());
-//存储总页数
-sessionStorage.setItem("countPage", $("#countPage").val());
-
+//学院下拉框查询
 $("#selectcollegeId").change(function () {
     var selectcollegeId = $("#selectcollegeId option:selected").val();
+    sessionStorage.setItem("dropCollegeIdstrWhere", selectcollegeId);
     window.location.href = "distributionReplyTeam.aspx?collegeId=" + selectcollegeId;
 });
+//批次下拉框查询
 $("#chooseStuPro").change(function () {
     var selectcollegeId = $("#selectcollegeId option:selected").val();
     var planId = $("#chooseStuPro option:selected").val();
+    sessionStorage.setItem("planWhere", planId);
     window.location.href = "distributionReplyTeam.aspx?planId=" + planId + "&collegeId=" + selectcollegeId;
 });
 
@@ -87,8 +91,8 @@ $("#btn-search").click(function () {
     if (sessionStorage.getItem("dropCollegeIdstrWhere") !== null) {
         sessionStorage.removeItem("dropCollegeIdstrWhere");
     }
-    if (sessionStorage.getItem("proWhere") !== null) {
-        sessionStorage.removeItem("proWhere");
+    if (sessionStorage.getItem("planWhere") !== null) {
+        sessionStorage.removeItem("planWhere");
     }
     jump(1);
 });
@@ -97,10 +101,10 @@ function jump(cur) {
     if (userType === "0") {
         if (sessionStorage.getItem("strWhere") !== null) {
             window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
-        } else if ((sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") && (sessionStorage.getItem("dropCollegeIdstrWhere") != null && sessionStorage.getItem("proWhere") == null)) {
+        } else if ((sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") && (sessionStorage.getItem("dropCollegeIdstrWhere") != null && sessionStorage.getItem("planWhere") == null)) {
             window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere");
-        } else if ((sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") && (sessionStorage.getItem("dropCollegeIdstrWhere") != null && sessionStorage.getItem("proWhere") != null)) {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&proId=" + sessionStorage.getItem("proWhere");
+        } else if ((sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") && (sessionStorage.getItem("dropCollegeIdstrWhere") != null && sessionStorage.getItem("planWhere") != null)) {
+            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&planId=" + sessionStorage.getItem("planWhere");
         } else {
             window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur;
         }
@@ -108,7 +112,7 @@ function jump(cur) {
         if (sessionStorage.getItem("strWhere") !== null) {
             window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         } else if (sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&proId=" + sessionStorage.getItem("proWhere");
+            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&planId=" + sessionStorage.getItem("proWhere");
         } else {
             window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur;
         }

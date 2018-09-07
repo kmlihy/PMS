@@ -29,6 +29,24 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+
+        /// <summary>
+        /// 根据选题记录id更新state
+        /// </summary>
+        /// <param name="openReport"></param>
+        /// <returns></returns>
+        public Result updateState(OpenReport openReport)
+        {
+            int row = odao.updateState(openReport);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            else
+            {
+                return Result.更新失败;
+            }
+        }
         /// <summary>
         /// 教师提交评阅开题报告意见
         /// </summary>
@@ -71,6 +89,36 @@ namespace PMS.BLL
             else
             {
                 return null;
+            }
+        }
+
+        public Result isOpenReport(string stuAccount, int planId)
+        {
+            int count = odao.isOpenReport(stuAccount,planId);
+            if (count>0)
+            {
+                return Result.记录存在;
+            }
+            else
+            {
+                return Result.记录不存在;
+            }
+        }
+        /// <summary>
+        /// 根据选题记录ID查看是否提交了开题报告
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public bool selectByRecordId(int titleRecordId)
+        {
+            int count = odao.selectByRecordId(titleRecordId);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

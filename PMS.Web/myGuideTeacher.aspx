@@ -18,6 +18,12 @@
             <h2>我的教师信息</h2>
         </div>
         <div class="panel-body">
+            <%if (ds == null)
+                { %>
+            <h4>暂未换题,<a href="paperList.aspx">请前往选题页面选题</a></h4>
+            <%}
+            else
+            { %>
             <table class="table table-bordered table-responsive">
                 <tr>
                     <td colspan="8" style="vertical-align: middle">
@@ -40,6 +46,7 @@
                 </tr>
             </table>
             <div class="container-fluid table-bordered img-rounded modal_comment"><%=opinion %></div>
+            <%} %>
         </div>
     </div>
 

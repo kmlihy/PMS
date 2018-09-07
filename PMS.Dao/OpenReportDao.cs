@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -36,6 +37,26 @@ namespace PMS.Dao
             }
         }
 
+        /// <summary>
+        /// 通过选题记录id更新state
+        /// </summary>
+        /// <param name="openReport"></param>
+        /// <returns></returns>
+        public int updateState(OpenReport openReport)
+        {
+            try
+            {
+                string cmdText = "UPDATE T_OpeningReport SET state = @state WHERE ID IN(SELECT TOP 1 ID FROM  T_OpeningReport WHERE titleRecordId = @titleRecordId ORDER BY ID DESC)";
+                string[] param = { "@state", "@titleRecordId" };
+                string[] values = { openReport.state.ToString(), openReport.titleRecord.TitleRecordId.ToString() };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         /// 教师提交开题报告评阅意见
         /// </summary>
@@ -75,6 +96,31 @@ namespace PMS.Dao
             {
                 throw;
             }
+        }
+        /// <summary>
+        /// 判断是否选题
+        /// </summary>
+        /// <param name="stuAccount"></param>
+        /// <param name="planId"></param>
+        /// <returns></returns>
+        public int isOpenReport(string stuAccount,int planId)
+        {
+            string sql = "select count(titleRecordId) from V_TitleRecord where planId=@planId and stuAccount=@stuAccount";
+            string[] param = { "@planId", "@stuAccount" };
+            object[] values = { planId,stuAccount };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+        /// <summary>
+        /// 查询是否有开题报告提交记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录ID</param>
+        /// <returns>影响行数</returns>
+        public int selectByRecordId(int titleRecordId)
+        {
+            string sql = "select titleRecordId from T_OpeningReport where titleRecordId = @recordId";
+            string[] param = { "@recordId" };
+            object[] values = { titleRecordId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
     }
 }
