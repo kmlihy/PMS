@@ -187,16 +187,16 @@ $(document).ready(function () {
 
     //新增模态框验证
     //批次名称验证
-    $("#planName").blur(function () {
-        name = $(this).val();
-        var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
-        if (!pattern.test(name)) {
-            $("#p_name").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
-        }
-    })
-    $("#planName").focus(function () {
-        $("#p_name").html("");
-    })
+    //$("#planName").blur(function () {
+    //    name = $(this).val();
+    //    var pattern = /^[a-zA-Z\u4e00-\u9fa5]+$/
+    //    if (!pattern.test(name)) {
+    //        $("#p_name").html("姓名不能含有特殊字符且不能是数字").css("color", "red")
+    //    }
+    //})
+    //$("#planName").focus(function () {
+    //    $("#p_name").html("");
+    //})
     //新增批次
     $("#savePlan").click(function () {
         var planName = $("#planName").val(),
