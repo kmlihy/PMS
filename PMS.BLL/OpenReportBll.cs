@@ -86,5 +86,22 @@ namespace PMS.BLL
                 return Result.记录不存在;
             }
         }
+        /// <summary>
+        /// 根据选题记录ID查看是否提交了开题报告
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public bool selectByRecordId(int titleRecordId)
+        {
+            int count = odao.selectByRecordId(titleRecordId);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
