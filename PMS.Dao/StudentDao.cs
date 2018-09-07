@@ -73,14 +73,10 @@ namespace PMS.Dao
         /// <returns></returns>
         public int Insert(Student student)
         {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into T_Student(");
-            strSql.Append("stuAccount,stuPwd,realName,sex,phone,Email,proId");
-            strSql.Append(") values (");
-            strSql.Append("@stuAccount,@stuPwd,@realName,@sex,@phone,@Email,@proId);");
-            String[] param = { "@stuAccount", "@stuPwd", "@realName", "@sex", "@phone", "@Email", "@proId" };
-            String[] values = { student.StuAccount, student.StuPwd, student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString() };
-            return db.ExecuteNoneQuery(strSql.ToString(), param, values);
+            string cmdText = "insert into T_Student(stuAccount,stuPwd,realName,sex,phone,Email,proId,finishYear) values (@stuAccount,@stuPwd,@realName,@sex,@phone,@Email,@proId,@finishYear)";
+            String[] param = { "@stuAccount", "@stuPwd", "@realName", "@sex", "@phone", "@Email", "@proId" , "@finishYear" };
+            String[] values = { student.StuAccount, student.StuPwd, student.RealName, student.Sex, student.Phone, student.Email, student.profession.ProId.ToString() ,student.finishYear.ToString()};
+            return db.ExecuteNoneQuery(cmdText, param, values);
         }
 
         /// <summary>

@@ -417,6 +417,7 @@ namespace PMS.Web.admin
                     {
                         ProId = Convert.ToInt32(proId)
                     };
+                    string year = DateTime.Now.ToString("yyyy");
                     Student stu = new Student()
                     {
                         StuAccount = stuAccount,
@@ -425,7 +426,8 @@ namespace PMS.Web.admin
                         Sex = sex,
                         Phone = phone,
                         Email = email,
-                        profession = prof
+                        profession = prof,
+                        finishYear=Convert.ToInt32(year)
                     };
                     StudentBll stuBll = new StudentBll();
                     if (stuBll.selectBystuId(stuAccount) == true)

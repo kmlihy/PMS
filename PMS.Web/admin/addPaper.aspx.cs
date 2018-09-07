@@ -79,8 +79,8 @@ namespace PMS.Web.admin
                     title.Selected = 0;
                     title.Limit = int.Parse(numMax);
                     title.teacher = (Teacher)Session["loginuser"];
-                    title.plan = new Plan { PlanId = 1 };
-                    title.profession = new Profession { ProId = 1 };
+                    title.plan = new Plan { PlanId = Convert.ToInt32(plans) };
+                    title.profession = new Profession { ProId = Convert.ToInt32(profession) };
                     Result result = titlebll.Insert(title);
                     if (result == Result.添加成功)
                     {

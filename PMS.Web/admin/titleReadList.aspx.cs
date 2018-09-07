@@ -85,6 +85,7 @@ namespace PMS.Web.admin
         public void getdata(String strWhere)
         {
             string where;
+            Teacher teacher = (Teacher)Session["loginuser"];
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
@@ -96,12 +97,10 @@ namespace PMS.Web.admin
             }
             else if (state == "1")
             {
-                Teacher teacher = (Teacher)Session["loginuser"];
                 where = "collegeId = '" + teacher.college.ColID + "'";
             }
             else
             {
-                Teacher teacher = (Teacher)Session["user"];
                 where = "collegeId = '" + teacher.college.ColID + "'";
             }
             TitleBll titbll = new TitleBll();
@@ -118,8 +117,8 @@ namespace PMS.Web.admin
             ds = titbll.SelectBypage(tabuilder, out count);
 
             dsColl = colbll.Select();
-            dsPro = probll.Select();
-            dsPlan = plabll.Select();
+            dsPro = probll.SelectByCollegeId(teacher.college.ColID);
+            dsPlan = plabll.getPlanByCid(teacher.college.ColID);
         }
 
         /// <summary>
