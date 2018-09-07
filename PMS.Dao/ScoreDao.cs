@@ -46,7 +46,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_Score set score=@crossScore,material=@material,paperDesign=@paperDesign,workload=@workload,innovate=@innovate,evaluate=evaluate where stuAccount=@stuAccount and planId=@planId";
+                string cmdText = "update T_Score set crossScore=@crossScore,material=@material,paperDesign=@paperDesign,workload=@workload,innovate=@innovate,evaluate=evaluate where stuAccount=@stuAccount and planId=@planId";
                 string[] param = { "@stuAccount", "@planId", "@crossScore", "@material", "@paperDesign", "@workload", "@innovate", "@evaluate" };
                 object[] values = { score.student.StuAccount, score.plan.PlanId, score.crossScore, score.material, score.paperDesign, score.workload, score.innovate, score.evaluate };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
