@@ -37,23 +37,27 @@ namespace PMS.Web
             Student stu = (Student)Session["loginuser"];
             string stuAccount = stu.StuAccount.ToString();
             ds = titleRecordBll.Select();
-            if (ds.Tables[0].Rows.Count != 0)
+            if (ds!=null)
             {
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                if (ds.Tables[0].Rows.Count != 0)
                 {
-                    if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
-                        Title title = titleBll.GetTitle(int.Parse(tId));
-                        string showTitle = title.title.ToString();
-                        if (showTitle != "")
+                        if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
                         {
-                            Response.Write("<a href='../PaperDtailStu.aspx'>你已选过题目，请点击跳转到题目详情界面  </a>");
-                            Response.End();
+                            string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
+                            Title title = titleBll.GetTitle(int.Parse(tId));
+                            string showTitle = title.title.ToString();
+                            if (showTitle != "")
+                            {
+                                Response.Write("<a href='../PaperDtailStu.aspx'>你已选过题目，请点击跳转到题目详情界面  </a>");
+                                Response.End();
+                            }
                         }
                     }
                 }
             }
+            
             stuId = stu.StuAccount;
             //获取op titiId
             string op = Context.Request.QueryString["op"];

@@ -38,41 +38,44 @@ namespace PMS.Web
             stu = (Student)Session["loginuser"];
             stuAccount = stu.StuAccount.ToString();
             ds = titleRecordBll.Select();
-            if (ds.Tables[0].Rows.Count != 0)
+            if (ds!=null)
             {
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                if (ds.Tables[0].Rows.Count != 0)
                 {
-                    if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
-                        title = titleBll.GetTitle(int.Parse(tId));
-                        showTitle = title.title.ToString();
-                        if (showTitle == "")
+                        if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
                         {
+                            string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
+                            title = titleBll.GetTitle(int.Parse(tId));
+                            showTitle = title.title.ToString();
+                            if (showTitle == "")
+                            {
+                                Response.Write("<a href='paperList.aspx'>你还没有选题，请点击跳转到选题界面  </a>");
+                                Response.End();
+                            }
+                            showTitleContent = title.TitleContent.ToString();
+                            //
+                            teaAccount = title.teacher.TeaAccount;
+                            teacher = tbll.GetModel(teaAccount);
+                            teaName = teacher.TeaName;
+                            sex = teacher.Sex;
+                            college = teacher.college.ColName;
+                            phone = teacher.Phone;
+                            email = teacher.Email;
+                            teaAccount = teacher.TeaAccount;
+                            //
+                            showTeaName = title.teacher.TeaName.ToString();
+                            break;
+                        }
+                        else
+                        {
+                            showTitle = "";
+                            showTitleContent = "";
+                            showTeaName = "";
                             Response.Write("<a href='paperList.aspx'>你还没有选题，请点击跳转到选题界面  </a>");
                             Response.End();
                         }
-                        showTitleContent = title.TitleContent.ToString();
-                        //
-                        teaAccount = title.teacher.TeaAccount;
-                        teacher = tbll.GetModel(teaAccount);
-                        teaName = teacher.TeaName;
-                        sex = teacher.Sex;
-                        college = teacher.college.ColName;
-                        phone = teacher.Phone;
-                        email = teacher.Email;
-                        teaAccount = teacher.TeaAccount;
-                        //
-                        showTeaName = title.teacher.TeaName.ToString();
-                        break;
-                    }
-                    else
-                    {
-                        showTitle = "";
-                        showTitleContent = "";
-                        showTeaName = "";
-                        Response.Write("<a href='paperList.aspx'>你还没有选题，请点击跳转到选题界面  </a>");
-                        Response.End();
                     }
                 }
             }
