@@ -7,14 +7,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>论文进度</title>
     <link rel="stylesheet" href="css/timeAxis.css" />
-
+    <link rel="stylesheet" href="css/lgd.css"/>
 </head>
 <body>
     <div class="demo">
         <div class="history">
             <div class="history-date">
                 <ul>
-                    <h2>
+                    <h2 id="myproh2">
                         <a href="#nogo">选题开始</a>
                     </h2>
                     <li class="green">
@@ -180,8 +180,8 @@
                     </li>
                 </ul>
             </div>
-            <div style="margin-left: 162px; background: white; height: 100px;">
-                <h2 style="font-weight: normal; font-size: 25px; line-height: 25px; padding-top: 10px; color: #003a59">结束</h2>
+            <div id="myproEnddiv">
+                <h2 id="myproEndh2">结束</h2>
             </div>
         </div>
     </div>

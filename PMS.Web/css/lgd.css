@@ -517,10 +517,30 @@
     margin: auto;
     writing-mode: vertical-lr;
 }
+
 .record-td {
-    height:500px;
+    height: 500px;
 }
 /**查看开题报告页面*/
 .agreebtn {
-float:right;
+    float: right;
+}
+/*我的进度样式*/
+#myproh2 {
+    background-color: rgb(241, 248, 252);
+}
+
+#myproEnddiv {
+    margin-left: 162px;
+    background: white;
+    height: 100px;
+    background-color: rgb(241, 248, 252);
+}
+
+#myproEndh2 {
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 25px;
+    padding-top: 10px;
+    color: #003a59;
 }
