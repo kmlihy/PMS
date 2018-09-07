@@ -177,7 +177,9 @@
                         <div class="modal-body">
                             <table class="table">
                                 <tbody>
-                                    <tr>
+                                    <%if (userType == "0")
+                                        { %>
+                                     <tr>
                                         <td class="teaLable text-center">
                                             <label class="text-span">所属院系:</label></td>
                                         <td>
@@ -189,6 +191,7 @@
                                                 <%} %>
                                             </select></td>
                                     </tr>
+                                    <%} %>
                                     <tr>
                                         <td class="teaLable">
                                             <label class="text-span">专业名称:</label></td>

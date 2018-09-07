@@ -32,7 +32,7 @@ namespace PMS.Web.admin
         protected int pagesize = 5;
         //查询条件
         public String search = "";
-        string userType = "";
+        public  string userType = "";
         protected string showmsg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,37 +82,40 @@ namespace PMS.Web.admin
             College college = new College();
             Profession pro = new Profession();
             ProfessionBll probll = new ProfessionBll();
-            DataSet ds = new DataSet();
             string proName = Context.Request["proName"].ToString();
-            int collegeId = Convert.ToInt32(Context.Request["collegeId"]);
-
-            ds = probll.SelectByCollegeId(collegeId);
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            int collegeId ;
+            if (userType=="0")
             {
-                if (proName == ds.Tables[0].Rows[i]["proName"].ToString())
-                {
+                collegeId = Convert.ToInt32(Context.Request["collegeId"]);
+            }
+            else
+            {
+                Teacher teacher = (Teacher)Session["user"];
+                collegeId = teacher.college.ColID;
+            }
+            DataSet ds = probll.SelectByCollegeId(collegeId);
+            Result row = probll.isProName(proName);
+            if (row == Result.记录存在)
+            {
+                Response.Write("专业已存在，添加失败");
+                Response.End();
+            }
+            else
+            {
+                college.ColID = collegeId;
+                pro.college = college;
+                pro.ProName = proName;
 
-                    Response.Write("专业已存在，添加失败");
+                OpResult result = probll.Insert(pro);
+                if (result == OpResult.添加成功)
+                {
+                    Response.Write("添加成功");
                     Response.End();
                 }
                 else
                 {
-                    college.ColID = collegeId;
-                    pro.college = college;
-                    pro.ProName = proName;
-
-
-                    OpResult result = probll.Insert(pro);
-                    if (result == OpResult.添加成功)
-                    {
-                        Response.Write("添加成功");
-                        Response.End();
-                    }
-                    else
-                    {
-                        Response.Write("添加失败");
-                        Response.End();
-                    }
+                    Response.Write("添加失败");
+                    Response.End();
                 }
             }
         }

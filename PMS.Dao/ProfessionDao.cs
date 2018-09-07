@@ -37,6 +37,18 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 判断专业名称的存在
+        /// </summary>
+        /// <param name="proName"></param>
+        /// <returns></returns>
+        public int isProName(string proName)
+        {
+            string sql = "select count(proId) from T_Profession where proName=@proName";
+            string[] param = { "@proName" };
+            object[] values = { proName };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
 
         /// <summary>
         /// 修改一个专业信息
@@ -169,7 +181,7 @@ namespace PMS.Dao
         public DataSet GetProfessionByCollegeId(int collegeId) {
 
             try {
-                string cmdText = "select * from V_Profession where collegeId = @collegeId";
+                string cmdText = "select * from T_Profession where collegeId = @collegeId";
                 string[] param = { "@collegeId" };
                 object[] values = { collegeId };
                 DataSet ds = db.FillDataSet(cmdText, param, values);

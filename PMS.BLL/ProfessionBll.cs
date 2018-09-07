@@ -31,7 +31,23 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
-
+        /// <summary>
+        /// 判断专业名称的存在
+        /// </summary>
+        /// <param name="ProName"></param>
+        /// <returns></returns>
+        public Result isProName(string ProName)
+        {
+            int row = dao.isProName(ProName);
+            if (row > 0)
+            {
+                return Result.记录存在;
+            }
+            else
+            {
+                return Result.记录不存在;
+            }
+        }
         /// <summary>
         /// 修改一个专业信息
         /// </summary>
