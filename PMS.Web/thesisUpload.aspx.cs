@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
+    using Result = Enums.OpResult;
     public partial class upload : System.Web.UI.Page
     {
         PathBll pathBll = new PathBll();
@@ -55,8 +56,17 @@ namespace PMS.Web
                     insertPath.paperPath = fileName;
                     insertPath.dateTime = Convert.ToDateTime(time) ;
 
-                    pathBll.InsertThesis(insertPath);
-                    msg = "上传成功";
+                    Result result = pathBll.InsertThesis(insertPath);
+                    insertPath.state = 2;
+                    Result row = pathBll.updateState(insertPath);
+                    if (result==Result.添加成功 && row==Result.更新成功)
+                    {
+                        msg = "上传成功";
+                    }
+                    else
+                    {
+                        msg = "上传失败";
+                    }
                 }
                 string res = "{ error:'" + error + "', msg:'" + msg + "'}";
                 Response.Write(res);

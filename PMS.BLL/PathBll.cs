@@ -29,6 +29,15 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+        /// <summary>
+        /// 通过选题记录id获取最新state
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
+        public Path getState(int titleRecordId)
+        {
+            return pdao.getState(titleRecordId);
+        }
 
         public Result selectByTitleRecordId(string titleRecordId)
         {
@@ -56,7 +65,20 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
-
+        /// <summary>
+        /// 通过选题记录id更新state
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public Result updateState(Path path)
+        {
+            int row = pdao.updateState(path);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
         /// <summary>
         /// 通过学生账号获取选题记录id
         /// </summary>
