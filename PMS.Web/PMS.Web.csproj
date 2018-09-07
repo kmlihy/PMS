@@ -170,6 +170,7 @@
     <Content Include="js\paperList.js" />
     <Content Include="js\proList.js" />
     <Content Include="js\reg.js" />
+    <Content Include="js\replyPanelsOpinion.js" />
     <Content Include="js\retrievePwd.js" />
     <Content Include="js\RSA.js" />
     <Content Include="js\selectTopicList.js" />
