@@ -98,6 +98,11 @@ namespace PMS.BLL
                 return Enums.OpResult.记录不存在;
             }
         }
+
+        public OpenReport isOpenReport(int titleRecordId)
+        {
+            return dao.isOpenReport(titleRecordId);
+        }
         /// <summary>
         /// 根据id删除一条记录
         /// </summary>

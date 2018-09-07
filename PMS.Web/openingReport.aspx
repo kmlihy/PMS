@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <%if (state == 0)
+        {%>
+    <h3>暂未选题</h3>
+    <%}
+        else
+        { %>
     <div class="panel">
         <div class="panel-heading text-center">
             <h2>本科生毕业设计（论文）开题报告</h2>
@@ -107,6 +113,7 @@
             <button class="btn btn-success col-xs-1" type="button" id="btnTeaOpinion">查看教师意见</button>
         </div>
     </div>
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

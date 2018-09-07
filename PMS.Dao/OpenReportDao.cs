@@ -77,15 +77,16 @@ namespace PMS.Dao
             }
         }
         /// <summary>
-        /// 查询是否有开题报告提交记录
+        /// 判断是否选题
         /// </summary>
-        /// <param name="titleRecordId">选题记录ID</param>
-        /// <returns>影响行数</returns>
-        public int selectByRecordId(int titleRecordId)
+        /// <param name="stuAccount"></param>
+        /// <param name="planId"></param>
+        /// <returns></returns>
+        public int isOpenReport(string stuAccount,int planId)
         {
-            string sql = "select titleRecordId from T_OpeningReport where titleRecordId = @recordId";
-            string[] param = { "@recordId" };
-            object[] values = { titleRecordId };
+            string sql = "select count(titleRecordId) from V_TitleRecord where planId=@planId and stuAccount=@stuAccount";
+            string[] param = { "@planId", "@stuAccount" };
+            object[] values = { planId,stuAccount };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
     }

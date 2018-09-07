@@ -58,6 +58,19 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 查询是否有中期质量
+        /// </summary>
+        /// <param name="stuAccount">titleRecordId</param>
+        /// <returns>影响行数</returns>
+        public int selectByTitleRecordId(string titleRecordId)
+        {
+            string sql = "select count(pathId) from T_Path where titleRecordId=@titleRecordId and type=0";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
+        /// <summary>
         /// 通过学生账号查找到当前最近的titleRecordId
         /// </summary>
         /// <param name="stuAccount">学号</param>

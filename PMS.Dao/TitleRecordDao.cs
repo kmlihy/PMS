@@ -104,7 +104,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from V_CrossGuide where stuAccount = @account or teaAccount = @account";
+                string cmdText = "select * from V_TitleRecord where stuAccount = @account or teaAccount = @account";
                 string[] param = { "@account" };
                 object[] values = { account };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
@@ -168,7 +168,26 @@ namespace PMS.Dao
                 titleRecord.TitleRecordId = reader.GetInt32(0);
             }
             reader.Close();
-            return titleRecord;;
+            return titleRecord;
+        }
+        /// <summary>
+        /// 判断是否开题
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
+        public OpenReport isOpenReport(int titleRecordId)
+        {
+            string sql = "select top 1 state from T_OpeningReport where titleRecordId=@titleRecordId order by ID desc";
+            string[] param = { "@titleRecordId" };
+            object[] values = { titleRecordId };
+            OpenReport openReport = new OpenReport();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                openReport.state = reader.GetInt32(0);
+            }
+            reader.Close();
+            return openReport;
         }
 
         /// <summary>

@@ -73,16 +73,17 @@ namespace PMS.BLL
                 return null;
             }
         }
-        public bool selectByRecordId(int titleRecordId)
+
+        public Result isOpenReport(string stuAccount, int planId)
         {
-            int count = odao.selectByRecordId(titleRecordId);
-            if (count > 0)
+            int count = odao.isOpenReport(stuAccount,planId);
+            if (count>0)
             {
-                return true;
+                return Result.记录存在;
             }
             else
             {
-                return false;
+                return Result.记录不存在;
             }
         }
     }
