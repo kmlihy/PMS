@@ -89,5 +89,17 @@ namespace PMS.Dao
             object[] values = { planId,stuAccount };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
+        /// <summary>
+        /// 查询是否有开题报告提交记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录ID</param>
+        /// <returns>影响行数</returns>
+        public int selectByRecordId(int titleRecordId)
+        {
+            string sql = "select titleRecordId from T_OpeningReport where titleRecordId = @recordId";
+            string[] param = { "@recordId" };
+            object[] values = { titleRecordId };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
     }
 }
