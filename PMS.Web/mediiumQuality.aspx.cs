@@ -14,6 +14,7 @@ namespace PMS.Web
     public partial class mediiumQuality : CommonPage
     {
         public string stuAccount, stuName, proName, collegeName, title, teaName;
+        public string planFinishSituation;
         public int state;
         public string content;
         public MedtermQuality mq = new MedtermQuality();
@@ -25,29 +26,30 @@ namespace PMS.Web
             MedtermQuality medterm = new MedtermQuality();
             state =Convert.ToInt32(Session["state"].ToString());
             int titleRecordId = 0;
+            if (!IsPostBack)
+            {
+                string stuAccount = Request.QueryString["stuAccount"];
+                Session["stuAccount"] = stuAccount;
+            }
             if (state == 1)
             {
                 Teacher teacher = (Teacher)Session["loginuser"];
                 string teaAccount = teacher.TeaAccount;
-                DataSet ds = trbll.GetByAccount(teaAccount);
-                if (ds==null)
+                string acount = Session["stuAccount"].ToString();
+                TitleRecord titleRecord = trbll.getRtIdByTea(acount,teaAccount);
+                TitleRecord stuTitle = trbll.GetTitleRecord(titleRecord.TitleRecordId);
+                mq = mqbll.Select(titleRecord.TitleRecordId);
+                if (mq == null)
                 {
                     content = "学生未提交中期质量检查";
                 }
                 else
                 {
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
-                        if (stuaccount == "15612200017")
-                        {
-                            stuAccount = stuaccount;
-                            stuName = ds.Tables[0].Rows[i]["realName"].ToString();
-                            proName = ds.Tables[0].Rows[i]["proName"].ToString();
-                            title = ds.Tables[0].Rows[i]["title"].ToString();
-                            break;
-                        }
-                    }
+                    planFinishSituation = mq.planFinishSituation;
+                    stuAccount = acount;
+                    stuName = stuTitle.student.RealName;
+                    proName = stuTitle.profession.ProName;
+                    title = stuTitle.title.title;
                     collegeName = teacher.college.ColName;
                     teaName = teacher.TeaName;
                 }

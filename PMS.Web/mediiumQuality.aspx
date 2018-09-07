@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="mediiumQuality.aspx.cs" Inherits="PMS.Web.mediiumQuality" %>
 
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,9 +27,7 @@
             <div class="panel-heading">
                 <h1 class="text-center">本科生毕业设计（论文）中期质量检查</h1>
             </div>
-            <% if(mq == null && state == 1){ %>
-                <h3>该学生还未提交中期质量检查报告，请耐心等待。</h3>
-            <% }else{ %>
+            <% if(state == 1){ %>
             <div class="panel-body">
                 <table class="table" id="mediumQuality_table">
                     <tr>
@@ -64,7 +63,7 @@
                             <%if(state == 3){ %>
                             <textarea rows="5" class="textArea" id="stuSet"></textarea>
                             <%}else if(state == 1){ %>
-                            <textarea rows="5" class="textArea" id="stuShow" readonly="readonly"><%=mq.planFinishSituation %></textarea>
+                            <textarea rows="5" class="textArea" id="stuShow" readonly="readonly"><%=planFinishSituation %></textarea>
                             <%} %>
                             <div class="text-right" style="width:100%">
                                 <span>学生签字：</span>

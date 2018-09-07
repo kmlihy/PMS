@@ -81,5 +81,15 @@ namespace PMS.BLL
                 return null;
             }
         }
+
+        /// <summary>
+        /// 根据教师账号查找中期检查信息
+        /// </summary>
+        /// <param name="teaAccount">教师账号</param>
+        /// <returns></returns>
+        public DataSet SelectByTea(string teaAccount)
+        {
+            return mdao.SelectByTea(teaAccount);
+        }
     }
 }

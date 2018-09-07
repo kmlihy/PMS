@@ -24,6 +24,11 @@ namespace PMS.Web
             stuName = student.RealName;
             profession = student.profession.ProName;
             DataSet dsTR = trbll.GetByAccount(stuAccount);
+
+            //获取state，titleRecordId未得值
+            OpenReport openReport = orbll.getState(titleRecordId);
+            state = openReport.state;
+
             if (dsTR==null)
             {
                 state = 0;
@@ -80,7 +85,9 @@ namespace PMS.Web
                 open.reference = reference;
                 open.reportTime = DateTime.Now;
                 Result row = orbll.stuInsert(open);
-                if (row == Result.添加成功)
+                open.state = 2;
+                Result result = orbll.updateState(open);
+                if (row == Result.添加成功 && result==Result.更新成功)
                 {
                     Response.Write("提交成功");
                     Response.End();

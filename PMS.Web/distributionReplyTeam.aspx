@@ -122,7 +122,7 @@
                                         <%if (state == 0)
                                         { %>
                                         <select class="selectpicker selectcollegeId" data-width="auto" id="selectcollegeId">
-                                            <option value="">请选择查询学院 </option>
+                                            <option value="0">请选择查询学院 </option>
                                             <%for (int i = 0; i < getColl.Tables[0].Rows.Count; i++)
                                                 {
                                                 if (coll == getColl.Tables[0].Rows[i]["collegeId"].ToString())
@@ -137,7 +137,7 @@
                                         </select>
                                         <%} %>
                                         <select class="selectpicker" data-width="auto" id="chooseStuPro">
-                                            <option value="">请选择查询批次</option>
+                                            <option value="0">请选择查询批次</option>
                                             <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
                                             {
                                                 if (planid == dsPlan.Tables[0].Rows[i]["planId"].ToString())
@@ -150,7 +150,7 @@
                                                 <%}
                                             } %>
                                         </select>
-                                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>" />
                                         <span class="input-group-btn">
                                             <button class="btn btn-info" type="button" id="btn-search">
                                                 <span class="glyphicon glyphicon-search" id="search">查询</span>
@@ -226,22 +226,14 @@
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
+    <input type="hidden" value="<%=userType %>" id="userType" />
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/xcConfirm.js"></script>
-<script src="../js/bootstrap-select.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/distributionReplyTeam.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $(".selectpicker").selectpicker({
-            noneSelectedText: '请选择',
-            countSelectedText: function () { }
-        });
-    });
-    function selectValue() {
-        //获取选择的值
-        alert($('.usertype').selectpicker('val'));
-    }
 </script>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/distributionReplyTeam.js"></script>
