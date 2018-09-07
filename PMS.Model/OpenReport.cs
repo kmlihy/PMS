@@ -54,6 +54,7 @@ namespace PMS.Model
         /// 分院院长意见
         /// </summary>
         public string deanOpinion { set; get; }
+        public int state { get; set; }
 
         /// <summary>
         /// 无参构造函数
@@ -74,7 +75,7 @@ namespace PMS.Model
         /// <param name="teacherOpinion">指导教师意见及建议</param>
         /// <param name="deanOpinion">分院院长意见</param>
         /// <param name="reportTime">提交时间</param>
-        public OpenReport(TitleRecord titleRecord,string meaning, string trend, string content, string plan, string method, string outline, string reference, string teacherOpinion, string deanOpinion,DateTime reportTime )
+        public OpenReport(TitleRecord titleRecord,string meaning, string trend, string content, string plan, string method, string outline, string reference, string teacherOpinion, string deanOpinion,DateTime reportTime,int state )
         {
             this.titleRecord = titleRecord;
             this.meaning = meaning;
@@ -87,6 +88,7 @@ namespace PMS.Model
             this.teacherOpinion = teacherOpinion;
             this.deanOpinion = deanOpinion;
             this.reportTime = reportTime;
+            this.state = state;
         }
     }
 }

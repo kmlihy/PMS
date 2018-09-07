@@ -12,14 +12,14 @@ namespace PMS.Web
 {
     public partial class myGuideTeacher : System.Web.UI.Page
     {
-        public DataSet dsGuide;
+        public DataSet dsGuide,ds;
         public string name, sex, phone, email, opinion;
         protected void Page_Load(object sender, EventArgs e)
         {
             Student student = (Student)Session["loginuser"];
             string stuAccount = student.StuAccount;
             TitleRecordBll trecordBll = new TitleRecordBll();
-            DataSet ds = trecordBll.GetByAccount(stuAccount);
+            ds = trecordBll.GetByAccount(stuAccount);
             if (ds != null) {
                 int i = ds.Tables[0].Rows.Count - 1;
                 int titleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
@@ -32,7 +32,14 @@ namespace PMS.Web
                 if (dsGuide != null)
                 {
                     int j = dsGuide.Tables[0].Rows.Count - 1;
-                    opinion = "教师最新回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
+                    if (j<0)
+                    {
+                        opinion = "<h3>教师未回复，请耐心等待</h3>";
+                    }
+                    else
+                    {
+                        opinion = "教师最新回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
+                    }
                 }
                 else
                 {

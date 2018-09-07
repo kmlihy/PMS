@@ -29,6 +29,19 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+
+        public Result selectByTitleRecordId(string titleRecordId)
+        {
+            int row = pdao.selectByTitleRecordId(titleRecordId);
+            if (row>0)
+            {
+                return Result.记录存在;
+            }
+            else
+            {
+                return Result.记录不存在;
+            }
+        }
         /// <summary>
         /// 学生提交查重报告
         /// </summary>
