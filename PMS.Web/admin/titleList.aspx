@@ -113,8 +113,8 @@
                             <tr>
                                 <td class="text-center td-check">
                                     <input type="checkbox" />
-                                    <input type="hidden" value="<%=ds.Tables[0].Rows[i]["titleContent"].ToString() %>" id="titleContent" />
-                                    <input type="hidden" value="<%=ds.Tables[0].Rows[i]["selected"].ToString() %>" id="selected" />
+                                    <%--<input type="hidden" value="<%=ds.Tables[0].Rows[i]["titleContent"].ToString() %>" id="titleContent" />
+                                    <input type="hidden" value="<%=ds.Tables[0].Rows[i]["selected"].ToString() %>" id="selected" />--%>
                                 </td>
                                 <td class="text-center">
                                     <%=i+1+((getCurrentPage-1)*pagesize)%>
