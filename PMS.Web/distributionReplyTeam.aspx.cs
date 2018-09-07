@@ -15,30 +15,61 @@ namespace PMS.Web
     {
         public DataSet getPlan,getLeader,getMember,getRecord,getColl,dsPlan,ds;
         public int state;
-        public string op, leader, member, record,_planId,coll,planid;
-        public int getCurrentPage = 1, pagesize = 1, count;
-        protected string search = "",showmsg = "", searchPlan = "", searchCollege = "";
-        protected string userType = "", showColl = "", showPlan = "";
+        public string op, leader, member, record,_planId, planId, collegeid;
+        public int getCurrentPage = 1, pagesize = 1, count, collegeId;
+        protected string search = "", showmsg = "", searchPlan = "", showPlan = "", searchColl = "", showColl = "", searchCollAndPlan = "";
+        protected string userType = "";
         PlanBll planBll = new PlanBll();
         DefenceBll defenceBll = new DefenceBll();
         TeacherBll teacherBll = new TeacherBll();
+        CollegeBll collBll = new CollegeBll();
         protected void Page_Load(object sender, EventArgs e)
         {
+            string op = Context.Request["op"];
+            //下拉专业id
+            planId = Request.QueryString["planId"];
+            //下拉学院id
+            collegeid = Request.QueryString["collegeId"];
+            //输入框信息
+            string strsearch = Request.QueryString["search"];
             Teacher teacher = (Teacher)Session["user"];
-            int collegeId = teacher.college.ColID;
+            userType = Session["state"].ToString();
             state = Convert.ToInt32(Session["state"]);
             if (state==0)
             {
                 //超管
-                coll = Request.QueryString["collegeId"];
-                planid = Request.QueryString["planId"];
-                Coll();
-                getdata(Search());
+                getColl = collBll.Select();
+                dsPlan = null;
+                if (collegeid == null || collegeid == "0" || collegeid == "null")
+                {
+                    //学院为空,专业为空
+                    dsPlan = null;
+                    getdata("");
+                }
+                else
+                {
+                    dsPlan = planBll.getPlanByCid(int.Parse(collegeid));
+                    if (planId == "null" || planId == "0" || planId == null)
+                    {
+                        //学院不为空,专业为空
+                        getdata(SearchCollege());
+                    }
+                    else if (planId != null && planId != "null" && planId != "0")
+                    {
+                        //两个都不为空
+                        getdata(SearchCollAndPlan());
+                    }
+                    else if (strsearch != null)
+                    {
+                        getdata(Search());
+                    }
+                }
             }
             else if(state==2)
             {
                 //分管
-                planid = Request.QueryString["planId"];
+                collegeId = teacher.college.ColID;
+                planId = Request.QueryString["planId"];
                 dsPlan = planBll.getPlanByCid(collegeId);
                 leader = Request.QueryString["leader"];
                 member = Request.QueryString["member"];
@@ -78,30 +109,20 @@ namespace PMS.Web
                         getRecord = teacherBll.getRecordByColl(collegeId, leader, member); ;
                     }
                 }
-                getdata(Search());
-            }
-            if (!IsPostBack)
-            {
-                Search();
-                getdata(Search());
-            }
-            string PlanId = Request.QueryString["planId"];
-            string CollId = Request.QueryString["collegeId"];
-            if(PlanId == "0" && CollId == "0")
-            {
-                getdata(Search());
-            }
-            else if(CollId != "0" && PlanId == "0")
-            {
-                getdata(SearchCollege());
-            }
-            else if (PlanId != "0" && CollId == "0")
-            {
-                getdata(SearchPlan());
-            }
-            else if(PlanId != "0" && CollId != "0")
-            {
-                getdata(SearchCollAndPlan());
+                getColl = collBll.Select();
+                dsPlan = planBll.getPlanByCid(collegeId);
+                if (strsearch != null)
+                {
+                    getdata(Search());
+                }
+                else if (planId != null && planId != "null")
+                {
+                    getdata(SearchPlan());
+                }
+                else
+                {
+                    getdata("");
+                }
             }
         }
         /// <summary>
@@ -164,19 +185,38 @@ namespace PMS.Web
         }
 
         /// <summary>
-        /// 获取学院下拉框数据
+        /// 查询方法
         /// </summary>
-        private void Coll()
+        /// <returns></returns>
+        public string Search()
         {
-            CollegeBll collegeBll = new CollegeBll();
-            getColl = collegeBll.Select();
-            dsPlan = planBll.getPlanByCid(Convert.ToInt32(coll));
+            try
+            {
+                search = Request.QueryString["search"];
+                if (search.Length == 0)
+                {
+                    search = "";
+                }
+                else if (search == null)
+                {
+                    search = "";
+                }
+                else
+                {
+                    showmsg = search;
+                    search = String.Format("planName {0} or leaderName {0} or memberName {0} or collegeName {0} or recordName {0}", "like " + "'%" + search + "%'");
+                }
+            }
+            catch
+            {
+            }
+            return search;
         }
 
         /// <summary>
-        /// 批次下拉框查询
+        /// 专业下拉查询
         /// </summary>
-        /// <returns></returns>
+        /// <returns>返回查询字符串</returns>
         public string SearchPlan()
         {
             try
@@ -216,78 +256,70 @@ namespace PMS.Web
 
             try
             {
-                searchCollege = Request.QueryString["collegeId"];
-                if (searchCollege.Length == 0)
+                searchColl = Request.QueryString["collegeId"];
+                if (searchColl.Length == 0)
                 {
-                    searchCollege = "";
+                    searchColl = "";
                 }
-                else if (searchCollege == null)
+                else if (searchColl == null)
                 {
-                    searchCollege = "";
+                    searchColl = "";
                 }
-                else if (searchCollege == "0")
+                else if (searchColl == "0")
                 {
-                    searchCollege = "";
+                    searchColl = "";
                 }
                 else
                 {
                     //分院下拉搜索后条件保存
-                    showColl = searchCollege;
-                    searchCollege = String.Format(" collegeId={0}", searchCollege);
+                    showColl = searchColl;
+                    searchColl = String.Format(" collegeId={0}", searchColl);
                 }
             }
             catch
             {
 
             }
-            return searchCollege;
+            return searchColl;
         }
 
+        /// <summary>
+        /// 学院、专业二级联动查询
+        /// </summary>
+        /// <returns></returns>
         public string SearchCollAndPlan()
         {
             try
             {
-                searchPlan = Request.QueryString["planId"];
-                searchCollege = Request.QueryString["collegeId"];
-                //分院下拉搜索后条件保存
-                showColl = searchCollege;
+                //学院下拉的条件
+                searchColl = Request.QueryString["collegeId"];
+                //学院条件传到前台
+                showColl = searchColl;
+                //批次的条件
+
+                searchPlan = Request.QueryString["proId"];
                 showPlan = searchPlan;
-                search = String.Format(" collegeId={0} and planId={1}", searchCollege, searchPlan);
-            }
-            catch
-            {
-
-            }
-            return search;
-        }
-
-        /// <summary>
-        /// 查询方法
-        /// </summary>
-        /// <returns></returns>
-        public string Search()
-        {
-            try
-            {
-                search = Request.QueryString["search"];
-                if (search.Length == 0)
+                if (searchColl == "0")
                 {
-                    search = "";
+                    searchColl = "";
+                    searchPlan = "";
+                    searchCollAndPlan = "";
                 }
-                else if (search == null)
+                else if (search == "0" && searchColl != "0")
                 {
-                    search = "";
+                    searchPlan = "";
+                    searchCollAndPlan = String.Format(" collegeId={0} ", "'" + searchColl + "'");
                 }
                 else
                 {
-                    showmsg = search;
-                    search = String.Format("planName {0} or leaderName {0} or memberName {0} or collegeName {0} or recordName {0}", "like " + "'%" + search + "%'");
+                    searchCollAndPlan = String.Format(" collegeId={0} and planId={1}", "'" + searchColl + "'", " '" + searchPlan + "'");
                 }
             }
             catch
             {
+
             }
-            return search;
+            return searchCollAndPlan;
         }
 
         /// <summary>
@@ -349,5 +381,6 @@ namespace PMS.Web
                 ds = teaBll.SelectBypage(tabuilder, out count);
             }
         }
+
     }
 }

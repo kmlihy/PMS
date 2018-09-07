@@ -1,35 +1,33 @@
-﻿$(document).ready(function () {
-    //存储当前页
-    sessionStorage.setItem("page", $("#page").val());
-    //存储总页数
-    sessionStorage.setItem("countPage", $("#countPage").val());
-    var userType = $("#userType").val();
-    $("#leader").change(function () {
-        var leader = $("#leader option:selected").val();
-        var member = $("#member option:selected").val();
-        var record = $("#record option:selected").val();
-        var plan = $("#plan option:selected").val();
+﻿ //存储当前页
+sessionStorage.setItem("page", $("#page").val());
+//存储总页数
+sessionStorage.setItem("countPage", $("#countPage").val());
+var userType = $("#userType").val();
+$("#leader").change(function () {
+    var leader = $("#leader option:selected").val();
+    var member = $("#member option:selected").val();
+    var record = $("#record option:selected").val();
+    var plan = $("#plan option:selected").val();
 
-        window.location.href = "distributionReplyTeam.aspx?leader=" + leader + "&member=" + member + "&record=" + record + "&op=change1" + "&planId=" + plan;
-    });
+    window.location.href = "distributionReplyTeam.aspx?leader=" + leader + "&member=" + member + "&record=" + record + "&op=change1" + "&planId=" + plan;
+});
 
-    $("#member").change(function () {
-        var leader = $("#leader option:selected").val();
-        var member = $("#member option:selected").val();
-        var record = $("#record option:selected").val();
-        var plan = $("#plan option:selected").val();
+$("#member").change(function () {
+    var leader = $("#leader option:selected").val();
+    var member = $("#member option:selected").val();
+    var record = $("#record option:selected").val();
+    var plan = $("#plan option:selected").val();
 
-        window.location.href = "distributionReplyTeam.aspx?leader=" + leader + "&member=" + member + "&record=" + record + "&op=change2" + "&planId=" + plan;
-    });
+    window.location.href = "distributionReplyTeam.aspx?leader=" + leader + "&member=" + member + "&record=" + record + "&op=change2" + "&planId=" + plan;
+});
 
-    $("#record").change(function () {
-        var leader = $("#leader option:selected").val();
-        var member = $("#member option:selected").val();
-        var record = $("#record option:selected").val();
-        var plan = $("#plan option:selected").val();
+$("#record").change(function () {
+    var leader = $("#leader option:selected").val();
+    var member = $("#member option:selected").val();
+    var record = $("#record option:selected").val();
+    var plan = $("#plan option:selected").val();
 
-        window.location.href = "distributionReplyTeam.aspx?leader=" + leader + "&member=" + member + "&record=" + record + "&op=change3" + "&planId=" + plan;
-    });
+    window.location.href = "distributionReplyTeam.aspx?leader=" + leader + "&member=" + member + "&record=" + record + "&op=change3" + "&planId=" + plan;
 });
 
 $("#confirm").click(function () {
@@ -98,23 +96,23 @@ $("#btn-search").click(function () {
 });
 //分页函数
 function jump(cur) {
-    if (userType === "0") {
+    if (userType == "0") {
         if (sessionStorage.getItem("strWhere") !== null) {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         } else if ((sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") && (sessionStorage.getItem("dropCollegeIdstrWhere") != null && sessionStorage.getItem("planWhere") == null)) {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere");
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere");
         } else if ((sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") && (sessionStorage.getItem("dropCollegeIdstrWhere") != null && sessionStorage.getItem("planWhere") != null)) {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&planId=" + sessionStorage.getItem("planWhere");
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur + "&collegeId=" + sessionStorage.getItem("dropCollegeIdstrWhere") + "&planId=" + sessionStorage.getItem("planWhere");
         } else {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur;
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur;
         }
-    } else if (userType === "2") {
+    } else if (userType == "2") {
         if (sessionStorage.getItem("strWhere") !== null) {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere");
         } else if (sessionStorage.getItem("strWhere") === null || sessionStorage.getItem("strWhere") === "") {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur + "&planId=" + sessionStorage.getItem("proWhere");
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur + "&planId=" + sessionStorage.getItem("planWhere");
         } else {
-            window.location.href = "distributionReplyStudent.aspx?currentPage=" + cur;
+            window.location.href = "distributionReplyTeam.aspx?currentPage=" + cur;
         }
     }
 };

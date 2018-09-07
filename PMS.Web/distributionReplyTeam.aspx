@@ -125,7 +125,7 @@
                                             <option value="0">请选择查询学院 </option>
                                             <%for (int i = 0; i < getColl.Tables[0].Rows.Count; i++)
                                                 {
-                                                if (coll == getColl.Tables[0].Rows[i]["collegeId"].ToString())
+                                                if (collegeid == getColl.Tables[0].Rows[i]["collegeId"].ToString())
                                                 {%>
                                                     <option value="<%=getColl.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=getColl.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                                  <%}
@@ -140,7 +140,7 @@
                                             <option value="0">请选择查询批次</option>
                                             <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
                                             {
-                                                if (planid == dsPlan.Tables[0].Rows[i]["planId"].ToString())
+                                                if (planId == dsPlan.Tables[0].Rows[i]["planId"].ToString())
                                                 {%>
                                                     <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
                                                     <%}
@@ -167,7 +167,8 @@
                         <th class="text-center">组长</th>
                         <th class="text-center">副组长</th>
                         <th class="text-center">秘书</th>
-                        <th class="text-center">操作</th>
+                        <th class="text-center">分配</th>
+                        <th class="text-center">查看</th>
                     </tr>
                 </thead>
                 <!--数据展示区-->
@@ -182,8 +183,8 @@
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["recordName"].ToString() %></td>
                         <td class="col-sm-2">
                             <button type="button" class="btn btn-info" onclick="window.location.href='distributionReplyStudent.aspx?defenGroupId=<%=ds.Tables[0].Rows[i]["defenGroupId"].ToString() %>'">分配答辩学生</button>
-                            <button type="button" class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button>
                         </td>
+                        <td class="col-sm-2"><button type="button" class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button></td>
                     </tr>
                     <%} %>
                 </tbody>
@@ -233,8 +234,7 @@
 <script src="js/xcConfirm.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script src="js/distributionReplyTeam.js"></script>
-<script type="text/javascript">
-</script>
+<script type="text/javascript"></script>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/distributionReplyTeam.js"></script>
 <script src="../js/xcConfirm.js"></script>
