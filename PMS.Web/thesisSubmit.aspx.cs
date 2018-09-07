@@ -20,7 +20,7 @@ namespace PMS.Web
             TitleRecordBll titleRecordBll = new TitleRecordBll();
             TitleRecord titleRecord = titleRecordBll.getRtId(stuAccount);
             int titleRecordId = titleRecord.TitleRecordId;
-            OpenReport openReport = titleRecordBll.isOpenReport(titleRecordId);
+            OpenReport openReport = titleRecordBll.getState(titleRecordId);
             state = openReport.state;
         }
     }

@@ -26,7 +26,7 @@ namespace PMS.Web
             DataSet dsTR = trbll.GetByAccount(stuAccount);
 
             //获取state，titleRecordId未得值
-            OpenReport openReport = orbll.getState(titleRecordId);
+            OpenReport openReport = trbll.getState(titleRecordId);
             state = openReport.state;
 
             if (dsTR==null)
