@@ -73,5 +73,17 @@ namespace PMS.BLL
                 return null;
             }
         }
+        public bool selectByRecordId(int titleRecordId)
+        {
+            int count = odao.selectByRecordId(titleRecordId);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
