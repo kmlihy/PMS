@@ -44,6 +44,8 @@ namespace PMS.Web
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
+                        int j = ds.Tables[0].Rows.Count - 1;
+                        string account = ds.Tables[0].Rows[i]["stuAccount"].ToString();
                         if (stuAccount == ds.Tables[0].Rows[i]["stuAccount"].ToString())
                         {
                             string tId = ds.Tables[0].Rows[i]["titleId"].ToString();
@@ -67,14 +69,6 @@ namespace PMS.Web
                             //
                             showTeaName = title.teacher.TeaName.ToString();
                             break;
-                        }
-                        else
-                        {
-                            showTitle = "";
-                            showTitleContent = "";
-                            showTeaName = "";
-                            Response.Write("<a href='paperList.aspx'>你还没有选题，请点击跳转到选题界面  </a>");
-                            Response.End();
                         }
                     }
                 }

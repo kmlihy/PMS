@@ -84,8 +84,8 @@ namespace PMS.Web.admin
         /// <param name="strWhere">查询条件</param>
         public void getdata(String strWhere)
         {
-            string where;
-            Teacher teacher = (Teacher)Session["loginuser"];
+            string where="";
+            Teacher teacher = new Teacher();
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
@@ -97,10 +97,12 @@ namespace PMS.Web.admin
             }
             else if (state == "1")
             {
+                teacher = (Teacher)Session["loginuser"];
                 where = "collegeId = '" + teacher.college.ColID + "'";
             }
-            else
+            else if (state == "2")
             {
+                teacher = (Teacher)Session["user"];
                 where = "collegeId = '" + teacher.college.ColID + "'";
             }
             TitleBll titbll = new TitleBll();

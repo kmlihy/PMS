@@ -56,15 +56,13 @@ namespace PMS.Dao
             SqlParameter[] values = {
                 new SqlParameter("@stuAccount", SqlDbType.VarChar),
                 new SqlParameter("@titleId", SqlDbType.Int),
-                new SqlParameter("@defeseTeamId", SqlDbType.Int),
                 new SqlParameter("@return", SqlDbType.Int)
             };
             values[0].Value = titlerecord.student.StuAccount;
             values[1].Value = titlerecord.title.TitleId;
-            values[2].Value = titlerecord.DefeseTeamId;
-            values[3].Direction = ParameterDirection.Output;
+            values[2].Direction = ParameterDirection.Output;
             DataSet ds = db.FillDataSetBySP(strSql.ToString(), values);
-            isSuccess = Convert.ToInt32(values[3].Value);
+            isSuccess = Convert.ToInt32(values[2].Value);
             return ds;
         }
 
