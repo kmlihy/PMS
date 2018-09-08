@@ -79,7 +79,9 @@ namespace PMS.BLL
                 or.outline = ds.Tables[0].Rows[i]["outline"].ToString();
                 or.plan = ds.Tables[0].Rows[i]["openPlan"].ToString();
                 or.reference = ds.Tables[0].Rows[i]["reference"].ToString();
-                or.titleRecord.TitleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                or.titleRecord = titleRecord;
                 or.reportTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["reportTime"].ToString());
                 or.trend = ds.Tables[0].Rows[i]["trend"].ToString();
                 or.teacherOpinion = ds.Tables[0].Rows[i]["teacherOpinion"].ToString();
