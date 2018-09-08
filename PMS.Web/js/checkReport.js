@@ -13,7 +13,6 @@ function showname() {
     $("#thesisFileName").text(FileName);
     $("#thseisFileSize").text(Size + "KB");
 }
-
 $(function () {
     $("#btnupload").click(function () {
         var location = $("input[name='upload']").val();
