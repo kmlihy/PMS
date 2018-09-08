@@ -150,6 +150,7 @@
     <Content Include="js\distributionReplyStudent.js" />
     <Content Include="js\distributionReplyTeam.js" />
     <Content Include="js\instructorsComments.js" />
+    <Content Include="js\myProgress.js" />
     <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
     <Content Include="js\icheck.min.js" />
