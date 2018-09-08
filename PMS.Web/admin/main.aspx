@@ -484,11 +484,6 @@
                                         <span>分配答辩小组</span>
                                     </a>
                                 </li>
-                                <li role="presentation">
-                                    <a href="../distributionReplyStudent.aspx" class="sidebarclick" >
-                                        <span>分配答辩学生</span>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <%} %>

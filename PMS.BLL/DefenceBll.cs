@@ -61,7 +61,6 @@ namespace PMS.BLL
                 defence.leader = ds.Tables[0].Rows[i]["leader"].ToString();
                 defence.member = ds.Tables[0].Rows[i]["member"].ToString();
                 defence.recorder = ds.Tables[0].Rows[i]["recorder"].ToString();
-                defence.plan.PlanId = Convert.ToInt32(ds.Tables[0].Rows[i]["planId"].ToString());
                 return defence;
             }
             return null;

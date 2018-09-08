@@ -18,7 +18,9 @@ namespace PMS.Web
         protected DataSet prods = null,colds = null,ds = null;
         protected string search = "",searchdrop = "",searchCollege = "",searchProAndCollege = "",showmsg = "";
         protected string showstr = null, showcollegedrop = "", userType = "";
+        protected string leaderAccount,memberAccount,recordAccount;
 
+        DefenceBll defenceBll = new DefenceBll();
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
         Result row = Result.添加失败;
@@ -245,6 +247,11 @@ namespace PMS.Web
         /// 
         public void getdata(String strWhere)
         {
+            DefenceGroup defenceGroup = defenceBll.SelectGroup(Convert.ToInt32(Session["defenGroupId"]));
+            leaderAccount = defenceGroup.leader;
+            memberAccount = defenceGroup.member;
+            recordAccount = defenceGroup.recorder;
+
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
@@ -259,44 +266,29 @@ namespace PMS.Web
                 int userCollegeId = tea.college.ColID;
                 if (strWhere == null || strWhere == "")
                 {
-                    userCollege = "collegeId=" + "'" + userCollegeId + "' " + "and state = 0";
+                    userCollege = @"teaAccount not like "+leaderAccount+ " and teaAccount not like "+memberAccount+ " and teaAccount not like "+recordAccount
+                        + " and crossTea not like "+leaderAccount+ " and crossTea not like "+memberAccount+ " and crossTea not like "+recordAccount+" and state=0";
                 }
                 else
                 {
-                    userCollege = "collegeId=" + "'" + userCollegeId + "' " + "and state = 0 " + "and " + "(" + strWhere + ")";
+                    userCollege = @"teaAccount not like " + leaderAccount + " and teaAccount not like " + memberAccount + " and teaAccount not like " + recordAccount
+                        + " and crossTea not like " + leaderAccount + " and crossTea not like " + memberAccount + " and crossTea not like " + recordAccount + " and state=0 and "+strWhere;
                 }
                 StudentBll pro = new StudentBll();
                 TableBuilder tabuilder = new TableBuilder()
                 {
-                    StrTable = "V_TitleRecord",
+                    StrTable = "V_DefenAndStudent",
                     StrWhere = userCollege,
                     IntColType = 0,
                     IntOrder = 0,
                     IntPageNum = int.Parse(currentPage),
                     IntPageSize = pagesize,
-                    StrColumn = "stuAccount",
-                    StrColumnlist = "*"
+                    StrColumn = "titleRecordId",
+                    StrColumnlist = "collegeName,proName,stuAccount,realName"
                 };
                 getCurrentPage = int.Parse(currentPage);
                 ds = pro.SelectBypage(tabuilder, out count);
 
-            }
-            else
-            {
-                StudentBll pro = new StudentBll();
-                TableBuilder tabuilder = new TableBuilder()
-                {
-                    StrTable = "V_TitleRecord",
-                    StrWhere = strWhere == null || strWhere == ""? "state = 0" : "state = 0 and "+strWhere,
-                    IntColType = 0,
-                    IntOrder = 0,
-                    IntPageNum = int.Parse(currentPage),
-                    IntPageSize = pagesize,
-                    StrColumn = "stuAccount",
-                    StrColumnlist = "*"
-                };
-                getCurrentPage = int.Parse(currentPage);
-                ds = pro.SelectBypage(tabuilder, out count);
             }
         }
 
