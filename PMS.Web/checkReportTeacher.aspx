@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
     <link rel="stylesheet" href="css/iconfont.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
 </head>
 <body>
     <div class="panel">
@@ -37,6 +38,7 @@
                             <th class="text-center">论文题目</th>
                             <th class="text-center">上传时间</th>
                             <th class="text-center">下载</th>
+                            <th class="text-center">审核</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +56,9 @@
                                         <span class="glyphicon glyphicon-download-alt"></span>
                                     </button>
                                 </a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModa1" id="Examinebtn">审核</button>
                             </td>
                         </tr>
                         <%} %>
@@ -92,6 +97,28 @@
                     </li>
                 </ul>
             </div>
+
+             <%-- 意见填写--%>
+        <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModal1">意见
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid table-bordered img-rounded modal_comment">
+                            <textarea rows="8" style="margin-top: 15px; width: 100%;" class="opinion"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default " id="submit">同意</button>
+                         <button type="submit" class="btn btn-default " >不同意</button>
+                        <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
@@ -100,4 +127,5 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/checkReportTeacher.js"></script>
+<script src="js/xcConfirm.js"></script>
 </html>
