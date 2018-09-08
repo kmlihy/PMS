@@ -122,6 +122,19 @@ namespace PMS.BLL
             }
         }
 
+        public DataSet SelectByProId(int proId,int planId, string teaAccount)
+        {
+            DataSet ds = dao.SelectByProId(proId,planId, teaAccount);
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                return ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// 分页查询方法
         /// </summary>

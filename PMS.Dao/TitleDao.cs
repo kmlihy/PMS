@@ -95,6 +95,29 @@ namespace PMS.Dao
             string[] values = {titleId.ToString() };
             return db.FillDataSet(strBuilder.ToString(), param, values);
         }
+
+        /// <summary>
+        /// 根据专业id，批次id获取除指导教师外的题目信息
+        /// </summary>
+        /// <param name="proId">专业id</param>
+        /// <param name="planId">批次id</param>
+        /// <param name="teaAccount">教师账号</param>
+        /// <returns></returns>
+        public DataSet SelectByProId(int proId,int planId,string teaAccount)
+        {
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.Append("select distinct teaAccount,teaName from V_Title ");
+            strBuilder.Append("where proId = @proId and planId = @planId and teaAccount not like @teaAccount");
+            string[] param = { "@proId", "@planId", "@teaAccount" };
+            string[] values = { proId.ToString(), planId .ToString(), teaAccount };
+            return db.FillDataSet(strBuilder.ToString(), param, values);
+        }
+
+        /// <summary>
+        /// 获取题目实体对象
+        /// </summary>
+        /// <param name="titleId">题目id</param>
+        /// <returns></returns>
         public Title GetTitle(int titleId)
         {
             StringBuilder strBuilder = new StringBuilder();

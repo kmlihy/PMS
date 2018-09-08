@@ -1,5 +1,4 @@
 ﻿$("#scorebtnSubmit").click(function () {
-    var op = "submit";
     var score = $("#score").val();
     var investigation = $("#investigation").val();
     var practice = $("#practice").val();
@@ -8,6 +7,7 @@
     var quality = $("#quality").val();
     var innovate = $("#innovate").val();
     var evaluate = $("#evaluate").val();
+    var crossTea = $("#crossTea").val();
     if (score == "") {
         window.wxc.xcConfirm("成绩不能为空", window.wxc.xcConfirm.typeEnum.warning);
     }
@@ -33,7 +33,8 @@
                 quality: quality,
                 evaluate: evaluate,
                 innovate: innovate,
-                op: op
+                crossTea: crossTea,
+                op: "submit"
             },
             dataType: 'text',
             success: function (succ) {

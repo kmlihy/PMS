@@ -102,8 +102,15 @@
                         </h4>
                     </div>
                     <div class="modal-body text-center">
-                        <select class="selectpicker">
-                            <option>请选择交叉指导教师</option>
+                        <select class="selectpicker" id="crossTea">
+                            <option value="0">请选择交叉指导教师</option>
+                            <%if (dsTitle != null)
+                                {
+                                    for (int i = 0; i < dsTitle.Tables[0].Rows.Count; i++)
+                                    { %>
+                                        <option value="<%=dsTitle.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=dsTitle.Tables[0].Rows[i]["teaName"].ToString()%></option>
+                            <%}
+                                } %>
                         </select>
                     </div>
                     <div class="modal-footer">

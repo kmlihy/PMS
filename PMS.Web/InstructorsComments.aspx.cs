@@ -13,12 +13,13 @@ namespace PMS.Web
     using Result = Enums.OpResult;
     public partial class InstructorsComments : System.Web.UI.Page
     {
-        public DataSet getData;
+        public DataSet getData, dsTitle;
         TitleRecordBll titlebll = new TitleRecordBll();
+        TitleBll titleBll = new TitleBll();
         Score scoreModel = new Score();
         ScoreBll sbll = new ScoreBll();
         string stuAccount;
-        int planId;
+        int planId, titleRecordId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,9 +34,13 @@ namespace PMS.Web
                     stuAccount = Session["stuAccount"].ToString();
                 }
             }
-            int titleRecordId = Convert.ToInt32(Request.QueryString["titleRecordId"]);
+            titleRecordId = Convert.ToInt32(Request.QueryString["titleRecordId"]);
             getData = titlebll.GetByAccount(stuAccount);
-            planId = Convert.ToInt32(getData.Tables[0].Rows[0]["planId"]);
+            int i = getData.Tables[0].Rows.Count - 1;
+            planId = Convert.ToInt32(getData.Tables[0].Rows[i]["planId"]);
+            int proId = Convert.ToInt32(getData.Tables[0].Rows[i]["proId"]);
+            Teacher teacher = (Teacher)Session["loginuser"];
+            dsTitle = titleBll.SelectByProId(proId,planId,teacher.TeaAccount);
             string op = Request["op"];
             if (op == "submit")
             {
@@ -45,6 +50,7 @@ namespace PMS.Web
 
         public void insert()
         {
+            //获取评定及成绩
             double score = Convert.ToDouble(Request["score"]);
             string investigation = Request["investigation"];
             string practice = Request["practice"];
@@ -53,12 +59,12 @@ namespace PMS.Web
             string quality = Request["quality"];
             string evaluate = Request["evaluate"];
             string innovate = Request["innovate"];
+            string crossTea = Request["crossTea"];
+            //添加评定及成绩
             Student student = new Student();
             Plan plan = new Plan();
-
             student.StuAccount = stuAccount;
             plan.PlanId = planId;
-
             scoreModel.student = student;
             scoreModel.plan = plan;
             scoreModel.guideScore = score;
@@ -69,6 +75,16 @@ namespace PMS.Web
             scoreModel.paperDesign = quality;
             scoreModel.innovate = innovate;
             scoreModel.evaluate = evaluate;
+            //添加交叉指导教师
+            CrossBll crossBll = new CrossBll();
+            Cross cross = new Cross();
+            TitleRecord titleRecord = new TitleRecord();
+            titleRecord.TitleRecordId = titleRecordId;
+            cross.titleRecord = titleRecord;
+            Teacher teacher = new Teacher();
+            teacher.TeaAccount = crossTea;
+            cross.teacher = teacher;
+            crossBll.Insert(cross);
 
             Result row = sbll.insertInstructorsComments(scoreModel);
             if (row == Result.添加成功)
