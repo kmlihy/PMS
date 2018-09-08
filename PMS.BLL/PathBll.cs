@@ -34,9 +34,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="titleRecordId"></param>
         /// <returns></returns>
-        public Path getState(int titleRecordId)
+        public Path getState(int titleRecordId,int type)
         {
-            return pdao.getState(titleRecordId);
+            return pdao.getState(titleRecordId,type);
         }
 
         public Result selectByTitleRecordId(string titleRecordId)

@@ -13,7 +13,7 @@ namespace PMS.Web
     public partial class checkReport : System.Web.UI.Page
     {
         PathBll pathBll = new PathBll();
-        public int state;
+        public int state,pstate;
         protected void Page_Load(object sender, EventArgs e)
         {
             Student student = (Student)Session["loginuser"];
@@ -21,8 +21,11 @@ namespace PMS.Web
             TitleRecordBll titleRecordBll = new TitleRecordBll();
             TitleRecord titleRecord = titleRecordBll.getRtId(stuAccount);
             int rtId = titleRecord.TitleRecordId;
+            Path path = pathBll.getState(rtId,1);
+            pstate = path.state;
             if (rtId==0)
             {
+                //未选题
                 state = 3;
             }
             else
@@ -30,6 +33,7 @@ namespace PMS.Web
                 Result result = pathBll.selectByTitleRecordId(rtId.ToString());
                 if (result == Result.记录存在)
                 {
+                    //显示页面
                     state = 1;
                 }
                 else

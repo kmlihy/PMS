@@ -88,11 +88,11 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="titleRecordId"></param>
         /// <returns></returns>
-        public Path getState(int titleRecordId)
+        public Path getState(int titleRecordId,int type)
         {
-            string sql = "select top 1 state from T_Path where titleRecordId=@titleRecordId order by pathId desc";
-            string[] param = { "@titleRecordId" };
-            object[] values = { titleRecordId };
+            string sql = "select top 1 state from T_Path where titleRecordId=@titleRecordId and type=@type order by pathId desc";
+            string[] param = { "@titleRecordId", "@type" };
+            object[] values = { titleRecordId ,type };
             Path path = new Path();
             SqlDataReader reader = db.ExecuteReader(sql, param, values);
             while (reader.Read())

@@ -3,6 +3,7 @@ using PMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -100,6 +101,46 @@ namespace PMS.Dao
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// 通过选题记录id获取最新state
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
+        public MedtermQuality getState(int titleRecordId)
+        {
+            string sql = "select top 1 state from T_MedtermQuality where titleRecordId=@titleRecordId order by midId desc";
+            string[] param = { "@titleRecordId"};
+            object[] values = { titleRecordId };
+            MedtermQuality medtermQuality = new MedtermQuality();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                medtermQuality.state = reader.GetInt32(0);
+            }
+            reader.Close();
+            return medtermQuality;
+        }
+        /// <summary>
+        /// 更新state
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public int updateState(MedtermQuality medtermQuality)
+        {
+            try
+            {
+                string cmdText = "UPDATE T_MedtermQuality SET state = @state WHERE midId IN(SELECT TOP 1 midId FROM  T_MedtermQuality WHERE titleRecordId = @titleRecordId ORDER BY midId DESC)";
+                string[] param = { "@state", "@titleRecordId" };
+                object[] values = { medtermQuality.state, medtermQuality.titleRecord.TitleRecordId };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
