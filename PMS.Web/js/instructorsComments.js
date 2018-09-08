@@ -1,4 +1,4 @@
-﻿$("#btnSubmit").click(function () {
+﻿$("#scorebtnSubmit").click(function () {
     var op = "submit";
     var score = $("#score").val();
     var investigation = $("#investigation").val();

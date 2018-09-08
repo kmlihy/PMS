@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/lgd.css" />
     <link rel="stylesheet" href="css/xcConfirm.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
 </head>
 
 <body>
     <div class="panel">
         <div class="panel-heading text-center">
             <h2>指导教师评语级成绩评定等级</h2>
+            <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back">返回</button>
         </div>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered table_mian">
@@ -85,13 +87,58 @@
             </table>
         </div>
         <div class="container text-center panel-footer panleFooter">
-            <button class="btn btn-primary col-xs-1" type="submit" id="btnSubmit">提交</button>
+            <button class="btn btn-info agreebtn" type="button" id="btnReviewSubmit" data-toggle="modal" data-target="#myModa2">同意</button>
+            <button type="button" class="btn btn-info agreebtn" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
+                不同意
+            </button>
+
+        </div>
+        <%-- 同意通过指定交叉指导教师--%>
+        <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModal2">指定交叉指导教师
+                        </h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <select class="selectpicker">
+                            <option>请选择交叉指导教师</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit" id="scorebtnSubmit">提交</button>
+                        <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- 驳回意见填写--%>
+        <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModal1">驳回意见
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid table-bordered img-rounded modal_comment">
+                            <textarea rows="8" style="margin-top: 15px; width: 100%;" class="opinion"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default " id="submit">提交</button>
+                        <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/xcConfirm.js"></script>
+<script src="js/xcConfirm.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/instructorsComments.js"></script>
+<script src="js/bootstrap-select.js"></script>
 </html>
 

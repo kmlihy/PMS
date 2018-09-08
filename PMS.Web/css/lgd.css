@@ -524,6 +524,7 @@
 /**查看开题报告页面*/
 .agreebtn {
     float: right;
+    margin: 5px;
 }
 /*我的进度样式*/
 #myproh2 {
@@ -543,4 +544,9 @@
     line-height: 25px;
     padding-top: 10px;
     color: #003a59;
+}
+/*返回按钮样式*/
+#back {
+    float: right;
+    margin-right: 30px;
 }
