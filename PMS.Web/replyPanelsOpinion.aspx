@@ -14,6 +14,7 @@
     <div class="panel">
         <div class="panel-heading text-center">
             <h2>答辩小组意见及成绩评定等级</h2>
+            <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back">返回</button>
         </div>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered text-center table_mian">
