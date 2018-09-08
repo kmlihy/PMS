@@ -66,8 +66,11 @@ namespace PMS.Web
                 TitleRecord titleRecord = titleRecordBll.getRtId(stuAccount);
                 int rtId = titleRecord.TitleRecordId;
                 mq = mqbll.Select(titleRecord.TitleRecordId);
-                planFinishSituation = mq.planFinishSituation;
-
+                if (mq!=null)
+                {
+                    planFinishSituation = mq.planFinishSituation;
+                }
+                
                 Result result = pathBll.selectByTitleRecordId(rtId.ToString());
                     if (ds == null)
                     {
