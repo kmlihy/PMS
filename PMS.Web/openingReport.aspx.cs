@@ -13,9 +13,12 @@ namespace PMS.Web
     using Result = Enums.OpResult;
     public partial class openingReport : CommonPage
     {
-        public string stuAccount, stuName, profession, title, teaName;
+        public string stuAccount, stuName, profession, title, teaName, opinion;
         public int state, planId, titleRecordId;
+        public OpenReport or;
+        public DataSet dsGuide;
         OpenReportBll orbll = new OpenReportBll();
+        GuideRecordBll guideBll = new GuideRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -24,9 +27,6 @@ namespace PMS.Web
             stuName = student.RealName;
             profession = student.profession.ProName;
             DataSet dsTR = trbll.GetByAccount(stuAccount);
-
-            OpenReport openReport = trbll.getState(titleRecordId);
-            state = openReport.state;
 
             if (dsTR==null)
             {
@@ -44,6 +44,22 @@ namespace PMS.Web
                         planId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["planId"].ToString());
                         titleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[0]["titleRecordId"].ToString());
                         break;
+                    }
+                }
+                OpenReport openReport = trbll.getState(titleRecordId);
+                state = openReport.state;
+                or = orbll.Select(titleRecordId);
+                dsGuide = guideBll.Select(titleRecordId);
+                if (dsGuide != null)
+                {
+                    int j = dsGuide.Tables[0].Rows.Count - 1;
+                    if (j < 0)
+                    {
+                        opinion = "<h3>教师未回复，请耐心等待</h3>";
+                    }
+                    else
+                    {
+                        opinion = "教师最新回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
                     }
                 }
             }
