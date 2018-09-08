@@ -92,7 +92,7 @@ namespace PMS.BLL
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 int i = ds.Tables[0].Rows.Count - 1;
-                or.openId = Convert.ToInt32(ds.Tables[0].Rows[i]["openId"].ToString());
+                or.openId = Convert.ToInt32(ds.Tables[0].Rows[i]["ID"].ToString());
                 or.meaning = ds.Tables[0].Rows[i]["meaning"].ToString();
                 or.content = ds.Tables[0].Rows[i]["openContent"].ToString();
                 or.method = ds.Tables[0].Rows[i]["method"].ToString();
