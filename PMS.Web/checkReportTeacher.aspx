@@ -98,8 +98,9 @@
                 </ul>
             </div>
 
-             <%-- 意见填写--%>
-        <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        </div>
+        <%-- 意见填写--%>
+        <div class="modal" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,19 +114,18 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default " id="submit">同意</button>
-                         <button type="submit" class="btn btn-default " >不同意</button>
+                        <button type="submit" class="btn btn-default ">不同意</button>
                         <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/checkReportTeacher.js"></script>
 <script src="js/xcConfirm.js"></script>
 </html>
