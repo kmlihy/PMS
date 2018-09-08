@@ -67,7 +67,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_OpeningReport set teacherOpinion=@teacherOpinion where openId=@openId";
+                string cmdText = "update T_OpeningReport set teacherOpinion=@teacherOpinion where ID=@openId";
                 string[] param = { "@openId", "@teacherOpinion" };
                 object[] values = { openId, teacherOpinion};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
@@ -89,7 +89,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_OpeningReport set deanOpinion=@deanOpinion where openId=@openId";
+                string cmdText = "update T_OpeningReport set deanOpinion=@deanOpinion where ID=@openId";
                 string[] param = { "@openId", "@deanOpinion" };
                 object[] values = { openId, deanOpinion };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
