@@ -13,11 +13,12 @@
 </head>
 
 <body>
-    <%if (state == 0)
+    <%if (dsTR == null)
+        { %>
+    <%=opinion %>
+    <%}
+        else
         {%>
-    <h3>暂未选题</h3><%}
-                     else
-                     {%>
     <div class="panel">
         <div class="panel-heading text-center">
             <h2>本科生毕业设计（论文）开题报告</h2>
@@ -52,7 +53,7 @@
                                 { %>
                             <textarea class="openReportText" id="meaning" readonly="readonly"><%=or.meaning %></textarea>
                             <%}
-                                else if (state == 1 && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="meaning"><%=or.meaning %></textarea>
                             <%}
@@ -69,7 +70,7 @@
                                 { %>
                             <textarea class="openReportText" id="trend" readonly="readonly"><%=or.trend %></textarea>
                             <%}
-                                else if (state == 1  && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="trend"><%=or.trend %></textarea>
                             <%}
@@ -86,7 +87,7 @@
                                 { %>
                             <textarea class="openReportText" id="content" readonly="readonly"><%=or.content %></textarea>
                             <%}
-                                else if (state == 1  && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="content"><%=or.content %></textarea>
                             <%}
@@ -103,7 +104,7 @@
                                 { %>
                             <textarea class="openReportText" id="plan" readonly="readonly"><%=or.plan %></textarea>
                             <%}
-                                else if (state == 1  && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="plan"><%=or.plan %></textarea>
                             <%}
@@ -120,7 +121,7 @@
                                 { %>
                             <textarea class="openReportText" id="method" readonly="readonly"><%=or.method %></textarea>
                             <%}
-                                else if (state == 1 && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="method"><%=or.method %></textarea>
                             <%}
@@ -137,7 +138,7 @@
                                 { %>
                             <textarea class="openReportText" id="outline" readonly="readonly"><%=or.outline %></textarea>
                             <%}
-                                else if (state == 1 && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="outline"><%=or.outline %></textarea>
                             <%}
@@ -154,7 +155,7 @@
                                 { %>
                             <textarea class="openReportText" id="reference" readonly="readonly"><%=or.reference %></textarea>
                             <%}
-                                else if (state == 1 && or!=null)
+                                else if (state == 1 && or != null)
                                 {%>
                             <textarea class="openReportText" id="reference"><%=or.reference %></textarea>
                             <%}
@@ -173,7 +174,7 @@
                             <%}
                                 else
                                 {%>
-                            <textarea class="openReportText adviceTextArea" readonly="readonly">>教师未回复，请耐心等待</textarea>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly">教师未回复，请耐心等待</textarea>
                             <%} %>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
@@ -196,10 +197,12 @@
         </div>
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
-            <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button>
-            <button class="btn btn-success col-xs-1" type="button" id="btnTeaOpinion">查看教师意见</button>
+            <%if (state == 1||open==null)
+                { %>
+            <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button><%} %>
         </div>
-    </div><%} %>
+    </div>
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
