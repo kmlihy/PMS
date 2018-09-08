@@ -1,14 +1,13 @@
 ﻿var oFileInfo = document.getElementById("#tbody_reportFileInfo");//tbody
 
 function showname() {
-    $("#thesisTable").show();
     var files = document.getElementById("upload").files;
     var FileName = files[0].name;
     //文件大小转换为M
     var FileSize = (files[0].size) / 1024;
     //取小数点后两位
     var Size = FileSize.toFixed(2);
-    $("#tips").hide();
+    $("#myAlert").hide();
     $("#thesisTable").show();
     $("#thesisFileName").text(FileName);
     $("#thseisFileSize").text(Size + "KB");
@@ -20,14 +19,17 @@ $(function () {
         var type = location.substr(point).toLowerCase();
         var uploadFiles = document.getElementById("upload").files;
         if (uploadFiles.length == 0) {
-            alert("请选择要上传的文件");
+            window.wxc.xcConfirm("请选择要上传的文件", window.wxc.xcConfirm.typeEnum.warning);
         }
         else if (type == ".doc" || type == ".docx") {
             ajaxFileUpload();
            
         }
         else {
-            alert("只允许上传.doc或者.docx格式的文件");
+            $("#thesisTable").hide();
+            $("#upload").replaceWith('<input onchange="showname()" type="file" name="upload" id="upload" />');
+            $("#myAlert").show();
+            $("#myAlert").text("只允许上传.doc或者.docx格式的文件");
         }
     });
 });
@@ -43,16 +45,16 @@ function ajaxFileUpload() {
                 console.log(data.msg);
                 if (typeof (data.error) != 'undefined') {
                     if (data.error != '') {
-                        alert(data.error);
+                        window.wxc.xcConfirm(data.error, window.wxc.xcConfirm.typeEnum.warning);
                         $('#upload').val("");
                     } else {
-                        alert(data.msg);
+                        window.wxc.xcConfirm(data.msg, window.wxc.xcConfirm.typeEnum.warning);
                         $('#upload').val("");
                     }
                 }
             },
             error: function (data, status, e) {
-                alert(e);
+                window.wxc.xcConfirm(e, window.wxc.xcConfirm.typeEnum.warning);
                 $('#upload').val("");
             }
         }

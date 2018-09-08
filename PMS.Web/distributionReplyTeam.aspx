@@ -234,8 +234,4 @@
 <script src="js/xcConfirm.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script src="js/distributionReplyTeam.js"></script>
-<script type="text/javascript"></script>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/distributionReplyTeam.js"></script>
-<script src="../js/xcConfirm.js"></script>
 </html>

@@ -106,6 +106,7 @@ namespace PMS.BLL
                 or.trend = ds.Tables[0].Rows[i]["trend"].ToString();
                 or.teacherOpinion = ds.Tables[0].Rows[i]["teacherOpinion"].ToString();
                 or.deanOpinion = ds.Tables[0].Rows[i]["deanOpinion"].ToString();
+                or.state = Convert.ToInt32(ds.Tables[0].Rows[i]["state"]);
                 return or;
             }
             else
