@@ -15,10 +15,9 @@ namespace PMS.Web
     {
         public string stuAccount, stuName, profession, title, teaName, opinion;
         public int state, planId, titleRecordId;
-        public OpenReport or;
-        public DataSet dsGuide;
+        public OpenReport or, open;
+        public DataSet dsGuide,dsTR;
         OpenReportBll orbll = new OpenReportBll();
-        GuideRecordBll guideBll = new GuideRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
@@ -26,11 +25,10 @@ namespace PMS.Web
             stuAccount = student.StuAccount;
             stuName = student.RealName;
             profession = student.profession.ProName;
-            DataSet dsTR = trbll.GetByAccount(stuAccount);
-
+            dsTR = trbll.GetByAccount(stuAccount);
             if (dsTR==null)
             {
-                state = 0;
+                opinion = "暂未选题";
             }
             else
             {
@@ -49,30 +47,21 @@ namespace PMS.Web
                 OpenReport openReport = trbll.getState(titleRecordId);
                 state = openReport.state;
                 or = orbll.Select(titleRecordId);
-                dsGuide = guideBll.Select(titleRecordId);
-                if (dsGuide != null)
+                open = orbll.Select(titleRecordId);
+                if (open == null)
                 {
-                    int j = dsGuide.Tables[0].Rows.Count - 1;
-                    if (j < 0)
-                    {
-                        opinion = "<h3>教师未回复，请耐心等待</h3>";
-                    }
-                    else
-                    {
-                        opinion = "教师最新回复：" + dsGuide.Tables[0].Rows[j]["opinion"].ToString();
-                    }
+                    opinion = "教师未回复，请耐心等待";
+                }
+                else
+                {
+                    opinion = "教师最新回复：" + open.teacherOpinion;
                 }
             }
             
             Result result = orbll.isOpenReport(stuAccount, planId);
             if (result==Result.记录存在)
             {
-                state = 1;
                 insert();
-            }
-            else
-            {
-                state = 0;
             }
         }
         //添加开题报告
