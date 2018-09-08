@@ -185,7 +185,14 @@
                     <tr>
                         <td class="openReportmain" colspan="2">分院院长意见：</td>
                         <td class="openReportmain" colspan="8" id="dean">
-                            <textarea class="openReportText adviceTextArea" readonly="readonly"></textarea>
+                            <%if (state == 1 || state == 3)
+                                { %>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly"><%=deanOpinion %></textarea>
+                            <%}
+                                else
+                                {%>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly">教师未回复，请耐心等待</textarea>
+                            <%} %>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>

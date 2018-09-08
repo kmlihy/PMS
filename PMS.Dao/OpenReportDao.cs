@@ -42,13 +42,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="openReport"></param>
         /// <returns></returns>
-        public int updateState(OpenReport openReport)
+        public int updateState(int state,int titleRecordId)
         {
             try
             {
                 string cmdText = "UPDATE T_OpeningReport SET state = @state WHERE ID IN(SELECT TOP 1 ID FROM  T_OpeningReport WHERE titleRecordId = @titleRecordId ORDER BY ID DESC)";
                 string[] param = { "@state", "@titleRecordId" };
-                string[] values = { openReport.state.ToString(), openReport.titleRecord.TitleRecordId.ToString() };
+                string[] values = { state.ToString(), titleRecordId.ToString() };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -60,15 +60,16 @@ namespace PMS.Dao
         /// <summary>
         /// 教师提交开题报告评阅意见
         /// </summary>
-        /// <param name="openReport">开题报告实体</param>
+        /// <param name="openId">开题报告记录id</param>
+        /// <param name="openReport">教师意见</param>
         /// <returns>受影响行数</returns>
-        public int teaInsert(int titleRecordId, string teacherOpinion)
+        public int teaInsert(int openId, string teacherOpinion)
         {
             try
             {
-                string cmdText = "insert into T_OpeningReport(titleRecordId,teacherOpinion) values(@titleRecordId,@teacherOpinion)";
-                string[] param = { "@titleRecordId","@teacherOpinion" };
-                object[] values = { titleRecordId, teacherOpinion};
+                string cmdText = "update T_OpeningReport set teacherOpinion=@teacherOpinion where openId=@openId";
+                string[] param = { "@openId", "@teacherOpinion" };
+                object[] values = { openId, teacherOpinion};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -77,6 +78,29 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 添加分院院长意见
+        /// </summary>
+        /// <param name="openId">开题报告记录id</param>
+        /// <param name="deanOpinion">分院院长意见</param>
+        /// <returns></returns>
+        public int deanInsert(int openId, string deanOpinion)
+        {
+            try
+            {
+                string cmdText = "update T_OpeningReport set deanOpinion=@deanOpinion where openId=@openId";
+                string[] param = { "@openId", "@deanOpinion" };
+                object[] values = { openId, deanOpinion };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// 根据选题记录id获取学生开题报告信息
         /// </summary>

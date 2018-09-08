@@ -34,7 +34,7 @@
                         <td class="col-md-1">学生姓名</td>
                         <td class="col-sm-1"><b><%= stuName%></b></td>
                         <td class="col-md-1">学号</td>
-                        <td class="col-sm-1"><b><%= stuAccount%></b></td>
+                        <td class="col-sm-1" id="stuAccount"><b><%= stuAccount%></b></td>
                         <td class="col-md-1">专业</td>
                         <td class="col-sm-1"><b><%= proName%></b></td>
                         <%--<td class="col-md-1">班级</td>
@@ -42,6 +42,8 @@
                         <td class="col-md-1">指导教师</td>
                         <td class="col-sm-1"><b><%= teaName%></b></td>
                     </tr>
+                    <%if (or.state == 2)
+                        { %>
                     <tr>
                         <td class="openReportmain" colspan="2">选题目的、价值和意义：</td>
                         <td class="openReportmain" colspan="8" id="meaning">
@@ -104,38 +106,21 @@
                             <label class="lableTime" contenteditable="true">签字：&nbsp &nbsp</label>
                         </td>
                     </tr>
+                    <%}else{%>
+                    <h3 class="error">学生暂未修改提交</h3>
+                    <%}%>
                 </tbody>
             </table>
         </div>
         <div class="container text-center panel-footer panleFooter">
+            <%if (or.state == 2)
+                { %>
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
             <button class="btn btn-info agreebtn" type="button" id="btnReviewSubmit">同意</button>
-            <button type="button" class="btn btn-info agreebtn" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
-                不同意
-            </button>
-            
+            <button type="button" class="btn btn-info agreebtn" id="btnOpinion">不同意</button>
+            <%} %>
         </div>
         <%} %>
-       <%-- 驳回意见填写--%>
-        <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModal1">驳回意见
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid table-bordered img-rounded modal_comment">
-                            <textarea rows="8" style="margin-top: 15px; width: 100%;" class="opinion"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default " id="submit">提交</button>
-                        <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>

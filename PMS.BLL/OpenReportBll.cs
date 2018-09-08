@@ -33,11 +33,12 @@ namespace PMS.BLL
         /// <summary>
         /// 根据选题记录id更新state
         /// </summary>
-        /// <param name="openReport"></param>
+        /// <param name="state">state完成状态</param>
+        /// <param name="titleRecordId"选题记录id</param>
         /// <returns></returns>
-        public Result updateState(OpenReport openReport)
+        public Result updateState(int state, int titleRecordId)
         {
-            int row = odao.updateState(openReport);
+            int row = odao.updateState(state, titleRecordId);
             if (row > 0)
             {
                 return Result.更新成功;
@@ -50,17 +51,35 @@ namespace PMS.BLL
         /// <summary>
         /// 教师提交评阅开题报告意见
         /// </summary>
-        /// <param name="report">开题报告对象</param>
+        /// <param name="openId">开题报告记录id</param>
+        /// <param name="teacherOpinion">教师意见</param>
         /// <returns>成功返回Result.添加成功，失败返回Result.添加失败</returns>
-        public Result teaInsert(int titleRecordId, string teacherOpinion)
+        public Result teaInsert(int openId, string teacherOpinion)
         {
-            int row = odao.teaInsert(titleRecordId, teacherOpinion);
+            int row = odao.teaInsert(openId, teacherOpinion);
             if (row > 0)
             {
                 return Result.添加成功;
             }
             return Result.添加失败;
         }
+
+        /// <summary>
+        /// 分院院长提交评阅开题报告意见
+        /// </summary>
+        /// <param name="openId">开题报告记录id</param>
+        /// <param name="teacherOpinion">教师意见</param>
+        /// <returns>成功返回Result.添加成功，失败返回Result.添加失败</returns>
+        public Result deanInsert(int openId, string teacherOpinion)
+        {
+            int row = odao.deanInsert(openId, teacherOpinion);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            return Result.添加失败;
+        }
+
         /// <summary>
         /// 根据选题记录id获取开题报告对象
         /// </summary>
@@ -73,6 +92,7 @@ namespace PMS.BLL
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 int i = ds.Tables[0].Rows.Count - 1;
+                or.openId = Convert.ToInt32(ds.Tables[0].Rows[i]["openId"].ToString());
                 or.meaning = ds.Tables[0].Rows[i]["meaning"].ToString();
                 or.content = ds.Tables[0].Rows[i]["openContent"].ToString();
                 or.method = ds.Tables[0].Rows[i]["method"].ToString();

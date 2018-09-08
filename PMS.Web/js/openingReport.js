@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $("#btnTeaOpinion").hide();
+    //学生提交开题报告
     $("#btnSubmit").click(function () {
         var meaning = $("#meaning").val();
         var trend = $("#trend").val();
@@ -52,15 +52,7 @@
                     if (succ === "提交成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
-                                document.getElementById("meaning").readOnly = true;
-                                document.getElementById("trend").readOnly = true;
-                                document.getElementById("content").readOnly = true;
-                                document.getElementById("plan").readOnly = true;
-                                document.getElementById("method").readOnly = true;
-                                document.getElementById("outline").readOnly = true;
-                                document.getElementById("reference").readOnly = true;
-                                $("#btnTeaOpinion").show();
-                                $("#btnSubmit").hide();
+                                window.location.href = "openingReport.aspx";
                             }
                         });
                     } else {
@@ -73,31 +65,75 @@
             })
         }
     })
-    $("#btnReviewSubmit").click(function () {
-        var teacherOpinion = $("#guideTeacher").val();
-        $.ajax({
-            type: 'Post',
-            url: 'reviewOpeningReport.aspx',
-            data:{
-                teacherOpinion: teacherOpinion,
-                op:"review"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                if (succ === "提交成功") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                        onOk: function (v) {
+    //教师驳回学生开题报告
+    $("#btnOpinion").click(function () {
+        window.wxc.xcConfirm("确定驳回吗？", window.wxc.xcConfirm.typeEnum.confirm, {
+            onOk: function (v) {
+                var teacherOpinion = $("#guideTeacher").val();
+                var deanOpinion = $("#dean").val();
+                var stuAccount = $("#stuAccount").text().trim();
+                $.ajax({
+                    type: 'Post',
+                    url: 'reviewOpeningReport.aspx?stuAccount=' + stuAccount,
+                    data: {
+                        teacherOpinion: teacherOpinion,
+                        deanOpinion: deanOpinion,
+                        op: "no"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ === "提交成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+                                    window.location.href = "reviewOpeningReport.aspx";
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
 
+                                }
+                            });
                         }
-                    });
-                } else {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-
-                        }
-                    });
-                }
+                    }
+                })
             }
-        })
+        });
+    })
+    //教师同意学生开题报告
+    $("#btnReviewSubmit").click(function () {
+        window.wxc.xcConfirm("确定同意吗？", window.wxc.xcConfirm.typeEnum.confirm, {
+            onOk: function (v) {
+                var teacherOpinion = $("#guideTeacher").val();
+                var deanOpinion = $("#dean").val();
+                var stuAccount = $("#stuAccount").text().trim();
+                $.ajax({
+                    type: 'Post',
+                    url: 'reviewOpeningReport.aspx?stuAccount=' + stuAccount,
+                    data: {
+                        teacherOpinion: teacherOpinion,
+                        deanOpinion: deanOpinion,
+                        op: "yes"
+                    },
+                    dataType: 'text',
+                    success: function (succ) {
+                        if (succ === "提交成功") {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                onOk: function (v) {
+
+                                }
+                            });
+                        } else {
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                onOk: function (v) {
+
+                                }
+                            });
+                        }
+                    }
+                })
+            }
+        });
+        
     })
 })

@@ -13,7 +13,7 @@ namespace PMS.Web
     using Result = Enums.OpResult;
     public partial class openingReport : CommonPage
     {
-        public string stuAccount, stuName, profession, title, teaName, opinion;
+        public string stuAccount, stuName, profession, title, teaName, opinion,deanOpinion="";
         public int state, planId, titleRecordId;
         public OpenReport or, open;
         public DataSet dsGuide,dsTR;
@@ -55,6 +55,7 @@ namespace PMS.Web
                 else
                 {
                     opinion = "教师最新回复：" + open.teacherOpinion;
+                    deanOpinion = "分院院长意见："+open.deanOpinion;
                 }
             }
             
@@ -90,8 +91,7 @@ namespace PMS.Web
                 open.reference = reference;
                 open.reportTime = DateTime.Now;
                 Result row = orbll.stuInsert(open);
-                open.state = 2;
-                Result result = orbll.updateState(open);
+                Result result = orbll.updateState(2, titleRecordId);
                 if (row == Result.添加成功 && result==Result.更新成功)
                 {
                     Response.Write("提交成功");
