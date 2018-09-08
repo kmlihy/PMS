@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>论文进度</title>
     <link rel="stylesheet" href="css/timeAxis.css" />
-    <link rel="stylesheet" href="css/lgd.css"/>
+    <link rel="stylesheet" href="css/lgd.css" />
 </head>
 <body>
     <div class="demo">
@@ -55,7 +55,7 @@
                         <%
                             DateTime nowTime = new DateTime();
                             nowTime = DateTime.Now;
-                            if (title != "" || title != null)
+                            if (title != "" && title != null)
                             {%>
                         <h3>
                             <%=string.Format("{0:MM-dd}", selectTime) %>
@@ -79,18 +79,57 @@
             <div class="history-date">
                 <ul>
                     <h2 class="date02"><a href="#nogo">提交开题报告</a></h2>
+                    <%
+                        string opT = "0001-01-01";
+                        DateTime opt2 = Convert.ToDateTime(opT);
+                        if (DateTime.Compare(opt2, opTime) == 0)
+                        {
+                    %>
                     <li class="green">
-                        <h3><%=string.Format("{0:yyyy-MM-dd}", opTime) %><span><%=string.Format("{0:yyyy}", opTime) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", DateTime.Now) %><span><%=string.Format("{0:yyyy}", DateTime.Now) %></span></h3>
                         <dl>
-                            <dt>你已提交开题报告，请等待指导教师审核</dt>
+                            <dt>
+                                <%
+                                    if (title != "" && title != null)
+                                    {%>
+                                你还未提交开题报告
+                                <% }
+                                    else
+                                    {%>
+                                你还未选题
+                                <%} %>
+                            </dt>
                         </dl>
                     </li>
+                    <%}
+                        else
+                        { %>
                     <li>
-                        <h3>10.13<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", opTime) %><span><%=string.Format("{0:yyyy}", opTime) %></span></h3>
                         <dl>
-                            <dt>教师评阅开题报告<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
+                            <dt>你已提交开题报告，请等待教师审核</dt>
                         </dl>
                     </li>
+                    <%if (teacherOpenning == null || teacherOpenning == "")
+                        { %>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
+                        <dl>
+                            <dt>教师评阅开题报告<span>请耐心等待</span></dt>
+                        </dl>
+                    </li>
+                    <%
+                        }
+                        else
+                        {%>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
+                        <dl>
+                            <dt>教师评阅开题报告<span><%=teacherOpenning %></span></dt>
+                        </dl>
+                    </li>
+                    <% }
+                        } %>
                 </ul>
             </div>
             <div class="history-date">
@@ -186,43 +225,7 @@
         </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script>
-        $(function () {
-            systole();
-        });
-
-        function systole() {
-            if (!$(".history").length) {
-                return;
-            }
-            var $warpEle = $(".history-date"),
-                $targetA = $warpEle.find("h2 a,ul li dl dt a"),
-                parentH,
-                eleTop = [];
-
-            parentH = $warpEle.parent().height();
-            $warpEle.parent().css({ "height": 59 });
-
-            setTimeout(function () {
-
-                $warpEle.find("ul").children(":not('h2:first')").each(function (idx) {
-                    eleTop.push($(this).position().top);
-                    $(this).css({ "margin-top": -eleTop[idx] }).children().hide();
-                }).animate({ "margin-top": 0 }, 1600).children().fadeIn();
-
-                $warpEle.parent().animate({ "height": parentH }, 2600);
-
-                $warpEle.find("ul").children(":not('h2:first')").addClass("bounceInDown").css({ "-webkit-animation-duration": "2s", "-webkit-animation-delay": "0", "-webkit-animation-timing-function": "ease", "-webkit-animation-fill-mode": "both" }).end().children("h2").css({ "position": "relative" });
-
-            }, 600);
-
-            $targetA.click(function () {
-                $(this).parent().css({ "position": "relative" });
-                $(this).parent().siblings().slideToggle();
-                $warpEle.parent().removeAttr("style");
-                return false;
-            });
-        };
-    </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/myProgress.js"></script>
 </body>
 </html>

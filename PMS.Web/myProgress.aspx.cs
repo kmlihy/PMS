@@ -16,6 +16,7 @@ namespace PMS.Web
         protected string planId;//批次ID
         protected string titleRecordId = null;//选题记录ID
         protected DateTime opTime;//提交开题报告时间
+        protected string teacherOpenning;//教师开题报告审核意见
         protected int opCount;
         protected Student student;
         protected OpenReport opReport;
@@ -51,12 +52,13 @@ namespace PMS.Web
                     {
                         opReport = opBll.Select(int.Parse(titleRecordId));
                         opTime = opReport.reportTime;
+                        teacherOpenning = opReport.teacherOpinion;
                     }
                 }
-                else
-                {
-                    Response.Write("你还没有选题，请先进行选题");
-                }
+                //else
+                //{
+                //    Response.Write("你还没有选题，请先进行选题");
+                //}
             }
             else
             {
