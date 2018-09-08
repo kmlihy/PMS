@@ -32,9 +32,9 @@
             margin-top: 20px;
         }
 
-        .sure_box{
+        /*.sure_box{
             margin-top:250px;
-        }
+        }*/
     </style>
 </head>
 <body>
@@ -128,14 +128,14 @@
                     <%} %>
                 </tbody>
             </table>
+        </div>
+        <div class="panel-footer" id="footer">
             <div class="container-fluid sure_box text-right" id="selectStudent">
                 <span>当前选择人数为：</span>
                 <input type="text" />
-                <button class="btn btn-info" id="btnSubmit">确定选择</button>
+                <button class="btn btn-info" id="btnSubmit" style="margin-top:0px;">确定选择</button>
                 <button class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button>
             </div>
-        </div>
-        <div class="panel-footer" id="footer">
             <button class="btn btn-info" type="button" id="btn_backForReplyStu" onclick="javascript:history.back(-1);">
                 <span class="glyphicon glyphicon-arrow-left"></span>
                 返回
