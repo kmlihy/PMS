@@ -65,7 +65,7 @@
                     </p>
                     <%} %>
                 </div>
-                <table class="table table-bordered" id="thesisTable" style="display: none">
+                <table class="table table-bordered" id="thesisTable">
                     <thead>
                         <tr>
                             <th class="text-center">文件名称</th>
