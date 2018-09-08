@@ -13,9 +13,19 @@
 </head>
 
 <body>
- <div class="panel">
+    <%if (dsTR == null)
+        { %>
+    <%=opinion %>
+    <%}
+        else
+        {%>
+    <div class="panel">
         <div class="panel-heading text-center">
             <h2>本科生毕业设计（论文）开题报告</h2>
+            <%if (state == 2)
+                { %>
+            <h4>正在等待教师审核</h4>
+            <%} %>
         </div>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered table_mian">
@@ -39,49 +49,133 @@
                     <tr>
                         <td class="openReportmain" colspan="2">选题目的、价值和意义：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="meaning" readonly="readonly"><%=or.meaning %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="meaning"><%=or.meaning %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="meaning"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">本课题在国内外的研究状况及发展趋势：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="trend" readonly="readonly"><%=or.trend %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="trend"><%=or.trend %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="trend"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">主要研究内容：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="content" readonly="readonly"><%=or.content %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="content"><%=or.content %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="content"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">实验设计计划（内容简介）：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="plan" readonly="readonly"><%=or.plan %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="plan"><%=or.plan %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="plan"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">完成设计（论文）的条件、方法及措施：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="method" readonly="readonly"><%=or.method %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="method"><%=or.method %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="method"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">设计（论文）拟定提纲：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="outline" readonly="readonly"><%=or.outline %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="outline"><%=or.outline %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="outline"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">主要参考文献（研究综述：作者、题目、杂志、卷号、页码）：</td>
                         <td class="openReportmain" colspan="8">
+                            <%if (state == 2 || state == 3)
+                                { %>
+                            <textarea class="openReportText" id="reference" readonly="readonly"><%=or.reference %></textarea>
+                            <%}
+                                else if (state == 1 && or != null)
+                                {%>
+                            <textarea class="openReportText" id="reference"><%=or.reference %></textarea>
+                            <%}
+                                else
+                                {%>
                             <textarea class="openReportText" id="reference"></textarea>
+                            <%} %>
                         </td>
                     </tr>
                     <tr>
                         <td class="openReportmain" colspan="2">指导教师意见及建议：</td>
                         <td class="openReportmain" colspan="8" id="guideTeacher">
-                            <textarea class="openReportText adviceTextArea" readonly="readonly"></textarea>
+                            <%if (state == 1 || state == 3)
+                                { %>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly"><%=opinion %></textarea>
+                            <%}
+                                else
+                                {%>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly">教师未回复，请耐心等待</textarea>
+                            <%} %>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -91,7 +185,14 @@
                     <tr>
                         <td class="openReportmain" colspan="2">分院院长意见：</td>
                         <td class="openReportmain" colspan="8" id="dean">
-                            <textarea class="openReportText adviceTextArea" readonly="readonly"></textarea>
+                            <%if (state == 1 || state == 3)
+                                { %>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly"><%=deanOpinion %></textarea>
+                            <%}
+                                else
+                                {%>
+                            <textarea class="openReportText adviceTextArea" readonly="readonly">教师未回复，请耐心等待</textarea>
+                            <%} %>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 年</label>
@@ -103,10 +204,12 @@
         </div>
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
-            <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button>
-            <button class="btn btn-success col-xs-1" type="button" id="btnTeaOpinion">查看教师意见</button>
+            <%if (state == 1||open==null)
+                { %>
+            <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button><%} %>
         </div>
     </div>
+    <%} %>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

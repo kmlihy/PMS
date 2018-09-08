@@ -11,6 +11,10 @@ namespace PMS.Model
     public class OpenReport
     {
         /// <summary>
+        /// 开题报告记录ID
+        /// </summary>
+        public int openId { set; get; }
+        /// <summary>
         /// 选题记录对象
         /// </summary>
         public TitleRecord titleRecord { set; get; }
@@ -64,6 +68,7 @@ namespace PMS.Model
         /// <summary>
         /// 参数构造函数
         /// </summary>
+        /// <param name="openId">开题报告记录ID</param>
         /// <param name="titleRecord">选题记录对象</param>
         /// <param name="meaning">选题目的、价值和意义</param>
         /// <param name="trend">本课题在国内外的研究状况及发展趋势</param>
@@ -75,8 +80,9 @@ namespace PMS.Model
         /// <param name="teacherOpinion">指导教师意见及建议</param>
         /// <param name="deanOpinion">分院院长意见</param>
         /// <param name="reportTime">提交时间</param>
-        public OpenReport(TitleRecord titleRecord,string meaning, string trend, string content, string plan, string method, string outline, string reference, string teacherOpinion, string deanOpinion,DateTime reportTime,int state )
+        public OpenReport(int openId,TitleRecord titleRecord,string meaning, string trend, string content, string plan, string method, string outline, string reference, string teacherOpinion, string deanOpinion,DateTime reportTime,int state )
         {
+            this.openId = openId;
             this.titleRecord = titleRecord;
             this.meaning = meaning;
             this.trend = trend;

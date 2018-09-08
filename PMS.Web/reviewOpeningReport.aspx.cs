@@ -40,11 +40,57 @@ namespace PMS.Web
             OpenReportBll orbll = new OpenReportBll();
             or = orbll.Select(titleRecordId);
             string op = Request["op"];
-            if(op == "review")
+            int openId = or.openId;
+            string teacherOpinion = Request["teacherOpinion"];
+            string deanOpinion = Request["deanOpinion"];
+            if (op == "no")
             {
-                string teacherOpinion = Request["teacherOpinion"];
-                Result row = orbll.teaInsert(titleRecordId, teacherOpinion);
-                if(row == Result.添加成功)
+                Result row = orbll.teaInsert(openId, teacherOpinion);
+                Result state = orbll.updateState(1, titleRecordId);
+                if (deanOpinion != "")
+                {
+                    Result dean = orbll.deanInsert(openId, teacherOpinion);
+                    if (row == Result.添加成功 && dean == Result.添加成功)
+                    {
+                        Response.Write("提交成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
+                }
+                if (row == Result.添加成功)
+                {
+                    Response.Write("提交成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("提交失败");
+                    Response.End();
+                }
+            }
+            else if (op == "yes")
+            {
+                Result row = orbll.teaInsert(openId, teacherOpinion);
+                Result state = orbll.updateState(3, titleRecordId);
+                if (deanOpinion != "")
+                {
+                    Result dean = orbll.deanInsert(openId, teacherOpinion);
+                    if (row == Result.添加成功 && dean == Result.添加成功 && state==Result.更新成功)
+                    {
+                        Response.Write("提交成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
+                }
+                if(row == Result.添加成功 && state == Result.更新成功)
                 {
                     Response.Write("提交成功");
                     Response.End();
