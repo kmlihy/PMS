@@ -33,8 +33,9 @@ namespace PMS.Model
         /// <summary>
         /// 上传时间
         /// </summary>
+        /// 
         public DateTime dateTime { set; get; }
-
+        public int state { get; set; }
         /// <summary>
         /// 无参构造函数
         /// </summary>
@@ -49,7 +50,7 @@ namespace PMS.Model
         /// <param name="supervisionOpinion">督导处抽查意见</param>
         /// <param name="guideGroupOpinion">指导小组意见</param>
         /// <param name="dateTime">上传时间</param>
-        public MedtermQuality(TitleRecord titleRecord, string planFinishSituation, string teacherOpinion, string supervisionOpinion, string guideGroupOpinion, DateTime dateTime)
+        public MedtermQuality(TitleRecord titleRecord, string planFinishSituation, string teacherOpinion, string supervisionOpinion, string guideGroupOpinion, DateTime dateTime,int state)
         {
             this.titleRecord = titleRecord;
             this.planFinishSituation = planFinishSituation;
@@ -57,6 +58,7 @@ namespace PMS.Model
             this.supervisionOpinion = supervisionOpinion;
             this.guideGroupOpinion = guideGroupOpinion;
             this.dateTime = dateTime;
+            this.state = state;
         }
     }
 }

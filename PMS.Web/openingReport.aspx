@@ -24,7 +24,11 @@
             <h2>本科生毕业设计（论文）开题报告</h2>
             <%if (state == 2)
                 { %>
-            <h4>正在等待教师审核</h4>
+            <h4 class="error">正在等待教师审核</h4>
+            <%}
+            else if(state==3)
+            {%>
+            <h4 class="success">开题报告已通过</h4>
             <%} %>
         </div>
         <div class="panel-body">
@@ -204,7 +208,7 @@
         </div>
         <div class="container text-center panel-footer panleFooter">
             <div>此表由学生本人填写后交指导教师签署意见，经各分院（教研室）院长签字同意后方可开题，否则不得开题。此表作为评定成绩的依据之一。</div>
-            <%if (state == 1||open==null)
+            <%if (state == 1 || open == null)
                 { %>
             <button class="btn btn-info col-xs-1" type="button" id="btnSubmit">提交</button><%} %>
         </div>

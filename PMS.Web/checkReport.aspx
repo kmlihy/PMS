@@ -14,10 +14,14 @@
 <body>
     <%if (state == 0)
         { %>
-    <h3>未提交论文</h3>
-    <%} else if (state==3) { %>
-    <h3>未选题</h3>
-    <%} else { %>
+    <h3>暂未提交论文</h3>
+    <%}
+        else if (state == 3)
+        { %>
+    <h3>暂未选题</h3>
+    <%}
+        else
+        { %>
     <div class="panel panel-default text-center" id="panel">
         <div class="panel-head">
             <h2>提交查重报告</h2>
@@ -26,6 +30,8 @@
             <h4><a href="http://www.bylwjc.com/" class="web">前往第三方网站>></a></h4>
             <h3><small>请使用第三方网站完成查重报告，可使用官方提供网址，也可自行查找；</small></h3>
             <div>
+                <%if (pstate == 0 || pstate == 1)
+                    { %>
                 <table class="table">
                     <tr>
                         <td class="text-right file-Info">
@@ -36,6 +42,29 @@
                         </td>
                     </tr>
                 </table>
+                <%} %>
+                <div id="myAlert" class="alert alert-success">
+                    <%if (pstate == 2)
+                        { %>
+                    <h3>等待教师处理</h3>
+                    <%}
+                    else if (pstate == 3)
+                    {%>
+                    <h3>查重报告已通过审核</h3>
+                    <%}
+                    else if (pstate == 1)
+                    {%>
+                    <h3 class="error">查重报告暂未通过审核</h3>
+                    <%}
+                    else
+                    {%>
+                    <strong>提示！</strong>只允许上传.doc或.docx格式的文件，谢谢！<p>
+                        文件命名规范：学号+姓名
+                        <br />
+                        例如：10002金木研
+                    </p>
+                    <%} %>
+                </div>
                 <table class="table table-bordered" id="thesisTable" style="display: none">
                     <thead>
                         <tr>
@@ -52,9 +81,12 @@
                 </table>
             </div>
         </div>
+        <% if (pstate == 0 || pstate == 1)
+            {%>
         <div class="panel panel-footer text-right">
             <button type="button" class="btn btn-primary" id="btnupload">上传</button>
         </div>
+        <%} %>
     </div>
     <%} %>
 </body>

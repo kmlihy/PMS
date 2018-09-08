@@ -110,7 +110,7 @@ namespace PMS.Web.admin
             tabuilder.StrTable = "V_Title";
             tabuilder.StrWhere = (strWhere == null || strWhere=="" ? where : strWhere);
             tabuilder.IntColType = 0;
-            tabuilder.IntOrder = 0;
+            tabuilder.IntOrder = 1;
             tabuilder.IntPageNum = int.Parse(currentPage);
             tabuilder.IntPageSize = pagesize;
             tabuilder.StrColumn = "titleId";

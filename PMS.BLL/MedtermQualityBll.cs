@@ -43,6 +43,16 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+
+        public Result updateState(MedtermQuality medterm)
+        {
+            int row = mdao.updateState(medterm);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
         /// <summary>
         /// 督导处、指导小组提交评阅中期质量意见
         /// </summary>
@@ -80,6 +90,10 @@ namespace PMS.BLL
             {
                 return null;
             }
+        }
+        public MedtermQuality getState(int titleRecordId)
+        {
+            return mdao.getState(titleRecordId);
         }
     }
 }
