@@ -76,6 +76,7 @@
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
+    <Content Include="css\lc_switch.css" />
     <Content Include="css\timeAxis.css" />
     <Content Include="defenseRecordTeacher.aspx" />
     <Content Include="distributionReplyStudent.aspx" />
@@ -151,6 +152,7 @@
     <Content Include="js\distributionReplyStudent.js" />
     <Content Include="js\distributionReplyTeam.js" />
     <Content Include="js\instructorsComments.js" />
+    <Content Include="js\lc_switch.min.js" />
     <Content Include="js\myProgress.js" />
     <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
