@@ -81,7 +81,15 @@ namespace PMS.BLL
             }
             return Result.更新失败;
         }
-
+        public Result selectSate(int openState)
+        {
+            int row = sdao.selectSate(openState);
+            if (row > 0)
+            {
+                return Result.记录存在;
+            }
+            return Result.记录不存在;
+        }
         /// <summary>
         /// 根据学生账号、批次id获取成绩
         /// </summary>

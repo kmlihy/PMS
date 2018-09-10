@@ -12,6 +12,7 @@ namespace PMS.Web.admin
     using Result = Enums.OpResult;
     public partial class openAchievement : System.Web.UI.Page
     {
+        public int status;
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Request["op"];
@@ -49,6 +50,20 @@ namespace PMS.Web.admin
                 {
                     Response.Write("关闭查询失败");
                     Response.End();
+                }
+            }
+            else
+            {
+                int openState = 0;
+                Result result = scoreBll.selectSate(openState);
+                //按钮开关
+                if (result == Result.记录存在)
+                {
+                    status = 0;//关
+                }
+                else
+                {
+                    status = 1;//开
                 }
             }
         }

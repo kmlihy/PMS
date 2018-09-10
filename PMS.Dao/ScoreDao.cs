@@ -139,5 +139,13 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+
+        public int selectSate(int openState)
+        {
+            string sql = "select COUNT(scoreId) from T_Score where openState=@openState";
+            string[] param = { "@openState" };
+            object[] values = { openState };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
     }
 }
