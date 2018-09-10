@@ -88,13 +88,15 @@ $(document).ready(function () {
                 sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
                 sessionStorage.removeItem("type");
                 sessionStorage.setItem("type", "collAndPro");
+                jump(1);
             } else if (dropstrWhereplan !== "0" && dropstrWhereColl !== "0") {
-                //存储批次下拉框的条件           
+                //存储批次下拉框的条件
+                sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
                 sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
                 sessionStorage.removeItem("type");
                 sessionStorage.setItem("type", "allDrop");
                 jump(1);
-            } else if (dropstrWhereplan !== "0" && dropstrWhereColl === "0") {
+            } else if (dropstrWhereplan !== "0") {
                 //存储批次下拉框的条件           
                 sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
                 sessionStorage.removeItem("type");
@@ -130,12 +132,24 @@ $(document).ready(function () {
         if (dropstrWhereplan !== "0") {
             sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
-            //判断专业是否被选中
-            if (dropstrWherepro !== "0") {
+            var dropstrWhereColl = $("#chooseStuColl").find("option:selected").val();
+            if (dropstrWherepro !== "0" && dropstrWhereColl !== "0") {
+                //存储批次下拉框的条件
+                sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
+                sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "allDrop");
+                jump(1);
+             }else if (dropstrWherepro !== "0") {
                 //存储专业下拉框的条件
                 sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
                 sessionStorage.removeItem("type");
                 sessionStorage.setItem("type", "alldrop");
+                jump(1);
+            }else if (dropstrWhereColl !== "0") {
+                sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "collAndPlan");
                 jump(1);
             } else {
                 sessionStorage.removeItem("type");
