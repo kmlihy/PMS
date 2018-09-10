@@ -42,7 +42,7 @@
                                 <%} %>
                                 </select>
                                 &nbsp
-                            <%} else{%>
+                            <%}%>
                                 <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
                                     <option value="0">-显示所有专业-</option>
                                     <%for (int i = 0; i < dsPro.Tables[0].Rows.Count; i++)
@@ -74,7 +74,6 @@
                                         <%} %>
                                     <%} %>
                                 </select>
-                            <%} %>
                             <%if (showinput == null)
                                 {
                                     showinput = "请输入搜索条件";

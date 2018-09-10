@@ -358,12 +358,12 @@
                                 </li>
                                 <li role="presentation">
                                     <a href="../distributionReplyTeam.aspx" class="sidebarclick" >
-                                        <span>分配答辩小组</span>
+                                        <span>答辩小组</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="../distributionReplyStudent.aspx" class="sidebarclick" >
-                                        <span>答辩学生</span>
+                                    <a href="openAchievement.aspx" class="sidebarclick" >
+                                        <span>成绩管理</span>
                                     </a>
                                 </li>
                             </ul>
