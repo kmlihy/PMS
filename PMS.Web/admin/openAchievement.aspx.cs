@@ -16,12 +16,16 @@ namespace PMS.Web.admin
         {
             string op = Request["op"];
             ScoreBll scoreBll = new ScoreBll();
+            TeacherBll teacherBll = new TeacherBll();
+            Teacher teacher = new Teacher();
             Score score = new Score();
             if (op=="open")
             {
                 score.openState = 1;
+                teacher.state = 0;
                 Result result = scoreBll.openScore(score);
-                if (result==Result.更新成功)
+                Result row = teacherBll.updateState(teacher);
+                if (result==Result.更新成功 && row==Result.更新成功)
                 {
                     Response.Write("成绩已开放");
                     Response.End();

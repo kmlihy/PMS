@@ -300,5 +300,25 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 更新教师状态
+        /// </summary>
+        /// <param name="teacher"></param>
+        /// <returns></returns>
+        public int updateState(Teacher teacher)
+        {
+            try
+            {
+                string cmdText = "update T_Teacher set state=@state";
+                string[] param = { "@state" };
+                object[] values = { teacher.state };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
