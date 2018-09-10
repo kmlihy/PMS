@@ -20,12 +20,11 @@
         <hr />
         <div class="panel-body">
             <form class="form-horizontal" id="form" action="login.aspx" method="post" role="form" onsubmit="return admincheckForm()">
-
                 <div class="input-group" id="Acontent">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                     </span>
-                    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名" />
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名" autofocus="autofocus" />
                     <span></span>
                 </div>
 
