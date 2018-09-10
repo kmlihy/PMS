@@ -43,7 +43,9 @@ namespace PMS.Web
                 path = pathBll.Select(titleRecord.TitleRecordId, stuAccount);
                 guide.path = path;
                 Result row = guideBll.Insert(guide);
-                if(row == Result.添加成功)
+                path.state = 1;
+                Result result = pathBll.updateState(path);
+                if (row == Result.添加成功 && result == Result.更新成功)
                 {
                     Response.Write("提交成功");
                     Response.End();

@@ -64,8 +64,8 @@ namespace PMS.Web
             scoreModel.material = material;
             scoreModel.paperDesign = paperDesign;
             scoreModel.workload = workload;
-            scoreModel.innovate = innovate;
-            scoreModel.evaluate = evaluate;
+            scoreModel.crossInnovate = innovate;
+            scoreModel.crossEvaluate = evaluate;
             scoreModel.crossScore = score;
             scoreModel.student = student;
             Plan plan = new Plan();

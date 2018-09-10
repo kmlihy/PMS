@@ -30,6 +30,7 @@ $("#btnSubmit").click(function () {
     var txtAreDefence = $("#txtAreDefence").val();
     var textAreInnovate = $("#textAreInnovate").val();
     var txtAreDefenceScore = $("#txtAreDefenceScore").val();
+    var txtAreEvaluate = $("#txtAreDefenceScore").val();
     if (txtAreDefenceScore == "") {
         window.wxc.xcConfirm("成绩不能为空", window.wxc.xcConfirm.typeEnum.warning);
     } else if (txtAreDefenceScore < 0) {
@@ -37,7 +38,7 @@ $("#btnSubmit").click(function () {
     } else if (txtAreDefenceScore > 100) {
         window.wxc.xcConfirm("成绩不能大于100", window.wxc.xcConfirm.typeEnum.warning);
     }
-    else if (txtAreReportContent == "" || txtAreReportTime == "" || txtAreDefence == "" || textAreInnovate == "") {
+    else if (txtAreReportContent == "" || txtAreReportTime == "" || txtAreDefence == "" || textAreInnovate == "" || txtAreEvaluate=="") {
         window.wxc.xcConfirm("还有其他未填项", window.wxc.xcConfirm.typeEnum.warning);
     } else {
         $.ajax({
@@ -49,6 +50,7 @@ $("#btnSubmit").click(function () {
                 Defence: txtAreDefence,
                 Innovate: textAreInnovate,
                 DefenceScore: txtAreDefenceScore,
+                txtAreEvaluate: txtAreEvaluate,
                 op: submit
             },
             dataType: 'text',
