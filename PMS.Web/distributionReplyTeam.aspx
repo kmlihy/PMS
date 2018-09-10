@@ -138,17 +138,19 @@
                                         <%} %>
                                         <select class="selectpicker" data-width="auto" id="chooseStuPro">
                                             <option value="0">请选择查询批次</option>
-                                            <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
-                                            {
-                                                if (planId == dsPlan.Tables[0].Rows[i]["planId"].ToString())
-                                                {%>
+                                            <%if (dsPlan!=null)
+                                                { for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
+                                                    {
+                                                        if (planId == dsPlan.Tables[0].Rows[i]["planId"].ToString())
+                                                        {%>
                                                     <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString()%>" selected="selected"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
                                                     <%}
-                                                else
-                                                { %>
+                                                    else
+                                                    { %>
                                                     <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString()%>"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
                                                 <%}
-                                            } %>
+                                                    }
+                                                }%>
                                         </select>
                                         <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>" />
                                         <span class="input-group-btn">
@@ -167,7 +169,10 @@
                         <th class="text-center">组长</th>
                         <th class="text-center">副组长</th>
                         <th class="text-center">秘书</th>
+                        <%if (state == 0)
+                            { %>
                         <th class="text-center">分配</th>
+                        <%} %>
                         <th class="text-center">查看</th>
                     </tr>
                 </thead>
@@ -181,9 +186,12 @@
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["leaderName"].ToString() %></td>
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["memberName"].ToString() %></td>
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["recordName"].ToString() %></td>
+                        <%if (state == 0)
+                            { %>
                         <td class="col-sm-2">
                             <button type="button" class="btn btn-info" onclick="window.location.href='distributionReplyStudent.aspx?defenGroupId=<%=ds.Tables[0].Rows[i]["defenGroupId"].ToString() %>'">分配答辩学生</button>
                         </td>
+                        <%} %>
                         <td class="col-sm-2"><button type="button" class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button></td>
                     </tr>
                     <%} %>

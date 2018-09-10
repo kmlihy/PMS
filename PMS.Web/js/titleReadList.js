@@ -52,6 +52,25 @@ $(document).ready(function () {
                 break;
         }
     });
+    //分院下拉框查询
+    $("#chooseStuColl").change(function () {
+        sessionStorage.removeItem("strWhere");
+        sessionStorage.removeItem("dropstrWherepro");
+        sessionStorage.removeItem("dropstrWhereplan");
+        //获取用户选中的专业下拉框的Id值
+        var dropstrWhereColl = $("#chooseStuColl").find("option:selected").val();
+        if (dropstrWhereColl !== "0") {
+            //把值存储到sessionStorage中并传到后台
+            sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
+            sessionStorage.removeItem("type");
+            sessionStorage.setItem("type", "Colldrop");
+            jump(1);
+        } else {
+            sessionStorage.removeItem("dropstrWhereColl");
+            sessionStorage.removeItem("type");
+            jump(1);
+        }
+    });
     //专业下拉框查询
     $("#chooseStuPro").change(function() {
         sessionStorage.removeItem("strWhere");
@@ -61,10 +80,21 @@ $(document).ready(function () {
         if (dropstrWherepro !== "0") {
             //把值存储到sessionStorage中并传到后台
             sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
+            //获取用户选中学院的id值
+            var dropstrWhereColl = $("#chooseStuColl").find("option:selected").val();
             //获取用户选中批次的id值
             var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
-            //判断批次下拉框有没有值
-            if (dropstrWhereplan !== "0") {
+            if (dropstrWhereColl !== "0") {
+                sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "collAndPro");
+            } else if (dropstrWhereplan !== "0" && dropstrWhereColl !== "0") {
+                //存储批次下拉框的条件           
+                sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "allDrop");
+                jump(1);
+            } else if (dropstrWhereplan !== "0" && dropstrWhereColl === "0") {
                 //存储批次下拉框的条件           
                 sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
                 sessionStorage.removeItem("type");
@@ -90,23 +120,6 @@ $(document).ready(function () {
                 sessionStorage.removeItem("type");
                 jump(1);
             }
-        }
-    });
-    //分院下拉框查询
-    $("#chooseStuColl").change(function () {
-        sessionStorage.removeItem("strWhere");
-        //获取用户选中的专业下拉框的Id值
-        var dropstrWhereColl = $("#chooseStuColl").find("option:selected").val();
-        if (dropstrWhereColl !== "0") {
-            //把值存储到sessionStorage中并传到后台
-            sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
-            sessionStorage.removeItem("type");
-            sessionStorage.setItem("type", "Colldrop");
-            jump(1);
-        } else {
-            sessionStorage.removeItem("dropstrWhereColl");
-            sessionStorage.removeItem("type");
-            jump(1);
         }
     });
     //批次下拉框查询
@@ -154,8 +167,17 @@ $(document).ready(function () {
         else if (sessionStorage.getItem("strWhere") !== null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
         }
-        else if (sessionStorage.getItem("dropstrWhereColl") !== null && sessionStorage.getItem("dropstrWhereColl") !== "undefined") {
+        else if (sessionStorage.getItem("dropstrWhereColl") !== null && "dropstrWherepro" === null && sessionStorage.getItem("dropstrWhereplan") === null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereColl=" + sessionStorage.getItem("dropstrWhereColl") + "&type=" + sessionStorage.getItem("type");
+        }
+        else if (sessionStorage.getItem("dropstrWhereColl") !== null && "dropstrWherepro" !== null && sessionStorage.getItem("dropstrWhereplan") === null) {
+            window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereColl=" + sessionStorage.getItem("dropstrWhereColl") + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
+        }
+        else if (sessionStorage.getItem("dropstrWhereColl") !== null && "dropstrWhereplan" !== null && sessionStorage.getItem("dropstrWherepro") === null) {
+            window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereColl=" + sessionStorage.getItem("dropstrWhereColl") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+        }
+        else if (sessionStorage.getItem("dropstrWhereColl") !== null && "dropstrWhereplan" !== null && sessionStorage.getItem("dropstrWherepro") !== null) {
+            window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereColl=" + sessionStorage.getItem("dropstrWhereColl") + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
         }
         else if (sessionStorage.getItem("dropstrWhereplan") !== null && sessionStorage.getItem("dropstrWherepro") === null) {
             window.location.href = "titleReadList.aspx?currentPage=" + cur + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
