@@ -91,6 +91,11 @@ namespace PMS.BLL
                 return null;
             }
         }
+        /// <summary>
+        /// 获取中期质量完成状态state
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
         public MedtermQuality getState(int titleRecordId)
         {
             return mdao.getState(titleRecordId);

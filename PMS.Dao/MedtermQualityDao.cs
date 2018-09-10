@@ -45,7 +45,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_MedtermQuality(titleRecordId,teacherOpinion,dateTime) values(@titleRecordId,@teacherOpinion,@dateTime)";
+                string cmdText = "update T_MedtermQuality set teacherOpinion = @teacherOpinion,dateTime= @dateTime where titleRecordId=@titleRecordId";
                 string[] param = { "@titleRecordId", "@teacherOpinion", "@dateTime" };
                 object[] values = { medterm.titleRecord.TitleRecordId, medterm.teacherOpinion, medterm.dateTime };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
@@ -105,9 +105,9 @@ namespace PMS.Dao
         }
 
         /// <summary>
-        /// 通过选题记录id获取最新state
+        /// 获取中期质量完成状态state
         /// </summary>
-        /// <param name="titleRecordId"></param>
+        /// <param name="titleRecordId">选题记录id</param>
         /// <returns></returns>
         public MedtermQuality getState(int titleRecordId)
         {

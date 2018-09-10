@@ -24,8 +24,8 @@
         { %>
     <h3><%=content %></h3>
     <%}
-    else
-    {%>
+        else
+        {%>
     <div class="container-fluid">
         <div class="panel">
             <div class="panel-heading">
@@ -66,12 +66,12 @@
                     <tr>
                         <td class="col-xs-2">期中按计划完成情况</td>
                         <td colspan="10" style="padding: 0 0;">
-                            <%if (mstate==0||mstate==1)
-                            { %>
+                            <%if (mstate == 0 || mstate == 1)
+                                { %>
                             <textarea rows="5" class="textArea" id="stuSet"></textarea>
                             <%}
-                            else if (mstate == 2||mstate==3)
-                            { %>
+                                else if (mstate == 2 || mstate == 3)
+                                { %>
                             <textarea rows="5" class="textArea" id="stuShow" readonly="readonly"><%=planFinishSituation %></textarea>
                             <%} %>
                             <div class="text-right" style="width: 100%">
@@ -90,13 +90,24 @@
                         <td class="col-xs-2">指导教师意见</td>
                         <td colspan="4" style="padding: 0 0;">
                             <%if (state == 1)
-                            { %>
-                            <textarea rows="5" class="textArea" id="teaSet"></textarea>
-                            <%}
-                            else if (state == 3)
-                            { %>
+                            {
+                                if (mstate != 3)
+                                {%>
+                                    <textarea rows="5" class="textArea" id="teaSet"></textarea>
+                                <%}else{%>
+                                    <textarea rows="5" class="textArea" id="teaSet" readonly="readonly"><%=teacherOpinion %></textarea>
+                                <%}
+                            }else if (state == 3)
+                            {
+                                if (mstate != 3)
+                                {%>
                             <textarea rows="5" class="textArea" id="teaShow" readonly="readonly">提交后请等待指导教师回复</textarea>
-                            <%} %>
+                            <%}
+                            else
+                            { %>
+                            <textarea rows="5" class="textArea" id="teaShow" readonly="readonly"><%=teacherOpinion %></textarea>
+                            <%  }
+                            } %>
                             <div class="text-right" style="width: 100%">
                                 <span>指导教师签字：</span>
                                 <span contenteditable="true" class="label_Time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -113,11 +124,11 @@
                         <td class="col-xs-2">毕业设计（论文）指导小组意见</td>
                         <td colspan="4" style="padding: 0 0;">
                             <%if (state == 1)
-                            { %>
+                                { %>
                             <textarea rows="5" class="textArea" id="groupSet"></textarea>
                             <%}
-                            else if (state == 3)
-                            { %>
+                                else if (state == 3)
+                                { %>
                             <textarea rows="5" class="textArea" id="groupShow" readonly="readonly">提交后请等待毕业设计（论文）指导小组回复</textarea>
                             <%} %>
                             <div class="text-right" style="width: 100%">

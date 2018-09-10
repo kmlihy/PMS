@@ -42,13 +42,23 @@ namespace PMS.Web
                 guide.dateTime = DateTime.Now;
                 path = pathBll.Select(titleRecord.TitleRecordId, stuAccount);
                 guide.path = path;
-                Result row = guideBll.Insert(guide);
+                path.titleRecord = titleRecord;
                 path.state = 1;
+                path.type = 0;
                 Result result = pathBll.updateState(path);
-                if (row == Result.添加成功 && result == Result.更新成功)
+                if (result == Result.更新成功)
                 {
-                    Response.Write("提交成功");
-                    Response.End();
+                    Result row = guideBll.Insert(guide);
+                    if (row == Result.添加成功)
+                    {
+                        Response.Write("提交成功");
+                        Response.End();
+                    }
+                        else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
                 }
                 else
                 {

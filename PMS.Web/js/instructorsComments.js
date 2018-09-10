@@ -41,7 +41,7 @@
                 if (succ == "提交成功") {
                     window.wxc.xcConfirm("添加成功", window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                           
+                            window.location.href = "InstructorsComments.aspx";
                         }
                     });
                 }

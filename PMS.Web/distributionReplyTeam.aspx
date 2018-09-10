@@ -17,23 +17,21 @@
 <body>
     <div class="panel">
         <div class=" panel-heading">
-            <h2>分配答辩小组</h2>
+            <h2>答辩小组</h2>
         </div>
         <div class="panel-body">
             <% if (state == 2)
                 { %>
             <!--添加答辩小组-->
-            <table class="table" style="width: 80%; margin: 0 auto;">
-                <thead>
+            <table class="table table-bordered">
+                <tbody>
                     <tr>
                         <th>所属批次</th>
                         <th>组长</th>
                         <th>副助长</th>
                         <th>秘书</th>
-                        <th>操作</th>
+                        <th>添加答辩小组</th>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         <td class="col-sm-3">
                             <select name="usertype" class="selectpicker show-tick form-control col-sm-1  usertype" id="plan" data-live-search="true" data-max-options="1">
@@ -113,7 +111,7 @@
                 <!--查询区域-->
                 <thead>
                     <tr>
-                        <th colspan="6">
+                        <th colspan="8">
                             <div class="panel panel-default" id="propanelbox">
                                 <div class="pane input-group" id="panel-head">
                                     <div class="input-group" id="inputgroups">
@@ -169,7 +167,7 @@
                         <th class="text-center">组长</th>
                         <th class="text-center">副组长</th>
                         <th class="text-center">秘书</th>
-                        <%if (state == 0)
+                        <%if (state == 2)
                             { %>
                         <th class="text-center">分配</th>
                         <%} %>
@@ -186,7 +184,7 @@
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["leaderName"].ToString() %></td>
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["memberName"].ToString() %></td>
                         <td class="col-sm-2"><%=ds.Tables[0].Rows[i]["recordName"].ToString() %></td>
-                        <%if (state == 0)
+                        <%if (state == 2)
                             { %>
                         <td class="col-sm-2">
                             <button type="button" class="btn btn-info" onclick="window.location.href='distributionReplyStudent.aspx?defenGroupId=<%=ds.Tables[0].Rows[i]["defenGroupId"].ToString() %>'">分配答辩学生</button>

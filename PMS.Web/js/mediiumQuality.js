@@ -3,7 +3,7 @@
         var student = $("#stuSet").val();
         var teacher = $("#teaSet").val();
         var group = $("#groupSet").val();
-        if (student != "" && teacher == null) {
+        if (student != "" && teacher == undefined) {
             $.ajax({
                 type: 'Post',
                 url: "mediiumQuality.aspx",
@@ -16,6 +16,7 @@
                     if (succ === "提交成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
+                                $("#stuSet").readOnly = true;
                                 $("#btnSubmit").hide();
                             }
                         });
@@ -27,7 +28,7 @@
                     }
                 }
             })
-        } else if (teacher != "" && student == null) {
+        } else if (teacher != "" && student == undefined) {
             $.ajax({
                 type: 'Post',
                 url: "mediiumQuality.aspx",
@@ -40,6 +41,7 @@
                     if (succ === "提交成功") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                             onOk: function (v) {
+                                $("#teaSet").readOnly = true;
                             }
                         });
                     } else {

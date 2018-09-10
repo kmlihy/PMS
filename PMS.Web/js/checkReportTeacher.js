@@ -21,6 +21,33 @@ $("#btn-search").click(function () {
     sessionStorage.setItem("type", "textSelect");
     jump(1);
 });
+
+//同意通过
+$("#submit").click(function () {
+    var stuAccount = $(this).parent().parent().find("#stuAccount");
+    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.xcConfirm, {
+        onOk: function (v) {
+            $("#submit").hide();
+            $("#submitNo").hide();
+            $("#no").hide();
+            window.location.href = "checkReportTeacher.aspx?agree=yes&stuAccount=" + stuAccount;
+        }
+    });
+})
+
+//不同意通过
+$("#submitNo").click(function () {
+    var stuAccount = $(this).parent().parent().find("#stuAccount");
+    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.xcConfirm, {
+        onOk: function (v) {
+            $("#submit").hide();
+            $("#submitNo").hide();
+            $("#ok").hide();
+            window.location.href = "checkReportTeacher.aspx?agree=yes&stuAccount=" + stuAccount;
+        }
+    });
+})
+
 $(document).ready(function () {
     //分页参数传递
     $(".jump").click(function () {

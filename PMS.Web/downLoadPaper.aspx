@@ -115,7 +115,7 @@
         </ul>
     </div>
 
-    <%--查看指导意见--%>
+    <%--添加指导意见--%>
     <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
