@@ -72,6 +72,16 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+        public Result openScore(Score score)
+        {
+            int row = sdao.openScore(score);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
+
         /// <summary>
         /// 根据学生账号、批次id获取成绩
         /// </summary>

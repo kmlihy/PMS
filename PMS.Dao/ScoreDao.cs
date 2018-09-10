@@ -119,5 +119,25 @@ namespace PMS.Dao
             reader.Close();
             return score;
         }
+        /// <summary>
+        /// 开放成绩
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public int openScore(Score score)
+        {
+            try
+            {
+                string cmdText = "update set T_Score openState=@state";
+                string[] param = {"@state" };
+                object[] values = {score.openState };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
