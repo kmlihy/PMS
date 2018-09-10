@@ -55,6 +55,16 @@ namespace PMS.BLL
             }
         }
 
+        public Result updateState(Teacher teacher)
+        {
+            int row = dao.updateState(teacher);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
+
         /// <summary>
         /// 判断在另外一张表中是否有数据
         /// </summary>
