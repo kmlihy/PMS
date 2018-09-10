@@ -82,6 +82,9 @@ $(document).ready(function () {
             sessionStorage.setItem("dropstrWherepro", dropstrWherepro);
             //获取用户选中学院的id值
             var dropstrWhereColl = $("#chooseStuColl").find("option:selected").val();
+            if (dropstrWhereColl == undefined) {
+                dropstrWhereColl = "0";
+            }
             //获取用户选中批次的id值
             var dropstrWhereplan = $("#choosePlan").find("option:selected").val();
             if (dropstrWhereColl !== "0") {
@@ -133,6 +136,9 @@ $(document).ready(function () {
             sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
             var dropstrWhereColl = $("#chooseStuColl").find("option:selected").val();
+            if (dropstrWhereColl == undefined) {
+                dropstrWhereColl = "0";
+            }
             if (dropstrWherepro !== "0" && dropstrWhereColl !== "0") {
                 //存储批次下拉框的条件
                 sessionStorage.setItem("dropstrWhereColl", dropstrWhereColl);
