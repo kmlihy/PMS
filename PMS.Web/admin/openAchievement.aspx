@@ -17,7 +17,7 @@
     <div class="panel-body text-center">
         <div id="second_div">
             <p>
-                <input type="checkbox" name="check-1" value="4" class="lcs_check" autocomplete="off"/>
+                <input type="checkbox" name="check-1" value="4" class="lcs_check" autocomplete="off" />
             </p>
         </div>
     </div>
@@ -25,16 +25,5 @@
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../js/lc_switch.min.js"></script>
 <script type="text/javascript" src="../js/xcConfirm.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('input').lc_switch();
-        $('body').delegate('.lcs_check', 'lcs-statuschange', function () {
-            var status = ($(this).is(':checked')) ? 'checked' : 'unchecked';
-            //status 当前的状态，对应状态 on off  'checked' : 'unchecked';
-            //autocomplete="off"  默认为关
-            // 加上 disabled="disabled"不可再改变状态
-
-        });
-    })
-</script>
+<script type="text/javascript" src="../js/openAchievement.js"></script>
 </html>

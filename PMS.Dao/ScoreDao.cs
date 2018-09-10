@@ -128,7 +128,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update set T_Score openState=@state";
+                string cmdText = "update T_Score set openState=@state";
                 string[] param = {"@state" };
                 object[] values = {score.openState };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
