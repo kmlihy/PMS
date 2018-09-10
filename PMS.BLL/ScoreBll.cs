@@ -49,24 +49,6 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 添加答辩成绩
-        /// </summary>
-        /// <param name="score">成绩对象</param>
-        /// <returns></returns>
-        public Result updateDefenGuide(Score score)
-        {
-            int row = sdao.updateDefenGuide(score);
-            if (row > 0)
-            {
-                return Result.添加成功;
-            }
-            else
-            {
-                return Result.添加失败;
-            }
-        }
-
-        /// <summary>
         /// 通过titleRecordId获取当前状态
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>

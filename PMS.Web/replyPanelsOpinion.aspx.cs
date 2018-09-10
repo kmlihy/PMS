@@ -45,6 +45,7 @@ namespace PMS.Web
             string txtAreDefence = Request["Defence"];
             string txtAreInnovate = Request["Innovate"];
             double txtAreDefenceScore = double.Parse(Request["DefenceScore"]);
+            string txtAreEvaluate = Request["txtAreEvaluate"];
 
             Student stu = new Student();
             Plan plan = new Plan();
@@ -57,8 +58,9 @@ namespace PMS.Web
             scoreModel.reportContent = txtAreReportContent;
             scoreModel.reportTime = txtAreReportTime;
             scoreModel.defence = txtAreDefence;
-            scoreModel.innovate = txtAreInnovate;
+            scoreModel.defenInnovate = txtAreInnovate;
             scoreModel.defenceScore = txtAreDefenceScore;
+            scoreModel.defenEvaluate = txtAreEvaluate;
             ScoreBll scorebll = new ScoreBll();
             Result row = scorebll.updatereplyPanelsOpinion(scoreModel);
             if (row == Result.添加成功)
