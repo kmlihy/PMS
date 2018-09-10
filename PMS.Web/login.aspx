@@ -25,7 +25,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                     </span>
-                    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名" />
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名"  autofocus="autofocus"/>
                     <span></span>
                 </div>
 
