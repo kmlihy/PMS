@@ -66,6 +66,7 @@ namespace PMS.Web
                     insertPath.dateTime = Convert.ToDateTime(time);
                     Result result = pathBll.InsertReport(insertPath);
                     insertPath.state = 2;
+                    insertPath.type = 1;
                     Result row = pathBll.updateState(insertPath);
                     if (result == Result.添加成功 && row == Result.更新成功)
                     {

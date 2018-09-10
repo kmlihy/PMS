@@ -30,7 +30,7 @@ namespace PMS.BLL
             return Result.添加失败;
         }
         /// <summary>
-        /// 通过选题记录id获取最新state
+        /// 通过选题记录id获取最新路径表state
         /// </summary>
         /// <param name="titleRecordId"></param>
         /// <returns></returns>
@@ -39,6 +39,11 @@ namespace PMS.BLL
             return pdao.getState(titleRecordId,type);
         }
 
+        /// <summary>
+        /// 查询是否有论文
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <returns></returns>
         public Result selectByTitleRecordId(string titleRecordId)
         {
             int row = pdao.selectByTitleRecordId(titleRecordId);

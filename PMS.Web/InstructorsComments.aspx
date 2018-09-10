@@ -87,10 +87,7 @@
             </table>
         </div>
         <div class="container text-center panel-footer panleFooter">
-            <button class="btn btn-info agreebtn" type="button" id="btnReviewSubmit" data-toggle="modal" data-target="#myModa2">同意</button>
-            <button type="button" class="btn btn-info agreebtn" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
-                不同意
-            </button>
+            <button class="btn btn-info agreebtn" type="button" id="btnReviewSubmit" data-toggle="modal" data-target="#myModa2">提交</button>
 
         </div>
         <%-- 同意通过指定交叉指导教师--%>

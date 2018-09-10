@@ -58,6 +58,7 @@ namespace PMS.Web
 
                     Result result = pathBll.InsertThesis(insertPath);
                     insertPath.state = 2;
+                    insertPath.type = 0;
                     Result row = pathBll.updateState(insertPath);
                     if (result==Result.添加成功 && row==Result.更新成功)
                     {
