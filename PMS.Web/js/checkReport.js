@@ -48,7 +48,11 @@ function ajaxFileUpload() {
                         window.wxc.xcConfirm(data.error, window.wxc.xcConfirm.typeEnum.warning);
                         $('#upload').val("");
                     } else {
-                        window.wxc.xcConfirm(data.msg, window.wxc.xcConfirm.typeEnum.warning);
+                        window.wxc.xcConfirm(data.msg, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                window.location.reload(true);
+                            }
+                        });
                         $('#upload').val("");
                     }
                 }

@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>提交查重报告</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/zwh.css" />
     <link rel="stylesheet" href="css/lgd.css" />
@@ -48,16 +49,16 @@
                         { %>
                     <h3>等待教师处理</h3>
                     <%}
-                    else if (pstate == 3)
-                    {%>
+                        else if (pstate == 3)
+                        {%>
                     <h3>查重报告已通过审核</h3>
                     <%}
-                    else if (pstate == 1)
-                    {%>
+                        else if (pstate == 1)
+                        {%>
                     <h3 class="error">查重报告暂未通过审核</h3>
                     <%}
-                    else
-                    {%>
+                        else
+                        {%>
                     <strong>提示！</strong>只允许上传.doc或.docx格式的文件，谢谢！<p>
                         文件命名规范：学号+姓名
                         <br />
@@ -93,6 +94,7 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/ajaxfileupload.js"></script>
+<script src="js/xcConfirm.js"></script>
 <script src="js/checkReport.js"></script>
 <script>
 </script>

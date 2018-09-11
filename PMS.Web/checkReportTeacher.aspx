@@ -64,8 +64,8 @@
                                 <%} else if (ds.Tables[0].Rows[i]["state"].ToString() == "1") { %>
                                 <span class="btn-danger" id="no">审核不通过</span>
                                 <%} else{ %>
-                                <button type="submit" class="btn btn-success" id="submit">同意</button>
-                                <button type="submit" class="btn btn-danger" id="submitNo">不同意</button>
+                                <button type="submit" class="btn btn-success submit">同意</button>
+                                <button type="submit" class="btn btn-danger submitNo">不同意</button>
                                 <%} %>
                             </td>
                         </tr>
@@ -108,7 +108,7 @@
 
         </div>
         <%-- 意见填写--%>
-        <div class="modal" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+       <%-- <div class="modal" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--%>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />

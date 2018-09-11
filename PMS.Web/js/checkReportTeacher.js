@@ -23,12 +23,12 @@ $("#btn-search").click(function () {
 });
 
 //同意通过
-$("#submit").click(function () {
+$(".submit").click(function () {
     var stuAccount = $(this).parent().parent().find("#stuAccount").text().trim();
     window.wxc.xcConfirm("确定同意吗？", window.wxc.xcConfirm.typeEnum.confirm, {
         onOk: function (v) {
-            $("#submit").hide();
-            $("#submitNo").hide();
+            $(".submit").hide();
+            $(".submitNo").hide();
             $("#no").hide();
             //window.location.href = "checkReportTeacher.aspx?agree=yes&stuAccount=" + stuAccount;
             $.ajax({
@@ -48,12 +48,12 @@ $("#submit").click(function () {
 })
 
 //不同意通过
-$("#submitNo").click(function () {
+$(".submitNo").click(function () {
     var stuAccount = $(this).parent().parent().find("#stuAccount").text().trim();
     window.wxc.xcConfirm("确定不同意吗？", window.wxc.xcConfirm.typeEnum.confirm, {
         onOk: function (v) {
-            $("#submit").hide();
-            $("#submitNo").hide();
+            $(".submit").hide();
+            $(".submitNo").hide();
             $("#ok").hide();
             //window.location.href = "checkReportTeacher.aspx?agree=no&stuAccount=" + stuAccount;
             $.ajax({
