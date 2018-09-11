@@ -5,6 +5,7 @@ using System.Data;
 
 namespace PMS.Web
 {
+    using Result = Enums.OpResult;
     public partial class myGrogress : System.Web.UI.Page
     {
         protected string title;//题目
@@ -21,6 +22,10 @@ namespace PMS.Web
         protected Student student;
         protected OpenReport opReport;
         protected string state;//登录类型
+
+        protected Path path;//论文和查重报告存储路径
+        protected DataSet pathds;
+
         protected DataSet ds;
         protected DataSet titleDs;
         TitleRecordBll Record = new TitleRecordBll();
@@ -32,6 +37,7 @@ namespace PMS.Web
         }
         public void getData()
         {
+            PathBll pathBll = new PathBll();
             state = Session["state"].ToString();
             if(state == "3")
             {
@@ -47,12 +53,20 @@ namespace PMS.Web
                     endTime = plan.EndTime;//批次结束时间
                     string dsTime = ds.Tables[0].Rows[0]["createTime"].ToString();
                     selectTime = Convert.ToDateTime(dsTime);//学生选定题目时间
+
+                    //获取选题记录ID来取得学生开题报告的信息
                     titleRecordId = ds.Tables[0].Rows[0]["titleRecordId"].ToString();
                     if (opBll.selectByRecordId(int.Parse(titleRecordId)) == true)
                     {
                         opReport = opBll.Select(int.Parse(titleRecordId));
                         opTime = opReport.reportTime;
                         teacherOpenning = opReport.teacherOpinion;
+                        if(pathBll.selectByTitleRecordId(titleRecordId) == Result.记录存在)
+                        {
+                            Path pathRecordId = pathBll.getTitleRecordId(stuNO);
+                            TitleRecord tr = pathRecordId.titleRecord;
+                            pathds = pathBll.getModel(tr.TitleRecordId, stuNO);
+                        }
                     }
                 }
                 //else

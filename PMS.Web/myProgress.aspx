@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/lgd.css" />
 </head>
 <body>
-    <div class="demo">
+    <div class="demo"> 
         <div class="history">
             <div class="history-date">
                 <ul>
@@ -136,18 +136,25 @@
                 <ul>
                     <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
                     <li>
-                        <h3>10.14<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
-                            <dt>进入论文指导阶段<span>提升浏览器速度、增强安全性</span></dt>
+                            <dt>进入论文指导阶段</dt>
                         </dl>
                     </li>
+                    <%  string t;
+                        for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
+                        {
+                            t = pathds.Tables[0].Rows[i]["dateTime"].ToString();
+                            DateTime pathTime = Convert.ToDateTime(t);
+                             %>
                     <li>
-                        <h3>10.20<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",pathTime) %><span><%=string.Format("{0:yyyy}",pathTime) %></span></h3>
                         <dl>
-                            <dt>第一次论文提交<span>提升浏览器速度、增强安全性</span></dt>
+                            <dt><%=pathds.Tables[0].Rows[i]["pathTitle"] %></dt>
                         </dl>
                     </li>
-                    <li>
+                    <%} %>
+                    <%--<li>
                         <h3>10.25<span>2018</span></h3>
                         <dl>
                             <dt>第二次论文提交<span>新增360帐户，同步网络收藏夹</span></dt>
@@ -164,7 +171,7 @@
                         <dl>
                             <dt>最终提交论文<span>新增360帐户，同步网络收藏夹</span></dt>
                         </dl>
-                    </li>
+                    </li>--%>
                     <li>
                         <h3>11.05<span>2018</span></h3>
                         <dl>
