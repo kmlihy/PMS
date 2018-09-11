@@ -30,9 +30,9 @@ namespace PMS.Web
                 Search();
                 getPage(Search());
             }
-            string agree = Request.QueryString["agree"];
+            string agree = Request["agree"];
             if(agree != null) {
-                string stuAccount = Request.QueryString["stuAccount"];
+                string stuAccount = Request["stuAccount"];
                 DataSet ds = trbll.GetByAccount(stuAccount);
                 int i = ds.Tables[0].Rows.Count - 1;
                 TitleRecord titleRecord = new TitleRecord();

@@ -99,8 +99,11 @@ namespace PMS.Web
             teaAccount = tea.TeaAccount;
             TitleRecordBll trbll = new TitleRecordBll();
             DataSet ds = trbll.GetByAccount(teaAccount);
-            int i = ds.Tables[0].Rows.Count - 1;
-            int titleRecoreId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+            if (ds != null)
+            {
+                int i = ds.Tables[0].Rows.Count - 1;
+                int titleRecoreId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+            }
             DataSet dsTRAll = trbll.Select();
             string where1 = "teaAccount = " + teaAccount;
             string where2 = "teaAccount = " + teaAccount + " and " + strWhere;

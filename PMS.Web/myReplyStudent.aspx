@@ -42,18 +42,42 @@
             <div class="panel panel-default" id="propanelbox">
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
-                        <select class="selectpicker" data-width="auto" id="selectcollegeId">
-                            <option>请选择查询批次 </option>
-                            <option value="0">信息工程学院</option>
-                            <option value="1">交通机电学院</option>
-                            <option value="2">建筑工程学院</option>
-                            <option value="3">会计学院</option>
-                            <option value="4">设计学院</option>
+                        <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
+                            <option value="0">-显示所有专业-</option>
+                            <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                {
+                                    if (prods.Tables[0].Rows[i]["proId"].ToString() == dropstrWherepro)
+                                    {%>
+                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected">
+                                <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                            </option>
+                            <% }
+                                else
+                                {%>
+                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>">
+                                <%=prods.Tables[0].Rows[i]["proName"].ToString() %>
+                            </option>
+                            <%}%>
+                            <%} %>
                         </select>
-                        <select class="selectpicker" data-width="auto" id="chooseStuPro">
-                            <option value="0">请选择查询专业</option>
-                            <option value="0">软件工程</option>
-                            <option value="1">网络技术</option>
+                        &nbsp
+                        <select class="selectpicker selectdrop" data-width="auto" id="choosePlan">
+                            <option value="0">--显示所有批次--</option>
+                            <%for (int i = 0; i < plads.Tables[0].Rows.Count; i++)
+                                {
+                                    if (plads.Tables[0].Rows[i]["planId"].ToString() == dropstrWhereplan)
+                                    {%>
+                            <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected">
+                                <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
+                            </option>
+                            <%}
+                                else
+                                { %>
+                            <option value="<%=plads.Tables[0].Rows[i]["planId"].ToString() %>">
+                                <%=plads.Tables[0].Rows[i]["planName"].ToString() %>
+                            </option>
+                            <%} %>
+                            <%} %>
                         </select>
                         <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
                         <span class="input-group-btn">
@@ -79,36 +103,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        { %>
                     <tr>
                         <td class="text-center check_box">
                             <input type="checkbox" />
                         </td>
-                        <td class="text-center"></td>
-                        <td class="text-center">信息工程学院2018批次</td>
-                        <td class="text-center">移动互联技术</td>
-                        <td class="text-center">2231231</td>
-                        <td class="text-center">gouride</td>
+                        <td class="text-center"><%=i+1+((getCurrentPage-1)*pagesize)%></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["planName"]%></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"]%></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["stuAccount"]%></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"]%></td>
+                        <%if(){ %>
                         <td class="text-center">
                             <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-center">
-                            <input type="checkbox" />
-                        </td>
-                        <td class="text-center Serial_number"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center">
-                            <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </td>
-                    </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>

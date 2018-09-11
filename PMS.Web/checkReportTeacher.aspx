@@ -60,9 +60,9 @@
                             <td>
                                 <%if (ds.Tables[0].Rows[i]["state"].ToString() == "3")
                                     { %>
-                                <span class="glyphicon glyphicon-ok btn-success" id="ok"></span>
+                                <span class="btn-success" id="ok">审核通过</span>
                                 <%} else if (ds.Tables[0].Rows[i]["state"].ToString() == "1") { %>
-                                <span class="glyphicon glyphicon-remove btn-danger" id="no"></span>
+                                <span class="btn-danger" id="no">审核不通过</span>
                                 <%} else{ %>
                                 <button type="submit" class="btn btn-success" id="submit">同意</button>
                                 <button type="submit" class="btn btn-danger" id="submitNo">不同意</button>
