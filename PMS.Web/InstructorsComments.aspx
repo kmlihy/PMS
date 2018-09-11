@@ -32,7 +32,10 @@
                         <td class="col-sm-1"><%=getData.Tables[0].Rows[0]["proName"].ToString() %></td>
                         <td class="col-md-1">成绩</td>
                         <td class="col-sm-1">
-                            <input type="number" id="score" min="0" max="100" /></td>
+                            <input type="text" maxlength="3" id="defensescore" oninput="value = value.replace(/[^\d]/g, '')" style="outline:none;border:none;width:100%;" />
+                            <button onclick="rescore()" id="scoretips" style="width: 100%; height: 100%; background-color: white; border: none;">
+                            </button>
+                           <%-- <input type="number" id="score" min="0" max="100" />--%></td>
                     </tr>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
@@ -142,7 +145,7 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/xcConfirm.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/instructorsComments.js"></script>
 <script src="js/bootstrap-select.js"></script>
+<script src="js/instructorsComments.js"></script>
 </html>
 

@@ -38,12 +38,12 @@ namespace PMS.Web
             state = Convert.ToInt32(Session["state"]);
             string op = Context.Request["op"];
             string type = Request.QueryString["type"];
+            //获取defenRecordId
+            defenGroupId = Request.QueryString["defenGroupId"].ToString();
             if (!IsPostBack)
             {
                 Search();
                 getdata(Search());
-                //获取defenRecordId
-                defenGroupId = Request.QueryString["defenGroupId"].ToString();
                 if (defenGroupId != null)
                 {
                     Session["defenGroupId"] = defenGroupId;
