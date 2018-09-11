@@ -102,11 +102,16 @@ namespace PMS.BLL
                 return Enums.OpResult.记录不存在;
             }
         }
-
+        /// <summary>
+        /// 获取开题报告的state
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
         public OpenReport getState(int titleRecordId)
         {
             return dao.getState(titleRecordId);
         }
+
         /// <summary>
         /// 根据id删除一条记录
         /// </summary>

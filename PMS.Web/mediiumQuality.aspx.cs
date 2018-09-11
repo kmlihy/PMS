@@ -14,7 +14,7 @@ namespace PMS.Web
     public partial class mediiumQuality : CommonPage
     {
         public string stuAccount, stuName, proName, collegeName, title, teaName;
-        public string planFinishSituation;
+        public string planFinishSituation,teacherOpinion;
         public int state,mstate;
         public string content;
         public MedtermQuality mq = new MedtermQuality();
@@ -26,10 +26,26 @@ namespace PMS.Web
             MedtermQuality medterm = new MedtermQuality();
             state =Convert.ToInt32(Session["state"].ToString());
             int titleRecordId = 0;
+            string op = Request["op"];
             if (!IsPostBack)
             {
                 string stuAccount = Request.QueryString["stuAccount"];
-                Session["stuAccount"] = stuAccount;
+                if (stuAccount != null)
+                {
+                    Session["stuAccount"] = stuAccount;
+                }
+                else
+                {
+                    if (state == 3)
+                    {
+                        Student student = (Student)Session["loginuser"];
+                        stuAccount = student.StuAccount;
+                    }
+                    else
+                    {
+                        stuAccount = Session["stuAccount"].ToString();
+                    }
+                }
             }
             if (state == 1)
             {
@@ -52,7 +68,42 @@ namespace PMS.Web
                     title = stuTitle.title.title;
                     collegeName = teacher.college.ColName;
                     teaName = teacher.TeaName;
+                    MedtermQuality medtermQuality = mqbll.getState(titleRecord.TitleRecordId);
+                    mstate = medtermQuality.state;
+                    if (mstate == 3)
+                    {
+                        teacherOpinion = mq.teacherOpinion;
+                    }
                 }
+                if (op == "teacher")
+                {
+                    string opinion = Request["teacher"];
+                    medterm.teacherOpinion = opinion;
+                    medterm.dateTime = DateTime.Now;
+                    medterm.titleRecord = titleRecord;
+                    medterm.state = 3;
+                    Result result = mqbll.updateState(medterm);
+                    if (result == Result.更新成功)
+                    {
+                        Result row = mqbll.teaInsert(medterm);
+                        if (row == Result.添加成功)
+                        {
+                            Response.Write("提交成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("提交失败");
+                            Response.End();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
+                }
+
             }
             else if(state == 3)
             {
@@ -65,21 +116,20 @@ namespace PMS.Web
                 TitleRecordBll titleRecordBll = new TitleRecordBll();
                 TitleRecord titleRecord = titleRecordBll.getRtId(stuAccount);
                 int rtId = titleRecord.TitleRecordId;
-                mq = mqbll.Select(titleRecord.TitleRecordId);
-                if (mq!=null)
-                {
-                    planFinishSituation = mq.planFinishSituation;
-                }
-                
                 Result result = pathBll.selectByTitleRecordId(rtId.ToString());
-                    if (ds == null)
-                    {
-                        content = "暂未选题";
-                    }
-                    else
-                    {
+                if (ds == null)
+                {
+                    content = "暂未选题";
+                }
+                else
+                {
                     if (result == Result.记录存在)
                     {
+                        mq = mqbll.Select(titleRecord.TitleRecordId);
+                        if (mq != null)
+                        {
+                            planFinishSituation = mq.planFinishSituation;
+                        }
                         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
                             string stuaccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
@@ -93,59 +143,47 @@ namespace PMS.Web
                         }
                         MedtermQuality medtermQuality = mqbll.getState(titleRecordId);
                         mstate = medtermQuality.state;
+                        if(mstate == 3)
+                        {
+                            teacherOpinion = mq.teacherOpinion;
+                        }
+
                     }
                     else
                     {
                         content = "暂未提交论文";
                     }
                 }
-            }
-            string op = Request["op"];
-            if(op == "student")
-            {
-                string plan = Request["student"];
-                medterm.planFinishSituation = plan;
-                medterm.dateTime = DateTime.Now;
-                TitleRecord titleRecord = new TitleRecord();
-                titleRecord.TitleRecordId = titleRecordId;
-                medterm.titleRecord = titleRecord;
-                Result row = mqbll.stuInsert(medterm);
-                medterm.state = 2;
-                Result result = mqbll.updateState(medterm);
-                if(row == Result.添加成功 && result==Result.更新成功)
+                if (op == "student")
                 {
-                    Response.Write("提交成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("提交失败");
-                    Response.End();
-                }
-            }
-            else if(op == "teacher")
-            {
-                string opinion = Request["teacher"];
-                medterm.teacherOpinion = opinion;
-                medterm.dateTime = DateTime.Now;
-                TitleRecord titleRecord = new TitleRecord();
-                titleRecord.TitleRecordId = titleRecordId;
-                medterm.titleRecord = titleRecord;
-                Result row = mqbll.teaInsert(medterm);
-                medterm.state = 3;
-                Result result = mqbll.updateState(medterm);
-                if (row == Result.添加成功 && result == Result.更新成功)
-                {
-                    Response.Write("提交成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("提交失败");
-                    Response.End();
+                    string plan = Request["student"];
+                    medterm.planFinishSituation = plan;
+                    medterm.dateTime = DateTime.Now;
+                    titleRecord.TitleRecordId = titleRecordId;
+                    medterm.titleRecord = titleRecord;
+                    medterm.state = 2;
+                    Result state = mqbll.updateState(medterm);
+                    if (state == Result.更新成功)
+                    {
+                        Result row = mqbll.stuInsert(medterm);
+                        if (row == Result.添加成功)
+                        {
+                            Response.Write("提交成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("提交失败");
+                            Response.End();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
                 }
             }
-            mq = mqbll.Select(titleRecordId);
         }
     }
 }

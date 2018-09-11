@@ -37,14 +37,14 @@ namespace PMS.Web
                 }
             }
             teaName = teacher.TeaName;
-            OpenReportBll orbll = new OpenReportBll();
-            or = orbll.Select(titleRecordId);
             string op = Request["op"];
-            int openId = or.openId;
             string teacherOpinion = Request["teacherOpinion"];
             string deanOpinion = Request["deanOpinion"];
             if (op == "no")
             {
+                OpenReportBll orbll = new OpenReportBll();
+                or = orbll.Select(titleRecordId);
+                int openId = or.openId;
                 Result row = orbll.teaInsert(openId, teacherOpinion);
                 Result state = orbll.updateState(1, titleRecordId);
                 if (deanOpinion != "")
@@ -74,6 +74,9 @@ namespace PMS.Web
             }
             else if (op == "yes")
             {
+                OpenReportBll orbll = new OpenReportBll();
+                or = orbll.Select(titleRecordId);
+                int openId = or.openId;
                 Result row = orbll.teaInsert(openId, teacherOpinion);
                 Result state = orbll.updateState(3, titleRecordId);
                 if (deanOpinion != "")

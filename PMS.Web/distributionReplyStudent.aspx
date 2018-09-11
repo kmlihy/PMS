@@ -131,8 +131,6 @@
         </div>
         <div class="panel-footer" id="footer">
             <div class="container-fluid sure_box text-right" id="selectStudent">
-                <span>当前选择人数为：</span>
-                <input type="text" />
                 <button class="btn btn-info" id="btnSubmit" style="margin-top:0px;">确定选择</button>
                 <button class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button>
             </div>

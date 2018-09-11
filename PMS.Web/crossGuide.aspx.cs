@@ -21,33 +21,36 @@ namespace PMS.Web
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
             DataSet ds = crossGuideBll.GetByAccount(teaAccount);
-            int planId=0;
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            if (ds != null)
             {
-                string stuAccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
-                string account = Request.QueryString["stuAccount"];
-                if (account==null||account=="")
+                int planId = 0;
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
-                    string op = Request["op"];
-                    if (op == "add")
+                    string stuAccount = ds.Tables[0].Rows[i]["stuAccount"].ToString();
+                    string account = Request.QueryString["stuAccount"];
+                    if (account == null || account == "")
                     {
-                        insert();
+                        string op = Request["op"];
+                        if (op == "add")
+                        {
+                            insert();
+                        }
+                    }
+                    else
+                    {
+                        if (stuAccount == account)
+                        {
+                            Session["stuAccount"] = stuAccount;
+                            stuName = ds.Tables[0].Rows[i]["realName"].ToString();
+                            proName = ds.Tables[0].Rows[i]["proName"].ToString();
+                            title = ds.Tables[0].Rows[i]["title"].ToString();
+                            planId = Convert.ToInt32(ds.Tables[0].Rows[i]["planId"].ToString());
+                            Session["planId"] = planId;
+                            break;
+                        }
                     }
                 }
-                else
-                {
-                    if (stuAccount == account)
-                    {
-                        Session["stuAccount"] = stuAccount;
-                        stuName = ds.Tables[0].Rows[i]["realName"].ToString();
-                        proName = ds.Tables[0].Rows[i]["proName"].ToString();
-                        title = ds.Tables[0].Rows[i]["title"].ToString();
-                        planId = Convert.ToInt32(ds.Tables[0].Rows[i]["planId"].ToString());
-                        Session["planId"] = planId;
-                        break;
-                    }
-                }
-            } 
+            }
         }
         public void insert()
         {
@@ -64,8 +67,8 @@ namespace PMS.Web
             scoreModel.material = material;
             scoreModel.paperDesign = paperDesign;
             scoreModel.workload = workload;
-            scoreModel.innovate = innovate;
-            scoreModel.evaluate = evaluate;
+            scoreModel.crossInnovate = innovate;
+            scoreModel.crossEvaluate = evaluate;
             scoreModel.crossScore = score;
             scoreModel.student = student;
             Plan plan = new Plan();

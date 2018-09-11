@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\openAchievement.aspx" />
     <Content Include="bin\LitJSON.dll" />
     <Content Include="checkMediumQualityReport.aspx" />
     <Content Include="checkReport.aspx" />
@@ -75,6 +76,7 @@
     <Content Include="css\404.css" />
     <Content Include="css\base.css" />
     <Content Include="css\jedate.css" />
+    <Content Include="css\lc_switch.css" />
     <Content Include="css\timeAxis.css" />
     <Content Include="defenseRecordTeacher.aspx" />
     <Content Include="distributionReplyStudent.aspx" />
@@ -150,6 +152,7 @@
     <Content Include="js\distributionReplyStudent.js" />
     <Content Include="js\distributionReplyTeam.js" />
     <Content Include="js\instructorsComments.js" />
+    <Content Include="js\lc_switch.min.js" />
     <Content Include="js\myProgress.js" />
     <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
@@ -166,6 +169,7 @@
     <Content Include="js\ml.js" />
     <Content Include="js\myStudent.js" />
     <Content Include="js\newsList.js" />
+    <Content Include="js\openAchievement.js" />
     <Content Include="js\openingReport.js" />
     <Content Include="js\paperDetail.js" />
     <Content Include="js\paperList.js" />
@@ -398,6 +402,13 @@
     </Compile>
     <Compile Include="admin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\openAchievement.aspx.cs">
+      <DependentUpon>openAchievement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\openAchievement.aspx.designer.cs">
+      <DependentUpon>openAchievement.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\proList.aspx.cs">
       <DependentUpon>proList.aspx</DependentUpon>

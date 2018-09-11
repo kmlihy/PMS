@@ -65,15 +65,41 @@ namespace PMS.Web.admin
                 if (type == "Colldrop")
                 {
                     dropstrWhereColl = Context.Request.QueryString["dropstrWhereColl"].ToString();
+                    Session["collegeId"] = dropstrWhereColl;
                     string strWhere = string.Format(" collegeId = {0}", dropstrWhereColl);
                     getdata(strWhere);
                 }
-                //所有下拉菜单
+                //分院、专业下拉菜单
+                if(type == "collAndPro")
+                {
+                    dropstrWhereColl = Context.Request.QueryString["dropstrWhereColl"].ToString();
+                    dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
+                    string strWhere = string.Format("collegeId = {0} and proId = {1}", dropstrWhereColl, dropstrWherepro);
+                    getdata(strWhere);
+                }
+                //分院、批次下拉框
+                if(type == "collAndPlan")
+                {
+                    dropstrWhereColl = Context.Request.QueryString["dropstrWhereColl"].ToString();
+                    dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
+                    string strWhere = string.Format("collegeId = {0} and planId = {1}", dropstrWhereColl, dropstrWhereplan);
+                    getdata(strWhere);
+                }
+                //分管所有下拉菜单
                 if (type == "alldrop")
                 {
                     dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
                     dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
                     string strWhere = string.Format(" proId = {0} and planId = {1}", dropstrWherepro, dropstrWhereplan);
+                    getdata(strWhere);
+                }
+                //超管所有下拉菜单
+                if (type == "allDrop")
+                {
+                    dropstrWhereColl = Context.Request.QueryString["dropstrWhereColl"].ToString();
+                    dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
+                    dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
+                    string strWhere = string.Format("collegeId = {0} and proId = {1} and planId = {2}", dropstrWhereColl, dropstrWherepro, dropstrWhereplan);
                     getdata(strWhere);
                 }
             }
@@ -94,16 +120,23 @@ namespace PMS.Web.admin
             if (state == "0")
             {
                 where = "";
+                dsColl = colbll.Select();
+                dsPro = probll.SelectByCollegeId(Convert.ToInt32(Session["collegeId"]));
+                dsPlan = plabll.getPlanByCid(Convert.ToInt32(Session["collegeId"]));
             }
             else if (state == "1")
             {
                 teacher = (Teacher)Session["loginuser"];
                 where = "collegeId = '" + teacher.college.ColID + "'";
+                dsPro = probll.SelectByCollegeId(teacher.college.ColID);
+                dsPlan = plabll.getPlanByCid(teacher.college.ColID);
             }
             else if (state == "2")
             {
                 teacher = (Teacher)Session["user"];
                 where = "collegeId = '" + teacher.college.ColID + "'";
+                dsPro = probll.SelectByCollegeId(teacher.college.ColID);
+                dsPlan = plabll.getPlanByCid(teacher.college.ColID);
             }
             TitleBll titbll = new TitleBll();
             TableBuilder tabuilder = new TableBuilder();
@@ -117,10 +150,6 @@ namespace PMS.Web.admin
             tabuilder.StrColumnlist = "*";
             getCurrentPage = int.Parse(currentPage);
             ds = titbll.SelectBypage(tabuilder, out count);
-
-            dsColl = colbll.Select();
-            dsPro = probll.SelectByCollegeId(teacher.college.ColID);
-            dsPlan = plabll.getPlanByCid(teacher.college.ColID);
         }
 
         /// <summary>
@@ -153,13 +182,13 @@ namespace PMS.Web.admin
                     {
                         Teacher teacher = (Teacher)Session["loginuser"];
                         secSearch = search;
-                        search = String.Format("collegeId = '"+ teacher.TeaAccount + "' and titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
+                        search = String.Format("collegeId = '"+ teacher.college.ColID + "' and titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
                     }
                     else
                     {
                         Teacher teacher = (Teacher)Session["user"];
                         secSearch = search;
-                        search = String.Format("collegeId = '" + teacher.TeaAccount + "' and titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
+                        search = String.Format("collegeId = '" + teacher.college.ColID + "' and titleId {0} or title {0} or createTime {0} or selected {0} or limit {0} or proName {0} or planName {0} or teaName {0} ", "like '%" + search + "%'");
                     }
                 }
             }

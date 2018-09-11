@@ -46,24 +46,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_Score set crossScore=@crossScore,material=@material,paperDesign=@paperDesign,workload=@workload,innovate=@innovate,evaluate=evaluate where stuAccount=@stuAccount and planId=@planId";
-                string[] param = { "@stuAccount", "@planId", "@crossScore", "@material", "@paperDesign", "@workload", "@innovate", "@evaluate" };
-                object[] values = { score.student.StuAccount, score.plan.PlanId, score.crossScore, score.material, score.paperDesign, score.workload, score.innovate, score.evaluate };
-                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
-                return row;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public int updatereplyPanelsOpinion(Score score)
-        {
-            try
-            {
-                string cmdText = "update T_Score set reportContent=@reportContent,reportTime=@reportTime,defence=@defence,innovate=@innovate,defenceScore=@defenceScore where stuAccount=@stuAccount and planId=@planId";
-                string[] param = { "@stuAccount", "@planId", "@reportContent", "@reportTime", "@defence", "@innovate", "@defenceScore" };
-                object[] values = { score.student.StuAccount, score.plan.PlanId,score.reportContent,score.reportTime,score.defence,score.innovate,score.defenceScore};
+                string cmdText = "update T_Score set crossScore=@crossScore,material=@material,paperDesign=@paperDesign,workload=@workload,crossInnovate=@crossInnovate,crossEvaluate=@crossEvaluate where stuAccount=@stuAccount and planId=@planId";
+                string[] param = { "@stuAccount", "@planId", "@crossScore", "@material", "@paperDesign", "@workload", "@crossInnovate", "@crossEvaluate" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId, score.crossScore, score.material, score.paperDesign, score.workload, score.crossInnovate, score.crossEvaluate };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -74,17 +59,17 @@ namespace PMS.Dao
         }
 
         /// <summary>
-        /// 插入交叉指导论文
+        /// 插入答辩成绩
         /// </summary>
         /// <param name="score">分数实体</param>
         /// <returns>受影响行数</returns>
-        public int updateDefenGuide(Score score)
+        public int updatereplyPanelsOpinion(Score score)
         {
             try
             {
-                string cmdText = "update T_Score set score=@defenceScore,reportContent=@reportContent,reportTime=@reportTime,defence=@defence,innovate=@innovate,evaluate=evaluate where stuAccount=@stuAccount and planId=@planId";
-                string[] param = { "@stuAccount", "@planId", "@defenceScore", "@reportContent", "@reportTime", "@defence", "@innovate", "@evaluate" };
-                object[] values = { score.student.StuAccount, score.plan.PlanId, score.defenceScore, score.reportContent, score.reportTime, score.defence, score.innovate, score.evaluate };
+                string cmdText = "update T_Score set reportContent=@reportContent,reportTime=@reportTime,defence=@defence,defenInnovate=@defenInnovate,defenceScore=@defenceScore,defenEvaluate=@defenEvaluate where stuAccount=@stuAccount and planId=@planId";
+                string[] param = { "@stuAccount", "@planId", "@reportContent", "@reportTime", "@defence", "@defenInnovate", "@defenceScore", "@defenEvaluate" };
+                object[] values = { score.student.StuAccount, score.plan.PlanId,score.reportContent,score.reportTime,score.defence,score.defenInnovate, score.defenceScore,score.defenEvaluate };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -133,6 +118,34 @@ namespace PMS.Dao
             }
             reader.Close();
             return score;
+        }
+        /// <summary>
+        /// 开放成绩
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public int openScore(Score score)
+        {
+            try
+            {
+                string cmdText = "update T_Score set openState=@state";
+                string[] param = {"@state" };
+                object[] values = {score.openState };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int selectSate(int openState)
+        {
+            string sql = "select COUNT(scoreId) from T_Score where openState=@openState";
+            string[] param = { "@openState" };
+            object[] values = { openState };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
     }
 }

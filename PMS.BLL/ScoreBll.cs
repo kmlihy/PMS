@@ -49,24 +49,6 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 添加答辩成绩
-        /// </summary>
-        /// <param name="score">成绩对象</param>
-        /// <returns></returns>
-        public Result updateDefenGuide(Score score)
-        {
-            int row = sdao.updateDefenGuide(score);
-            if (row > 0)
-            {
-                return Result.添加成功;
-            }
-            else
-            {
-                return Result.添加失败;
-            }
-        }
-
-        /// <summary>
         /// 通过titleRecordId获取当前状态
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>
@@ -89,6 +71,24 @@ namespace PMS.BLL
                 return Result.添加成功;
             }
             return Result.添加失败;
+        }
+        public Result openScore(Score score)
+        {
+            int row = sdao.openScore(score);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
+        public Result selectSate(int openState)
+        {
+            int row = sdao.selectSate(openState);
+            if (row > 0)
+            {
+                return Result.记录存在;
+            }
+            return Result.记录不存在;
         }
         /// <summary>
         /// 根据学生账号、批次id获取成绩

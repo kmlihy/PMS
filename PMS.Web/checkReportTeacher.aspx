@@ -46,7 +46,7 @@
                             { %>
                         <tr>
                             <td><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
-                            <td><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                            <td id="stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                             <td><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                             <td><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                             <td><%=ds.Tables[0].Rows[i]["dateTime"].ToString() %></td>
@@ -58,7 +58,15 @@
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModa1" id="Examinebtn">审核</button>
+                                <%if (ds.Tables[0].Rows[i]["state"].ToString() == "3")
+                                    { %>
+                                <span class="btn-success" id="ok">审核通过</span>
+                                <%} else if (ds.Tables[0].Rows[i]["state"].ToString() == "1") { %>
+                                <span class="btn-danger" id="no">审核不通过</span>
+                                <%} else{ %>
+                                <button type="submit" class="btn btn-success" id="submit">同意</button>
+                                <button type="submit" class="btn btn-danger" id="submitNo">不同意</button>
+                                <%} %>
                             </td>
                         </tr>
                         <%} %>

@@ -25,16 +25,18 @@ namespace PMS.Web
             if (!IsPostBack)
             {
                 stuAccount = Request.QueryString["stuAccount"];
+                titleRecordId = Convert.ToInt32(Request.QueryString["titleRecordId"]);
                 if (stuAccount != null)
                 {
                     Session["stuAccount"] = stuAccount;
+                    Session["titleRecordId"] = titleRecordId;
                 }
                 else
                 {
                     stuAccount = Session["stuAccount"].ToString();
+                    titleRecordId = Convert.ToInt32(Session["titleRecordId"].ToString());
                 }
             }
-            titleRecordId = Convert.ToInt32(Request.QueryString["titleRecordId"]);
             getData = titlebll.GetByAccount(stuAccount);
             int i = getData.Tables[0].Rows.Count - 1;
             planId = Convert.ToInt32(getData.Tables[0].Rows[i]["planId"]);
@@ -77,24 +79,46 @@ namespace PMS.Web
             scoreModel.evaluate = evaluate;
             //添加交叉指导教师
             CrossBll crossBll = new CrossBll();
-            Cross cross = new Cross();
+            PathBll pathBll = new PathBll();
             TitleRecord titleRecord = new TitleRecord();
+            Cross cross = new Cross();
+            Path path = new Path();
+            Teacher teacher = new Teacher();
             titleRecord.TitleRecordId = titleRecordId;
             cross.titleRecord = titleRecord;
-            Teacher teacher = new Teacher();
             teacher.TeaAccount = crossTea;
             cross.teacher = teacher;
-            crossBll.Insert(cross);
 
-            Result row = sbll.insertInstructorsComments(scoreModel);
-            if (row == Result.添加成功)
+            path.titleRecord = titleRecord;
+            path.state = 3;
+            path.type = 0;
+            Result state = pathBll.updateState(path);
+            if (state == Result.更新成功)
             {
-                Response.Write("提交成功");
-                Response.End();
+                Result result = crossBll.Insert(cross);
+                if (result == Result.添加成功)
+                {
+                    Result row = sbll.insertInstructorsComments(scoreModel);
+                    if (row == Result.添加成功)
+                    {
+                        Response.Write("提交成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
+                }
+                else
+                {
+                    Response.Write("提交失败");
+                    Response.End();
+                }
             }
             else
             {
-                Response.Write("提交成功");
+                Response.Write("提交失败");
                 Response.End();
             }
         }

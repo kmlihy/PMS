@@ -42,7 +42,7 @@
                         <th class="text-center">论文</th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
-                        <th class="text-center">评价意见</th>
+                        <th class="text-center">驳回意见</th>
                         <th class="text-center">评定</th>
                         <th class="text-center">查看历史提交</th>
                     </tr>
@@ -115,7 +115,7 @@
         </ul>
     </div>
 
-    <%--查看指导意见--%>
+    <%--添加指导意见--%>
     <div class="modal fade" id="myModa1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">

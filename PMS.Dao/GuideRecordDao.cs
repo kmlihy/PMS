@@ -35,6 +35,12 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 通过选题记录id，学生账号获取指导记录信息
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
         public DataSet Select(int titleRecordId, string stuAccount)
         {
             try
@@ -79,5 +85,6 @@ namespace PMS.Dao
                 throw;
             }
         }
+        
     }
 }

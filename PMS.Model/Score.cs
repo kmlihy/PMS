@@ -21,6 +21,10 @@ namespace PMS.Model
         /// <summary>
         /// 指导成绩
         /// </summary>
+        public string crossInnovate { get; set; }
+        public string defenInnovate { get; set; }
+        public string crossEvaluate { get; set; }
+        public string defenEvaluate { get; set; }
         public double guideScore { set; get; }
         /// <summary>
         /// 交叉指导成绩
@@ -104,7 +108,7 @@ namespace PMS.Model
         /// <param name="assess">评定等级</param>
         /// <param name="evaluate">评价</param>
         /// <param name="openState">判断成绩是否开放给学生查看;0为未开放，1为已开放</param>
-        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state)
+        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate)
         {
             this.student = student;
             this.plan = plan;
@@ -125,6 +129,10 @@ namespace PMS.Model
             this.defence = defence;
             this.innovate = innovate;
             this.openState = openState;
+            this.crossInnovate = crossInnovate;
+            this.defenInnovate = defenInnovate;
+            this.crossEvaluate = crossEvaluate;
+            this.defenEvaluate = defenEvaluate;
         }
     }
 }

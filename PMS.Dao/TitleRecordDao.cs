@@ -170,8 +170,9 @@ namespace PMS.Dao
             reader.Close();
             return titleRecord;
         }
+
         /// <summary>
-        /// 获取state
+        /// 获取开题报告的state
         /// </summary>
         /// <param name="titleRecordId">选题记录id</param>
         /// <returns></returns>

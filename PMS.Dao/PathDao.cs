@@ -56,13 +56,18 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 更新文件完成状态state
+        /// </summary>
+        /// <param name="path">路径实体对象</param>
+        /// <returns></returns>
         public int updateState(Path path)
         {
             try
             {
-                string cmdText = "UPDATE T_Path SET state = @state WHERE pathId IN(SELECT TOP 1 pathId FROM  T_Path WHERE titleRecordId = @titleRecordId ORDER BY pathId DESC)";
-                string[] param = { "@state" , "@titleRecordId" };
-                object[] values = { path.state,path.titleRecord.TitleRecordId};
+                string cmdText = "UPDATE T_Path SET state = @state WHERE pathId IN(SELECT TOP 1 pathId FROM  T_Path WHERE titleRecordId = @titleRecordId and type=@type ORDER BY pathId DESC)";
+                string[] param = { "@state" , "@titleRecordId", "@type" };
+                object[] values = { path.state,path.titleRecord.TitleRecordId, path.type};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -72,7 +77,7 @@ namespace PMS.Dao
             }
         }
         /// <summary>
-        /// 查询是否有中期质量
+        /// 查询是否有论文
         /// </summary>
         /// <param name="stuAccount">titleRecordId</param>
         /// <returns>影响行数</returns>

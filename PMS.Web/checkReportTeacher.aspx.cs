@@ -19,6 +19,7 @@ namespace PMS.Web
         {
             TitleRecordBll trbll = new TitleRecordBll();
             PathBll pathBll = new PathBll();
+            Path path = new Path();
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
             collegeId = teacher.college.ColID;
@@ -29,6 +30,26 @@ namespace PMS.Web
                 Search();
                 getPage(Search());
             }
+            string agree = Request["agree"];
+            if(agree != null) {
+                string stuAccount = Request["stuAccount"];
+                DataSet ds = trbll.GetByAccount(stuAccount);
+                int i = ds.Tables[0].Rows.Count - 1;
+                TitleRecord titleRecord = new TitleRecord();
+                titleRecord.TitleRecordId = Convert.ToInt32(ds.Tables[0].Rows[i]["titleRecordId"].ToString());
+                if (agree == "yes")
+                {
+                    path.state = 3;
+                }
+                else if (agree == "no")
+                {
+                    path.state = 1;
+                }
+                path.type = 1;
+                path.titleRecord = titleRecord;
+                pathBll.updateState(path);
+            }
+            
         }
         public string Searchdrop()
         {
