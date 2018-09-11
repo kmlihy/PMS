@@ -44,5 +44,23 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        /// <summary>
+        /// 根据选题记录id查找是否有指导记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public bool isGuideRecord(int titleRecordId)
+        {
+            int count = gdao.isGuideRecord(titleRecordId);
+            if (count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

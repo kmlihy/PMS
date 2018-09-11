@@ -85,6 +85,18 @@ namespace PMS.Dao
                 throw;
             }
         }
-        
+
+        /// <summary>
+        /// 根据选题记录id查找是否指导记录
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns>影响行数</returns>
+        public int isGuideRecord(int titleRecordId)
+        {
+            string sql = "select count(titleRecordId) from T_GuideRecord where titleRecordId=@titleRecordId";
+            string[] param = { "@Account" };
+            object[] values = { titleRecordId.ToString() };
+            return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
     }
 }

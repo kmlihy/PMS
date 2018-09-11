@@ -124,11 +124,11 @@ namespace PMS.Web
             {
                 tea = (Teacher)Session["loginuser"];
             }else if(state == 2)
-            {
+            {；
                 tea = (Teacher)Session["user"];
             }
-            int collegeId = tea.college.ColID;
-            string account = "defenGroupId = "+ defenGroupId + " and collegeId="+ collegeId;
+            string account = "defenGroupId = "+ defenGroupId;
+
             string Account = account + " and ";
             TableBuilder tabuilder = new TableBuilder();
             tabuilder.StrTable = "V_DefenceRecord";
