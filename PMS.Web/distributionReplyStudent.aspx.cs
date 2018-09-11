@@ -248,47 +248,48 @@ namespace PMS.Web
         public void getdata(String strWhere)
         {
             DefenceGroup defenceGroup = defenceBll.SelectGroup(Convert.ToInt32(Session["defenGroupId"]));
-            leaderAccount = defenceGroup.leader;
-            memberAccount = defenceGroup.member;
-            recordAccount = defenceGroup.recorder;
-
-            string currentPage = Request.QueryString["currentPage"];
-            if (currentPage == null || currentPage.Length <= 0)
+            if (defenceGroup != null)
             {
-                currentPage = "1";
-            }
-            string userType = Session["state"].ToString();
-            string userCollege = "";
-            //usertype=2 为分院管理员登录
-            if (userType == "2")
-            {
-                Teacher tea = (Teacher)Session["user"];
-                int userCollegeId = tea.college.ColID;
-                if (strWhere == null || strWhere == "")
+                leaderAccount = defenceGroup.leader;
+                memberAccount = defenceGroup.member;
+                recordAccount = defenceGroup.recorder;
+                string currentPage = Request.QueryString["currentPage"];
+                if (currentPage == null || currentPage.Length <= 0)
                 {
-                    userCollege = @"teaAccount not like "+leaderAccount+ " and teaAccount not like "+memberAccount+ " and teaAccount not like "+recordAccount
-                        + " and crossTea not like "+leaderAccount+ " and crossTea not like "+memberAccount+ " and crossTea not like "+recordAccount+" and state=0";
+                    currentPage = "1";
                 }
-                else
+                string userType = Session["state"].ToString();
+                string userCollege = "";
+                //usertype=2 为分院管理员登录
+                if (userType == "2")
                 {
-                    userCollege = @"teaAccount not like " + leaderAccount + " and teaAccount not like " + memberAccount + " and teaAccount not like " + recordAccount
-                        + " and crossTea not like " + leaderAccount + " and crossTea not like " + memberAccount + " and crossTea not like " + recordAccount + " and state=0 and "+strWhere;
+                    Teacher tea = (Teacher)Session["user"];
+                    int userCollegeId = tea.college.ColID;
+                    if (strWhere == null || strWhere == "")
+                    {
+                        userCollege = @"collegeId = "+ userCollegeId + " and teaAccount not like "+leaderAccount+ " and teaAccount not like "+memberAccount+ " and teaAccount not like "+recordAccount
+                            + " and crossTea not like "+leaderAccount+ " and crossTea not like "+memberAccount+ " and crossTea not like "+recordAccount+" and state=0";
+                    }
+                    else
+                    {
+                        userCollege = @"collegeId = " + userCollegeId + " and teaAccount not like " + leaderAccount + " and teaAccount not like " + memberAccount + " and teaAccount not like " + recordAccount
+                            + " and crossTea not like " + leaderAccount + " and crossTea not like " + memberAccount + " and crossTea not like " + recordAccount + " and state=0 and "+strWhere;
+                    }
+                    StudentBll pro = new StudentBll();
+                    TableBuilder tabuilder = new TableBuilder()
+                    {
+                        StrTable = "V_DefenAndStudent",
+                        StrWhere = userCollege,
+                        IntColType = 0,
+                        IntOrder = 0,
+                        IntPageNum = int.Parse(currentPage),
+                        IntPageSize = pagesize,
+                        StrColumn = "titleRecordId",
+                        StrColumnlist = "titleRecordId,collegeName,proName,stuAccount,realName"
+                    };
+                    getCurrentPage = int.Parse(currentPage);
+                    ds = pro.SelectBypage(tabuilder, out count);
                 }
-                StudentBll pro = new StudentBll();
-                TableBuilder tabuilder = new TableBuilder()
-                {
-                    StrTable = "V_DefenAndStudent",
-                    StrWhere = userCollege,
-                    IntColType = 0,
-                    IntOrder = 0,
-                    IntPageNum = int.Parse(currentPage),
-                    IntPageSize = pagesize,
-                    StrColumn = "titleRecordId",
-                    StrColumnlist = "collegeName,proName,stuAccount,realName"
-                };
-                getCurrentPage = int.Parse(currentPage);
-                ds = pro.SelectBypage(tabuilder, out count);
-
             }
         }
 

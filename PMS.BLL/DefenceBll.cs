@@ -145,5 +145,23 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        /// <summary>
+        /// 删除答辩记录
+        /// </summary>
+        /// <param name="defenRecordId">答辩记录id</param>
+        /// <returns></returns>
+        public Result DelRecord(int defenRecordId)
+        {
+            int row = dedao.DelRecord(defenRecordId);
+            if (row > 0)
+            {
+                return Result.删除成功;
+            }
+            else
+            {
+                return Result.删除失败;
+            }
+        }
     }
 }

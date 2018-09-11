@@ -35,6 +35,7 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+
         /// <summary>
         /// 根据答辩小组id查找答辩小组
         /// </summary>
@@ -130,6 +131,7 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+
         /// <summary>
         /// 根据选题记录id查找答辩记录信息
         /// </summary>
@@ -154,6 +156,7 @@ namespace PMS.Dao
                 throw;
             }
         }
+
         /// <summary>
         /// 添加答辩学生
         /// </summary>
@@ -166,6 +169,27 @@ namespace PMS.Dao
                 string cmdText = "insert into T_DefenceRecord(titleRecordId,defenGroupId) values(@titleRecordId,@defenGroupId)";
                 string[] param = { "@titleRecordId", "@defenGroupId" };
                 object[] values = { defence.titleRecord.TitleRecordId, defence.defenceGroup.defenGroupId };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 删除答辩记录
+        /// </summary>
+        /// <param name="defenRecordId">答辩记录id</param>
+        /// <returns></returns>
+        public int DelRecord(int defenRecordId)
+        {
+            try
+            {
+                string cmdText = "delete from T_DefenceRecord where defenRecordId = @defenRecordId";
+                string[] param = { "@defenRecordId"};
+                object[] values = { defenRecordId.ToString()};
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

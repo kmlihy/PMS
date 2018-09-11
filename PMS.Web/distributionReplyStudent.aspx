@@ -125,15 +125,15 @@
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString()%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"].ToString()%></td>
                     </tr>
-                    <%} %>
                 </tbody>
             </table>
         </div>
         <div class="panel-footer" id="footer">
             <div class="container-fluid sure_box text-right" id="selectStudent">
                 <button class="btn btn-info" id="btnSubmit" style="margin-top:0px;">确定选择</button>
-                <button class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button>
+                <%--<button class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx?titleRecordId=<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString()%>'">查看答辩学生</button>--%>
             </div>
+            <%} %>
             <button class="btn btn-info" type="button" id="btn_backForReplyStu" onclick="javascript:history.back(-1);">
                 <span class="glyphicon glyphicon-arrow-left"></span>
                 返回

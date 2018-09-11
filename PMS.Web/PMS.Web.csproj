@@ -154,6 +154,7 @@
     <Content Include="js\instructorsComments.js" />
     <Content Include="js\lc_switch.min.js" />
     <Content Include="js\myProgress.js" />
+    <Content Include="js\myReplyStudent.js" />
     <Content Include="js\myStudentRespondent.js" />
     <Content Include="js\downloadPaper.js" />
     <Content Include="js\icheck.min.js" />

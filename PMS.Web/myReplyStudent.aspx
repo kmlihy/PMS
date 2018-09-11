@@ -6,13 +6,13 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>我的答辩学生</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/lgd.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../square/_all.css" />
-    <link rel="stylesheet" href="../css/bootstrap-select.css" />
-    <link rel="stylesheet" href="../css/xcConfirm.css" />
-    <link rel="stylesheet" href="../css/iconfont.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/lgd.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="square/_all.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
+    <link rel="stylesheet" href="css/iconfont.css" />
     <style>
         .check_box {
             width: 50px;
@@ -79,7 +79,7 @@
                             <%} %>
                             <%} %>
                         </select>
-                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" />
+                        <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=secSearch %>" />
                         <span class="input-group-btn">
                             <button class="btn btn-info" type="button" id="btn-search">
                                 <span class="glyphicon glyphicon-search" id="search">查询</span>
@@ -99,7 +99,10 @@
                         <th class="text-center">专业</th>
                         <th class="text-center">学号</th>
                         <th class="text-center">姓名</th>
+                        <%if (state == 2)
+                            { %>
                         <th class="text-center">操作</th>
+                        <%} %>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,12 +117,15 @@
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"]%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["stuAccount"]%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"]%></td>
-                        <%if(){ %>
+                        <%if (state == 2)
+                        { %>
                         <td class="text-center">
+                            <input type="hidden" value="<%=ds.Tables[0].Rows[i]["defenRecordId"].ToString()%>" id="defenRecordId" />
                             <button class="btn btn-default btn-sm btn-danger deleteStudent" id="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                         </td>
+                        <%} %>
                     </tr>
                     <%} %>
                 </tbody>
@@ -131,7 +137,7 @@
                 返回
             </button>
             <%--分页--%>
-            <div class="text-right" id="paging">
+            <div class="container-fluid text-right">
                 <ul class="pagination pagination-lg">
                     <li>
                         <a href="#" class="jump" id="first">首页</a>
@@ -142,14 +148,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="jump">1
+                        <a href="#" class="jump"><%=getCurrentPage %>
                         </a>
                     </li>
                     <li>
                         <a href="#">/</a>
                     </li>
                     <li>
-                        <a href="#" class="jump">4
+                        <% if (count == 0) { count = 1; } %>
+                        <a href="#" class="jump"><%=count %>
                         </a>
                     </li>
                     <li>
@@ -164,11 +171,14 @@
             </div>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/icheck.min.js"></script>
-<script src="../js/bootstrap-select.js"></script>
-<script src="../js/ml.js"></script>
-<script src="../js/xcConfirm.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/icheck.min.js"></script>
+<script src="js/myReplyStudent.js"></script>
+<script src="js/ml.js"></script>
+<script src="js/xcConfirm.js"></script>
 </html>

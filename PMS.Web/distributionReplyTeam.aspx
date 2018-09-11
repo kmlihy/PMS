@@ -190,7 +190,7 @@
                             <button type="button" class="btn btn-info" onclick="window.location.href='distributionReplyStudent.aspx?defenGroupId=<%=ds.Tables[0].Rows[i]["defenGroupId"].ToString() %>'">分配答辩学生</button>
                         </td>
                         <%} %>
-                        <td class="col-sm-2"><button type="button" class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx'">查看答辩学生</button></td>
+                        <td class="col-sm-2"><button type="button" class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx?defenGroupId=<%=ds.Tables[0].Rows[i]["defenGroupId"].ToString() %>'">查看答辩学生</button></td>
                     </tr>
                     <%} %>
                 </tbody>
