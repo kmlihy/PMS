@@ -24,7 +24,7 @@
                         <option value="0">-请选择批次-</option>
                         <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
                             { %>
-                        <option value="0">-请选择批次-</option>
+                        <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
                         <%} %>
                     </select>
                     &nbsp
@@ -55,22 +55,25 @@
                 <thead>
                     <tr>
                         <th class="text-center">序号</th>
-                        <th class="text-center">学生</th>
                         <th class="text-center">学号</th>
+                        <th class="text-center">学生姓名</th>
                         <th class="text-center">论文题目</th>
                         <th class="text-center">出题教师</th>
                         <th class="text-center">分数</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <%for (int i = 0; i < ds.Table[0].Rows.Count; i++)
+                        { %>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">人文学生一</td>
-                        <td class="text-center">126001</td>
-                        <td class="text-center">论秦始皇的大一统</td>
-                        <td class="text-center">人文教师一</td>
-                        <td class="text-center">92</td>
+                        <td class="text-center"><%=ds.Table[0].Rows[i]["stuAccount"].ToString() %></td>
+                        <td class="text-center"><%=ds.Table[0].Rows[i]["realName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Table[0].Rows[i]["title"].ToString() %></td>
+                        <td class="text-center"><%=ds.Table[0].Rows[i]["teaName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Table[0].Rows[i]["result"].ToString() %></td>
                     </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>
