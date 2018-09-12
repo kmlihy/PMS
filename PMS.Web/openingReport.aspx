@@ -15,21 +15,22 @@
 <body>
     <%if (dsTR == null)
         { %>
-    <%=opinion %>
+    <h3 class="text-primary"><%=opinion %></h3>
     <%}
         else
         {%>
     <div class="panel">
-        <div class="panel-heading text-center">
-            <h2>本科生毕业设计（论文）开题报告</h2>
-            <%if (state == 2)
+        <%if (state == 2)
                 { %>
-            <h4 class="error">正在等待教师审核</h4>
+            <h3 class="text-primary">正在等待教师审核</h3>
             <%}
             else if(state==3)
             {%>
-            <h4 class="success">开题报告已通过</h4>
+            <h3 class="text-success"><span class="glyphicon glyphicon-ok"></span>开题报告已通过</h3>
             <%} %>
+        <div class="panel-heading text-center">
+            <h2>本科生毕业设计（论文）开题报告</h2>
+            
         </div>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered table_mian">
@@ -178,7 +179,7 @@
                             <%}
                                 else
                                 {%>
-                            <textarea class="openReportText adviceTextArea" readonly="readonly">教师未回复，请耐心等待</textarea>
+                            <textarea class="openReportText adviceTextArea text-primary" readonly="readonly">教师未回复，请耐心等待</textarea>
                             <%} %>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>
@@ -195,7 +196,7 @@
                             <%}
                                 else
                                 {%>
-                            <textarea class="openReportText adviceTextArea" readonly="readonly">教师未回复，请耐心等待</textarea>
+                            <textarea class="openReportText adviceTextArea text-primary" readonly="readonly">教师未回复，请耐心等待</textarea>
                             <%} %>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 日</label>
                             <label class="lableTime" contenteditable="true">&nbsp &nbsp 月</label>

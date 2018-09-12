@@ -13,6 +13,9 @@
 </head>
 <body>
     <div class="panel">
+        <%if(or.state == 3){ %>
+            <h3 class="text-success"><span class="glyphicon glyphicon-ok">该学生已完成开题报告</span></h3>
+        <%}%>
         <div class="panel-heading text-center">
             <span class="h2 ">评阅开题报告</span>
             <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back">返回</button>
@@ -106,9 +109,7 @@
                             <label class="lableTime" contenteditable="true">签字：&nbsp &nbsp</label>
                         </td>
                     </tr>
-                    <%if(or.state == 3){ %>
-                    <h3 class="error">该学生已完成开题报告</h3>
-                    <%}}
+                    <%}
                     else
                     {%>
                     <h3 class="error">学生暂未修改提交</h3>
