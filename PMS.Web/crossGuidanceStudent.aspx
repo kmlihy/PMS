@@ -105,9 +105,8 @@
                                 <td class="text-center" id="recordtime"><%=dsTR.Tables[0].Rows[i]["createTime"].ToString() %></td>
                                 <td class="text-center">
                                     <a href="crossGuide.aspx?stuAccount=<%=dsTR.Tables[0].Rows[i]["stuAccount"].ToString() %>">
-                                        <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
+                                        <span class="glyphicon glyphicon-hand-right"></span>
+                                        评定及成绩
                                     </a>
                                 </td>
                             </tr>
