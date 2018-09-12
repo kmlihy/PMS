@@ -60,7 +60,10 @@ namespace PMS.Web
             //getCurrentPage = int.Parse(countPage);
             ds = titleBll.SelectBypage(tableBuilder, out count);
         }
-        //输入框搜索
+
+        /// <summary>
+        ///输入框搜索
+        /// <summary>
         public string Search()
         {
             try

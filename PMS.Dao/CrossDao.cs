@@ -56,5 +56,30 @@ namespace PMS.Dao
                 throw;
             }
         }
+
+        /// <summary>
+        /// 根据学生账号查找交叉指导数据
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
+        public DataSet SelectByStu(int titleRecordId)
+        {
+            try
+            {
+                string cmdText = "select * from V_Cross where titleRecordId=@titleRecordId";
+                String[] param = { "@titleRecordId" };
+                String[] values = { titleRecordId.ToString() };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

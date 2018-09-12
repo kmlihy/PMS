@@ -63,7 +63,7 @@
                         <%}
                     }else
                     { %>
-                    <h2>暂无历史指导意见</h2>
+                    <h3 class="text-primary">暂无历史指导意见</h3>
                     <%} %>
                 </div>
                 <div class="modal-footer">

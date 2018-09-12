@@ -12,7 +12,7 @@
 <body>
     <%if (openState != 3)
         { %>
-    <h3>开题报告暂未通过</h3>
+    <h3 class="text-primary">开题报告暂未通过</h3>
     <%}
         else
         {%>
@@ -36,14 +36,14 @@
             <div id="myAlert" class="alert alert-success">
                 <%if (state==0||state == 1)
                     { %>
-                <strong>提示！</strong>只允许上传.zip或者.rar格式的文件，请把论文压缩成.zip或者.rar格式的文件,谢谢！<p>文件命名规范：学号+姓名 <br/>例如：10001漩涡鸣人</p><%}
+                <span class="text-primary"><strong>提示！</strong>只允许上传.zip或者.rar格式的文件，请把论文压缩成.zip或者.rar格式的文件,谢谢！<p>文件命名规范：学号+姓名 <br/>例如：10001漩涡鸣人</p></span><%}
     else if (state == 2)
     { %>
-                <strong>上传成功，请前往<a href="/myGuideTeacher.aspx">教师信息</a>查看回复</strong>
+                <h4 class="text-primary">上传成功，请前往<a href="/myGuideTeacher.aspx">教师信息</a>查看回复</h4>
                 <%}
     else
     {%>
-                <strong>论文已通过，请前往<a href="/myCrossGuidanceTeacher.aspx">交叉评阅</a>进行下一阶段</strong>
+                <h4 class="text-success">论文已通过，请前往<a href="/myCrossGuidanceTeacher.aspx">交叉评阅</a>进行下一阶段</h4>
                 <%} %>
             </div>
             <div class="container text-center">

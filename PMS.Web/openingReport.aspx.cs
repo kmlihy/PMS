@@ -54,8 +54,8 @@ namespace PMS.Web
                 }
                 else
                 {
-                    opinion = "教师最新回复：" + open.teacherOpinion;
-                    deanOpinion = "分院院长意见："+open.deanOpinion;
+                    opinion = open.teacherOpinion;
+                    deanOpinion = open.deanOpinion;
                 }
             }
             

@@ -6,12 +6,13 @@
 
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit" />
     <title>登录界面</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/zwh.css" />
 </head>
 
-<body class="body">
+<body class="body" id="mydiv">
     <div class="container" id="login">
         <div class="panel-heading" id="heading">
             <img src="../images/logo.png" />
@@ -55,6 +56,7 @@
 <script src="../js/Barrett.js" type="text/javascript"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/zwh.js"></script>
+<script src="../js/canvas-particle.js"></script>
 <script type="text/javascript">
     function cmdEncrypt() {
 <%--        setMaxDigits(129);

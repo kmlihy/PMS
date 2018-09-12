@@ -18,6 +18,7 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
+            OpenReportBll orbll = new OpenReportBll();
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
             DataSet ds = trbll.GetByAccount(teaAccount);
@@ -36,13 +37,13 @@ namespace PMS.Web
                     break;
                 }
             }
+            or = orbll.Select(titleRecordId);
             teaName = teacher.TeaName;
             string op = Request["op"];
             string teacherOpinion = Request["teacherOpinion"];
             string deanOpinion = Request["deanOpinion"];
             if (op == "no")
             {
-                OpenReportBll orbll = new OpenReportBll();
                 or = orbll.Select(titleRecordId);
                 int openId = or.openId;
                 Result row = orbll.teaInsert(openId, teacherOpinion);
@@ -74,7 +75,6 @@ namespace PMS.Web
             }
             else if (op == "yes")
             {
-                OpenReportBll orbll = new OpenReportBll();
                 or = orbll.Select(titleRecordId);
                 int openId = or.openId;
                 Result row = orbll.teaInsert(openId, teacherOpinion);
