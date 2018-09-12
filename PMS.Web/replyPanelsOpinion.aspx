@@ -30,9 +30,8 @@
                         <td class="col-sm-1"><%=ds.Tables[0].Rows[0]["proName"].ToString()%></td>
                         <td class="col-md-1">成绩</td>
                         <td class="col-sm-1 text-center">
-                            <input type="text" maxlength="3" id="defensescore" oninput="value = value.replace(/[^\d]/g, '')" style="outline:none;border:none;width:100%;" />
-                            <button onclick="rescore()" id="scoretips" style="width: 100%; height: 100%; background-color: white; border: none;">
-                            </button>
+                            <input type="text" maxlength="3" id="defensescore" oninput="value = value.replace(/[^\d]/g, '')"/>
+                            <button onclick="rescore()" id="scoretips"></button>
                             <%--<textarea class="openReportText" id=""></textarea>--%>
                         </td>
                     </tr>

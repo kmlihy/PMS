@@ -67,6 +67,7 @@
   <ItemGroup>
     <Content Include="admin\adminViewScore.aspx" />
     <Content Include="admin\openAchievement.aspx" />
+    <Content Include="admin\scoreRatio.aspx" />
     <Content Include="bin\LitJSON.dll" />
     <Content Include="checkMediumQualityReport.aspx" />
     <Content Include="checkReport.aspx" />
@@ -339,7 +340,9 @@
     <Content Include="thesisUpload.aspx" />
     <Content Include="uploadCheckReport.aspx" />
     <Content Include="viewScore.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="PaperDtailStu.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +436,13 @@
     </Compile>
     <Compile Include="admin\RetrievePwd.aspx.designer.cs">
       <DependentUpon>RetrievePwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\scoreRatio.aspx.cs">
+      <DependentUpon>scoreRatio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\scoreRatio.aspx.designer.cs">
+      <DependentUpon>scoreRatio.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\selectTopicList.aspx.cs">
       <DependentUpon>selectTopicList.aspx</DependentUpon>
