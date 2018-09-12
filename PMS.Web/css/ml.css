@@ -205,12 +205,11 @@ a:hover {
     border-bottom:1px solid black;
 }
 #mediumQuality_table{
-    border:2px solid black;
+    border:1px solid black;
 }
 #mediumQuality_table td{
-    border:2px solid black;
+    border:1px solid black;
     text-align:center;
-    font-size:12px;
 }
 
 

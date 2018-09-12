@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/lgd.css" />
 </head>
 <body>
-    <div class="demo"> 
+    <div class="demo">
         <div class="history">
             <div class="history-date">
                 <ul>
@@ -133,6 +133,20 @@
                 </ul>
             </div>
             <div class="history-date">
+                <%if (title == "" || title == null)
+                    { %>
+                <ul>
+                    <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <dl>
+                            <dt>你还没有选题</dt>
+                        </dl>
+                    </li>
+                </ul>
+                <%}
+                    else
+                    { %>
                 <ul>
                     <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
                     <li>
@@ -141,58 +155,96 @@
                             <dt>进入论文指导阶段</dt>
                         </dl>
                     </li>
-                    <%  string t;
-                        for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
+                    <%if (pathRe == PMS.BLL.Enums.OpResult.记录存在)
                         {
-                            t = pathds.Tables[0].Rows[i]["dateTime"].ToString();
-                            DateTime pathTime = Convert.ToDateTime(t);
-                             %>
+                            for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
+                            {%>
                     <li>
-                        <h3><%=string.Format("{0:MM-dd}",pathTime) %><span><%=string.Format("{0:yyyy}",pathTime) %></span></h3>
+                        <h3><%=pathds.Tables[0].Rows[i]["dateTime"] %></h3>
                         <dl>
                             <dt><%=pathds.Tables[0].Rows[i]["pathTitle"] %></dt>
                         </dl>
                     </li>
+                    <%}%>
+                    <%if (mq != null)
+                        { %>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}", mq.dateTime) %><span><%=string.Format("{0:yyyy}", mq.dateTime) %></span></h3>
+                        <dl>
+                            <%if (mq.teacherOpinion == null || mq.teacherOpinion == "")
+                                { %>
+                            <dt>中期质量检查报告提交<span>你已经提交报告，请耐心等待教师回复</span></dt>
+                            <%}
+                                else
+                                {%>
+                            <dt>中期质量检查报告提交<span><%=mq.teacherOpinion %></span></dt>
+                            <%} %>
+                        </dl>
+                    </li>
+                    <%}
+                        else
+                        { %>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
+                        <dl>
+                            <dt>中期质量检查报告提交<span>你还没有提交中期质量报告</span></dt>
+                        </dl>
+                    </li>
                     <%} %>
-                    <%--<li>
-                        <h3>10.25<span>2018</span></h3>
+                    <%for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
+                        {
+                            if (pathds.Tables[0].Rows[i]["state"].ToString() == "3")
+                            {
+                                if (pathds.Tables[0].Rows[i]["type"].ToString() == "1")
+                                { %>
+                    <li>
+                        <h3><%= pathds.Tables[0].Rows[i]["dateTime"] %>
+                        </h3>
                         <dl>
-                            <dt>第二次论文提交<span>新增360帐户，同步网络收藏夹</span></dt>
+                            <dt>查重报告<span><%=scoreDs.Tables[0].Rows[0]["pathTitle"] %></span></dt>
                         </dl>
                     </li>
+                    <%
+                            continue;
+                        }
+                    %>
                     <li>
-                        <h3>10.30<span>2018</span></h3>
+                        <h3><%= pathds.Tables[0].Rows[i]["dateTime"] %>
+                        </h3>
                         <dl>
-                            <dt>第三次论文提交<span>新增360帐户，同步网络收藏夹</span></dt>
+                            <dt>论文指导阶段结束<span>你的论文成绩为：<%=scoreDs.Tables[0].Rows[0]["guideScore"] %></span></dt>
                         </dl>
                     </li>
+                    <% 
+                                continue;
+                            }
+                            continue;
+                        }
+                    %>
+                </ul>
+                <%}
+                    else
+                    { %>
+                <ul>
                     <li>
-                        <h3>11.02<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
-                            <dt>最终提交论文<span>新增360帐户，同步网络收藏夹</span></dt>
-                        </dl>
-                    </li>--%>
-                    <li>
-                        <h3>11.05<span>2018</span></h3>
-                        <dl>
-                            <dt>中期质量检查报告提交<span>新增360帐户，同步网络收藏夹</span></dt>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3>11.10<span>2018</span></h3>
-                        <dl>
-                            <dt>论文指导阶段结束<span>首个包含沙箱</span></dt>
+                            <dt>你还未提交过论文</dt>
                         </dl>
                     </li>
                 </ul>
+                <%} %>
+                <%} %>
             </div>
             <div class="history-date">
                 <ul>
                     <h2 class="date02"><a href="#nogo">交叉指导阶段</a></h2>
+                    <%if (crossGuideDs!=null)
+                        {%>
                     <li>
-                        <h3>11.12<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",crossGuideDs.Tables[0].Rows[0]["createTime"]) %><span><%=string.Format("{0:yyyy}",crossGuideDs.Tables[0].Rows[0]["createTime"]) %></span></h3>
                         <dl>
-                            <dt>进入论文交叉指导阶段<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
+                            <dt>进入论文交叉指导阶段<span><%=crossGuideDs.Tables[0].Rows[0]["teaName"] %></span></dt>
                         </dl>
                     </li>
                     <li>
@@ -201,6 +253,17 @@
                             <dt>交叉指导阶段结束<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
                         </dl>
                     </li>
+                    <%
+                        }
+                        else
+                        { %>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <dl>
+                            <dt>你还未被分配交叉指导教师</dt>
+                        </dl>
+                    </li>
+                    <%} %>
                 </ul>
             </div>
             <div class="history-date">

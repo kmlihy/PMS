@@ -34,7 +34,7 @@ namespace PMS.Web
                     int j = dsGuide.Tables[0].Rows.Count - 1;
                     if (j<0)
                     {
-                        opinion = "<h3>教师未回复，请耐心等待</h3>";
+                        opinion = "<h3 class='text-primary'>教师未回复，请耐心等待</h3>";
                     }
                     else
                     {
@@ -43,7 +43,7 @@ namespace PMS.Web
                 }
                 else
                 {
-                    opinion = "<h3>教师未回复，请耐心等待</h3>";
+                    opinion = "<h3 class='text-primary'>教师未回复，请耐心等待</h3>";
                 }
             }
         }

@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="CollegeBll.cs" />
     <Compile Include="CrossBll.cs" />
-    <Compile Include="CrossGuideBll.cs" />
     <Compile Include="DefenceBll.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GuideRecordBll.cs" />
@@ -72,6 +71,28 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\NPOI.dll" />
+    <Content Include="bin\Debug\NPOI.OOXML.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXml4Net.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXmlFormats.dll" />
+    <Content Include="bin\Debug\PMS.BLL.dll" />
+    <Content Include="bin\Debug\PMS.BLL.pdb" />
+    <Content Include="bin\Debug\PMS.Dao.dll" />
+    <Content Include="bin\Debug\PMS.Dao.pdb" />
+    <Content Include="bin\Debug\PMS.DBHelper.dll" />
+    <Content Include="bin\Debug\PMS.DBHelper.pdb" />
+    <Content Include="bin\Debug\PMS.Model.dll" />
+    <Content Include="bin\Debug\PMS.Model.pdb" />
+    <Content Include="obj\Debug\PMS.BLL.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\PMS.BLL.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\PMS.BLL.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\PMS.BLL.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\PMS.BLL.csprojAssemblyReference.cache" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

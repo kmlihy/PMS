@@ -36,13 +36,13 @@
                 </tr>
                 <tr>
                     <td class="text_type">姓名</td>
-                    <td><%=name %></td>
+                    <td class="text-info"><%=name %></td>
                     <td class="text_type">性别</td>
-                    <td><%=sex %></td>
+                    <td class="text-info"><%=sex %></td>
                     <td class="text_type">联系方式</td>
-                    <td><%=phone %></td>
+                    <td class="text-info"><%=phone %></td>
                     <td class="text_type">电子邮件</td>
-                    <td><%=email %></td>
+                    <td class="text-info"><%=email %></td>
                 </tr>
             </table>
             <div class="container-fluid table-bordered img-rounded modal_comment"><%=opinion %></div>
