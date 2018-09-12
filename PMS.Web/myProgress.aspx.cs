@@ -50,7 +50,7 @@ namespace PMS.Web
             MedtermQualityBll mqBll = new MedtermQualityBll();
             ScoreBll scoreBll = new ScoreBll();
             GuideRecordBll guideBll = new GuideRecordBll();
-            CrossGuideBll crossBll = new CrossGuideBll();
+            CrossBll crossBll = new CrossBll();
             DefenceBll dfBll = new DefenceBll();
             state = Session["state"].ToString();
             if(state == "3")
@@ -83,7 +83,7 @@ namespace PMS.Web
                             pathds = pathBll.getModel(tr.TitleRecordId, stuNO);//遍历路径信息
                             mq = mqBll.Select(tr.TitleRecordId);//遍历中期质量报告
                             scoreDs = scoreBll.Select(stuNO, int.Parse(planId));//获取学生成绩
-                            crossGuideDs = crossBll.GetByAccount(stuNO);//遍历交叉指导信息
+                            crossGuideDs = crossBll.SelectByStu(stuNO);//遍历交叉指导信息
                             defenceDs = dfBll.getModel(tr.TitleRecordId.ToString());//遍历答辩记录信息
                         }
                     }
