@@ -42,7 +42,7 @@
                         <td class="col-md-1">指导教师</td>
                         <td class="col-sm-1"><b><%= teaName%></b></td>
                     </tr>
-                    <%if (or.state == 2)
+                    <%if (or.state == 2 || or.state == 3)
                         { %>
                     <tr>
                         <td class="openReportmain" colspan="2">选题目的、价值和意义：</td>
@@ -106,7 +106,11 @@
                             <label class="lableTime" contenteditable="true">签字：&nbsp &nbsp</label>
                         </td>
                     </tr>
-                    <%}else{%>
+                    <%if(or.state == 3){ %>
+                    <h3 class="error">该学生已完成开题报告</h3>
+                    <%}}
+                    else
+                    {%>
                     <h3 class="error">学生暂未修改提交</h3>
                     <%}%>
                 </tbody>

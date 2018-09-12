@@ -43,5 +43,20 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        /// <summary>
+        /// 根据学生账号查找交叉指导数据
+        /// </summary>
+        /// <param name="stuAccount">学生账号</param>
+        /// <returns></returns>
+        public DataSet SelectByStu(int titleRecordId)
+        {
+            DataSet ds = crossDao.SelectByStu(titleRecordId);
+            if (ds != null)
+            {
+                return ds;
+            }
+            return null;
+        }
     }
 }
