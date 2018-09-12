@@ -36,6 +36,7 @@ namespace PMS.Web
         protected DataSet titleDs;
         protected DataSet scoreDs;
         protected DataSet crossGuideDs;
+        protected DataSet defenceDs;
         TitleRecordBll Record = new TitleRecordBll();
         PlanBll planBll = new PlanBll();
         OpenReportBll opBll = new OpenReportBll();
@@ -50,6 +51,7 @@ namespace PMS.Web
             ScoreBll scoreBll = new ScoreBll();
             GuideRecordBll guideBll = new GuideRecordBll();
             CrossGuideBll crossBll = new CrossGuideBll();
+            DefenceBll dfBll = new DefenceBll();
             state = Session["state"].ToString();
             if(state == "3")
             {
@@ -78,11 +80,11 @@ namespace PMS.Web
                         {
                             Path pathRecordId = pathBll.getTitleRecordId(stuNO);
                             TitleRecord tr = pathRecordId.titleRecord;
-                            pathds = pathBll.getModel(tr.TitleRecordId, stuNO);
-                            mq = mqBll.Select(tr.TitleRecordId);
-                            scoreDs = scoreBll.Select(stuNO, int.Parse(planId));
-                            isGuide = guideBll.isGuideRecord(tr.TitleRecordId);//判断学生是否有交叉指导记录
-                            crossGuideDs = crossBll.GetByAccount(stuNO);
+                            pathds = pathBll.getModel(tr.TitleRecordId, stuNO);//遍历路径信息
+                            mq = mqBll.Select(tr.TitleRecordId);//遍历中期质量报告
+                            scoreDs = scoreBll.Select(stuNO, int.Parse(planId));//获取学生成绩
+                            crossGuideDs = crossBll.GetByAccount(stuNO);//遍历交叉指导信息
+                            defenceDs = dfBll.getModel(tr.TitleRecordId.ToString());//遍历答辩记录信息
                         }
                     }
                 }

@@ -21,7 +21,7 @@
                         <% DateTime time = new DateTime();
                             time = DateTime.Now;
                         %>
-                        <h3><%=string.Format("{0:MM-dd}",startTime) %><span><%=string.Format("{0:yyyy}",startTime) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",time) %><span><%=string.Format("{0:yyyy}",time) %></span></h3>
                         <dl>
                             <dt>选题时间
                                 <span>开始时间：<%=string.Format("{0:yyyy-MM-dd}",startTime) %></span>
@@ -149,16 +149,16 @@
                     { %>
                 <ul>
                     <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
+                    <%if (pathRe == PMS.BLL.Enums.OpResult.记录存在)
+                        {
+                            for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
+                            {%>
                     <li>
                         <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
                             <dt>进入论文指导阶段</dt>
                         </dl>
                     </li>
-                    <%if (pathRe == PMS.BLL.Enums.OpResult.记录存在)
-                        {
-                            for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
-                            {%>
                     <li>
                         <h3><%=pathds.Tables[0].Rows[i]["dateTime"] %></h3>
                         <dl>
@@ -239,20 +239,23 @@
             <div class="history-date">
                 <ul>
                     <h2 class="date02"><a href="#nogo">交叉指导阶段</a></h2>
-                    <%if (crossGuideDs!=null)
+                    <%if (crossGuideDs != null)
                         {%>
                     <li>
                         <h3><%=string.Format("{0:MM-dd}",crossGuideDs.Tables[0].Rows[0]["createTime"]) %><span><%=string.Format("{0:yyyy}",crossGuideDs.Tables[0].Rows[0]["createTime"]) %></span></h3>
                         <dl>
-                            <dt>进入论文交叉指导阶段<span><%=crossGuideDs.Tables[0].Rows[0]["teaName"] %></span></dt>
+                            <dt>进入论文交叉指导阶段<span>我的交叉指导教师：<%=crossGuideDs.Tables[0].Rows[0]["teaName"] %></span></dt>
                         </dl>
                     </li>
+                    <%if (scoreDs.Tables[0].Rows[0]["crossScore"] != null && scoreDs.Tables[0].Rows[0]["crossScore"].ToString() != "")
+                        { %>
                     <li>
                         <h3>11.16<span>2018</span></h3>
                         <dl>
-                            <dt>交叉指导阶段结束<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
+                            <dt>交叉指导阶段结束<span>你的交叉指导成绩：<%=scoreDs.Tables[0].Rows[0]["crossScore"] %></span></dt>
                         </dl>
                     </li>
+                    <%} %>
                     <%
                         }
                         else
@@ -260,7 +263,7 @@
                     <li>
                         <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
-                            <dt>你还未被分配交叉指导教师</dt>
+                            <dt>未分配交叉指导教师</dt>
                         </dl>
                     </li>
                     <%} %>
@@ -269,24 +272,53 @@
             <div class="history-date">
                 <ul>
                     <h2 class="date02"><a href="#nogo">论文答辩阶段</a></h2>
+                    <%if (defenceDs != null)
+                        { %>
                     <li>
-                        <h3>11.20<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", defenceDs.Tables[0].Rows[0]["finishYear"]) %><span><%=string.Format("{0:yyyy}", defenceDs.Tables[0].Rows[0]["finishYear"]) %></span></h3>
                         <dl>
-                            <dt>答辩小组指派<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
+                            <dt>答辩小组指派
+                                <span>组长：<%= defenceDs.Tables[0].Rows[0]["leaderName"]%></span>
+                                <span>组员：<%= defenceDs.Tables[0].Rows[0]["memberName"]%></span>
+                                <span>秘书：<%= defenceDs.Tables[0].Rows[0]["recordName"]%></span>
+                            </dt>
                         </dl>
                     </li>
+                    <%if (defenceDs.Tables[0].Rows[0]["recordContent"] != null && defenceDs.Tables[0].Rows[0]["recordContent"].ToString() != "")
+                        { %>
                     <li>
-                        <h3>12.01<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
-                            <dt>进行论文答辩<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
+                            <dt>完成论文答辩
+                                <%if (scoreDs.Tables[0].Rows[0]["defenceScore"] != null && scoreDs.Tables[0].Rows[0]["defenceScore"].ToString() != "")
+                                    { %>
+                                <span><%=scoreDs.Tables[0].Rows[0]["defenceScore"] %></span>
+                                <%} %>
+                            </dt>
                         </dl>
                     </li>
+                    <%
+                        }
+                        else
+                        {%>
                     <li>
-                        <h3>12.01<span>2018</span></h3>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
-                            <dt>完成论文答辩<span>新增对360网购保镖支持，保护网上交易安全</span></dt>
+                            <dt>请耐心等待</dt>
                         </dl>
                     </li>
+                    <% }
+                    %>
+                    <% }
+                        else
+                        { %>
+                    <li>
+                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <dl>
+                            <dt>未分配答辩小组</dt>
+                        </dl>
+                    </li>
+                    <%} %>
                 </ul>
             </div>
             <div id="myproEnddiv">
