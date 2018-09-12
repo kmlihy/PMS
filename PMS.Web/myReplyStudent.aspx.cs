@@ -124,7 +124,7 @@ namespace PMS.Web
             {
                 tea = (Teacher)Session["loginuser"];
             }else if(state == 2)
-            {；
+            {
                 tea = (Teacher)Session["user"];
             }
             string account = "defenGroupId = "+ defenGroupId;
