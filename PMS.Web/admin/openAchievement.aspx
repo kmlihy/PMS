@@ -14,6 +14,7 @@
     <div class="panel-heading text-center">
         <h2>开放成绩</h2>
     </div>
+    <%=status %>
     <div class="panel-body text-center">
         <div id="second_div">
             <p>

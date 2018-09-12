@@ -22,6 +22,10 @@
                 <div class="input-group" id="inputgroups">
                     <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
                         <option value="0">-请选择批次-</option>
+                        <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
+                            { %>
+                        <option value="0">-请选择批次-</option>
+                        <%} %>
                     </select>
                     &nbsp
                     <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
@@ -29,7 +33,9 @@
                     </select>
                     &nbsp
                     <select class="selectpicker selectdrop" data-width="auto">
-                        <option value="0">-排序方式-</option>
+                        <option value="0">-按成绩排序-</option>
+                        <option value="0">-升序-</option>
+                        <option value="0">-降序-</option>
                     </select>
                     <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" />
                     <span class="input-group-btn">
@@ -108,6 +114,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/xcConfirm.js"></script>
+<script src="../js/adminViewScore.js"></script>
 <script>
    
 </script>

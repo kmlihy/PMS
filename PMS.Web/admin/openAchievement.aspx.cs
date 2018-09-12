@@ -18,29 +18,39 @@ namespace PMS.Web.admin
             string op = Request["op"];
             ScoreBll scoreBll = new ScoreBll();
             TeacherBll teacherBll = new TeacherBll();
+            PlanBll planBll = new PlanBll();
             Teacher teacher = new Teacher();
+            College college = new College();
             Score score = new Score();
-            if (op=="open")
+            Teacher tea = (Teacher)Session["user"];
+            int collegeId = tea.college.ColID;
+            string startTime = DateTime.Now.ToString("yyyy-MM");
+            Plan plan = planBll.getPlanId(collegeId, startTime + "%");
+            int planId = plan.PlanId;
+
+            if (op == "open")
             {
-                score.openState = 1;
+                int state = 1;
                 teacher.state = 0;
-                Result result = scoreBll.openScore(score);
+                college.ColID = collegeId;
+                teacher.college = college;
+                Result result = scoreBll.openScore(state, planId);
                 Result row = teacherBll.updateState(teacher);
-                if (result==Result.更新成功 && row==Result.更新成功)
+                if (result == Result.更新成功 && row == Result.更新成功)
                 {
                     Response.Write("成绩已开放");
                     Response.End();
                 }
                 else
                 {
-                    Response.Write("成绩开放失败");
+                    Response.Write("成绩开放失败，可能当前批次没有可开放成绩");
                     Response.End();
                 }
             }
-            else if(op=="close")
+            else if (op == "close")
             {
-                score.openState = 0;
-                Result result = scoreBll.openScore(score);
+                int state = 0;
+                Result result = scoreBll.openScore(state, planId);
                 if (result == Result.更新成功)
                 {
                     Response.Write("成绩已关闭查询");
@@ -48,22 +58,22 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    Response.Write("关闭查询失败");
+                    Response.Write("关闭查询失败，可能当前批次没有可开放成绩");
                     Response.End();
                 }
             }
             else
             {
-                int openState = 0;
-                Result result = scoreBll.selectSate(openState);
+                int openState = 1;
+                Result result = scoreBll.selectSate(openState, planId);
                 //按钮开关
                 if (result == Result.记录存在)
                 {
-                    status = 0;//关
+                    status = 1;//开
                 }
                 else
                 {
-                    status = 1;//开
+                    status = 0;//关
                 }
             }
         }

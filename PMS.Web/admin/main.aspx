@@ -272,6 +272,11 @@
                                         <span>我的学生</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="adminViewScore.aspx" class="sidebarclick" >
+                                        <span>学生成绩</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <%}
@@ -359,11 +364,6 @@
                                 <li role="presentation">
                                     <a href="../distributionReplyTeam.aspx" class="sidebarclick" >
                                         <span>答辩小组</span>
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="openAchievement.aspx" class="sidebarclick" >
-                                        <span>成绩管理</span>
                                     </a>
                                 </li>
                             </ul>
@@ -482,6 +482,15 @@
                                 <li role="presentation">
                                     <a href="../distributionReplyTeam.aspx" class="sidebarclick" >
                                         <span>分配答辩小组</span>
+                                    </a>
+                                </li><li role="presentation">
+                                    <a href="adminViewScore.aspx" class="sidebarclick" >
+                                        <span>学生成绩</span>
+                                    </a>
+                                </li>
+                                </li><li role="presentation">
+                                    <a href="openAchievement.aspx" class="sidebarclick" >
+                                        <span>开放成绩</span>
                                     </a>
                                 </li>
                             </ul>

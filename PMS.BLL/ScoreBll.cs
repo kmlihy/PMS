@@ -72,18 +72,18 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
-        public Result openScore(Score score)
+        public Result openScore(int state, int planId)
         {
-            int row = sdao.openScore(score);
+            int row = sdao.openScore(state, planId);
             if (row > 0)
             {
                 return Result.更新成功;
             }
             return Result.更新失败;
         }
-        public Result selectSate(int openState)
+        public Result selectSate(int openState, int planId)
         {
-            int row = sdao.selectSate(openState);
+            int row = sdao.selectSate(openState, planId);
             if (row > 0)
             {
                 return Result.记录存在;

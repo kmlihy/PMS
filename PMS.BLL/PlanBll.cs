@@ -148,5 +148,9 @@ namespace PMS.BLL
             }
             return null;
         }
+        public Plan getPlanId(int collegeId, string startTime)
+        {
+            return dao.getPlanId(collegeId, startTime);
+        }
     }
 }

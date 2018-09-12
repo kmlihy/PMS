@@ -309,9 +309,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_Teacher set state=@state";
-                string[] param = { "@state" };
-                object[] values = { teacher.state };
+                string cmdText = "update T_Teacher set state=@state where collegeId=@collegeId";
+                string[] param = { "@state", "@collegeId" };
+                object[] values = { teacher.state, teacher.college.ColID };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

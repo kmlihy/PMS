@@ -124,13 +124,13 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="score"></param>
         /// <returns></returns>
-        public int openScore(Score score)
+        public int openScore(int state, int planId)
         {
             try
             {
-                string cmdText = "update T_Score set openState=@state";
-                string[] param = {"@state" };
-                object[] values = {score.openState };
+                string cmdText = "update T_Score set openState=@state where planId=@planId";
+                string[] param = { "@state", "@planId" };
+                object[] values = { state, planId };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -140,11 +140,11 @@ namespace PMS.Dao
             }
         }
 
-        public int selectSate(int openState)
+        public int selectSate(int openState, int planId)
         {
-            string sql = "select COUNT(scoreId) from T_Score where openState=@openState";
-            string[] param = { "@openState" };
-            object[] values = { openState };
+            string sql = "select COUNT(scoreId) from T_Score where openState=@openState and planId=@planId";
+            string[] param = { "@openState", "@planId" };
+            object[] values = { openState, planId };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
     }

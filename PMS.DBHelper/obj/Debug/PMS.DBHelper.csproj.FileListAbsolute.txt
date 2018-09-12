@@ -4,8 +4,4 @@ C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.pdb
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CopyComplete
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb
-C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\bin\Debug\NPOI.dll
-C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\bin\Debug\NPOI.OOXML.dll
-C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\bin\Debug\NPOI.OpenXml4Net.dll
-C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojAssemblyReference.cache

@@ -44,7 +44,6 @@
     <Compile Include="DefenceDao.cs" />
     <Compile Include="GuideRecordDao.cs" />
     <Compile Include="MedtermQualityDao.cs" />
-    <Compile Include="News.cs" />
     <Compile Include="NewsDao.cs" />
     <Compile Include="OpenReportDao.cs" />
     <Compile Include="PathDao.cs" />

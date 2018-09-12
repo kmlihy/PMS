@@ -250,5 +250,25 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 查询planId
+        /// </summary>
+        /// <param name="collegeId"></param>
+        /// <param name="startTime"></param>
+        /// <returns></returns>
+        public Plan getPlanId(int collegeId, string startTime)
+        {
+            string sql = "select top 1 planId from T_Plan where collegeId=@collegeId and convert(varchar,startTime,120) like @startTime order by planId desc";
+            string[] param = { "@collegeId", "@startTime" };
+            object[] values = { collegeId, startTime };
+            Plan plan = new Plan();
+            SqlDataReader reader = db.ExecuteReader(sql, param, values);
+            while (reader.Read())
+            {
+                plan.PlanId = reader.GetInt32(0);
+            }
+            reader.Close();
+            return plan;
+        }
     }
 }
