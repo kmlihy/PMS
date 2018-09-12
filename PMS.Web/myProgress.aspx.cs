@@ -25,9 +25,17 @@ namespace PMS.Web
 
         protected Path path;//论文和查重报告存储路径
         protected DataSet pathds;
+        protected Result pathRe;
+        protected Path pathState;//获取数据库state字段
+
+        protected MedtermQuality mq;//中期质量报告
+
+        protected bool isGuide;//判断是否有交叉知道记录
 
         protected DataSet ds;
         protected DataSet titleDs;
+        protected DataSet scoreDs;
+        protected DataSet crossGuideDs;
         TitleRecordBll Record = new TitleRecordBll();
         PlanBll planBll = new PlanBll();
         OpenReportBll opBll = new OpenReportBll();
@@ -38,6 +46,10 @@ namespace PMS.Web
         public void getData()
         {
             PathBll pathBll = new PathBll();
+            MedtermQualityBll mqBll = new MedtermQualityBll();
+            ScoreBll scoreBll = new ScoreBll();
+            GuideRecordBll guideBll = new GuideRecordBll();
+            CrossGuideBll crossBll = new CrossGuideBll();
             state = Session["state"].ToString();
             if(state == "3")
             {
@@ -61,11 +73,16 @@ namespace PMS.Web
                         opReport = opBll.Select(int.Parse(titleRecordId));
                         opTime = opReport.reportTime;
                         teacherOpenning = opReport.teacherOpinion;
-                        if(pathBll.selectByTitleRecordId(titleRecordId) == Result.记录存在)
+                        pathRe = pathBll.selectByTitleRecordId(titleRecordId);
+                        if (pathRe == Result.记录存在)
                         {
                             Path pathRecordId = pathBll.getTitleRecordId(stuNO);
                             TitleRecord tr = pathRecordId.titleRecord;
                             pathds = pathBll.getModel(tr.TitleRecordId, stuNO);
+                            mq = mqBll.Select(tr.TitleRecordId);
+                            scoreDs = scoreBll.Select(stuNO, int.Parse(planId));
+                            isGuide = guideBll.isGuideRecord(tr.TitleRecordId);//判断学生是否有交叉指导记录
+                            crossGuideDs = crossBll.GetByAccount(stuNO);
                         }
                     }
                 }

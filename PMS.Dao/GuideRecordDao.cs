@@ -93,8 +93,8 @@ namespace PMS.Dao
         /// <returns>影响行数</returns>
         public int isGuideRecord(int titleRecordId)
         {
-            string sql = "select count(titleRecordId) from T_GuideRecord where titleRecordId=@titleRecordId";
-            string[] param = { "@Account" };
+            string sql = "select count(titleRecordId) from [V_CrossGuide] where titleRecordId=@titleRecordId";
+            string[] param = { "@titleRecordId" };
             object[] values = { titleRecordId.ToString() };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
         }
