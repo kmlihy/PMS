@@ -1,0 +1,17 @@
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\obj\Debug\PMS.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.BLL.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.BLL.pdb
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.Dao.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.Model.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.DBHelper.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\NPOI.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\NPOI.OOXML.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.Dao.pdb
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.Model.pdb
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\bin\Debug\PMS.DBHelper.pdb
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\obj\Debug\PMS.BLL.csproj.CopyComplete
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
+C:\Users\Administrator\Desktop\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
