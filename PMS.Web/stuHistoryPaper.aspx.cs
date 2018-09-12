@@ -16,7 +16,7 @@ namespace PMS.Web
         public string stuAccount;
         public int getCurrentPage = 1, pagesize = 5, count;
         PathBll pathBll = new PathBll();
-        CrossGuideBll crossBll = new CrossGuideBll();
+        CrossBll crossBll = new CrossBll();
         TitleRecordBll titleRecordBll = new TitleRecordBll();
         protected void Page_Load(object sender, EventArgs e)
         {

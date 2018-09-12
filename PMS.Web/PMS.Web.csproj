@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\adminViewScore.aspx" />
     <Content Include="admin\openAchievement.aspx" />
     <Content Include="bin\LitJSON.dll" />
     <Content Include="checkMediumQualityReport.aspx" />
@@ -368,6 +369,13 @@
     </Compile>
     <Compile Include="admin\adminList.aspx.designer.cs">
       <DependentUpon>adminList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\adminViewScore.aspx.cs">
+      <DependentUpon>adminViewScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\adminViewScore.aspx.designer.cs">
+      <DependentUpon>adminViewScore.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\batchList.aspx.cs">
       <DependentUpon>batchList.aspx</DependentUpon>

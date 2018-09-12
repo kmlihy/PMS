@@ -19,7 +19,6 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
-            CrossGuideBll crossGuideBll = new CrossGuideBll();
             ScoreBll sbll = new ScoreBll();
             Student student = (Student)Session["loginuser"];
             stuAccount = student.StuAccount;

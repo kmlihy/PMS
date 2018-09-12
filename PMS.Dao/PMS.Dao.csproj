@@ -41,10 +41,10 @@
   <ItemGroup>
     <Compile Include="CollegeDao.cs" />
     <Compile Include="CrossDao.cs" />
-    <Compile Include="CrossGuideDao.cs" />
     <Compile Include="DefenceDao.cs" />
     <Compile Include="GuideRecordDao.cs" />
     <Compile Include="MedtermQualityDao.cs" />
+    <Compile Include="News.cs" />
     <Compile Include="NewsDao.cs" />
     <Compile Include="OpenReportDao.cs" />
     <Compile Include="PathDao.cs" />
@@ -70,6 +70,27 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\NPOI.dll" />
+    <Content Include="bin\Debug\NPOI.OOXML.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXml4Net.dll" />
+    <Content Include="bin\Debug\NPOI.OpenXmlFormats.dll" />
+    <Content Include="bin\Debug\PMS.Dao.dll" />
+    <Content Include="bin\Debug\PMS.Dao.pdb" />
+    <Content Include="bin\Debug\PMS.DBHelper.dll" />
+    <Content Include="bin\Debug\PMS.DBHelper.pdb" />
+    <Content Include="bin\Debug\PMS.Model.dll" />
+    <Content Include="bin\Debug\PMS.Model.pdb" />
+    <Content Include="obj\Debug\PMS.Dao.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\PMS.Dao.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\PMS.Dao.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\PMS.Dao.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\PMS.Dao.csprojAssemblyReference.cache" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
