@@ -37,7 +37,7 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="teaAccount">教师账号</param>
         /// <returns></returns>
-        public DataSet Select(string teaAccount)
+        public DataSet SelectByTea(string teaAccount)
         {
             try
             {
@@ -58,11 +58,36 @@ namespace PMS.Dao
         }
 
         /// <summary>
-        /// 根据学生账号查找交叉指导数据
+        /// 根据学生账号查找交叉指导记录
         /// </summary>
         /// <param name="stuAccount">学生账号</param>
         /// <returns></returns>
-        public DataSet SelectByStu(int titleRecordId)
+        public DataSet SelectByStu(string stuAccount)
+        {
+            try
+            {
+                string cmdText = "select * from T_Score where stuAccount=@stuAccount";
+                String[] param = { "@stuAccount" };
+                String[] values = { stuAccount };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 根据选题记录id查找交叉指导数据
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet Select(int titleRecordId)
         {
             try
             {

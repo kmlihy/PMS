@@ -11,6 +11,7 @@ namespace PMS.BLL
     using Result = Enums.OpResult;
     public class CrossBll
     {
+        private PublicProcedure pubpro = new PublicProcedure();
         CrossDao crossDao = new CrossDao();
         /// <summary>
         /// 为学生添加交叉指导教师
@@ -34,9 +35,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="teaAccount">教师账号</param>
         /// <returns></returns>
-        public DataSet Select(string teaAccount)
+        public DataSet SelectByTea(string teaAccount)
         {
-            DataSet ds = crossDao.Select(teaAccount);
+            DataSet ds = crossDao.SelectByTea(teaAccount);
             if (ds != null)
             {
                 return ds;
@@ -45,18 +46,45 @@ namespace PMS.BLL
         }
 
         /// <summary>
-        /// 根据学生账号查找交叉指导数据
+        /// 根据学生账号查找交叉指导记录
         /// </summary>
-        /// <param name="stuAccount">学生账号</param>
+        /// <param name="stuAccounr">学生账号</param>
         /// <returns></returns>
-        public DataSet SelectByStu(int titleRecordId)
+        public DataSet SelectByStu(string stuAccounr)
         {
-            DataSet ds = crossDao.SelectByStu(titleRecordId);
+            DataSet ds = crossDao.SelectByStu(stuAccounr);
             if (ds != null)
             {
                 return ds;
             }
             return null;
+        }
+
+        /// <summary>
+        /// 根据选题记录id查找交叉指导数据
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet Select(int titleRecordId)
+        {
+            DataSet ds = crossDao.Select(titleRecordId);
+            if (ds != null)
+            {
+                return ds;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 根据条间分页查询所有选题记录信息
+        /// </summary>
+        /// <param name="tab">参数实体</param>
+        /// <param name="intPageCount">总页数（输出参数）</param>
+        /// <returns>类型为DataSet的分页选题记录信息列表集</returns>
+        public DataSet SelectBypage(TableBuilder tab, out int intPageCount)
+        {
+            DataSet ds = pubpro.SelectBypage(tab, out intPageCount);
+            return ds;
         }
     }
 }

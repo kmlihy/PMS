@@ -17,10 +17,10 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
-            CrossGuideBll crossGuideBll = new CrossGuideBll();
+            CrossBll crossBll = new CrossBll();
             Teacher teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
-            DataSet ds = crossGuideBll.GetByAccount(teaAccount);
+            DataSet ds = crossBll.SelectByTea(teaAccount);
             if (ds != null)
             {
                 int planId = 0;

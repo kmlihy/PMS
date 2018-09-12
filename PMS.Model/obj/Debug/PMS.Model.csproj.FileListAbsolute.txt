@@ -3,3 +3,4 @@ C:\Users\Administrator\Desktop\PMS\PMS.Model\bin\Debug\PMS.Model.pdb
 C:\Users\Administrator\Desktop\PMS\PMS.Model\obj\Debug\PMS.Model.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 C:\Users\Administrator\Desktop\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
+C:\Users\Administrator\Desktop\PMS\PMS.Model\obj\Debug\PMS.Model.csprojAssemblyReference.cache

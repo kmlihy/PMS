@@ -119,7 +119,7 @@ namespace PMS.Web
                 currentPage = "1";
             }
 
-            CrossGuideBll crossBll = new CrossGuideBll();
+            CrossBll crossBll = new CrossBll();
             Teacher tea = (Teacher)Session["loginuser"];
             teaAccount = tea.TeaAccount;
             string where1 = "teaAccount = " + teaAccount;
