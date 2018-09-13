@@ -14,14 +14,12 @@
     <div class="panel-heading text-center">
         <h2>开放成绩</h2>
     </div>
-    <%=status %>
     <div class="panel-body text-center">
         <div id="second_div">
             <p>
-                <input type="checkbox" name="check-1" value="4" class="lcs_check" <%if (status == 1)
-                    {%>checked="on"<%}
-                    else
-                    {%>checked="off"<%} %>  />
+                <input type="checkbox" name="check-1" class="lcs_check" autocomplete="off" <%if (status == 1)
+                    {%>checked="unchecked"
+                    <%} %> />
             </p>
         </div>
     </div>

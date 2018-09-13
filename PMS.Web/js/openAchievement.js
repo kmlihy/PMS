@@ -20,7 +20,9 @@
                         });
                     } else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-
+                            onOk: function (v) {
+                                location.reload();
+                            }
                         });
                     }
                 }
@@ -41,7 +43,9 @@
                         });
                     } else {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-
+                            onOk: function (v) {
+                                location.reload();
+                            }
                         });
                     }
                 }
