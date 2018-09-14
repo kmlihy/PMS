@@ -151,14 +151,15 @@
                     <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
                     <%if (pathRe == PMS.BLL.Enums.OpResult.记录存在)
                         {
-                            for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
-                            {%>
+                    %>
                     <li>
-                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <h3><%= string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
                         <dl>
                             <dt>进入论文指导阶段</dt>
                         </dl>
                     </li>
+                    <%for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
+                        {%>
                     <li>
                         <h3><%=pathds.Tables[0].Rows[i]["dateTime"] %></h3>
                         <dl>
@@ -205,10 +206,10 @@
                         </dl>
                     </li>
                     <%
-                        continue;
-                    }
-                    else
-                    {
+                            continue;
+                        }
+                        else
+                        {
                     %>
                     <li>
                         <h3><%= pathds.Tables[0].Rows[i]["dateTime"] %>
