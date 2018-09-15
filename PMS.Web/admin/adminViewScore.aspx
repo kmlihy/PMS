@@ -20,24 +20,48 @@
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
                 <div class="input-group" id="inputgroups">
-                    <select class="selectpicker selectdropbatch" data-width="auto" id="selectdropbatch">
+                    <select class="selectpicker selectdropbatch" data-width="auto" id="choosePlan">
                         <option value="0">-请选择批次-</option>
                         <%for (int i = 0; i < dsPlan.Tables[0].Rows.Count; i++)
+                            { if (planId == dsPlan.Tables[0].Rows[i]["planId"].ToString())
+                            {%>
+                                <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>" selected="selected"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                            <%}
+                            else
                             { %>
-                        <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
-                        <%} %>
+                                <option value="<%=dsPlan.Tables[0].Rows[i]["planId"].ToString() %>"><%=dsPlan.Tables[0].Rows[i]["planName"].ToString() %></option>
+                            <%}
+                        } %>
                     </select>
                     &nbsp
-                    <select class="selectpicker selectdrop" data-width="auto" id="selectdrop">
+                    <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
                         <option value="0">-查询全部专业-</option>
+                        <%for (int i = 0; i < dsPro.Tables[0].Rows.Count; i++)
+                        {
+                            if (proId == dsPro.Tables[0].Rows[i]["proId"].ToString())
+                            {%>
+                                <option value="<%=dsPro.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=dsPro.Tables[0].Rows[i]["proName"].ToString() %></option>
+                            <%}
+                            else
+                            { %>
+                                <option value="<%=dsPro.Tables[0].Rows[i]["proId"].ToString() %>"><%=dsPro.Tables[0].Rows[i]["proName"].ToString() %></option>
+                            <%}
+                        } %>
                     </select>
                     &nbsp
-                    <select class="selectpicker selectdrop" data-width="auto">
-                        <option value="0">-按成绩排序-</option>
-                        <option value="0">-升序-</option>
-                        <option value="0">-降序-</option>
+                    <select class="selectpicker selectdrop" data-width="auto" id="order">
+                        <%if (order == "up")
+                            { %>
+                        <option value="up" selected="selected">-升序-</option>
+                        <option value="down">-降序-</option>
+                        <%}
+                            else
+                            {  %>
+                        <option value="up">-升序-</option>
+                        <option value="down" selected="selected">-降序-</option>
+                        <%}%>
                     </select>
-                    <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" />
+                    <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=strSearch %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
                             <span class="glyphicon glyphicon-search">查询</span>
@@ -63,15 +87,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%for (int i = 0; i < ds.Table[0].Rows.Count; i++)
+                    <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         { %>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center"><%=ds.Table[0].Rows[i]["stuAccount"].ToString() %></td>
-                        <td class="text-center"><%=ds.Table[0].Rows[i]["realName"].ToString() %></td>
-                        <td class="text-center"><%=ds.Table[0].Rows[i]["title"].ToString() %></td>
-                        <td class="text-center"><%=ds.Table[0].Rows[i]["teaName"].ToString() %></td>
-                        <td class="text-center"><%=ds.Table[0].Rows[i]["result"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["result"].ToString() %></td>
                     </tr>
                     <%} %>
                 </tbody>
@@ -111,6 +135,8 @@
             </ul>
         </div>
     </div>
+    <input type="hidden" value="<%=getCurrentPage %>" id="page" />
+    <input type="hidden" value="<%=count %>" id="countPage" />
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
@@ -119,6 +145,6 @@
 <script src="../js/xcConfirm.js"></script>
 <script src="../js/adminViewScore.js"></script>
 <script>
-   
+
 </script>
 </html>
