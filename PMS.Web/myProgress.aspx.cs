@@ -36,6 +36,7 @@ namespace PMS.Web
         protected DataSet titleDs;
         protected DataSet scoreDs;
         protected DataSet crossGuideDs;
+        protected DataSet corssDs;
         protected DataSet defenceDs;
         TitleRecordBll Record = new TitleRecordBll();
         PlanBll planBll = new PlanBll();
@@ -83,7 +84,8 @@ namespace PMS.Web
                             pathds = pathBll.getModel(tr.TitleRecordId, stuNO);//遍历路径信息
                             mq = mqBll.Select(tr.TitleRecordId);//遍历中期质量报告
                             scoreDs = scoreBll.Select(stuNO, int.Parse(planId));//获取学生成绩
-                            crossGuideDs = crossBll.SelectByStu(stuNO);//遍历交叉指导信息
+                            crossGuideDs = crossBll.Select(tr.TitleRecordId);//遍历交叉指导信息
+                            corssDs = crossBll.SelectByStu(stuNO);
                             defenceDs = dfBll.getModel(tr.TitleRecordId.ToString());//遍历答辩记录信息
                         }
                     }
