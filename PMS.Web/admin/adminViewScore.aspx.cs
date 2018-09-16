@@ -13,7 +13,7 @@ namespace PMS.Web.admin
     public partial class adminViewScore : System.Web.UI.Page
     {
         public DataSet dsPlan, dsPro, ds;
-        protected int count,pagesize = 5,getCurrentPage = 1;
+        protected int count,pagesize = 5,getCurrentPage = 1,state;
         protected string search = "",strSearch = "", strWhere="";
         protected string proId="",planId="", order= "";
         Teacher teacher = new Teacher();
@@ -21,8 +21,9 @@ namespace PMS.Web.admin
         ProfessionBll proBll = new ProfessionBll();
         protected void Page_Load(object sender, EventArgs e)
         {
+            string op = Request.QueryString["op"];
             //获取数据
-            int state = Convert.ToInt32(Session["state"]);
+            state = Convert.ToInt32(Session["state"]);
             if(state == 1)
             {
                 teacher = (Teacher)Session["loginuser"];
@@ -47,6 +48,73 @@ namespace PMS.Web.admin
                 {
                     Search();
                     getdata(Search(), 1);
+                }
+            }
+            //导出列表
+            if (op == "export")
+            {
+                //分院id
+                int collegeId = teacher.college.ColID;
+                //专业id
+                string pro = Request.QueryString["dropstrWherepro"];
+                //批次Id
+                string batch = Request.QueryString["dropstrWhereplan"];
+                //输入框条件
+                string input = Request.QueryString["search"];
+                string strWhere = "";
+
+                if (state == 2)
+                {
+                    if (input == null)
+                    {
+                        if ((pro == null || pro == "0") && batch == null || pro == "0")
+                        {
+                            strWhere = string.Format(" where collegeId = {0}", collegeId );
+                        }
+                        else if (pro != "null" && batch == "null")
+                        {
+                            strWhere = string.Format(" where proId = {0} and collegeId = {1}", "'" + pro + "'", collegeId );
+                        }
+                        else if ((pro == "null" || pro == "0") && batch != "null")
+                        {
+                            strWhere = string.Format(" where planId = {0} and collegeId = {1}", "'" + batch + "'", collegeId );
+                        }
+                        else
+                        {
+                            strWhere = string.Format(" where planId = {0} and proId = {1} and collegeId = {2}", "'" + batch + "'", "'" + pro + "'", collegeId );
+                        }
+                    }
+                    //如果不为空传 input里的值
+                    else
+                    {
+                        strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId );
+                    }
+                }
+                else
+                {
+                    if (input == null)
+                    {
+                            strWhere = string.Format(" where collegeId = {0}", collegeId );
+                    }
+                    //如果不为空传 input里的值
+                    else
+                    {
+                        strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId );
+                    }
+                }
+
+                ScoreBll scoreBll = new ScoreBll();
+                var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
+                DataTable dt = scoreBll.ExportExcel(strWhere);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    var path = Server.MapPath("~/download/学生成绩导出/" + name + ".xls");
+                    ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                    downloadfile(path);
+                }
+                else
+                {
+                    Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
                 }
             }
             if (order == "down")
@@ -133,13 +201,20 @@ namespace PMS.Web.admin
                 currentPage = "1";
             }
             string where;
-            if (strWhere == "" || strWhere == null)
+            if (state == 2)
             {
-                where = "collegeId =" + teacher.college.ColID;
+                if (strWhere == "" || strWhere == null)
+                {
+                    where = "collegeId =" + teacher.college.ColID;
+                }
+                else
+                {
+                    where = "collegeId =" + teacher.college.ColID + " and " + strWhere;
+                }
             }
             else
             {
-                where = "collegeId =" + teacher.college.ColID + " and " + strWhere;
+                where = "teaAccount = " + teacher.TeaAccount;
             }
             //获取数据
             TableBuilder tbd = new TableBuilder()
@@ -186,6 +261,24 @@ namespace PMS.Web.admin
             {
             }
             return search;
+        }
+        /// <summary>
+        /// //导出列表方法
+        /// </summary>
+        /// <param name="s_path">文件路径</param>
+        public void downloadfile(string s_path)
+        {
+            System.IO.FileInfo file = new System.IO.FileInfo(s_path);
+            HttpContext.Current.Response.ContentType = "application/ms-download";
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.AddHeader("Content-Type", "application/octet-stream");
+            HttpContext.Current.Response.Charset = "utf-8";
+            HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment;filename=" + System.Web.HttpUtility.UrlEncode(file.Name, System.Text.Encoding.UTF8));
+            HttpContext.Current.Response.AddHeader("Content-Length", file.Length.ToString());
+            HttpContext.Current.Response.WriteFile(file.FullName);
+            HttpContext.Current.Response.Flush();
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.End();
         }
     }
 }

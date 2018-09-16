@@ -210,7 +210,7 @@ namespace PMS.Web.admin
                 DataTable dt = titlerd.ExportExcel(strWhere);
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    var path = Server.MapPath("~/upload/选题记录导出/" + name + ".xls");
+                    var path = Server.MapPath("~/download/选题记录导出/" + name + ".xls");
                     ExcelHelper.x2003.TableToExcelForXLS(dt, path);
                     downloadfile(path);
                 }

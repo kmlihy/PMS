@@ -122,7 +122,8 @@ namespace PMS.Dao
         /// <summary>
         /// 开放成绩
         /// </summary>
-        /// <param name="score"></param>
+        /// <param name="state">更新成绩查看状态</param>
+        /// <param name="planId">批次id</param>
         /// <returns></returns>
         public int openScore(int state, int planId)
         {
@@ -140,12 +141,35 @@ namespace PMS.Dao
             }
         }
 
+        /// <summary>
+        /// 获取成绩开放状态
+        /// </summary>
+        /// <param name="openState">开放状态</param>
+        /// <param name="planId">批次id</param>
+        /// <returns></returns>
         public int selectSate(int openState, int planId)
         {
             string sql = "select COUNT(scoreId) from T_Score where openState=@openState and planId=@planId";
             string[] param = { "@openState", "@planId" };
             object[] values = { openState, planId };
             return Convert.ToInt32(db.ExecuteScalar(sql, param, values));
+        }
+
+        /// <summary>
+        /// 导出成Excel表
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
+        /// <returns>返回一个DataTable的选题记录集合</returns>
+        public DataTable ExportExcel(string strWhere)
+        {
+            String cmdText = string.Format("select stuAccount as 学号,realName as 姓名,title as 题目,teaName as 出题教师,guideScore as 指导分数,crossScore as 交叉指导分数,defenceScore as 答辩成绩,(guideScore*"+0.3+"+crossScore*"+0.3+"+defenceScore*"+0.4+") as 总成绩 from V_Score {0}", strWhere);
+            DataSet ds = db.FillDataSet(cmdText, null, null);
+            DataTable dt = null;
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            return dt;
         }
     }
 }

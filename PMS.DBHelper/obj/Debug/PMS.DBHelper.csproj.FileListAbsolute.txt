@@ -5,3 +5,10 @@ C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.Co
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb
 C:\Users\Administrator\Desktop\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojAssemblyReference.cache
+D:\project\ASP.NET\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.dll
+D:\project\ASP.NET\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.pdb
+D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojAssemblyReference.cache
+D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CoreCompileInputs.cache
+D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CopyComplete
+D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
+D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb

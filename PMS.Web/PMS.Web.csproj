@@ -837,12 +837,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="download\学生成绩导出\" />
+    <Folder Include="download\选题记录导出\" />
     <Folder Include="kindeditor\asp\" />
     <Folder Include="kindeditor\jsp\" />
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Service References\" />
-    <Folder Include="upload\选题记录导出\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

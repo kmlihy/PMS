@@ -105,5 +105,20 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        /// <summary>
+        /// 导出成Excel表
+        /// </summary>
+        /// <param name="strWhere">查询条件</param>
+        /// <returns>返回一个DataTable的选题记录集合</returns>
+        public DataTable ExportExcel(string strWhere)
+        {
+            DataTable dt = sdao.ExportExcel(strWhere);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt;
+            }
+            return null;
+        }
     }
 }
