@@ -26,37 +26,35 @@ function jump(cur) {
     var proId = sessionStorage.getItem("dropstrWherepro");
     var planId = sessionStorage.getItem("dropstrWhereplan");
     if (type == "up" || type == "plandropUp" || type == "prodropUp" || type == "alldropUp") {
-        if (strWhere == null && proId == null && planId == null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur +"&order = up";
-        }
         if (strWhere != null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&search=" + strWhere + "&type=" + type + "&order = up";
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&search=" + strWhere + "&type=" + type + "&order=up";
         }
-        if (planId != null && proId == null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWhereplan=" + planId + "&type=" + type + "&order = up";
+        else if (planId != null && proId == null) {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWhereplan=" + planId + "&type=" + type + "&order=up";
         }
-        if (proId != null && planId == null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&type=" + type + "&order = up";
+        else if (proId != null && planId == null) {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&type=" + type + "&order=up";
         }
-        if (proId != null && planId != null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&dropstrWhereplan=" + planId + "&type=" + type + "&order = up";
+        else if (proId != null && planId != null) {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&dropstrWhereplan=" + planId + "&type=" + type + "&order=up";
+        } else {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&order=up";
         }
     }
     else {
-        if (strWhere == null && proId == null && planId == null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur;
-        }
         if (strWhere != null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&search=" + strWhere + "&type=" + type;
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&search=" + strWhere + "&type=" + type + "&order=down";
         }
-        if (planId != null && proId == null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWhereplan=" + planId + "&type=" + type;
+        else if (planId != null && proId == null) {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWhereplan=" + planId + "&type=" + type + "&order=down";
         }
-        if (proId != null && planId == null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&type=" + type;
+        else if (proId != null && planId == null) {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&type=" + type + "&order=down";
         }
-        if (proId != null && planId != null) {
-            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&dropstrWhereplan=" + planId + "&type=" + type;
+        else if (proId != null && planId != null) {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&dropstrWherepro=" + proId + "&dropstrWhereplan=" + planId + "&type=" + type + "&order=down";
+        } else {
+            window.location.href = "adminViewScore.aspx?currentPage=" + cur + "&order=down";
         }
     }
 };

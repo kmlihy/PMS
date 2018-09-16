@@ -49,71 +49,75 @@ namespace PMS.Web.admin
                     getdata(Search(), 1);
                 }
             }
-            //批次下拉菜单
-            if (type == "plandrop")
+            if (order == "down")
             {
-                planId = Request.QueryString["dropstrWhereplan"].ToString();
-                if (planId == "0")
+                //批次下拉菜单
+                if (type == "plandrop")
                 {
-                    getdata("",1);
+                    planId = Request.QueryString["dropstrWhereplan"].ToString();
+                    if (planId == "0")
+                    {
+                        getdata("", 1);
+                    }
+                    string strWhere = string.Format(" planId = {0}", planId);
+                    getdata(strWhere, 1);
                 }
-                string strWhere = string.Format(" planId = {0}", planId);
-                getdata(strWhere,1);
-            }
-            //专业下拉菜单
-            if (type == "prodrop")
-            {
-                proId = Request.QueryString["dropstrWherepro"].ToString();
-                if (proId == "0")
+                //专业下拉菜单
+                if (type == "prodrop")
                 {
-                    getdata("", 1);
+                    proId = Request.QueryString["dropstrWherepro"].ToString();
+                    if (proId == "0")
+                    {
+                        getdata("", 1);
+                    }
+                    string strWhere = string.Format(" proId = {0}", proId);
+                    getdata(strWhere, 1);
                 }
-                string strWhere = string.Format(" proId = {0}", proId);
-                getdata(strWhere, 1);
-            }
-            //所有下拉菜单
-            if (type == "alldrop")
+                //所有下拉菜单
+                if (type == "alldrop")
+                {
+                    planId = Request.QueryString["dropstrWhereplan"].ToString();
+                    proId = Request.QueryString["dropstrWherepro"].ToString();
+                    string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
+                    getdata(strWhere, 1);
+                }
+            }else  if (order == "up")
             {
-                planId = Request.QueryString["dropstrWhereplan"].ToString();
-                proId = Request.QueryString["dropstrWherepro"].ToString();
-                string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
-                getdata(strWhere,1);
-            }
-
-            //批次下拉菜单、升序
-            if (type == "plandropUp")
-            {
-                planId = Request.QueryString["dropstrWhereplan"].ToString();
-                if (planId == "0")
+                //批次下拉菜单、升序
+                if (type == "plandropUp")
+                {
+                    planId = Request.QueryString["dropstrWhereplan"].ToString();
+                    if (planId == "0")
+                    {
+                        getdata("", 0);
+                    }
+                    string strWhere = string.Format(" planId = {0}", planId);
+                    getdata(strWhere, 0);
+                }
+                //专业下拉菜单、升序
+                if (type == "prodropUp")
+                {
+                    proId = Request.QueryString["dropstrWherepro"].ToString();
+                    if (proId == "0")
+                    {
+                        getdata("", 0);
+                    }
+                    string strWhere = string.Format(" proId = {0}", proId);
+                    getdata(strWhere, 0);
+                }
+                //所有下拉菜单、升序
+                if (type == "alldropUp")
+                {
+                    planId = Request.QueryString["dropstrWhereplan"].ToString();
+                    proId = Request.QueryString["dropstrWherepro"].ToString();
+                    string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
+                    getdata(strWhere, 0);
+                }
+                //仅升序
+                if (type == "up")
                 {
                     getdata("", 0);
                 }
-                string strWhere = string.Format(" planId = {0}", planId);
-                getdata(strWhere, 0);
-            }
-            //专业下拉菜单、升序
-            if (type == "prodropUp")
-            {
-                proId = Request.QueryString["dropstrWherepro"].ToString();
-                if (proId == "0")
-                {
-                    getdata("",0);
-                }
-                string strWhere = string.Format(" proId = {0}", proId);
-                getdata(strWhere, 0);
-            }
-            //所有下拉菜单、升序
-            if (type == "alldropUp")
-            {
-                planId = Request.QueryString["dropstrWhereplan"].ToString();
-                proId = Request.QueryString["dropstrWherepro"].ToString();
-                string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
-                getdata(strWhere, 0);
-            }
-            //仅升序
-            if (type == "up")
-            {
-                getdata("", 0);
             }
         }
         /// <summary>
