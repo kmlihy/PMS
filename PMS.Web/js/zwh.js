@@ -19,7 +19,69 @@
         $("#okMessage").hide();
         $("html").height($(window).height());
     })
+    //学生，教师登陆页面提交
+    $("#btnSubmit").click(function () {
+        var userName = $("#userName").val();
+        var pwd = $("#pwd").val();
+        var captcha = $("#captcha").val();
+        var type = $("input[name='radio']:checked").val();
+        $.ajax({
+            type: 'Post',
+            url: 'login.aspx',
+            data: {
+                userName: userName,
+                pwd: pwd,
+                captcha: captcha,
+                type: type,
+                op: "login"
+            },
+            dataType: 'text',
+            success: function (succ) {
+                if (succ === "登陆成功") {
 
+                } else if (succ == "管理员") {
+                    window.wxc.xcConfirm("管理员请前往管理员登陆页面", window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            window.location.href = "admin/login.aspx";
+                        }
+                    });
+                }
+                else {
+                    window.wxc.xcConfirm("登陆失败", window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            window.location.href = "login.aspx";
+                        }
+                    });
+                }
+            }
+        });
+    })
+    //管理员登陆页面提交
+    $("#btnlogin").click(function () {
+        var userName = $("#userName").val();
+        var pwd = $("#pwd").val();
+        $.ajax({
+            type: 'Post',
+            url: 'login.aspx',
+            data: {
+                userName: userName,
+                pwd: pwd,
+                op: 'login'
+            },
+            datatype: 'text',
+            success: function (succ) {
+                if (succ === "登陆成功") {
+
+                } else {
+                    window.wxc.xcConfirm("登陆失败", window.wxc.xcConfirm.typeEnum.success, {
+                        onOk: function (v) {
+                            window.location.href = "login.aspx";
+                        }
+                    });
+                }
+            }
+        });
+    })
     // 页面重置
     function formReset() {
         $("#form")[0].reset()

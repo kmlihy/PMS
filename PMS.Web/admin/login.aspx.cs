@@ -64,8 +64,13 @@ namespace PMS.Web.admin
             //{
                 try
                 {
-                    teaAccount = Request.Form["userName"].ToString();
-                    string pwd = Request.Form["pwd"].ToString();
+                string op = Request["op"];
+                string pwd="";
+                if (op == "login")
+                {
+                    teaAccount = Request["userName"].Trim();
+                    pwd = Request["pwd"].Trim();
+                }
 
                     //rsa.FromXmlString((string)Session["private_key"]);
                     //byte[] result = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
@@ -106,7 +111,8 @@ namespace PMS.Web.admin
                         }
                         else
                         {
-                            Response.Write("<script>alert('用户名或密码错误登录失败');</script>");
+                            Response.Write("用户名或密码错误");
+                            Response.End();
                         }
                     }
 

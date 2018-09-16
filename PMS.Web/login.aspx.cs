@@ -67,11 +67,15 @@ namespace PMS.Web
             //{
                 try
                 {
-                    account = Request.Form["userName"].Trim();
-                    pwd = Request.Form["pwd"].Trim();
-                    captcha = Request.Form["captcha"].ToLower();
-                    usertype = Request.Form["user"].Trim();
-                    string Verification = vildata();
+                string op = Request["op"];
+                if (op == "login")
+                {
+                    account = Request["userName"].Trim();
+                    pwd = Request["pwd"].Trim();
+                    captcha = Request["captcha"].ToLower();
+                    usertype = Request["user"].Trim();
+                }
+                string Verification = vildata();
                     string roles = "";
                     if (Verification.Length == 0)
                     {
@@ -109,8 +113,8 @@ namespace PMS.Web
                                 }
                                 else
                                 {
-                                    Response.Write("<script>alert('管理员请前往管理员登录界面登录');</script>");
-                                    Response.Redirect("admin/login.aspx");
+                                    Response.Write("管理员");
+                                    Response.End();
                                 }
                                 break;
                             case "student":
@@ -138,7 +142,8 @@ namespace PMS.Web
                         }
                         if (loginstate == 0)
                         {
-                            Response.Write("<script>alert('用户名或密码错误');</script>");
+                            Response.Write("用户名或密码错误");
+                            Response.End();
                         }
                         else if (loginstate == 1)
                         {
@@ -146,12 +151,14 @@ namespace PMS.Web
                         }
                         else
                         {
-                            Response.Write("<script>alert('登录失败');</script>");
+                            Response.Write("登录失败");
+                            Response.End();
                         }
                     }
                     else
                     {
-                        Response.Write("<script>alert('" + Verification + "');</script>");
+                        Response.Write( Verification);
+                        Response.End();
                     }
                 }
                 catch

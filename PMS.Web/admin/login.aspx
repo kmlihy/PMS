@@ -10,6 +10,7 @@
     <title>登录界面</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/zwh.css" />
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body class="body" id="mydiv">
@@ -20,7 +21,7 @@
         </div>
         <hr />
         <div class="panel-body">
-            <form class="form-horizontal" id="form" action="login.aspx" method="post" role="form" onsubmit="return admincheckForm()">
+<%--            <form class="form-horizontal" id="form" action="login.aspx" method="post" role="form" onsubmit="return admincheckForm()">--%>
                 <div class="input-group" id="Acontent">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
@@ -39,13 +40,13 @@
                 <div class="form-group">
                     <div id="btn">
                         <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
-                        <button type="submit" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="adminMsg();cmdEncrypt();" id="btnlogin">
+                        <button type="button" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="adminMsg();cmdEncrypt();" id="btnlogin">
                             <a href="main.aspx" id="aLogin">登录</a>
                         </button>
                     </div>
                 </div>
                 <input type="hidden" name="encrypted_pwd" id="encrypted_pwd" />
-            </form>
+<%--            </form>--%>
         </div>
     </div>
 </body>
@@ -55,6 +56,7 @@
 <script src="../js/RSA.js" type="text/javascript"></script>
 <script src="../js/Barrett.js" type="text/javascript"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/xcConfirm.js"></script>
 <script src="../js/zwh.js"></script>
 <script src="../js/canvas-particle.js"></script>
 <script type="text/javascript">
