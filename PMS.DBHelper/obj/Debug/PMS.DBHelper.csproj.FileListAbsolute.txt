@@ -12,3 +12,10 @@ D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CoreCompileInp
 D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CopyComplete
 D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
 D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb
+F:\c#\repos\pms\PMS.DBHelper\bin\Debug\PMS.DBHelper.dll
+F:\c#\repos\pms\PMS.DBHelper\bin\Debug\PMS.DBHelper.pdb
+F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojResolveAssemblyReference.cache
+F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CoreCompileInputs.cache
+F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CopyComplete
+F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
+F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb

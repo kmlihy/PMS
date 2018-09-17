@@ -21,10 +21,14 @@
     })
     //学生，教师登陆页面提交
     $("#btnSubmit").click(function () {
+        var pubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAnNXR7lHTpPH/97QOxIp+UusK9/RH5elvEPv6ssL37xGo8vQHh7CCsOonUWWVdi1iVegi7fRCkWeUVlta61EuX141+eKnZcdJe81NeUZ1h3N77JbzElbhhi8Wln6U27xpfkskKASLhQ4dS9DqoJQN/YUhBaBpER287Wjf3X6WmQIDAQAB";
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(pubKey);
+
         var userName = $("#userName").val();
-        var pwd = $("#pwd").val();
+        var pwd = encrypt.encrypt($("#pwd").val());
         var captcha = $("#captcha").val();
-        var type = $("input[name='radio']:checked").val();
+        var type = $("input[name='user']:checked").val();
         $.ajax({
             type: 'Post',
             url: 'login.aspx',
@@ -37,8 +41,8 @@
             },
             dataType: 'text',
             success: function (succ) {
-                if (succ === "登陆成功") {
-
+                if (succ === "登录成功") {
+                    window.location.href = "/admin/main.aspx";
                 } else if (succ == "管理员") {
                     window.wxc.xcConfirm("管理员请前往管理员登陆页面", window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
@@ -47,7 +51,7 @@
                     });
                 }
                 else {
-                    window.wxc.xcConfirm("登陆失败", window.wxc.xcConfirm.typeEnum.success, {
+                    window.wxc.xcConfirm("登录失败", window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
                             window.location.href = "login.aspx";
                         }
@@ -58,8 +62,11 @@
     })
     //管理员登陆页面提交
     $("#btnlogin").click(function () {
+        var pubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAnNXR7lHTpPH/97QOxIp+UusK9/RH5elvEPv6ssL37xGo8vQHh7CCsOonUWWVdi1iVegi7fRCkWeUVlta61EuX141+eKnZcdJe81NeUZ1h3N77JbzElbhhi8Wln6U27xpfkskKASLhQ4dS9DqoJQN/YUhBaBpER287Wjf3X6WmQIDAQAB";
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(pubKey);
         var userName = $("#userName").val();
-        var pwd = $("#pwd").val();
+        var pwd = encrypt.encrypt($("#pwd").val());
         $.ajax({
             type: 'Post',
             url: 'login.aspx',
@@ -70,12 +77,12 @@
             },
             datatype: 'text',
             success: function (succ) {
-                if (succ === "登陆成功") {
-
+                if (succ === "登录成功") {
+                    window.location.href = "/admin/main.aspx";
                 } else {
-                    window.wxc.xcConfirm("登陆失败", window.wxc.xcConfirm.typeEnum.success, {
+                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                            window.location.href = "login.aspx";
+                            window.location.href = "/admin/login.aspx";
                         }
                     });
                 }

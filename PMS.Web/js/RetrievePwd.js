@@ -22,13 +22,16 @@
     var txtPwd = /^[0-9a-zA-Z_]{1,}$/; //数字、英文、下划线的正则表达式
 
     $("#sumbit").click(function () {
+        var pubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAnNXR7lHTpPH/97QOxIp+UusK9/RH5elvEPv6ssL37xGo8vQHh7CCsOonUWWVdi1iVegi7fRCkWeUVlta61EuX141+eKnZcdJe81NeUZ1h3N77JbzElbhhi8Wln6U27xpfkskKASLhQ4dS9DqoJQN/YUhBaBpER287Wjf3X6WmQIDAQAB";
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(pubKey);
+
         var account = $("#account").val();
         var pwd = $("#newpwd").val();
         var confirmPwd = $("#confirmPwd").val();
         var email = $("#email").val();
         var code = $("#code").val();
         var user = $("input[name='user']:checked").val();
-        var encrypted_pwd = $("#encrypted_pwd").val();
         $('#validateAcoount').text("");
         $('#validateEmail').text("");
         $('#validateCode').text("");
@@ -64,8 +67,7 @@
                     account: account,
                     email: email,
                     code: code,
-                    encrypted_pwd: encrypted_pwd,
-                    //pwd: pwd,
+                    pwd: encrypt.encrypt(pwd),
                     user: user,
                     op: "change"
                 },

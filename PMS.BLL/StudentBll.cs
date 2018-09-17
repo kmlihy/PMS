@@ -22,14 +22,69 @@ namespace PMS.BLL
         /// <returns></returns>
         public Student Login(string stuAccount, string pwd)
         {
-            DataSet ds = dao.Select(stuAccount, pwd);
-
-            if (ds != null && ds.Tables[0].Rows.Count == 1)
+            DataSet dds = dao.Select(stuAccount);
+            //string  stuPwd = ds.Tables[0].Rows[0]["stuPwd"].ToString();
+            if (dds != null && dds.Tables[0].Rows.Count == 1)
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                if (row["stuAccount"].ToString() == stuAccount && row["stuPwd"].ToString() == pwd)
+                DataRow row = dds.Tables[0].Rows[0];
+                RSACryptoService rsa = new RSACryptoService();
+                if (row["stuAccount"].ToString() == stuAccount && rsa.Decrypt(row["stuPwd"].ToString()) == pwd)
                 {
-                    Student student = dao.GetStudent(row["stuAccount"].ToString());
+                    Student student = new Student();
+                    Profession profession = new Profession();
+                    College college = new College();
+                    DataSet ds = dao.GetStudent(stuAccount);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (ds.Tables[0].Rows[0]["stuAccount"].ToString() != "")
+                        {
+                            student.StuAccount = ds.Tables[0].Rows[0]["stuAccount"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["stuPwd"].ToString() != "")
+                        {
+                            student.StuPwd = rsa.Decrypt(ds.Tables[0].Rows[0]["stuPwd"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["realName"].ToString() != "")
+                        {
+                            student.RealName = ds.Tables[0].Rows[0]["realName"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                        {
+                            student.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                        {
+                            student.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                        {
+                            student.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["proId"].ToString() != "")
+                        {
+                            profession.ProId = int.Parse(ds.Tables[0].Rows[0]["proId"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["proName"].ToString() != "")
+                        {
+                            profession.ProName = ds.Tables[0].Rows[0]["proName"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                        {
+                            college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                        {
+                            college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                        }
+                        if (profession != null)
+                        {
+                            student.profession = profession;
+                        }
+                        if (college != null)
+                        {
+                            student.college = college;
+                        }
+                    }
                     //填充属性
                     return student;
                 }
@@ -155,7 +210,63 @@ namespace PMS.BLL
         /// <returns>学生实体</returns>
         public Student GetModel(String stuAccount)
         {
-            return dao.GetStudent(stuAccount);
+            Student student = new Student();
+            Profession profession = new Profession();
+            College college = new College();
+            DataSet ds = dao.GetStudent(stuAccount);
+            RSACryptoService rsa = new RSACryptoService();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0]["stuAccount"].ToString() != "")
+                {
+                    student.StuAccount = ds.Tables[0].Rows[0]["stuAccount"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["stuPwd"].ToString() != "")
+                {
+                    student.StuPwd = rsa.Decrypt(ds.Tables[0].Rows[0]["stuPwd"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["realName"].ToString() != "")
+                {
+                    student.RealName = ds.Tables[0].Rows[0]["realName"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                {
+                    student.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                {
+                    student.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                {
+                    student.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["proId"].ToString() != "")
+                {
+                    profession.ProId = int.Parse(ds.Tables[0].Rows[0]["proId"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["proName"].ToString() != "")
+                {
+                    profession.ProName = ds.Tables[0].Rows[0]["proName"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                {
+                    college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                {
+                    college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                }
+                if (profession != null)
+                {
+                    student.profession = profession;
+                }
+                if (college != null)
+                {
+                    student.college = college;
+                }
+            }
+            return student;
         }
 
         /// <summary>

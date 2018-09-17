@@ -39,6 +39,7 @@ namespace PMS.Web.admin
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
         StudentBll stuBll = new StudentBll();
+        RSACryptoService rsa = new RSACryptoService();
 
         public void Page_Load(object sender, EventArgs e)
         {
@@ -143,7 +144,7 @@ namespace PMS.Web.admin
 
         public void stuPasswordReset() {
             string stuAccount = Context.Request["stuNO"].ToString();
-            string stuPwd = Security.SHA256Hash("000000");
+            string stuPwd = rsa.Encrypt("000000");
             
             Result resetResult =stuBll.ResetPwd(stuAccount, stuPwd); 
             if (resetResult== Result.更新成功) {
@@ -421,7 +422,7 @@ namespace PMS.Web.admin
                     Student stu = new Student()
                     {
                         StuAccount = stuAccount,
-                        StuPwd = Security.SHA256Hash("000000"),
+                        StuPwd = rsa.Encrypt("000000"),
                         RealName = realName,
                         Sex = sex,
                         Phone = phone,

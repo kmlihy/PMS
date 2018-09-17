@@ -167,7 +167,8 @@ namespace PMS.Web.admin
                 tea.college = coll;
                 tea.Email = email;
                 tea.Phone = phone;
-                tea.TeaPwd = Security.SHA256Hash("000000");
+                RSACryptoService rsa = new RSACryptoService();
+                tea.TeaPwd = rsa.Encrypt("000000");
                 tea.TeaType = 2;
                 result = teaBll.Insert(tea);
                 if (result == Result.添加成功)

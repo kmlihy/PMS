@@ -35,15 +35,9 @@ namespace PMS.Web
         protected string email;
         protected string phone;
 
-        protected string strPublicKeyExponent = "";
-        protected string strPublicKeyModulus = "";
-        RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            RSAParameters parameter = rsa.ExportParameters(true);
-            strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
-            strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
             //获取学院
             dsColl = collbll.Select();
             //获取专业
@@ -53,7 +47,6 @@ namespace PMS.Web
                 if (op == "load"|| string.Compare(Request.RequestType, "get", true) == 0)
                 {
                     getPro();
-                    Session["private_key"] = rsa.ToXmlString(true);
                 }
                 else if (op == "add")
                 {
@@ -88,9 +81,10 @@ namespace PMS.Web
             account = Context.Request["account"].ToString();
             name = Context.Request["name"].ToString();
             sex = Context.Request["sex"].ToString();
-            pwd = Context.Request["encrypted_pwd"].ToString();
+            pwd = Context.Request["pwd"].ToString();
             email = Context.Request["email"].ToString();
             phone = Context.Request["phone"].ToString();
+            string year = DateTime.Now.ToString("yyyy");
 
             //根据输入的邮箱、联系电话查找是否已存在
             result = Result.添加失败;
@@ -108,12 +102,6 @@ namespace PMS.Web
             }
             else
             {
-
-                rsa.FromXmlString((string)Session["private_key"]);
-                byte[] res = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
-                System.Text.ASCIIEncoding enc = new ASCIIEncoding();
-                string strPwdMD5 = enc.GetString(res);
-
                 pro.ProId = int.Parse(profession);
                 coll.ColID = int.Parse(college);
                 stu.college = coll;
@@ -123,7 +111,8 @@ namespace PMS.Web
                 stu.RealName = name;
                 stu.Sex = sex;
                 stu.StuAccount = account;
-                stu.StuPwd = Security.SHA256Hash(strPwdMD5);
+                stu.StuPwd = pwd;
+                stu.finishYear = Convert.ToInt32(year);
                 result = stuBll.Insert(stu);
                 if (result == Result.添加成功)
                 {

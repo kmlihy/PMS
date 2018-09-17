@@ -19,8 +19,6 @@ namespace PMS.Web
         protected string pwd;
         protected string captcha;
         protected string usertype;
-        protected string strPublicKeyExponent = "";
-        protected string strPublicKeyModulus = "";
 
         //单点登录判断
         private void isLogined(string id)
@@ -57,80 +55,39 @@ namespace PMS.Web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-            //if (string.Compare(Request.RequestType, "get", true) == 0)
-            //{
-            //    //将私钥存Session中
-            //    Session["private_key"] = rsa.ToXmlString(true);
-            //}
-            //else
-            //{
-                try
-                {
+            try
+            {
                 string op = Request["op"];
                 if (op == "login")
                 {
                     account = Request["userName"].Trim();
                     pwd = Request["pwd"].Trim();
                     captcha = Request["captcha"].ToLower();
-                    usertype = Request["user"].Trim();
-                }
+                    usertype = Request["type"].Trim();
                 string Verification = vildata();
-                    string roles = "";
-                    if (Verification.Length == 0)
-                    {
-                        int loginstate = 0;
-                        //rsa.FromXmlString((string)Session["private_key"]);
-                        //byte[] result = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
-                        //System.Text.ASCIIEncoding enc = new ASCIIEncoding();
-                        //string strPwdMD5 = enc.GetString(result);
-
+                string roles = "";
+                if (Verification.Length == 0)
+                {
+                    int loginstate = 0;
+                        RSACryptoService rsa = new RSACryptoService();
                         switch (usertype)
-                        {
-                            case "teacher":
-                                TeacherBll teaBll = new TeacherBll();
-                                if (teaBll.GetModel(account).TeaType == 1)
-                                {
-                                    Teacher tea = teaBll.Login(account, Security.SHA256Hash(pwd));
-                                    if (tea == null)
-                                    {
-                                        loginstate = 0;
-                                    }
-                                    else
-                                    {
-                                        loginstate = 1;
-                                        Session["loginuser"] = tea;
-                                        Session["state"] = 1;
-                                        Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
-                                        roles = "teacher";
-                                        FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
-                                        string HashTicket = FormsAuthentication.Encrypt(Ticket); //加密序列化验证票为字符串 
-                                        Session["HashTicket"] = HashTicket;
-                                        HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
-                                        Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
-                                        isLogined(account);
-                                    }
-                                }
-                                else
-                                {
-                                    Response.Write("管理员");
-                                    Response.End();
-                                }
-                                break;
-                            case "student":
-                                StudentBll sdao = new BLL.StudentBll();
-                                Student stu = sdao.Login(account, Security.SHA256Hash(pwd));
-                                if (stu == null)
+                    {
+                        case "teacher":
+                            TeacherBll teaBll = new TeacherBll();
+                            if (teaBll.GetModel(account).TeaType == 1)
+                            {
+                                    Teacher tea = teaBll.Login(account, rsa.Decrypt(pwd));
+                                if (tea == null)
                                 {
                                     loginstate = 0;
                                 }
                                 else
                                 {
                                     loginstate = 1;
-                                    Session["loginuser"] = stu;
-                                    Session["state"] = 3;
+                                    Session["loginuser"] = tea;
+                                    Session["state"] = 1;
                                     Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
-                                    roles = "student";
+                                    roles = "teacher";
                                     FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
                                     string HashTicket = FormsAuthentication.Encrypt(Ticket); //加密序列化验证票为字符串 
                                     Session["HashTicket"] = HashTicket;
@@ -138,37 +95,64 @@ namespace PMS.Web
                                     Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
                                     isLogined(account);
                                 }
-                                break;
-                        }
-                        if (loginstate == 0)
-                        {
-                            Response.Write("用户名或密码错误");
-                            Response.End();
-                        }
-                        else if (loginstate == 1)
-                        {
-                            Response.Redirect("admin/main.aspx");
-                        }
-                        else
-                        {
-                            Response.Write("登录失败");
-                            Response.End();
-                        }
+                            }
+                            else
+                            {
+                                Response.Write("管理员");
+                                Response.End();
+                            }
+                            break;
+                        case "student":
+                            StudentBll sdao = new BLL.StudentBll();
+                                Student stu = sdao.Login(account, rsa.Decrypt(pwd));
+                                
+                            if (stu == null)
+                            {
+                                loginstate = 0;
+                            }
+                            else
+                            {
+                                loginstate = 1;
+                                Session["loginuser"] = stu;
+                                Session["state"] = 3;
+                                Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
+                                roles = "student";
+                                FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, account, DateTime.Now, DateTime.Now.AddMinutes(30), true, roles); //建立身份验证票对象 
+                                string HashTicket = FormsAuthentication.Encrypt(Ticket); //加密序列化验证票为字符串 
+                                Session["HashTicket"] = HashTicket;
+                                HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
+                                Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
+                                isLogined(account);
+                            }
+                            break;
                     }
+                    if (loginstate == 0)
+                    {
+                        Response.Write("用户名或密码错误");
+                        Response.End();
+                    }
+                    else if (loginstate == 1)
+                    {
+                            Response.Write("登录成功");
+                            Response.End();
+                        }
                     else
                     {
-                        Response.Write( Verification);
+                        Response.Write("登录失败");
                         Response.End();
                     }
                 }
+                else
+                {
+                    Response.Write(Verification);
+                    Response.End();
+                }
+            }
+            }
                 catch
                 {
 
                 }
-            //}
-            //RSAParameters parameter = rsa.ExportParameters(true);
-            //strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
-            //strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
         }
   
 

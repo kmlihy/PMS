@@ -214,7 +214,8 @@ namespace PMS.Web.admin
                     tea.college = college;
                     tea.TeaType = 1;
                     tea.TeaAccount = teaAccount;
-                    tea.TeaPwd = Security.SHA256Hash("000000");
+                    RSACryptoService rsa = new RSACryptoService();
+                    tea.TeaPwd = rsa.Encrypt("000000");
                     tea.TeaName = teaName;
                     tea.Sex = sex;
                     tea.Email = email;

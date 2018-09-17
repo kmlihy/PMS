@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="changePwd.aspx.cs" Inherits="PMS.Web.admin.changePwd" %>
+
 <%="" %>
 <!DOCTYPE html>
 
@@ -23,7 +24,7 @@
                     <div class="form-group">
                         <label for="firstname" class="col-sm-2  col-sm-offset-3 control-label">当前账号:</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control input-sm" id="usercount" placeholder="账号" readonly="true" value="<%=account %>"/>
+                            <input type="text" class="form-control input-sm" id="usercount" placeholder="账号" readonly="true" value="<%=account %>" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,13 +57,14 @@
     </div>
     <input type="hidden" value="<%=Session["state"] %>" id="state" />
 </body>
-    <script src="../js/jquery-3.3.1.min.js "></script>
-    <script src="../js/bootstrap.min.js "></script>
-    <script src="../js/jquery.validate.min.js "></script>
-    <script src="../js/additional-methods.js"></script>
-    <script src="../js/messages_zh.min.js "></script>
-    <%--<script src="../js/lgd.js"></script>--%>
-    <script src="../js/changePwd.js"></script>
-    <script src="../js/xcConfirm.js"></script>
-    <script src="../js/jquery.validate.min.js"></script>
+<script src="../js/jquery-3.3.1.min.js "></script>
+<script src="../js/bootstrap.min.js "></script>
+<script src="../js/jquery.validate.min.js "></script>
+<script src="../js/additional-methods.js"></script>
+<script src="../js/messages_zh.min.js "></script>
+<%--<script src="../js/lgd.js"></script>--%>
+<script src="../js/changePwd.js"></script>
+<script src="../js/xcConfirm.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
+<script src="../js/jsencrypt.min.js"></script>
 </html>

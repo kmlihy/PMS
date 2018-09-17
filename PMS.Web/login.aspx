@@ -21,8 +21,6 @@
         </div>
         <hr />
         <div class="panel-body">
-<%--            <form class="form-horizontal" id="form" action="login.aspx" method="post" role="form" onsubmit="return stucheckForm()">--%>
-
                 <div class="input-group" id="content">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
@@ -59,33 +57,18 @@
                     </div>
                     <div id="btn">
                         <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
-                        <button type="button" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="stuMsg();cmdEncrypt();" id="btnSubmit">
+                        <button type="button" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="stuMsg()" id="btnSubmit">
                             登录
                         </button>
                     </div>
                 </div>
-                <input type="hidden" name="encrypted_pwd" id="encrypted_pwd" />
-<%--            </form>--%>
         </div>
     </div>
 </body>
-<script src="js/jquery-1.4.1.js"></script>
-<script src="js/jQuery.md5.js" type="text/javascript"></script>
-<script src="js/BigInt.js" type="text/javascript"></script>
-<script src="js/RSA.js" type="text/javascript"></script>
-<script src="js/Barrett.js" type="text/javascript"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/canvas-particle.js"></script>
 <script src="js/zwh.js"></script>
 <script src="js/xcConfirm.js"></script>
-<script type="text/javascript">
-    function cmdEncrypt() {
-<%--        setMaxDigits(129);
-        var key = new RSAKeyPair("<%=strPublicKeyExponent%>", "", "<%=strPublicKeyModulus%>");
-        var pwdMD5Twice = $.md5($.md5($("#pwd").attr("value")));
-        var pwdRtn = encryptedString(key, pwdMD5Twice);
-        $("#encrypted_pwd").attr("value", pwdRtn);
-        $("#form").submit();--%>
-    }
-</script>
+<script src="js/jsencrypt.min.js"></script>
 </html>

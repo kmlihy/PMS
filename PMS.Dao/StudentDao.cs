@@ -18,11 +18,11 @@ namespace PMS.Dao
         /// <param name="stuAccount">账号</param>
         /// <param name="pwd">密码</param>
         /// <returns></returns>
-        public DataSet Select(string stuAccount, string pwd)
+        public DataSet Select(string stuAccount)
         {
-            string cmdText = "select * from T_Student where stuAccount = @stuAccount and stuPwd = @stuPwd";
-            string[] param = { "@stuAccount", "@stuPwd" };
-            object[] values = { stuAccount, pwd };
+            string cmdText = "select * from T_Student where stuAccount = @stuAccount";
+            string[] param = { "@stuAccount"};
+            object[] values = { stuAccount};
             DataSet ds = db.FillDataSet(cmdText, param, values);
             return ds;
         }
@@ -148,7 +148,7 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="StuAccount">学生账号</param>
         /// <returns>Student</returns>
-        public Student GetStudent(String TeaAccount)
+        public DataSet GetStudent(String TeaAccount)
         {
             try
             {
@@ -158,61 +158,7 @@ namespace PMS.Dao
                 String[] param = { "@stuAccount" };
                 String[] values = { TeaAccount.ToString() };
                 DataSet ds = db.FillDataSet(strSql.ToString(), param, values);
-                Student student = new Student();
-                Profession profession = new Profession();
-                College college = new College();
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    if (ds.Tables[0].Rows[0]["stuAccount"].ToString() != "")
-                    {
-                        student.StuAccount = ds.Tables[0].Rows[0]["stuAccount"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["stuPwd"].ToString() != "")
-                    {
-                        student.StuPwd = ds.Tables[0].Rows[0]["stuPwd"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["realName"].ToString() != "")
-                    {
-                        student.RealName = ds.Tables[0].Rows[0]["realName"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
-                    {
-                        student.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
-                    {
-                        student.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
-                    {
-                        student.Email = ds.Tables[0].Rows[0]["Email"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["proId"].ToString() != "")
-                    {
-                        profession.ProId = int.Parse(ds.Tables[0].Rows[0]["proId"].ToString());
-                    }
-                    if (ds.Tables[0].Rows[0]["proName"].ToString() != "")
-                    {
-                        profession.ProName = ds.Tables[0].Rows[0]["proName"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
-                    {
-                        college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
-                    }
-                    if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
-                    {
-                        college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
-                    }
-                    if (profession != null)
-                    {
-                        student.profession = profession;
-                    }
-                    if (college != null)
-                    {
-                        student.college = college;
-                    }
-                }
-                return student;
+                return ds;
             }
             catch (Exception)
             {
