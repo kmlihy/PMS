@@ -22,11 +22,11 @@ namespace PMS.Dao
         /// <param name="teaAccount">账号</param>
         /// <param name="pwd">密码</param>
         /// <returns></returns>
-        public DataSet Select(string teaAccount, string pwd)
+        public DataSet Select(string teaAccount)
         {
-            string cmdText = "select * from T_Teacher where teaAccount = @teaAccount and teaPwd = @teaPwd";
-            string[] param = { "@teaAccount","@teaPwd" };
-            object[] values = { teaAccount, pwd };
+            string cmdText = "select * from T_Teacher where teaAccount = @teaAccount";
+            string[] param = { "@teaAccount"};
+            object[] values = { teaAccount};
             DataSet ds = db.FillDataSet(cmdText, param, values);            
             return ds;
         }
@@ -106,7 +106,7 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="TeaAccount">老师账号</param>
         /// <returns>Teacher</returns>
-        public Teacher GetTeacher(String TeaAccount)
+        public DataSet GetTeacher(String TeaAccount)
         {
             try
             {
@@ -116,56 +116,8 @@ namespace PMS.Dao
                 String[] param = { "@teaAccount" };
                 String[] values = { TeaAccount.ToString() };
                 DataSet ds = db.FillDataSet(strSql.ToString(), param, values);
-                Teacher teacher = new Teacher();
-                College college = new College();
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
-                    {
-                        teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["teaPwd"].ToString() != "")
-                    {
-                        teacher.TeaPwd = ds.Tables[0].Rows[0]["teaPwd"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
-                    {
-                        teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
-                    {
-                        teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
-                    {
-                        teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
-                    {
-                        teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
-                    }
-                    if (ds.Tables[0].Rows[0]["teaType"].ToString() != "")
-                    {
-                        teacher.TeaType = int.Parse(ds.Tables[0].Rows[0]["teaType"].ToString());
-                    }
-                    if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
-                    {
-                        college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
-
-                    }
-                    if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
-                    {
-                        college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
-                    }
-                    if (college != null)
-                    {
-                        teacher.college = college;
-                    }
-                }
-                else
-                {
-                }
-                return teacher;
+                
+                return ds;
             }
             catch (Exception)
             {

@@ -42,7 +42,7 @@ namespace PMS.Web.admin
                 Student stu = (Student)Session["loginuser"];
                 account = stu.StuAccount;
             }
-            string op = Request.Form["type"];
+            string op = Request["type"];
             if(op == "change")
             {
                 Change();
@@ -53,11 +53,13 @@ namespace PMS.Web.admin
         /// </summary>
         public void Change()
         {
-            string oldpwd = Request.Form["old"];
-            string newpwd = Request.Form["newP"];
+            RSACryptoService rsa = new RSACryptoService();
+            string oldpwd = rsa.Decrypt(Request["old"]);
+            string newpwd = Request["newP"];
             int state = Convert.ToInt32(Session["state"].ToString());
-            string Old = Security.SHA256Hash(oldpwd);
-            string NewPwd = Security.SHA256Hash(newpwd);
+            string Old = oldpwd;
+            string NewPwd = newpwd;
+
             if (state == 0||state == 2)
             {
                 admin = (Teacher)Session["user"];

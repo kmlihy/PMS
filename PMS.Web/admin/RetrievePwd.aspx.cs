@@ -23,9 +23,6 @@ namespace PMS.Web.admin
         protected string user;
         StudentBll stuBll = new StudentBll();
         TeacherBll teacherBll = new TeacherBll();
-        RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-        protected string strPublicKeyExponent = "";
-        protected string strPublicKeyModulus = "";
         /// <summary>
         /// 6位数字验证码
         /// </summary>
@@ -44,16 +41,6 @@ namespace PMS.Web.admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            RSAParameters parameter = rsa.ExportParameters(true);
-            strPublicKeyExponent = Security.BytesToHexString(parameter.Exponent);
-            strPublicKeyModulus = Security.BytesToHexString(parameter.Modulus);
-            if (string.Compare(Request.RequestType, "get", true) == 0)
-            {
-                //将私钥存Session中
-                Session["private_key"] = rsa.ToXmlString(true);
-            }
-            else
-            {
                 try
                 {
                     string op = Context.Request["op"].ToString();
@@ -85,7 +72,7 @@ namespace PMS.Web.admin
                         account = Context.Request["account"].ToString();
                         email = Context.Request["email"].ToString();
                         code = Context.Request["code"].ToString();
-                        pwd = Context.Request["encrypted_pwd"].ToString();
+                        pwd = Context.Request["pwd"].ToString();
                         user = Context.Request["user"].ToString();
 
                         switch (user)
@@ -98,14 +85,13 @@ namespace PMS.Web.admin
                 catch
                 {
                 }
-            }
         }
         private void isStudent()
         {
             Student stu = stuBll.GetModel(account);
             if (!stuBll.selectBystuId(account))
             {
-                Response.Write("账号不存在");
+                Response.Write("账号不存在，请检查用户类型");
                 Response.End();
             }
             else if (email != stu.Email)
@@ -119,7 +105,7 @@ namespace PMS.Web.admin
             Teacher tea = teacherBll.GetModel(account);
             if (!teacherBll.selectByteaId(account))
             {
-                Response.Write("账号不存在");
+                Response.Write("账号不存在，请检查用户类型");
                 Response.End();
             }
             else if (email != tea.Email)
@@ -138,11 +124,7 @@ namespace PMS.Web.admin
             }
             else if (stuBll.selectBystuId(account) && email == stu.Email && code == Session["result"].ToString())
             {
-                rsa.FromXmlString((string)Session["private_key"]);
-                byte[] res = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
-                System.Text.ASCIIEncoding enc = new ASCIIEncoding();
-                string strPwdMD5 = enc.GetString(res);
-                result = stuBll.UpdataPwd(account, Security.SHA256Hash(strPwdMD5));
+                result = stuBll.UpdataPwd(account, pwd);
                 if (result == Result.更新成功)
                 {
                     Response.Write("修改成功");
@@ -168,13 +150,9 @@ namespace PMS.Web.admin
                 Response.Write("验证码错误");
                 Response.End();
             }
-            else if (stuBll.selectBystuId(account) && email == tea.Email && code == Session["result"].ToString())
+            else if (teacherBll.selectByteaId(account) && email == tea.Email && code == Session["result"].ToString())
             {
-                rsa.FromXmlString((string)Session["private_key"]);
-                byte[] res = rsa.Decrypt(Security.HexStringToBytes(pwd), false);
-                System.Text.ASCIIEncoding enc = new ASCIIEncoding();
-                string strPwdMD5 = enc.GetString(res);
-                result = teacherBll.UpdataPwd(account, Security.SHA256Hash(strPwdMD5));
+                result = teacherBll.UpdataPwd(account, pwd);
                 if (result == Result.更新成功)
                 {
                     Response.Write("修改成功");

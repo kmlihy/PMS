@@ -104,14 +104,14 @@
                                     <label class="control-label">密码:</label>
                                 </td>
                                 <td>
-                                    <input type="password" class="form-control input-sm input" id="regPwd" placeholder="请输入密码" />
+                                    <input type="password" class="form-control input-sm input" id="regPwd" name="regPwd" placeholder="请输入密码" />
                                     <span id="validatePwd"></span></td>
                             </tr>
                             <tr>
                                 <td id="regLable">
                                     <label class="control-label">确认密码:</label></td>
                                 <td>
-                                    <input type="password" class="form-control input-sm input" id="confirmPwd" placeholder="请再次输入密码" />
+                                    <input type="password" class="form-control input-sm input" id="confirmPwd" name="confirmPwd" placeholder="请再次输入密码" />
                                     <span id="validateConfirmPwd"></span></td>
                             </tr>
                             <tr>
@@ -143,30 +143,16 @@
                             <button type="button" class="btn btn-info col-xs-9 col-sm-9 col-md-10 col-lg-10 col-xs-push-2 col-sm-push-1 col-md-push-1" id="btnAdd" onclick="cmdEncrypt();">立即注册</button>
                         </div>
                     </div>
-                    <input type="hidden" name="encrypted_pwd" id="encrypted_pwd" />
                 </form>
             </div>
         </div>
     </div>
 </body>
-<script src="js/jquery-1.4.1.js"></script>
-<script src="js/jQuery.md5.js" type="text/javascript"></script>
-<script src="js/BigInt.js" type="text/javascript"></script>
-<script src="js/RSA.js" type="text/javascript"></script>
-<script src="js/Barrett.js" type="text/javascript"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/additional-methods.js"></script>
 <script src="js/messages_zh.min.js"></script>
 <script src="js/xcConfirm.js"></script>
 <script src="js/reg.js"></script>
-<script type="text/javascript">
-    function cmdEncrypt() {
-        setMaxDigits(129);
-        var key = new RSAKeyPair("<%=strPublicKeyExponent%>", "", "<%=strPublicKeyModulus%>");
-        var pwdMD5Twice = $.md5($.md5($("#regPwd").attr("value")));
-        var pwdRtn = encryptedString(key, pwdMD5Twice);
-        $("#encrypted_pwd").attr("value", pwdRtn);
-        $("#regform").submit();
-    }
-</script>
+<script src="js/jsencrypt.min.js"></script>
 </html>

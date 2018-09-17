@@ -23,14 +23,65 @@ namespace PMS.BLL
         /// <returns></returns>
         public Teacher Login(string teaAccount, string pwd)
         {
-            DataSet ds = dao.Select(teaAccount, pwd);
-            if(ds!=null && ds.Tables[0].Rows.Count == 1)
+            DataSet dataSet = dao.Select(teaAccount);
+            
+            if (dataSet != null && dataSet.Tables[0].Rows.Count == 1)
             {
-                DataRow row = ds.Tables[0].Rows[0];
-                if(row["teaAccount"].ToString() == teaAccount && row["teaPwd"].ToString() == pwd)
+                DataRow row = dataSet.Tables[0].Rows[0];
+                DataSet ds = dao.GetTeacher(row["teaAccount"].ToString());
+                RSACryptoService rsa = new RSACryptoService();
+                if (row["teaAccount"].ToString() == teaAccount && rsa.Decrypt(row["teaPwd"].ToString()) == pwd)
                 {
-                    Teacher teacher = dao.GetTeacher(row["teaAccount"].ToString());
-                    //填充属性
+
+                    Teacher teacher = new Teacher();
+                    College college = new College();
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                        {
+                            teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["teaPwd"].ToString() != "")
+                        {
+                            teacher.TeaPwd = rsa.Decrypt(ds.Tables[0].Rows[0]["teaPwd"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                        {
+                            teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                        {
+                            teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                        {
+                            teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                        {
+                            teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                        }
+                        if (ds.Tables[0].Rows[0]["teaType"].ToString() != "")
+                        {
+                            teacher.TeaType = int.Parse(ds.Tables[0].Rows[0]["teaType"].ToString());
+                        }
+                        if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                        {
+                            college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+
+                        }
+                        if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                        {
+                            college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                        }
+                        if (college != null)
+                        {
+                            teacher.college = college;
+                        }
+                    }
+                    else
+                    {
+                    }
                     return teacher;
                 }
             }
@@ -147,7 +198,58 @@ namespace PMS.BLL
         /// <returns>教师实体</returns>
         public Teacher GetModel(String TeaAccount)
         {
-            return dao.GetTeacher(TeaAccount);
+            DataSet ds = dao.GetTeacher(TeaAccount);
+            Teacher teacher = new Teacher();
+            College college = new College();
+            RSACryptoService rsa = new RSACryptoService();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                {
+                    teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["teaPwd"].ToString() != "")
+                {
+                    teacher.TeaPwd = rsa.Decrypt(ds.Tables[0].Rows[0]["teaPwd"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                {
+                    teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                {
+                    teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                {
+                    teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                {
+                    teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["teaType"].ToString() != "")
+                {
+                    teacher.TeaType = int.Parse(ds.Tables[0].Rows[0]["teaType"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                {
+                    college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+
+                }
+                if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                {
+                    college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                }
+                if (college != null)
+                {
+                    teacher.college = college;
+                }
+            }
+            else
+            {
+            }
+            return teacher;
         }
 
         /// <summary>

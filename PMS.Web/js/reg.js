@@ -14,6 +14,10 @@
     });
 
     $("#btnAdd").click(function () {
+        var pubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAnNXR7lHTpPH/97QOxIp+UusK9/RH5elvEPv6ssL37xGo8vQHh7CCsOonUWWVdi1iVegi7fRCkWeUVlta61EuX141+eKnZcdJe81NeUZ1h3N77JbzElbhhi8Wln6U27xpfkskKASLhQ4dS9DqoJQN/YUhBaBpER287Wjf3X6WmQIDAQAB";
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(pubKey);
+
         var collegeId = $("#college").val();
         var profession = $("#profession").val();
         var account = $("#account").val();
@@ -23,7 +27,6 @@
         var confirmPwd = $("#confirmPwd").val();
         var email = $("#email").val();
         var phone = $("#telNum").val();
-        var encrypted_pwd = $("#encrypted_pwd").val();
         //var code = $("#regCode").val();
         //alert(collegeId+":"+profession+":"+account+":"+name+":"+sex+":"+pwd+":"+confirmPwd+":"+email+":"+telNum+":"+code)
         if (collegeId === "") {
@@ -83,10 +86,9 @@
                     account: account,
                     name: name,
                     sex: sex,
-                    //pwd: pwd,
+                    pwd: encrypt.encrypt(pwd),
                     email: email,
                     phone: phone,
-                    encrypted_pwd: encrypted_pwd,
                     op: "add"
                 },
                 dataType: 'text',
