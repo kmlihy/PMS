@@ -155,6 +155,7 @@
     <Content Include="js\distributionReplyStudent.js" />
     <Content Include="js\distributionReplyTeam.js" />
     <Content Include="js\instructorsComments.js" />
+    <Content Include="js\scoreRatio.js" />
     <Content Include="js\lc_switch.min.js" />
     <Content Include="js\myProgress.js" />
     <Content Include="js\myReplyStudent.js" />
