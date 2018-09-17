@@ -160,9 +160,9 @@ namespace PMS.Dao
         /// </summary>
         /// <param name="strWhere">查询条件</param>
         /// <returns>返回一个DataTable的选题记录集合</returns>
-        public DataTable ExportExcel(string strWhere)
+        public DataTable ExportExcel(string strWhere,Score score)
         {
-            String cmdText = string.Format("select stuAccount as 学号,realName as 姓名,title as 题目,teaName as 出题教师,guideScore as 指导分数,crossScore as 交叉指导分数,defenceScore as 答辩成绩,(guideScore*"+0.3+"+crossScore*"+0.3+"+defenceScore*"+0.4+") as 总成绩 from V_Score {0}", strWhere);
+            String cmdText = string.Format("select stuAccount as 学号,realName as 姓名,title as 题目,teaName as 出题教师,guideScore as 指导分数,crossScore as 交叉指导分数,defenceScore as 答辩成绩,(guideScore*"+ score.guideRatio + "+crossScore*"+ score.crossRatio + "+defenceScore*"+ score.defenceRatio + ") as 总成绩 from V_Score {0}", strWhere);
             DataSet ds = db.FillDataSet(cmdText, null, null);
             DataTable dt = null;
             if (ds != null && ds.Tables[0].Rows.Count > 0)
@@ -190,6 +190,30 @@ namespace PMS.Dao
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        /// <summary>
+        /// 获取成绩占比
+        /// </summary>
+        /// <returns></returns>
+        public Score getRatio()
+        {
+            string cmdText = "select * from T_OptionScore";
+            DataSet ds = db.FillDataSet(cmdText, null, null);
+            Score score = new Score();
+            if (ds.Tables[0].Rows.Count > 0 || ds != null)
+            {
+                int i = ds.Tables[0].Rows.Count - 1;
+                score.guideRatio = Convert.ToInt32(ds.Tables[0].Rows[i]["guide"]);
+                score.crossRatio = Convert.ToInt32(ds.Tables[0].Rows[i]["crossGuide"]);
+                score.defenceRatio = Convert.ToInt32(ds.Tables[0].Rows[i]["defen"]);
+                score.excellent = Convert.ToInt32(ds.Tables[0].Rows[i]["excellent"]);
+                return score;
+            }
+            else
+            {
+                return null;
             }
         }
     }

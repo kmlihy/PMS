@@ -23,9 +23,9 @@ namespace PMS.Web.admin
                 string excellent = Request["excellent"];
                 ScoreBll scoreBll = new ScoreBll();
                 Score score = new Score();
-                score.guideRatio = Convert.ToInt32(guide);
-                score.crossRatio = Convert.ToInt32(cross);
-                score.defenceRatio = Convert.ToInt32(defence);
+                score.guideRatio = Convert.ToDouble(guide) * 0.01;
+                score.crossRatio = Convert.ToDouble(cross) * 0.01;
+                score.defenceRatio = Convert.ToDouble(defence) * 0.01;
                 score.excellent = Convert.ToInt32(excellent);
                 Result row = scoreBll.insertRatio(score);
                 if(row == Result.添加成功)

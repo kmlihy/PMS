@@ -111,9 +111,9 @@ namespace PMS.BLL
         /// </summary>
         /// <param name="strWhere">查询条件</param>
         /// <returns>返回一个DataTable的选题记录集合</returns>
-        public DataTable ExportExcel(string strWhere)
+        public DataTable ExportExcel(string strWhere,Score score)
         {
-            DataTable dt = sdao.ExportExcel(strWhere);
+            DataTable dt = sdao.ExportExcel(strWhere,score);
             if (dt != null && dt.Rows.Count > 0)
             {
                 return dt;
@@ -134,6 +134,15 @@ namespace PMS.BLL
                 return Result.添加成功;
             }
             return Result.添加失败;
+        }
+
+        /// <summary>
+        /// 获取成绩占比
+        /// </summary>
+        /// <returns></returns>
+        public Score getRatio()
+        {
+            return sdao.getRatio();
         }
     }
 }

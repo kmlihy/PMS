@@ -109,15 +109,15 @@ namespace PMS.Model
         /// <summary>
         /// 指导成绩占比
         /// </summary>
-        public int guideRatio { set; get; }
+        public double guideRatio { set; get; }
         /// <summary>
         /// 交叉指导成绩占比
         /// </summary>
-        public int crossRatio { set; get; }
+        public double crossRatio { set; get; }
         /// <summary>
         /// 答辩成绩占比
         /// </summary>
-        public int defenceRatio { set; get; }
+        public double defenceRatio { set; get; }
         /// <summary>
         /// 优秀论文最低分数
         /// </summary>
@@ -141,7 +141,7 @@ namespace PMS.Model
         /// <param name="crossRatio">交叉指导成绩占比</param>
         /// <param name="defenceRatio">答辩成绩占比</param>
         /// <param name="excellent">优秀论文最低分数</param>
-        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate,int guideRatio,int crossRatio,int defenceRatio,int excellent)
+        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate, double guideRatio, double crossRatio, double defenceRatio,int excellent)
         {
             this.student = student;
             this.plan = plan;

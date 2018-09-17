@@ -19,6 +19,7 @@ namespace PMS.Web.admin
         Teacher teacher = new Teacher();
         PlanBll planBll = new PlanBll();
         ProfessionBll proBll = new ProfessionBll();
+        ScoreBll scoreBll = new ScoreBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Request.QueryString["op"];
@@ -53,6 +54,9 @@ namespace PMS.Web.admin
             //导出列表
             if (op == "export")
             {
+                //获取成绩占比
+                Score scoreRatio = scoreBll.getRatio();
+                double guide = scoreRatio.guideRatio, cross = scoreRatio.crossRatio, defen = scoreRatio.defenceRatio;
                 //分院id
                 int collegeId = teacher.college.ColID;
                 //专业id
@@ -103,9 +107,8 @@ namespace PMS.Web.admin
                     }
                 }
 
-                ScoreBll scoreBll = new ScoreBll();
                 var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
-                DataTable dt = scoreBll.ExportExcel(strWhere);
+                DataTable dt = scoreBll.ExportExcel(strWhere, scoreRatio);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     var path = Server.MapPath("~/download/学生成绩导出/" + name + ".xls");
@@ -193,8 +196,8 @@ namespace PMS.Web.admin
         /// </summary>
         public void getdata(string strWhere,int order)
         {
-
-            double guide=0.3, cross=0.2, defen=0.5;
+            Score scoreRatio = scoreBll.getRatio();
+            double guide=scoreRatio.guideRatio, cross= scoreRatio.crossRatio, defen= scoreRatio.defenceRatio;
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {

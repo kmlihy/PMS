@@ -32,20 +32,20 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input id="guide" type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="guide" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input id="cross" type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="cross" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input id="defence" type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="defence" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
                                 <input id="excellent" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                10</td>
+                                100</td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="myAlert" class="alert alert-success text-center" style="width: 60%;margin:auto">
-                    <strong>提示！</strong>各科占比总和为10<p>优秀论文成绩下限总分为100
+                    <strong>提示！</strong>各科占比总和为100<p>优秀论文成绩下限总分为100
                     </p>
                 </div>
             </div>
