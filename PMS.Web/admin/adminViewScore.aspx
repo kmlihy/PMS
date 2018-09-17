@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminViewScore.aspx.cs" Inherits="PMS.Web.admin.adminViewScore" %>
 
+<%="" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">

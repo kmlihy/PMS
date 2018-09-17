@@ -18,7 +18,7 @@
             if (succ === "添加成功") {
                 window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                     onOk: function (v) {
-                        jump(1);
+                        window.location.href = "scoreRatio.aspx";
                     }
                 });
             }

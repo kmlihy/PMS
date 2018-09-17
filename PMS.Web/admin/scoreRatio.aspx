@@ -25,8 +25,8 @@
                             <th class="text-center">指导阶段</th>
                             <th class="text-center">交叉指导阶段</th>
                             <th class="text-center">答辩阶段</th>
-                            <th class="text-center">优秀论文成绩下限</th>
                             <th class="text-center">总分</th>
+                            <th class="text-center">优秀论文成绩下限</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,9 +38,9 @@
                             <td>
                                 <input id="defence" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input id="excellent" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
-                            <td>
                                 100</td>
+                            <td>
+                                <input id="excellent" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                         </tr>
                     </tbody>
                 </table>

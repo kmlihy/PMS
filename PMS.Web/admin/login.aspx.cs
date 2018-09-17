@@ -77,7 +77,8 @@ namespace PMS.Web.admin
                         HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                         Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
                         isLogined(teaAccount);
-                        Response.Redirect("main.aspx");
+                        Response.Write("登录成功");
+                        Response.End();
                     }
                     else if (teacher.TeaType == 2)
                     {
@@ -90,8 +91,8 @@ namespace PMS.Web.admin
                         HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                         Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
                         isLogined(teaAccount);
-                            Response.Write("登录成功");
-                            Response.End();
+                        Response.Write("登录成功");
+                        Response.End();
                         }
                     else
                     {

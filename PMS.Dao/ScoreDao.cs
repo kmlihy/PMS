@@ -183,7 +183,7 @@ namespace PMS.Dao
             {
                 string cmdText = "insert into T_OptionScore(guide,crossGuide,defen,excellent) values(@guide,@crossGuide,@defen,@excellent)";
                 string[] param = { "@guide", "@crossGuide", "@defen", "@excellent"};
-                object[] values = { score.guideRatio, score.crossRatio, score.defenceRatio};
+                object[] values = { score.guideRatio, score.crossRatio, score.defenceRatio,score.excellent };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
