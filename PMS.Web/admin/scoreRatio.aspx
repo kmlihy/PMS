@@ -25,24 +25,27 @@
                             <th class="text-center">指导阶段</th>
                             <th class="text-center">交叉指导阶段</th>
                             <th class="text-center">答辩阶段</th>
+                            <th class="text-center">优秀论文成绩下限</th>
                             <th class="text-center">总分</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <input type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="guide" type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="cross" type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="defence" type="text" maxlength="1" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                            <td>
+                                <input id="excellent" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
                                 10</td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="myAlert" class="alert alert-success text-center" style="width: 60%;margin:auto">
-                    <strong>提示！</strong>各科占比总和为10<p>
+                    <strong>提示！</strong>各科占比总和为10<p>优秀论文成绩下限总分为100
                     </p>
                 </div>
             </div>
@@ -57,4 +60,5 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/xcConfirm.js"></script>
+<script src="../js/scoreRatio.js"></script>
 </html>

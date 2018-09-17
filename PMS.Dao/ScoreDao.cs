@@ -171,5 +171,26 @@ namespace PMS.Dao
             }
             return dt;
         }
+
+        /// <summary>
+        /// 添加成绩占比
+        /// </summary>
+        /// <param name="score">成绩对象</param>
+        /// <returns>添加结果</returns>
+        public int insertRatio(Score score)
+        {
+            try
+            {
+                string cmdText = "insert into T_OptionScore(guide,crossGuide,defen,excellent) values(@guide,@crossGuide,@defen,@excellent)";
+                string[] param = { "@guide", "@crossGuide", "@defen", "@excellent"};
+                object[] values = { score.guideRatio, score.crossRatio, score.defenceRatio};
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -335,6 +335,11 @@
                                         <span>学生信息</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="scoreRatio.aspx" class="sidebarclick" >
+                                        <span>设置成绩占比</span>
+                                    </a>
+                                </li>
                                 
                             </ul>
                         </li>

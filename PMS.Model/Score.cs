@@ -19,12 +19,24 @@ namespace PMS.Model
         /// </summary>
         public Plan plan { set; get; }
         /// <summary>
-        /// 指导成绩
+        /// 交叉指导创新
         /// </summary>
         public string crossInnovate { get; set; }
+        /// <summary>
+        /// 答辩创新
+        /// </summary>
         public string defenInnovate { get; set; }
+        /// <summary>
+        /// 交叉指导评价
+        /// </summary>
         public string crossEvaluate { get; set; }
+        /// <summary>
+        /// 答辩评价
+        /// </summary>
         public string defenEvaluate { get; set; }
+        /// <summary>
+        /// 指导成绩
+        /// </summary>
         public double guideScore { set; get; }
         /// <summary>
         /// 交叉指导成绩
@@ -95,6 +107,23 @@ namespace PMS.Model
         /// </summary>
         public int openState { set; get; }
         /// <summary>
+        /// 指导成绩占比
+        /// </summary>
+        public int guideRatio { set; get; }
+        /// <summary>
+        /// 交叉指导成绩占比
+        /// </summary>
+        public int crossRatio { set; get; }
+        /// <summary>
+        /// 答辩成绩占比
+        /// </summary>
+        public int defenceRatio { set; get; }
+        /// <summary>
+        /// 优秀论文最低分数
+        /// </summary>
+        public int excellent { set; get; }
+
+        /// <summary>
         /// 无参构造函数
         /// </summary>
         public Score() { }
@@ -108,7 +137,11 @@ namespace PMS.Model
         /// <param name="assess">评定等级</param>
         /// <param name="evaluate">评价</param>
         /// <param name="openState">判断成绩是否开放给学生查看;0为未开放，1为已开放</param>
-        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate)
+        /// <param name="guideRatio">指导成绩占比</param>
+        /// <param name="crossRatio">交叉指导成绩占比</param>
+        /// <param name="defenceRatio">答辩成绩占比</param>
+        /// <param name="excellent">优秀论文最低分数</param>
+        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate,int guideRatio,int crossRatio,int defenceRatio,int excellent)
         {
             this.student = student;
             this.plan = plan;
@@ -133,6 +166,10 @@ namespace PMS.Model
             this.defenInnovate = defenInnovate;
             this.crossEvaluate = crossEvaluate;
             this.defenEvaluate = defenEvaluate;
+            this.guideRatio = guideRatio;
+            this.crossRatio = crossRatio;
+            this.defenceRatio = defenceRatio;
+            this.excellent = excellent;
         }
     }
 }

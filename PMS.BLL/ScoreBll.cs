@@ -120,5 +120,20 @@ namespace PMS.BLL
             }
             return null;
         }
+
+        /// <summary>
+        /// 添加成绩占比
+        /// </summary>
+        /// <param name="score">成绩对象</param>
+        /// <returns>添加结果</returns>
+        public Result insertRatio(Score score)
+        {
+            int row = sdao.insertRatio(score);
+            if (row > 0)
+            {
+                return Result.添加成功;
+            }
+            return Result.添加失败;
+        }
     }
 }
