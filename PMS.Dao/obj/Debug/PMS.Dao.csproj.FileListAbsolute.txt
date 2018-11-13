@@ -43,3 +43,4 @@ F:\c#\repos\pms\PMS.Dao\obj\Debug\PMS.Dao.csproj.CoreCompileInputs.cache
 F:\c#\repos\pms\PMS.Dao\obj\Debug\PMS.Dao.csproj.CopyComplete
 F:\c#\repos\pms\PMS.Dao\obj\Debug\PMS.Dao.dll
 F:\c#\repos\pms\PMS.Dao\obj\Debug\PMS.Dao.pdb
+D:\project\ASP.NET\PMS\PMS.Dao\bin\Debug\log4net.dll

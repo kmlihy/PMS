@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace PMS.Web
         DefenceBll defenceBll = new DefenceBll();
         TeacherBll teacherBll = new TeacherBll();
         CollegeBll collBll = new CollegeBll();
+        Teacher teacher = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request["op"];
@@ -32,7 +34,7 @@ namespace PMS.Web
             collegeid = Request.QueryString["collegeId"];
             //输入框信息
             string strsearch = Request.QueryString["search"];
-            Teacher teacher = (Teacher)Session["user"];
+            teacher = (Teacher)Session["user"];
             userType = Session["state"].ToString();
             state = Convert.ToInt32(Session["state"]);
             if (state==0)
@@ -78,50 +80,57 @@ namespace PMS.Web
                 getPlan = planBll.getPlanByCid(collegeId);
                 op = Request.QueryString["op"];
                 string submit = Request["submit"];
-                if (submit == "submit")
+                try
                 {
-                    insert();
-                }
-                if (op==""||op==null)
-                {
-                    getLeader = teacherBll.getLeaderByColl(collegeId, "", "");
-                    getMember = teacherBll.getMemberByColl(collegeId, "", "");
-                    getRecord = teacherBll.getRecordByColl(collegeId, "", "");
-                }
-                else
-                {
-                    if (op == "change1")
+                    if (submit == "submit")
                     {
-                        getLeader = teacherBll.getLeaderByColl(collegeId, member, record);
-                        getMember = teacherBll.getMemberByColl(collegeId, leader, record);
-                        getRecord = teacherBll.getRecordByColl(collegeId, leader, member);
+                        insert();
                     }
-                    else if (op == "change2")
+                    if (op == "" || op == null)
                     {
-                        getLeader = teacherBll.getLeaderByColl(collegeId, member, record);
-                        getMember = teacherBll.getMemberByColl(collegeId, leader, record);
-                        getRecord = teacherBll.getRecordByColl(collegeId, leader, member);
+                        getLeader = teacherBll.getLeaderByColl(collegeId, "", "");
+                        getMember = teacherBll.getMemberByColl(collegeId, "", "");
+                        getRecord = teacherBll.getRecordByColl(collegeId, "", "");
                     }
-                    else if (op == "change3")
+                    else
                     {
-                        getLeader = teacherBll.getLeaderByColl(collegeId, member, record);
-                        getMember = teacherBll.getMemberByColl(collegeId, leader, record);
-                        getRecord = teacherBll.getRecordByColl(collegeId, leader, member); ;
+                        if (op == "change1")
+                        {
+                            getLeader = teacherBll.getLeaderByColl(collegeId, member, record);
+                            getMember = teacherBll.getMemberByColl(collegeId, leader, record);
+                            getRecord = teacherBll.getRecordByColl(collegeId, leader, member);
+                        }
+                        else if (op == "change2")
+                        {
+                            getLeader = teacherBll.getLeaderByColl(collegeId, member, record);
+                            getMember = teacherBll.getMemberByColl(collegeId, leader, record);
+                            getRecord = teacherBll.getRecordByColl(collegeId, leader, member);
+                        }
+                        else if (op == "change3")
+                        {
+                            getLeader = teacherBll.getLeaderByColl(collegeId, member, record);
+                            getMember = teacherBll.getMemberByColl(collegeId, leader, record);
+                            getRecord = teacherBll.getRecordByColl(collegeId, leader, member); ;
+                        }
+                    }
+                    getColl = collBll.Select();
+                    dsPlan = planBll.getPlanByCid(collegeId);
+                    if (strsearch != null)
+                    {
+                        getdata(Search());
+                    }
+                    else if (planId != null && planId != "null")
+                    {
+                        getdata(SearchPlan());
+                    }
+                    else
+                    {
+                        getdata("");
                     }
                 }
-                getColl = collBll.Select();
-                dsPlan = planBll.getPlanByCid(collegeId);
-                if (strsearch != null)
+                catch (Exception ex)
                 {
-                    getdata(Search());
-                }
-                else if (planId != null && planId != "null")
-                {
-                    getdata(SearchPlan());
-                }
-                else
-                {
-                    getdata("");
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
         }
@@ -174,6 +183,7 @@ namespace PMS.Web
             }
             if (result == Result.添加成功)
             {
+                LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "分配" + plan.PlanId + "批次答辩小组");
                 Response.Write("分配成功");
                 Response.End();
             }
@@ -339,8 +349,7 @@ namespace PMS.Web
             TeacherBll teaBll = new TeacherBll();
             if (userType == "2")
             {
-                Teacher tea = (Teacher)Session["user"];
-                int userCollegeId = tea.college.ColID;
+                int userCollegeId = teacher.college.ColID;
                 if (strWhere == null || strWhere == "")
                 {
                     userCollege = "collegeId=" + userCollegeId + "";

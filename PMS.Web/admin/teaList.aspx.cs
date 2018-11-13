@@ -11,6 +11,7 @@ using static PMS.BLL.Enums;
 
 namespace PMS.Web.admin
 {
+    using PMS.DBHelper;
     using System.IO;
     using Result = Enums.OpResult;
     public partial class teaList : CommonPage
@@ -26,9 +27,10 @@ namespace PMS.Web.admin
         protected DataSet colds = null;
         protected CollegeBll colbll = new CollegeBll();
         protected string showmsg = "";
-
+        Teacher tealogin = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
+            tealogin = (Teacher)Session["user"];
             state = Convert.ToInt32(Session["state"]);
             string op = Context.Request["op"];
             if (op == "add")
@@ -128,6 +130,7 @@ namespace PMS.Web.admin
             }
             catch (Exception ex)
             {
+                LogHelper.Error(this.GetType(), ex);
                 this.Response.Write(ex.Message);
             }
         }
@@ -158,25 +161,33 @@ namespace PMS.Web.admin
         {
             string delteaAccount = Context.Request["TeaAccount"].ToString();
             Result row = IsdeleteCollege();
-            if (row == Result.记录不存在)
+            try
             {
-                Result result = teabll.Delete(delteaAccount);
-
-                if (result == Result.删除成功)
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = teabll.Delete(delteaAccount);
+
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), tealogin.TeaAccount + tealogin.TeaName + "-删除" + delteaAccount + "教师账号");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
 
@@ -186,51 +197,58 @@ namespace PMS.Web.admin
         public void saveTeacher()
         {
             string teaAccount = Context.Request["TeaAccount"].ToString();
-            if (!teabll.selectByteaId(teaAccount)) { 
-                //int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
-                //int teaType = Convert.ToInt32(Context.Request["TeaType"]);
-                //string pwd = Context.Request["Pwd"].ToString();
-                string teaName = Context.Request["TeaName"].ToString();
-                string sex = Context.Request["Sex"].ToString();
-                string email = Context.Request["Email"].ToString();
-                string tel = Context.Request["Tel"].ToString();
-                if (teabll.selectByEmail(email))
-                {//根据输入的邮箱查找是否已存在
-                    Response.Write("此邮箱已存在");
-                    Response.End();
-                }
-                else if (teabll.selectByPhone(tel))
-                {//根据输入的联系电话查找是否已存在
-                    Response.Write("此联系电话已存在");
-                    Response.End();
-                }
-                else
+            if (!teabll.selectByteaId(teaAccount)) {
+                try
                 {
-                    Teacher tea = new Teacher();
-                    College college = new College();
-                    Teacher tealogin = (Teacher)Session["user"];
-                    Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
-                    college.ColID = tealogin.college.ColID;
-                    tea.college = college;
-                    tea.TeaType = 1;
-                    tea.TeaAccount = teaAccount;
-                    RSACryptoService rsa = new RSACryptoService();
-                    tea.TeaPwd = rsa.Encrypt("000000");
-                    tea.TeaName = teaName;
-                    tea.Sex = sex;
-                    tea.Email = email;
-                    tea.Phone = tel;
-                    OpResult result = teabll.Insert(tea);
-                    if (result == OpResult.添加成功)
-                    {
-                        Response.Write("添加成功");
+                    //int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+                    //int teaType = Convert.ToInt32(Context.Request["TeaType"]);
+                    //string pwd = Context.Request["Pwd"].ToString();
+                    string teaName = Context.Request["TeaName"].ToString();
+                    string sex = Context.Request["Sex"].ToString();
+                    string email = Context.Request["Email"].ToString();
+                    string tel = Context.Request["Tel"].ToString();
+                    if (teabll.selectByEmail(email))
+                    {//根据输入的邮箱查找是否已存在
+                        Response.Write("此邮箱已存在");
+                        Response.End();
+                    }
+                    else if (teabll.selectByPhone(tel))
+                    {//根据输入的联系电话查找是否已存在
+                        Response.Write("此联系电话已存在");
                         Response.End();
                     }
                     else
                     {
-                        Response.Write("添加失败");
-                        Response.End();
+                        Teacher tea = new Teacher();
+                        College college = new College();
+                        Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
+                        college.ColID = tealogin.college.ColID;
+                        tea.college = college;
+                        tea.TeaType = 1;
+                        tea.TeaAccount = teaAccount;
+                        RSACryptoService rsa = new RSACryptoService();
+                        tea.TeaPwd = rsa.Encrypt("000000");
+                        tea.TeaName = teaName;
+                        tea.Sex = sex;
+                        tea.Email = email;
+                        tea.Phone = tel;
+                        OpResult result = teabll.Insert(tea);
+                        if (result == OpResult.添加成功)
+                        {
+                            LogHelper.Info(this.GetType(), tealogin.TeaAccount + tealogin.TeaName + "-添加教师账号");
+                            Response.Write("添加成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("添加失败");
+                            Response.End();
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
             else
@@ -283,27 +301,35 @@ namespace PMS.Web.admin
             {
                 Teacher tea = new Teacher();
                 College college = new College();
-                Teacher tealogin = (Teacher)Session["user"];
-                Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
-                college.ColID = tealogin.college.ColID;
-                tea.college = college;
-                tea.TeaAccount = teaAccount;
-                tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
-                tea.TeaName = teaName;
-                tea.Phone = teaPhone;
-                tea.Email = teaEmal;
-                tea.Sex = sex;
-                tea.TeaType = teaType;
-                OpResult result = teabll.Updata(tea);
-                if (result == OpResult.更新成功)
+                try
                 {
-                    Response.Write("修改成功");
-                    Response.End();
+                    tealogin = (Teacher)Session["user"];
+                    Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
+                    college.ColID = tealogin.college.ColID;
+                    tea.college = college;
+                    tea.TeaAccount = teaAccount;
+                    tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
+                    tea.TeaName = teaName;
+                    tea.Phone = teaPhone;
+                    tea.Email = teaEmal;
+                    tea.Sex = sex;
+                    tea.TeaType = teaType;
+                    OpResult result = teabll.Updata(tea);
+                    if (result == OpResult.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), tealogin.TeaAccount + tealogin.TeaName + "-编辑" + teaAccount + "教师账号");
+                        Response.Write("修改成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("修改失败");
+                        Response.End();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("修改失败");
-                    Response.End();
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
 

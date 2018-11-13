@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using PMS.DBHelper;
 
 namespace PMS.Web.admin
 {
@@ -54,70 +55,77 @@ namespace PMS.Web.admin
             //导出列表
             if (op == "export")
             {
-                //获取成绩占比
-                Score scoreRatio = scoreBll.getRatio();
-                double guide = scoreRatio.guideRatio, cross = scoreRatio.crossRatio, defen = scoreRatio.defenceRatio;
-                //分院id
-                int collegeId = teacher.college.ColID;
-                //专业id
-                string pro = Request.QueryString["dropstrWherepro"];
-                //批次Id
-                string batch = Request.QueryString["dropstrWhereplan"];
-                //输入框条件
-                string input = Request.QueryString["search"];
-                string strWhere = "";
-
-                if (state == 2)
+                try
                 {
-                    if (input == null)
+                    //获取成绩占比
+                    Score scoreRatio = scoreBll.getRatio();
+                    double guide = scoreRatio.guideRatio, cross = scoreRatio.crossRatio, defen = scoreRatio.defenceRatio;
+                    //分院id
+                    int collegeId = teacher.college.ColID;
+                    //专业id
+                    string pro = Request.QueryString["dropstrWherepro"];
+                    //批次Id
+                    string batch = Request.QueryString["dropstrWhereplan"];
+                    //输入框条件
+                    string input = Request.QueryString["search"];
+                    string strWhere = "";
+
+                    if (state == 2)
                     {
-                        if ((pro == null || pro == "0") && batch == null || pro == "0")
+                        if (input == null)
                         {
-                            strWhere = string.Format(" where collegeId = {0}", collegeId );
+                            if ((pro == null || pro == "0") && batch == null || pro == "0")
+                            {
+                                strWhere = string.Format(" where collegeId = {0}", collegeId);
+                            }
+                            else if (pro != "null" && batch == "null")
+                            {
+                                strWhere = string.Format(" where proId = {0} and collegeId = {1}", "'" + pro + "'", collegeId);
+                            }
+                            else if ((pro == "null" || pro == "0") && batch != "null")
+                            {
+                                strWhere = string.Format(" where planId = {0} and collegeId = {1}", "'" + batch + "'", collegeId);
+                            }
+                            else
+                            {
+                                strWhere = string.Format(" where planId = {0} and proId = {1} and collegeId = {2}", "'" + batch + "'", "'" + pro + "'", collegeId);
+                            }
                         }
-                        else if (pro != "null" && batch == "null")
-                        {
-                            strWhere = string.Format(" where proId = {0} and collegeId = {1}", "'" + pro + "'", collegeId );
-                        }
-                        else if ((pro == "null" || pro == "0") && batch != "null")
-                        {
-                            strWhere = string.Format(" where planId = {0} and collegeId = {1}", "'" + batch + "'", collegeId );
-                        }
+                        //如果不为空传 input里的值
                         else
                         {
-                            strWhere = string.Format(" where planId = {0} and proId = {1} and collegeId = {2}", "'" + batch + "'", "'" + pro + "'", collegeId );
+                            strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId);
                         }
                     }
-                    //如果不为空传 input里的值
                     else
                     {
-                        strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId );
+                        if (input == null)
+                        {
+                            strWhere = string.Format(" where collegeId = {0}", collegeId);
+                        }
+                        //如果不为空传 input里的值
+                        else
+                        {
+                            strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId);
+                        }
                     }
-                }
-                else
-                {
-                    if (input == null)
-                    {
-                            strWhere = string.Format(" where collegeId = {0}", collegeId );
-                    }
-                    //如果不为空传 input里的值
-                    else
-                    {
-                        strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId );
-                    }
-                }
 
-                var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
-                DataTable dt = scoreBll.ExportExcel(strWhere, scoreRatio);
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    var path = Server.MapPath("~/download/学生成绩导出/" + name + ".xls");
-                    ExcelHelper.x2003.TableToExcelForXLS(dt, path);
-                    downloadfile(path);
+                    var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
+                    DataTable dt = scoreBll.ExportExcel(strWhere, scoreRatio);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        var path = Server.MapPath("~/download/学生成绩导出/" + name + ".xls");
+                        ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                        downloadfile(path);
+                    }
+                    else
+                    {
+                        Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
             if (order == "down")

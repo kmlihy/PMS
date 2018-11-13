@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -27,54 +28,62 @@ namespace PMS.Web.admin
             string startTime = DateTime.Now.ToString("yyyy-MM");
             Plan plan = planBll.getPlanId(collegeId, startTime + "%");
             int planId = plan.PlanId;
-
-            if (op == "open")
+            try
             {
-                int state = 1;
-                teacher.state = 0;
-                college.ColID = collegeId;
-                teacher.college = college;
-                Result result = scoreBll.openScore(state, planId);
-                Result row = teacherBll.updateState(teacher);
-                if (result == Result.更新成功 && row == Result.更新成功)
+                if (op == "open")
                 {
-                    Response.Write("成绩已开放");
-                    Response.End();
+                    int state = 1;
+                    teacher.state = 0;
+                    college.ColID = collegeId;
+                    teacher.college = college;
+                    Result result = scoreBll.openScore(state, planId);
+                    Result row = teacherBll.updateState(teacher);
+                    if (result == Result.更新成功 && row == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "开放查看成绩");
+                        Response.Write("成绩已开放");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("成绩开放失败，可能当前批次没有可开放成绩");
+                        Response.End();
+                    }
+                }
+                else if (op == "close")
+                {
+                    int state = 0;
+                    Result result = scoreBll.openScore(state, planId);
+                    if (result == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "关闭查看成绩");
+                        Response.Write("成绩已关闭查询");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("关闭查询失败，可能当前批次没有可开放成绩");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("成绩开放失败，可能当前批次没有可开放成绩");
-                    Response.End();
+                    int openState = 1;
+                    Result result = scoreBll.selectSate(openState, planId);
+                    //按钮开关
+                    if (result == Result.记录存在)
+                    {
+                        status = 1;//开
+                    }
+                    else
+                    {
+                        status = 0;//关
+                    }
                 }
             }
-            else if (op == "close")
+            catch (Exception ex)
             {
-                int state = 0;
-                Result result = scoreBll.openScore(state, planId);
-                if (result == Result.更新成功)
-                {
-                    Response.Write("成绩已关闭查询");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("关闭查询失败，可能当前批次没有可开放成绩");
-                    Response.End();
-                }
-            }
-            else
-            {
-                int openState = 1;
-                Result result = scoreBll.selectSate(openState, planId);
-                //按钮开关
-                if (result == Result.记录存在)
-                {
-                    status = 1;//开
-                }
-                else
-                {
-                    status = 0;//关
-                }
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

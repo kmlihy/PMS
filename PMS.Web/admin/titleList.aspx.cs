@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,20 @@ namespace PMS.Web.admin
         ProfessionBll probll = new ProfessionBll();//专业
         PlanBll plabll = new PlanBll();//批次业务逻辑
         TitleBll titbll = new TitleBll();//标题业务逻辑
-
+        Teacher teacher = new Teacher();
         protected CollegeBll colbll = new CollegeBll();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            int state = Convert.ToInt32(Session["state"]);
+            if(state == 0 || state == 2)
+            {
+                teacher = (Teacher)Session["user"];
+            }
+            else if(state == 1)
+            {
+                teacher = (Teacher)Session["loginuser"];
+            }
             string op = Context.Request["op"];
             string type = Request.QueryString["type"];
             if (!IsPostBack)
@@ -233,24 +242,32 @@ namespace PMS.Web.admin
         {
             int titleId = int.Parse(Context.Request["deleteTitleId"].ToString());
             Result row = isDeleteTitle();
-            if (row == Result.记录不存在)
+            try
             {
-                Result result = titbll.Delete(titleId);
-                if (result == Result.删除成功)
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = titbll.Delete(titleId);
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-删除" + titleId + "题目");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
 
@@ -328,7 +345,8 @@ namespace PMS.Web.admin
                 }
             }
             catch (Exception ex)
-            {
+            { 
+                LogHelper.Error(this.GetType(), ex);
                 this.Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
@@ -361,32 +379,40 @@ namespace PMS.Web.admin
             string[] titleList = titleId.Split('?');
             Result row = IsBatchDelete();
             int count = 0;
-            if (row == Result.记录不存在)
+            try
             {
-                for (int i = 0; i < titleList.Length - 1; i++)
+                if (row == Result.记录不存在)
                 {
-                    int collId = int.Parse(titleList[i]);
-                    Result result = titbll.Delete(collId);
-                    if (result == Result.删除成功)
+                    for (int i = 0; i < titleList.Length - 1; i++)
                     {
-                        count++;
+                        int collId = int.Parse(titleList[i]);
+                        Result result = titbll.Delete(collId);
+                        if (result == Result.删除成功)
+                        {
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-删除" + collId + "题目");
+                            count++;
+                        }
                     }
-                }
-                if (count == titleList.Length - 1)
-                {
-                    Response.Write("删除成功");
-                    Response.End();
+                    if (count == titleList.Length - 1)
+                    {
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

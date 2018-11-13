@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -41,50 +42,51 @@ namespace PMS.Web.admin
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-                try
+            try
+            {
+                string op = Context.Request["op"].ToString();
+                if (op == "send")
                 {
-                    string op = Context.Request["op"].ToString();
-                    if (op == "send")
+                    account = Context.Request["account"].ToString();
+                    user = Context.Request["user"].ToString();
+                    email = Context.Request["email"].ToString();
+                    switch (user)
                     {
-                        account = Context.Request["account"].ToString();
-                        user = Context.Request["user"].ToString();
-                        email = Context.Request["email"].ToString();
-                        switch (user)
-                        {
-                            case "student": isStudent(); break;
-                            case "teacher": isTeacher(); break;
-                        }
-                        if (email == null || email == "")
-                        {
-                            Response.Write("邮箱未填写");
-                            Response.End();
-                        }
-                        else
-                        {
-                            GenerateRandomCode();
-                            sendMail(email);
-                            Response.Write("验证码已发送至邮箱");
-                            Response.End();
-                        }
+                        case "student": isStudent(); break;
+                        case "teacher": isTeacher(); break;
                     }
-                    if (op == "change")
+                    if (email == null || email == "")
                     {
-                        account = Context.Request["account"].ToString();
-                        email = Context.Request["email"].ToString();
-                        code = Context.Request["code"].ToString();
-                        pwd = Context.Request["pwd"].ToString();
-                        user = Context.Request["user"].ToString();
+                        Response.Write("邮箱未填写");
+                        Response.End();
+                    }
+                    else
+                    {
+                        GenerateRandomCode();
+                        sendMail(email);
+                        Response.Write("验证码已发送至邮箱");
+                        Response.End();
+                    }
+                }
+                if (op == "change")
+                {
+                    account = Context.Request["account"].ToString();
+                    email = Context.Request["email"].ToString();
+                    code = Context.Request["code"].ToString();
+                    pwd = Context.Request["pwd"].ToString();
+                    user = Context.Request["user"].ToString();
 
-                        switch (user)
-                        {
-                            case "student": student(); break;
-                            case "teacher": teacher(); break;
-                        }
+                    switch (user)
+                    {
+                        case "student": student(); break;
+                        case "teacher": teacher(); break;
                     }
                 }
-                catch
-                {
-                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
+            }
         }
         private void isStudent()
         {
@@ -116,19 +118,28 @@ namespace PMS.Web.admin
         }
         private void student()
         {
-            Student stu = stuBll.GetModel(account);
-            if (code != Session["result"].ToString() || Session["result"].ToString() == "")
+            try
             {
-                Response.Write("验证码错误");
-                Response.End();
-            }
-            else if (stuBll.selectBystuId(account) && email == stu.Email && code == Session["result"].ToString())
-            {
-                result = stuBll.UpdataPwd(account, pwd);
-                if (result == Result.更新成功)
+                Student stu = stuBll.GetModel(account);
+                if (code != Session["result"].ToString() || Session["result"].ToString() == "")
                 {
-                    Response.Write("修改成功");
+                    Response.Write("验证码错误");
                     Response.End();
+                }
+                else if (stuBll.selectBystuId(account) && email == stu.Email && code == Session["result"].ToString())
+                {
+                    result = stuBll.UpdataPwd(account, pwd);
+                    if (result == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "重置密码");
+                        Response.Write("修改成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("修改失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
@@ -136,34 +147,41 @@ namespace PMS.Web.admin
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("修改失败");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         private void teacher()
         {
-            Teacher tea = teacherBll.GetModel(account);
-             if (code != Session["result"].ToString() || Session["result"].ToString() == "")
+            try
             {
-                Response.Write("验证码错误");
-                Response.End();
+                Teacher tea = teacherBll.GetModel(account);
+                if (code != Session["result"].ToString() || Session["result"].ToString() == "")
+                {
+                    Response.Write("验证码错误");
+                    Response.End();
+                }
+                else if (teacherBll.selectByteaId(account) && email == tea.Email && code == Session["result"].ToString())
+                {
+                    result = teacherBll.UpdataPwd(account, pwd);
+                    if (result == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "重置密码");
+                        Response.Write("修改成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("修改失败");
+                        Response.End();
+                    }
+                    Response.End();
+                }
             }
-            else if (teacherBll.selectByteaId(account) && email == tea.Email && code == Session["result"].ToString())
+            catch (Exception ex)
             {
-                result = teacherBll.UpdataPwd(account, pwd);
-                if (result == Result.更新成功)
-                {
-                    Response.Write("修改成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("修改失败");
-                    Response.End();
-                }
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         /// <summary>
@@ -173,19 +191,26 @@ namespace PMS.Web.admin
         /// <param name="mail"></param>
         private void sendMail(string mail)
         {
-            string addresser = "user@idaobin.com";
-            string emailPwd = "daobin@123";
-            string title = "云南工商学院毕业选题系统";
-            string content = "您的验证码为："+Session["result"];
-            MailMessage message = new MailMessage(addresser, mail);
-            message.Subject = title;
-            message.Body = content;
-            message.Priority = MailPriority.High;
-            SmtpClient client = new SmtpClient("smtp.mxhichina.com", 25);
-            client.EnableSsl = false;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential(addresser, emailPwd);
-            client.Send(message);
+            try
+            {
+                string addresser = "user@idaobin.com";
+                string emailPwd = "daobin@123";
+                string title = "云南工商学院毕业选题系统";
+                string content = "您的验证码为：" + Session["result"];
+                MailMessage message = new MailMessage(addresser, mail);
+                message.Subject = title;
+                message.Body = content;
+                message.Priority = MailPriority.High;
+                SmtpClient client = new SmtpClient("smtp.mxhichina.com", 25);
+                client.EnableSsl = false;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(addresser, emailPwd);
+                client.Send(message);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
+            }
         }
     }
 }

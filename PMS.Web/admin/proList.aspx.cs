@@ -12,6 +12,7 @@ using static PMS.BLL.Enums;
 
 namespace PMS.Web.admin
 {
+    using PMS.DBHelper;
     using System.IO;
     using Result = Enums.OpResult;
     public partial class proList : CommonPage
@@ -34,13 +35,12 @@ namespace PMS.Web.admin
         public String search = "";
         public  string userType = "";
         protected string showmsg = "";
+        Teacher teacher = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             //获取state 判断是分管理员还是超级管理员
             userType = Session["state"].ToString();
-
-
+            teacher = (Teacher)Session["user"];
             string op = Context.Request.Form["op"];
             //添加专业
             if (op == "add")
@@ -83,14 +83,13 @@ namespace PMS.Web.admin
             Profession pro = new Profession();
             ProfessionBll probll = new ProfessionBll();
             string proName = Context.Request["proName"].ToString();
-            int collegeId ;
-            if (userType=="0")
+            int collegeId;
+            if (userType == "0")
             {
                 collegeId = Convert.ToInt32(Context.Request["collegeId"]);
             }
             else
             {
-                Teacher teacher = (Teacher)Session["user"];
                 collegeId = teacher.college.ColID;
             }
             DataSet ds = probll.SelectByCollegeId(collegeId);
@@ -102,20 +101,27 @@ namespace PMS.Web.admin
             }
             else
             {
-                college.ColID = collegeId;
-                pro.college = college;
-                pro.ProName = proName;
+                try{
+                    college.ColID = collegeId;
+                    pro.college = college;
+                    pro.ProName = proName;
 
-                OpResult result = probll.Insert(pro);
-                if (result == OpResult.添加成功)
-                {
-                    Response.Write("添加成功");
-                    Response.End();
+                    OpResult result = probll.Insert(pro);
+                    if (result == OpResult.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-添加" + proName + "专业");
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("添加失败");
-                    Response.End();
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
         }
@@ -126,8 +132,8 @@ namespace PMS.Web.admin
         /// <returns>返回是否关联引用</returns>
         public Result IsdeleteCollege()
         {
-            string delproId = Context.Request["DelProId"].ToString();
             Result row = Result.记录不存在;
+            string delproId = Context.Request["DelProId"].ToString();
             if (probll2.IsDelete("T_Student", "proId", delproId) == Result.关联引用)
             {
                 row = Result.关联引用;
@@ -146,25 +152,32 @@ namespace PMS.Web.admin
         {
             int proId = int.Parse(Context.Request["DelProId"].ToString());
             Result row = IsdeleteCollege();
-            if (row == Result.记录不存在)
+            try
             {
-                Result result = probll2.Delete(proId);
-
-                if (result == Result.删除成功)
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = probll2.Delete(proId);
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-删除" + proId + "专业");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         /// <summary>
@@ -178,21 +191,29 @@ namespace PMS.Web.admin
             int proId = Convert.ToInt32(Context.Request["ProId"]);
             int collegeId = Convert.ToInt32(Context.Request["collegeId"]);
             Profession pro = new Profession();
-            college.ColID = collegeId;
-            pro.college = college;
-            pro.ProId = proId;
-            pro.ProName = proName;
             ProfessionBll probll = new ProfessionBll();
-            OpResult result = probll.Update(pro);
-            if (result == OpResult.更新成功)
+            try
             {
-                Response.Write("修改成功");
-                Response.End();
+                college.ColID = collegeId;
+                pro.college = college;
+                pro.ProId = proId;
+                pro.ProName = proName;
+                OpResult result = probll.Update(pro);
+                if (result == OpResult.更新成功)
+                {
+                    LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-编辑" + proId + "专业");
+                    Response.Write("修改成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("修改失败");
+                    Response.End();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("修改失败");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
 
@@ -202,7 +223,6 @@ namespace PMS.Web.admin
         /// <param name="strWhere">查询条件</param>
         public void getPage(String strWhere)
         {
-
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
@@ -259,25 +279,19 @@ namespace PMS.Web.admin
         /// <returns>返回格式化后的查询语句</returns>
         public string Search()
         {
-            try
+            search = Request.QueryString["search"];
+            if (search.Length == 0)
             {
-                search = Request.QueryString["search"];
-                if (search.Length == 0)
-                {
-                    search = "";
-                }
-                else if (search == null)
-                {
-                    search = "";
-                }
-                else
-                {
-                    showmsg = search;
-                    search = String.Format(" proName {0} or collegeName {0}", "like '%" + search + "%'");
-                }
+                search = "";
             }
-            catch
+            else if (search == null)
             {
+                search = "";
+            }
+            else
+            {
+                showmsg = search;
+                search = String.Format(" proName {0} or collegeName {0}", "like '%" + search + "%'");
             }
             return search;
         }
@@ -347,6 +361,7 @@ namespace PMS.Web.admin
             }
             catch (Exception ex)
             {
+                LogHelper.Error(this.GetType(), ex);
                 Response.Write(ex.Message);
             }
         }

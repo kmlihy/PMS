@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace PMS.Web
         ScoreBll sbll = new ScoreBll();
         string stuAccount;
         int planId, titleRecordId;
+        Teacher teacher = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,7 +43,7 @@ namespace PMS.Web
             int i = getData.Tables[0].Rows.Count - 1;
             planId = Convert.ToInt32(getData.Tables[0].Rows[i]["planId"]);
             int proId = Convert.ToInt32(getData.Tables[0].Rows[i]["proId"]);
-            Teacher teacher = (Teacher)Session["loginuser"];
+            teacher = (Teacher)Session["loginuser"];
             dsTitle = titleBll.SelectByProId(proId,planId,teacher.TeaAccount);
             string op = Request["op"];
             if (op == "submit")
@@ -65,44 +67,58 @@ namespace PMS.Web
             //添加评定及成绩
             Student student = new Student();
             Plan plan = new Plan();
-            student.StuAccount = stuAccount;
-            plan.PlanId = planId;
-            scoreModel.student = student;
-            scoreModel.plan = plan;
-            scoreModel.guideScore = score;
-            scoreModel.investigation = investigation;
-            scoreModel.practice = practice;
-            scoreModel.solveProblem = solveProblem;
-            scoreModel.workAttitude = workAttitude;
-            scoreModel.paperDesign = quality;
-            scoreModel.innovate = innovate;
-            scoreModel.evaluate = evaluate;
-            //添加交叉指导教师
-            CrossBll crossBll = new CrossBll();
-            PathBll pathBll = new PathBll();
-            TitleRecord titleRecord = new TitleRecord();
-            Cross cross = new Cross();
-            Path path = new Path();
-            Teacher teacher = new Teacher();
-            titleRecord.TitleRecordId = titleRecordId;
-            cross.titleRecord = titleRecord;
-            teacher.TeaAccount = crossTea;
-            cross.teacher = teacher;
-
-            path.titleRecord = titleRecord;
-            path.state = 3;
-            path.type = 0;
-            Result state = pathBll.updateState(path);
-            if (state == Result.更新成功)
+            try
             {
-                Result result = crossBll.Insert(cross);
-                if (result == Result.添加成功)
+                student.StuAccount = stuAccount;
+                plan.PlanId = planId;
+                scoreModel.student = student;
+                scoreModel.plan = plan;
+                scoreModel.guideScore = score;
+                scoreModel.investigation = investigation;
+                scoreModel.practice = practice;
+                scoreModel.solveProblem = solveProblem;
+                scoreModel.workAttitude = workAttitude;
+                scoreModel.paperDesign = quality;
+                scoreModel.innovate = innovate;
+                scoreModel.evaluate = evaluate;
+                //添加交叉指导教师
+                CrossBll crossBll = new CrossBll();
+                PathBll pathBll = new PathBll();
+                TitleRecord titleRecord = new TitleRecord();
+                Cross cross = new Cross();
+                Path path = new Path();
+                Teacher teacher = new Teacher();
+                titleRecord.TitleRecordId = titleRecordId;
+                cross.titleRecord = titleRecord;
+                teacher.TeaAccount = crossTea;
+                cross.teacher = teacher;
+
+                path.titleRecord = titleRecord;
+                path.state = 3;
+                path.type = 0;
+                Result state = pathBll.updateState(path);
+                if (state == Result.更新成功)
                 {
-                    Result row = sbll.insertInstructorsComments(scoreModel);
-                    if (row == Result.添加成功)
+                    Result result = crossBll.Insert(cross);
+                    if (result == Result.添加成功)
                     {
-                        Response.Write("提交成功");
-                        Response.End();
+                        StudentBll studentBll = new StudentBll();
+                        Student stu = studentBll.GetModel(stuAccount);
+                        TeacherBll teacherBll = new TeacherBll();
+                        Teacher tea = teacherBll.GetModel(crossTea);
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount+ teacher.TeaName+"-为-"+stuAccount + stu.RealName + "指定交叉指导教师" + teacher + tea.TeaName);
+                        Result row = sbll.insertInstructorsComments(scoreModel);
+                        if (row == Result.添加成功)
+                        {
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-为-" + stuAccount + stu.RealName + "添加指导成绩及评定");
+                            Response.Write("提交成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("提交失败");
+                            Response.End();
+                        }
                     }
                     else
                     {
@@ -116,10 +132,9 @@ namespace PMS.Web
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("提交失败");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

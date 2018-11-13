@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PMS.BLL;
+using PMS.DBHelper;
 
 namespace PMS.Web.admin
 {
@@ -23,18 +24,24 @@ namespace PMS.Web.admin
                 string Email = Context.Request["Email"].ToString();
                 Teacher newTea = new Teacher();
                 College college = new College();
-
-                newTea.TeaAccount = teacher.TeaAccount;
-                newTea.TeaName = teacher.TeaName;
-                newTea.TeaPwd = teacher.TeaPwd;
-                newTea.Sex = teacher.Sex;
-                college.ColID = teacher.college.ColID;
-                college.ColName = teacher.college.ColName;
-                newTea.college = college;
-                newTea.TeaType = teacher.TeaType;
-                newTea.Phone = phone;
-                newTea.Email = Email;
-                updata(newTea);
+                try
+                {
+                    newTea.TeaAccount = teacher.TeaAccount;
+                    newTea.TeaName = teacher.TeaName;
+                    newTea.TeaPwd = teacher.TeaPwd;
+                    newTea.Sex = teacher.Sex;
+                    college.ColID = teacher.college.ColID;
+                    college.ColName = teacher.college.ColName;
+                    newTea.college = college;
+                    newTea.TeaType = teacher.TeaType;
+                    newTea.Phone = phone;
+                    newTea.Email = Email;
+                    updata(newTea);
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error(this.GetType(), ex);
+                }
             }         
         }
 
@@ -44,6 +51,7 @@ namespace PMS.Web.admin
             Enums.OpResult enums = bll.Updata(teacher);
             if (enums.Equals(Enums.OpResult.更新成功))
             {
+                LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "修改个人信息");
                 Response.Write("修改成功");
                 Session["user"] = teacher;
                 Response.End();

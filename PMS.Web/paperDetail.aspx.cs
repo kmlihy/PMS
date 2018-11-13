@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace PMS.Web
         protected Title titleId = null;
         protected string titleid;
         protected string state;//判断登录者
+        Student stu = new Student();
         protected void Page_Load(object sender, EventArgs e)
         {
             state = Session["state"].ToString();
@@ -31,8 +33,6 @@ namespace PMS.Web
             titleId = nb.GetTitle(int.Parse(titleid));
             if (state == "3")
             {
-                Student stu = (Student)Session["loginuser"];
-                stuId = stu.StuAccount;
                 if (op == "selectTitle")
                 {
                     StusecltTitle();
@@ -59,52 +59,57 @@ namespace PMS.Web
         /// </summary>
         public void StusecltTitle()
         {
-            //string stuId = Context.Request["stuId"].ToString();
-            int titleid = int.Parse(Context.Request.QueryString["titleId"]);
-            Title dstitle = new Title();
-            TitleBll titleSelect = new TitleBll();
-            dstitle = titleSelect.GetTitle(titleid);
-
-            int limited = int.Parse(dstitle.Limit.ToString());
-            int selected = int.Parse(dstitle.Selected.ToString());
-            if (selected < limited)
+            try
             {
-                Result row = isExist();
-                if (row == Result.记录不存在)
+                //string stuId = Context.Request["stuId"].ToString();
+                stu = (Student)Session["loginuser"];
+                int titleid = int.Parse(Context.Request.QueryString["titleId"]);
+                Title dstitle = new Title();
+                TitleBll titleSelect = new TitleBll();
+                dstitle = titleSelect.GetTitle(titleid);
+
+                int limited = int.Parse(dstitle.Limit.ToString());
+                int selected = int.Parse(dstitle.Selected.ToString());
+                if (selected < limited)
                 {
-
-                    TitleRecord titleRecord = new TitleRecord();
-                    Student student = new Student();
-                    student.StuAccount = stuId;
-                    titleRecord.student = student;
-                    Title title = new Title();
-                    title.TitleId = titleid;
-                    titleRecord.title = title;
-
-                    int rows = pbll.AddTitlerecord(titleRecord);
-                    if (rows > 0)
+                    Result row = isExist();
+                    if (row == Result.记录不存在)
                     {
-                        Response.Write("选题成功");
-                        Response.End();
+                        LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "-选" + dstitle.TitleId + dstitle.title + "题目");
+                        TitleRecord titleRecord = new TitleRecord();
+                        titleRecord.student = stu;
+                        Title title = new Title();
+                        title.TitleId = titleid;
+                        titleRecord.title = title;
+                        int rows = pbll.AddTitlerecord(titleRecord);
+                        if (rows > 0)
+                        {
+
+                            Response.Write("选题成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("选题失败");
+                            Response.End();
+                        }
                     }
                     else
                     {
-                        Response.Write("选题失败");
+                        Response.Write("已选题");
                         Response.End();
                     }
                 }
                 else
                 {
-                    Response.Write("已选题");
+                    Response.Write("已达上限");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("已达上限");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
-
         }
     }
 }

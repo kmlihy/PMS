@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using PMS.BLL;
 using PMS.Model;
 using System.Globalization;
+using PMS.DBHelper;
 
 namespace PMS.Web.admin
 {
@@ -27,10 +28,9 @@ namespace PMS.Web.admin
         protected String searchdrop = "";
         protected string showstr = "";
         protected string showinput = null;
-        protected Teacher loginUser;
+        protected Teacher loginUser = new Teacher();
         protected string collegeName;
         protected int state;
-
         PlanBll planBll = new PlanBll();
         CollegeBll colBll = new CollegeBll();
         protected void Page_Load(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace PMS.Web.admin
             {
                 getdata(Search());
             }
-            if(type == "drop")
+            if (type == "drop")
             {
                 getdata(Searchdrop());
             }
@@ -75,10 +75,10 @@ namespace PMS.Web.admin
         {
             string planName = Context.Request["editorPlanName"].ToString();
             DateTime startTime = Convert.ToDateTime(Context.Request["editorStartTime"].ToString()),
-                   endTime = Convert.ToDateTime(Context.Request["editorEndTime"].ToString());
+            endTime = Convert.ToDateTime(Context.Request["editorEndTime"].ToString());
             int state = int.Parse(Context.Request["editorState"].ToString()),
-                planId = int.Parse(Context.Request["editorPlanId"].ToString());
-                //collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
+            planId = int.Parse(Context.Request["editorPlanId"].ToString());
+            //collegeId = int.Parse(Context.Request["planCollegeId"].ToString());
 
             //获取院系id
             Teacher teacher = (Teacher)Session["user"];
@@ -111,6 +111,7 @@ namespace PMS.Web.admin
                 {
                     if (EditorResult == Result.更新成功)
                     {
+                        LogHelper.Info(this.GetType(), loginUser.TeaAccount + loginUser.TeaName + "-编辑" + planId + "批次");
                         Response.Write("更新成功");
                         //Response.End();
                     }
@@ -125,7 +126,10 @@ namespace PMS.Web.admin
                     Response.Write("开始与结束时间间隔必须大于1天");
                 }
             }
-            catch(Exception ex) { Response.Write(ex.Message); }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
+            }
             finally
             {
                 Response.End();
@@ -138,61 +142,71 @@ namespace PMS.Web.admin
         {
             //获取参数
             string planName = Context.Request["planName"].ToString(),
-                   startTime = Context.Request["startTime"].ToString(),
-                   endTime = Context.Request["endTime"].ToString(),
-                   //college = Context.Request["college"].ToString(),
-                   planstate = Context.Request["state"].ToString();
+                    startTime = Context.Request["startTime"].ToString(),
+                    endTime = Context.Request["endTime"].ToString(),
+                    //college = Context.Request["college"].ToString(),
+                    planstate = Context.Request["state"].ToString();
 
-            //获取院系id
-            Teacher teacher = (Teacher)Session["user"];
-            string account = teacher.TeaAccount;
-            TeacherBll teacherBll = new TeacherBll();
-            loginUser = teacherBll.GetModel(account);
-            College ColID = loginUser.college;
+            try
+            {
+                //获取院系id
+                Teacher teacher = (Teacher)Session["user"];
+                string account = teacher.TeaAccount;
+                TeacherBll teacherBll = new TeacherBll();
+                loginUser = teacherBll.GetModel(account);
+                College ColID = loginUser.college;
 
-            if (planName != ""&&startTime != ""&&endTime !=""&&state.ToString()!="") {
-                //int collegeId = int.Parse(college),
-                 int   state = int.Parse(planstate);
-                //字符串转日期
-                string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
-                DateTime startdt = Convert.ToDateTime(start);
-                string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
-                DateTime enddt = Convert.ToDateTime(end);
+                if (planName != "" && startTime != "" && endTime != "" && state.ToString() != "")
+                {
+                    //int collegeId = int.Parse(college),
+                    int state = int.Parse(planstate);
+                    //字符串转日期
+                    string start = Convert.ToDateTime(startTime).ToString("yyyy-MM-dd HH:mm:ss");
+                    DateTime startdt = Convert.ToDateTime(start);
+                    string end = Convert.ToDateTime(endTime).ToString("yyyy-MM-dd HH:mm:ss");
+                    DateTime enddt = Convert.ToDateTime(end);
 
-                //判断当开始时间在结束时间之后时，不能执行添加
-                TimeSpan ts = enddt - startdt;
-                if (ts.Days >= 1) {
-                    Plan plan = new Plan()
+                    //判断当开始时间在结束时间之后时，不能执行添加
+                    TimeSpan ts = enddt - startdt;
+                    if (ts.Days >= 1)
                     {
-                        PlanName = planName,
-                        StartTime = startdt,
-                        EndTime = enddt,
-                        State = state,
-                        college = ColID
-                    };
-                    PlanBll pBll = new PlanBll();
-                    Result result = pBll.Insert(plan);
-                    if (result == Result.添加成功)
-                    {
-                        Response.Write("添加成功");
-                        Response.End();
+                        Plan plan = new Plan()
+                        {
+                            PlanName = planName,
+                            StartTime = startdt,
+                            EndTime = enddt,
+                            State = state,
+                            college = ColID
+                        };
+                        PlanBll pBll = new PlanBll();
+                        Result result = pBll.Insert(plan);
+                        if (result == Result.添加成功)
+                        {
+                            LogHelper.Info(this.GetType(), loginUser.TeaAccount + loginUser.TeaName + "-添加批次");
+                            Response.Write("添加成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("添加失败");
+                            Response.End();
+                        }
                     }
                     else
                     {
-                        Response.Write("添加失败");
+                        Response.Write("开始与结束时间间隔必须大于1天");
                         Response.End();
                     }
                 }
                 else
                 {
-                    Response.Write("开始与结束时间间隔必须大于1天");
+                    Response.Write("以上内容不能出现未填项");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("以上内容不能出现未填项");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         /// <summary>
@@ -252,7 +266,8 @@ namespace PMS.Web.admin
         /// <returns></returns>
         public string Search()
         {
-            try {
+            try
+            {
                 search = Request.QueryString["search"];
                 if (search.Length == 0)
                 {
@@ -325,26 +340,34 @@ namespace PMS.Web.admin
         /// </summary>
         public void deletePlan()
         {
-            int planId = int.Parse(Context.Request["deletePlanId"].ToString());
-            Result row = isDeletePlan();
-            if (row == Result.记录不存在)
+            try
             {
-                Result result = planBll.Delete(planId);
-                if (result == Result.删除成功)
+                int planId = int.Parse(Context.Request["deletePlanId"].ToString());
+                Result row = isDeletePlan();
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = planBll.Delete(planId);
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), loginUser.TeaAccount + loginUser.TeaName + "-删除" + planId + "批次");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

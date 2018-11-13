@@ -46,6 +46,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>kindeditor\asp.net\bin\LitJSON.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -66,9 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\adminViewScore.aspx" />
+    <Content Include="admin\highQualityPaperList.aspx" />
     <Content Include="admin\openAchievement.aspx" />
     <Content Include="admin\scoreRatio.aspx" />
     <Content Include="bin\LitJSON.dll" />
+    <Content Include="bin\log4net.dll" />
     <Content Include="checkMediumQualityReport.aspx" />
     <Content Include="checkReport.aspx" />
     <Content Include="checkReportTeacher.aspx" />
@@ -397,6 +402,13 @@
     </Compile>
     <Compile Include="admin\changePwd.aspx.designer.cs">
       <DependentUpon>changePwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\highQualityPaperList.aspx.cs">
+      <DependentUpon>highQualityPaperList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\highQualityPaperList.aspx.designer.cs">
+      <DependentUpon>highQualityPaperList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -811,6 +823,10 @@
     <Content Include="obj\Debug\PMS.Web.csprojResolveAssemblyReference.cache" />
     <Content Include="upload\学生\15612200013张光泽\论文\2018\20180829113357-branded-login-screen.ziP" />
     <Content Include="upload\学生\15612200014徐震霖\论文\2018\2333.ziP" />
+    <Content Include="Config\log4net.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

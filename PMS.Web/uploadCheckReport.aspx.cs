@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -17,69 +18,76 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             Student student = (Student)Session["loginuser"];
-            string account = student.StuAccount;
 
             HttpFileCollection files = Request.Files;
             string msg = string.Empty;
             string error = string.Empty;
             if (files.Count > 0)
             {
-                string stuAccount = student.StuAccount;
-                string stuName = student.RealName;
-                string year = DateTime.Now.ToString("yyyy");
-                string absPath = "/upload/学生/" + stuAccount + stuName + "/论文/" + year + "/";
-                string director = Server.MapPath(absPath);
-                if (!Directory.Exists(director))
+                try
                 {
-                    Directory.CreateDirectory(director);
-                }
-                string now = DateTime.Now.ToString("yyyyMMddHHmmss");
-                string path = director + System.IO.Path.GetFileName(now + "-" + files[0].FileName);
-                string fileName = absPath + now + "-" + files[0].FileName;
-                if (File.Exists(path))
-                {
-                    msg = "上传失败，文件存在";
-                }
-                else
-                {
-                    string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    files[0].SaveAs(path);
-
-                    Model.Path _path = pathBll.getTitleRecordId(account);
-                    int titleRecordId = _path.titleRecord.TitleRecordId;
-
-                    Model.Path insertPath = new Model.Path();
-                    TitleRecord titleRecord = new TitleRecord();
-                    titleRecord.TitleRecordId = titleRecordId;
-                    insertPath.titleRecord = titleRecord;
-                    string docx = files[0].FileName.Substring(0, files[0].FileName.Length - 4);
-                    if (docx.Contains("."))
+                    string stuAccount = student.StuAccount;
+                    string stuName = student.RealName;
+                    string year = DateTime.Now.ToString("yyyy");
+                    string absPath = "/upload/学生/" + stuAccount + stuName + "/论文/" + year + "/";
+                    string director = Server.MapPath(absPath);
+                    if (!Directory.Exists(director))
                     {
-                        docx = docx.Replace(".","");
+                        Directory.CreateDirectory(director);
+                    }
+                    string now = DateTime.Now.ToString("yyyyMMddHHmmss");
+                    string path = director + System.IO.Path.GetFileName(now + "-" + files[0].FileName);
+                    string fileName = absPath + now + "-" + files[0].FileName;
+                    if (File.Exists(path))
+                    {
+                        msg = "上传失败，文件存在";
                     }
                     else
                     {
-                        docx = files[0].FileName.Substring(0, files[0].FileName.Length - 4);
+                        string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        files[0].SaveAs(path);
+
+                        Model.Path _path = pathBll.getTitleRecordId(student.StuAccount);
+                        int titleRecordId = _path.titleRecord.TitleRecordId;
+
+                        Model.Path insertPath = new Model.Path();
+                        TitleRecord titleRecord = new TitleRecord();
+                        titleRecord.TitleRecordId = titleRecordId;
+                        insertPath.titleRecord = titleRecord;
+                        string docx = files[0].FileName.Substring(0, files[0].FileName.Length - 4);
+                        if (docx.Contains("."))
+                        {
+                            docx = docx.Replace(".", "");
+                        }
+                        else
+                        {
+                            docx = files[0].FileName.Substring(0, files[0].FileName.Length - 4);
+                        }
+                        insertPath.title = docx;
+                        insertPath.paperPath = fileName;
+                        insertPath.dateTime = Convert.ToDateTime(time);
+                        Result result = pathBll.InsertReport(insertPath);
+                        insertPath.state = 2;
+                        insertPath.type = 1;
+                        Result row = pathBll.updateState(insertPath);
+                        if (result == Result.添加成功 && row == Result.更新成功)
+                        {
+                            LogHelper.Info(this.GetType(), student.StuAccount + student.RealName + "-上传查重报告");
+                            msg = "上传成功";
+                        }
+                        else
+                        {
+                            msg = "上传失败";
+                        }
                     }
-                    insertPath.title = docx;
-                    insertPath.paperPath = fileName;
-                    insertPath.dateTime = Convert.ToDateTime(time);
-                    Result result = pathBll.InsertReport(insertPath);
-                    insertPath.state = 2;
-                    insertPath.type = 1;
-                    Result row = pathBll.updateState(insertPath);
-                    if (result == Result.添加成功 && row == Result.更新成功)
-                    {
-                        msg = "上传成功";
-                    }
-                    else
-                    {
-                        msg = "上传失败";
-                    }
+                    string res = "{ error:'" + error + "', msg:'" + msg + "'}";
+                    Response.Write(res);
+                    Response.End();
                 }
-                string res = "{ error:'" + error + "', msg:'" + msg + "'}";
-                Response.Write(res);
-                Response.End();
+                catch (Exception ex)
+                {
+                    LogHelper.Error(this.GetType(), ex);
+                }
             }
         }
     }

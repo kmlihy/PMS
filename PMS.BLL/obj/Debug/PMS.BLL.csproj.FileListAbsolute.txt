@@ -49,3 +49,4 @@ F:\c#\repos\pms\PMS.BLL\obj\Debug\PMS.BLL.csproj.CoreCompileInputs.cache
 F:\c#\repos\pms\PMS.BLL\obj\Debug\PMS.BLL.csproj.CopyComplete
 F:\c#\repos\pms\PMS.BLL\obj\Debug\PMS.BLL.dll
 F:\c#\repos\pms\PMS.BLL\obj\Debug\PMS.BLL.pdb
+D:\project\ASP.NET\PMS\PMS.BLL\bin\Debug\log4net.dll

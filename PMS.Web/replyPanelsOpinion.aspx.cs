@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -46,32 +47,38 @@ namespace PMS.Web
             string txtAreInnovate = Request["Innovate"];
             double txtAreDefenceScore = double.Parse(Request["DefenceScore"]);
             string txtAreEvaluate = Request["txtAreEvaluate"];
-
-            Student stu = new Student();
             Plan plan = new Plan();
-
-            stu.StuAccount = stuAccount;
-            plan.PlanId = planId;
-
-            scoreModel.student = stu;
-            scoreModel.plan = plan;
-            scoreModel.reportContent = txtAreReportContent;
-            scoreModel.reportTime = txtAreReportTime;
-            scoreModel.defence = txtAreDefence;
-            scoreModel.defenInnovate = txtAreInnovate;
-            scoreModel.defenceScore = txtAreDefenceScore;
-            scoreModel.defenEvaluate = txtAreEvaluate;
-            ScoreBll scorebll = new ScoreBll();
-            Result row = scorebll.updatereplyPanelsOpinion(scoreModel);
-            if (row == Result.添加成功)
+            try
             {
-                Response.Write("提交成功");
-                Response.End();
+                StudentBll studentBll = new StudentBll();
+                Student stu = studentBll.GetModel(stuAccount);
+                plan.PlanId = planId;
+                scoreModel.student = stu;
+                scoreModel.plan = plan;
+                scoreModel.reportContent = txtAreReportContent;
+                scoreModel.reportTime = txtAreReportTime;
+                scoreModel.defence = txtAreDefence;
+                scoreModel.defenInnovate = txtAreInnovate;
+                scoreModel.defenceScore = txtAreDefenceScore;
+                scoreModel.defenEvaluate = txtAreEvaluate;
+                ScoreBll scorebll = new ScoreBll();
+                Result row = scorebll.updatereplyPanelsOpinion(scoreModel);
+                if (row == Result.添加成功)
+                {
+                    Teacher teacher = (Teacher)Session["loginuser"];
+                    LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-添加" + stu.StuAccount + stu.RealName + "学生的答辩成绩及评定");
+                    Response.Write("提交成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("提交失败");
+                    Response.End();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("提交失败");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

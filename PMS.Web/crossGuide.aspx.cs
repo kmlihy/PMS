@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,12 @@ namespace PMS.Web
     public partial class crossGuide : System.Web.UI.Page
     {
         public string stuName, proName, title;
+        Teacher teacher = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
             CrossBll crossBll = new CrossBll();
-            Teacher teacher = (Teacher)Session["loginuser"];
+            teacher = (Teacher)Session["loginuser"];
             string teaAccount = teacher.TeaAccount;
             DataSet ds = crossBll.SelectByTea(teaAccount);
             if (ds != null)
@@ -64,26 +66,34 @@ namespace PMS.Web
             Student student = stuBll.GetModel(Session["stuAccount"].ToString());
             ScoreBll sbll = new ScoreBll();
             Score scoreModel = new Score();
-            scoreModel.material = material;
-            scoreModel.paperDesign = paperDesign;
-            scoreModel.workload = workload;
-            scoreModel.crossInnovate = innovate;
-            scoreModel.crossEvaluate = evaluate;
-            scoreModel.crossScore = score;
-            scoreModel.student = student;
-            Plan plan = new Plan();
-            plan.PlanId = Convert.ToInt32(Session["planId"]);
-            scoreModel.plan = plan;
-            Result row = sbll.updateCrossGuide(scoreModel);
-            if (row == Result.添加成功)
+            try
             {
-                Response.Write("提交成功");
-                Response.End();
+                scoreModel.material = material;
+                scoreModel.paperDesign = paperDesign;
+                scoreModel.workload = workload;
+                scoreModel.crossInnovate = innovate;
+                scoreModel.crossEvaluate = evaluate;
+                scoreModel.crossScore = score;
+                scoreModel.student = student;
+                Plan plan = new Plan();
+                plan.PlanId = Convert.ToInt32(Session["planId"]);
+                scoreModel.plan = plan;
+                Result row = sbll.updateCrossGuide(scoreModel);
+                if (row == Result.添加成功)
+                {
+                    LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-对-" + student.StuAccount + student.RealName + "学生的交叉指导意见");
+                    Response.Write("提交成功");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("提交失败");
+                    Response.End();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("提交失败");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

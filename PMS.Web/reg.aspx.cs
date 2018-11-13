@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -85,45 +86,52 @@ namespace PMS.Web
             email = Context.Request["email"].ToString();
             phone = Context.Request["phone"].ToString();
             string year = DateTime.Now.ToString("yyyy");
-
             //根据输入的邮箱、联系电话查找是否已存在
             result = Result.添加失败;
-            bool flagEmail = stuBll.selectByEmail(email);
-            bool flagPhone = stuBll.selectByPhone(phone);
-            if (flagEmail)
+            try
             {
-                Response.Write("此邮箱已存在");
-                Response.End();
-            }
-            else if (flagPhone)
-            {
-                Response.Write("此联系电话已存在");
-                Response.End();
-            }
-            else
-            {
-                pro.ProId = int.Parse(profession);
-                coll.ColID = int.Parse(college);
-                stu.college = coll;
-                stu.Email = email;
-                stu.Phone = phone;
-                stu.profession = pro;
-                stu.RealName = name;
-                stu.Sex = sex;
-                stu.StuAccount = account;
-                stu.StuPwd = pwd;
-                stu.finishYear = Convert.ToInt32(year);
-                result = stuBll.Insert(stu);
-                if (result == Result.添加成功)
+                bool flagEmail = stuBll.selectByEmail(email);
+                bool flagPhone = stuBll.selectByPhone(phone);
+                if (flagEmail)
                 {
-                    Response.Write("注册成功");
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
+                else if (flagPhone)
+                {
+                    Response.Write("此联系电话已存在");
                     Response.End();
                 }
                 else
                 {
-                    Response.Write("注册失败");
-                    Response.End();
+                    pro.ProId = int.Parse(profession);
+                    coll.ColID = int.Parse(college);
+                    stu.college = coll;
+                    stu.Email = email;
+                    stu.Phone = phone;
+                    stu.profession = pro;
+                    stu.RealName = name;
+                    stu.Sex = sex;
+                    stu.StuAccount = account;
+                    stu.StuPwd = pwd;
+                    stu.finishYear = Convert.ToInt32(year);
+                    result = stuBll.Insert(stu);
+                    if (result == Result.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), account + name + "学生注册");
+                        Response.Write("注册成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("注册失败");
+                        Response.End();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

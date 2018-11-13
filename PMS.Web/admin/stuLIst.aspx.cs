@@ -10,6 +10,7 @@ using System.Data;
 
 namespace PMS.Web.admin
 {
+    using PMS.DBHelper;
     using System.Text;
     using Result = Enums.OpResult;
     public partial class stuLIst : CommonPage
@@ -40,7 +41,7 @@ namespace PMS.Web.admin
         CollegeBll colBll = new CollegeBll();
         StudentBll stuBll = new StudentBll();
         RSACryptoService rsa = new RSACryptoService();
-
+        Teacher tea = new Teacher();
         public void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request["op"];
@@ -95,7 +96,7 @@ namespace PMS.Web.admin
             }
             else if (userType == "2")
             {
-                Teacher tea = (Teacher)Session["user"];
+                tea = (Teacher)Session["user"];
                 int usercollegeId = tea.college.ColID;
                 colds = colBll.Select();
                 prods = proBll.SelectByCollegeId(usercollegeId);
@@ -145,9 +146,9 @@ namespace PMS.Web.admin
         public void stuPasswordReset() {
             string stuAccount = Context.Request["stuNO"].ToString();
             string stuPwd = rsa.Encrypt("000000");
-            
             Result resetResult =stuBll.ResetPwd(stuAccount, stuPwd); 
             if (resetResult== Result.更新成功) {
+                LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-重置学生" + stuAccount + "密码");
                 Response.Write("重置成功");
                 Response.End();
             }
@@ -250,8 +251,9 @@ namespace PMS.Web.admin
                     searchdrop = String.Format("proId={0} ", "'" + searchdrop + "'");
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                LogHelper.Error(this.GetType(), ex);
             }
             return searchdrop;
         }
@@ -358,33 +360,40 @@ namespace PMS.Web.admin
             }
             else
             {
-                College stuCol = new College()
+                try
                 {
-                    ColID = stuCollege
-                };
-                Profession stup = new Profession() { ProId = stuPro };
-                Student EditorStu = new Student()
-                {
-                    StuAccount = stuNO,
-                    RealName = stuName,
-                    Sex = stuSex,
-                    Email = stuEmail,
-                    Phone = stuPhone,
-                    college = stuCol,
-                    profession = stup
-                };
-                StudentBll editorStuBll = new StudentBll();
-
-                Result editorResult = editorStuBll.Updata(EditorStu);
-                if (editorResult == Result.更新成功)
-                {
-                    Response.Write("更新成功");
-                    Response.End();
+                    College stuCol = new College()
+                    {
+                        ColID = stuCollege
+                    };
+                    Profession stup = new Profession() { ProId = stuPro };
+                    Student EditorStu = new Student()
+                    {
+                        StuAccount = stuNO,
+                        RealName = stuName,
+                        Sex = stuSex,
+                        Email = stuEmail,
+                        Phone = stuPhone,
+                        college = stuCol,
+                        profession = stup
+                    };
+                    StudentBll editorStuBll = new StudentBll();
+                    Result editorResult = editorStuBll.Updata(EditorStu);
+                    if (editorResult == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-编辑学生" + stuNO + "信息");
+                        Response.Write("更新成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        Response.End();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("更新失败");
-                    Response.End();
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
         }
@@ -441,6 +450,7 @@ namespace PMS.Web.admin
                         Result result = stuBll.Insert(stu);
                         if (result == Result.添加成功)
                         {
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-添加学生" + stuAccount + "信息");
                             Response.Write("添加成功");
                             Response.End();
                         }
@@ -452,7 +462,10 @@ namespace PMS.Web.admin
                     }
                 }
             }
-            catch {  }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
+            }
         }
         /// <summary>
         /// 实现分页
@@ -537,24 +550,32 @@ namespace PMS.Web.admin
         {
             string stuId = Context.Request["stuId"].ToString();
             Result row = isDeleteStu();
-            if (row == Result.记录不存在)
+            try
             {
-                Result delResult = stuBll.delete(stuId);
-                if (delResult == Result.删除成功)
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result delResult = stuBll.delete(stuId);
+                    if (delResult == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-删除学生" + stuId + "账号");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("该学生在其他表中有关联，不能删除！");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("该学生在其他表中有关联，不能删除！");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

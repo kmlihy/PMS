@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace PMS.Web.admin
         protected string showcollegedrop = null;
         //用户类型
         protected string userType = "";
+        Teacher collegeAdmin = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Context.Request.Form["op"];
@@ -54,6 +56,7 @@ namespace PMS.Web.admin
             string strsearch = Request.QueryString["search"];
             //获取登录者信息、判断是分院管理员还是超管
             userType = Session["state"].ToString();
+            collegeAdmin = (Teacher)Session["user"];
             if (userType == "0")
             {
                 //0为超级管理员
@@ -97,7 +100,6 @@ namespace PMS.Web.admin
             {
                 //2为分院管理员
                 //获取分管所在分院ID
-                Teacher collegeAdmin = (Teacher)Session["user"];
                 int collegeId = collegeAdmin.college.ColID;
 
                 prods = probll.SelectByCollegeId(collegeId);
@@ -206,17 +208,24 @@ namespace PMS.Web.admin
                 }
 
                 TitleRecordBll titlerd = new TitleRecordBll();
-                var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
-                DataTable dt = titlerd.ExportExcel(strWhere);
-                if (dt != null && dt.Rows.Count > 0)
+                try
                 {
-                    var path = Server.MapPath("~/download/选题记录导出/" + name + ".xls");
-                    ExcelHelper.x2003.TableToExcelForXLS(dt, path);
-                    downloadfile(path);
+                    var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
+                    DataTable dt = titlerd.ExportExcel(strWhere);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        var path = Server.MapPath("~/download/选题记录导出/" + name + ".xls");
+                        ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                        downloadfile(path);
+                    }
+                    else
+                    {
+                        Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("<script language='javascript'>alert('查询不到数据，不能执行导出操作!')</script>");
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
         }
@@ -224,7 +233,6 @@ namespace PMS.Web.admin
         /// //导出列表方法
         /// </summary>
         /// <param name="s_path">文件路径</param>
-
         public void downloadfile(string s_path)
         {
             System.IO.FileInfo file = new System.IO.FileInfo(s_path);
@@ -454,7 +462,6 @@ namespace PMS.Web.admin
         /// //判断是否能删除
         /// </summary>
         /// <returns>返回是否有关联的表</returns>
-
         public Result IsdeleteCollege()
         {
             string recordid = Context.Request["Recordid"].ToString();
@@ -477,24 +484,32 @@ namespace PMS.Web.admin
         {
             int recordid = int.Parse(Context.Request["Recordid"].ToString());
             Result row = IsdeleteCollege();
-            if (row == Result.记录不存在)
+            try
             {
-                Result result = titrecordbll.delete(recordid);
-                if (result == Result.删除成功)
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = titrecordbll.delete(recordid);
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), collegeAdmin.TeaAccount + collegeAdmin.TeaName + "删除" + recordid + "选题记录");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
 

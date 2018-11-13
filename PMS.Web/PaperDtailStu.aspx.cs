@@ -15,7 +15,6 @@ namespace PMS.Web
     {
         protected Title title;
         protected DataSet ds;
-
         protected string stuAccount = "";
         protected Student stu;
         protected string showTitle = "";
@@ -84,8 +83,7 @@ namespace PMS.Web
             string titleid = Context.Request.QueryString["titleId"];
             TitleRecord titleRecord = new TitleRecord();
             //TODO 后期从session里获取学生对象
-            //Student student =  (Student)Session["user"];               
-            Student student = new Student();
+            //Student student =  (Student)Session["user"]; 
             titleRecord.student = stu;
             Title title = new Title();
             title.TitleId = int.Parse(titleid);

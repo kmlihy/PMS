@@ -13,7 +13,7 @@
 <body class="viewScore-body">
     <div class="container viewscore-divbox">
         <div class="panel panel-heading text-center viewScore_panelhead">
-            <h2>2018届毕业生毕业论文成绩查询</h2>
+            <h2>毕业论文成绩查询</h2>
         </div>
         <%if (content == "暂无成绩")
             {%>

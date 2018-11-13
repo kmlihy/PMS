@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using PMS.Model;
 using PMS.BLL;
 using System.Data;
+using PMS.DBHelper;
 
 namespace PMS.Web
 {
@@ -17,8 +18,10 @@ namespace PMS.Web
         public Path path, paperPath;
         public string teaAccount, searchdrop, search, currentPage, secSearch,op,download;
         public int getCurrentPage = 1, pagesize=5, count, collegeId;
+        Teacher tea = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
+            tea = (Teacher)Session["loginuser"];
             TitleRecordBll trbll = new TitleRecordBll();
             PathBll pathBll = new PathBll();
             Teacher teacher = (Teacher)Session["loginuser"];
@@ -27,60 +30,70 @@ namespace PMS.Web
             string addop = Context.Request.Form["op"];
             string type = Request.QueryString["type"];
             op = Request["op"];
-            if (op == "add")
+            try
             {
-                string stuAccount = Request["stuAccount"];
-                string opinion = Request["opinion"];
-                GuideRecordBll guideBll = new GuideRecordBll();
-                GuideRecord guide = new GuideRecord();
-                DataSet dsTR = trbll.GetByAccount(stuAccount);
-                int i = dsTR.Tables[0].Rows.Count - 1;
-                guide.opinion = opinion;
-                TitleRecord titleRecord = new TitleRecord();
-                titleRecord.TitleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[i]["titleRecordId"].ToString());
-                guide.titleRecord = titleRecord;
-                guide.dateTime = DateTime.Now;
-                path = pathBll.Select(titleRecord.TitleRecordId, stuAccount);
-                guide.path = path;
-                path.titleRecord = titleRecord;
-                path.state = 1;
-                path.type = 0;
-                Result result = pathBll.updateState(path);
-                if (result == Result.更新成功)
+                if (op == "add")
                 {
-                    Result row = guideBll.Insert(guide);
-                    if (row == Result.添加成功)
+                    string stuAccount = Request["stuAccount"];
+                    string opinion = Request["opinion"];
+                    GuideRecordBll guideBll = new GuideRecordBll();
+                    GuideRecord guide = new GuideRecord();
+                    DataSet dsTR = trbll.GetByAccount(stuAccount);
+                    int i = dsTR.Tables[0].Rows.Count - 1;
+                    guide.opinion = opinion;
+                    TitleRecord titleRecord = new TitleRecord();
+                    titleRecord.TitleRecordId = Convert.ToInt32(dsTR.Tables[0].Rows[i]["titleRecordId"].ToString());
+                    guide.titleRecord = titleRecord;
+                    guide.dateTime = DateTime.Now;
+                    path = pathBll.Select(titleRecord.TitleRecordId, stuAccount);
+                    guide.path = path;
+                    path.titleRecord = titleRecord;
+                    path.state = 1;
+                    path.type = 0;
+                    Result result = pathBll.updateState(path);
+                    if (result == Result.更新成功)
                     {
-                        Response.Write("提交成功");
-                        Response.End();
-                    }
+                        Result row = guideBll.Insert(guide);
+                        if (row == Result.添加成功)
+                        {
+                            StudentBll studentBll = new StudentBll();
+                            Student stu = studentBll.GetModel(stuAccount);
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-对-" + stuAccount + stu.RealName + "学生的指导记录");
+                            Response.Write("提交成功");
+                            Response.End();
+                        }
                         else
+                        {
+                            Response.Write("提交失败");
+                            Response.End();
+                        }
+                    }
+                    else
                     {
                         Response.Write("提交失败");
                         Response.End();
                     }
                 }
-                else
+                else if (op == "download")
                 {
-                    Response.Write("提交失败");
-                    Response.End();
+                    download = "download";
+                    string account = Request["stuAccount"];
+                    Path getTitleRecordId = pathBll.getTitleRecordId(account);
+                    int titleRecordId = getTitleRecordId.titleRecord.TitleRecordId;
+                    paperPath = pathBll.Select(titleRecordId, account);
+                    //Response.Redirect(paperPath.paperPath);
+                    Response.Write("<script>$('#loadHref').href = '" + paperPath.paperPath + "';</script>");
+                    //Response.End();
+                }
+                if (!IsPostBack)
+                {
+                    Search();
+                    getPage(Search());
                 }
             }
-            else if(op == "download")
+            catch (Exception ex)
             {
-                download = "download";
-                string account = Request["stuAccount"];
-                Path getTitleRecordId = pathBll.getTitleRecordId(account);
-                int titleRecordId = getTitleRecordId.titleRecord.TitleRecordId;
-                paperPath = pathBll.Select(titleRecordId, account);
-                //Response.Redirect(paperPath.paperPath);
-                Response.Write("<script>$('#loadHref').href = '" + paperPath.paperPath + "';</script>");
-                //Response.End();
-            }
-            if (!IsPostBack)
-            {
-                Search();
-                getPage(Search());
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         //下拉框搜索
@@ -120,7 +133,6 @@ namespace PMS.Web
             }
 
             CrossBll crossBll = new CrossBll();
-            Teacher tea = (Teacher)Session["loginuser"];
             teaAccount = tea.TeaAccount;
             string where1 = "teaAccount = " + teaAccount;
             string where2 = "teaAccount = " + teaAccount + " and " + strWhere;

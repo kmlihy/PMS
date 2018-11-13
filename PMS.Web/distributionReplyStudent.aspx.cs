@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,10 @@ namespace PMS.Web
         ProfessionBll proBll = new ProfessionBll();
         CollegeBll colBll = new CollegeBll();
         Result row = Result.添加失败;
+        Teacher tea = new Teacher();
         public void Page_Load(object sender, EventArgs e)
         {
+            tea = (Teacher)Session["user"];
             string op = Context.Request["op"];
             //下拉专业id
             string proId = Request.QueryString["proId"];
@@ -33,73 +36,80 @@ namespace PMS.Web
             string collegeId = Request.QueryString["collegeId"];
             //输入框信息
             string strsearch = Request.QueryString["search"];
-            userType = Session["state"].ToString();
-            if (op == "add")
+            try
             {
-                addStudent();
-                if (row == Result.添加成功)
+                userType = Session["state"].ToString();
+                if (op == "add")
                 {
-                    Response.Write("添加成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("添加成功");
-                    Response.End();
-                }
-            }
-            if (!IsPostBack)
-            {
-                string defenGroupId = Request.QueryString["defenGroupId"];
-                Session["defenGroupId"] = defenGroupId;
-            }
-            if (userType == "0")
-            {
-                colds = colBll.Select();
-                prods = null;
-                //prods = proBll.Select();
-                if (collegeId == null || collegeId == "0" || collegeId == "null")
-                {
-                    //学院为空,专业为空
-                    prods = null;
-                    getdata("");
-                }
-                else
-                {
-                    prods = proBll.SelectByCollegeId(int.Parse(collegeId));
-                    if(proId == "null" || proId == "0" || proId == null)
+                    addStudent();
+                    if (row == Result.添加成功)
                     {
-                        //学院不为空,专业为空
-                        getdata(SearchByCollege());
-                    }else if(proId != null && proId != "null" && proId != "0")
-                    {
-                        //两个都不为空
-                        getdata(SearchProAndCollege());
+                        Response.Write("添加成功");
+                        Response.End();
                     }
-                    else if(strsearch != null)
+                    else
+                    {
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                }
+                if (!IsPostBack)
+                {
+                    string defenGroupId = Request.QueryString["defenGroupId"];
+                    Session["defenGroupId"] = defenGroupId;
+                }
+                if (userType == "0")
+                {
+                    colds = colBll.Select();
+                    prods = null;
+                    //prods = proBll.Select();
+                    if (collegeId == null || collegeId == "0" || collegeId == "null")
+                    {
+                        //学院为空,专业为空
+                        prods = null;
+                        getdata("");
+                    }
+                    else
+                    {
+                        prods = proBll.SelectByCollegeId(int.Parse(collegeId));
+                        if (proId == "null" || proId == "0" || proId == null)
+                        {
+                            //学院不为空,专业为空
+                            getdata(SearchByCollege());
+                        }
+                        else if (proId != null && proId != "null" && proId != "0")
+                        {
+                            //两个都不为空
+                            getdata(SearchProAndCollege());
+                        }
+                        else if (strsearch != null)
+                        {
+                            getdata(Search());
+                        }
+                    }
+                }
+                else if (userType == "2")
+                {
+                    int usercollegeId = tea.college.ColID;
+                    colds = colBll.Select();
+                    prods = proBll.SelectByCollegeId(usercollegeId);
+                    if (strsearch != null)
                     {
                         getdata(Search());
                     }
+                    else if (proId != null && proId != "null")
+                    {
+                        getdata(Searchdrop());
+                    }
+                    else
+                    {
+                        getdata("");
+                    }
                 }
             }
-            else if (userType == "2")
+            catch (Exception ex)
             {
-                Teacher tea = (Teacher)Session["user"];
-                int usercollegeId = tea.college.ColID;
-                colds = colBll.Select();
-                prods = proBll.SelectByCollegeId(usercollegeId);
-                if (strsearch != null)
-                {
-                    getdata(Search());
-                }
-                else if (proId != null && proId != "null")
-                {
-                    getdata(Searchdrop());
-                }
-                else
-                {
-                    getdata("");
-                }
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         /// <summary>
@@ -263,7 +273,6 @@ namespace PMS.Web
                 //usertype=2 为分院管理员登录
                 if (userType == "2")
                 {
-                    Teacher tea = (Teacher)Session["user"];
                     int userCollegeId = tea.college.ColID;
                     if (strWhere == null || strWhere == "")
                     {
@@ -310,7 +319,8 @@ namespace PMS.Web
                 DefenceRecord defence = new DefenceRecord();
                 defence.titleRecord = titleRecord;
                 DefenceGroup defenceGroup = new DefenceGroup();
-                defenceGroup.defenGroupId = Convert.ToInt32(Session["defenGroupId"]);
+                int defenId = Convert.ToInt32(Session["defenGroupId"]);
+                defenceGroup.defenGroupId = defenId;
                 defence.defenceGroup = defenceGroup;
                 row = defenceBll.InsertStudent(defence);
                 StudentBll stuBll = new StudentBll();
@@ -323,6 +333,10 @@ namespace PMS.Web
                     Response.Write("添加失败");
                     Response.End();
                     break;
+                }
+                else
+                {
+                    LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-添加" + defenId + "答辩小组学生" + student.StuAccount + student.RealName);
                 }
             }
             return row;

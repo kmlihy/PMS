@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -64,62 +65,76 @@ namespace PMS.Web.admin
             else {
                 TitleBll titlebll = new TitleBll();
                 Title title = new Title();
-
                 if (op == "new")
                 {
-                    string paperTitle = Request["paperTitle"].ToString();
-                    string profession = Request["profession"].ToString();
-                    string plans = Request["plan"].ToString();
-                    string numMax = Request["numMax"].ToString();
-                    string paperContent = Request["paperContent"].ToString();
-                    title.title = paperTitle;
-                    title.TitleContent = HttpUtility.UrlDecode(paperContent);
-                    title.CreateTime = DateTime.Now;
-                    //TODO 专业批次选定人数为固定值，需重新改动
-                    title.Selected = 0;
-                    title.Limit = int.Parse(numMax);
-                    title.teacher = (Teacher)Session["loginuser"];
-                    title.plan = new Plan { PlanId = Convert.ToInt32(plans) };
-                    title.profession = new Profession { ProId = Convert.ToInt32(profession) };
-                    Result result = titlebll.Insert(title);
-                    if (result == Result.添加成功)
+                    try
                     {
-                        Response.Write("添加成功");
-                        Response.End();
-                    }
-                    else
+                        string paperTitle = Request["paperTitle"].ToString();
+                        string profession = Request["profession"].ToString();
+                        string plans = Request["plan"].ToString();
+                        string numMax = Request["numMax"].ToString();
+                        string paperContent = Request["paperContent"].ToString();
+                        title.title = paperTitle;
+                        title.TitleContent = HttpUtility.UrlDecode(paperContent);
+                        title.CreateTime = DateTime.Now;
+                        //TODO 专业批次选定人数为固定值，需重新改动
+                        title.Selected = 0;
+                        title.Limit = int.Parse(numMax);
+                        title.teacher = (Teacher)Session["loginuser"];
+                        title.plan = new Plan { PlanId = Convert.ToInt32(plans) };
+                        title.profession = new Profession { ProId = Convert.ToInt32(profession) };
+
+                        Result result = titlebll.Insert(title);
+                        if (result == Result.添加成功)
+                        {
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "发布论文");
+                            Response.Write("添加成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("添加失败");
+                            Response.End();
+                        }
+                    }catch(Exception ex)
                     {
-                        Response.Write("添加失败");
-                        Response.End();
+                        LogHelper.Error(this.GetType(), ex);
                     }
                 }
                 else if(op == "edit")
                 {
-                    string paperTitle = Request["paperTitle"].ToString();
-                    string profession = Request["profession"].ToString();
-                    string plans = Request["plan"].ToString();
-                    string numMax = Request["numMax"].ToString();
-                    string paperContent = Request["paperContent"].ToString();
-                    title.TitleId = Convert.ToInt32(Session["titleId"].ToString());
-                    title.title = paperTitle;
-                    title.TitleContent = HttpUtility.UrlDecode(paperContent);
-                    title.CreateTime = DateTime.Now;
-                    //TODO 专业批次选定人数为固定值，需重新改动
-                    title.Selected = 0;
-                    title.Limit = int.Parse(numMax);
-                    title.teacher = (Teacher)Session["loginuser"];
-                    title.plan = new Plan { PlanId = 1 };
-                    title.profession = new Profession { ProId = 1 };
-                    Result result = titlebll.Update(title);
-                    if (result == Result.更新成功)
+                    try
                     {
-                        Response.Write("更新成功");
-                        Response.End();
-                    }
-                    else
+                        string paperTitle = Request["paperTitle"].ToString();
+                        string profession = Request["profession"].ToString();
+                        string plans = Request["plan"].ToString();
+                        string numMax = Request["numMax"].ToString();
+                        string paperContent = Request["paperContent"].ToString();
+                        title.TitleId = Convert.ToInt32(Session["titleId"].ToString());
+                        title.title = paperTitle;
+                        title.TitleContent = HttpUtility.UrlDecode(paperContent);
+                        title.CreateTime = DateTime.Now;
+                        //TODO 专业批次选定人数为固定值，需重新改动
+                        title.Selected = 0;
+                        title.Limit = int.Parse(numMax);
+                        title.teacher = tea;
+                        title.plan = new Plan { PlanId = 1 };
+                        title.profession = new Profession { ProId = 1 };
+                        Result result = titlebll.Update(title);
+                        if (result == Result.更新成功)
+                        {
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "修改" + Session["titleId"].ToString() + "论文");
+                            Response.Write("更新成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("更新失败");
+                            Response.End();
+                        }
+                    }catch(Exception ex)
                     {
-                        Response.Write("更新失败");
-                        Response.End();
+                        LogHelper.Error(this.GetType(), ex);
                     }
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,19 @@ namespace PMS.Web
         ProfessionBll probll = new ProfessionBll();//专业
         PlanBll plabll = new PlanBll();//批次业务逻辑
         TitleBll titbll = new TitleBll();//标题业务逻辑
-
+        Teacher tea = new Teacher();
         protected CollegeBll colbll = new CollegeBll();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (state == 1)
+            {
+                tea = (Teacher)Session["loginuser"];
+            }
+            else if (state == 2)
+            {
+                tea = (Teacher)Session["user"];
+            }
             state = Convert.ToInt32(Session["state"]);
             string op = Context.Request["op"];
             string type = Request.QueryString["type"];
@@ -93,16 +102,24 @@ namespace PMS.Web
             {
                 int defenRecordId = Convert.ToInt32(Request["defenRecordId"]);
                 DefenceBll defenceBll = new DefenceBll();
-                Result row = defenceBll.DelRecord(defenRecordId);
-                if(row == Result.删除成功)
+                try
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result row = defenceBll.DelRecord(defenRecordId);
+                    if (row == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-删除" + defenRecordId + "答辩记录");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("删除失败");
-                    Response.End();
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
         }
@@ -119,14 +136,6 @@ namespace PMS.Web
                 currentPage = "1";
             }
             TitleBll titbll = new TitleBll();
-            Teacher tea = new Teacher();
-            if (state == 1)
-            {
-                tea = (Teacher)Session["loginuser"];
-            }else if(state == 2)
-            {
-                tea = (Teacher)Session["user"];
-            }
             string account = "defenGroupId = "+ defenGroupId;
 
             string Account = account + " and ";

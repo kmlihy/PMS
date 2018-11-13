@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PMS.BLL;
+using PMS.DBHelper;
 
 namespace PMS.Web.admin
 {
@@ -53,72 +54,82 @@ namespace PMS.Web.admin
         /// </summary>
         public void Change()
         {
+            
             RSACryptoService rsa = new RSACryptoService();
             string oldpwd = rsa.Decrypt(Request["old"]);
             string newpwd = Request["newP"];
             int state = Convert.ToInt32(Session["state"].ToString());
             string Old = oldpwd;
             string NewPwd = newpwd;
-
-            if (state == 0||state == 2)
+            try
             {
-                admin = (Teacher)Session["user"];
-                teacherPwd = admin.TeaPwd;
-                teacherID = admin.TeaAccount;
-                if (Old == teacherPwd)
+                if (state == 0 || state == 2)
                 {
-                    Result result = teaBll.UpdataPwd(teacherID, NewPwd);
-                    if (result == Result.更新成功)
+                    admin = (Teacher)Session["user"];
+                    teacherPwd = admin.TeaPwd;
+                    teacherID = admin.TeaAccount;
+                    if (Old == teacherPwd)
                     {
-                        Response.Write("更新成功");
+                        Result result = teaBll.UpdataPwd(teacherID, NewPwd);
+                        if (result == Result.更新成功)
+                        {
+                            LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-修改密码");
+                            Response.Write("更新成功");
+                            Response.End();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        Response.End();
+                    }
+                }
+                else if (state == 1)
+                {
+                    teacher = (Teacher)Session["loginuser"];
+                    teacherPwd = teacher.TeaPwd;
+                    teacherID = teacher.TeaAccount;
+                    if (Old == teacherPwd)
+                    {
+                        Result result = teaBll.UpdataPwd(teacherID, NewPwd);
+                        if (result == Result.更新成功)
+                        {
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-修改密码");
+                            Response.Write("更新成功");
+                            Response.End();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
                         Response.End();
                     }
                 }
                 else
                 {
-                    Response.Write("更新失败");
-                    Response.End();
+                    stu = (Student)Session["loginuser"];
+                    stuPwd = stu.StuPwd;
+                    stuID = stu.StuAccount;
+                    if (Old == stuPwd)
+                    {
+                        Result result = stuBll.UpdataPwd(stuID, NewPwd);
+                        if (result == Result.更新成功)
+                        {
+                            LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "-修改密码");
+                            Response.Write("更新成功");
+                            Response.End();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        Response.End();
+                    }
                 }
             }
-            else if(state == 1)
+            catch (Exception ex)
             {
-                teacher = (Teacher)Session["loginuser"];
-                teacherPwd = teacher.TeaPwd;
-                teacherID = teacher.TeaAccount;
-                if (Old == teacherPwd)
-                {
-                    Result result = teaBll.UpdataPwd(teacherID, NewPwd);
-                    if (result == Result.更新成功)
-                    {
-                        Response.Write("更新成功");
-                        Response.End();
-                    }
-                }
-                else
-                {
-                    Response.Write("更新失败");
-                    Response.End();
-                }
-            }
-            else
-            {
-                stu = (Student)Session["loginuser"];
-                stuPwd = stu.StuPwd;
-                stuID = stu.StuAccount;
-                if (Old == stuPwd)
-                {
-                    Result result = stuBll.UpdataPwd(stuID, NewPwd);
-                    if (result == Result.更新成功)
-                    {
-                        Response.Write("更新成功");
-                        Response.End();
-                    }
-                }
-                else
-                {
-                    Response.Write("更新失败");
-                    Response.End();
-                }
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,10 @@ namespace PMS.Web.admin
         protected int pagesize = 5;
         protected String search = "";
         protected String strSearch = "";
-
+        Teacher user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = (Teacher)Session["user"];
             string op = Context.Request["op"];
             //第一次加载页面时
             if (!Page.IsPostBack)
@@ -104,35 +106,43 @@ namespace PMS.Web.admin
         public void saveCollege()
         {
             string collegeName = Context.Request["collegeName"].ToString();
-            dsColl = collBll.Select();
             bool flag = true;
-            for(int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+            try
             {
-                if(collegeName == dsColl.Tables[0].Rows[i]["collegeName"].ToString())
+                dsColl = collBll.Select();
+                for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                 {
-                    flag = false;
+                    if (collegeName == dsColl.Tables[0].Rows[i]["collegeName"].ToString())
+                    {
+                        flag = false;
+                    }
                 }
-            }
-            if (flag == false)
-            {
-                result = Result.添加失败;
-                Response.Write("学院已存在");
-                Response.End();
-            }
-            else
-            {
-                college.ColName = collegeName;
-                result = collBll.Insert(college);
-                if (result == Result.添加成功)
+                if (flag == false)
                 {
-                    Response.Write("添加成功");
+                    result = Result.添加失败;
+                    Response.Write("学院已存在");
                     Response.End();
                 }
                 else
                 {
-                    Response.Write("添加失败");
-                    Response.End();
+                    college.ColName = collegeName;
+                    result = collBll.Insert(college);
+                    if (result == Result.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), user.TeaAccount + user.TeaName + "-添加" + collegeName);
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         
@@ -143,36 +153,44 @@ namespace PMS.Web.admin
         {
             int collegeId = int.Parse(Context.Request["id"].ToString());
             string collegeName = Context.Request["name"].ToString();
-            dsColl = collBll.Select();
             bool flag = true;
-            for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
+            try
             {
-                if (collegeName == dsColl.Tables[0].Rows[i]["collegeName"].ToString())
+                dsColl = collBll.Select();
+                for (int i = 0; i < dsColl.Tables[0].Rows.Count; i++)
                 {
-                    flag = false;
+                    if (collegeName == dsColl.Tables[0].Rows[i]["collegeName"].ToString())
+                    {
+                        flag = false;
+                    }
                 }
-            }
-            if (flag == false)
-            {
-                result = Result.更新失败;
-                Response.Write("学院名已存在");
-                Response.End();
-            }
-            else
-            {
-                college.ColID = collegeId;
-                college.ColName = collegeName;
-                result = collBll.Update(college);
-                if (result == Result.更新成功)
+                if (flag == false)
                 {
-                    Response.Write("更新成功");
+                    result = Result.更新失败;
+                    Response.Write("学院名已存在");
                     Response.End();
                 }
                 else
                 {
-                    Response.Write("更新失败");
-                    Response.End();
+                    college.ColID = collegeId;
+                    college.ColName = collegeName;
+                    result = collBll.Update(college);
+                    if (result == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), user.TeaAccount + user.TeaName + "-编辑" + collegeId + "学院");
+                        Response.Write("更新成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        Response.End();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
             }
         }
 
@@ -289,8 +307,8 @@ namespace PMS.Web.admin
         /// <returns>返回判断结果</returns>
         public Result IsdeleteCollege()
         {
-            string collegeid = Context.Request["collegeid"].ToString();
             Result row = Result.记录不存在;
+            string collegeid = Context.Request["collegeid"].ToString();
             if (collBll.IsDelete("T_Plan", "collegeId", collegeid) == Result.关联引用)
             {
                 row = Result.关联引用;
@@ -312,26 +330,33 @@ namespace PMS.Web.admin
         public void deleteCollege()
         {
             string collegeid = Context.Request["collegeid"].ToString();
-            Result row = IsdeleteCollege();
-            if (row == Result.记录不存在)
+            try
             {
-            Result result = collBll.Delete(int.Parse(collegeid));
-
-                if (result == Result.删除成功)
+                Result row = IsdeleteCollege();
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = collBll.Delete(int.Parse(collegeid));
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), user.TeaAccount + user.TeaName + "-删除" + collegeid + "学院");
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
 
@@ -367,36 +392,44 @@ namespace PMS.Web.admin
         /// </summary>
         public void batchDeleteCollege()
         {
-            string collegeid = Context.Request["collId"].ToString();
-            string[] collList = collegeid.Split('?');
-            Result row = IsBatchDelete();
-            int count = 0;
-            if (row == Result.记录不存在)
+            try
             {
-                for (int i = 0; i < collList.Length-1; i++)
+                string collegeid = Context.Request["collId"].ToString();
+                string[] collList = collegeid.Split('?');
+                Result row = IsBatchDelete();
+                int count = 0;
+                if (row == Result.记录不存在)
                 {
-                    int collId = int.Parse(collList[i]);
-                    Result result = collBll.Delete(collId);
-                    if (result == Result.删除成功)
+                    for (int i = 0; i < collList.Length - 1; i++)
                     {
-                        count++;
+                        int collId = int.Parse(collList[i]);
+                        Result result = collBll.Delete(collId);
+                        if (result == Result.删除成功)
+                        {
+                            LogHelper.Info(this.GetType(), user.TeaAccount + user.TeaName + "-删除" + collId + "学院");
+                            count++;
+                        }
                     }
-                }
-                if (count == collList.Length-1)
-                {
-                    Response.Write("删除成功");
-                    Response.End();
+                    if (count == collList.Length - 1)
+                    {
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

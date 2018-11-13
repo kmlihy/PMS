@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -42,17 +43,32 @@ namespace PMS.Web
             string op = Request["op"];
             string teacherOpinion = Request["teacherOpinion"];
             string deanOpinion = Request["deanOpinion"];
-            if (op == "no")
+            try
             {
-                or = orbll.Select(titleRecordId);
-                int openId = or.openId;
-                Result row = orbll.teaInsert(openId, teacherOpinion);
-                Result state = orbll.updateState(1, titleRecordId);
-                if (deanOpinion != "")
+                if (op == "no")
                 {
-                    Result dean = orbll.deanInsert(openId, teacherOpinion);
-                    if (row == Result.添加成功 && dean == Result.添加成功)
+                    or = orbll.Select(titleRecordId);
+                    int openId = or.openId;
+                    Result row = orbll.teaInsert(openId, teacherOpinion);
+                    Result state = orbll.updateState(1, titleRecordId);
+                    if (deanOpinion != "")
                     {
+                        Result dean = orbll.deanInsert(openId, teacherOpinion);
+                        if (row == Result.添加成功 && dean == Result.添加成功)
+                        {
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-不同意并回复" + stuAccount + stuName + "学生的开题报告");
+                            Response.Write("提交成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("提交失败");
+                            Response.End();
+                        }
+                    }
+                    if (row == Result.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-不同意并回复" + stuAccount + stuName + "学生的开题报告");
                         Response.Write("提交成功");
                         Response.End();
                     }
@@ -62,47 +78,43 @@ namespace PMS.Web
                         Response.End();
                     }
                 }
-                if (row == Result.添加成功)
+                else if (op == "yes")
                 {
-                    Response.Write("提交成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("提交失败");
-                    Response.End();
+                    or = orbll.Select(titleRecordId);
+                    int openId = or.openId;
+                    Result row = orbll.teaInsert(openId, teacherOpinion);
+                    Result state = orbll.updateState(3, titleRecordId);
+                    if (deanOpinion != "")
+                    {
+                        Result dean = orbll.deanInsert(openId, teacherOpinion);
+                        if (row == Result.添加成功 && dean == Result.添加成功 && state == Result.更新成功)
+                        {
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-同意并回复" + stuAccount + stuName + "学生的开题报告");
+                            Response.Write("提交成功");
+                            Response.End();
+                        }
+                        else
+                        {
+                            Response.Write("提交失败");
+                            Response.End();
+                        }
+                    }
+                    if (row == Result.添加成功 && state == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-同意并回复" + stuAccount + stuName + "学生的开题报告");
+                        Response.Write("提交成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
                 }
             }
-            else if (op == "yes")
+            catch (Exception ex)
             {
-                or = orbll.Select(titleRecordId);
-                int openId = or.openId;
-                Result row = orbll.teaInsert(openId, teacherOpinion);
-                Result state = orbll.updateState(3, titleRecordId);
-                if (deanOpinion != "")
-                {
-                    Result dean = orbll.deanInsert(openId, teacherOpinion);
-                    if (row == Result.添加成功 && dean == Result.添加成功 && state==Result.更新成功)
-                    {
-                        Response.Write("提交成功");
-                        Response.End();
-                    }
-                    else
-                    {
-                        Response.Write("提交失败");
-                        Response.End();
-                    }
-                }
-                if(row == Result.添加成功 && state == Result.更新成功)
-                {
-                    Response.Write("提交成功");
-                    Response.End();
-                }
-                else
-                {
-                    Response.Write("提交失败");
-                    Response.End();
-                }
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

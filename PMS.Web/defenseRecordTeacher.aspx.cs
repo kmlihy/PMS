@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -21,33 +22,41 @@ namespace PMS.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             string op = Request["op"];
-            if (op=="submit")
+            try
             {
-                titleRecordId = Request["titleRecordId"];
-                stuAccount = Request["stuAccount"];
-                getData = defenceBll.getModel( titleRecordId);
-                DefenceRecord defenceRecord = new DefenceRecord();
-                TitleRecord titleRecord = new TitleRecord();
-                titleRecord.TitleRecordId = Convert.ToInt32(getData.Tables[0].Rows[0]["titleRecordId"]);
-                defenceRecord.titleRecord= titleRecord;
-                defenceRecord.recordContent = Request["content"];
-                defenceRecord.dateTime = Convert.ToDateTime(now);
-
-                Result result = defenceBll.UpdateRecord(defenceRecord);
-                if (result==Result.添加成功)
+                if (op == "submit")
                 {
-                    Response.Write("添加成功");
-                    Response.End();
+                    titleRecordId = Request["titleRecordId"];
+                    stuAccount = Request["stuAccount"];
+                    getData = defenceBll.getModel(titleRecordId);
+                    DefenceRecord defenceRecord = new DefenceRecord();
+                    TitleRecord titleRecord = new TitleRecord();
+                    titleRecord.TitleRecordId = Convert.ToInt32(getData.Tables[0].Rows[0]["titleRecordId"]);
+                    defenceRecord.titleRecord = titleRecord;
+                    defenceRecord.recordContent = Request["content"];
+                    defenceRecord.dateTime = Convert.ToDateTime(now);
+
+                    Result result = defenceBll.UpdateRecord(defenceRecord);
+                    if (result == Result.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), titleRecord.DefeseTeamId+"-提交-"+ titleRecord.student.StuAccount+ titleRecord.student.RealName+"的答辩记录");
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("添加失败");
-                    Response.End();
+                    reportData();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                reportData();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         private void reportData()

@@ -1,4 +1,5 @@
 ﻿using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
@@ -23,20 +24,28 @@ namespace PMS.Web.admin
                 string excellent = Request["excellent"];
                 ScoreBll scoreBll = new ScoreBll();
                 Score score = new Score();
-                score.guideRatio = Convert.ToDouble(guide) * 0.01;
-                score.crossRatio = Convert.ToDouble(cross) * 0.01;
-                score.defenceRatio = Convert.ToDouble(defence) * 0.01;
-                score.excellent = Convert.ToInt32(excellent);
-                Result row = scoreBll.insertRatio(score);
-                if(row == Result.添加成功)
+                try
                 {
-                    Response.Write("添加成功");
-                    Response.End();
+                    score.guideRatio = Convert.ToDouble(guide) * 0.01;
+                    score.crossRatio = Convert.ToDouble(cross) * 0.01;
+                    score.defenceRatio = Convert.ToDouble(defence) * 0.01;
+                    score.excellent = Convert.ToInt32(excellent);
+                    Result row = scoreBll.insertRatio(score);
+                    if (row == Result.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), "添加成绩占比信息");
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Response.Write("添加失败");
-                    Response.End();
+                    LogHelper.Error(this.GetType(), ex);
                 }
             }
 

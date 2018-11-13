@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using PMS.DBHelper;
 
 namespace PMS.Web
 {
@@ -18,10 +19,11 @@ namespace PMS.Web
         public OpenReport or, open;
         public DataSet dsGuide,dsTR;
         OpenReportBll orbll = new OpenReportBll();
+        Student student = new Student();
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();
-            Student student = (Student)Session["loginuser"];
+            student = (Student)Session["loginuser"];
             stuAccount = student.StuAccount;
             stuName = student.RealName;
             profession = student.profession.ProName;
@@ -68,40 +70,48 @@ namespace PMS.Web
         //添加开题报告
         private void insert()
         {
-            string op = Context.Request["op"];
-            if (op == "add")
+            try
             {
-                string meaning = Request["meaning"];
-                string trend = Request["trend"];
-                string content = Request["content"];
-                string plan = Request["plan"];
-                string method = Request["method"];
-                string outline = Request["outline"];
-                string reference = Request["reference"];
-                OpenReport open = new OpenReport();
-                TitleRecord titleRecord = new TitleRecord();
-                titleRecord.TitleRecordId = titleRecordId;
-                open.titleRecord = titleRecord;
-                open.meaning = meaning;
-                open.trend = trend;
-                open.content = content;
-                open.plan = plan;
-                open.method = method;
-                open.outline = outline;
-                open.reference = reference;
-                open.reportTime = DateTime.Now;
-                Result row = orbll.stuInsert(open);
-                Result result = orbll.updateState(2, titleRecordId);
-                if (row == Result.添加成功 && result==Result.更新成功)
+                string op = Context.Request["op"];
+                if (op == "add")
                 {
-                    Response.Write("提交成功");
-                    Response.End();
+                    string meaning = Request["meaning"];
+                    string trend = Request["trend"];
+                    string content = Request["content"];
+                    string plan = Request["plan"];
+                    string method = Request["method"];
+                    string outline = Request["outline"];
+                    string reference = Request["reference"];
+                    OpenReport open = new OpenReport();
+                    TitleRecord titleRecord = new TitleRecord();
+                    titleRecord.TitleRecordId = titleRecordId;
+                    open.titleRecord = titleRecord;
+                    open.meaning = meaning;
+                    open.trend = trend;
+                    open.content = content;
+                    open.plan = plan;
+                    open.method = method;
+                    open.outline = outline;
+                    open.reference = reference;
+                    open.reportTime = DateTime.Now;
+                    Result row = orbll.stuInsert(open);
+                    Result result = orbll.updateState(2, titleRecordId);
+                    if (row == Result.添加成功 && result == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), student.StuAccount + student.RealName + "-添加开题报告");
+                        Response.Write("提交成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("提交失败");
+                        Response.End();
+                    }
                 }
-                else
-                {
-                    Response.Write("提交失败");
-                    Response.End();
-                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PMS.BLL;
+using PMS.DBHelper;
 using PMS.Model;
 
 namespace PMS.Web.admin
@@ -27,8 +28,10 @@ namespace PMS.Web.admin
         //查询
         protected String search = "";
         protected String strSearch = "";
+        Teacher admin = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
+            admin = (Teacher)Session["user"];
             string college = Request["collegeId"];
             string op = Context.Request["op"];
             //添加管理员
@@ -135,52 +138,60 @@ namespace PMS.Web.admin
             string college = Context.Request["college"].ToString();
             string email = Context.Request["email"].ToString();
             string phone = Context.Request["phone"].ToString();
-            if (teaBll.selectByColl(Convert.ToInt32(college)))
+            try
             {
-                Response.Write("该学院已设置过分院管理员");
-                Response.End();
-            }
-            else if (teaBll.selectByteaId(account))
-            {
-                if (teaBll.GetModel(account).TeaType == 2)
+                if (teaBll.selectByColl(Convert.ToInt32(college)))
                 {
-                    Response.Write("该教师已为分院管理员");
+                    Response.Write("该学院已设置过分院管理员");
                     Response.End();
                 }
-            }
-            else if (teaBll.selectByEmail(email))
-            {//根据输入的邮箱查找是否已存在
-                Response.Write("此邮箱已存在");
-                Response.End();
-            }
-            else if (teaBll.selectByPhone(phone))
-            {//根据输入的联系电话查找是否已存在
-                Response.Write("此联系电话已存在");
-                Response.End();
-            }
-            else
-            {
-                tea.TeaAccount = account;
-                tea.TeaName = name;
-                tea.Sex = sex;
-                coll.ColID = int.Parse(college);
-                tea.college = coll;
-                tea.Email = email;
-                tea.Phone = phone;
-                RSACryptoService rsa = new RSACryptoService();
-                tea.TeaPwd = rsa.Encrypt("000000");
-                tea.TeaType = 2;
-                result = teaBll.Insert(tea);
-                if (result == Result.添加成功)
+                else if (teaBll.selectByteaId(account))
                 {
-                    Response.Write("添加成功");
+                    if (teaBll.GetModel(account).TeaType == 2)
+                    {
+                        Response.Write("该教师已为分院管理员");
+                        Response.End();
+                    }
+                }
+                else if (teaBll.selectByEmail(email))
+                {//根据输入的邮箱查找是否已存在
+                    Response.Write("此邮箱已存在");
+                    Response.End();
+                }
+                else if (teaBll.selectByPhone(phone))
+                {//根据输入的联系电话查找是否已存在
+                    Response.Write("此联系电话已存在");
                     Response.End();
                 }
                 else
                 {
-                    Response.Write("添加失败");
-                    Response.End();
+                    tea.TeaAccount = account;
+                    tea.TeaName = name;
+                    tea.Sex = sex;
+                    coll.ColID = int.Parse(college);
+                    tea.college = coll;
+                    tea.Email = email;
+                    tea.Phone = phone;
+                    RSACryptoService rsa = new RSACryptoService();
+                    tea.TeaPwd = rsa.Encrypt("000000");
+                    tea.TeaType = 2;
+                    result = teaBll.Insert(tea);
+                    if (result == Result.添加成功)
+                    {
+                        LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-添加分院管理员");
+                        Response.Write("添加成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("添加失败");
+                        Response.End();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         /// <summary>
@@ -198,53 +209,61 @@ namespace PMS.Web.admin
             string oldEmail = Context.Request["oldEmail"].ToString();
             string email = Context.Request["Email"].ToString();
             string phone = Context.Request["Phone"].ToString();
-            if (college != oldCollegeId)
+            try
             {
-                if (teaBll.selectByColl(college))
+                if (college != oldCollegeId)
                 {
-                    Response.Write("该学院已设置过分院管理员");
-                    Response.End();
+                    if (teaBll.selectByColl(college))
+                    {
+                        Response.Write("该学院已设置过分院管理员");
+                        Response.End();
+                    }
                 }
-            }
-            else if(oldEmail != email)
-            {
-                if (teaBll.selectByEmail(email))
-                {//根据输入的邮箱查找是否已存在
-                    Response.Write("此邮箱已存在");
-                    Response.End();
-                }
-            }
-             else if(oldPhone != phone)
-            {
-                if (teaBll.selectByPhone(phone))
-                {//根据输入的联系电话查找是否已存在
-                    Response.Write("此联系电话已存在");
-                    Response.End();
-                }
-            }
-            else
-            {
-                tea.TeaAccount = account;
-                tea.TeaName = name;
-                tea.TeaPwd = teaBll.GetModel(account).TeaPwd;
-                tea.Sex = sex;
-                College coll = new College();
-                coll.ColID = college;
-                tea.college = coll;
-                tea.Email = email;
-                tea.Phone = phone;
-                tea.TeaType = 2;
-                result = teaBll.Updata(tea);
-                if (result == Result.更新成功)
+                else if (oldEmail != email)
                 {
-                    Response.Write("更新成功");
-                    Response.End();
+                    if (teaBll.selectByEmail(email))
+                    {//根据输入的邮箱查找是否已存在
+                        Response.Write("此邮箱已存在");
+                        Response.End();
+                    }
+                }
+                else if (oldPhone != phone)
+                {
+                    if (teaBll.selectByPhone(phone))
+                    {//根据输入的联系电话查找是否已存在
+                        Response.Write("此联系电话已存在");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("更新失败");
-                    Response.End();
+                    tea.TeaAccount = account;
+                    tea.TeaName = name;
+                    tea.TeaPwd = teaBll.GetModel(account).TeaPwd;
+                    tea.Sex = sex;
+                    College coll = new College();
+                    coll.ColID = college;
+                    tea.college = coll;
+                    tea.Email = email;
+                    tea.Phone = phone;
+                    tea.TeaType = 2;
+                    result = teaBll.Updata(tea);
+                    if (result == Result.更新成功)
+                    {
+                        LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-编辑分院管理员账号信息:"+account);
+                        Response.Write("更新成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("更新失败");
+                        Response.End();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error(this.GetType(), ex);
             }
         }
         /// <summary>
@@ -270,27 +289,35 @@ namespace PMS.Web.admin
         /// </summary>
         public void deleteAdmin()
         {
-            string account = Context.Request["Daccount"].ToString();
-            Result row = IsdeleteAdmin();
-            if (row == Result.记录不存在)
+            try
             {
-                Result result = teaBll.Delete(account);
-
-                if (result == Result.删除成功)
+                string account = Context.Request["Daccount"].ToString();
+                Result row = IsdeleteAdmin();
+                if (row == Result.记录不存在)
                 {
-                    Response.Write("删除成功");
-                    Response.End();
+                    Result result = teaBll.Delete(account);
+
+                    if (result == Result.删除成功)
+                    {
+                        LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-删除分院管理员账号:" + account);
+                        Response.Write("删除成功");
+                        Response.End();
+                    }
+                    else
+                    {
+                        Response.Write("删除失败");
+                        Response.End();
+                    }
                 }
                 else
                 {
-                    Response.Write("删除失败");
+                    Response.Write("在其他表中有关联不能删除");
                     Response.End();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Write("在其他表中有关联不能删除");
-                Response.End();
+                LogHelper.Error(this.GetType(), ex);
             }
         }
     }
