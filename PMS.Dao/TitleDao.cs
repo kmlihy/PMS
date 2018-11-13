@@ -84,16 +84,24 @@ namespace PMS.Dao
         /// <summary>
         /// 通过题目id查询题目信息
         /// </summary>
-        /// <param name="titleId">题目id</param>
+        /// <param name="title">题目标题</param>
         /// <returns>返回结果集</returns>
-        public DataSet Select(int titleId)
+        public DataSet Select(string title)
         {
             StringBuilder strBuilder = new StringBuilder();
             strBuilder.Append("select * from V_Title");
-            strBuilder.Append("where titleId=@titleId");
-            string[] param = { "titleId" };
-            string[] values = {titleId.ToString() };
-            return db.FillDataSet(strBuilder.ToString(), param, values);
+            strBuilder.Append("where title=@title");
+            string[] param = { "title" };
+            string[] values = {title };
+            DataSet ds = db.FillDataSet(strBuilder.ToString(), param, values);
+            if (ds != null && ds.Tables[0].Rows.Count > 0)
+            {
+                return ds;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

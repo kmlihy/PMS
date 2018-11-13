@@ -105,21 +105,13 @@ namespace PMS.BLL
             }
         }
         /// <summary>
-        /// 根据id查询题目信息
+        /// 根据标题查询题目信息
         /// </summary>
-        /// <param name="newsId">题目id</param>
+        /// <param name="title">题目标题</param>
         /// <returns>返回查询结果</returns>
-        public DataSet Select(int titleId)
+        public DataSet Select(string title)
         {
-            DataSet ds = dao.Select(titleId);
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                return ds;
-            }
-            else
-            {
-                return null;
-            }
+            return dao.Select(title);
         }
 
         public DataSet SelectByProId(int proId,int planId, string teaAccount)
