@@ -17,21 +17,30 @@ function showname() {
 }
 $(function () {
     $("#btnupload").click(function () {
-        var location = $("input[name='file']").val();
-        var point = location.lastIndexOf(".");
-        var type = location.substr(point).toLowerCase();
-        var uploadFiles = document.getElementById("file1").files;
-        if (uploadFiles.length == 0) {
-            alert("请选择要上传的文件");
-        }
-        else if (type == ".zip" || type == ".rar") {
-            ajaxFileUpload();
-        }
-        else {
+        var size = $("#file1")[0].files[0].size;
+        if ((size / 1024 / 1024) > 1) {
             $("#thesisTable").hide();
             $("#file1").replaceWith('<input onchange="showname()" type="file" id="file1" name="file" />');
             $("#myAlert").show();
-            $("#myAlert").text("只允许上传.zip或者.rar格式的文件");
+            $("#myAlert").html("<h3>文件大小超过限制</h3>");
+        }
+        else {
+            var location = $("input[name='file']").val();
+            var point = location.lastIndexOf(".");
+            var type = location.substr(point).toLowerCase();
+            var uploadFiles = document.getElementById("file1").files;
+            if (uploadFiles.length == 0) {
+                alert("请选择要上传的文件");
+            }
+            else if (type == ".zip" || type == ".rar") {
+                ajaxFileUpload();
+            }
+            else {
+                $("#thesisTable").hide();
+                $("#file1").replaceWith('<input onchange="showname()" type="file" id="file1" name="file" />');
+                $("#myAlert").show();
+                $("#myAlert").html("<h3>只允许上传.zip或者.rar格式的文件</h3>");
+            }
         }
     });
 });
@@ -52,7 +61,14 @@ function ajaxFileUpload() {
                         $("#myAlert").show();
                         $("#myAlert").text("文件上传失败，请重新上传！");
                         $('#file1').val("");
-                    } else {
+                    }
+                    else if (data.msg =="文件大小超过限制") {
+                        $("#thesisTable").hide();
+                        $("#myAlert").show();
+                        $("#myAlert").text("文件大小超过限制");
+                        $('#file1').val("");
+                    }
+                    else {
                         //alert(data.msg);
                         $("#thesisTable").hide();
                         $("#myAlert").show();

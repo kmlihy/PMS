@@ -1,4 +1,10 @@
-﻿$(document).ready(function () {
+﻿// 点击切换验证码
+function refreshCode() {
+    var code = document.getElementById("code");
+    code.src = "checkCode.aspx?id=" + Math.random();
+}
+
+$(document).ready(function () {
 
     //配置
     var config = {
@@ -92,12 +98,6 @@
     // 页面重置
     function formReset() {
         $("#form")[0].reset()
-    }
-
-    // 点击切换验证码
-    function refreshCode() {
-        var code = document.getElementById("code");
-        code.src = "checkCode.aspx?id=" + Math.random();
     }
 
     // 管理员登录界面提示框
