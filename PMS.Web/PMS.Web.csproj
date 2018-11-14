@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\adminViewScore.aspx" />
+    <Content Include="admin\excellentList.aspx" />
     <Content Include="admin\highQualityPaperList.aspx" />
     <Content Include="admin\openAchievement.aspx" />
     <Content Include="admin\scoreRatio.aspx" />
@@ -402,6 +403,13 @@
     </Compile>
     <Compile Include="admin\changePwd.aspx.designer.cs">
       <DependentUpon>changePwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\excellentList.aspx.cs">
+      <DependentUpon>excellentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\excellentList.aspx.designer.cs">
+      <DependentUpon>excellentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\highQualityPaperList.aspx.cs">
       <DependentUpon>highQualityPaperList.aspx</DependentUpon>
