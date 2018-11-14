@@ -22,11 +22,11 @@
                 <table class="table table-bordered text-center" style="width: 60%;margin:auto">
                     <thead>
                         <tr>
-                            <th class="text-center">指导阶段</th>
-                            <th class="text-center">交叉指导阶段</th>
-                            <th class="text-center">答辩阶段</th>
-                            <th class="text-center">总分</th>
-                            <th class="text-center">优秀论文成绩下限</th>
+                            <th class="text-center"><nobr>指导阶段</nobr></th>
+                            <th class="text-center"><nobr>交叉指导阶段</nobr></th>
+                            <th class="text-center"><nobr>答辩阶段</nobr></th>
+                            <th class="text-center"><nobr>总分</nobr></th>
+                            <th class="text-center"><nobr>优秀论文成绩下限</nobr></th>
                         </tr>
                     </thead>
                     <tbody>

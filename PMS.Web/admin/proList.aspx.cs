@@ -280,11 +280,11 @@ namespace PMS.Web.admin
         public string Search()
         {
             search = Request.QueryString["search"];
-            if (search.Length == 0)
+            if (search == null)
             {
                 search = "";
             }
-            else if (search == null)
+            else if (search.Length == 0)
             {
                 search = "";
             }
