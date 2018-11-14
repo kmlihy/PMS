@@ -134,8 +134,19 @@
     <Content Include="images\carbon.png" />
     <Content Include="images\error-hanger.png" />
     <Content Include="images\error-pin.png" />
+    <Content Include="images\icon06.gif" />
+    <Content Include="images\icon07.gif" />
+    <Content Include="images\icon08.gif" />
     <Content Include="images\icons.png" />
     <Content Include="404.html" />
+    <Content Include="images\line04.gif" />
+    <Content Include="images\regBground.jpg" />
+    <Content Include="images\ui-icons_444444_256x240.png" />
+    <Content Include="images\ui-icons_555555_256x240.png" />
+    <Content Include="images\ui-icons_777620_256x240.png" />
+    <Content Include="images\ui-icons_777777_256x240.png" />
+    <Content Include="images\ui-icons_cc0000_256x240.png" />
+    <Content Include="images\ui-icons_ffffff_256x240.png" />
     <Content Include="InstructorsComments.aspx" />
     <Content Include="js\additional-methods.js" />
     <Content Include="js\addNews.js" />
@@ -160,6 +171,7 @@
     <Content Include="js\distributionReplyTeam.js" />
     <Content Include="js\excellentList.js" />
     <Content Include="js\instructorsComments.js" />
+    <Content Include="js\jsencrypt.min.js" />
     <Content Include="js\scoreRatio.js" />
     <Content Include="js\lc_switch.min.js" />
     <Content Include="js\myProgress.js" />
@@ -195,7 +207,6 @@
     <Content Include="js\titleReadList.js" />
     <Content Include="js\xcConfirm.js" />
     <Content Include="js\zwh.js" />
-    <Content Include="JurisdictionTest.aspx" />
     <Content Include="kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
     <Content Include="kindeditor\asp.net\README.txt" />
@@ -338,7 +349,6 @@
     <Content Include="stuCenter.aspx" />
     <Content Include="stuHistoryPaper.aspx" />
     <Content Include="stuMediumQuality.aspx" />
-    <Content Include="test.aspx" />
     <Content Include="thesisSubmit.aspx" />
     <Content Include="thesisUpload.aspx" />
     <Content Include="uploadCheckReport.aspx" />
@@ -597,13 +607,6 @@
     <Compile Include="InstructorsComments.aspx.designer.cs">
       <DependentUpon>InstructorsComments.aspx</DependentUpon>
     </Compile>
-    <Compile Include="JurisdictionTest.aspx.cs">
-      <DependentUpon>JurisdictionTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="JurisdictionTest.aspx.designer.cs">
-      <DependentUpon>JurisdictionTest.aspx</DependentUpon>
-    </Compile>
     <Compile Include="mediiumQuality.aspx.cs">
       <DependentUpon>mediiumQuality.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -764,13 +767,6 @@
     <Compile Include="stuMediumQuality.aspx.designer.cs">
       <DependentUpon>stuMediumQuality.aspx</DependentUpon>
     </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PaperDtailStu.aspx.cs">
       <DependentUpon>PaperDtailStu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -825,13 +821,6 @@
     <Content Include="upload\信息模板下载\题目信息表导入模板.xls" />
     <Content Include="upload\信息模板下载\专业信息表导入模板.xlsx" />
     <Content Include="upload\信息模板下载\学院信息表导入模板.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716132754-题目信息表.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716132850-题目信息表.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716133702-题目信息表.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716133937-题目信息表.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716134936-题目信息表.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716135043-题目信息表.xls" />
-    <Content Include="upload\题目信息导入Excel文件存储\admin\20180716135840-题目信息表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180711150556-学院信息表.xls" />
     <Content Include="upload\学院信息导入Excel文件存储\admin\20180712105517-学院信息表.xls" />
     <Content Include="obj\Debug\PMS.Web.csprojResolveAssemblyReference.cache" />
@@ -880,6 +869,7 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Service References\" />
     <Folder Include="upload\选题记录导出\" />
+    <Folder Include="upload\题目信息导入Excel文件存储\admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
