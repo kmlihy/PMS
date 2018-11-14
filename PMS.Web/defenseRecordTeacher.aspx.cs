@@ -39,7 +39,7 @@ namespace PMS.Web
                     Result result = defenceBll.UpdateRecord(defenceRecord);
                     if (result == Result.添加成功)
                     {
-                        LogHelper.Info(this.GetType(), titleRecord.DefeseTeamId+"-提交-"+ titleRecord.student.StuAccount+ titleRecord.student.RealName+"的答辩记录");
+                        LogHelper.Info(this.GetType(), titleRecord.DefeseTeamId + " - 教师提交 - " + titleRecord.student.StuAccount + " - " + titleRecord.student.RealName + " - 学生的答辩记录");
                         Response.Write("添加成功");
                         Response.End();
                     }

@@ -73,7 +73,7 @@ namespace PMS.Web.admin
                         Result result = teaBll.UpdataPwd(teacherID, NewPwd);
                         if (result == Result.更新成功)
                         {
-                            LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-修改密码");
+                            LogHelper.Info(this.GetType(), admin.TeaAccount + " - " + admin.TeaName + " - 修改密码");
                             Response.Write("更新成功");
                             Response.End();
                         }
@@ -94,7 +94,7 @@ namespace PMS.Web.admin
                         Result result = teaBll.UpdataPwd(teacherID, NewPwd);
                         if (result == Result.更新成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-修改密码");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 修改密码");
                             Response.Write("更新成功");
                             Response.End();
                         }
@@ -115,7 +115,7 @@ namespace PMS.Web.admin
                         Result result = stuBll.UpdataPwd(stuID, NewPwd);
                         if (result == Result.更新成功)
                         {
-                            LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "-修改密码");
+                            LogHelper.Info(this.GetType(), stu.StuAccount + " - " + stu.RealName + " - 修改密码");
                             Response.Write("更新成功");
                             Response.End();
                         }

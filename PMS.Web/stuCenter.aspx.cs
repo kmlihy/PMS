@@ -53,7 +53,7 @@ namespace PMS.Web
             Enums.OpResult enums = bll.Updata(student);
             if (enums.Equals(Enums.OpResult.更新成功))
             {
-                LogHelper.Info(this.GetType(), student.StuAccount + student.RealName + "-修改个人资料");
+                LogHelper.Info(this.GetType(), student.StuAccount + " - " + student.RealName + " - 学生修改个人资料");
                 Response.Write("修改成功");
                 Session["user"] = student;
                 Response.End();

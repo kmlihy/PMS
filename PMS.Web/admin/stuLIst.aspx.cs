@@ -148,7 +148,7 @@ namespace PMS.Web.admin
             string stuPwd = rsa.Encrypt("000000");
             Result resetResult =stuBll.ResetPwd(stuAccount, stuPwd); 
             if (resetResult== Result.更新成功) {
-                LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-重置学生" + stuAccount + "密码");
+                LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 重置学生" + stuAccount + "密码");
                 Response.Write("重置成功");
                 Response.End();
             }
@@ -381,7 +381,7 @@ namespace PMS.Web.admin
                     Result editorResult = editorStuBll.Updata(EditorStu);
                     if (editorResult == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-编辑学生" + stuNO + "信息");
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 编辑学生" + stuNO + "信息");
                         Response.Write("更新成功");
                         Response.End();
                     }
@@ -450,7 +450,7 @@ namespace PMS.Web.admin
                         Result result = stuBll.Insert(stu);
                         if (result == Result.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-添加学生" + stuAccount + "信息");
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 添加学生" + stuAccount + "信息");
                             Response.Write("添加成功");
                             Response.End();
                         }
@@ -557,7 +557,7 @@ namespace PMS.Web.admin
                     Result delResult = stuBll.delete(stuId);
                     if (delResult == Result.删除成功)
                     {
-                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-删除学生" + stuId + "账号");
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 删除学生" + stuId + "账号");
                         Response.Write("删除成功");
                         Response.End();
                     }

@@ -169,7 +169,7 @@ namespace PMS.Web.admin
 
                     if (result == Result.删除成功)
                     {
-                        LogHelper.Info(this.GetType(), tealogin.TeaAccount + tealogin.TeaName + "-删除" + delteaAccount + "教师账号");
+                        LogHelper.Info(this.GetType(), tealogin.TeaAccount + " - " + tealogin.TeaName + " - 删除" + delteaAccount + "教师账号");
                         Response.Write("删除成功");
                         Response.End();
                     }
@@ -235,7 +235,7 @@ namespace PMS.Web.admin
                         OpResult result = teabll.Insert(tea);
                         if (result == OpResult.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), tealogin.TeaAccount + tealogin.TeaName + "-添加教师账号");
+                            LogHelper.Info(this.GetType(), tealogin.TeaAccount + " - " + tealogin.TeaName + " - 添加教师账号");
                             Response.Write("添加成功");
                             Response.End();
                         }
@@ -317,7 +317,7 @@ namespace PMS.Web.admin
                     OpResult result = teabll.Updata(tea);
                     if (result == OpResult.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), tealogin.TeaAccount + tealogin.TeaName + "-编辑" + teaAccount + "教师账号");
+                        LogHelper.Info(this.GetType(), tealogin.TeaAccount + " - " + tealogin.TeaName + " - 编辑" + teaAccount + "教师账号");
                         Response.Write("修改成功");
                         Response.End();
                     }

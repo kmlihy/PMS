@@ -118,7 +118,7 @@ namespace PMS.Web
                     result = stuBll.Insert(stu);
                     if (result == Result.添加成功)
                     {
-                        LogHelper.Info(this.GetType(), account + name + "学生注册");
+                        LogHelper.Info(this.GetType(), account + " - " + name + " - 学生注册");
                         Response.Write("注册成功");
                         Response.End();
                     }

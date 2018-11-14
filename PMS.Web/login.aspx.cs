@@ -137,12 +137,12 @@ namespace PMS.Web
                             if (Convert.ToInt32(Session["state"]) == 1)
                             {
                                 Teacher tea = (Teacher)Session["loginuser"];
-                                LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "登录");
+                                LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 登录");
                             }
                             else if (Convert.ToInt32(Session["state"]) == 3)
                             {
                                 Student stu = (Student)Session["loginuser"];
-                                LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "登录");
+                                LogHelper.Info(this.GetType(), stu.StuAccount + " - " + stu.RealName + " - 登录");
                             }
                             Response.Write("登录成功");
                             Response.End();
@@ -155,7 +155,7 @@ namespace PMS.Web
                     }
                     else
                     {
-                        LogHelper.Error(this.GetType(), account+Verification);
+                        LogHelper.Error(this.GetType(), account + " - " + Verification);
                         Response.Write(Verification);
                         Response.End();
                     }

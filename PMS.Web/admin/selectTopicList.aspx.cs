@@ -491,7 +491,7 @@ namespace PMS.Web.admin
                     Result result = titrecordbll.delete(recordid);
                     if (result == Result.删除成功)
                     {
-                        LogHelper.Info(this.GetType(), collegeAdmin.TeaAccount + collegeAdmin.TeaName + "删除" + recordid + "选题记录");
+                        LogHelper.Info(this.GetType(), collegeAdmin.TeaAccount + " - " + collegeAdmin.TeaName + " - 删除" + recordid + "选题记录");
                         Response.Write("删除成功");
                         Response.End();
                     }

@@ -826,6 +826,11 @@
     <Content Include="Config\log4net.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Logs\debug.log" />
+    <Content Include="Logs\err.log" />
+    <Content Include="Logs\fatal.log" />
+    <Content Include="Logs\info.log" />
+    <Content Include="Logs\warn.log" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

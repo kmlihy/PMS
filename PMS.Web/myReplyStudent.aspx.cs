@@ -107,7 +107,7 @@ namespace PMS.Web
                     Result row = defenceBll.DelRecord(defenRecordId);
                     if (row == Result.删除成功)
                     {
-                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-删除" + defenRecordId + "答辩记录");
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 删除" + defenRecordId + "答辩记录");
                         Response.Write("删除成功");
                         Response.End();
                     }

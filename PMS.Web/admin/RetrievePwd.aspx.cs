@@ -131,7 +131,7 @@ namespace PMS.Web.admin
                     result = stuBll.UpdataPwd(account, pwd);
                     if (result == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "重置密码");
+                        LogHelper.Info(this.GetType(), stu.StuAccount + " - " + stu.RealName + " - 重置密码");
                         Response.Write("修改成功");
                         Response.End();
                     }
@@ -167,7 +167,7 @@ namespace PMS.Web.admin
                     result = teacherBll.UpdataPwd(account, pwd);
                     if (result == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "重置密码");
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 重置密码");
                         Response.Write("修改成功");
                         Response.End();
                     }

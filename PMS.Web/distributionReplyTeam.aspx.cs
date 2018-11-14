@@ -183,7 +183,7 @@ namespace PMS.Web
             }
             if (result == Result.添加成功)
             {
-                LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "分配" + plan.PlanId + "批次答辩小组");
+                LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 分配" + plan.PlanId + "批次答辩小组");
                 Response.Write("分配成功");
                 Response.End();
             }

@@ -106,11 +106,11 @@ namespace PMS.Web
                         Student stu = studentBll.GetModel(stuAccount);
                         TeacherBll teacherBll = new TeacherBll();
                         Teacher tea = teacherBll.GetModel(crossTea);
-                        LogHelper.Info(this.GetType(), teacher.TeaAccount+ teacher.TeaName+"-为-"+stuAccount + stu.RealName + "指定交叉指导教师" + teacher + tea.TeaName);
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师指定 - " + stuAccount + " - " + stu.RealName + " - 学生的交叉指导教师 - " + teacher + " - " + tea.TeaName);
                         Result row = sbll.insertInstructorsComments(scoreModel);
                         if (row == Result.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-为-" + stuAccount + stu.RealName + "添加指导成绩及评定");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师添加 - " + stuAccount + " - " + stu.RealName + " - 学生的指导成绩及评定");
                             Response.Write("提交成功");
                             Response.End();
                         }

@@ -37,7 +37,7 @@ namespace PMS.Web.admin
                         Result result = bll.Insert(news);
                         if (result == Result.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "发布公告");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 发布公告");
                             Response.Write("添加成功");
                             Response.End();
                         }
@@ -59,7 +59,7 @@ namespace PMS.Web.admin
                         Result result = bll.Insert(news);
                         if (result == Result.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "发布公告");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - " + "发布公告");
                             Response.Write("添加成功");
                             Response.End();
                         }

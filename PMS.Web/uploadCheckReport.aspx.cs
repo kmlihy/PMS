@@ -76,7 +76,7 @@ namespace PMS.Web
                         Result row = pathBll.updateState(insertPath);
                         if (result == Result.添加成功 && row == Result.更新成功)
                         {
-                            LogHelper.Info(this.GetType(), student.StuAccount + student.RealName + "-上传查重报告");
+                            LogHelper.Info(this.GetType(), student.StuAccount + " - " + student.RealName + " - 上传查重报告");
                             msg = "上传成功";
                         }
                         else

@@ -40,7 +40,7 @@ namespace PMS.Web.admin
                     Result row = teacherBll.updateState(teacher);
                     if (result == Result.更新成功 && row == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "开放查看成绩");
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 开放查看成绩");
                         Response.Write("成绩已开放");
                         Response.End();
                     }
@@ -56,7 +56,7 @@ namespace PMS.Web.admin
                     Result result = scoreBll.openScore(state, planId);
                     if (result == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "关闭查看成绩");
+                        LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 关闭查看成绩");
                         Response.Write("成绩已关闭查询");
                         Response.End();
                     }

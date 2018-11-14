@@ -56,7 +56,7 @@ namespace PMS.Web
                         Result dean = orbll.deanInsert(openId, teacherOpinion);
                         if (row == Result.添加成功 && dean == Result.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-不同意并回复" + stuAccount + stuName + "学生的开题报告");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师不同意并回复 - " + stuAccount + " - " + stuName + " - 学生的开题报告");
                             Response.Write("提交成功");
                             Response.End();
                         }
@@ -68,7 +68,7 @@ namespace PMS.Web
                     }
                     if (row == Result.添加成功)
                     {
-                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-不同意并回复" + stuAccount + stuName + "学生的开题报告");
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师不同意并回复 - " + stuAccount + " - " + stuName + " - 学生的开题报告");
                         Response.Write("提交成功");
                         Response.End();
                     }
@@ -89,7 +89,7 @@ namespace PMS.Web
                         Result dean = orbll.deanInsert(openId, teacherOpinion);
                         if (row == Result.添加成功 && dean == Result.添加成功 && state == Result.更新成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-同意并回复" + stuAccount + stuName + "学生的开题报告");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师同意并回复 - " + stuAccount + " - " + stuName + " - 学生的开题报告");
                             Response.Write("提交成功");
                             Response.End();
                         }
@@ -101,7 +101,7 @@ namespace PMS.Web
                     }
                     if (row == Result.添加成功 && state == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-同意并回复" + stuAccount + stuName + "学生的开题报告");
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师同意并回复 - " + stuAccount + " - " + stuName + " - 学生的开题报告");
                         Response.Write("提交成功");
                         Response.End();
                     }
