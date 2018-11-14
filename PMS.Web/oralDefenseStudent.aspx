@@ -13,11 +13,11 @@
 <body class="oraldefense-student">
     <%if (RTId == "" || RTId == null)
         { %>
-    <h3>暂未选题</h3>
+    <h3 class="text-primary">暂未选题</h3>
     <%}
     else if (RTId=="noGroup")
     { %>
-     <h3>未指定答辩小组</h3>
+     <h3 class="text-primary">未指定答辩小组</h3>
         <% }
     else
     {%>

@@ -27,8 +27,7 @@ namespace PMS.Web
             DataSet dsTR = trbll.GetByAccount(stuAccount);
             if (dsTR == null)
             {
-                Response.Write("<h4>暂未选题</h4>");
-                Response.End();
+                content = "暂未选题";
             }
             else
             {
