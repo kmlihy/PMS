@@ -162,7 +162,7 @@ namespace PMS.Dao
         /// <returns>返回一个DataTable的选题记录集合</returns>
         public DataTable ExportExcel(string strWhere,Score score)
         {
-            String cmdText = string.Format("select stuAccount as 学号,realName as 姓名,title as 题目,teaName as 出题教师,guideScore as 指导分数,crossScore as 交叉指导分数,defenceScore as 答辩成绩,(guideScore*"+ score.guideRatio + "+crossScore*"+ score.crossRatio + "+defenceScore*"+ score.defenceRatio + ") as 总成绩 from V_Score {0}", strWhere);
+            String cmdText = string.Format("select stuAccount as 学号,realName as 姓名,title as 题目,teaName as 出题教师,collegeName as 学院,guideScore as 指导分数,crossScore as 交叉指导分数,defenceScore as 答辩成绩,(guideScore*"+ score.guideRatio + "+crossScore*"+ score.crossRatio + "+defenceScore*"+ score.defenceRatio + ") as 总成绩 from V_Score where {0}", strWhere);
             DataSet ds = db.FillDataSet(cmdText, null, null);
             DataTable dt = null;
             if (ds != null && ds.Tables[0].Rows.Count > 0)

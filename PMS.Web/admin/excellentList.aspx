@@ -79,12 +79,15 @@
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">学生姓名</th>
-                        <th class="text-center">论文题目</th>
-                        <th class="text-center">出题教师</th>
-                        <th class="text-center">分数</th>
+                        <th class="text-center"><nobr>序号</nobr></th>
+                        <th class="text-center"><nobr>学号</nobr></th>
+                        <th class="text-center"><nobr>学生姓名</nobr></th>
+                        <th class="text-center"><nobr>论文题目</nobr></th>
+                        <th class="text-center"><nobr>出题教师</nobr></th>
+                        <%if (state == 0){ %>
+                        <th class="text-center"><nobr>所属学院</nobr></th>
+                        <%} %>
+                        <th class="text-center"><nobr>分数</nobr></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,6 +99,9 @@
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
+                        <%if (state == 0){ %>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"].ToString() %></td>
+                        <%} %>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["result"].ToString() %></td>
                     </tr>
                     <%} %>
@@ -144,7 +150,7 @@
 <script src="../js/icheck.min.js"></script>
 <script src="../js/bootstrap-select.js"></script>
 <script src="../js/xcConfirm.js"></script>
-<script src="../js/adminViewScore.js"></script>
+<script src="../js/excellentList.js"></script>
 <script>
 
 </script>

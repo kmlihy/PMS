@@ -61,7 +61,10 @@ namespace PMS.Web.admin
                 {
                     //获取成绩占比
                     Score scoreRatio = scoreBll.getRatio();
-                    double guide = scoreRatio.guideRatio, cross = scoreRatio.crossRatio, defen = scoreRatio.defenceRatio;
+                    double guide = scoreRatio.guideRatio,
+                        cross = scoreRatio.crossRatio,
+                        defen = scoreRatio.defenceRatio,
+                        excellent = scoreRatio.excellent;
                     //分院id
                     int collegeId = teacher.college.ColID;
                     //专业id
@@ -70,7 +73,7 @@ namespace PMS.Web.admin
                     string batch = Request.QueryString["dropstrWhereplan"];
                     //输入框条件
                     string input = Request.QueryString["search"];
-                    string strWhere = "";
+                    string strWhere = "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ")>=" + excellent;
 
                     if (state == 2)
                     {
@@ -78,46 +81,73 @@ namespace PMS.Web.admin
                         {
                             if ((pro == null || pro == "0") && batch == null || pro == "0")
                             {
-                                strWhere = string.Format(" where collegeId = {0}", collegeId);
+                                strWhere += string.Format(" where collegeId = {0}", collegeId);
                             }
-                            else if (pro != "null" && batch == "null")
+                            else if (pro != null && batch == null)
                             {
-                                strWhere = string.Format(" where proId = {0} and collegeId = {1}", "'" + pro + "'", collegeId);
+                                strWhere += string.Format(" where proId = {0} and collegeId = {1}", "'" + pro + "'", collegeId);
                             }
-                            else if ((pro == "null" || pro == "0") && batch != "null")
+                            else if ((pro == null || pro == "0") && batch != null)
                             {
-                                strWhere = string.Format(" where planId = {0} and collegeId = {1}", "'" + batch + "'", collegeId);
+                                strWhere += string.Format(" where planId = {0} and collegeId = {1}", "'" + batch + "'", collegeId);
                             }
                             else
                             {
-                                strWhere = string.Format(" where planId = {0} and proId = {1} and collegeId = {2}", "'" + batch + "'", "'" + pro + "'", collegeId);
+                                strWhere += string.Format(" where planId = {0} and proId = {1} and collegeId = {2}", "'" + batch + "'", "'" + pro + "'", collegeId);
                             }
                         }
                         //如果不为空传 input里的值
                         else
                         {
-                            strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId);
+                            strWhere += string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId);
+                        }
+                    }
+                    else if(state == 0)
+                    {
+                        if (input == null)
+                        {
+                            if (pro == null && batch == null)
+                            {
+                                strWhere += "";
+                            }
+                            else if (pro != null && batch == null)
+                            {
+                                strWhere += string.Format(" where proId = {0}", "'" + pro + "'");
+                            }
+                            else if ((pro == null || pro == "0") && batch != null)
+                            {
+                                strWhere += string.Format(" where planId = {0}", "'" + batch + "'");
+                            }
+                            else
+                            {
+                                strWhere += string.Format(" where planId = {0} and proId = {1}", "'" + batch + "'", "'" + pro + "'");
+                            }
+                        }
+                        //如果不为空传 input里的值
+                        else
+                        {
+                            strWhere += string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0})", "like '%" + input + "%'");
                         }
                     }
                     else
                     {
                         if (input == null)
                         {
-                            strWhere = string.Format(" where collegeId = {0}", collegeId);
+                            strWhere += string.Format(" where collegeId = {0}", collegeId);
                         }
                         //如果不为空传 input里的值
                         else
                         {
-                            strWhere = string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId);
+                            strWhere += string.Format(" where (teaName {0} or title {0} or realName {0} or planName {0} or proName {0}) and collegeId = {1}", "like '%" + input + "%'", collegeId);
                         }
                     }
 
-                    var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000)+"优质论文";
+                    var name = "优质论文" + DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
                     DataTable dt = scoreBll.ExportExcel(strWhere, scoreRatio);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         var path = Server.MapPath("~/download/学生成绩导出/" + name + ".xls");
-                        ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                        ExcelHelper.x2007.TableToExcelForXLSX(dt, path);
                         downloadfile(path);
                     }
                     else
@@ -138,8 +168,11 @@ namespace PMS.Web.admin
                 {
                     getdata("");
                 }
-                string strWhere = string.Format(" planId = {0}", planId);
-                getdata(strWhere);
+                else
+                {
+                    string strWhere = string.Format(" planId = {0}", planId);
+                    getdata(strWhere);
+                }
             }
             //专业下拉菜单
             if (type == "prodrop")
@@ -149,8 +182,11 @@ namespace PMS.Web.admin
                 {
                     getdata("");
                 }
-                string strWhere = string.Format(" proId = {0}", proId);
-                getdata(strWhere);
+                else
+                {
+                    string strWhere = string.Format(" proId = {0}", proId);
+                    getdata(strWhere);
+                }
             }
             //所有下拉菜单
             if (type == "alldrop")
@@ -185,7 +221,14 @@ namespace PMS.Web.admin
                 }
                 else
                 {
-                    where += " and collegeId =" + teacher.college.ColID + " and " + strWhere;
+                    where += " and collegeId =" + teacher.college.ColID + " and (" + strWhere + ")";
+                }
+            }
+            else if(state == 0)
+            {
+                if (strWhere != "" && strWhere != null)
+                {
+                    where += " and (" + strWhere + ")";
                 }
             }
             else
@@ -199,7 +242,7 @@ namespace PMS.Web.admin
                 StrColumn = "result",
                 IntColType = 0,
                 IntOrder = 1,
-                StrColumnlist = "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ") as result,realName,stuAccount,title,teaName",
+                StrColumnlist = "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ") as result,realName,stuAccount,title,teaName,collegeName",
                 IntPageSize = pagesize,
                 IntPageNum = int.Parse(currentPage),
                 StrWhere = where
@@ -213,16 +256,15 @@ namespace PMS.Web.admin
         /// <returns>返回查询参数</returns>
         public string Search()
         {
-            double guide = 0.3, cross = 0.2, defen = 0.5;
             try
             {
                 search = Request.QueryString["search"];
-                if (search.Length == 0)
+                if (search == null)
                 {
                     search = "";
                     strSearch = "";
                 }
-                else if (search == null)
+                else if (search.Length == 0)
                 {
                     search = "";
                     strSearch = "";

@@ -110,12 +110,12 @@ namespace PMS.Web.admin
                         }
                     }
 
-                    var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
+                    var name = "学生成绩" + DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
                     DataTable dt = scoreBll.ExportExcel(strWhere, scoreRatio);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         var path = Server.MapPath("~/download/学生成绩导出/" + name + ".xls");
-                        ExcelHelper.x2003.TableToExcelForXLS(dt, path);
+                        ExcelHelper.x2007.TableToExcelForXLSX(dt, path);
                         downloadfile(path);
                     }
                     else
