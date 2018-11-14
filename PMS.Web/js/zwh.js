@@ -5,6 +5,48 @@ function refreshCode() {
 }
 
 $(document).ready(function () {
+    //教师/学生登录回车
+    $('#captcha').bind('keyup', function (event) {
+        if (event.keyCode == "13") {
+            var msg = stuMsg();
+            if (msg == null || msg == "") {
+                $("#btnSubmit").click();
+            }
+        }
+    });
+    $('.ordinaryUser').bind('keyup', function (event) {
+
+        if (event.keyCode == "13") {
+            var msg = stuMsg();
+            if (msg == null || msg == "") {
+                $("#btnSubmit").click();
+            }
+        }
+    });
+    $('.ordinaryUserPwd').bind('keyup', function (event) {
+
+        if (event.keyCode == "13") {
+            var msg = stuMsg();
+            if (msg == null || msg == "") {
+                $("#btnSubmit").click();
+            }
+        }
+    });
+    //管理员登录回车
+    $('.adminUser').keypress(function (e) {
+        if (event.keyCode == "13") {
+            var msg = adminMsg();
+            if (msg == null || msg == "") {
+                $("#btnlogin").click();
+            }
+        }
+    });
+    $('.adminPwd').keypress(function (e) {
+        var msg = adminMsg();
+        if (msg == null || msg == "") {
+            $("#btnlogin").click();
+        }
+    });
 
     //配置
     var config = {
@@ -101,15 +143,19 @@ $(document).ready(function () {
     }
 
     // 管理员登录界面提示框
+    var msg;
     function adminMsg() {
         var my_toast_plug_name = "mytoast";
         $[my_toast_plug_name] = function (options) {
             var content;
             if ($("#userName").val() === "") {
                 content = "用户名不能为空！";
+                msg = content;
             } else if ($("#pwd").val() === "") {
                 content = "密码不能为空！";
+                msg = content;
             } else {
+                msg = "";
                 return;
             }
             var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
@@ -132,6 +178,7 @@ $(document).ready(function () {
         $.mytoast({
             type: "notice"
         });
+        return msg;
     }
 
     // 管理员登录界面判断是否提交表单
@@ -150,11 +197,15 @@ $(document).ready(function () {
             var content;
             if ($("#userName").val() === "") {
                 content = "用户名不能为空！";
+                msg = content;
             } else if ($("#pwd").val() === "") {
                 content = "密码不能为空！";
+                msg = content;
             } else if ($("#captcha").val() === "") {
                 content = "验证码不能为空！";
+                msg = content;
             } else {
+                msg = "";
                 return;
             }
             var jq_toast = $("<div class='my-toast'><div class='my-toast-text'></div></div>");
@@ -177,6 +228,7 @@ $(document).ready(function () {
         $.mytoast({
             type: "notice"
         });
+        return msg;
     }
 
     // 学生登录界面判断是否提交表单
@@ -237,4 +289,5 @@ $(document).ready(function () {
         $("#okMessage").hide();
         $("#editMessage").show();
     }
+
 })
