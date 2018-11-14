@@ -10,3 +10,8 @@ D:\project\ASP.NET\PMS\PMS.Model\obj\Debug\PMS.Model.csproj.CoreCompileInputs.ca
 D:\project\ASP.NET\PMS\PMS.Model\obj\Debug\PMS.Model.dll
 D:\project\ASP.NET\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
 D:\project\ASP.NET\PMS\PMS.Model\obj\Debug\PMS.Model.csprojAssemblyReference.cache
+E:\PMS\PMS.Model\bin\Debug\PMS.Model.dll
+E:\PMS\PMS.Model\bin\Debug\PMS.Model.pdb
+E:\PMS\PMS.Model\obj\Debug\PMS.Model.csprojResolveAssemblyReference.cache
+E:\PMS\PMS.Model\obj\Debug\PMS.Model.dll
+E:\PMS\PMS.Model\obj\Debug\PMS.Model.pdb
