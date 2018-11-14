@@ -19,8 +19,8 @@ F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.csproj.CopyComplete
 F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
 F:\c#\repos\pms\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb
 D:\project\ASP.NET\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojAssemblyReference.cache
-G:\毕业选题系统\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.dll
-G:\毕业选题系统\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.pdb
-G:\毕业选题系统\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojResolveAssemblyReference.cache
-G:\毕业选题系统\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
-G:\毕业选题系统\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb
+E:\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.dll
+E:\PMS\PMS.DBHelper\bin\Debug\PMS.DBHelper.pdb
+E:\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojResolveAssemblyReference.cache
+E:\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
+E:\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb

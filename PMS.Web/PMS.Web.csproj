@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\adminViewScore.aspx" />
+    <Content Include="admin\excellentList.aspx" />
     <Content Include="admin\highQualityPaperList.aspx" />
     <Content Include="admin\openAchievement.aspx" />
     <Content Include="admin\scoreRatio.aspx" />
@@ -403,6 +404,13 @@
     <Compile Include="admin\changePwd.aspx.designer.cs">
       <DependentUpon>changePwd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\excellentList.aspx.cs">
+      <DependentUpon>excellentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\excellentList.aspx.designer.cs">
+      <DependentUpon>excellentList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\highQualityPaperList.aspx.cs">
       <DependentUpon>highQualityPaperList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -708,6 +716,11 @@
       <DependentUpon>paperList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="reg.aspx.cs">
       <DependentUpon>reg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -832,6 +845,10 @@
     <Content Include="Logs\info.log" />
     <Content Include="Logs\warn.log" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
