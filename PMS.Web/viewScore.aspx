@@ -12,15 +12,20 @@
 </head>
 <body class="viewScore-body">
     <div class="container viewscore-divbox">
+        <%if (content == "暂未选题")
+            {%>
+        <h3 class="text-primary"><%=content %></h3>
+        <% } %>
+
+        <%else if (content == "暂无成绩")
+            {%>
+        <h3 class="text-primary"><%=content %></h3>
+        <%}
+            else
+            {%>
         <div class="panel panel-heading text-center viewScore_panelhead">
             <h2>毕业论文成绩查询</h2>
         </div>
-        <%if (content == "暂无成绩")
-            {%>
-        <h3><%=content %></h3>
-        <%}
-    else
-    {%>
         <div class="panel panel-body text-center viewScore_panelbody">
             <div>
                 <table class="table table-studentInfo">
@@ -60,6 +65,8 @@
             <button type="button" class="btn btn-success">返回</button>
         </div>
     </div>
-        <%} %>
+    <%} %>
 </body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </html>

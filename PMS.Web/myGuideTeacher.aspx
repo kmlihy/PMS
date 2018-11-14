@@ -20,7 +20,7 @@
         <div class="panel-body">
             <%if (ds == null)
                 { %>
-            <h4>暂未换题,<a href="paperList.aspx">请前往选题页面选题</a></h4>
+            <h4 class="text-primary">暂未选题,<a class="text-primary" href="paperList.aspx">请前往选题页面选题</a></h4>
             <%}
             else
             { %>
