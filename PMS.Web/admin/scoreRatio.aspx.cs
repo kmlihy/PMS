@@ -13,8 +13,16 @@ namespace PMS.Web.admin
     using Result = Enums.OpResult;
     public partial class scoreRatio : System.Web.UI.Page
     {
+        ScoreBll scoreBll = new ScoreBll();
+        public double sguide, scross, sdedence, sexcellent;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Score scoreRatio = scoreBll.getRatio();
+            sguide = scoreRatio.guideRatio;
+            scross = scoreRatio.crossRatio;
+            sdedence = scoreRatio.defenceRatio;
+            sexcellent = scoreRatio.excellent;
+
             string op = Request["op"];
             if(op == "submit")
             {
@@ -26,21 +34,21 @@ namespace PMS.Web.admin
                 Score score = new Score();
                 try
                 {
-                    score.guideRatio = Convert.ToDouble(guide) * 0.01;
-                    score.crossRatio = Convert.ToDouble(cross) * 0.01;
-                    score.defenceRatio = Convert.ToDouble(defence) * 0.01;
+                    score.guideRatio = Convert.ToDouble(guide);
+                    score.crossRatio = Convert.ToDouble(cross);
+                    score.defenceRatio = Convert.ToDouble(defence);
                     score.excellent = Convert.ToInt32(excellent);
-                    Result row = scoreBll.insertRatio(score);
-                    if (row == Result.添加成功)
+                    Result row = scoreBll.updateRatio(score);
+                    if (row == Result.更新成功)
                     {
                         Teacher teacher = (Teacher)Session["user"];
-                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - "+ teacher.TeaName + " - 添加成绩占比信息");
-                        Response.Write("添加成功");
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - "+ teacher.TeaName + " - 更新成绩占比信息");
+                        Response.Write("更新成功");
                         Response.End();
                     }
                     else
                     {
-                        Response.Write("添加失败");
+                        Response.Write("更新失败");
                         Response.End();
                     }
                 }

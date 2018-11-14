@@ -192,6 +192,26 @@ namespace PMS.Dao
                 throw ex;
             }
         }
+        /// <summary>
+        /// 更新成绩占比
+        /// </summary>
+        /// <param name="score">成绩对象</param>
+        /// <returns>添加结果</returns>
+        public int updateRatio(Score score)
+        {
+            try
+            {
+                string cmdText = "update T_OptionScore set guide=@guide,crossGuide=@crossGuide,defen=@defen,excellent=@excellent";
+                string[] param = { "@guide", "@crossGuide", "@defen", "@excellent" };
+                object[] values = { score.guideRatio, score.crossRatio, score.defenceRatio, score.excellent };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// 获取成绩占比

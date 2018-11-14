@@ -32,15 +32,15 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input id="guide" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="guide" type="text" maxlength="2" class="ratioScore" value="<%=sguide %>" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input id="cross" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="cross" type="text" maxlength="2" class="ratioScore" value="<%=scross %>" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
-                                <input id="defence" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="defence" type="text" maxlength="2" class="ratioScore" value="<%=sdedence %>" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                             <td>
                                 100</td>
                             <td>
-                                <input id="excellent" type="text" maxlength="2" class="ratioScore" oninput="value = value.replace(/[^\d]/g, '')" /></td>
+                                <input id="excellent" type="text" maxlength="2" class="ratioScore" value="<%=sexcellent %>" oninput="value = value.replace(/[^\d]/g, '')" /></td>
                         </tr>
                     </tbody>
                 </table>
