@@ -27,31 +27,32 @@ namespace PMS.Web.admin
             string op = Request.QueryString["op"];
             //获取数据
             state = Convert.ToInt32(Session["state"]);
-            if (state == 1)
+            if (state == 0)
             {
-                teacher = (Teacher)Session["loginuser"];
-            }
-            else if (state == 2)
-            {
+                dsPlan = planBll.Select();
+                dsPro = proBll.Select();
                 teacher = (Teacher)Session["user"];
             }
-            dsPlan = planBll.getPlanByCid(teacher.college.ColID);
-            dsPro = proBll.SelectByCollegeId(teacher.college.ColID);
+            else
+            {
+                if (state == 1)
+                {
+                    teacher = (Teacher)Session["loginuser"];
+                }
+                else if (state == 2)
+                {
+                    teacher = (Teacher)Session["user"];
+                }
+                dsPlan = planBll.getPlanByCid(teacher.college.ColID);
+                dsPro = proBll.SelectByCollegeId(teacher.college.ColID);
+            }
             //展示数据
             string type = Request.QueryString["type"];
             order = Request.QueryString["order"];
             if (!IsPostBack)
             {
-                if (order == "up")
-                {
-                    Search();
-                    getdata(Search(), 0);
-                }
-                else
-                {
-                    Search();
-                    getdata(Search(), 1);
-                }
+                Search();
+                getdata(Search());
             }
             //导出列表
             if (op == "export")
@@ -111,7 +112,7 @@ namespace PMS.Web.admin
                         }
                     }
 
-                    var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000);
+                    var name = DateTime.Now.ToString("yyyyMMddhhmmss") + new Random(DateTime.Now.Second).Next(10000)+"优质论文";
                     DataTable dt = scoreBll.ExportExcel(strWhere, scoreRatio);
                     if (dt != null && dt.Rows.Count > 0)
                     {
@@ -129,105 +130,67 @@ namespace PMS.Web.admin
                     LogHelper.Error(this.GetType(), ex);
                 }
             }
-            if (order == "down")
+            //批次下拉菜单
+            if (type == "plandrop")
             {
-                //批次下拉菜单
-                if (type == "plandrop")
+                planId = Request.QueryString["dropstrWhereplan"].ToString();
+                if (planId == "0")
                 {
-                    planId = Request.QueryString["dropstrWhereplan"].ToString();
-                    if (planId == "0")
-                    {
-                        getdata("", 1);
-                    }
-                    string strWhere = string.Format(" planId = {0}", planId);
-                    getdata(strWhere, 1);
+                    getdata("");
                 }
-                //专业下拉菜单
-                if (type == "prodrop")
-                {
-                    proId = Request.QueryString["dropstrWherepro"].ToString();
-                    if (proId == "0")
-                    {
-                        getdata("", 1);
-                    }
-                    string strWhere = string.Format(" proId = {0}", proId);
-                    getdata(strWhere, 1);
-                }
-                //所有下拉菜单
-                if (type == "alldrop")
-                {
-                    planId = Request.QueryString["dropstrWhereplan"].ToString();
-                    proId = Request.QueryString["dropstrWherepro"].ToString();
-                    string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
-                    getdata(strWhere, 1);
-                }
+                string strWhere = string.Format(" planId = {0}", planId);
+                getdata(strWhere);
             }
-            else if (order == "up")
+            //专业下拉菜单
+            if (type == "prodrop")
             {
-                //批次下拉菜单、升序
-                if (type == "plandropUp")
+                proId = Request.QueryString["dropstrWherepro"].ToString();
+                if (proId == "0")
                 {
-                    planId = Request.QueryString["dropstrWhereplan"].ToString();
-                    if (planId == "0")
-                    {
-                        getdata("", 0);
-                    }
-                    string strWhere = string.Format(" planId = {0}", planId);
-                    getdata(strWhere, 0);
+                    getdata("");
                 }
-                //专业下拉菜单、升序
-                if (type == "prodropUp")
-                {
-                    proId = Request.QueryString["dropstrWherepro"].ToString();
-                    if (proId == "0")
-                    {
-                        getdata("", 0);
-                    }
-                    string strWhere = string.Format(" proId = {0}", proId);
-                    getdata(strWhere, 0);
-                }
-                //所有下拉菜单、升序
-                if (type == "alldropUp")
-                {
-                    planId = Request.QueryString["dropstrWhereplan"].ToString();
-                    proId = Request.QueryString["dropstrWherepro"].ToString();
-                    string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
-                    getdata(strWhere, 0);
-                }
-                //仅升序
-                if (type == "up")
-                {
-                    getdata("", 0);
-                }
+                string strWhere = string.Format(" proId = {0}", proId);
+                getdata(strWhere);
+            }
+            //所有下拉菜单
+            if (type == "alldrop")
+            {
+                planId = Request.QueryString["dropstrWhereplan"].ToString();
+                proId = Request.QueryString["dropstrWherepro"].ToString();
+                string strWhere = string.Format(" proId = {0} and planId = {1}", proId, planId);
+                getdata(strWhere);
             }
         }
         /// <summary>
         /// 获取数据
         /// </summary>
-        public void getdata(string strWhere, int order)
+        public void getdata(string strWhere)
         {
             Score scoreRatio = scoreBll.getRatio();
-            double guide = scoreRatio.guideRatio, cross = scoreRatio.crossRatio, defen = scoreRatio.defenceRatio;
+            double guide = scoreRatio.guideRatio, 
+                cross = scoreRatio.crossRatio, 
+                defen = scoreRatio.defenceRatio,
+                excellent = scoreRatio.excellent;
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
                 currentPage = "1";
             }
-            string where;
+            string where= "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ")>=" + excellent;
             if (state == 2)
             {
                 if (strWhere == "" || strWhere == null)
                 {
-                    where = "collegeId =" + teacher.college.ColID;
+                    where += " and collegeId =" + teacher.college.ColID;
                 }
                 else
                 {
-                    where = "collegeId =" + teacher.college.ColID + " and " + strWhere;
+                    where += " and collegeId =" + teacher.college.ColID + " and " + strWhere;
                 }
             }
             else
             {
-                where = "teaAccount = " + teacher.TeaAccount;
+                where += " and teaAccount = " + teacher.TeaAccount;
             }
             //获取数据
             TableBuilder tbd = new TableBuilder()
@@ -235,7 +198,7 @@ namespace PMS.Web.admin
                 StrTable = "V_Score",
                 StrColumn = "result",
                 IntColType = 0,
-                IntOrder = order,
+                IntOrder = 1,
                 StrColumnlist = "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ") as result,realName,stuAccount,title,teaName",
                 IntPageSize = pagesize,
                 IntPageNum = int.Parse(currentPage),

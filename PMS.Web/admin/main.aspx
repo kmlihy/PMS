@@ -371,6 +371,11 @@
                                         <span>答辩小组</span>
                                     </a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="excellentList.aspx" class="sidebarclick" >
+                                        <span>优质论文</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <%-- 

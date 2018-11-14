@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="css/zwh.css" />
     <link rel="stylesheet" href="css/lgd.css" />
 </head>
-<body>
+<body class="oraldefense-student">
     <%if (state == 0)
         { %>
-    <h3>暂未提交论文</h3>
+    <h3 class="text-primary">暂未提交论文</h3>
     <%}
         else if (state == 3)
         { %>
-    <h3>暂未选题</h3>
+    <h3 class="text-primary">暂未选题</h3>
     <%}
         else
         { %>

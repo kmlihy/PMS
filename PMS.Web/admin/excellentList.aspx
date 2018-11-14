@@ -16,7 +16,7 @@
 <body>
     <div class="panel panel-default">
         <div class="panel-head">
-            <h2>学生成绩</h2>
+            <h2>优质论文</h2>
         </div>
         <div class="panel panel-default" id="selectToppanelbox">
             <div class="pane input-group" id="panel-head">
@@ -49,7 +49,7 @@
                             <%}
                         } %>
                     </select>
-                    &nbsp
+                    <%--&nbsp
                     <select class="selectpicker selectdrop" data-width="auto" id="order">
                         <%if (order == "up")
                             { %>
@@ -61,7 +61,7 @@
                         <option value="up">-升序-</option>
                         <option value="down" selected="selected">-降序-</option>
                         <%}%>
-                    </select>
+                    </select>--%>
                     <input type="text" class="form-control inputsearch" placeholder="请输入查询条件" id="inputsearch" value="<%=strSearch %>" />
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="button" id="btn-search">
