@@ -51,7 +51,7 @@ namespace PMS.Web.admin
             Enums.OpResult enums = bll.Updata(teacher);
             if (enums.Equals(Enums.OpResult.更新成功))
             {
-                LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-修改个人信息");
+                LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师修改个人信息");
                 Response.Write("修改成功");
                 Session["user"] = teacher;
                 Response.End();

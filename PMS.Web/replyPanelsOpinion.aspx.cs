@@ -66,7 +66,7 @@ namespace PMS.Web
                 if (row == Result.添加成功)
                 {
                     Teacher teacher = (Teacher)Session["loginuser"];
-                    LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-添加" + stu.StuAccount + stu.RealName + "学生的答辩成绩及评定");
+                    LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师添加 - " + stu.StuAccount + " - " + stu.RealName + " - 学生的答辩成绩及评定");
                     Response.Write("提交成功");
                     Response.End();
                 }

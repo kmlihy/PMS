@@ -33,7 +33,8 @@ namespace PMS.Web.admin
                     Result row = scoreBll.insertRatio(score);
                     if (row == Result.添加成功)
                     {
-                        LogHelper.Info(this.GetType(), "添加成绩占比信息");
+                        Teacher teacher = (Teacher)Session["user"];
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - "+ teacher.TeaName + " - 添加成绩占比信息");
                         Response.Write("添加成功");
                         Response.End();
                     }

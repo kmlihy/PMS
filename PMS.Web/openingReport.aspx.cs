@@ -98,7 +98,7 @@ namespace PMS.Web
                     Result result = orbll.updateState(2, titleRecordId);
                     if (row == Result.添加成功 && result == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), student.StuAccount + student.RealName + "-添加开题报告");
+                        LogHelper.Info(this.GetType(), student.StuAccount + " - " + student.RealName + " - 添加开题报告");
                         Response.Write("提交成功");
                         Response.End();
                     }

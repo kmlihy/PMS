@@ -132,7 +132,7 @@ namespace PMS.Web
                             int rows = pbll.AddTitlerecord(titleRecord);
                             if (rows > 0)
                             {
-                                LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "-选" + dstitle.TitleId + dstitle.title + "题目");
+                                LogHelper.Info(this.GetType(), stu.StuAccount + " - " + stu.RealName + " - 学生选题 - " + dstitle.TitleId + dstitle.title);
                                 Response.Write("选题成功");
                                 Response.End();
                             }

@@ -78,7 +78,7 @@ namespace PMS.Web.admin
                             HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                             Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
                             isLogined(teaAccount);
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "登录");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 登录");
                             Response.Write("登录成功");
                             Response.End();
                         }
@@ -93,7 +93,7 @@ namespace PMS.Web.admin
                             HttpCookie UserCookie = new HttpCookie(FormsAuthentication.FormsCookieName, HashTicket); //生成Cookie 
                             Context.Response.Cookies.Add(UserCookie); //票据写入Cookie 
                             isLogined(teaAccount);
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "登录");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 登录");
                             Response.Write("登录成功");
                             Response.End();
                         }

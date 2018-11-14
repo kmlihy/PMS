@@ -336,7 +336,7 @@ namespace PMS.Web
                 }
                 else
                 {
-                    LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-添加" + defenId + "答辩小组学生" + student.StuAccount + student.RealName);
+                    LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 添加" + defenId + "答辩小组学生 - " + student.StuAccount + " - " + student.RealName);
                 }
             }
             return row;

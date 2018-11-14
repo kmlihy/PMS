@@ -178,7 +178,7 @@ namespace PMS.Web.admin
                     result = teaBll.Insert(tea);
                     if (result == Result.添加成功)
                     {
-                        LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-添加分院管理员");
+                        LogHelper.Info(this.GetType(), admin.TeaAccount + " - " + admin.TeaName + " - 添加分院管理员");
                         Response.Write("添加成功");
                         Response.End();
                     }
@@ -250,7 +250,7 @@ namespace PMS.Web.admin
                     result = teaBll.Updata(tea);
                     if (result == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-编辑分院管理员账号信息:"+account);
+                        LogHelper.Info(this.GetType(), admin.TeaAccount + " - " + admin.TeaName + " - 编辑分院管理员账号信息:"+account);
                         Response.Write("更新成功");
                         Response.End();
                     }
@@ -299,7 +299,7 @@ namespace PMS.Web.admin
 
                     if (result == Result.删除成功)
                     {
-                        LogHelper.Info(this.GetType(), admin.TeaAccount + admin.TeaName + "-删除分院管理员账号:" + account);
+                        LogHelper.Info(this.GetType(), admin.TeaAccount + " - " + admin.TeaName + " - 删除分院管理员账号:" + account);
                         Response.Write("删除成功");
                         Response.End();
                     }

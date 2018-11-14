@@ -129,7 +129,7 @@ namespace PMS.Web.admin
                     result = collBll.Insert(college);
                     if (result == Result.添加成功)
                     {
-                        LogHelper.Info(this.GetType(), user.TeaAccount + user.TeaName + "-添加" + collegeName);
+                        LogHelper.Info(this.GetType(), user.TeaAccount + " - " + user.TeaName + " - 添加" + collegeName);
                         Response.Write("添加成功");
                         Response.End();
                     }

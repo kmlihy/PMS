@@ -111,7 +111,7 @@ namespace PMS.Web.admin
                 {
                     if (EditorResult == Result.更新成功)
                     {
-                        LogHelper.Info(this.GetType(), loginUser.TeaAccount + loginUser.TeaName + "-编辑" + planId + "批次");
+                        LogHelper.Info(this.GetType(), loginUser.TeaAccount + " - " + loginUser.TeaName + " - 编辑" + planId + "批次");
                         Response.Write("更新成功");
                         //Response.End();
                     }

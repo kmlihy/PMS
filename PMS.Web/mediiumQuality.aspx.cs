@@ -91,7 +91,7 @@ namespace PMS.Web
                             Result row = mqbll.teaInsert(medterm);
                             if (row == Result.添加成功)
                             {
-                                LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-对-" + stuTitle.student.StuAccount + stuTitle.student.RealName + "学生的中期质量报告意见");
+                                LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师提交 - " + stuTitle.student.StuAccount + " - " + stuTitle.student.RealName + " - 学生的中期质量报告意见");
                                 Response.Write("提交成功");
                                 Response.End();
                             }
@@ -178,7 +178,7 @@ namespace PMS.Web
                             Result row = mqbll.stuInsert(medterm);
                             if (row == Result.添加成功)
                             {
-                                LogHelper.Info(this.GetType(), student.StuAccount + student.RealName + "学生提交中期质量报告");
+                                LogHelper.Info(this.GetType(), student.StuAccount + " - " + student.RealName + " - 学生提交中期质量报告");
                                 Response.Write("提交成功");
                                 Response.End();
                             }

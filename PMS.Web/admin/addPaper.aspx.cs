@@ -87,7 +87,7 @@ namespace PMS.Web.admin
                         Result result = titlebll.Insert(title);
                         if (result == Result.添加成功)
                         {
-                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "发布论文");
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 发布论文");
                             Response.Write("添加成功");
                             Response.End();
                         }
@@ -123,7 +123,7 @@ namespace PMS.Web.admin
                         Result result = titlebll.Update(title);
                         if (result == Result.更新成功)
                         {
-                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "修改" + Session["titleId"].ToString() + "论文");
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 修改" + Session["titleId"].ToString() + "论文");
                             Response.Write("更新成功");
                             Response.End();
                         }

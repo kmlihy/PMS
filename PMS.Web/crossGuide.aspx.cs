@@ -81,7 +81,7 @@ namespace PMS.Web
                 Result row = sbll.updateCrossGuide(scoreModel);
                 if (row == Result.添加成功)
                 {
-                    LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-对-" + student.StuAccount + student.RealName + "学生的交叉指导意见");
+                    LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师对 - " + student.StuAccount + " - " + student.RealName + " - 学生的交叉指导意见");
                     Response.Write("提交成功");
                     Response.End();
                 }

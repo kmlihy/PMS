@@ -75,7 +75,7 @@ namespace PMS.Web
                     Result row = isExist();
                     if (row == Result.记录不存在)
                     {
-                        LogHelper.Info(this.GetType(), stu.StuAccount + stu.RealName + "-选" + dstitle.TitleId + dstitle.title + "题目");
+                        LogHelper.Info(this.GetType(), stu.StuAccount + " - " + stu.RealName + " - 学生选题 - " + dstitle.TitleId + dstitle.title);
                         TitleRecord titleRecord = new TitleRecord();
                         titleRecord.student = stu;
                         Title title = new Title();

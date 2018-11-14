@@ -249,7 +249,7 @@ namespace PMS.Web.admin
                     Result result = titbll.Delete(titleId);
                     if (result == Result.删除成功)
                     {
-                        LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-删除" + titleId + "题目");
+                        LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 删除" + titleId + "题目");
                         Response.Write("删除成功");
                         Response.End();
                     }
@@ -389,7 +389,7 @@ namespace PMS.Web.admin
                         Result result = titbll.Delete(collId);
                         if (result == Result.删除成功)
                         {
-                            LogHelper.Info(this.GetType(), teacher.TeaAccount + teacher.TeaName + "-删除" + collId + "题目");
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 删除" + collId + "题目");
                             count++;
                         }
                     }

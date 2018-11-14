@@ -58,7 +58,7 @@ namespace PMS.Web
                         {
                             StudentBll studentBll = new StudentBll();
                             Student stu = studentBll.GetModel(stuAccount);
-                            LogHelper.Info(this.GetType(), tea.TeaAccount + tea.TeaName + "-对-" + stuAccount + stu.RealName + "学生的指导记录");
+                            LogHelper.Info(this.GetType(), tea.TeaAccount + " - " + tea.TeaName + " - 教师添加 - " + stuAccount + " - " + stu.RealName + " - 学生的指导记录");
                             Response.Write("提交成功");
                             Response.End();
                         }
