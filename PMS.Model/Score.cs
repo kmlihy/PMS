@@ -121,7 +121,7 @@ namespace PMS.Model
         /// <summary>
         /// 优秀论文最低分数
         /// </summary>
-        public int excellent { set; get; }
+        public double excellent { set; get; }
 
         /// <summary>
         /// 无参构造函数
@@ -141,7 +141,7 @@ namespace PMS.Model
         /// <param name="crossRatio">交叉指导成绩占比</param>
         /// <param name="defenceRatio">答辩成绩占比</param>
         /// <param name="excellent">优秀论文最低分数</param>
-        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate, double guideRatio, double crossRatio, double defenceRatio,int excellent)
+        public Score(Student student, Plan plan, double guideScore, double crossScore, double denfenceScore, string remarks, string assess,string evaluate,int openState, int state,string crossInnovate,string defenInnovate,string crossEvaluate,string defenEvaluate, double guideRatio, double crossRatio, double defenceRatio, double excellent)
         {
             this.student = student;
             this.plan = plan;

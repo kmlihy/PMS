@@ -199,16 +199,15 @@ namespace PMS.Dao
         /// <returns></returns>
         public Score getRatio()
         {
-            string cmdText = "select * from T_OptionScore";
+            string cmdText = "select guide,crossGuide,defen,excellent from T_OptionScore";
             DataSet ds = db.FillDataSet(cmdText, null, null);
             Score score = new Score();
-            if (ds.Tables[0].Rows.Count > 0 || ds != null)
+            if (ds.Tables[0].Rows.Count > 0 && ds != null)
             {
-                int i = ds.Tables[0].Rows.Count - 1;
-                score.guideRatio = Convert.ToInt32(ds.Tables[0].Rows[i]["guide"]);
-                score.crossRatio = Convert.ToInt32(ds.Tables[0].Rows[i]["crossGuide"]);
-                score.defenceRatio = Convert.ToInt32(ds.Tables[0].Rows[i]["defen"]);
-                score.excellent = Convert.ToInt32(ds.Tables[0].Rows[i]["excellent"]);
+                score.guideRatio = Convert.ToDouble(ds.Tables[0].Rows[0]["guide"]);
+                score.crossRatio = Convert.ToDouble(ds.Tables[0].Rows[0]["crossGuide"]);
+                score.defenceRatio = Convert.ToDouble(ds.Tables[0].Rows[0]["defen"]);
+                score.excellent = Convert.ToDouble(ds.Tables[0].Rows[0]["excellent"]);
                 return score;
             }
             else

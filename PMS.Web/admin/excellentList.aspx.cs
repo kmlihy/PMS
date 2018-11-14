@@ -27,16 +27,25 @@ namespace PMS.Web.admin
             string op = Request.QueryString["op"];
             //获取数据
             state = Convert.ToInt32(Session["state"]);
-            if (state == 1)
+            if (state == 0)
             {
-                teacher = (Teacher)Session["loginuser"];
-            }
-            else if (state == 2)
-            {
+                dsPlan = planBll.Select();
+                dsPro = proBll.Select();
                 teacher = (Teacher)Session["user"];
             }
-            dsPlan = planBll.getPlanByCid(teacher.college.ColID);
-            dsPro = proBll.SelectByCollegeId(teacher.college.ColID);
+            else
+            {
+                if (state == 1)
+                {
+                    teacher = (Teacher)Session["loginuser"];
+                }
+                else if (state == 2)
+                {
+                    teacher = (Teacher)Session["user"];
+                }
+                dsPlan = planBll.getPlanByCid(teacher.college.ColID);
+                dsPro = proBll.SelectByCollegeId(teacher.college.ColID);
+            }
             //展示数据
             string type = Request.QueryString["type"];
             order = Request.QueryString["order"];
@@ -167,21 +176,21 @@ namespace PMS.Web.admin
             {
                 currentPage = "1";
             }
-            string where="result>"+ excellent;
+            string where= "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ")>=" + excellent;
             if (state == 2)
             {
                 if (strWhere == "" || strWhere == null)
                 {
-                    where = " and collegeId =" + teacher.college.ColID;
+                    where += " and collegeId =" + teacher.college.ColID;
                 }
                 else
                 {
-                    where = " and collegeId =" + teacher.college.ColID + " and " + strWhere;
+                    where += " and collegeId =" + teacher.college.ColID + " and " + strWhere;
                 }
             }
             else
             {
-                where = " and teaAccount = " + teacher.TeaAccount;
+                where += " and teaAccount = " + teacher.TeaAccount;
             }
             //获取数据
             TableBuilder tbd = new TableBuilder()
