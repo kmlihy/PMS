@@ -135,6 +135,20 @@ namespace PMS.BLL
             }
             return Result.添加失败;
         }
+        /// <summary>
+        /// 更新成绩占比
+        /// </summary>
+        /// <param name="score">成绩对象</param>
+        /// <returns>添加结果</returns>
+        public Result updateRatio(Score score)
+        {
+            int row = sdao.updateRatio(score);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
 
         /// <summary>
         /// 获取成绩占比

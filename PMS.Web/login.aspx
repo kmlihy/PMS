@@ -25,7 +25,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                     </span>
-                    <input type="text" class="form-control" name="userName" id="userName" placeholder="用户名" autofocus="autofocus" />
+                    <input type="text" class="form-control ordinaryUser" name="userName" id="userName" placeholder="用户名" autofocus="autofocus" />
                     <span></span>
                 </div>
 
@@ -33,7 +33,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-lock"></span>
                     </span>
-                    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="密码" />
+                    <input type="password" class="form-control ordinaryUserPwd" id="pwd" name="pwd" placeholder="密码" />
                 </div>
 
                 <div class="input-group" id="content">
