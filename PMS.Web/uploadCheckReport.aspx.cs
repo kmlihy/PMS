@@ -42,6 +42,10 @@ namespace PMS.Web
                     {
                         msg = "上传失败，文件存在";
                     }
+                    if ((files[0].ContentLength / 1000) > 1024000) //1G大小
+                    {
+                        msg = "文件大小超过限制";
+                    }
                     else
                     {
                         string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
