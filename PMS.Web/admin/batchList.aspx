@@ -26,7 +26,7 @@
             <h2>批次信息列表</h2>
         </div>
         <div class="panel-body" id="panelbody">
-            <div class="container-fluid  big-box">
+            <div class="container-fluid big-box">
                 <!-- 编辑区-->
                 <div class="panel panel-default" id="teapanelbox">
                     <div class="pane input-group" id="panel-head">
