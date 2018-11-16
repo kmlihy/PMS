@@ -12,7 +12,7 @@ using PMS.DBHelper;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class downLoadPaper : System.Web.UI.Page
+    public partial class downLoadPaper : CommonPage
     {
         public DataSet ds;
         public Path path, paperPath;

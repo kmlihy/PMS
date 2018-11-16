@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class distributionReplyTeam : System.Web.UI.Page
+    public partial class distributionReplyTeam : CommonPage
     {
         public DataSet getPlan,getLeader,getMember,getRecord,getColl,dsPlan,ds;
         public int state;

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class replyPanelsOpinion : System.Web.UI.Page
+    public partial class replyPanelsOpinion : CommonPage
     {
         protected DataSet ds;
         protected string stuAccount, stuPro, title;

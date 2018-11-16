@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class viewScore : System.Web.UI.Page
+    public partial class viewScore : CommonPage
     {
         public string stuAccount, stuName, proName, title;
         public double score;

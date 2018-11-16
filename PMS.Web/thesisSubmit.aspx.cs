@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class thesisSubmit : System.Web.UI.Page
+    public partial class thesisSubmit : CommonPage
     {
         public int state, openState;
         protected void Page_Load(object sender, EventArgs e)

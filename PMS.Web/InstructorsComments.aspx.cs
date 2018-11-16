@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class InstructorsComments : System.Web.UI.Page
+    public partial class InstructorsComments : CommonPage
     {
         public DataSet getData, dsTitle;
         TitleRecordBll titlebll = new TitleRecordBll();

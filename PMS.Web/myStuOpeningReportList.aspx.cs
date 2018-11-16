@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class myStuOpeningReportList : System.Web.UI.Page
+    public partial class myStuOpeningReportList : CommonPage
     {
         protected DataSet ds = null;
         protected Teacher teacher = null;

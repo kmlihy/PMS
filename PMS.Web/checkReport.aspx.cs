@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class checkReport : System.Web.UI.Page
+    public partial class checkReport : CommonPage
     {
         PathBll pathBll = new PathBll();
         public int state,pstate;

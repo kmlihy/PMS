@@ -6,7 +6,7 @@ using System.Data;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class myGrogress : System.Web.UI.Page
+    public partial class myGrogress : CommonPage
     {
         protected string title;//题目
         protected int titleId;//题目ID

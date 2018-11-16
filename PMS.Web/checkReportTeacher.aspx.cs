@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class checkReportTeacher : System.Web.UI.Page
+    public partial class checkReportTeacher : CommonPage
     {
         public DataSet ds;
         public string teaAccount, searchdrop, search, currentPage, secSearch;

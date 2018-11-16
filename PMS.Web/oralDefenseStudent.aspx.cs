@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class oralDefenseStudent : System.Web.UI.Page
+    public partial class oralDefenseStudent : CommonPage
     {
 
         TitleRecordBll titleRecordBll = new TitleRecordBll();

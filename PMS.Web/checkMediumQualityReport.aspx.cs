@@ -10,7 +10,7 @@ using PMS.Model;
 
 namespace PMS.Web
 {
-    public partial class checkMediumQualityReport : System.Web.UI.Page
+    public partial class checkMediumQualityReport : CommonPage
     {
         protected DataSet ds = null;
         protected Teacher teacher = null;

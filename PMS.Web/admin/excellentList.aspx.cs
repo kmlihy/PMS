@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web.admin
 {
-    public partial class excellentList : System.Web.UI.Page
+    public partial class excellentList : CommonPage
     {
 
         public DataSet dsPlan, dsPro, ds;

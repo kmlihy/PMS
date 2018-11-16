@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class crossGuidanceStudent : System.Web.UI.Page
+    public partial class crossGuidanceStudent : CommonPage
     {
         public DataSet dsPro, dsPlan, dsTR;
         public string teaAccount, dropstrWhereplan, dropstrWherepro , searchdrop , search , currentPage , secSearch ;

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class myGuideTeacher : System.Web.UI.Page
+    public partial class myGuideTeacher : CommonPage
     {
         public DataSet dsGuide,ds;
         public string name, sex, phone, email, opinion;

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace PMS.Web
 {
-    public partial class stuHistoryPaper : System.Web.UI.Page
+    public partial class stuHistoryPaper : CommonPage
     {
         public DataSet dsPath;
         public string stuAccount;

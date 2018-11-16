@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class distributionReplyStudent : System.Web.UI.Page
+    public partial class distributionReplyStudent : CommonPage
     {
         public int getCurrentPage = 1, pagesize = 5, count;
         protected DataSet prods = null,colds = null,ds = null;

@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class openAchievement : System.Web.UI.Page
+    public partial class openAchievement : CommonPage
     {
         public int status;
         protected void Page_Load(object sender, EventArgs e)

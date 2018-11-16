@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web.admin
 {
     using Result = Enums.OpResult;
-    public partial class highQualityPaperList : System.Web.UI.Page
+    public partial class highQualityPaperList : CommonPage
     {
         TeacherBll teaBll = new TeacherBll();
         CollegeBll collBll = new CollegeBll();

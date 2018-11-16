@@ -11,7 +11,7 @@ using PMS.DBHelper;
 
 namespace PMS.Web.admin
 {
-    public partial class adminViewScore : System.Web.UI.Page
+    public partial class adminViewScore : CommonPage
     {
         public DataSet dsPlan, dsPro, ds;
         protected int count,pagesize = 5,getCurrentPage = 1,state;

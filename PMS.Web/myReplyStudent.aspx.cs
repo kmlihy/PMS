@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class myReplyStudent : System.Web.UI.Page
+    public partial class myReplyStudent : CommonPage
     {
         protected DataSet ds = null;//储存标题表
         protected DataSet prods = null;//储存专业信息

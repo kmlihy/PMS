@@ -10,7 +10,7 @@ using System.Data;
 
 namespace PMS.Web
 {
-    public partial class myCrossGuidanceTeacher : System.Web.UI.Page
+    public partial class myCrossGuidanceTeacher : CommonPage
     {
         public DataSet dsCross=null;
         public string name, sex, phone, email,opninion;

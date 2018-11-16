@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 namespace PMS.Web
 {
     using Result = Enums.OpResult;
-    public partial class crossGuide : System.Web.UI.Page
+    public partial class crossGuide : CommonPage
     {
         public string stuName, proName, title;
         Teacher teacher = new Teacher();
