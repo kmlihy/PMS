@@ -106,6 +106,11 @@ namespace PMS.BLL
             }
         }
 
+        /// <summary>
+        /// 更新教师
+        /// </summary>
+        /// <param name="teacher">教师实体</param>
+        /// <returns></returns>
         public Result updateState(Teacher teacher)
         {
             int row = dao.updateState(teacher);
@@ -357,6 +362,17 @@ namespace PMS.BLL
         public DataSet getRecordByColl(int collegeId, string teaAccount1, string teaAccount2)
         {
             return dao.getRecordByColl(collegeId, teaAccount1, teaAccount2);
+        }
+
+        /// <summary>
+        /// 根据学院ID获取教师信息
+        /// </summary>
+        /// <param name="teaAccount">账号</param>
+        /// <param name="pwd">密码</param>
+        /// <returns></returns>
+        public DataSet getByColl(int collegeId)
+        {
+            return dao.getByColl(collegeId);
         }
     }
 }

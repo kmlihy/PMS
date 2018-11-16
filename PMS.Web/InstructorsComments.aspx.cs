@@ -44,7 +44,8 @@ namespace PMS.Web
             planId = Convert.ToInt32(getData.Tables[0].Rows[i]["planId"]);
             int proId = Convert.ToInt32(getData.Tables[0].Rows[i]["proId"]);
             teacher = (Teacher)Session["loginuser"];
-            dsTitle = titleBll.SelectByProId(proId,planId,teacher.TeaAccount);
+            TeacherBll teaBll = new TeacherBll();
+            dsTitle = teaBll.getByColl(teacher.college.ColID);
             string op = Request["op"];
             if (op == "submit")
             {

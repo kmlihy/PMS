@@ -114,6 +114,13 @@ namespace PMS.BLL
             return dao.Select(title);
         }
 
+        /// <summary>
+        /// 根据专业id，批次id获取除指导教师外的题目信息
+        /// </summary>
+        /// <param name="proId">专业id</param>
+        /// <param name="planId">批次id</param>
+        /// <param name="teaAccount">教师账号</param>
+        /// <returns></returns>
         public DataSet SelectByProId(int proId,int planId, string teaAccount)
         {
             DataSet ds = dao.SelectByProId(proId,planId, teaAccount);

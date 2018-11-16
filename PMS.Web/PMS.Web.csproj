@@ -868,7 +868,6 @@
     <Folder Include="kindeditor\php\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Service References\" />
-    <Folder Include="upload\选题记录导出\" />
     <Folder Include="upload\题目信息导入Excel文件存储\admin\" />
   </ItemGroup>
   <ItemGroup>
