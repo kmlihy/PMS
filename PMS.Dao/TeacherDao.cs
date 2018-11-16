@@ -32,6 +32,21 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 根据学院ID获取教师信息
+        /// </summary>
+        /// <param name="teaAccount">账号</param>
+        /// <param name="pwd">密码</param>
+        /// <returns></returns>
+        public DataSet getByColl(int collegeId)
+        {
+            string cmdText = "select * from T_Teacher where state=1 and collegeId = @collegeId";
+            string[] param = { "@collegeId" };
+            object[] values = { collegeId };
+            DataSet ds = db.FillDataSet(cmdText, param, values);
+            return ds;
+        }
+
+        /// <summary>
         /// 向数据库添加一条教师数据
         /// </summary>
         /// <param name="student">教师实体</param>
