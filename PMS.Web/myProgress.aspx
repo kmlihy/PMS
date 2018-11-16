@@ -215,7 +215,16 @@
                         <h3><%= pathds.Tables[0].Rows[i]["dateTime"] %>
                         </h3>
                         <dl>
-                            <dt>论文指导阶段结束<span>你的论文成绩为：<%=scoreDs.Tables[0].Rows[0]["guideScore"] %></span></dt>
+                            <dt>论文指导阶段结束<span>你的论文成绩为：
+                                <%if (scoreDs.Tables[0].Rows.Count > 0)
+                                    {%>
+                                <%=scoreDs.Tables[0].Rows[0]["guideScore"] %>
+                                <%}
+                                            else
+                                            { %>
+                                你还没有成绩
+                                <%} %>
+                            </span></dt>
                         </dl>
                     </li>
                     <% 
