@@ -4,10 +4,10 @@ $(document).ready(function () {
     tips.hide();
 })
 $("#defensescore").change(function () {
-    if (score.val() == "") {
-
+    if (score.val().trim() == "" || score.val().trim() == "0") {
+        window.wxc.xcConfirm("请输入分数", window.wxc.xcConfirm.typeEnum.warning);
     }
-    else if (score.val() > 100) {
+    else if (score.val().trim() > 100 || score.val().trim() < 1) {
         window.wxc.xcConfirm("分数应在0-100内", window.wxc.xcConfirm.typeEnum.warning);
         score.val("  ");
         score.select();
@@ -66,16 +66,12 @@ $("#scorebtnSubmit").click(function () {
                 if (succ == "提交成功") {
                     window.wxc.xcConfirm("添加成功", window.wxc.xcConfirm.typeEnum.success, {
                         onOk: function (v) {
-                            window.location.href = "InstructorsComments.aspx";
+                            window.location.href = "downLoadPaper.aspx";
                         }
                     });
                 }
                 else {
-                    window.wxc.xcConfirm("添加成功", window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-
-                        }
-                    });
+                    window.wxc.xcConfirm("添加失败", window.wxc.xcConfirm.typeEnum.error);
                 }
             }
         });
