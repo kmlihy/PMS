@@ -6,7 +6,7 @@ function refreshCode() {
 
 $(document).ready(function () {
     //教师/学生登录回车
-    $('#captcha').bind('keyup', function (event) {
+    $('#captcha').keypress(function (e) {
         if (event.keyCode == "13") {
             var msg = stuMsg();
             if (msg == null || msg == "") {
@@ -14,7 +14,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('.ordinaryUser').bind('keyup', function (event) {
+    $('.ordinaryUser').keypress(function (e) {
 
         if (event.keyCode == "13") {
             var msg = stuMsg();
@@ -23,7 +23,7 @@ $(document).ready(function () {
             }
         }
     });
-    $('.ordinaryUserPwd').bind('keyup', function (event) {
+    $('.ordinaryUserPwd').keypress(function (e) {
 
         if (event.keyCode == "13") {
             var msg = stuMsg();
@@ -42,9 +42,11 @@ $(document).ready(function () {
         }
     });
     $('.adminPwd').keypress(function (e) {
-        var msg = adminMsg();
-        if (msg == null || msg == "") {
-            $("#btnlogin").click();
+        if (event.keyCode == "13") {
+            var msg = adminMsg();
+            if (msg == null || msg == "") {
+                $("#btnlogin").click();
+            }
         }
     });
 
