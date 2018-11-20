@@ -46,7 +46,7 @@ namespace PMS.Web
             teacher = (Teacher)Session["loginuser"];
             TeacherBll teaBll = new TeacherBll();
             int a = teacher.college.ColID;
-            dsTitle = teaBll.getByColl(teacher.college.ColID);
+            dsTitle = teaBll.getByColl(teacher.college.ColID,teacher.TeaAccount);
             string op = Request["op"];
             if (op == "submit")
             {

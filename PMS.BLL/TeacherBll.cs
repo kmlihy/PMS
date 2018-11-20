@@ -370,9 +370,9 @@ namespace PMS.BLL
         /// <param name="teaAccount">账号</param>
         /// <param name="pwd">密码</param>
         /// <returns></returns>
-        public DataSet getByColl(int collegeId)
+        public DataSet getByColl(int collegeId, string teaAccount)
         {
-            return dao.getByColl(collegeId);
+            return dao.getByColl(collegeId, teaAccount);
         }
     }
 }
