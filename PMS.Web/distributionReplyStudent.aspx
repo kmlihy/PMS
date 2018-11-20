@@ -48,46 +48,49 @@
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
                         <%if (userType == "0")
-                        {%>
+                            {%>
                         <select class="selectpicker" data-width="auto" id="selectcollegeId">
                             <option value="0">请选择查询学院 </option>
-                                <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                  {
+                            <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                {
                                     if (colds.Tables[0].Rows[i]["collegeId"].ToString() == showcollegedrop)
                                     {%>
-                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                    <%}%>
-                                    <%else
-                                    {%>
-                                        <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                    <%}
-                                  } %>
+                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>" selected="selected"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                            <%}%>
+                            <%else
+                                {%>
+                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                            <%}
+                                } %>
                         </select>
                         <%}%>
                         <select class="selectpicker" data-width="auto" id="chooseStuPro">
                             <%if (showstr == "0")
-                              {%>
-                                <option value="0" selected="selected">-查询全部专业-</option>
-                            <%}else
-                              {%>
+                                {%>
+                            <option value="0" selected="selected">-查询全部专业-</option>
+                            <%}
+                                else
+                                {%>
                             <%if (prods == null)
-                              {%>
-                                <option value="0">-查询全部专业-</option>
-                            <%}else{
-                                    %><option value="0">-查询全部专业-</option>
-                                    <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
-                                    {
-                                        if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
-                                        {%>
-                                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                                        <% }
-                                        else
-                                        {%>
-                                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
-                                        <%}
+                                {%>
+                            <option value="0">-查询全部专业-</option>
+                            <%}
+                                       else
+                                       {
+                            %><option value="0">-查询全部专业-</option>
+                            <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
+                                {
+                                    if (prods.Tables[0].Rows[i]["proId"].ToString() == showstr)
+                                    {%>
+                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>" selected="selected"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                            <% }
+                                else
+                                {%>
+                            <option value="<%=prods.Tables[0].Rows[i]["proId"].ToString() %>"><%=prods.Tables[0].Rows[i]["proName"].ToString() %></option>
+                            <%}
+                                        }
                                     }
-                                }
-                            } %>
+                                } %>
                         </select>
                         <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>" />
                         <span class="input-group-btn">
@@ -113,8 +116,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                        {%>
+                    <% if (ds != null && ds.Tables[0].Rows.Count > 0)
+                        {
+                            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            {%>
                     <tr>
                         <td class="text-center check_box">
                             <input type="checkbox" name="checkbox" class="check" value="<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>" />
@@ -130,10 +135,11 @@
         </div>
         <div class="panel-footer" id="footer">
             <div class="container-fluid sure_box text-right" id="selectStudent">
-                <button class="btn btn-info" id="btnSubmit" style="margin-top:0px;">确定选择</button>
+                <button class="btn btn-info" id="btnSubmit" style="margin-top: 0px;">确定选择</button>
                 <%--<button class="btn btn-info" onclick="window.location.href='myReplyStudent.aspx?titleRecordId=<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString()%>'">查看答辩学生</button>--%>
             </div>
-            <%} %>
+            <%}
+                }%>
             <button class="btn btn-info" type="button" id="btn_backForReplyStu" onclick="javascript:history.back(-1);">
                 <span class="glyphicon glyphicon-arrow-left"></span>
                 返回
@@ -157,7 +163,7 @@
                     </li>
                     <li>
                         <% if (count == 0) { count = 1; } %>
-                    <a href="#" class="jump"><%=count %></a>
+                        <a href="#" class="jump"><%=count %></a>
                     </li>
                     <li>
                         <a href="#" id="next" class="jump">
