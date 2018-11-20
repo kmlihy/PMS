@@ -103,6 +103,16 @@ namespace PMS.BLL
         {
             return pdao.Select(titleRecordId, stuAccount);
         }
+        /// <summary>
+        /// 查重报告进度
+        /// </summary>
+        /// <param name="titleRecordId"></param>
+        /// <param name="stuAccount"></param>
+        /// <returns></returns>
+        public DataSet getCheckReport(int titleRecordId, string stuAccount)
+        {
+            return pdao.checkReport(titleRecordId, stuAccount);
+        }
 
         /// <summary>
         /// 通过选题记录id获取最新的路径信息

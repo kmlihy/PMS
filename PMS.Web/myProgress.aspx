@@ -153,7 +153,7 @@
                         {
                     %>
                     <li>
-                        <h3><%= string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <h3><%= string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
                         <dl>
                             <dt>进入论文指导阶段</dt>
                         </dl>
@@ -161,7 +161,7 @@
                     <%for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
                         {%>
                     <li>
-                        <h3><%=pathds.Tables[0].Rows[i]["dateTime"] %></h3>
+                        <h3><%=string.Format("{0:MM-dd}",pathds.Tables[0].Rows[i]["dateTime"]) %><span><%=string.Format("{0:yyyy}", pathds.Tables[0].Rows[i]["dateTime"]) %></span></h3>
                         <dl>
                             <dt><%=pathds.Tables[0].Rows[i]["pathTitle"] %></dt>
                         </dl>
@@ -192,27 +192,23 @@
                         </dl>
                     </li>
                     <%} %>
-                    <%for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
-                        {
-                            if (pathds.Tables[0].Rows[i]["state"].ToString() == "3")
-                            {
-                                if (pathds.Tables[0].Rows[i]["type"].ToString() == "1")
-                                { %>
+                    <%if (checkReport.Tables[0].Rows.Count > 0)
+                        {%>
                     <li>
-                        <h3><%= pathds.Tables[0].Rows[i]["dateTime"] %>
+                        <h3>
+                            <%=string.Format("{0:MM-dd}",checkReport.Tables[0].Rows[0]["dateTime"]) %>
+                            <span><%=string.Format("{0:yyyy}", checkReport.Tables[0].Rows[0]["dateTime"]) %></span>
                         </h3>
                         <dl>
-                            <dt>查重报告<span><%=scoreDs.Tables[0].Rows[0]["pathTitle"] %></span></dt>
+                            <dt>查重报告<span>
+                                <%=checkReport.Tables[0].Rows[0]["pathTitle"] %>
+                            </span></dt>
                         </dl>
                     </li>
-                    <%
-                            continue;
-                        }
-                        else
-                        {
-                    %>
                     <li>
-                        <h3><%= pathds.Tables[0].Rows[i]["dateTime"] %>
+                        <h3>
+                            <%=string.Format("{0:MM-dd}",checkReport.Tables[0].Rows[0]["dateTime"]) %>
+                            <span><%=string.Format("{0:yyyy}", checkReport.Tables[0].Rows[0]["dateTime"]) %></span>
                         </h3>
                         <dl>
                             <dt>论文指导阶段结束<span>你的论文成绩为：
@@ -220,27 +216,22 @@
                                     {%>
                                 <%=scoreDs.Tables[0].Rows[0]["guideScore"] %>
                                 <%}
-                                            else
-                                            { %>
+                                    else
+                                    { %>
                                 你还没有成绩
                                 <%} %>
                             </span></dt>
                         </dl>
                     </li>
-                    <% 
-                                    continue;
-                                }
-                            }
-                            continue;
-                        }
-                    %>
+                    <%} %>
                 </ul>
-                <%}
+                <%
+                    }
                     else
                     { %>
                 <ul>
                     <li>
-                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
                         <dl>
                             <dt>你还未提交过论文</dt>
                         </dl>

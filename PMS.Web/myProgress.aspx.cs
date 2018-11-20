@@ -38,6 +38,7 @@ namespace PMS.Web
         protected DataSet crossGuideDs;
         protected DataSet corssDs;
         protected DataSet defenceDs;
+        public DataSet checkReport;
         TitleRecordBll Record = new TitleRecordBll();
         PlanBll planBll = new PlanBll();
         OpenReportBll opBll = new OpenReportBll();
@@ -81,7 +82,8 @@ namespace PMS.Web
                         {
                             Path pathRecordId = pathBll.getTitleRecordId(stuNO);
                             TitleRecord tr = pathRecordId.titleRecord;
-                            pathds = pathBll.getModel(tr.TitleRecordId, stuNO);//遍历路径信息
+                            pathds = pathBll.getModel(tr.TitleRecordId, stuNO);//遍历路径信息(type为0时)
+                            checkReport = pathBll.getCheckReport(tr.TitleRecordId, stuNO);//查重
                             mq = mqBll.Select(tr.TitleRecordId);//遍历中期质量报告
                             scoreDs = scoreBll.Select(stuNO, int.Parse(planId));//获取学生成绩
                             crossGuideDs = crossBll.Select(tr.TitleRecordId);//遍历交叉指导信息
