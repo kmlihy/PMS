@@ -25,9 +25,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "insert into T_MedtermQuality(titleRecordId,planFinishSituation,dateTime) values(@titleRecordId,@planFinishSituation,@dateTime)";
-                string[] param = { "@titleRecordId", "@planFinishSituation", "@dateTime" };
-                object[] values = { medterm.titleRecord.TitleRecordId, medterm.planFinishSituation, medterm.dateTime };
+                string cmdText = "insert into T_MedtermQuality(titleRecordId,planFinishSituation,dateTime,state) values(@titleRecordId,@planFinishSituation,@dateTime,@state)";
+                string[] param = { "@titleRecordId", "@planFinishSituation", "@dateTime", "@state" };
+                object[] values = { medterm.titleRecord.TitleRecordId, medterm.planFinishSituation, medterm.dateTime,medterm.state };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }
@@ -45,9 +45,9 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "update T_MedtermQuality set teacherOpinion = @teacherOpinion,dateTime= @dateTime where titleRecordId=@titleRecordId";
-                string[] param = { "@titleRecordId", "@teacherOpinion", "@dateTime" };
-                object[] values = { medterm.titleRecord.TitleRecordId, medterm.teacherOpinion, medterm.dateTime };
+                string cmdText = "update T_MedtermQuality set teacherOpinion = @teacherOpinion,dateTime= @dateTime,state=@state where titleRecordId=@titleRecordId";
+                string[] param = { "@titleRecordId", "@teacherOpinion", "@dateTime", "@state" };
+                object[] values = { medterm.titleRecord.TitleRecordId, medterm.teacherOpinion, medterm.dateTime,medterm.state };
                 int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
                 return row;
             }

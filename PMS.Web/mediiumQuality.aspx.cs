@@ -85,21 +85,12 @@ namespace PMS.Web
                         medterm.dateTime = DateTime.Now;
                         medterm.titleRecord = titleRecord;
                         medterm.state = 3;
-                        Result result = mqbll.updateState(medterm);
-                        if (result == Result.更新成功)
+                        Result row = mqbll.teaInsert(medterm);
+                        if (row == Result.添加成功)
                         {
-                            Result row = mqbll.teaInsert(medterm);
-                            if (row == Result.添加成功)
-                            {
-                                LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师提交 - " + stuTitle.student.StuAccount + " - " + stuTitle.student.RealName + " - 学生的中期质量报告意见");
-                                Response.Write("提交成功");
-                                Response.End();
-                            }
-                            else
-                            {
-                                Response.Write("提交失败");
-                                Response.End();
-                            }
+                            LogHelper.Info(this.GetType(), teacher.TeaAccount + " - " + teacher.TeaName + " - 教师提交 - " + stuTitle.student.StuAccount + " - " + stuTitle.student.RealName + " - 学生的中期质量报告意见");
+                            Response.Write("提交成功");
+                            Response.End();
                         }
                         else
                         {
@@ -172,21 +163,12 @@ namespace PMS.Web
                         titleRecord.TitleRecordId = titleRecordId;
                         medterm.titleRecord = titleRecord;
                         medterm.state = 2;
-                        Result state = mqbll.updateState(medterm);
-                        if (state == Result.更新成功)
+                        Result row = mqbll.stuInsert(medterm);
+                        if (row == Result.添加成功)
                         {
-                            Result row = mqbll.stuInsert(medterm);
-                            if (row == Result.添加成功)
-                            {
-                                LogHelper.Info(this.GetType(), student.StuAccount + " - " + student.RealName + " - 学生提交中期质量报告");
-                                Response.Write("提交成功");
-                                Response.End();
-                            }
-                            else
-                            {
-                                Response.Write("提交失败");
-                                Response.End();
-                            }
+                            LogHelper.Info(this.GetType(), student.StuAccount + " - " + student.RealName + " - 学生提交中期质量报告");
+                            Response.Write("提交成功");
+                            Response.End();
                         }
                         else
                         {

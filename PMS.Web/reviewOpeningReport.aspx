@@ -13,9 +13,6 @@
 </head>
 <body>
     <div class="panel">
-        <%if(or.state == 3){ %>
-            <h3 class="text-success"><span class="glyphicon glyphicon-ok">该学生已完成开题报告</span></h3>
-        <%}%>
         <div class="panel-heading text-center">
             <span class="h2 ">评阅开题报告</span>
             <button class="btn btn-primary navbar-btn" onclick="javascript:window.history.back(-1)" id="back">返回</button>
@@ -23,9 +20,9 @@
         <% if (or == null)
             { %>
         <h3>该学生暂未提交开题报告，请耐心等待。</h3>
-        <% }
-            else
-            { %>
+        <% }else if(or.state == 3){ %>
+            <h3 class="text-success"><span class="glyphicon glyphicon-ok">该学生已完成开题报告</span></h3>
+        <%}else{ %>
         <div class="panel-body">
             <table id="openingReportmaindiv" class="table table-bordered table_mian">
                 <tbody>

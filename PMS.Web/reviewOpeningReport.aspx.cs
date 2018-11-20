@@ -47,7 +47,6 @@ namespace PMS.Web
             {
                 if (op == "no")
                 {
-                    or = orbll.Select(titleRecordId);
                     int openId = or.openId;
                     Result row = orbll.teaInsert(openId, teacherOpinion);
                     Result state = orbll.updateState(1, titleRecordId);
@@ -80,7 +79,6 @@ namespace PMS.Web
                 }
                 else if (op == "yes")
                 {
-                    or = orbll.Select(titleRecordId);
                     int openId = or.openId;
                     Result row = orbll.teaInsert(openId, teacherOpinion);
                     Result state = orbll.updateState(3, titleRecordId);
