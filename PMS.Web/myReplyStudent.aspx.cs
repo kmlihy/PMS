@@ -36,6 +36,7 @@ namespace PMS.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            state = Convert.ToInt32(Session["state"]);
             if (state == 1)
             {
                 tea = (Teacher)Session["loginuser"];
@@ -44,7 +45,6 @@ namespace PMS.Web
             {
                 tea = (Teacher)Session["user"];
             }
-            state = Convert.ToInt32(Session["state"]);
             string op = Context.Request["op"];
             string type = Request.QueryString["type"];
             //获取defenRecordId

@@ -37,6 +37,21 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 修改选题记录的论文通过状态
+        /// </summary>
+        /// <param name="record">选题信息实体</param>
+        /// <returns>受影响行数</returns>
+        public Result updateState(int recordId)
+        {
+            int row = dao.updateState(recordId);
+            if (row > 0)
+            {
+                return Result.更新成功;
+            }
+            return Result.更新失败;
+        }
+
+        /// <summary>
         /// 添加一条选题记录信息
         /// </summary>
         /// <param name="record">要添加的选题记录对象</param>

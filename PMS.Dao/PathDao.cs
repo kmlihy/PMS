@@ -149,5 +149,24 @@ namespace PMS.Dao
                 throw;
             }
         }
+        public DataSet checkReport(int titleRecordId, string stuAccount)
+        {
+            try
+            {
+                string cmdText = "select * from V_Path where titleRecordId = @titleRecordId and stuAccount = @stuAccount and type =1";
+                string[] param = { "@titleRecordId", "@stuAccount" };
+                object[] values = { titleRecordId, stuAccount };
+                DataSet ds = db.FillDataSet(cmdText, param, values);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

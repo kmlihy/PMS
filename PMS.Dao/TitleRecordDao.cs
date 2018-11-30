@@ -56,10 +56,31 @@ namespace PMS.Dao
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// 修改选题记录的论文通过状态
+        /// </summary>
+        /// <param name="record">选题信息实体</param>
+        /// <returns>受影响行数</returns>
+        public int updateState(int recordId)
+        {
+            try
+            {
+                string cmdText = "update T_TitleRecord set state=1 where titleRecordId = @recordId";
+                string[] param = { "@recordId" };
+                object[] values = { recordId };
+                int row = db.ExecuteNoneQuery(cmdText.ToString(), param, values);
+                return row;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// 根据选题记录id删除一条选题记录
         /// </summary>

@@ -20,9 +20,10 @@ $("#btn-search").click(function () {
     sessionStorage.setItem("type", "textSelect");
     jump(1);
 });
-$("#btnOpinion").click(function () {
-    var account = $(this).parent().parent().find("#stuAccount").text().trim();
+$(".btnOpinion").click(function () {
+    var account = $(this).parent().parent().find(".stuAccount").text().trim();
     sessionStorage.setItem("account", account);
+    $("#myModa1").modal("show");
 })
 $("#submit").click(function () {
     var opinion = $(".opinion").val();

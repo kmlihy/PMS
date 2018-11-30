@@ -53,18 +53,25 @@
                     <tr>
                         <td style="vertical-align: middle" class="col-sm-1"><%=i + 1 + ((getCurrentPage - 1) * pagesize)%></td>
                         <td style="vertical-align: middle" class="col-sm-3"><%=ds.Tables[0].Rows[i]["title"].ToString() %></td>
-                        <td style="vertical-align: middle" class="col-sm-1" id="stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
+                        <td style="vertical-align: middle" class="col-sm-1 stuAccount"><%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1"><%=ds.Tables[0].Rows[i]["realName"].ToString() %></td>
                         <td style="vertical-align: middle" class="col-sm-1">
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModa1" id="btnOpinion">
+                            <button type="button" class="btn btn-info btnOpinion" data-toggle="modal">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 点击评价
                             </button>
                         </td>
-                         <td style="vertical-align: middle" class="col-sm-1">
+                        <td style="vertical-align: middle" class="col-sm-1">
                             <a href="InstructorsComments.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>&titleRecordId=<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %>">
+                                <%if (ds.Tables[0].Rows[i]["state"].ToString() == "0")
+                                    { %>
                                 <span class="glyphicon glyphicon-hand-right"></span>
                                 评定及成绩
+                                <%}
+                                else
+                                { %>
+                                已评定
+                                <%} %>
                             </a>
                         </td>
                         <td style="vertical-align: middle" class="col-sm-1">

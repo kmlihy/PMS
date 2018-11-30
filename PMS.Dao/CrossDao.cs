@@ -41,7 +41,7 @@ namespace PMS.Dao
         {
             try
             {
-                string cmdText = "select * from T_Cross where teaAccount=@teaAccount";
+                string cmdText = "select * from V_Cross where teaAccount=@teaAccount";
                 String[] param = { "@teaAccount" };
                 String[] values = { teaAccount };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
