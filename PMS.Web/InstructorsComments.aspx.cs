@@ -19,8 +19,9 @@ namespace PMS.Web
         TitleBll titleBll = new TitleBll();
         Score scoreModel = new Score();
         ScoreBll sbll = new ScoreBll();
+        PathBll pathBll = new PathBll();
         string stuAccount;
-        int planId, titleRecordId;
+        public int planId, titleRecordId,checkState,midState;
         Teacher teacher = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,6 +39,25 @@ namespace PMS.Web
                     stuAccount = Session["stuAccount"].ToString();
                     titleRecordId = Convert.ToInt32(Session["titleRecordId"].ToString());
                 }
+            }
+            DataSet ds = pathBll.getCheckReport(titleRecordId);
+            if (ds == null || ds.Tables[0].Rows.Count <= 0)
+            {
+                checkState = 0;
+            }
+            else
+            {
+                checkState = Convert.ToInt32(ds.Tables[0].Rows[0]["state"]);
+            }
+            MedtermQualityBll qualityBll = new MedtermQualityBll();
+            MedtermQuality medterm = qualityBll.getState(titleRecordId);
+            if (medterm == null)
+            {
+                midState = 0;
+            }
+            else
+            {
+                midState = medterm.state;
             }
             getData = titlebll.GetByAccount(stuAccount);
             int i = getData.Tables[0].Rows.Count - 1;

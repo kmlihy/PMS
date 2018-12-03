@@ -149,13 +149,18 @@ namespace PMS.Dao
                 throw;
             }
         }
-        public DataSet checkReport(int titleRecordId, string stuAccount)
+        /// <summary>
+        /// 获取查重报告
+        /// </summary>
+        /// <param name="titleRecordId">选题记录id</param>
+        /// <returns></returns>
+        public DataSet checkReport(int titleRecordId)
         {
             try
             {
-                string cmdText = "select * from V_Path where titleRecordId = @titleRecordId and stuAccount = @stuAccount and type =1";
-                string[] param = { "@titleRecordId", "@stuAccount" };
-                object[] values = { titleRecordId, stuAccount };
+                string cmdText = "select * from V_Path where titleRecordId = @titleRecordId and type =1";
+                string[] param = { "@titleRecordId" };
+                object[] values = { titleRecordId };
                 DataSet ds = db.FillDataSet(cmdText, param, values);
                 if (ds != null)
                 {

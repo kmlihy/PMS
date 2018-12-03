@@ -84,6 +84,7 @@ namespace PMS.BLL
                 or.supervisionOpinion = ds.Tables[0].Rows[i]["supervisionOpinion"].ToString();
                 or.guideGroupOpinion = ds.Tables[0].Rows[i]["guideGroupOpinion"].ToString();
                 or.dateTime = Convert.ToDateTime(ds.Tables[0].Rows[i]["dateTime"].ToString());
+                or.state = Convert.ToInt32(ds.Tables[0].Rows[i]["state"].ToString());
                 return or;
             }
             else
