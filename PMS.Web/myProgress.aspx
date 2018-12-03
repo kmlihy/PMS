@@ -70,7 +70,7 @@
                             { %>
                         <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
                         <dl>
-                            <dt>你还没有选题，点击<a href="checkReport.aspx">进行选题</a></dt>
+                            <dt>你还没有选题，点击<a href="paperList.aspx">进行选题</a></dt>
                         </dl>
                         <%} %>
                     </li>

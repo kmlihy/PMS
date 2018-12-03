@@ -21,7 +21,7 @@
             <h2>论文提交页面</h2>
         </div>
         <div class="panel-body text-center thesis-panelbody">
-            <%if (state==0||state == 1)
+            <%if (state == 0 || state == 1)
                 { %>
             <table class="table">
                 <tr>
@@ -34,15 +34,22 @@
             <%}%>
 
             <div id="myAlert" class="alert alert-success">
-                <%if (state==0||state == 1)
+                <%if (state == 0)
                     { %>
-                <span class="text-primary"><strong>提示！</strong>只允许上传.zip或者.rar格式的文件，请把论文压缩成.zip或者.rar格式的文件,谢谢！<p>文件命名规范：学号+姓名 <br/>例如：10001漩涡鸣人</p></span><%}
-    else if (state == 2)
-    { %>
+                <span class="text-primary"><strong>提示！</strong>只允许上传.zip或者.rar格式的文件，请把论文压缩成.zip或者.rar格式的文件,谢谢！<p>文件命名规范：学号+姓名
+                    <br />
+                    例如：10001漩涡鸣人</p>
+                </span><%}
+                           else if (state == 1)
+                           {%>
+                <h4 class="text-primary">论文未通过，请重新提交</h4>
+                <% }
+                    else if (state == 2)
+                    { %>
                 <h4 class="text-primary">上传成功，请前往<a href="/myGuideTeacher.aspx">教师信息</a>查看回复</h4>
                 <%}
-    else
-    {%>
+                    else
+                    {%>
                 <h4 class="text-success">论文已通过，请前往<a href="/myCrossGuidanceTeacher.aspx">交叉评阅</a>进行下一阶段</h4>
                 <%} %>
             </div>
@@ -65,7 +72,7 @@
             </div>
         </div>
         <div class="container panel-footer text-right panelFooter">
-            <%if (state==0||state == 1)
+            <%if (state == 0 || state == 1)
                 { %>
             <input type="button" value="上传" id="btnupload" class="btn btn-primary" />
             <%} %>

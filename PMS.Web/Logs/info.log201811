@@ -1,0 +1,60 @@
+2018-11-13 18:12:00,127 [8] INFO  ASP.admin_login_aspx - adminadmin登录
+2018-11-13 18:12:21,737 [14] INFO  ASP.login_aspx - 111111测试登录
+2018-11-13 18:12:56,542 [9] INFO  ASP.login_aspx - 500001建一登录
+2018-11-14 10:25:59,841 [6] INFO  ASP.login_aspx - 111111测试登录
+2018-11-14 10:26:50,277 [7] INFO  ASP.login_aspx - 16612500038daobin登录
+2018-11-14 10:27:27,093 [9] INFO  ASP.login_aspx - 166001软件工程学生一登录
+2018-11-14 10:39:11,485 [14] INFO  ASP.login_aspx - 166001软件工程学生一登录
+2018-11-14 10:39:42,951 [16] INFO  ASP.login_aspx - 166001软件工程学生一登录
+2018-11-14 10:45:16,789 [31] INFO  ASP.login_aspx - 166001软件工程学生一登录
+2018-11-14 10:48:45,698 [38] INFO  ASP.login_aspx - 166001软件工程学生一登录
+2018-11-14 10:50:23,712 [31] INFO  ASP.login_aspx - 166001软件工程学生一登录
+2018-11-14 11:10:20,359 [7] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-14 11:15:33,984 [7] INFO  ASP.login_aspx - 600001 - 经管教师一 - 登录
+2018-11-14 11:30:18,880 [35] INFO  ASP.login_aspx - 600001 - 经管教师一 - 登录
+2018-11-14 11:31:42,745 [25] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 14:56:40,597 [9] INFO  ASP.login_aspx - 600001 - 经管教师一 - 登录
+2018-11-14 14:57:26,460 [10] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:08:59,493 [21] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:09:07,547 [24] INFO  ASP.admin_scoreratio_aspx - admin - admin - 添加成绩占比信息
+2018-11-14 15:09:20,545 [8] INFO  ASP.admin_scoreratio_aspx - admin - admin - 添加成绩占比信息
+2018-11-14 15:10:26,021 [24] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:19:25,916 [28] INFO  ASP.admin_scoreratio_aspx - admin - admin - 添加成绩占比信息
+2018-11-14 15:50:28,275 [7] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:51:48,080 [7] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:53:13,226 [9] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:54:40,671 [7] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:54:50,283 [11] INFO  ASP.admin_scoreratio_aspx - admin - admin - 更新成绩占比信息
+2018-11-14 15:55:28,382 [11] INFO  ASP.admin_scoreratio_aspx - admin - admin - 更新成绩占比信息
+2018-11-14 15:56:36,780 [7] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-14 15:56:50,115 [11] INFO  ASP.admin_scoreratio_aspx - admin - admin - 更新成绩占比信息
+2018-11-14 15:57:35,446 [6] INFO  ASP.admin_scoreratio_aspx - admin - admin - 更新成绩占比信息
+2018-11-14 15:57:47,878 [13] INFO  ASP.admin_scoreratio_aspx - admin - admin - 更新成绩占比信息
+2018-11-14 16:00:35,196 [11] INFO  ASP.login_aspx - 600001 - 经管教师一 - 登录
+2018-11-16 11:14:52,037 [20] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-16 11:15:55,651 [26] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-16 11:17:13,293 [25] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-16 11:23:21,603 [12] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-16 11:23:26,930 [12] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-16 11:34:37,680 [33] INFO  ASP.login_aspx - 500001 - 建一 - 登录
+2018-11-16 14:52:34,385 [40] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-11-16 15:19:58,470 [53] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-16 15:30:48,933 [55] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-16 15:44:43,514 [44] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-27 10:23:51,812 [11] INFO  ASP.login_aspx - 111111 - 测试 - 登录
+2018-11-27 10:28:35,008 [13] INFO  ASP.login_aspx - 16612500038 - daobin - 登录
+2018-11-27 10:29:02,728 [6] INFO  ASP.login_aspx - 166007 - 移动互联学生一 - 登录
+2018-11-27 10:30:05,851 [17] INFO  ASP.login_aspx - 166006 - 物联网学生一 - 登录
+2018-11-27 10:30:52,995 [7] INFO  ASP.login_aspx - 166005 - 网络技术学生一 - 登录
+2018-11-27 10:37:20,450 [20] INFO  ASP.login_aspx - 126002 - 人文学生二 - 登录
+2018-11-27 10:37:39,758 [21] INFO  ASP.login_aspx - 126003 - 人文学生三 - 登录
+2018-11-27 10:38:31,180 [17] INFO  ASP.login_aspx - 166003 - 计科学生一 - 登录
+2018-11-27 10:38:45,840 [17] INFO  ASP.login_aspx - 166002 - 软件工程学生二 - 登录
+2018-11-30 10:39:01,911 [11] INFO  ASP.login_aspx - 166002 - 软件工程学生二 - 登录
+2018-11-30 10:39:35,460 [6] INFO  ASP.login_aspx - 166003 - 计科学生一 - 登录
+2018-11-30 10:40:10,393 [9] INFO  ASP.login_aspx - 166003 - 计科学生一 - 登录
+2018-11-30 10:46:12,440 [8] INFO  ASP.login_aspx - 166003 - 计科学生一 - 登录
+2018-11-30 10:48:10,572 [7] INFO  ASP.login_aspx - 200002 - 信息工程教师二 - 登录
+2018-11-30 10:51:44,234 [16] INFO  ASP.login_aspx - 200002 - 信息工程教师二 - 登录
+2018-11-30 10:54:06,160 [14] INFO  ASP.login_aspx - 200002 - 信息工程教师二 - 登录
+2018-11-30 11:04:44,866 [25] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录

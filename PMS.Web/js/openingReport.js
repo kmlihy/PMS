@@ -32,37 +32,41 @@
             alert("有未填项目");
         }
         else {
-            $.ajax({
-                type: 'Post',
-                url: 'openingReport.aspx',
-                data: {
-                    meaning: meaning,
-                    trend: trend,
-                    content: content,
-                    plan: plan,
-                    method: method,
-                    outline: outline,
-                    reference: reference,
-                    //guideTeacher: guideTeacher,
-                    //dean: dean,
-                    op: "add"
-                },
-                dataType: 'text',
-                success: function (succ) {
-                    if (succ === "提交成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                window.location.href = "openingReport.aspx";
+            window.wxc.xcConfirm("确定提交吗？", window.wxc.xcConfirm.typeEnum.confirm, {
+                onOk: function (v) {
+                    $.ajax({
+                        type: 'Post',
+                        url: 'openingReport.aspx',
+                        data: {
+                            meaning: meaning,
+                            trend: trend,
+                            content: content,
+                            plan: plan,
+                            method: method,
+                            outline: outline,
+                            reference: reference,
+                            //guideTeacher: guideTeacher,
+                            //dean: dean,
+                            op: "add"
+                        },
+                        dataType: 'text',
+                        success: function (succ) {
+                            if (succ === "提交成功") {
+                                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                                    onOk: function (v) {
+                                        window.location.href = "openingReport.aspx";
+                                    }
+                                });
+                            } else {
+                                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                                    onOk: function (v) {
+                                    }
+                                });
                             }
-                        });
-                    } else {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                            }
-                        });
-                    }
+                        }
+                    })
                 }
-            })
+            });
         }
     })
     //教师驳回学生开题报告
