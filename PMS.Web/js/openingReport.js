@@ -10,26 +10,8 @@
         var reference = $("#reference").val();
         //var guideTeacher = $("#guideTeacher").val();
         //var dean = $("#dean").val();
-        if (meaning == "") {
-            alert("有未填项目");
-        }
-        else if (trend == "") {
-            alert("有未填项目");
-        }
-        else if (content == "") {
-            alert("有未填项目");
-        }
-        else if (plan == "") {
-            alert("有未填项目");
-        }
-        else if (method == "") {
-            alert("有未填项目");
-        }
-        else if (outline == "") {
-            alert("有未填项目");
-        }
-        else if (reference == "") {
-            alert("有未填项目");
+        if (meaning == "" || trend == "" || content == "" || plan == "" || outline == "" || reference == "") {
+            window.wxc.xcConfirm("含有未填项", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             window.wxc.xcConfirm("确定提交吗？", window.wxc.xcConfirm.typeEnum.confirm, {

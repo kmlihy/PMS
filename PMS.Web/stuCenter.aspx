@@ -8,13 +8,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>个人中心</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/xcConfirm.css" />
     <link rel="stylesheet" href="../css/zwh.css" />
 </head>
 
 <body>
     <form id="form1">
         <div class="box">
-                <div class="title">个人中心</div>
+            <div class="title">个人中心</div>
             <div class="center col-xs-8 col-xm-8 col-md-6 col-lg-6 col-xs-push-2 col-sm-push-2 col-md-push-3 col-lg-push-3">
                 <table class="table table-hover">
                     <tbody>
@@ -72,6 +73,6 @@
 </body>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="js/xcConfirm.js"></script>
 <script src="../js/zwh.js"></script>
-
 </html>

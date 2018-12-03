@@ -28,14 +28,14 @@
         {%>
     <div class="container-fluid">
         <div class="panel">
-                <%if (mstate == 2 && state == 3)
-                    { %>
-                <h3 class="text-primary">请等待教师处理</h3>
-                <%}
-                    else if (mstate == 3)
-                    {%>
-                <h3 class="text-success"><span class="glyphicon glyphicon-ok"></span>中期质量检查已通过</h3>
-                <%} %>
+            <%if (mstate == 2 && state == 3)
+                { %>
+            <h3 class="text-primary">请等待教师处理</h3>
+            <%}
+                else if (mstate == 3)
+                {%>
+            <h3 class="text-success"><span class="glyphicon glyphicon-ok"></span>中期质量检查已通过</h3>
+            <%} %>
             <div class="panel-heading">
                 <h1 class="text-center">本科生毕业设计（论文）中期质量检查</h1>
             </div>
@@ -90,24 +90,27 @@
                         <td class="col-xs-2">指导教师意见</td>
                         <td colspan="4" style="padding: 0 0;">
                             <%if (state == 1)
-                            {
-                                if (mstate != 3)
-                                {%>
-                                    <textarea rows="5" class="textArea" id="teaSet"></textarea>
-                                <%}else{%>
-                                    <textarea rows="5" class="textArea" id="teaSet" readonly="readonly"><%=teacherOpinion %></textarea>
-                                <%}
-                            }else if (state == 3)
-                            {
-                                if (mstate != 3)
-                                {%>
-                            <textarea rows="5" class="textArea text-primary" id="teaShow" readonly="readonly">提交后请等待指导教师回复</textarea>
+                                {
+                                    if (mstate != 3)
+                                    {%>
+                            <textarea rows="5" class="textArea" id="teaSet"></textarea>
                             <%}
                             else
-                            { %>
+                            {%>
+                            <textarea rows="5" class="textArea" id="teaSet" readonly="readonly"><%=teacherOpinion %></textarea>
+                            <%}
+                                }
+                                else if (state == 3)
+                                {
+                                    if (mstate != 3)
+                                    {%>
+                            <textarea rows="5" class="textArea text-primary" id="teaShow" readonly="readonly">提交后请等待指导教师回复</textarea>
+                            <%}
+                                else
+                                { %>
                             <textarea rows="5" class="textArea" id="teaShow" readonly="readonly"><%=teacherOpinion %></textarea>
                             <%  }
-                            } %>
+                                } %>
                             <div class="text-right" style="width: 100%">
                                 <span>指导教师签字：</span>
                                 <span contenteditable="true" class="label_Time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -145,9 +148,12 @@
                     </tr>
                 </table>
             </div>
+            <%if (mstate != 3)
+                { %>
             <div class="container-fluid text-right">
                 <button class="btn btn-info btn-lg" value="提交" id="btnSubmit">提交</button>
             </div>
+            <%} %>
         </div>
     </div>
     <%} %>
