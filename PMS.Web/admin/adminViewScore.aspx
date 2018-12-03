@@ -91,6 +91,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <%if (ds == null)
+                                {%>
+                            <%}
+                                else
+                                {%>
                             <%for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                                 { %>
                             <tr>
@@ -101,6 +106,7 @@
                                 <td class="text-center"><%=ds.Tables[0].Rows[i]["teaName"].ToString() %></td>
                                 <td class="text-center"><%=ds.Tables[0].Rows[i]["result"].ToString() %></td>
                             </tr>
+                            <%} %>
                             <%} %>
                         </tbody>
                     </table>

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/ml.css" />
     <link rel="stylesheet" href="../css/lgd.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <%--    <link rel="stylesheet" href="../css/style.css" />--%>
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../square/_all.css" />
     <link rel="stylesheet" href="../css/bootstrap-select.css" />
     <link rel="stylesheet" href="../css/iconfont.css" />
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div class="panel panel-default" id="panel">
+    <div class="panel panel-default" id="panel" style="margin-top: -20px">
         <div class="panel-head">
             <h2>学生信息管理列表</h2>
         </div>

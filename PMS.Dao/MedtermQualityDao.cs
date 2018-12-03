@@ -118,7 +118,13 @@ namespace PMS.Dao
             SqlDataReader reader = db.ExecuteReader(sql, param, values);
             while (reader.Read())
             {
-                medtermQuality.state = reader.GetInt32(0);
+                if (reader.GetInt32(0) == 0)
+                {
+                    medtermQuality = null;
+                }
+                else {
+                    medtermQuality.state = reader.GetInt32(0);
+                }
             }
             reader.Close();
             return medtermQuality;
