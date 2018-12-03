@@ -82,3 +82,4 @@ G:\毕业选题系统\PMS\PMS.BLL\bin\Debug\PMS.DBHelper.pdb
 G:\毕业选题系统\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReference.cache
 G:\毕业选题系统\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
 G:\毕业选题系统\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
+F:\c#\repos\pms\PMS.BLL\bin\Debug\log4net.dll

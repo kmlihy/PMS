@@ -37,11 +37,11 @@ namespace PMS.Dao
         /// <param name="teaAccount">账号</param>
         /// <param name="pwd">密码</param>
         /// <returns></returns>
-        public DataSet getByColl(int collegeId)
+        public DataSet getByColl(int collegeId,string teaAccount)
         {
-            string cmdText = "select * from T_Teacher where teaType=1 and collegeId = @collegeId";
-            string[] param = { "@collegeId" };
-            object[] values = { collegeId };
+            string cmdText = "select * from T_Teacher where teaType=1 and collegeId = @collegeId and teaAccount not like @teaAccount";
+            string[] param = { "@collegeId", "@teaAccount" };
+            object[] values = { collegeId, teaAccount };
             DataSet ds = db.FillDataSet(cmdText, param, values);
             return ds;
         }

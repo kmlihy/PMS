@@ -258,6 +258,67 @@ namespace PMS.BLL
         }
 
         /// <summary>
+        /// 得到教师实体对象，除密码
+        /// </summary>
+        /// <param name="TeaAccount">教师账号</param>
+        /// <returns>教师实体</returns>
+        public Teacher getModel(String TeaAccount)
+        {
+            DataSet ds = dao.GetTeacher(TeaAccount);
+            Teacher teacher = new Teacher();
+            College college = new College();
+            RSACryptoService rsa = new RSACryptoService();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables[0].Rows[0]["teaAccount"].ToString() != "")
+                {
+                    teacher.TeaAccount = ds.Tables[0].Rows[0]["teaAccount"].ToString();
+                }
+                //if (ds.Tables[0].Rows[0]["teaPwd"].ToString() != "")
+                //{
+                //    teacher.TeaPwd = ds.Tables[0].Rows[0]["teaPwd"].ToString();
+                //}
+                if (ds.Tables[0].Rows[0]["teaName"].ToString() != "")
+                {
+                    teacher.TeaName = ds.Tables[0].Rows[0]["teaName"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["sex"].ToString() != "")
+                {
+                    teacher.Sex = ds.Tables[0].Rows[0]["sex"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["phone"].ToString() != "")
+                {
+                    teacher.Phone = ds.Tables[0].Rows[0]["phone"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["Email"].ToString() != "")
+                {
+                    teacher.Email = ds.Tables[0].Rows[0]["Email"].ToString();
+                }
+                if (ds.Tables[0].Rows[0]["teaType"].ToString() != "")
+                {
+                    teacher.TeaType = int.Parse(ds.Tables[0].Rows[0]["teaType"].ToString());
+                }
+                if (ds.Tables[0].Rows[0]["collegeId"].ToString() != "")
+                {
+                    college.ColID = int.Parse(ds.Tables[0].Rows[0]["collegeId"].ToString());
+
+                }
+                if (ds.Tables[0].Rows[0]["collegeName"].ToString() != "")
+                {
+                    college.ColName = ds.Tables[0].Rows[0]["collegeName"].ToString();
+                }
+                if (college != null)
+                {
+                    teacher.college = college;
+                }
+            }
+            else
+            {
+            }
+            return teacher;
+        }
+
+        /// <summary>
         /// 根据TableBuilder实体返回DataSet数据
         /// </summary>
         /// <param name="tablebuilder"></param>
@@ -370,9 +431,9 @@ namespace PMS.BLL
         /// <param name="teaAccount">账号</param>
         /// <param name="pwd">密码</param>
         /// <returns></returns>
-        public DataSet getByColl(int collegeId)
+        public DataSet getByColl(int collegeId, string teaAccount)
         {
-            return dao.getByColl(collegeId);
+            return dao.getByColl(collegeId, teaAccount);
         }
     }
 }

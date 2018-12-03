@@ -72,3 +72,4 @@ G:\毕业选题系统\PMS\PMS.Dao\bin\Debug\PMS.Model.pdb
 G:\毕业选题系统\PMS\PMS.Dao\obj\Debug\PMS.Dao.csprojResolveAssemblyReference.cache
 G:\毕业选题系统\PMS\PMS.Dao\obj\Debug\PMS.Dao.dll
 G:\毕业选题系统\PMS\PMS.Dao\obj\Debug\PMS.Dao.pdb
+F:\c#\repos\pms\PMS.Dao\bin\Debug\log4net.dll

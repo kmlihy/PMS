@@ -53,9 +53,9 @@ namespace PMS.Web
                 string member = defenceGroup.member;
                 string recorder = defenceGroup.recorder;
 
-                Teacher leaderId = teacherBll.GetModel(leader);
-                Teacher memberId = teacherBll.GetModel(member);
-                Teacher recorderId = teacherBll.GetModel(recorder);
+                Teacher leaderId = teacherBll.getModel(leader);
+                Teacher memberId = teacherBll.getModel(member);
+                Teacher recorderId = teacherBll.getModel(recorder);
 
                 //取到姓名
                 leaderName = leaderId.TeaName;
