@@ -74,20 +74,20 @@
                     </div>
                 </div>
                 <!-- 数据展示区-->
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" style="font-size:14px">
                     <thead>
-                        <th class="text-center">
+                        <th class="text-center" style="width:40px">
                             <input type="checkbox" class="js-checkbox-all" />
                         </th>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">批次名称</th>
-                        <th class="text-center">开始时间</th>
-                        <th class="text-center">结束时间</th>
-                        <th class="text-center">激活状态</th>
-                        <th class="text-center">所属学院</th>
+                        <th class="text-center"><b>序号</b></th>
+                        <th class="text-center"><b>批次名称</b></th>
+                        <th class="text-center"><b>开始时间</b></th>
+                        <th class="text-center"><b>结束时间</b></th>
+                        <th class="text-center"><b>激活状态</b></th>
+                        <th class="text-center"><b>所属学院</b></th>
                         <%if (state != 0)
                           { %>
-                        <th class="text-center">操作</th>
+                        <th class="text-center"><b>操作</b></th>
                         <%} %>
                     </thead>
                     <tbody>
