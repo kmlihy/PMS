@@ -21,7 +21,7 @@ namespace PMS.Web
         ScoreBll sbll = new ScoreBll();
         PathBll pathBll = new PathBll();
         string stuAccount;
-        public int planId, titleRecordId,checkState,midState;
+        public int planId, titleRecordId,checkState,midState,paperState;
         Teacher teacher = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,15 +40,17 @@ namespace PMS.Web
                     titleRecordId = Convert.ToInt32(Session["titleRecordId"].ToString());
                 }
             }
-            DataSet ds = pathBll.getCheckReport(titleRecordId);
-            if (ds == null || ds.Tables[0].Rows.Count <= 0)
+            //获取查重报告状态
+            Path path = pathBll.getState(titleRecordId,1);
+            if (path == null)
             {
                 checkState = 0;
             }
             else
             {
-                checkState = Convert.ToInt32(ds.Tables[0].Rows[0]["state"]);
+                checkState = path.state;
             }
+            //获取中期质量报告状态
             MedtermQualityBll qualityBll = new MedtermQualityBll();
             MedtermQuality medterm = qualityBll.getState(titleRecordId);
             if (medterm == null)
@@ -58,6 +60,16 @@ namespace PMS.Web
             else
             {
                 midState = medterm.state;
+            }
+            //获取论文完成状态
+            Path pathPaper = pathBll.getState(titleRecordId, 0);
+            if (pathPaper == null)
+            {
+                paperState = 0;
+            }
+            else
+            {
+                paperState = pathPaper.state;
             }
             getData = titlebll.GetByAccount(stuAccount);
             int i = getData.Tables[0].Rows.Count - 1;

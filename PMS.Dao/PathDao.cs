@@ -102,7 +102,14 @@ namespace PMS.Dao
             SqlDataReader reader = db.ExecuteReader(sql, param, values);
             while (reader.Read())
             {
-                path.state = reader.GetInt32(0);
+                if (reader.GetInt32(0) == 0)
+                {
+                    path = null;
+                }
+                else
+                {
+                    path.state = reader.GetInt32(0);
+                }
             }
             reader.Close();
             return path;
