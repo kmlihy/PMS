@@ -32,11 +32,29 @@
                         <td class="col-sm-1"><%=getData.Tables[0].Rows[0]["proName"].ToString() %></td>
                         <td class="col-md-1">成绩</td>
                         <td class="col-sm-1">
-                            <input type="text" maxlength="3" id="defensescore" oninput="value = value.replace(/[^\d]/g, '')" style="outline:none;border:none;width:100%;" />
+                            <input type="text" maxlength="3" id="defensescore" oninput="value = value.replace(/[^\d]/g, '')" style="outline: none; border: none; width: 100%;" />
                             <button onclick="rescore()" id="scoretips" style="width: 100%; height: 100%; background-color: white; border: none;">
                             </button>
-                           <%-- <input type="number" id="score" min="0" max="100" />--%></td>
+                            <%-- <input type="number" id="score" min="0" max="100" />--%></td>
                     </tr>
+                    <%if (midState != 3)
+                        { %>
+                    <tr class="table_head">
+                        <td colspan="10">
+                            <h3>中期质量未提交或未通过</h3>
+                        </td>
+                    </tr>
+                    <%}
+                        else if (checkState != 3)
+                        { %>
+                    <tr class="table_head">
+                        <td colspan="10">
+                            <h3>查重质量未提交或未通过</h3>
+                        </td>
+                    </tr>
+                    <%}
+                        else
+                        { %>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
                         <td colspan="9">评价</td>
@@ -86,13 +104,16 @@
                             <label class="lableTime" contenteditable="true">指导教师签字：&nbsp &nbsp</label>
                         </td>
                     </tr>
+                    <%} %>
                 </tbody>
             </table>
         </div>
+        <%if (midState == 3 && checkState == 3)
+            {%>
         <div class="container text-center panel-footer panleFooter">
             <button class="btn btn-info agreebtn" type="button" id="btnReviewSubmit" data-toggle="modal" data-target="#myModa2">提交</button>
-
         </div>
+        <%} %>
         <%-- 同意通过指定交叉指导教师--%>
         <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
@@ -108,7 +129,7 @@
                                 {
                                     for (int i = 0; i < dsTitle.Tables[0].Rows.Count; i++)
                                     { %>
-                                        <option value="<%=dsTitle.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=dsTitle.Tables[0].Rows[i]["teaName"].ToString()%></option>
+                            <option value="<%=dsTitle.Tables[0].Rows[i]["teaAccount"].ToString()%>"><%=dsTitle.Tables[0].Rows[i]["teaName"].ToString()%></option>
                             <%}
                                 } %>
                         </select>

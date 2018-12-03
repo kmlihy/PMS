@@ -107,11 +107,10 @@ namespace PMS.BLL
         /// 查重报告进度
         /// </summary>
         /// <param name="titleRecordId"></param>
-        /// <param name="stuAccount"></param>
         /// <returns></returns>
-        public DataSet getCheckReport(int titleRecordId, string stuAccount)
+        public DataSet getCheckReport(int titleRecordId)
         {
-            return pdao.checkReport(titleRecordId, stuAccount);
+            return pdao.checkReport(titleRecordId);
         }
 
         /// <summary>

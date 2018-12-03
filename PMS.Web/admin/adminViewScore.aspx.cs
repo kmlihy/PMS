@@ -205,42 +205,45 @@ namespace PMS.Web.admin
         public void getdata(string strWhere,int order)
         {
             Score scoreRatio = scoreBll.getRatio();
-            double guide=scoreRatio.guideRatio, cross= scoreRatio.crossRatio, defen= scoreRatio.defenceRatio;
-            string currentPage = Request.QueryString["currentPage"];
-            if (currentPage == null || currentPage.Length <= 0)
+            if (scoreRatio != null)
             {
-                currentPage = "1";
-            }
-            string where;
-            if (state == 2)
-            {
-                if (strWhere == "" || strWhere == null)
+                double guide = scoreRatio.guideRatio, cross = scoreRatio.crossRatio, defen = scoreRatio.defenceRatio;
+                string currentPage = Request.QueryString["currentPage"];
+                if (currentPage == null || currentPage.Length <= 0)
                 {
-                    where = "collegeId =" + teacher.college.ColID;
+                    currentPage = "1";
+                }
+                string where;
+                if (state == 2)
+                {
+                    if (strWhere == "" || strWhere == null)
+                    {
+                        where = "collegeId =" + teacher.college.ColID;
+                    }
+                    else
+                    {
+                        where = "collegeId =" + teacher.college.ColID + " and " + strWhere;
+                    }
                 }
                 else
                 {
-                    where = "collegeId =" + teacher.college.ColID + " and " + strWhere;
+                    where = "teaAccount = " + teacher.TeaAccount;
                 }
+                //获取数据
+                TableBuilder tbd = new TableBuilder()
+                {
+                    StrTable = "V_Score",
+                    StrColumn = "result",
+                    IntColType = 0,
+                    IntOrder = order,
+                    StrColumnlist = "(guideScore*" + guide + "+crossScore*" + cross + "+defenceScore*" + defen + ") as result,realName,stuAccount,title,teaName",
+                    IntPageSize = pagesize,
+                    IntPageNum = int.Parse(currentPage),
+                    StrWhere = where
+                };
+                getCurrentPage = int.Parse(currentPage);
+                ds = proBll.SelectBypage(tbd, out count);
             }
-            else
-            {
-                where = "teaAccount = " + teacher.TeaAccount;
-            }
-            //获取数据
-            TableBuilder tbd = new TableBuilder()
-            {
-                StrTable = "V_Score",
-                StrColumn = "result",
-                IntColType = 0,
-                IntOrder = order,
-                StrColumnlist = "(guideScore*"+guide+"+crossScore*"+cross+"+defenceScore*"+defen+") as result,realName,stuAccount,title,teaName",
-                IntPageSize = pagesize,
-                IntPageNum = int.Parse(currentPage),
-                StrWhere = where
-            };
-            getCurrentPage = int.Parse(currentPage);
-            ds = proBll.SelectBypage(tbd, out count);
         }
         /// <summary>
         /// 查询筛选方法
