@@ -28,7 +28,7 @@
             <h2>提交查重报告</h2>
         </div>
         <div class="panel-body" id="panelbody">
-            <h4><a href="http://www.bylwjc.com/" class="web">前往第三方网站>></a></h4>
+            <h4><a href="http://www.bylwjc.com/" target="_blank" class="web">前往第三方网站>></a></h4>
             <h3><small>请使用第三方网站完成查重报告，可使用官方提供网址，也可自行查找；</small></h3>
             <div>
                 <%if (pstate == 0 || pstate == 1)
