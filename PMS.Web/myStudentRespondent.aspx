@@ -65,7 +65,7 @@
                             <input type="text" class="form-control inputsearch" placeholder="请输入搜索条件" id="inputsearch" value="<%=secSearch %>" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
-                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span class="glyphicon glyphicon-search"></span>
                                 </button>
                             </span>
                         </div>
@@ -102,8 +102,8 @@
                                 <td class="text-center"><%=ds.Tables[0].Rows[i]["sex"].ToString() %></td>
                                 <td class="text-center">
                                     <a href="defenseRecordTeacher.aspx?stuAccount=<%=ds.Tables[0].Rows[i]["stuAccount"].ToString() %>&titleRecordId=<%=ds.Tables[0].Rows[i]["titleRecordId"].ToString() %>">
-                                    <button class="btn btn-default btn-sm btn-success btnSearch" data-toggle="modal" data-target="#myModal">
-                                        <span class="glyphicon glyphicon-search"></span>
+                                    <button class="btn btn-default btn-sm btn-info btnSearch" data-toggle="modal" data-target="#myModal">
+                                        <span class="glyphicon glyphicon-pencil"></span>
                                     </button>
                                         </a>
                                 </td>

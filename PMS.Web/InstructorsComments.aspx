@@ -52,8 +52,21 @@
                             <h3>查重质量未提交或未通过</h3>
                         </td>
                     </tr>
-                    <%}
-                        else
+                    <%}else if (paperState == 0 || paperState == 1)
+                        { %>
+                    <tr class="table_head">
+                        <td colspan="10">
+                            <h3>学生未提交论文</h3>
+                        </td>
+                    </tr>
+                    <%}else if (paperState == 3)
+                        { %>
+                    <tr class="table_head">
+                        <td colspan="10">
+                            <h3>已给定学生成绩</h3>
+                        </td>
+                    </tr>
+                    <%}else
                         { %>
                     <tr class="table_head">
                         <td class="col-sm-1">项目</td>
@@ -108,7 +121,7 @@
                 </tbody>
             </table>
         </div>
-        <%if (midState == 3 && checkState == 3)
+        <%if (midState == 3 && checkState == 3 && paperState == 2)
             {%>
         <div class="container text-center panel-footer panleFooter">
             <button class="btn btn-info agreebtn" type="button" id="btnReviewSubmit" data-toggle="modal" data-target="#myModa2">提交</button>
