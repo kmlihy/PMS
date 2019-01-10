@@ -203,10 +203,22 @@ namespace PMS.Web.admin
         public void getdata(string strWhere)
         {
             Score scoreRatio = scoreBll.getRatio();
-            double guide = scoreRatio.guideRatio, 
-                cross = scoreRatio.crossRatio, 
-                defen = scoreRatio.defenceRatio,
+            double guide,cross,defen,excellent;
+            if (scoreRatio==null)
+            {
+                guide = 0;
+                cross = 0;
+                defen = 0;
+                excellent = 0;
+            }
+            else
+            {
+                guide = scoreRatio.guideRatio;
+                cross = scoreRatio.crossRatio;
+                defen = scoreRatio.defenceRatio;
                 excellent = scoreRatio.excellent;
+            }
+            
             string currentPage = Request.QueryString["currentPage"];
             if (currentPage == null || currentPage.Length <= 0)
             {
