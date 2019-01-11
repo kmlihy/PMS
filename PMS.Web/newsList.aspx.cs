@@ -55,7 +55,7 @@ namespace PMS.Web
             tableBuilder.IntColType = 2;
             tableBuilder.IntOrder = 1;
             tableBuilder.StrColumnlist = "*";
-            tableBuilder.IntPageSize = 5;
+            tableBuilder.IntPageSize = 10;
             tableBuilder.IntPageNum = 1;
             tableBuilder.StrWhere = "teaType = 0";
             dsSadmin = bll.SelectBypage(tableBuilder, out intPageCount);
@@ -72,7 +72,7 @@ namespace PMS.Web
             tableBuilder1.IntColType = 2;
             tableBuilder1.IntOrder = 1;
             tableBuilder1.StrColumnlist = "*";
-            tableBuilder1.IntPageSize = 5;
+            tableBuilder1.IntPageSize = 10;
             tableBuilder1.IntPageNum = 1;
             tableBuilder1.StrWhere = "teaType = 2 and collegeId=" + colId;
             dsAdmin = bll.SelectBypage(tableBuilder1, out intPageCount);
@@ -89,7 +89,7 @@ namespace PMS.Web
             tableBuilder2.IntColType = 2;
             tableBuilder2.IntOrder = 1;
             tableBuilder2.StrColumnlist = "*";
-            tableBuilder2.IntPageSize = 5;
+            tableBuilder2.IntPageSize = 10;
             tableBuilder2.IntPageNum = 1;
             tableBuilder2.StrWhere = "teaType = 1 and teaAccount='" + teaId + "'";
             dsTea = bll.SelectBypage(tableBuilder2, out intPageCount);

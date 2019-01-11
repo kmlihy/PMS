@@ -22,7 +22,7 @@ namespace PMS.Web.admin
         protected PlanBll plbll = new PlanBll();
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 5;
+        protected int pagesize = 20;
         protected String search = "";
         protected String searchdrop = "";
         protected string showstr = null;

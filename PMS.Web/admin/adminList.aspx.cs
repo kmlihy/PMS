@@ -22,7 +22,7 @@ namespace PMS.Web.admin
         //获取数据
         protected DataSet ds = null, dsColl = null;
         protected int count;
-        protected int pagesize = 5;
+        protected int pagesize = 10;
         //分页
         protected int getCurrentPage = 1;
         //查询

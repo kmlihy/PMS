@@ -18,6 +18,12 @@ namespace PMS.Web
         }
         override protected void OnInit(EventArgs e)
         {
+            //会话超时
+            if (base.Session["state"] == null || base.Session["state"].ToString().Equals(""))
+            {
+                Response.Redirect("~/error.aspx");
+            }
+
             Hashtable hOnline = (Hashtable)Application["Online"];
             if (hOnline != null)
             {
@@ -43,6 +49,7 @@ namespace PMS.Web
                     }
                 }
             }
+            base.OnInit(e);
         }
         protected void Page_Load(object sender, EventArgs e)
 		{

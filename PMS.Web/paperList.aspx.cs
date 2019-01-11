@@ -23,7 +23,7 @@ namespace PMS.Web
         //总页
         protected int count;
         //每页的行数
-        protected int pagesize = 5;
+        protected int pagesize = 20;
         PublicProcedureBll pbll = new PublicProcedureBll();
         StudentBll stuBll = new StudentBll();
         Student stu = new Student();

@@ -23,7 +23,7 @@ namespace PMS.Web.admin
         protected DataSet ds = null, dsColl = null;
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 5;
+        protected int pagesize = 10;
         protected String search = "";
         protected String strSearch = "";
         Teacher user;

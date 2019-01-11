@@ -202,7 +202,7 @@
                         <tbody class="tablebody">
                             <tr>
                                 <td class="teaLable">
-                                    <label class="text-span">序号:</label></td>
+                                    <label class="text-span">选题编号:</label></td>
                                 <td>
                                     <p id="RecordId" class="text-span"></p>
                                 </td>

@@ -17,7 +17,7 @@ namespace PMS.Web
         public DataSet getPlan,getLeader,getMember,getRecord,getColl,dsPlan,ds;
         public int state;
         public string op, leader, member, record,_planId, planId, collegeid;
-        public int getCurrentPage = 1, pagesize = 5, count, collegeId;
+        public int getCurrentPage = 1, pagesize = 20, count, collegeId;
         protected string search = "", showmsg = "", searchPlan = "", showPlan = "", searchColl = "", showColl = "", searchCollAndPlan = "";
         protected string userType = "";
         PlanBll planBll = new PlanBll();

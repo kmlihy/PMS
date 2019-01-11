@@ -23,7 +23,7 @@ namespace PMS.Web.admin
 
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 5;
+        protected int pagesize = 20;
         protected String search = "";
         protected String dropstrWhereplan = "";
         protected String dropstrWherepro = "";

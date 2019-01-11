@@ -14,7 +14,7 @@ namespace PMS.Web.admin
     public partial class adminViewScore : CommonPage
     {
         public DataSet dsPlan, dsPro, ds;
-        protected int count,pagesize = 5,getCurrentPage = 1,state;
+        protected int count,pagesize = 20,getCurrentPage = 1,state;
         protected string search = "",strSearch = "", strWhere="";
         protected string proId="",planId="", order= "";
         Teacher teacher = new Teacher();

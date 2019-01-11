@@ -14,7 +14,7 @@ namespace PMS.Web
     {
         public DataSet dsPro, dsPlan, ds;
         public string teaAccount, dropstrWhereplan, dropstrWherepro, searchdrop, search, currentPage, secSearch;
-        public int getCurrentPage = 1, pagesize = 5, count, collegeId;
+        public int getCurrentPage = 1, pagesize = 20, count, collegeId;
         protected void Page_Load(object sender, EventArgs e)
         {
             TitleRecordBll trbll = new TitleRecordBll();

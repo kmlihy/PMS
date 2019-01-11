@@ -30,7 +30,7 @@ namespace PMS.Web.admin
         //总页
         protected int count;
         //每页的行数
-        protected int pagesize = 5;
+        protected int pagesize = 10;
         //查询条件
         public String search = "";
         public  string userType = "";

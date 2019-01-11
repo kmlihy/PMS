@@ -41,7 +41,7 @@ $("#btnSubmit").click(function () {
                 });
             }
             else {
-                window.wxc.xcConfirm("登录失败", window.wxc.xcConfirm.typeEnum.success, {
+                window.wxc.xcConfirm("登录失败,请重试", window.wxc.xcConfirm.typeEnum.error, {
                     onOk: function (v) {
                         window.location.href = "login.aspx";
                     }
@@ -70,7 +70,7 @@ $("#btnlogin").click(function () {
             if (succ === "登录成功") {
                 window.location.href = "/admin/main.aspx";
             } else {
-                window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                window.wxc.xcConfirm("登录失败,请重试", window.wxc.xcConfirm.typeEnum.error, {
                     onOk: function (v) {
                         window.location.href = "/admin/login.aspx";
                     }

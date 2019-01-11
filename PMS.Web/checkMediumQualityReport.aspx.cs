@@ -15,7 +15,7 @@ namespace PMS.Web
         protected DataSet ds = null;
         protected Teacher teacher = null;
         protected string teaName = null,teaAccount = null,teaNnum = null, secSearch, search;
-        protected int count,pagesize = 5;
+        protected int count,pagesize = 20;
         protected int getCurrentPage = 1;
         TeacherBll teaBll = new TeacherBll();
         TitleBll titleBll = new TitleBll();

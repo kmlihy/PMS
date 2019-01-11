@@ -15,7 +15,7 @@ namespace PMS.Web.admin
         protected DataSet ds = null, dsPro = null, dsPlan = null, dsColl = null;//储存标题表、专业、批次、分院信息
         protected int getCurrentPage = 1;
         protected int count;
-        protected int pagesize = 5;
+        protected int pagesize = 20;
         protected String search = "";
         protected String dropstrWhereplan = "";
         protected String dropstrWherepro = "", dropstrWhereColl="";

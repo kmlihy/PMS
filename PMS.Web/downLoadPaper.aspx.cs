@@ -17,7 +17,7 @@ namespace PMS.Web
         public DataSet ds;
         public Path path, paperPath;
         public string teaAccount, searchdrop, search, currentPage, secSearch,op,download;
-        public int getCurrentPage = 1, pagesize=5, count, collegeId;
+        public int getCurrentPage = 1, pagesize=20, count, collegeId;
         Teacher tea = new Teacher();
         protected void Page_Load(object sender, EventArgs e)
         {

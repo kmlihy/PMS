@@ -19,7 +19,7 @@ namespace PMS.Web
         protected DataSet plads = null;//储存批次信息
         protected DataSet colds = null;//储存分院信息
 
-        protected int getCurrentPage = 1,count,pagesize = 5,state;
+        protected int getCurrentPage = 1,count,pagesize = 20,state;
         protected String search = "";
         protected String dropstrWhereplan = "";
         protected String dropstrWherepro = "";

@@ -90,6 +90,7 @@
     <Content Include="distributionReplyStudent.aspx" />
     <Content Include="distributionReplyTeam.aspx" />
     <Content Include="downLoadPaper.aspx" />
+    <Content Include="error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\404_bg.png" />
     <Content Include="admin\addNews.aspx" />
@@ -596,6 +597,13 @@
     </Compile>
     <Compile Include="downLoadPaper.aspx.designer.cs">
       <DependentUpon>downLoadPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
