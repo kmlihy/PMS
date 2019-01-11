@@ -253,7 +253,6 @@ $(document).ready(function () {
         }
     });
     $('.ordinaryUser').keypress(function (e) {
-
         if (event.keyCode == "13") {
             var msg = stuMsg();
             if (msg == null || msg == "") {
@@ -262,7 +261,6 @@ $(document).ready(function () {
         }
     });
     $('.ordinaryUserPwd').keypress(function (e) {
-
         if (event.keyCode == "13") {
             var msg = stuMsg();
             if (msg == null || msg == "") {
@@ -287,4 +285,40 @@ $(document).ready(function () {
             }
         }
     });
+
+    //多浏览器捕捉回车事件代码 
+    $(document).keydown(function (event) {
+        if (event.keyCode == 13) {
+            $('.adminPwd').each(function () {
+                var msg = adminMsg();
+                if (msg == null || msg == "") {
+                    $("#btnlogin").click();
+                }
+            });
+            $('.adminUser').each(function () {
+                var msg = adminMsg();
+                if (msg == null || msg == "") {
+                    $("#btnlogin").click();
+                }
+            });
+            $('.ordinaryUserPwd').each(function () {
+                var msg = stuMsg();
+                if (msg == null || msg == "") {
+                    $("#btnSubmit").click();
+                }
+            });
+            $('.ordinaryUser').each(function () {
+                var msg = stuMsg();
+                if (msg == null || msg == "") {
+                    $("#btnSubmit").click();
+                }
+            });
+            $('.captcha').each(function () {
+                var msg = stuMsg();
+                if (msg == null || msg == "") {
+                    $("#btnSubmit").click();
+                }
+            });
+        }
+    }); 
 })
