@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/zgz.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/xcConfirm.css" />
 </head>
 
 <body>
@@ -526,6 +527,7 @@
     </div>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/xcConfirm.js"></script>
     <script src="../js/main.js"></script>
 </body>
 

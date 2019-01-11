@@ -61,13 +61,18 @@ $("#dropdownMenu1").click(function () {
 });
 function logout() {
     //alert("退出登录");
-    $.ajax({
-        type: 'get',
-        url: 'main.aspx?op=logout',
-        datatype: 'text',
-        data: {},
-        success: function (data) {
-            window.location.href = "../login.aspx";
+    window.wxc.xcConfirm("确定退出吗？", window.wxc.xcConfirm.typeEnum.confirm, {
+        onOk: function (v) {
+            $.ajax({
+                type: 'get',
+                url: 'main.aspx?op=logout',
+                datatype: 'text',
+                data: {},
+                success: function (data) {
+                    window.location.href = "../login.aspx";
+                }
+            });
         }
     });
 }
+
