@@ -18,10 +18,20 @@ namespace PMS.Web.admin
         protected void Page_Load(object sender, EventArgs e)
         {
             Score scoreRatio = scoreBll.getRatio();
-            sguide = scoreRatio.guideRatio;
-            scross = scoreRatio.crossRatio;
-            sdedence = scoreRatio.defenceRatio;
-            sexcellent = scoreRatio.excellent;
+            if (scoreRatio==null)
+            {
+                sguide = 0;
+                scross = 0;
+                sdedence = 0;
+                sexcellent = 0;
+            }
+            else
+            {
+                sguide = scoreRatio.guideRatio;
+                scross = scoreRatio.crossRatio;
+                sdedence = scoreRatio.defenceRatio;
+                sexcellent = scoreRatio.excellent;
+            }
 
             string op = Request["op"];
             if(op == "submit")
