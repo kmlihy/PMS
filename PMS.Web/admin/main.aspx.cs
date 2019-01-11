@@ -57,7 +57,9 @@ namespace PMS.Web.admin
                     //设置Cookie的值为空
                     Response.Cookies[FormsAuthentication.FormsCookieName].Value = null;
                     //设置Cookie的过期时间为上个月今天
-                    Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddMonths(-1);                   
+                    Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddMonths(-1);
+                    //清除当前会话
+                    Session.Abandon();
                 }
             }
             catch {
