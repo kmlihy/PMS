@@ -16,11 +16,13 @@
                     <div id="da-error-pin"></div>
                     <div id="da-error-code">
                         error <span>WTF</span> </div>
-                    <h1 class="da-error-heading">会话超时，请重新<a href="login.aspx">登录</a></h1>
+                    <h1 class="da-error-heading" id="logout">会话超时，请<a href="#">重新登录</a></h1>
                 </div>
             </div>
         </div>
     </div>
 
 </body>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/error.js"></script>
 </html>

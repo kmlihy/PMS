@@ -170,6 +170,7 @@
     <Content Include="js\defenseRecordTeacher.js" />
     <Content Include="js\distributionReplyStudent.js" />
     <Content Include="js\distributionReplyTeam.js" />
+    <Content Include="js\error.js" />
     <Content Include="js\excellentList.js" />
     <Content Include="js\instructorsComments.js" />
     <Content Include="js\jsencrypt.min.js" />

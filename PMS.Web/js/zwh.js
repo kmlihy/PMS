@@ -43,7 +43,8 @@ $("#btnSubmit").click(function () {
             else {
                 window.wxc.xcConfirm("登录失败,请重试", window.wxc.xcConfirm.typeEnum.error, {
                     onOk: function (v) {
-                        window.location.href = "login.aspx";
+                        //window.location.href = "login.aspx";
+                        refreshCode();
                     }
                 });
             }
@@ -72,7 +73,7 @@ $("#btnlogin").click(function () {
             } else {
                 window.wxc.xcConfirm("登录失败,请重试", window.wxc.xcConfirm.typeEnum.error, {
                     onOk: function (v) {
-                        window.location.href = "/admin/login.aspx";
+                        //window.location.href = "/admin/login.aspx";
                     }
                 });
             }
