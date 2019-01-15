@@ -122,7 +122,7 @@ $(document).ready(function () {
         var name = $("#editColl").val();
         var id = sessionStorage.getItem("collegeId");
         if (name === "") {
-            alert("请输入分院名称");
+            window.wxc.xcConfirm("请输入分院名称", window.wxc.xcConfirm.typeEnum.error);
         } else {
             $.ajax({
                 type: 'Post',

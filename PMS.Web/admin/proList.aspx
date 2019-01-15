@@ -26,7 +26,7 @@
                 <div class="panel panel-default" id="propanelbox">
                     <div class="pane input-group" id="panel-head">
                         <div class="input-group" id="inputgroups">
-                            <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>"/>
+                            <input type="text" class="form-control" placeholder="请输入查询条件" id="inputsearch" value="<%=showmsg %>" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" id="btn-search">
                                     <span class="glyphicon glyphicon-search">查询</span>
@@ -120,7 +120,7 @@
                     <a href="#" class="jump" id="last">尾页</a>
                 </li>
             </ul>
-    </div>
+        </div>
         <!-- 批量导入弹框 -->
         <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
@@ -132,14 +132,14 @@
                         <h4 class="modal-title" id="addsModalLabel">批量导入专业信息
                         </h4>
                     </div>
-                    <form id="form2" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <%--<form id="form2" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">--%>
                         <div class="modal-body">
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td class="text-center">
                                             <div>
-                                                <a href="javascript:;" class="file">列表导入
+                                                <a href="javascript:;" class="file">选择文件
                                                 <input type="file" name="upload" id="upload" />
                                                     <label class="showFileName"></label>
                                                     <label class="fileerrorTip"></label>
@@ -152,14 +152,26 @@
                                             <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="text-center">
+                                            请选择院系：
+                                            <select class="selectpicker changeSearch" data-width="auto">
+                                                <option value="">-请选择院系-</option>
+                                                <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                                    {%>
+                                                <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                                <%} %>
+                                            </select>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                            <button type="button" class="btn btn-success" id="btnupload">导入</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
-                    </form>
+                    <%--</form>--%>
                 </div>
             </div>
         </div>
@@ -179,7 +191,7 @@
                                 <tbody>
                                     <%if (userType == "0")
                                         { %>
-                                     <tr>
+                                    <tr>
                                         <td class="teaLable text-center">
                                             <label class="text-span">所属院系:</label></td>
                                         <td>
@@ -260,6 +272,22 @@
                 </div>
             </div>
         </div>
+        <%-- 导入模态框 --%>
+        <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog" style="width: 310px; height: 150px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="">导入过程中请勿关闭页面或者断网
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <img src="../images/load.gif" style="width: 200px; height: 150px; margin-left: 20px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
@@ -271,4 +299,5 @@
 <script src="../js/lgd.js"></script>
 <script src="../js/proList.js"></script>
 <script src="../js/xcConfirm.js"></script>
+<script src="../js/ajaxfileupload.js"></script>
 </html>
