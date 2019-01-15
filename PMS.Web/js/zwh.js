@@ -244,47 +244,47 @@ function ok(userType) {
 
 $(document).ready(function () {
     //教师/学生登录回车
-    $('#captcha').keypress(function (e) {
-        if (event.keyCode == "13") {
-            var msg = stuMsg();
-            if (msg == null || msg == "") {
-                $("#btnSubmit").click();
-            }
-        }
-    });
-    $('.ordinaryUser').keypress(function (e) {
-        if (event.keyCode == "13") {
-            var msg = stuMsg();
-            if (msg == null || msg == "") {
-                $("#btnSubmit").click();
-            }
-        }
-    });
-    $('.ordinaryUserPwd').keypress(function (e) {
-        if (event.keyCode == "13") {
-            var msg = stuMsg();
-            if (msg == null || msg == "") {
-                $("#btnSubmit").click();
-            }
-        }
-    });
-    //管理员登录回车
-    $('.adminUser').keypress(function (e) {
-        if (event.keyCode == "13") {
-            var msg = adminMsg();
-            if (msg == null || msg == "") {
-                $("#btnlogin").click();
-            }
-        }
-    });
-    $('.adminPwd').keypress(function (e) {
-        if (event.keyCode == "13") {
-            var msg = adminMsg();
-            if (msg == null || msg == "") {
-                $("#btnlogin").click();
-            }
-        }
-    });
+    //$('#captcha').keypress(function (e) {
+    //    if (event.keyCode == "13") {
+    //        var msg = stuMsg();
+    //        if (msg == null || msg == "") {
+    //            $("#btnSubmit").click();
+    //        }
+    //    }
+    //});
+    //$('.ordinaryUser').keypress(function (e) {
+    //    if (event.keyCode == "13") {
+    //        var msg = stuMsg();
+    //        if (msg == null || msg == "") {
+    //            $("#btnSubmit").click();
+    //        }
+    //    }
+    //});
+    //$('.ordinaryUserPwd').keypress(function (e) {
+    //    if (event.keyCode == "13") {
+    //        var msg = stuMsg();
+    //        if (msg == null || msg == "") {
+    //            $("#btnSubmit").click();
+    //        }
+    //    }
+    //});
+    ////管理员登录回车
+    //$('.adminUser').keypress(function (e) {
+    //    if (event.keyCode == "13") {
+    //        var msg = adminMsg();
+    //        if (msg == null || msg == "") {
+    //            $("#btnlogin").click();
+    //        }
+    //    }
+    //});
+    //$('.adminPwd').keypress(function (e) {
+    //    if (event.keyCode == "13") {
+    //        var msg = adminMsg();
+    //        if (msg == null || msg == "") {
+    //            $("#btnlogin").click();
+    //        }
+    //    }
+    //});
 
     //多浏览器捕捉回车事件代码 
     $(document).keydown(function (event) {

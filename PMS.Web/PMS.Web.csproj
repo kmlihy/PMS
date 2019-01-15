@@ -73,6 +73,7 @@
     <Content Include="admin\highQualityPaperList.aspx" />
     <Content Include="admin\openAchievement.aspx" />
     <Content Include="admin\scoreRatio.aspx" />
+    <Content Include="admin\upload.aspx" />
     <Content Include="bin\LitJSON.dll" />
     <Content Include="bin\log4net.dll" />
     <Content Include="checkMediumQualityReport.aspx" />
@@ -514,6 +515,13 @@
     </Compile>
     <Compile Include="admin\titleReadList.aspx.designer.cs">
       <DependentUpon>titleReadList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
     </Compile>
     <Compile Include="allNews.aspx.cs">
       <DependentUpon>allNews.aspx</DependentUpon>

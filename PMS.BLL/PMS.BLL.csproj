@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,6 +45,7 @@
     <Compile Include="DefenceBll.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GuideRecordBll.cs" />
+    <Compile Include="ImportHelper.cs" />
     <Compile Include="MedtermQualityBll.cs" />
     <Compile Include="NewsBll.cs" />
     <Compile Include="OpenReportBll.cs" />

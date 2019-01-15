@@ -171,7 +171,7 @@
                         <h4 class="modal-title" id="addsModalLabel">批量导入学院信息
                         </h4>
                     </div>
-                    <form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
+                    <%--<form id="form1" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">--%>
                         <div class="modal-body">
                             <table class="table">
                                 <tbody>
@@ -188,7 +188,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-center" id="download">
-                                            <a href="../upload/信息模板下载/学院信息表.xls" download="学院信息表.xls">
+                                            <a href="../upload/信息模板下载/学院信息表.xls">
                                                 <button type="button" class="btn btn-primary">下载模板</button></a>
                                         </td>
                                     </tr>
@@ -196,10 +196,10 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" id="btnupload">上传</button>
+                            <button type="button" class="btn btn-success" id="btnupload">导入</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div>
-                    </form>
+                    <%--</form>--%>
                 </div>
             </div>
         </div>
@@ -231,6 +231,22 @@
                 </div>
             </div>
         </div>
+        <%-- 导入模态框 --%>
+        <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog" style="width: 310px; height: 150px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="">导入过程中请勿关闭页面或者断网
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <img src="../images/load.gif"  style="width: 200px; height: 150px;margin-left:20px"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
@@ -242,4 +258,5 @@
 <script src="../js/branchList.js"></script>
 <script src="../js/xcConfirm.js"></script>
 <script src="../js/bootstrap-select.js"></script>
+<script src="../js/ajaxfileupload.js"></script>
 </html>

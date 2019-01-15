@@ -83,3 +83,6 @@ G:\毕业选题系统\PMS\PMS.BLL\obj\Debug\PMS.BLL.csprojResolveAssemblyReferen
 G:\毕业选题系统\PMS\PMS.BLL\obj\Debug\PMS.BLL.dll
 G:\毕业选题系统\PMS\PMS.BLL\obj\Debug\PMS.BLL.pdb
 F:\c#\repos\pms\PMS.BLL\bin\Debug\log4net.dll
+F:\c#\repos\pms\PMS.BLL\bin\Debug\EPPlus.dll
+F:\c#\repos\pms\PMS.BLL\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\c#\repos\pms\PMS.BLL\bin\Debug\EPPlus.xml

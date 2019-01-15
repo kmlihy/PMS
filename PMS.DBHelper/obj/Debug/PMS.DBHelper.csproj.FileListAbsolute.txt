@@ -29,3 +29,6 @@ G:\毕业选题系统\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojResolveAssem
 G:\毕业选题系统\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.dll
 G:\毕业选题系统\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.pdb
 E:\PMS\PMS.DBHelper\obj\Debug\PMS.DBHelper.csprojResolveAssemblyReference.cache
+F:\c#\repos\pms\PMS.DBHelper\bin\Debug\EPPlus.dll
+F:\c#\repos\pms\PMS.DBHelper\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\c#\repos\pms\PMS.DBHelper\bin\Debug\EPPlus.xml

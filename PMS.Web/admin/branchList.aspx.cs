@@ -3,6 +3,7 @@ using PMS.DBHelper;
 using PMS.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -52,11 +53,29 @@ namespace PMS.Web.admin
                 getdata(Search());
             }
             //批量上传
-            else if (op == "upload")
+            //else if (op == "upload")
+            //{
+            //    upload();
+            //    Search();
+            //    getdata(Search());
+            //}
+            else if (op=="import")
             {
-                upload();
-                Search();
-                getdata(Search());
+                string path = Security.Decrypt(Request["fileName"]);
+                DataTable dt = TableHelper.GetDistinctSelf(ExcelHelp.excelToDt(path, "excel"), "学院名称");
+                int i = ImportHelper.College(dt);
+                int row = ExcelHelp.excelToDt(path, "excel").Rows.Count;
+                int repeat = row - i;
+                if (i > 0)
+                {
+                    Response.Write("导入成功，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("导入失败，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
             }
             //删除学院
             else if (op == "dele")

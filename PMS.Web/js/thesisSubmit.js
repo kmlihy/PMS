@@ -74,6 +74,7 @@ function ajaxFileUpload() {
                         $("#myAlert").show();
                         $("#myAlert").text("论文上传成功，请等待老师评阅");
                         $('#file1').val("");
+                        $("#btnupload").remove();
                     }
                 }
             },
