@@ -155,7 +155,7 @@
                                     <tr>
                                         <td class="text-center">
                                             请选择院系：
-                                            <select class="selectpicker changeSearch" data-width="auto">
+                                            <select class="selectpicker changeSearch" data-width="auto" id="importCol">
                                                 <option value="">-请选择院系-</option>
                                                 <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                     {%>

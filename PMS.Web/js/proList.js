@@ -311,8 +311,12 @@ $(document).ready(function () {
 
     //导入
     $("#btnupload").click(function () {
+        var collegeId = $("#importCol").val();
         if (fileName == "" || fileName == null) {
             window.wxc.xcConfirm("未上传成功，请重新上传", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else if (collegeId == "" || collegeId == null) {
+            window.wxc.xcConfirm("请选择院系：", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             $("#importModal").modal("show");
@@ -321,7 +325,8 @@ $(document).ready(function () {
                 url: 'proList.aspx',
                 data: {
                     op: "import",
-                    fileName: fileName
+                    fileName: fileName,
+                    collegeId: collegeId
                 },
                 dataType: 'text',
                 success: function (succ) {
