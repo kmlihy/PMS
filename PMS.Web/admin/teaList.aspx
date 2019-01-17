@@ -61,7 +61,7 @@
                             <th class="text-center">院系</th>
                             <th class="text-center">联系电话</th>
                             <th class="text-center">邮箱</th>
-                            <th class="text-center">教师类型</th>
+                            <th class="text-center">用户类型</th>
                             <th class="text-center">操作</th>
                         </thead>
                         <tbody>
