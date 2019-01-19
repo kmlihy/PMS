@@ -124,23 +124,21 @@ $(document).ready(function () {
         var collegeId = $("#addselectcol").find("option:selected").val(),
             teaType = $("#addteaType").find("option:selected").val(),
             teaAccount = $("#teaAccount").val(),
-            //pwd = $("#pwd").val(),
             teaName = $("#teaName").val(),
             sex = $("#sex").find("option:selected").text(),
             email = $("#email").val(),
             tel = $("#tel").val();
-        if (collegeId === "" || teaAccount === "" /*|| pwd == ""*/ || teaName === "" || email === "" || tel === "") {
-            alert("不能含有空项")
+        if (collegeId === "-1" || teaAccount === ""  || teaName === "" || email === "" || tel === "") {
+            window.wxc.xcConfirm("不能含有未填项", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             $.ajax({
                 type: 'Post',
                 url: 'teaList.aspx',
                 data: {
-                    //CollegeId: collegeId,
+                    CollegeId: collegeId,
                     //TeaType: teaType,
                     TeaAccount: teaAccount,
-                    //Pwd: pwd,
                     TeaName: teaName,
                     Sex: sex,
                     Email: email,
@@ -285,14 +283,13 @@ $(document).ready(function () {
         teaName = $(".chteaName").val(),
         teaEmail = $(".chemail").val(),
         teaPhone = $(".chtel").val(),
-        //pwd = $(".chpwd").val(),
         collegeId = $("#chselectcol").find("option:selected").val(),
         sex = $("#chsex").find("option:selected").text(),
         teaType = $("#chteaType").find("option:selected").val(),
         oldPhone = sessionStorage.getItem("phone"),
         oldEmail = sessionStorage.getItem("email");
-        if (teaEmail === "" || teaPhone === "" /*|| pwd == ""*/ || collegeId === "-1") {
-            alert("不能含有未填项");
+        if (teaEmail === "" || teaPhone === ""  || collegeId === "-1") {
+            window.wxc.xcConfirm("不能含有未填项", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             $.ajax({
@@ -303,7 +300,6 @@ $(document).ready(function () {
                     TeaName: teaName,
                     TeaEmail: teaEmail,
                     TeaPhone: teaPhone,
-                    //Pwd: pwd,
                     CollegeId: collegeId,
                     Sex: sex,
                     TeaType: teaType,
@@ -453,7 +449,7 @@ $(document).ready(function () {
         if (fileName == "" || fileName == null) {
             window.wxc.xcConfirm("未上传成功，请重新上传", window.wxc.xcConfirm.typeEnum.error);
         }
-        else if (collegeId == "" || collegeId==null) {
+        else if (collegeId == "-1") {
             window.wxc.xcConfirm("请选择院系", window.wxc.xcConfirm.typeEnum.error);
         }
         else {

@@ -182,18 +182,20 @@
                                         <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
                                     </td>
                                 </tr>
+                                <%if (state == 0)
+                                    { %>
                                 <tr>
-                                    <td class="text-center">
-                                        请选择院系：
+                                    <td class="text-center">请选择院系：
                                        <select class="selectpicker" data-width="auto" id="importcol">
-                                            <option value="">-请选择院系-</option>
-                                            <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
-                                                { %>
-                                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
-                                            <%} %>
-                                        </select>
+                                           <option value="-1">-请选择院系-</option>
+                                           <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                               { %>
+                                           <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                           <%} %>
+                                       </select>
                                     </td>
                                 </tr>
+                                <%} %>
                             </tbody>
                         </table>
                     </div>
@@ -219,19 +221,22 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-                                <%--                                <tr>
+                                <%if (state == 0)
+                                { %>
+                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系</label></td>
                                     <td>
                                         <select class="selectpicker" data-width="auto" id="addselectcol">
-                                            <option value="">-请选择院系-</option>
+                                            <option value="-1">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 { %>
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                             <%} %>
                                         </select>
                                     </td>
-                                </tr>--%>
+                                </tr>
+                                <%} %>
                                 <%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">教师类型</label></td>

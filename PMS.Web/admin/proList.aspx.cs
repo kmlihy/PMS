@@ -69,8 +69,16 @@ namespace PMS.Web.admin
             }
             if (op=="import")
             {
+                int collegeId;
+                if (userType == "0")
+                {
+                    collegeId = Convert.ToInt32(Context.Request["collegeId"]);
+                }
+                else
+                {
+                    collegeId = teacher.college.ColID;
+                }
                 string path = Security.Decrypt(Request["fileName"]);
-                int collegeId = Convert.ToInt32(Request["collegeId"]) ;
                 DataTable dt = TableHelper.GetDistinctSelf(ExcelHelp.excelToDt(path, "excel"), "专业名称");
                 int i = ImportHelper.Major(dt,collegeId);
                 int row = ExcelHelp.excelToDt(path, "excel").Rows.Count;

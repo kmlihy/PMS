@@ -122,7 +122,7 @@ namespace PMS.BLL
             deDuplication.Columns.Add("proName", typeof(string));
             deDuplication.Columns.Add("collegeId", typeof(int));
             ProfessionBll professionBll = new ProfessionBll();
-            DataTable dt2 = professionBll.SelectByCollegeId(collegeId).Tables[0];
+            DataTable dt2 = professionBll.selectColName().Tables[0];
             if (dt1 != null)
             {
                 DataRowCollection count = dt1.Rows;
