@@ -376,4 +376,121 @@ $(document).ready(function () {
         //提交表单，实现下载
         $eleForm.submit();
     })
+
+    //上传校验
+    $(".file").on("change", "input[type='file']", function () {
+        //var filePath = $(this).val();
+        //if (filePath.indexOf("xls") !== -1 || filePath.indexOf("xlsx") !== -1) {
+        //    $(".fileerrorTip").html("").hide();
+        //    var arr = filePath.split('\\');
+        //    var fileName = arr[arr.length - 1];
+        //    $(".showFileName").html(fileName);
+        //} else {
+        //    $(".showFileName").html("");
+        //    $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+        //    return false
+        //}
+        var location = $("input[name='upload']").val();
+        var point = location.lastIndexOf(".");
+        var type = location.substr(point).toLowerCase();
+        var uploadFiles = document.getElementById("upload").files;
+        if (uploadFiles.length == 0) {
+            $(".showFileName").html("");
+            window.wxc.xcConfirm("您未选择上传文件", window.wxc.xcConfirm.typeEnum.error);
+            //$(".fileerrorTip").html("您未上传文件").show();
+            return false
+        }
+        else if (type == ".xls" || type == ".xlsx") {
+            ajaxFileUpload();
+        }
+        else {
+            $(".showFileName").html("");
+            window.wxc.xcConfirm("只允许上传.xls或者.xlsx格式的文件", window.wxc.xcConfirm.typeEnum.error);
+            //$(".fileerrorTip").html("只允许上传.xls或者.xlsx格式的文件").show();
+            return false
+        }
+    })
+    var fileName = "";
+    //上传
+    function ajaxFileUpload() {
+        $.ajaxFileUpload(
+            {
+                url: '/admin/upload.aspx', //用于文件上传的服务器端请求地址
+                secureuri: false, //是否需要安全协议，一般设置为false
+                fileElementId: 'upload', //文件上传域的ID
+                dataType: 'json', //返回值类型 一般设置为json
+                success: function (data, status)  //服务器成功响应处理函数
+                {
+                    console.log(data.msg);
+                    if (typeof (data.error) != 'undefined') {
+                        if (data.error != '') {
+                            //error
+                            $("#upload").val("");
+                            window.wxc.xcConfirm("上传失败，请重试", window.wxc.xcConfirm.typeEnum.error);
+                            $(".showFileName").html("");
+                        } else {
+                            //succ
+                            window.wxc.xcConfirm(data.msg, window.wxc.xcConfirm.typeEnum.success);
+                            $(".showFileName").html("");
+                            fileName = data.filePath;
+                            $("#upload").val("");
+                        }
+                    }
+                },
+                error: function (data, status, e)//服务器响应失败处理函数
+                {
+                    window.wxc.xcConfirm("服务器响应失败，请重试", window.wxc.xcConfirm.typeEnum.error);
+                    $("#upload").val("");
+                }
+            }
+        );
+        return false;
+    }
+
+    //导入
+    $("#btnupload").click(function () {
+        var collegeId = $("#importcol").val();
+        if (fileName == "" || fileName == null) {
+            window.wxc.xcConfirm("未上传成功，请重新上传", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else if (collegeId == "" || collegeId==null) {
+            window.wxc.xcConfirm("请选择院系", window.wxc.xcConfirm.typeEnum.error);
+        }
+        else {
+            $("#importModal").modal("show");
+            $.ajax({
+                type: 'Post',
+                url: 'teaList.aspx',
+                data: {
+                    op: "import",
+                    fileName: fileName,
+                    collegeId: collegeId
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    if (succ.indexOf("导入成功") >= 0) {
+                        $("#importModal").modal("hide");
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                    else if ((succ.indexOf("导入失败") >= 0)) {
+                        $("#importModal").modal("hide");
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error);
+                    }
+                    else {
+                        $("#importModal").modal("hide");
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus) { //请求失败
+                    $("#importModal").modal("hide");
+                    window.wxc.xcConfirm("服务器响应失败，请重试", window.wxc.xcConfirm.typeEnum.error);
+                }
+            });
+        }
+    })
+
 });

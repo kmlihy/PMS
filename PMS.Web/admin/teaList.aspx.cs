@@ -48,10 +48,30 @@ namespace PMS.Web.admin
                 Search();
                 getdata(Search());
             }
-            if (op == "upload")
+            if (op== "import")
             {
-                upload();
+                int collegeId = Convert.ToInt32(Request["collegeId"]);
+                string path = Security.Decrypt(Request["fileName"]);
+                DataTable dt = TableHelper.GetDistinctSelf(ExcelHelp.excelToDt(path, "excel"), "工号");
+                int i = ImportHelper.Teacher(dt,collegeId);
+                int row = ExcelHelp.excelToDt(path, "excel").Rows.Count;
+                int repeat = row - i;
+                if (i > 0)
+                {
+                    LogHelper.Info(this.GetType(), tealogin.TeaAccount + "教师信息导入 -" + i + " " + "条信息");
+                    Response.Write("导入成功，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("导入失败，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
             }
+            //if (op == "upload")
+            //{
+            //    upload();
+            //}
             if (!IsPostBack)
             {
                 Search();

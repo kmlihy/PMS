@@ -32,6 +32,17 @@ namespace PMS.Dao
         }
 
         /// <summary>
+        /// 查询老师账号
+        /// </summary>
+        /// <returns></returns>
+        public DataSet SelectTeaAcount()
+        {
+            string cmdText = "select teaAccount from T_Teacher";
+            DataSet ds = db.FillDataSet(cmdText, null, null);
+            return ds;
+        }
+
+        /// <summary>
         /// 根据学院ID获取教师信息
         /// </summary>
         /// <param name="teaAccount">账号</param>

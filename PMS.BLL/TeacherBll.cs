@@ -87,6 +87,14 @@ namespace PMS.BLL
             }
             return null;
         }
+        /// <summary>
+        /// 查询教师工号
+        /// </summary>
+        /// <returns></returns>
+        public DataSet SelectTeaAcount()
+        {
+            return dao.SelectTeaAcount();
+        }
 
         /// <summary>
         /// 添加教师

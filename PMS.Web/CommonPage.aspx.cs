@@ -23,32 +23,35 @@ namespace PMS.Web
             {
                 Response.Redirect("~/error.aspx");
             }
-
-            Hashtable hOnline = (Hashtable)Application["Online"];
-            if (hOnline != null)
+            else
             {
-                IDictionaryEnumerator idE = hOnline.GetEnumerator();
-                while (idE.MoveNext())
+                Hashtable hOnline = (Hashtable)Application["Online"];
+                if (hOnline != null)
                 {
-                    if (idE.Key != null && idE.Key.ToString().Equals(Session.SessionID))
+                    IDictionaryEnumerator idE = hOnline.GetEnumerator();
+                    while (idE.MoveNext())
                     {
-                        if (idE.Value != null && "XXXXXX".Equals(idE.Value.ToString()))
+                        if (idE.Key != null && idE.Key.ToString().Equals(Session.SessionID))
                         {
-                            hOnline.Remove(Session.SessionID);
-                            Application.Lock();
-                            Application["Online"] = hOnline;
-                            Application.UnLock();
-                            string js = "<script language=javascript>alert('{0}');parent.location.href='{1}';</script>";
-                            Response.Write(string.Format(js, "帐号已在别处登录 ，你将被强迫下线（若非本人登录，请注意保护密码安全）！", "../login.aspx"));
-                            Session.Abandon();
+                            if (idE.Value != null && "XXXXXX".Equals(idE.Value.ToString()))
+                            {
+                                hOnline.Remove(Session.SessionID);
+                                Application.Lock();
+                                Application["Online"] = hOnline;
+                                Application.UnLock();
+                                string js = "<script language=javascript>alert('{0}');parent.location.href='{1}';</script>";
+                                Response.Write(string.Format(js, "帐号已在别处登录 ，你将被强迫下线（若非本人登录，请注意保护密码安全）！", "../login.aspx"));
+                                Session.Abandon();
 
-                            //Response.Write("<script>document.getElementById('iframe').src='login.aspx';</script>");
-                            return;
+                                //Response.Write("<script>document.getElementById('iframe').src='login.aspx';</script>");
+                                return;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
+            
             base.OnInit(e);
         }
         protected void Page_Load(object sender, EventArgs e)
