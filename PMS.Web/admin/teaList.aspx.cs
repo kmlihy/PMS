@@ -350,7 +350,8 @@ namespace PMS.Web.admin
                     }
                     tea.college = college;
                     tea.TeaAccount = teaAccount;
-                    tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
+                    RSACryptoService rsa = new RSACryptoService();
+                    tea.TeaPwd = rsa.Encrypt(teabll.GetModel(teaAccount).TeaPwd);
                     tea.TeaName = teaName;
                     tea.Phone = teaPhone;
                     tea.Email = teaEmal;
