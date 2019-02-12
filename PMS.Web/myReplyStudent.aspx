@@ -43,6 +43,28 @@
             <div class="panel panel-default" id="propanelbox">
                 <div class="pane input-group" id="panel-head">
                     <div class="input-group" id="inputgroups">
+                        <%if (state == 0)
+                                { %>
+                        <select class="selectpicker selectdrop" data-width="auto" id="chooseStuColl">
+                            <option value="0">-显示所有学院-</option>
+                            <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                {
+                                    if (colds.Tables[0].Rows[i]["collegeId"].ToString() == dropstrWherecoll)
+                                    {%>
+                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>" selected="selected">
+                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                            </option>
+                            <% }
+                                else
+                                {%>
+                            <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>">
+                                <%=colds.Tables[0].Rows[i]["collegeName"].ToString() %>
+                            </option>
+                            <%}%>
+                            <%} %>
+                        </select>
+                        &nbsp
+                        <%} %>
                         <select class="selectpicker selectdrop" data-width="auto" id="chooseStuPro">
                             <option value="0">-显示所有专业-</option>
                             <%for (int i = 0; i < prods.Tables[0].Rows.Count; i++)
@@ -96,6 +118,10 @@
                             <input type="checkbox" class="js-checkbox-all check_box" />
                         </th>
                         <th class="text-center Serial_number">序号</th>
+                        <%if (state == 0)
+                            { %>
+                        <th class="text-center">学院</th>
+                        <%} %>
                         <th class="text-center">批次</th>
                         <th class="text-center">专业</th>
                         <th class="text-center">学号</th>
@@ -114,6 +140,10 @@
                             <input type="checkbox" />
                         </td>
                         <td class="text-center"><%=i+1+((getCurrentPage-1)*pagesize)%></td>
+                        <%if (state == 0)
+                            { %>
+                        <td class="text-center"><%=ds.Tables[0].Rows[i]["collegeName"]%></td>
+                        <%} %>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["planName"]%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["proName"]%></td>
                         <td class="text-center"><%=ds.Tables[0].Rows[i]["stuAccount"]%></td>

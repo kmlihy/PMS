@@ -75,11 +75,7 @@
                                 }
                             });
                         } else {
-                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                                onOk: function (v) {
-
-                                }
-                            });
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error);
                         }
                     }
                 })
@@ -106,15 +102,11 @@
                         if (succ === "提交成功") {
                             window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
                                 onOk: function (v) {
-
+                                    window.location.href = "reviewOpeningReport.aspx";
                                 }
                             });
                         } else {
-                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                                onOk: function (v) {
-
-                                }
-                            });
+                            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error);
                         }
                     }
                 })

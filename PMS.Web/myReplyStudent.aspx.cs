@@ -23,6 +23,7 @@ namespace PMS.Web
         protected String search = "";
         protected String dropstrWhereplan = "";
         protected String dropstrWherepro = "";
+        protected String dropstrWherecoll = "";
         protected string showstr = null;
         protected string showinput = null;
         protected string secSearch = "";
@@ -41,18 +42,16 @@ namespace PMS.Web
             {
                 tea = (Teacher)Session["loginuser"];
             }
-            else if (state == 2)
+            else if (state == 2 || state == 0)
             {
                 tea = (Teacher)Session["user"];
             }
             string op = Context.Request["op"];
             string type = Request.QueryString["type"];
-            //获取defenRecordId
-            defenGroupId = Request.QueryString["defenGroupId"].ToString();
             if (!IsPostBack)
             {
-                Search();
-                getdata(Search());
+                //获取defenRecordId
+                defenGroupId = Request["defenGroupId"];
                 if (defenGroupId != null)
                 {
                     Session["defenGroupId"] = defenGroupId;
@@ -61,37 +60,9 @@ namespace PMS.Web
                 {
                     defenGroupId = Session["defenGroupId"].ToString();
                 }
-            }
-            //选择文本
-            if (type == "textSelect")
-            {
+                colds = colbll.Select();
+                Search();
                 getdata(Search());
-            }
-            //批次下拉菜单
-            if (type == "plandrop")
-            {
-                dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
-                if (dropstrWhereplan == "0")
-                {
-                    getdata("");
-                }
-                string strWhere = string.Format(" planId = {0}", dropstrWhereplan);
-                getdata(strWhere);
-            }
-            //专业下拉菜单
-            if (type == "prodrop")
-            {
-                dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
-                string strWhere = string.Format(" proId = {0}", dropstrWherepro);
-                getdata(strWhere);
-            }
-            //所有下拉菜单
-            if (type == "alldrop")
-            {
-                dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
-                dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
-                string strWhere = string.Format(" proId = {0} and planId = {1}", dropstrWherepro, dropstrWhereplan);
-                getdata(strWhere);
             }
             string alert = Request.QueryString["state"];
             if (alert == "1")
@@ -137,8 +108,64 @@ namespace PMS.Web
             }
             TitleBll titbll = new TitleBll();
             string account = "defenGroupId = "+ defenGroupId;
-
             string Account = account + " and ";
+            string type = Request.QueryString["type"];
+            //选择文本
+            if (type == "textSelect")
+            {
+                strWhere = Search();
+            }
+            //批次下拉菜单
+            if (type == "plandrop")
+            {
+                dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
+                if (dropstrWhereplan == "0")
+                {
+                    strWhere = "";
+                }
+                strWhere = string.Format(" planId = {0}", dropstrWhereplan);
+            }
+            //专业下拉菜单
+            if (type == "prodrop")
+            {
+                dropstrWherepro = Request["dropstrWherepro"];
+                strWhere = string.Format(" proId = {0}", dropstrWherepro);
+            }
+            //学院下拉菜单
+            if (type == "colldrop")
+            {
+                dropstrWherecoll = Request["dropstrWherecoll"];
+                strWhere = string.Format(" collegeId = {0}", dropstrWherecoll);
+                //加载超管所选分院的所有专业
+                TableBuilder tabuilderPro = new TableBuilder();
+                tabuilderPro.StrTable = "T_Profession";
+                tabuilderPro.StrWhere = "collegeId = '" + dropstrWherecoll + "'";
+                tabuilderPro.IntColType = 0;
+                tabuilderPro.IntOrder = 0;
+                tabuilderPro.IntPageNum = 1;
+                tabuilderPro.IntPageSize = 100;
+                tabuilderPro.StrColumn = "proId";
+                tabuilderPro.StrColumnlist = "*";
+                prods = probll.SelectBypage(tabuilderPro, out count);
+                //加载超管所选分院的所有批次
+                TableBuilder tabuilderPlan = new TableBuilder();
+                tabuilderPlan.StrTable = "T_Plan";
+                tabuilderPlan.StrWhere = "collegeId = '" + dropstrWherecoll + "'";
+                tabuilderPlan.IntColType = 0;
+                tabuilderPlan.IntOrder = 0;
+                tabuilderPlan.IntPageNum = 1;
+                tabuilderPlan.IntPageSize = 100;
+                tabuilderPlan.StrColumn = "planId";
+                tabuilderPlan.StrColumnlist = "*";
+                plads = plabll.SelectBypage(tabuilderPlan, out count);
+            }
+            //所有下拉菜单
+            if (type == "alldrop")
+            {
+                dropstrWhereplan = Context.Request.QueryString["dropstrWhereplan"].ToString();
+                dropstrWherepro = Context.Request.QueryString["dropstrWherepro"].ToString();
+                strWhere = string.Format(" proId = {0} and planId = {1}", dropstrWherepro, dropstrWhereplan);
+            }
             TableBuilder tabuilder = new TableBuilder();
             tabuilder.StrTable = "V_DefenceRecord";
             tabuilder.StrWhere = (strWhere == null || strWhere == "" ? account : Account + strWhere);
@@ -151,29 +178,59 @@ namespace PMS.Web
             getCurrentPage = int.Parse(currentPage);
             ds = titbll.SelectBypage(tabuilder, out count);
             //加载所有分院
-            colds = colbll.Select();
-            //加载登录教师所在分院的专业
-            TableBuilder tabuilderPro = new TableBuilder();
-            tabuilderPro.StrTable = "T_Profession";
-            tabuilderPro.StrWhere = "collegeId = '" + tea.college.ColID + "'";
-            tabuilderPro.IntColType = 0;
-            tabuilderPro.IntOrder = 0;
-            tabuilderPro.IntPageNum = 1;
-            tabuilderPro.IntPageSize = 100;
-            tabuilderPro.StrColumn = "proId";
-            tabuilderPro.StrColumnlist = "*";
-            prods = probll.SelectBypage(tabuilderPro, out count);
-            //加载登录教师所在分院的批次
-            TableBuilder tabuilderPlan = new TableBuilder();
-            tabuilderPlan.StrTable = "T_Plan";
-            tabuilderPlan.StrWhere = "collegeId = '" + tea.college.ColID + "'";
-            tabuilderPlan.IntColType = 0;
-            tabuilderPlan.IntOrder = 0;
-            tabuilderPlan.IntPageNum = 1;
-            tabuilderPlan.IntPageSize = 100;
-            tabuilderPlan.StrColumn = "planId";
-            tabuilderPlan.StrColumnlist = "*";
-            plads = plabll.SelectBypage(tabuilderPlan, out count);
+            if (state == 2 || state == 1)
+            {
+                //加载登录教师所在分院的专业
+                TableBuilder tabuilderPro = new TableBuilder();
+                tabuilderPro.StrTable = "T_Profession";
+                tabuilderPro.StrWhere = "collegeId = '" + tea.college.ColID + "'";
+                tabuilderPro.IntColType = 0;
+                tabuilderPro.IntOrder = 0;
+                tabuilderPro.IntPageNum = 1;
+                tabuilderPro.IntPageSize = 100;
+                tabuilderPro.StrColumn = "proId";
+                tabuilderPro.StrColumnlist = "*";
+                prods = probll.SelectBypage(tabuilderPro, out count);
+                //加载登录教师所在分院的批次
+                TableBuilder tabuilderPlan = new TableBuilder();
+                tabuilderPlan.StrTable = "T_Plan";
+                tabuilderPlan.StrWhere = "collegeId = '" + tea.college.ColID + "'";
+                tabuilderPlan.IntColType = 0;
+                tabuilderPlan.IntOrder = 0;
+                tabuilderPlan.IntPageNum = 1;
+                tabuilderPlan.IntPageSize = 100;
+                tabuilderPlan.StrColumn = "planId";
+                tabuilderPlan.StrColumnlist = "*";
+                plads = plabll.SelectBypage(tabuilderPlan, out count);
+            }
+            else if(state == 0)
+            {
+                dropstrWherecoll = Request["dropstrWherecoll"];
+                dropstrWherepro= Request["dropstrWherepro"];
+                dropstrWhereplan = Request["dropstrWhereplan"];
+                //加载超管所选分院的所有专业
+                TableBuilder tabuilderPro = new TableBuilder();
+                tabuilderPro.StrTable = "T_Profession";
+                tabuilderPro.StrWhere = "collegeId = '" + dropstrWherecoll + "'";
+                tabuilderPro.IntColType = 0;
+                tabuilderPro.IntOrder = 0;
+                tabuilderPro.IntPageNum = 1;
+                tabuilderPro.IntPageSize = 100;
+                tabuilderPro.StrColumn = "proId";
+                tabuilderPro.StrColumnlist = "*";
+                prods = probll.SelectBypage(tabuilderPro, out count);
+                //加载超管所选分院的所有批次
+                TableBuilder tabuilderPlan = new TableBuilder();
+                tabuilderPlan.StrTable = "T_Plan";
+                tabuilderPlan.StrWhere = "collegeId = '" + dropstrWherecoll + "'";
+                tabuilderPlan.IntColType = 0;
+                tabuilderPlan.IntOrder = 0;
+                tabuilderPlan.IntPageNum = 1;
+                tabuilderPlan.IntPageSize = 100;
+                tabuilderPlan.StrColumn = "planId";
+                tabuilderPlan.StrColumnlist = "*";
+                plads = plabll.SelectBypage(tabuilderPlan, out count);
+            }
         }
 
         /// <summary>
@@ -198,7 +255,14 @@ namespace PMS.Web
                 else
                 {
                     secSearch = search;
-                    search = String.Format("stuAccount {0} or proName {0} or planName {0} or realName {0} ", "like '%" + search + "%'");
+                    if (state == 0)
+                    {
+                        search = String.Format("stuAccount {0} or proName {0} or planName {0} or collegeName {0} or realName {0} ", "like '%" + search + "%'");
+                    }
+                    else
+                    {
+                        search = String.Format("stuAccount {0} or proName {0} or planName {0} or realName {0} ", "like '%" + search + "%'");
+                    }
                 }
             }
             catch

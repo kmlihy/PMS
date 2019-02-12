@@ -51,12 +51,14 @@ $(document).ready(function () {
                     if (parseInt(sessionStorage.getItem("Page")) > 1) {
                         sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                         sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                        sessionStorage.setItem("dropstrWherecoll", $("#chooseStuColl").find("option:selected").val());
                         jump(parseInt(sessionStorage.getItem("Page")) - 1);
                         break;
                     }
                     else {
                         sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                         sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                        sessionStorage.setItem("dropstrWherecoll", $("#chooseStuColl").find("option:selected").val());
                         jump(1);
                         break;
                     }
@@ -65,23 +67,27 @@ $(document).ready(function () {
                     if (parseInt(sessionStorage.getItem("Page")) < parseInt(sessionStorage.getItem("countPage"))) {
                         sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                         sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                        sessionStorage.setItem("dropstrWherecoll", $("#chooseStuColl").find("option:selected").val());
                         jump(parseInt(sessionStorage.getItem("Page")) + 1);
                         break;
                     }
                     else {
                         sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                         sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                        sessionStorage.setItem("dropstrWherecoll", $("#chooseStuColl").find("option:selected").val());
                         jump(parseInt(sessionStorage.getItem("countPage")));
                         break;
                     }
                 case ("首页"):
                     sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                     sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                    sessionStorage.setItem("dropstrWherecoll", $("#chooseStuColl").find("option:selected").val());
                     jump(1);
                     break;
                 case ("尾页"):
                     sessionStorage.setItem("dropstrWhereplan", $("#choosePlan").find("option:selected").val());
                     sessionStorage.setItem("dropstrWherepro", $("#chooseStuPro").find("option:selected").val());
+                    sessionStorage.setItem("dropstrWherecoll", $("#chooseStuColl").find("option:selected").val());
                     jump(parseInt(sessionStorage.getItem("countPage")));
                     break;
             }
@@ -103,6 +109,7 @@ $(document).ready(function () {
         if (dropstrWhereplan != "0") {
             sessionStorage.setItem("dropstrWhereplan", dropstrWhereplan);
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
+            var dropstrWherecoll = $("#chooseStuColl").find("option:selected").val();
             //判断专业是否被选中
             if (dropstrWherepro != "0") {
                 //存储专业下拉框的条件
@@ -111,7 +118,17 @@ $(document).ready(function () {
                 sessionStorage.setItem("type", "alldrop");
                 jump(1);
             }
-            else {
+            else if (dropstrWherecoll != "0")
+            {
+                //存储专业下拉框的条件
+                sessionStorage.setItem("dropstrWherecoll", dropstrWherecoll);
+                sessionStorage.removeItem("type");
+                sessionStorage.setItem("type", "colldrop");
+                sessionStorage.removeItem("dropstrWherepro");
+                sessionStorage.removeItem("dropstrWhereplan");
+                jump(1);
+            }
+            else{
                 sessionStorage.removeItem("type");
                 sessionStorage.setItem("type", "plandrop");
                 jump(1);
@@ -120,6 +137,7 @@ $(document).ready(function () {
         else {
             sessionStorage.removeItem("dropstrWhereplan");
             var dropstrWherepro = $("#chooseStuPro").find("option:selected").val();
+            var dropstrWherecoll = $("#chooseStuColl").find("option:selected").val();
             //判断专业是否被选中
             if (dropstrWherepro != "0") {
                 //存储专业下拉框的条件
@@ -129,9 +147,19 @@ $(document).ready(function () {
                 jump(1);
             }
             else {
-                sessionStorage.removeItem("dropstrWherepro");
-                sessionStorage.removeItem("type");
-                jump(1);
+                if (dropstrWherecoll != "0") {
+                    //存储专业下拉框的条件
+                    sessionStorage.setItem("dropstrWherecoll", dropstrWherecoll);
+                    sessionStorage.removeItem("type");
+                    sessionStorage.setItem("type", "colldrop");
+                    sessionStorage.removeItem("dropstrWherepro");
+                    sessionStorage.removeItem("dropstrWhereplan");
+                    jump(1);
+                } else {
+                    sessionStorage.removeItem("dropstrWherepro");
+                    sessionStorage.removeItem("type");
+                    jump(1);
+                }
             }
         }
     });
@@ -179,23 +207,46 @@ $(document).ready(function () {
         }
     });
 
+    //学院下拉框查询
+    $("#chooseStuColl").change(function () {
+        sessionStorage.removeItem("strWhere");
+        var dropstrWherecoll = $("#chooseStuColl").find("option:selected").val();
+        if (dropstrWherecoll != "0") {
+            //存储批次下拉框的条件           
+            sessionStorage.setItem("dropstrWherecoll", dropstrWherecoll);
+            sessionStorage.removeItem("type");
+            sessionStorage.setItem("type", "colldrop");
+            sessionStorage.removeItem("dropstrWherepro");
+            sessionStorage.removeItem("dropstrWhereplan");
+            jump(1);
+        }
+        else {
+            sessionStorage.removeItem("dropstrWherecoll");
+            sessionStorage.removeItem("type");
+            jump(1);
+        }
+    })
+
     //分页函数
     function jump(cur) {
 
-        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
+        if (sessionStorage.getItem("strWhere") == null && sessionStorage.getItem("dropstrWherecoll") == null && sessionStorage.getItem("dropstrWherepro") == null && sessionStorage.getItem("dropstrWhereplan") == null) {
             window.location.href = "myReplyStudent.aspx?currentPage=" + cur;
         }
         if (sessionStorage.getItem("strWhere") != null) {
             window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&search=" + sessionStorage.getItem("strWhere") + "&type=" + sessionStorage.getItem("type");
         }
         if (sessionStorage.getItem("dropstrWhereplan") != null && sessionStorage.getItem("dropstrWherepro") == null) {
-            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWherecoll=" + sessionStorage.getItem("dropstrWherecoll") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
         }
         if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") == null) {
-            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
+            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWherecoll=" + sessionStorage.getItem("dropstrWherecoll") + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&type=" + sessionStorage.getItem("type");
         }
         if (sessionStorage.getItem("dropstrWherepro") != null && sessionStorage.getItem("dropstrWhereplan") != null) {
-            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWherecoll=" + sessionStorage.getItem("dropstrWherecoll") + "&dropstrWherepro=" + sessionStorage.getItem("dropstrWherepro") + "&dropstrWhereplan=" + sessionStorage.getItem("dropstrWhereplan") + "&type=" + sessionStorage.getItem("type");
+        }
+        if (sessionStorage.getItem("dropstrWherecoll") != null && sessionStorage.getItem("dropstrWhereplan") == null && sessionStorage.getItem("dropstrWherepro") == null) {
+            window.location.href = "myReplyStudent.aspx?currentPage=" + cur + "&dropstrWherecoll=" + sessionStorage.getItem("dropstrWherecoll") + "&type=" + sessionStorage.getItem("type");
         }
     };
 
