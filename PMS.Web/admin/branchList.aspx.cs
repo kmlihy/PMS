@@ -68,7 +68,7 @@ namespace PMS.Web.admin
                 int repeat = row - i;
                 if (i > 0)
                 {
-                    LogHelper.Info(this.GetType(), "学院信息导入 -" + i + " " + "条信息");
+                    LogHelper.Info(this.GetType(), user.TeaAccount + "学院信息导入 -" + i + " " + "条信息");
                     Response.Write("导入成功，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
                     Response.End();
                 }

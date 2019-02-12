@@ -69,15 +69,23 @@ namespace PMS.Web.admin
             }
             if (op=="import")
             {
+                int collegeId;
+                if (userType == "0")
+                {
+                    collegeId = Convert.ToInt32(Context.Request["collegeId"]);
+                }
+                else
+                {
+                    collegeId = teacher.college.ColID;
+                }
                 string path = Security.Decrypt(Request["fileName"]);
-                int collegeId = Convert.ToInt32(Request["collegeId"]) ;
                 DataTable dt = TableHelper.GetDistinctSelf(ExcelHelp.excelToDt(path, "excel"), "专业名称");
                 int i = ImportHelper.Major(dt,collegeId);
                 int row = ExcelHelp.excelToDt(path, "excel").Rows.Count;
                 int repeat = row - i;
                 if (i > 0)
                 {
-                    LogHelper.Info(this.GetType(),"专业信息导入 -"+i+" "+"条信息");
+                    LogHelper.Info(this.GetType(), teacher .TeaAccount + "专业信息导入 -"+i+" "+"条信息");
                     Response.Write("导入成功，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
                     Response.End();
                 }

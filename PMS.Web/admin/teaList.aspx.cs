@@ -48,10 +48,38 @@ namespace PMS.Web.admin
                 Search();
                 getdata(Search());
             }
-            if (op == "upload")
+            if (op== "import")
             {
-                upload();
+                int collegeId;
+                if (state == 0)
+                {
+                    collegeId = Convert.ToInt32(Context.Request["collegeId"]);
+                }
+                else
+                {
+                    collegeId = tealogin.college.ColID;
+                }
+                string path = Security.Decrypt(Request["fileName"]);
+                DataTable dt = TableHelper.GetDistinctSelf(ExcelHelp.excelToDt(path, "excel"), "工号");
+                int i = ImportHelper.Teacher(dt,collegeId);
+                int row = ExcelHelp.excelToDt(path, "excel").Rows.Count;
+                int repeat = row - i;
+                if (i > 0)
+                {
+                    LogHelper.Info(this.GetType(), tealogin.TeaAccount + "教师信息导入 -" + i + " " + "条信息");
+                    Response.Write("导入成功，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("导入失败，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
             }
+            //if (op == "upload")
+            //{
+            //    upload();
+            //}
             if (!IsPostBack)
             {
                 Search();
@@ -200,7 +228,7 @@ namespace PMS.Web.admin
             if (!teabll.selectByteaId(teaAccount)) {
                 try
                 {
-                    //int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
+                    int collegeId = Convert.ToInt32(Context.Request["CollegeId"]);
                     //int teaType = Convert.ToInt32(Context.Request["TeaType"]);
                     //string pwd = Context.Request["Pwd"].ToString();
                     string teaName = Context.Request["TeaName"].ToString();
@@ -222,7 +250,14 @@ namespace PMS.Web.admin
                         Teacher tea = new Teacher();
                         College college = new College();
                         Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
-                        college.ColID = tealogin.college.ColID;
+                        if (state==0)
+                        {
+                            college.ColID = collegeId;
+                        }
+                        else
+                        {
+                            college.ColID = tealogin.college.ColID;
+                        }
                         tea.college = college;
                         tea.TeaType = 1;
                         tea.TeaAccount = teaAccount;
@@ -305,10 +340,18 @@ namespace PMS.Web.admin
                 {
                     tealogin = (Teacher)Session["user"];
                     Teacher teacher = teabll.GetModel(tealogin.TeaAccount);
-                    college.ColID = tealogin.college.ColID;
+                    if (state == 0)
+                    {
+                        college.ColID = collegeId;
+                    }
+                    else
+                    {
+                        college.ColID = tealogin.college.ColID;
+                    }
                     tea.college = college;
                     tea.TeaAccount = teaAccount;
-                    tea.TeaPwd = teabll.GetModel(teaAccount).TeaPwd;
+                    RSACryptoService rsa = new RSACryptoService();
+                    tea.TeaPwd = rsa.Encrypt(teabll.GetModel(teaAccount).TeaPwd);
                     tea.TeaName = teaName;
                     tea.Phone = teaPhone;
                     tea.Email = teaEmal;

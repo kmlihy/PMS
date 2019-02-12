@@ -325,7 +325,7 @@
                                 </li>
                                 <li role="presentation">
                                     <a href="adminList.aspx" class="sidebarclick">
-                                        <span>管理员信息</span>
+                                        <span>分管信息</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -340,7 +340,7 @@
                                 </li>
                                 <li role="presentation">
                                     <a href="scoreRatio.aspx" class="sidebarclick">
-                                        <span>设置成绩占比</span>
+                                        <span>成绩占比</span>
                                     </a>
                                 </li>
 

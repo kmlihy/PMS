@@ -315,7 +315,7 @@ $(document).ready(function () {
         if (fileName == "" || fileName == null) {
             window.wxc.xcConfirm("未上传成功，请重新上传", window.wxc.xcConfirm.typeEnum.error);
         }
-        else if (collegeId == "" || collegeId == null) {
+        else if (collegeId == "-1") {
             window.wxc.xcConfirm("请选择院系：", window.wxc.xcConfirm.typeEnum.error);
         }
         else {

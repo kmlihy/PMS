@@ -162,34 +162,48 @@
                         <h4 class="modal-title" id="addsModalLabel">批量导入教师信息
                         </h4>
                     </div>
-                    <form id="form2" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">
-                        <div class="modal-body">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">
-                                            <div>
-                                                <a href="javascript:;" class="file">列表导入
+                    <%-- <form id="form2" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">--%>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
                                                 <input type="file" name="upload" id="upload" />
-                                                    <label class="showFileName"></label>
-                                                    <label class="fileerrorTip"></label>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" id="btnupload">上传</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        </div>
-                    </form>
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
+                                    </td>
+                                </tr>
+                                <%if (state == 0)
+                                    { %>
+                                <tr>
+                                    <td class="text-center">请选择院系：
+                                       <select class="selectpicker" data-width="auto" id="importcol">
+                                           <option value="-1">-请选择院系-</option>
+                                           <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
+                                               { %>
+                                           <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
+                                           <%} %>
+                                       </select>
+                                    </td>
+                                </tr>
+                                <%} %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="btnupload">导入</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                    <%--</form>--%>
                 </div>
             </div>
         </div>
@@ -207,19 +221,22 @@
                     <div class="modal-body">
                         <table class="table">
                             <tbody>
-                                <%--                                <tr>
+                                <%if (state == 0)
+                                { %>
+                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">所属院系</label></td>
                                     <td>
                                         <select class="selectpicker" data-width="auto" id="addselectcol">
-                                            <option value="">-请选择院系-</option>
+                                            <option value="-1">-请选择院系-</option>
                                             <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                 { %>
                                             <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString() %>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
                                             <%} %>
                                         </select>
                                     </td>
-                                </tr>--%>
+                                </tr>
+                                <%} %>
                                 <%--                                <tr>
                                     <td class="teaLable">
                                         <label class="text-span">教师类型</label></td>
@@ -315,7 +332,7 @@
                                     </td>
                                 </tr>
                                 <%if (state == 0)
-                                { %>
+                                    { %>
                                 <tr id="type">
                                     <td class="teaLable">
                                         <label class="text-span">类型:</label></td>
@@ -336,8 +353,8 @@
                                     </td>
                                 </tr>
                                 <%}
-                                else
-                                { %>
+                                    else
+                                    { %>
                                 <tr>
                                     <td class="teaLable">
                                         <label class="text-span">工号:</label></td>
@@ -400,6 +417,22 @@
                 </div>
             </div>
         </div>
+        <%-- 导入模态框 --%>
+        <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" aria-hidden="true">
+            <div class="modal-dialog" style="width: 310px; height: 150px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="">导入过程中请勿关闭页面或者断网
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <img src="../images/load.gif" style="width: 200px; height: 150px; margin-left: 20px" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <input type="hidden" value="<%=getCurrentPage %>" id="page" />
     <input type="hidden" value="<%=count %>" id="countPage" />
@@ -411,4 +444,5 @@
 <script src="../js/ml.js"></script>
 <script src="../js/teaList.js"></script>
 <script src="../js/xcConfirm.js"></script>
+<script src="../js/ajaxfileupload.js"></script>
 </html>

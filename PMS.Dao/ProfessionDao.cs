@@ -196,6 +196,30 @@ namespace PMS.Dao
             }
         }
         /// <summary>
+        /// 查询专业名称
+        /// </summary>
+        /// <returns></returns>
+        public DataSet selectColName()
+        {
+
+            try
+            {
+                string cmdText = "select proName from T_Profession";
+                DataSet ds = db.FillDataSet(cmdText, null, null);
+                if (ds != null)
+                {
+                    return ds;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// 获取一个专业对象
         /// </summary>
         /// <param name="proId">要获取的专业ID</param>

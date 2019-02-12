@@ -150,6 +150,14 @@ namespace PMS.BLL
             return null;
         }
 
+        /// <summary>
+        /// 查询专业名称
+        /// </summary>
+        /// <returns></returns>
+        public DataSet selectColName()
+        {
+            return dao.selectColName();
+        }
 
         /// <summary>
         /// 

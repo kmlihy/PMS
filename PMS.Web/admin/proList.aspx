@@ -152,11 +152,12 @@
                                             <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
                                         </td>
                                     </tr>
+                                    <%if (userType == "0") { %>
                                     <tr>
                                         <td class="text-center">
                                             请选择院系：
                                             <select class="selectpicker changeSearch" data-width="auto" id="importCol">
-                                                <option value="">-请选择院系-</option>
+                                                <option value="-1">-请选择院系-</option>
                                                 <%for (int i = 0; i < colds.Tables[0].Rows.Count; i++)
                                                     {%>
                                                 <option value="<%=colds.Tables[0].Rows[i]["collegeId"].ToString()%>"><%=colds.Tables[0].Rows[i]["collegeName"].ToString() %></option>
@@ -164,6 +165,7 @@
                                             </select>
                                         </td>
                                     </tr>
+                                    <%} %>
                                 </tbody>
                             </table>
                         </div>
