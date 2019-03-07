@@ -216,7 +216,6 @@ $(document).ready(function () {
     //删除标题信息
     $(".btnDel").click(function () {
         var deleteTitleId = $(this).parent().parent().find("#titleId").val();
-        alert(deleteTitleId);
         //Confirm弹窗
         var txt = "确定要删除吗？";
         var option = {
@@ -398,30 +397,33 @@ $(document).ready(function () {
                 titleId += obj[i].value + '?';//如果选中，将value添加到变量s中 
             } 
         }
-        alert(titleId === '' ? '请至少选择一项！' : titleId);
-        $.ajax({
-            type: 'Post',
-            url: 'titleList.aspx',
-            data: {
-                titleId: titleId,
-                op: "batchDel"
-            },
-            dataType: 'text',
-            success: function (succ) {
-                if (succ === "删除成功") {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                        onOk: function (v) {
-                            jump(parseInt(sessionStorage.getItem("page")));
-                        }
-                    });
-                } else {
-                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                        onOk: function (v) {
-                            jump(parseInt(sessionStorage.getItem("page")));
-                        }
-                    });
+        if (titleId === '') {
+            window.wxc.xcConfirm("请至少选择一项！", window.wxc.xcConfirm.typeEnum.error)
+        } else {
+            $.ajax({
+                type: 'Post',
+                url: 'titleList.aspx',
+                data: {
+                    titleId: titleId,
+                    op: "batchDel"
+                },
+                dataType: 'text',
+                success: function (succ) {
+                    if (succ === "删除成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    } else {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                            onOk: function (v) {
+                                jump(parseInt(sessionStorage.getItem("page")));
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     })
 });

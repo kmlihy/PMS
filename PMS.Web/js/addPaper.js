@@ -36,19 +36,19 @@ $(document).ready(function () {
             paperContent = escape($(".content").val());//获取内容文本值
         numMax = $(".numMax").val();//获取人数上限值
         if (paperTitle == "") {
-            alert("论文标题不能为空");
+            window.wxc.xcConfirm("论文标题不能为空", window.wxc.xcConfirm.typeEnum.error);
         }
         else if (profession == "") {
-            alert("专业不能为空");
+            window.wxc.xcConfirm("专业不能为空", window.wxc.xcConfirm.typeEnum.error);
         }
         else if (plan == "") {
-            alert("批次不能为空");
+            window.wxc.xcConfirm("批次不能为空", window.wxc.xcConfirm.typeEnum.error);
         }
         else if (numMax == "") {
-            alert("人数上限不能为空");
+            window.wxc.xcConfirm("人数上限不能为空", window.wxc.xcConfirm.typeEnum.error);
         }
         else if (paperContent == "") {
-            alert("论文内容不能为空");
+            window.wxc.xcConfirm("论文内容不能为空", window.wxc.xcConfirm.typeEnum.error);
         }
         else {
             $.ajax({
