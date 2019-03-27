@@ -92,17 +92,17 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">序号</th>
-                            <th class="text-center">学号</th>
-                            <th class="text-center">姓名</th>
-                            <th class="text-center">性别</th>
-                            <th class="text-center">专业编号</th>
-                            <th class="text-center">专业名称</th>
-                            <th class="text-center">学院编号</th>
-                            <th class="text-center">学院名称</th>
-                            <th class="text-center">联系电话</th>
-                            <th class="text-center">邮箱</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><nobr>序号</nobr></th>
+                            <th class="text-center"><nobr>学号</nobr></th>
+                            <th class="text-center"><nobr>姓名</nobr></th>
+                            <th class="text-center"><nobr>性别</nobr></th>
+                            <th class="text-center"><nobr>专业编号</nobr></th>
+                            <th class="text-center"><nobr>专业名称</nobr></th>
+                            <th class="text-center"><nobr>学院编号</nobr></th>
+                            <th class="text-center"><nobr>学院名称</nobr></th>
+                            <th class="text-center"><nobr>联系电话</nobr></th>
+                            <th class="text-center"><nobr>邮箱</nobr></th>
+                            <th class="text-center"><nobr>操作</nobr></th>
                         </thead>
                         <tbody>
                             <% for (int i = 0; i < ds.Tables[0].Rows.Count; i++)

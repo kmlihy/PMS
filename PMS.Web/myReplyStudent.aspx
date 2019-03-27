@@ -117,18 +117,18 @@
                         <th class="text-center">
                             <input type="checkbox" class="js-checkbox-all check_box" />
                         </th>
-                        <th class="text-center Serial_number">序号</th>
+                        <th class="text-center Serial_number"><nobr>序号</nobr></th>
                         <%if (state == 0)
                             { %>
-                        <th class="text-center">学院</th>
+                        <th class="text-center"><nobr>学院</nobr></th>
                         <%} %>
-                        <th class="text-center">批次</th>
-                        <th class="text-center">专业</th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">姓名</th>
+                        <th class="text-center"><nobr>批次</nobr></th>
+                        <th class="text-center"><nobr>专业</nobr></th>
+                        <th class="text-center"><nobr>学号</nobr></th>
+                        <th class="text-center"><nobr>姓名</nobr></th>
                         <%if (state == 2)
                             { %>
-                        <th class="text-center">操作</th>
+                        <th class="text-center"><nobr>操作</nobr></th>
                         <%} %>
                     </tr>
                 </thead>

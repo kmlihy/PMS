@@ -37,11 +37,11 @@
             <table class="table text-center table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">论文</th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">查看报告</th>
+                        <th class="text-center"><nobr>序号</nobr></th>
+                        <th class="text-center"><nobr>论文</nobr></th>
+                        <th class="text-center"><nobr>学号</nobr></th>
+                        <th class="text-center"><nobr>姓名</nobr></th>
+                        <th class="text-center"><nobr>查看报告</nobr></th>
                     </tr>
                 </thead>
                 <tbody>

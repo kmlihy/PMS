@@ -100,16 +100,16 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">序号</th>
-                            <th class="text-center">题目</th>
-                            <th class="text-center">出题教师</th>
-                            <th class="text-center">选题学生</th>
-                            <th class="text-center">所属批次</th>
-                            <th class="text-center">所属专业</th>
-                            <th class="text-center">已选人数/人数上限</th>
-                            <th class="text-center">选题时间</th>
-                            <th class="text-center">所属分院</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><nobr>序号</nobr></th>
+                            <th class="text-center"><nobr>题目</nobr></th>
+                            <th class="text-center"><nobr>出题教师</nobr></th>
+                            <th class="text-center"><nobr>选题学生</nobr></th>
+                            <th class="text-center"><nobr>所属批次</nobr></th>
+                            <th class="text-center"><nobr>所属专业</nobr></th>
+                            <th class="text-center"><nobr>已选人数/人数上限</nobr></th>
+                            <th class="text-center"><nobr>选题时间</nobr></th>
+                            <th class="text-center"><nobr>所属分院</nobr></th>
+                            <th class="text-center"><nobr>操作</nobr></th>
                         </thead>
                         <tbody>
                             <tr>

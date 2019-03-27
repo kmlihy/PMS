@@ -28,13 +28,13 @@
             <table class="table table-striped paperlisttable text-center">
                 <thead>
                     <tr>
-                        <th class="text-center">论文题目
+                        <th class="text-center"><nobr>论文题目</nobr>
                         </th>
-                        <th class="text-center">已选人数/人数上限
+                        <th class="text-center"><nobr>已选人数/人数上限</nobr>
                         </th>
-                        <th class="text-center">选题截止时间
+                        <th class="text-center"><nobr>选题截止时间</nobr>
                         </th>
-                        <th class="text-center">状态
+                        <th class="text-center"><nobr>状态</nobr>
                         </th>
                     </tr>
                 </thead>

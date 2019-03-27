@@ -79,15 +79,15 @@
                         <th class="text-center" style="width:40px">
                             <input type="checkbox" class="js-checkbox-all" />
                         </th>
-                        <th class="text-center"><b>序号</b></th>
-                        <th class="text-center"><b>批次名称</b></th>
-                        <th class="text-center"><b>开始时间</b></th>
-                        <th class="text-center"><b>结束时间</b></th>
-                        <th class="text-center"><b>激活状态</b></th>
-                        <th class="text-center"><b>所属学院</b></th>
+                        <th class="text-center"><nobr><b>序号</b></nobr></th>
+                        <th class="text-center"><nobr><b>批次名称</b></nobr></th>
+                        <th class="text-center"><nobr><b>开始时间</b></nobr></th>
+                        <th class="text-center"><nobr><b>结束时间</b></nobr></th>
+                        <th class="text-center"><nobr><b>激活状态</b></nobr></th>
+                        <th class="text-center"><nobr><b>所属学院</b></nobr></th>
                         <%if (state != 0)
                           { %>
-                        <th class="text-center"><b>操作</b></th>
+                        <th class="text-center"><nobr><b>操作</b></nobr></th>
                         <%} %>
                     </thead>
                     <tbody>

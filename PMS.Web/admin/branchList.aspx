@@ -56,9 +56,9 @@
                         <th class="text-center">
                             <input type="checkbox" name="checkboxAll" class="js-checkbox-all" />
                         </th>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">学院名称</th>
-                        <th class="text-center">操作</th>
+                        <th class="text-center"><nobr>序号</nobr></th>
+                        <th class="text-center"><nobr>学院名称</nobr></th>
+                        <th class="text-center"><nobr>操作</nobr></th>
                     </thead>
                     <tbody>
                         <%
