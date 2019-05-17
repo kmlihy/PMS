@@ -342,41 +342,67 @@ namespace PMS.Web.admin
                    oldEmail = Context.Request["oldEmail"].ToString();
             int stuCollege = int.Parse(Context.Request["stuCollege"].ToString()),
                 stuPro = int.Parse(Context.Request["stuPro"].ToString());
-            if (stuEmail != oldEmail)
-            {
-                if (stuBll.selectByEmail(stuEmail))
-                {//根据输入的邮箱查找是否已存在
-                    Response.Write("此邮箱已存在");
-                    Response.End();
-                }
-            }
-            else if (stuPhone != oldPhone)
-            {
-                if (stuBll.selectByPhone(stuPhone))
-                {//根据输入的联系电话查找是否已存在
-                    Response.Write("此联系电话已存在");
-                    Response.End();
-                }
-            }
-            else
-            {
                 try
                 {
-                    College stuCol = new College()
+                    College stuCol = new College();
+                    stuCol.ColID = stuCollege;
+                    Profession stup = new Profession();
+                    stup.ProId = stuPro;
+                    Student EditorStu = new Student();
+                    EditorStu.StuAccount = stuNO;
+                    EditorStu.RealName = stuName;
+                    EditorStu.Sex = stuSex;
+                    EditorStu.college = stuCol;
+                    EditorStu.profession = stup;
+                    if (stuEmail != oldEmail && stuPhone == oldPhone)
                     {
-                        ColID = stuCollege
-                    };
-                    Profession stup = new Profession() { ProId = stuPro };
-                    Student EditorStu = new Student()
+                        if (stuBll.selectByEmail(stuEmail))
+                        {//根据输入的邮箱查找是否已存在
+                            Response.Write("此邮箱已存在");
+                            Response.End();
+                        }
+                        else
+                        {
+                        EditorStu.Phone = oldPhone;
+                        EditorStu.Email = stuEmail;
+                        }
+                    }
+                    else if (stuEmail == oldEmail && stuPhone != oldPhone)
                     {
-                        StuAccount = stuNO,
-                        RealName = stuName,
-                        Sex = stuSex,
-                        Email = stuEmail,
-                        Phone = stuPhone,
-                        college = stuCol,
-                        profession = stup
-                    };
+                        if (stuBll.selectByPhone(stuPhone))
+                        {//根据输入的联系电话查找是否已存在
+                            Response.Write("此联系电话已存在");
+                            Response.End();
+                        }
+                        else
+                        {
+                            EditorStu.Phone = stuPhone;
+                            EditorStu.Email = oldEmail;
+                        }
+                    }
+                    else if (stuEmail == oldEmail && stuPhone == oldPhone)
+                    {
+                            EditorStu.Email = oldEmail;
+                            EditorStu.Phone = oldPhone;
+                    }
+                    else
+                    {
+                        if (stuBll.selectByEmail(stuEmail))
+                        {//根据输入的邮箱查找是否已存在
+                            Response.Write("此邮箱已存在");
+                            Response.End();
+                        }
+                        else if (stuBll.selectByPhone(stuPhone))
+                        {//根据输入的联系电话查找是否已存在
+                            Response.Write("此联系电话已存在");
+                            Response.End();
+                        }
+                        else
+                        {
+                            EditorStu.Phone = stuPhone;
+                            EditorStu.Email = stuEmail;
+                        }
+                    }
                     StudentBll editorStuBll = new StudentBll();
                     Result editorResult = editorStuBll.Updata(EditorStu);
                     if (editorResult == Result.更新成功)
@@ -395,7 +421,6 @@ namespace PMS.Web.admin
                 {
                     LogHelper.Error(this.GetType(), ex);
                 }
-            }
         }
         /// <summary>
         /// 添加学生
