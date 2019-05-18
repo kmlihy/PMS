@@ -141,6 +141,25 @@ namespace PMS.Web.admin
                 //重置密码
                 stuPasswordReset();
             }
+            if (op=="import")
+            {
+               int proid = Convert.ToInt32(Context.Request["proId"]);
+                string path = Security.Decrypt(Request["fileName"]);
+                DataTable dt = TableHelper.GetDistinctSelf(ExcelHelp.excelToDt(path, "excel"), "学号");
+                int i = ImportHelper.Student(dt, proid);
+                int row = ExcelHelp.excelToDt(path, "excel").Rows.Count;
+                int repeat = row - i;
+                if (i > 0)
+                {
+                    Response.Write("导入成功，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
+                else
+                {
+                    Response.Write("导入失败，总数据有" + row + "条，共导入" + i + "条数据，重复数据有" + repeat + "条");
+                    Response.End();
+                }
+            }
         }
 
         public void stuPasswordReset() {

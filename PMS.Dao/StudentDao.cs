@@ -18,11 +18,18 @@ namespace PMS.Dao
         /// <param name="stuAccount">账号</param>
         /// <param name="pwd">密码</param>
         /// <returns></returns>
+        public DataSet SelectStuAcount()
+        {
+            string cmdText = "select stuAccount from T_Student";
+            DataSet ds = db.FillDataSet(cmdText, null, null);
+            return ds;
+        }
+
         public DataSet Select(string stuAccount)
         {
             string cmdText = "select * from T_Student where stuAccount = @stuAccount";
-            string[] param = { "@stuAccount"};
-            object[] values = { stuAccount};
+            string[] param = { "@stuAccount" };
+            object[] values = { stuAccount };
             DataSet ds = db.FillDataSet(cmdText, param, values);
             return ds;
         }

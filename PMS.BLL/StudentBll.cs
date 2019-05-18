@@ -14,6 +14,11 @@ namespace PMS.BLL
 
         private PublicProcedure pdao = new PublicProcedure();
 
+        public DataSet SelectStuAcount()
+        {
+            return dao.SelectStuAcount();
+        }
+
         /// <summary>
         /// 登录操作
         /// </summary>

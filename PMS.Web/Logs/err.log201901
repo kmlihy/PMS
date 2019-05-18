@@ -1,0 +1,1564 @@
+2019-01-10 22:44:31,406 [27] ERROR ASP.login_aspx -  - 验证码不正确
+2019-01-10 22:46:57,272 [26] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-10 23:21:15,590 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-10 23:36:20,635 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 17:44:24,033 [51] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 17:49:25,336 [47] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 17:50:14,210 [58] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 18:16:25,783 [32] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 18:17:18,718 [32] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 19:04:31,401 [71] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 20:23:37,584 [33] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 20:54:40,262 [73] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 20:55:24,770 [73] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 20:56:27,977 [75] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 21:19:02,428 [17] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 84
+2019-01-11 22:10:34,627 [66] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 84
+2019-01-11 22:15:24,923 [66] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 22:26:01,643 [67] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 22:32:29,293 [10] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 22:55:58,513 [16] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-11 23:12:28,899 [8] ERROR ASP.login_aspx - 5566 - 验证码不正确
+2019-01-11 23:12:31,621 [26] ERROR ASP.login_aspx - 5566 - 验证码不正确
+2019-01-11 23:12:33,121 [22] ERROR ASP.login_aspx - 5566 - 验证码不正确
+2019-01-11 23:14:20,517 [3] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-11 23:14:21,344 [16] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-11 23:14:37,676 [3] ERROR ASP.admin_retrievepwd_aspx - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 PMS.Web.admin.RetrievePwd.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\RetrievePwd.aspx.cs:行号 47
+2019-01-11 23:18:37,372 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-11 23:19:20,986 [6] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-11 23:19:21,774 [8] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-11 23:23:01,272 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 84
+2019-01-12 01:09:38,506 [24] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-12 01:09:38,993 [31] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-12 01:09:39,523 [25] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-12 01:09:52,167 [21] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-12 01:09:52,682 [24] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:03:48,489 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:03:48,788 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:03:49,271 [5] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:44:35,881 [58] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:44:36,267 [57] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:44:36,786 [47] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:57:24,891 [43] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:57:25,198 [48] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:57:25,714 [45] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:58:59,063 [43] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:58:59,560 [48] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 22:59:00,091 [32] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:02:04,823 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:02:05,526 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:02:06,078 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:07:43,585 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:07:44,016 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:07:44,448 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:11:23,773 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:11:24,298 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:11:24,806 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:12:13,457 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:12:14,003 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:12:14,341 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:18:30,348 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:18:30,863 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:18:31,375 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:20:48,353 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:20:49,167 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:20:49,638 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:22:18,327 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:22:19,116 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:22:19,605 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:25:05,931 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:25:05,931 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:25:05,931 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:25:20,554 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:25:21,083 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:25:21,578 [11] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:27:30,997 [15] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:27:30,997 [11] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:27:30,998 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:27:44,901 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:27:45,402 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:27:45,916 [15] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-14 23:30:31,721 [16] ERROR ASP.paperlist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.paperList.StusecltTitle() 位置 F:\c#\repos\pms\PMS.Web\paperList.aspx.cs:行号 137
+2019-01-14 23:31:08,907 [14] ERROR ASP.openingreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.openingReport.insert() 位置 F:\c#\repos\pms\PMS.Web\openingReport.aspx.cs:行号 103
+2019-01-14 23:32:10,043 [11] ERROR ASP.reviewopeningreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.reviewOpeningReport.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\reviewOpeningReport.aspx.cs:行号 104
+2019-01-14 23:32:41,235 [16] ERROR ASP.thesisupload_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.upload.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\thesisUpload.aspx.cs:行号 81
+2019-01-14 23:35:49,999 [24] ERROR ASP.paperlist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.paperList.StusecltTitle() 位置 F:\c#\repos\pms\PMS.Web\paperList.aspx.cs:行号 137
+2019-01-14 23:36:03,315 [25] ERROR ASP.openingreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.openingReport.insert() 位置 F:\c#\repos\pms\PMS.Web\openingReport.aspx.cs:行号 103
+2019-01-14 23:36:48,183 [25] ERROR ASP.login_aspx - 200001 - 验证码不正确
+2019-01-14 23:36:48,199 [15] ERROR ASP.login_aspx - 200001 - 验证码不正确
+2019-01-14 23:36:48,205 [16] ERROR ASP.login_aspx - 200001 - 验证码不正确
+2019-01-14 23:37:13,682 [15] ERROR ASP.reviewopeningreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.reviewOpeningReport.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\reviewOpeningReport.aspx.cs:行号 104
+2019-01-15 00:34:01,745 [82] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 84
+2019-01-15 00:36:27,519 [76] ERROR ASP.paperlist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.paperList.StusecltTitle() 位置 F:\c#\repos\pms\PMS.Web\paperList.aspx.cs:行号 137
+2019-01-15 00:36:49,224 [77] ERROR ASP.openingreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.openingReport.insert() 位置 F:\c#\repos\pms\PMS.Web\openingReport.aspx.cs:行号 103
+2019-01-15 00:37:33,634 [80] ERROR ASP.reviewopeningreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.reviewOpeningReport.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\reviewOpeningReport.aspx.cs:行号 104
+2019-01-15 00:42:53,383 [27] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:42:53,396 [77] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:42:57,703 [72] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:42:57,720 [28] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:00,280 [73] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:02,372 [72] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:04,933 [34] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:04,937 [72] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:13,796 [73] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:17,439 [77] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:17,475 [28] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:19,184 [73] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:19,189 [34] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:19,611 [27] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:20,159 [21] ERROR ASP.login_aspx - 166004 - 验证码不正确
+2019-01-15 00:44:46,241 [73] ERROR ASP.paperlist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.paperList.StusecltTitle() 位置 F:\c#\repos\pms\PMS.Web\paperList.aspx.cs:行号 137
+2019-01-15 00:45:07,944 [34] ERROR ASP.openingreport_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.openingReport.insert() 位置 F:\c#\repos\pms\PMS.Web\openingReport.aspx.cs:行号 103
+2019-01-15 00:55:13,362 [28] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 00:55:13,872 [25] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:04:04,418 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:04:04,810 [12] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:08:57,235 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:08:58,083 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:08:58,616 [10] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:11:17,030 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 01:11:17,453 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:15:14,163 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:15:14,987 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:15:15,516 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:24:43,557 [10] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:24:44,318 [10] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:24:44,836 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:28:48,972 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:28:49,836 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:42:10,424 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:42:11,213 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:46:55,640 [16] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 02:46:56,275 [18] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 03:07:18,960 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 03:07:19,321 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 03:10:05,821 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 03:10:06,336 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 12:42:59,745 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 12:43:00,069 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 12:51:03,485 [40] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 12:51:03,886 [33] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 12:52:46,929 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 12:52:47,056 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:15:26,098 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:15:26,982 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:23:13,470 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:23:14,446 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:27:14,076 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:27:14,426 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:32:55,065 [17] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 13:32:55,575 [18] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 18:04:32,739 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 18:04:33,512 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:14:03,060 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:14:04,015 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:31:36,456 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:31:37,316 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:36:38,844 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:36:39,194 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:40:19,402 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:40:19,922 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:55:23,161 [23] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:55:23,571 [18] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:58:49,688 [17] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 19:58:50,087 [24] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-15 20:11:16,684 [34] ERROR ASP.login_aspx - 200001 - 验证码不正确
+2019-01-15 20:11:16,690 [34] ERROR ASP.login_aspx - 200001 - 验证码不正确
+2019-01-16 12:53:35,906 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-16 12:53:36,699 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-16 13:33:24,143 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-16 13:33:24,515 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-16 13:39:20,175 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-16 13:39:20,676 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-17 16:34:56,637 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-17 16:34:56,849 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-17 23:14:08,272 [10] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-17 23:14:08,575 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-17 23:15:36,506 [5] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-17 23:15:36,920 [7] ERROR ASP.login_aspx - 166003 - 验证码不正确
+2019-01-19 14:04:24,439 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-19 14:04:24,761 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-19 15:50:08,557 [11] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 15:50:12,548 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 15:54:36,491 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 15:54:40,166 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 15:59:59,942 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:00:25,150 [11] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:13:35,643 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:13:36,007 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:15:12,998 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:15:15,563 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:18:19,366 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:18:21,925 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:28:54,465 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:28:54,842 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:33:42,914 [17] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 16:33:47,843 [17] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 17:10:38,272 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 17:10:38,640 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 22:24:23,617 [83] ERROR ASP.admin_login_aspx - 用户名或密码错误
+2019-01-19 22:24:23,617 [83] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 104
+2019-01-19 22:24:24,139 [81] ERROR ASP.admin_login_aspx - 用户名或密码错误
+2019-01-19 22:24:24,140 [81] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 104
+2019-01-19 22:24:29,358 [74] ERROR ASP.admin_login_aspx - 用户名或密码错误
+2019-01-19 22:24:29,358 [74] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 104
+2019-01-19 22:24:29,834 [78] ERROR ASP.admin_login_aspx - 用户名或密码错误
+2019-01-19 22:24:29,834 [78] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 104
+2019-01-19 22:24:37,662 [78] ERROR ASP.admin_login_aspx - 用户名或密码错误
+2019-01-19 22:24:37,663 [78] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 104
+2019-01-19 22:24:38,178 [81] ERROR ASP.admin_login_aspx - 用户名或密码错误
+2019-01-19 22:24:38,179 [81] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 104
+2019-01-19 22:24:47,511 [78] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-19 22:24:48,010 [83] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-19 22:40:24,165 [63] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 22:40:24,681 [74] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 23:45:42,336 [43] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-19 23:45:42,852 [42] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:04:28,170 [21] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 260
+2019-01-20 00:05:50,336 [22] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 00:05:50,859 [25] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 00:13:50,024 [24] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:13:50,403 [18] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:16:47,815 [26] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 00:16:48,327 [24] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 00:40:29,818 [32] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 00:40:30,220 [30] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 00:42:16,507 [38] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:42:17,012 [30] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:55:04,031 [26] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:55:27,966 [33] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:55:33,206 [23] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:55:39,671 [33] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:55:45,866 [41] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:55:51,802 [26] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:55:59,329 [21] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:56:04,181 [33] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:56:08,437 [23] ERROR ASP.admin_prolist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.proList.delPro() 位置 F:\c#\repos\pms\PMS.Web\admin\proList.aspx.cs:行号 192
+2019-01-20 00:56:28,353 [41] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:56:28,735 [23] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 00:58:06,466 [23] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.delTeal() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 202
+2019-01-20 00:58:11,393 [41] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.delTeal() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 202
+2019-01-20 01:02:00,761 [26] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:02:01,307 [21] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:05:20,052 [33] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 01:05:20,572 [37] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 01:07:17,256 [31] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:07:17,758 [39] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:07:36,527 [28] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.delTeal() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 202
+2019-01-20 01:08:14,530 [31] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 268
+2019-01-20 01:08:36,263 [21] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.delTeal() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 202
+2019-01-20 01:09:11,095 [37] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 268
+2019-01-20 01:09:27,052 [37] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.delTeal() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 202
+2019-01-20 01:16:03,775 [37] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:16:04,172 [35] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:16:41,954 [29] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 275
+2019-01-20 01:17:09,796 [29] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 357
+2019-01-20 01:23:25,815 [35] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:23:26,214 [17] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:23:37,000 [35] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.delTeal() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 202
+2019-01-20 01:23:59,124 [35] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 275
+2019-01-20 01:24:20,179 [37] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 364
+2019-01-20 01:24:45,886 [21] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:24:59,642 [31] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:25:45,141 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:25:45,406 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:26:21,206 [11] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:26:37,389 [8] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:27:19,230 [13] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:27:36,071 [12] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:32:16,171 [15] ERROR ASP.admin_tealist_aspx - System.FormatException: Base-64 字符数组或字符串的长度无效。
+   在 System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   在 System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   在 System.Convert.FromBase64String(String s)
+   在 PMS.BLL.RSACryptoService.Decrypt(String cipherText) 位置 F:\c#\repos\pms\PMS.BLL\RSACryptoService.cs:行号 79
+   在 PMS.BLL.TeacherBll.GetModel(String TeaAccount) 位置 F:\c#\repos\pms\PMS.BLL\TeacherBll.cs:行号 226
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 353
+2019-01-20 01:35:49,536 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:35:49,893 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:39:16,967 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 01:39:17,473 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 98
+2019-01-20 01:39:52,944 [12] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 364
+2019-01-20 01:41:26,259 [11] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 275
+2019-01-20 01:41:54,209 [11] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:41:54,723 [13] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:42:20,807 [7] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 275
+2019-01-20 01:42:46,932 [6] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 364
+2019-01-20 01:46:50,561 [21] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:46:50,983 [21] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:47:44,300 [23] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 275
+2019-01-20 01:47:55,937 [15] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 365
+2019-01-20 01:48:09,197 [13] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 365
+2019-01-20 01:48:34,227 [14] ERROR ASP.admin_adminlist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.adminList.deleteAdmin() 位置 F:\c#\repos\pms\PMS.Web\admin\adminList.aspx.cs:行号 304
+2019-01-20 01:49:01,231 [13] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveTeacher() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 275
+2019-01-20 01:49:14,561 [23] ERROR ASP.admin_tealist_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.teaList.saveChange() 位置 F:\c#\repos\pms\PMS.Web\admin\teaList.aspx.cs:行号 365
+2019-01-20 01:54:20,860 [9] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 01:54:21,268 [8] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 23:18:24,005 [7] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83
+2019-01-20 23:18:24,847 [6] ERROR ASP.admin_login_aspx - System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.Thread.AbortInternal()
+   在 System.Threading.Thread.Abort(Object stateInfo)
+   在 System.Web.HttpResponse.AbortCurrentThread()
+   在 System.Web.HttpResponse.End()
+   在 PMS.Web.admin.login.Page_Load(Object sender, EventArgs e) 位置 F:\c#\repos\pms\PMS.Web\admin\login.aspx.cs:行号 83

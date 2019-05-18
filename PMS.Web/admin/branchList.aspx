@@ -188,7 +188,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-center" id="download">
-                                            <a href="../upload/信息模板下载/学院信息表.xls">
+                                            <a href="../upload/信息模板下载/college.xlsx">
                                                 <button type="button" class="btn btn-primary">下载模板</button></a>
                                         </td>
                                     </tr>

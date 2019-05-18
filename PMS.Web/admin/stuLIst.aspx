@@ -79,6 +79,10 @@
                                     <span class="glyphicon glyphicon-plus-sign">新增</span>
                                 </button>
                             </span>
+                            <button class="btn btn-primary" type="button" id="btn-Adds" data-toggle="modal" data-target="#addsModal">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                批量导入
+                            </button>
                             <button class="btn btn-danger" type="button" id="btn-Del">
                                 <span class="glyphicon glyphicon-trash"></span>
                                 批量删除
@@ -193,6 +197,62 @@
             </ul>
         </div>
     </div>
+
+     <div class="modal fade" id="addsModal" tabindex="-1" role="dialog" aria-labelledby="addsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="addsModalLabel">批量导入学生信息
+                        </h4>
+                    </div>
+                    <%-- <form id="form2" runat="server" method="post" enctype="multipart/form-data" action="branchList.aspx?op=upload">--%>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <div>
+                                            <a href="javascript:;" class="file">选择文件
+                                                <input type="file" name="upload" id="upload" />
+                                                <label class="showFileName"></label>
+                                                <label class="fileerrorTip"></label>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary" id="downfile">下载模板</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">请选择专业：
+                                       <select class="selectpicker" data-width="auto" id="importcol">
+                                           <option value="-1">-请选择专业-</option>
+                                           <% for (int i = 0; i < stuAddProds.Tables[0].Rows.Count; i++)
+                                            { %>
+                                        <option value="<%=stuAddProds.Tables[0].Rows[i]["proId"].ToString() %>">
+                                            <%=stuAddProds.Tables[0].Rows[i]["proName"].ToString() %>
+                                        </option>
+                                        <%} %>
+                                       </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="btnupload">导入</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                    <%--</form>--%>
+                </div>
+            </div>
+        </div>
+
     <!-- 添加学生弹框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -422,4 +482,5 @@
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/stuLIst.js"></script>
 <script src="../js/xcConfirm.js"></script>
+    <script src="../js/ajaxfileupload.js"></script>
 </html>
