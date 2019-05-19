@@ -77,15 +77,15 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">编号</th>
-                            <th class="text-center">姓名</th>
-                            <th class="text-center">联系电话</th>
-                            <th class="text-center">专业</th>
-                            <th class="text-center">题目</th>
-                            <th class="text-center">批次</th>
-                            <th class="text-center">性别</th>
-                            <th class="text-center">选题时间</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><nobr>编号</nobr></th>
+                            <th class="text-center"><nobr>姓名</nobr></th>
+                            <th class="text-center"><nobr>联系电话</nobr></th>
+                            <th class="text-center"><nobr>专业</nobr></th>
+                            <th class="text-center"><nobr>题目</nobr></th>
+                            <th class="text-center"><nobr>批次</nobr></th>
+                            <th class="text-center"><nobr>性别</nobr></th>
+                            <th class="text-center"><nobr>选题时间</nobr></th>
+                            <th class="text-center"><nobr>操作</nobr></th>
                         </thead>
                         <tbody>
                             <tr>

@@ -29,10 +29,10 @@
             <table class="table table-bordered oraldefense-table">
                 <thead>
                     <tr>
-                        <td>姓名</td>
-                        <td>负责职务</td>
-                        <td>联系方式</td>
-                        <td>电子邮箱</td>
+                        <td><nobr>姓名</nobr></td>
+                        <td><nobr>负责职务</nobr></td>
+                        <td><nobr>联系方式</nobr></td>
+                        <td><nobr>电子邮箱</nobr></td>
                     </tr>
                 </thead>
                 <tbody>

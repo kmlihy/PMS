@@ -40,14 +40,14 @@
                 <!-- 数据展示区-->
                 <table class="table table-bordered table-hover">
                     <thead>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">性别</th>
-                        <th class="text-center">院系</th>
-                        <th class="text-center">专业</th>
-                        <th class="text-center">联系电话</th>
-                        <th class="text-center">邮箱</th>
+                        <th class="text-center"><nobr>序号</nobr></th>
+                        <th class="text-center"><nobr>学号</nobr></th>
+                        <th class="text-center"><nobr>姓名</nobr></th>
+                        <th class="text-center"><nobr>性别</nobr></th>
+                        <th class="text-center"><nobr>院系</nobr></th>
+                        <th class="text-center"><nobr>专业</nobr></th>
+                        <th class="text-center"><nobr>联系电话</nobr></th>
+                        <th class="text-center"><nobr>邮箱</nobr></th>
                     </thead>
                     <tbody>
                         <% 

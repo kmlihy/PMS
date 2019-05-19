@@ -26,11 +26,11 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th>所属批次</th>
-                        <th>组长</th>
-                        <th>副助长</th>
-                        <th>秘书</th>
-                        <th>添加答辩小组</th>
+                        <th><nobr>所属批次</nobr></th>
+                        <th><nobr>组长</nobr></th>
+                        <th><nobr>副助长</nobr></th>
+                        <th><nobr>秘书</nobr></th>
+                        <th><nobr>添加答辩小组</nobr></th>
                     </tr>
                     <tr>
                         <td class="col-sm-3">

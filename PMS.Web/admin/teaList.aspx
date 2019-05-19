@@ -54,15 +54,15 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">序号</th>
-                            <th class="text-center">工号</th>
-                            <th class="text-center">姓名</th>
-                            <th class="text-center">性别</th>
-                            <th class="text-center">院系</th>
-                            <th class="text-center">联系电话</th>
-                            <th class="text-center">邮箱</th>
-                            <th class="text-center">用户类型</th>
-                            <th class="text-center">操作</th>
+                            <th class="text-center"><nobr>序号</nobr></th>
+                            <th class="text-center"><nobr>工号</nobr></th>
+                            <th class="text-center"><nobr>姓名</nobr></th>
+                            <th class="text-center"><nobr>性别</nobr></th>
+                            <th class="text-center"><nobr>院系</nobr></th>
+                            <th class="text-center"><nobr>联系电话</nobr></th>
+                            <th class="text-center"><nobr>邮箱</nobr></th>
+                            <th class="text-center"><nobr>用户类型</nobr></th>
+                            <th class="text-center"><nobr>操作</nobr></th>
                         </thead>
                         <tbody>
                             <%

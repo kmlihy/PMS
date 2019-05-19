@@ -93,14 +93,14 @@
                             <th class="text-center">
                                 <input type="checkbox" class="js-checkbox-all" />
                             </th>
-                            <th class="text-center">序号</th>
-                            <th class="text-center">标题</th>
-                            <th class="text-center">批次</th>
-                            <th class="text-center">专业</th>
-                            <th class="text-center">发布人</th>
-                            <th class="text-center">已选人数/人数上限</th>
-                            <th class="text-center">创建时间</th>
-                            <th class="text-center">查看详细信息</th>
+                            <th class="text-center"><nobr>序号</nobr></th>
+                            <th class="text-center"><nobr>标题</nobr></th>
+                            <th class="text-center"><nobr>批次</nobr></th>
+                            <th class="text-center"><nobr>专业</nobr></th>
+                            <th class="text-center"><nobr>发布人</nobr></th>
+                            <th class="text-center"><nobr>已选人数/人数上限</nobr></th>
+                            <th class="text-center"><nobr>创建时间</nobr></th>
+                            <th class="text-center"><nobr>查看详细信息</nobr></th>
                         </thead>
                         <tbody>
                             <%

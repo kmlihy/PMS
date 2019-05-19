@@ -24,10 +24,10 @@
             <table class="table text-center table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">论文</th>
-                        <th class="text-center">提交时间</th>
-                        <th class="text-center">下载</th>
+                        <th class="text-center"><nobr>序号</nobr></th>
+                        <th class="text-center"><nobr>论文</nobr></th>
+                        <th class="text-center"><nobr>提交时间</nobr></th>
+                        <th class="text-center"><nobr>下载</nobr></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -82,12 +82,12 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th class="text-center">序号</th>
-                                <th class="text-center">学号</th>
-                                <th class="text-center">学生姓名</th>
-                                <th class="text-center">论文题目</th>
-                                <th class="text-center">出题教师</th>
-                                <th class="text-center">分数</th>
+                                <th class="text-center"><nobr>序号</nobr></th>
+                                <th class="text-center"><nobr>学号</nobr></th>
+                                <th class="text-center"><nobr>学生姓名</nobr></th>
+                                <th class="text-center"><nobr>论文题目</nobr></th>
+                                <th class="text-center"><nobr>出题教师</nobr></th>
+                                <th class="text-center"><nobr>分数</nobr></th>
                             </tr>
                         </thead>
                         <tbody>

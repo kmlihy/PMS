@@ -32,13 +32,13 @@
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th class="text-center">序号</th>
-                            <th class="text-center">学号</th>
-                            <th class="text-center">姓名</th>
-                            <th class="text-center">论文题目</th>
-                            <th class="text-center">上传时间</th>
-                            <th class="text-center">下载</th>
-                            <th class="text-center">审核</th>
+                            <th class="text-center"><nobr>序号</nobr></th>
+                            <th class="text-center"><nobr>学号</nobr></th>
+                            <th class="text-center"><nobr>姓名</nobr></th>
+                            <th class="text-center"><nobr>论文题目</nobr></th>
+                            <th class="text-center"><nobr>上传时间</nobr></th>
+                            <th class="text-center"><nobr>下载</nobr></th>
+                            <th class="text-center"><nobr>审核</nobr></th>
                         </tr>
                     </thead>
                     <tbody>

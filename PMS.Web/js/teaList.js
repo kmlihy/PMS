@@ -367,7 +367,7 @@ $(document).ready(function () {
     //点击下载模板事件
     $("#downfile").click(function () {
         var $eleForm = $("<form method='get'></form>");
-        $eleForm.attr("action", "../upload/信息模板下载/教师批量导入模板.xlsx");
+        $eleForm.attr("action", "../upload/信息模板下载/teacher.xlsx");
         $(document.body).append($eleForm);
         //提交表单，实现下载
         $eleForm.submit();

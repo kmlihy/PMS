@@ -38,13 +38,13 @@
             <table class="table text-center table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">序号</th>
-                        <th class="text-center">论文</th>
-                        <th class="text-center">学号</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">驳回意见</th>
-                        <th class="text-center">评定</th>
-                        <th class="text-center">查看历史提交</th>
+                        <th class="text-center"><nobr>序号</nobr></th>
+                        <th class="text-center"><nobr>论文</nobr></th>
+                        <th class="text-center"><nobr>学号</nobr></th>
+                        <th class="text-center"><nobr>姓名</nobr></th>
+                        <th class="text-center"><nobr>驳回意见</nobr></th>
+                        <th class="text-center"><nobr>评定</nobr></th>
+                        <th class="text-center"><nobr>查看历史提交</nobr></th>
                     </tr>
                 </thead>
                 <tbody>

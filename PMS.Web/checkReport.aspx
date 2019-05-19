@@ -69,8 +69,8 @@
                 <table class="table table-bordered" id="thesisTable">
                     <thead>
                         <tr>
-                            <th class="text-center">文件名称</th>
-                            <th class="text-center">文件大小</th>
+                            <th class="text-center"><nobr>文件名称</nobr></th>
+                            <th class="text-center"><nobr>文件大小</nobr></th>
                         </tr>
                     </thead>
                     <tbody>

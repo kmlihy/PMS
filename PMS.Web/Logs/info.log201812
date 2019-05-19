@@ -1,0 +1,14 @@
+2018-12-03 11:02:43,114 [14] INFO  ASP.admin_login_aspx - admin - admin - 登录
+2018-12-03 11:04:14,250 [10] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录
+2018-12-03 11:11:42,150 [11] INFO  ASP.admin_batchlist_aspx - 10001信工分管一-添加批次
+2018-12-03 11:14:55,564 [30] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录
+2018-12-03 11:15:45,055 [31] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录
+2018-12-03 11:31:48,433 [43] INFO  ASP.admin_login_aspx - 10002 - 人文分管一 - 登录
+2018-12-03 12:11:12,483 [14] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录
+2018-12-03 12:32:28,289 [76] INFO  ASP.login_aspx - 200002 - 信息工程教师二 - 登录
+2018-12-03 12:32:47,638 [74] INFO  ASP.crossguide_aspx - 200002 - 信息工程教师二 - 教师对 - 166003 - 计科学生一 - 学生的交叉指导意见
+2018-12-03 12:33:17,610 [76] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录
+2018-12-03 12:33:34,811 [73] INFO  ASP.distributionreplyteam_aspx - 10001 - 信工分管一 - 分配12批次答辩小组
+2018-12-03 12:34:19,451 [74] INFO  ASP.admin_login_aspx - 10001 - 信工分管一 - 登录
+2018-12-03 12:34:27,763 [73] INFO  ASP.distributionreplystudent_aspx - 10001 - 信工分管一 - 添加8答辩小组学生 - 166003 - 计科学生一
+2018-12-03 12:36:59,866 [77] INFO  ASP.login_aspx - 200003 - 信息工程教师三 - 登录
