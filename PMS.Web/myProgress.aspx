@@ -12,6 +12,8 @@
 <body>
     <div class="demo">
         <div class="history">
+            <%if (recordResult)
+                { %>
             <div class="history-date">
                 <ul>
                     <h2 id="myproh2">
@@ -21,16 +23,16 @@
                         <% DateTime time = new DateTime();
                             time = DateTime.Now;
                         %>
-                        <h3><%=string.Format("{0:MM-dd}",time) %><span><%=string.Format("{0:yyyy}",time) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", time) %><span><%=string.Format("{0:yyyy}", time) %></span></h3>
                         <dl>
                             <dt>选题时间
-                                <span>开始时间：<%=string.Format("{0:yyyy-MM-dd}",startTime) %></span>
-                                <span>结束时间：<%=string.Format("{0:yyyy-MM-dd}",endTime) %></span>
+                                <span>开始时间：<%=string.Format("{0:yyyy-MM-dd}", startTime) %></span>
+                                <span>结束时间：<%=string.Format("{0:yyyy-MM-dd}", endTime) %></span>
                             </dt>
                         </dl>
                     </li>
                     <li class="green">
-                        <h3><%=string.Format("{0:MM-dd}",time) %><span><%=string.Format("{0:yyyy}",time) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", time) %><span><%=string.Format("{0:yyyy}", time) %></span></h3>
                         <%if (DateTime.Compare(time, startTime) < 0)
                             { %>
                         <dl>
@@ -138,7 +140,7 @@
                 <ul>
                     <h2 class="date02"><a href="#nogo">论文指导阶段</a></h2>
                     <li>
-                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
                         <dl>
                             <dt>你还没有选题</dt>
                         </dl>
@@ -161,7 +163,7 @@
                     <%for (int i = 0; i < pathds.Tables[0].Rows.Count; i++)
                         {%>
                     <li>
-                        <h3><%=string.Format("{0:MM-dd}",pathds.Tables[0].Rows[i]["dateTime"]) %><span><%=string.Format("{0:yyyy}", pathds.Tables[0].Rows[i]["dateTime"]) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", pathds.Tables[0].Rows[i]["dateTime"]) %><span><%=string.Format("{0:yyyy}", pathds.Tables[0].Rows[i]["dateTime"]) %></span></h3>
                         <dl>
                             <dt><%=pathds.Tables[0].Rows[i]["pathTitle"] %></dt>
                         </dl>
@@ -196,7 +198,7 @@
                         {%>
                     <li>
                         <h3>
-                            <%=string.Format("{0:MM-dd}",checkReport.Tables[0].Rows[0]["dateTime"]) %>
+                            <%=string.Format("{0:MM-dd}", checkReport.Tables[0].Rows[0]["dateTime"]) %>
                             <span><%=string.Format("{0:yyyy}", checkReport.Tables[0].Rows[0]["dateTime"]) %></span>
                         </h3>
                         <dl>
@@ -207,7 +209,7 @@
                     </li>
                     <li>
                         <h3>
-                            <%=string.Format("{0:MM-dd}",checkReport.Tables[0].Rows[0]["dateTime"]) %>
+                            <%=string.Format("{0:MM-dd}", checkReport.Tables[0].Rows[0]["dateTime"]) %>
                             <span><%=string.Format("{0:yyyy}", checkReport.Tables[0].Rows[0]["dateTime"]) %></span>
                         </h3>
                         <dl>
@@ -269,7 +271,7 @@
                         else
                         { %>
                     <li>
-                        <h3><%=string.Format("{0:MM-dd}",nowTime) %><span><%=string.Format("{0:yyyy}",nowTime) %></span></h3>
+                        <h3><%=string.Format("{0:MM-dd}", nowTime) %><span><%=string.Format("{0:yyyy}", nowTime) %></span></h3>
                         <dl>
                             <dt>未分配交叉指导教师</dt>
                         </dl>
@@ -335,6 +337,11 @@
             <div id="myproEnddiv">
                 <h2 id="myproEndh2">结束</h2>
             </div>
+            <%}
+                else
+                { %>
+            <h3>你还没有选题，点击<a href="../paperList.aspx">进行选题</a></h3>
+            <%} %>
         </div>
     </div>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>

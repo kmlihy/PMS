@@ -39,6 +39,7 @@ namespace PMS.Web
         protected DataSet corssDs;
         protected DataSet defenceDs;
         public DataSet checkReport;
+        protected bool recordResult;
         TitleRecordBll Record = new TitleRecordBll();
         PlanBll planBll = new PlanBll();
         OpenReportBll opBll = new OpenReportBll();
@@ -59,7 +60,8 @@ namespace PMS.Web
             {
                 student = (Student)Session["loginuser"];
                 stuNO = student.StuAccount;
-                if (Record.selectBystuId(stuNO)==true)
+                recordResult = Record.selectBystuId(stuNO);
+                if (recordResult)
                 {
                     ds = Record.GetByAccount(stuNO);
                     title = ds.Tables[0].Rows[0]["title"].ToString();//获取标题
